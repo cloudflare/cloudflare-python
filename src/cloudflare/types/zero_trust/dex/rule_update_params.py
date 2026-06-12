@@ -9,6 +9,7 @@ __all__ = ["RuleUpdateParams"]
 
 class RuleUpdateParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     description: str
 

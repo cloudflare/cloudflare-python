@@ -18,10 +18,10 @@ class TestStatOverTime(BaseModel):
     slots: List[Slot]
 
     avg: Optional[int] = None
-    """average observed in the time period"""
+    """average observed in the time period."""
 
     max: Optional[int] = None
-    """highest observed in the time period"""
+    """highest observed in the time period."""
 
     min: Optional[int] = None
-    """lowest observed in the time period"""
+    """lowest observed in the time period."""

@@ -72,6 +72,8 @@ class DEXTestsResource(SyncAPIResource):
         Create a DEX test.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           data: The configuration object which contains the details for the WARP client to
               conduct the test.
 
@@ -142,6 +144,8 @@ class DEXTestsResource(SyncAPIResource):
         Update a DEX test.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           dex_test_id: API Resource UUID tag.
 
           data: The configuration object which contains the details for the WARP client to
@@ -213,16 +217,18 @@ class DEXTestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DEXTestListResponse]:
         """
-        Fetch all DEX tests
+        Fetch all DEX tests.
 
         Args:
-          kind: Filter by test type
+          account_id: Unique identifier linked to an account.
 
-          page: Page number of paginated results
+          kind: Filter by test type.
 
-          per_page: Number of items per page
+          page: Page number of paginated results.
 
-          test_name: Filter by test name
+          per_page: Number of results per page.
+
+          test_name: Filter by test name.
 
           extra_headers: Send extra headers
 
@@ -273,6 +279,8 @@ class DEXTestsResource(SyncAPIResource):
         account.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           dex_test_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
@@ -319,6 +327,8 @@ class DEXTestsResource(SyncAPIResource):
         Fetch a single DEX test.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           dex_test_id: The unique identifier for the test.
 
           extra_headers: Send extra headers
@@ -392,6 +402,8 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         Create a DEX test.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           data: The configuration object which contains the details for the WARP client to
               conduct the test.
 
@@ -462,6 +474,8 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         Update a DEX test.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           dex_test_id: API Resource UUID tag.
 
           data: The configuration object which contains the details for the WARP client to
@@ -533,16 +547,18 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DEXTestListResponse, AsyncV4PagePaginationArray[DEXTestListResponse]]:
         """
-        Fetch all DEX tests
+        Fetch all DEX tests.
 
         Args:
-          kind: Filter by test type
+          account_id: Unique identifier linked to an account.
 
-          page: Page number of paginated results
+          kind: Filter by test type.
 
-          per_page: Number of items per page
+          page: Page number of paginated results.
 
-          test_name: Filter by test name
+          per_page: Number of results per page.
+
+          test_name: Filter by test name.
 
           extra_headers: Send extra headers
 
@@ -593,6 +609,8 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         account.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           dex_test_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
@@ -639,6 +657,8 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         Fetch a single DEX test.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           dex_test_id: The unique identifier for the test.
 
           extra_headers: Send extra headers

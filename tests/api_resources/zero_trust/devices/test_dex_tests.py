@@ -235,7 +235,7 @@ class TestDEXTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             kind="http",
             page=1,
-            per_page=1,
+            per_page=10,
             test_name="testName",
         )
         assert_matches_type(SyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])
@@ -584,7 +584,7 @@ class TestAsyncDEXTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             kind="http",
             page=1,
-            per_page=1,
+            per_page=10,
             test_name="testName",
         )
         assert_matches_type(AsyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])

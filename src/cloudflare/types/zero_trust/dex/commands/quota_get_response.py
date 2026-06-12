@@ -9,10 +9,10 @@ __all__ = ["QuotaGetResponse"]
 
 class QuotaGetResponse(BaseModel):
     quota: float
-    """The remaining number of commands that can be initiated for an account"""
+    """The total number of commands that can be initiated for an account."""
 
     quota_usage: float
-    """The number of commands that have been initiated for an account"""
+    """The number of commands that have been initiated for an account."""
 
     reset_time: datetime
-    """The time when the quota resets"""
+    """The time when the quota resets."""

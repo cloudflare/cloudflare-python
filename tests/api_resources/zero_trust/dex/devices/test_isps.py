@@ -24,7 +24,7 @@ class TestISPs:
         isp = client.zero_trust.dex.devices.isps.list(
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            per_page=1,
+            per_page=10,
         )
         assert_matches_type(SyncV4PagePagination[Optional[ISPs]], isp, path=["response"])
 
@@ -33,7 +33,7 @@ class TestISPs:
         isp = client.zero_trust.dex.devices.isps.list(
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            per_page=1,
+            per_page=10,
             cursor="cursor",
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
             page=1,
@@ -48,7 +48,7 @@ class TestISPs:
         response = client.zero_trust.dex.devices.isps.with_raw_response.list(
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            per_page=1,
+            per_page=10,
         )
 
         assert response.is_closed is True
@@ -61,7 +61,7 @@ class TestISPs:
         with client.zero_trust.dex.devices.isps.with_streaming_response.list(
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            per_page=1,
+            per_page=10,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -77,14 +77,14 @@ class TestISPs:
             client.zero_trust.dex.devices.isps.with_raw_response.list(
                 device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                per_page=1,
+                per_page=10,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `device_id` but received ''"):
             client.zero_trust.dex.devices.isps.with_raw_response.list(
                 device_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                per_page=1,
+                per_page=10,
             )
 
 
@@ -98,7 +98,7 @@ class TestAsyncISPs:
         isp = await async_client.zero_trust.dex.devices.isps.list(
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            per_page=1,
+            per_page=10,
         )
         assert_matches_type(AsyncV4PagePagination[Optional[ISPs]], isp, path=["response"])
 
@@ -107,7 +107,7 @@ class TestAsyncISPs:
         isp = await async_client.zero_trust.dex.devices.isps.list(
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            per_page=1,
+            per_page=10,
             cursor="cursor",
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
             page=1,
@@ -122,7 +122,7 @@ class TestAsyncISPs:
         response = await async_client.zero_trust.dex.devices.isps.with_raw_response.list(
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            per_page=1,
+            per_page=10,
         )
 
         assert response.is_closed is True
@@ -135,7 +135,7 @@ class TestAsyncISPs:
         async with async_client.zero_trust.dex.devices.isps.with_streaming_response.list(
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            per_page=1,
+            per_page=10,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -151,12 +151,12 @@ class TestAsyncISPs:
             await async_client.zero_trust.dex.devices.isps.with_raw_response.list(
                 device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                per_page=1,
+                per_page=10,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `device_id` but received ''"):
             await async_client.zero_trust.dex.devices.isps.with_raw_response.list(
                 device_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                per_page=1,
+                per_page=10,
             )

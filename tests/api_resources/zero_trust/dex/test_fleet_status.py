@@ -66,8 +66,8 @@ class TestFleetStatus:
     def test_method_over_time(self, client: Cloudflare) -> None:
         fleet_status = client.zero_trust.dex.fleet_status.over_time(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
-            to="2023-10-11T00:00:00Z",
+            from_="2023-10-11 00:00:00+00",
+            to="2023-10-11 00:00:00+00",
         )
         assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
 
@@ -75,8 +75,8 @@ class TestFleetStatus:
     def test_method_over_time_with_all_params(self, client: Cloudflare) -> None:
         fleet_status = client.zero_trust.dex.fleet_status.over_time(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
-            to="2023-10-11T00:00:00Z",
+            from_="2023-10-11 00:00:00+00",
+            to="2023-10-11 00:00:00+00",
             colo="SJC",
             device_id="cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7",
         )
@@ -86,8 +86,8 @@ class TestFleetStatus:
     def test_raw_response_over_time(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.fleet_status.with_raw_response.over_time(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
-            to="2023-10-11T00:00:00Z",
+            from_="2023-10-11 00:00:00+00",
+            to="2023-10-11 00:00:00+00",
         )
 
         assert response.is_closed is True
@@ -99,8 +99,8 @@ class TestFleetStatus:
     def test_streaming_response_over_time(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.fleet_status.with_streaming_response.over_time(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
-            to="2023-10-11T00:00:00Z",
+            from_="2023-10-11 00:00:00+00",
+            to="2023-10-11 00:00:00+00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,8 +115,8 @@ class TestFleetStatus:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dex.fleet_status.with_raw_response.over_time(
                 account_id="",
-                from_="2023-10-11T00:00:00Z",
-                to="2023-10-11T00:00:00Z",
+                from_="2023-10-11 00:00:00+00",
+                to="2023-10-11 00:00:00+00",
             )
 
 
@@ -171,8 +171,8 @@ class TestAsyncFleetStatus:
     async def test_method_over_time(self, async_client: AsyncCloudflare) -> None:
         fleet_status = await async_client.zero_trust.dex.fleet_status.over_time(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
-            to="2023-10-11T00:00:00Z",
+            from_="2023-10-11 00:00:00+00",
+            to="2023-10-11 00:00:00+00",
         )
         assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
 
@@ -180,8 +180,8 @@ class TestAsyncFleetStatus:
     async def test_method_over_time_with_all_params(self, async_client: AsyncCloudflare) -> None:
         fleet_status = await async_client.zero_trust.dex.fleet_status.over_time(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
-            to="2023-10-11T00:00:00Z",
+            from_="2023-10-11 00:00:00+00",
+            to="2023-10-11 00:00:00+00",
             colo="SJC",
             device_id="cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7",
         )
@@ -191,8 +191,8 @@ class TestAsyncFleetStatus:
     async def test_raw_response_over_time(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.fleet_status.with_raw_response.over_time(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
-            to="2023-10-11T00:00:00Z",
+            from_="2023-10-11 00:00:00+00",
+            to="2023-10-11 00:00:00+00",
         )
 
         assert response.is_closed is True
@@ -204,8 +204,8 @@ class TestAsyncFleetStatus:
     async def test_streaming_response_over_time(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.fleet_status.with_streaming_response.over_time(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
-            to="2023-10-11T00:00:00Z",
+            from_="2023-10-11 00:00:00+00",
+            to="2023-10-11 00:00:00+00",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -220,6 +220,6 @@ class TestAsyncFleetStatus:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dex.fleet_status.with_raw_response.over_time(
                 account_id="",
-                from_="2023-10-11T00:00:00Z",
-                to="2023-10-11T00:00:00Z",
+                from_="2023-10-11 00:00:00+00",
+                to="2023-10-11 00:00:00+00",
             )

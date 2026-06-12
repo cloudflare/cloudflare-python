@@ -41,10 +41,10 @@ class OverviewMetrics(BaseModel):
     """number of tests."""
 
     avg_http_availability_pct: Optional[float] = FieldInfo(alias="avgHttpAvailabilityPct", default=None)
-    """percentage availability for all HTTP test results in response"""
+    """percentage availability for all HTTP test results in response."""
 
     avg_traceroute_availability_pct: Optional[float] = FieldInfo(alias="avgTracerouteAvailabilityPct", default=None)
-    """percentage availability for all traceroutes results in response"""
+    """percentage availability for all traceroutes results in response."""
 
 
 class TestHTTPResultsResourceFetchTimeHistory(BaseModel):

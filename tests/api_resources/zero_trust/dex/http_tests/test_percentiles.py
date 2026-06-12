@@ -34,8 +34,8 @@ class TestPercentiles:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
-            colo="colo",
-            device_id=["string"],
+            colo="SJC",
+            device_id=["cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7"],
         )
         assert_matches_type(Optional[HTTPDetailsPercentiles], percentile, path=["response"])
 
@@ -110,8 +110,8 @@ class TestAsyncPercentiles:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
-            colo="colo",
-            device_id=["string"],
+            colo="SJC",
+            device_id=["cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7"],
         )
         assert_matches_type(Optional[HTTPDetailsPercentiles], percentile, path=["response"])
 

@@ -9,12 +9,13 @@ __all__ = ["FleetStatusGetParams"]
 
 class FleetStatusGetParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     since_minutes: Required[float]
-    """Number of minutes before current time"""
+    """Number of minutes before current time."""
 
     colo: str
-    """List of data centers to filter results"""
+    """List of data centers to filter results."""
 
     time_now: str
-    """Number of minutes before current time"""
+    """Current time in ISO format."""

@@ -9,6 +9,7 @@ __all__ = ["RuleCreateParams"]
 
 class RuleCreateParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     match: Required[str]
     """The wirefilter expression to match."""

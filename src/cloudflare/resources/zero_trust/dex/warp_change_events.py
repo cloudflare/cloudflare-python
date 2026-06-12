@@ -69,13 +69,15 @@ class WARPChangeEventsResource(SyncAPIResource):
         List WARP configuration and enablement toggle change events by device.
 
         Args:
-          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
+          account_id: Unique identifier linked to an account.
 
-          page: Page number of paginated results
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format.
 
-          per_page: Number of items per page
+          page: Page number of paginated results.
 
-          to: End time for the query in ISO (RFC3339 - ISO 8601) format
+          per_page: Number of results per page.
+
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format.
 
           account_name: Filter events by account name.
 
@@ -86,7 +88,7 @@ class WARPChangeEventsResource(SyncAPIResource):
 
           toggle: Filter events by type toggle value. Applicable to type='toggle' events only.
 
-          type: Filter events by type 'config' or 'toggle'
+          type: Filter events by type 'config' or 'toggle'.
 
           extra_headers: Send extra headers
 
@@ -169,13 +171,15 @@ class AsyncWARPChangeEventsResource(AsyncAPIResource):
         List WARP configuration and enablement toggle change events by device.
 
         Args:
-          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
+          account_id: Unique identifier linked to an account.
 
-          page: Page number of paginated results
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format.
 
-          per_page: Number of items per page
+          page: Page number of paginated results.
 
-          to: End time for the query in ISO (RFC3339 - ISO 8601) format
+          per_page: Number of results per page.
+
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format.
 
           account_name: Filter events by account name.
 
@@ -186,7 +190,7 @@ class AsyncWARPChangeEventsResource(AsyncAPIResource):
 
           toggle: Filter events by type toggle value. Applicable to type='toggle' events only.
 
-          type: Filter events by type 'config' or 'toggle'
+          type: Filter events by type 'config' or 'toggle'.
 
           extra_headers: Send extra headers
 

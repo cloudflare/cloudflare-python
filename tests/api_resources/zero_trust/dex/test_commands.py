@@ -93,7 +93,7 @@ class TestCommands:
         command = client.zero_trust.dex.commands.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=50,
+            per_page=10,
         )
         assert_matches_type(SyncV4PagePagination[Optional[CommandListResponse]], command, path=["response"])
 
@@ -102,7 +102,7 @@ class TestCommands:
         command = client.zero_trust.dex.commands.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=50,
+            per_page=10,
             command_type="pcap",
             device_id="device_id",
             from_=parse_datetime("2023-08-20T20:45:00Z"),
@@ -117,7 +117,7 @@ class TestCommands:
         response = client.zero_trust.dex.commands.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=50,
+            per_page=10,
         )
 
         assert response.is_closed is True
@@ -130,7 +130,7 @@ class TestCommands:
         with client.zero_trust.dex.commands.with_streaming_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=50,
+            per_page=10,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -146,7 +146,7 @@ class TestCommands:
             client.zero_trust.dex.commands.with_raw_response.list(
                 account_id="",
                 page=1,
-                per_page=50,
+                per_page=10,
             )
 
 
@@ -226,7 +226,7 @@ class TestAsyncCommands:
         command = await async_client.zero_trust.dex.commands.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=50,
+            per_page=10,
         )
         assert_matches_type(AsyncV4PagePagination[Optional[CommandListResponse]], command, path=["response"])
 
@@ -235,7 +235,7 @@ class TestAsyncCommands:
         command = await async_client.zero_trust.dex.commands.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=50,
+            per_page=10,
             command_type="pcap",
             device_id="device_id",
             from_=parse_datetime("2023-08-20T20:45:00Z"),
@@ -250,7 +250,7 @@ class TestAsyncCommands:
         response = await async_client.zero_trust.dex.commands.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=50,
+            per_page=10,
         )
 
         assert response.is_closed is True
@@ -263,7 +263,7 @@ class TestAsyncCommands:
         async with async_client.zero_trust.dex.commands.with_streaming_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=50,
+            per_page=10,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -279,5 +279,5 @@ class TestAsyncCommands:
             await async_client.zero_trust.dex.commands.with_raw_response.list(
                 account_id="",
                 page=1,
-                per_page=50,
+                per_page=10,
             )

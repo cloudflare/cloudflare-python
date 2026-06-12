@@ -11,15 +11,24 @@ __all__ = ["FleetStatusOverTimeParams"]
 
 class FleetStatusOverTimeParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
-    """Time range beginning in ISO format"""
+    """Start of the time range to query.
+
+    Timestamp can be provided in ISO 8601 datetime format or milliseconds since
+    epoch.
+    """
 
     to: Required[str]
-    """Time range end in ISO format"""
+    """End of the time range to query.
+
+    Timestamp can be provided in ISO 8601 datetime format or milliseconds since
+    epoch.
+    """
 
     colo: str
-    """Cloudflare colo"""
+    """Cloudflare colo airport code."""
 
     device_id: str
-    """Device-specific ID, given as UUID v4"""
+    """Device-specific ID, given as UUID."""

@@ -144,7 +144,7 @@ class TestRules:
         rule = client.zero_trust.dex.rules.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         )
         assert_matches_type(SyncV4PagePagination[Optional[RuleListResponse]], rule, path=["response"])
 
@@ -153,7 +153,7 @@ class TestRules:
         rule = client.zero_trust.dex.rules.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
             name="name",
             sort_by="name",
             sort_order="ASC",
@@ -165,7 +165,7 @@ class TestRules:
         response = client.zero_trust.dex.rules.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         )
 
         assert response.is_closed is True
@@ -178,7 +178,7 @@ class TestRules:
         with client.zero_trust.dex.rules.with_streaming_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -194,7 +194,7 @@ class TestRules:
             client.zero_trust.dex.rules.with_raw_response.list(
                 account_id="",
                 page=1,
-                per_page=1,
+                per_page=10,
             )
 
     @parametrize
@@ -419,7 +419,7 @@ class TestAsyncRules:
         rule = await async_client.zero_trust.dex.rules.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         )
         assert_matches_type(AsyncV4PagePagination[Optional[RuleListResponse]], rule, path=["response"])
 
@@ -428,7 +428,7 @@ class TestAsyncRules:
         rule = await async_client.zero_trust.dex.rules.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
             name="name",
             sort_by="name",
             sort_order="ASC",
@@ -440,7 +440,7 @@ class TestAsyncRules:
         response = await async_client.zero_trust.dex.rules.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         )
 
         assert response.is_closed is True
@@ -453,7 +453,7 @@ class TestAsyncRules:
         async with async_client.zero_trust.dex.rules.with_streaming_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -469,7 +469,7 @@ class TestAsyncRules:
             await async_client.zero_trust.dex.rules.with_raw_response.list(
                 account_id="",
                 page=1,
-                per_page=1,
+                per_page=10,
             )
 
     @parametrize

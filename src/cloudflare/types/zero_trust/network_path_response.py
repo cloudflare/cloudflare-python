@@ -16,6 +16,7 @@ class NetworkPathResponse(BaseModel):
     """API Resource UUID tag."""
 
     device_name: Optional[str] = FieldInfo(alias="deviceName", default=None)
+    """Name of the device that ran the test."""
 
     interval: Optional[str] = None
     """The interval at which the Traceroute synthetic application test is set to run."""
@@ -27,4 +28,4 @@ class NetworkPathResponse(BaseModel):
     network_path: Optional[NetworkPath] = FieldInfo(alias="networkPath", default=None)
 
     url: Optional[str] = None
-    """The host of the Traceroute synthetic application test"""
+    """The host of the Traceroute synthetic application test."""

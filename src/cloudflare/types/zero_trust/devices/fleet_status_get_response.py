@@ -22,13 +22,28 @@ __all__ = [
     "ISPIPV6",
     "ISPIPV6Location",
     "RamUsedPctByApp",
+    "RTT",
+    "RTTMinRTTUs",
+    "RTTRTTUs",
+    "RTTRTTVarUs",
+    "TunnelStats",
+    "TunnelStatsBytesLost",
+    "TunnelStatsBytesReceived",
+    "TunnelStatsBytesRetransmitted",
+    "TunnelStatsBytesSent",
+    "TunnelStatsPacketsLost",
+    "TunnelStatsPacketsReceived",
+    "TunnelStatsPacketsRetransmitted",
+    "TunnelStatsPacketsSent",
 ]
 
 
 class CPUPctByApp(BaseModel):
     cpu_pct: Optional[float] = None
+    """CPU usage percentage, on a scale of 0 to 100."""
 
     name: Optional[str] = None
+    """Application name."""
 
 
 class DeviceIPV4Location(BaseModel):
@@ -50,9 +65,12 @@ class DeviceIPV4(BaseModel):
 
     location: Optional[DeviceIPV4Location] = None
 
+    name: Optional[str] = None
+
     netmask: Optional[str] = None
 
-    version: Optional[str] = None
+    version: Optional[int] = None
+    """IP version (`1` for IPv4, `2` for IPv6, `0` if unknown)."""
 
 
 class DeviceIPV6Location(BaseModel):
@@ -74,9 +92,12 @@ class DeviceIPV6(BaseModel):
 
     location: Optional[DeviceIPV6Location] = None
 
+    name: Optional[str] = None
+
     netmask: Optional[str] = None
 
-    version: Optional[str] = None
+    version: Optional[int] = None
+    """IP version (`1` for IPv4, `2` for IPv6, `0` if unknown)."""
 
 
 class GatewayIPV4Location(BaseModel):
@@ -98,9 +119,12 @@ class GatewayIPV4(BaseModel):
 
     location: Optional[GatewayIPV4Location] = None
 
+    name: Optional[str] = None
+
     netmask: Optional[str] = None
 
-    version: Optional[str] = None
+    version: Optional[int] = None
+    """IP version (`1` for IPv4, `2` for IPv6, `0` if unknown)."""
 
 
 class GatewayIPV6Location(BaseModel):
@@ -122,9 +146,12 @@ class GatewayIPV6(BaseModel):
 
     location: Optional[GatewayIPV6Location] = None
 
+    name: Optional[str] = None
+
     netmask: Optional[str] = None
 
-    version: Optional[str] = None
+    version: Optional[int] = None
+    """IP version (`1` for IPv4, `2` for IPv6, `0` if unknown)."""
 
 
 class ISPIPV4Location(BaseModel):
@@ -146,9 +173,12 @@ class ISPIPV4(BaseModel):
 
     location: Optional[ISPIPV4Location] = None
 
+    name: Optional[str] = None
+
     netmask: Optional[str] = None
 
-    version: Optional[str] = None
+    version: Optional[int] = None
+    """IP version (`1` for IPv4, `2` for IPv6, `0` if unknown)."""
 
 
 class ISPIPV6Location(BaseModel):
@@ -170,38 +200,176 @@ class ISPIPV6(BaseModel):
 
     location: Optional[ISPIPV6Location] = None
 
+    name: Optional[str] = None
+
     netmask: Optional[str] = None
 
-    version: Optional[str] = None
+    version: Optional[int] = None
+    """IP version (`1` for IPv4, `2` for IPv6, `0` if unknown)."""
 
 
 class RamUsedPctByApp(BaseModel):
     name: Optional[str] = None
+    """Application name."""
 
     ram_used_pct: Optional[float] = None
+    """RAM usage percentage, on a scale of 0 to 100."""
+
+
+class RTTMinRTTUs(BaseModel):
+    """Minimum round-trip time in microseconds."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class RTTRTTUs(BaseModel):
+    """Round-trip time in microseconds."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class RTTRTTVarUs(BaseModel):
+    """Round-trip time variance in microseconds."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class RTT(BaseModel):
+    """Round-trip time statistics for the WARP tunnel."""
+
+    min_rtt_us: Optional[RTTMinRTTUs] = FieldInfo(alias="minRttUs", default=None)
+    """Minimum round-trip time in microseconds."""
+
+    rtt_us: Optional[RTTRTTUs] = FieldInfo(alias="rttUs", default=None)
+    """Round-trip time in microseconds."""
+
+    rtt_var_us: Optional[RTTRTTVarUs] = FieldInfo(alias="rttVarUs", default=None)
+    """Round-trip time variance in microseconds."""
+
+
+class TunnelStatsBytesLost(BaseModel):
+    """Number of bytes lost, split by direction."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class TunnelStatsBytesReceived(BaseModel):
+    """Number of bytes received, split by direction."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class TunnelStatsBytesRetransmitted(BaseModel):
+    """Number of bytes retransmitted, split by direction."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class TunnelStatsBytesSent(BaseModel):
+    """Number of bytes sent, split by direction."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class TunnelStatsPacketsLost(BaseModel):
+    """Number of packets lost, split by direction."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class TunnelStatsPacketsReceived(BaseModel):
+    """Number of packets received, split by direction."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class TunnelStatsPacketsRetransmitted(BaseModel):
+    """Number of packets retransmitted, split by direction."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class TunnelStatsPacketsSent(BaseModel):
+    """Number of packets sent, split by direction."""
+
+    downstream: Optional[int] = None
+
+    upstream: Optional[int] = None
+
+
+class TunnelStats(BaseModel):
+    """WARP tunnel packet and byte counters."""
+
+    bytes_lost: Optional[TunnelStatsBytesLost] = FieldInfo(alias="bytesLost", default=None)
+    """Number of bytes lost, split by direction."""
+
+    bytes_received: Optional[TunnelStatsBytesReceived] = FieldInfo(alias="bytesReceived", default=None)
+    """Number of bytes received, split by direction."""
+
+    bytes_retransmitted: Optional[TunnelStatsBytesRetransmitted] = FieldInfo(alias="bytesRetransmitted", default=None)
+    """Number of bytes retransmitted, split by direction."""
+
+    bytes_sent: Optional[TunnelStatsBytesSent] = FieldInfo(alias="bytesSent", default=None)
+    """Number of bytes sent, split by direction."""
+
+    packets_lost: Optional[TunnelStatsPacketsLost] = FieldInfo(alias="packetsLost", default=None)
+    """Number of packets lost, split by direction."""
+
+    packets_received: Optional[TunnelStatsPacketsReceived] = FieldInfo(alias="packetsReceived", default=None)
+    """Number of packets received, split by direction."""
+
+    packets_retransmitted: Optional[TunnelStatsPacketsRetransmitted] = FieldInfo(
+        alias="packetsRetransmitted", default=None
+    )
+    """Number of packets retransmitted, split by direction."""
+
+    packets_sent: Optional[TunnelStatsPacketsSent] = FieldInfo(alias="packetsSent", default=None)
+    """Number of packets sent, split by direction."""
+
+    stats_window_ms: Optional[int] = FieldInfo(alias="statsWindowMs", default=None)
+    """The measurement window duration in milliseconds."""
 
 
 class FleetStatusGetResponse(BaseModel):
     colo: str
-    """Cloudflare colo"""
+    """Cloudflare colo airport code."""
 
     device_id: str = FieldInfo(alias="deviceId")
     """Device identifier (UUID v4)"""
 
     mode: str
-    """The mode under which the WARP client is run"""
+    """The mode under which the WARP client is run."""
 
     platform: str
-    """Operating system"""
+    """Operating system."""
 
     status: str
-    """Network status"""
+    """Network status."""
 
     timestamp: str
-    """Timestamp in ISO format"""
 
     version: str
-    """WARP client version"""
+    """WARP client version."""
 
     always_on: Optional[bool] = FieldInfo(alias="alwaysOn", default=None)
 
@@ -215,17 +383,17 @@ class FleetStatusGetResponse(BaseModel):
 
     cpu_pct: Optional[float] = FieldInfo(alias="cpuPct", default=None)
 
-    cpu_pct_by_app: Optional[List[List[CPUPctByApp]]] = FieldInfo(alias="cpuPctByApp", default=None)
+    cpu_pct_by_app: Optional[List[CPUPctByApp]] = FieldInfo(alias="cpuPctByApp", default=None)
 
     device_ipv4: Optional[DeviceIPV4] = FieldInfo(alias="deviceIpv4", default=None)
 
     device_ipv6: Optional[DeviceIPV6] = FieldInfo(alias="deviceIpv6", default=None)
 
     device_name: Optional[str] = FieldInfo(alias="deviceName", default=None)
-    """Device identifier (human readable)"""
+    """Device identifier (human readable)."""
 
     device_registration: Optional[str] = FieldInfo(alias="deviceRegistration", default=None)
-    """Deprecated: use registrationId. Device registration identifier (UUID v4)."""
+    """Deprecated: use registrationId. Device registration identifier (UUID)."""
 
     disk_read_bps: Optional[int] = FieldInfo(alias="diskReadBps", default=None)
 
@@ -264,7 +432,7 @@ class FleetStatusGetResponse(BaseModel):
 
     ram_used_pct: Optional[float] = FieldInfo(alias="ramUsedPct", default=None)
 
-    ram_used_pct_by_app: Optional[List[List[RamUsedPctByApp]]] = FieldInfo(alias="ramUsedPctByApp", default=None)
+    ram_used_pct_by_app: Optional[List[RamUsedPctByApp]] = FieldInfo(alias="ramUsedPctByApp", default=None)
 
     registration_id: Optional[str] = FieldInfo(alias="registrationId", default=None)
     """Device registration identifier (UUID v4).
@@ -273,6 +441,14 @@ class FleetStatusGetResponse(BaseModel):
     device.
     """
 
+    rtt: Optional[RTT] = None
+    """Round-trip time statistics for the WARP tunnel."""
+
     switch_locked: Optional[bool] = FieldInfo(alias="switchLocked", default=None)
+
+    tunnel_stats: Optional[TunnelStats] = FieldInfo(alias="tunnelStats", default=None)
+    """WARP tunnel packet and byte counters."""
+
+    tunnel_type: Optional[str] = FieldInfo(alias="tunnelType", default=None)
 
     wifi_strength_dbm: Optional[int] = FieldInfo(alias="wifiStrengthDbm", default=None)

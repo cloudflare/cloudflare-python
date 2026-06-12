@@ -28,7 +28,7 @@ class TestUniqueDevices:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         unique_device = client.zero_trust.dex.tests.unique_devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            device_id=["string"],
+            device_id=["cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7"],
             test_name="testName",
         )
         assert_matches_type(Optional[UniqueDevices], unique_device, path=["response"])
@@ -81,7 +81,7 @@ class TestAsyncUniqueDevices:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         unique_device = await async_client.zero_trust.dex.tests.unique_devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            device_id=["string"],
+            device_id=["cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7"],
             test_name="testName",
         )
         assert_matches_type(Optional[UniqueDevices], unique_device, path=["response"])

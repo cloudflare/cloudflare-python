@@ -36,8 +36,8 @@ class TestHTTPTests:
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
-            colo="colo",
-            device_id=["string"],
+            colo="SJC",
+            device_id=["cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7"],
         )
         assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
@@ -118,8 +118,8 @@ class TestAsyncHTTPTests:
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
-            colo="colo",
-            device_id=["string"],
+            colo="SJC",
+            device_id=["cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7"],
         )
         assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 

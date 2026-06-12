@@ -65,9 +65,11 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleCreateResponse]:
         """
-        Create a DEX Rule
+        Create a DEX Rule.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           match: The wirefilter expression to match.
 
           name: The name of the Rule.
@@ -118,9 +120,11 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleUpdateResponse]:
         """
-        Update a DEX Rule
+        Update a DEX Rule.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           rule_id: API Resource UUID tag.
 
           match: The wirefilter expression to match.
@@ -176,18 +180,20 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[Optional[RuleListResponse]]:
         """
-        List DEX Rules
+        List DEX Rules.
 
         Args:
-          page: Page number of paginated results
+          account_id: Unique identifier linked to an account.
 
-          per_page: Number of items per page
+          page: Page number of paginated results.
 
-          name: Filter results by rule name
+          per_page: Number of results per page.
 
-          sort_by: Which property to sort results by
+          name: Filter results by rule name.
 
-          sort_order: Sort direction for sort_by property
+          sort_by: Which property to sort results by.
+
+          sort_order: Sort direction for sort_by property.
 
           extra_headers: Send extra headers
 
@@ -234,9 +240,11 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleDeleteResponse]:
         """
-        Delete a DEX Rule
+        Delete a DEX Rule.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           rule_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
@@ -276,9 +284,11 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleGetResponse]:
         """
-        Get details for a DEX Rule
+        Get details for a DEX Rule.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           rule_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
@@ -341,9 +351,11 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleCreateResponse]:
         """
-        Create a DEX Rule
+        Create a DEX Rule.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           match: The wirefilter expression to match.
 
           name: The name of the Rule.
@@ -394,9 +406,11 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleUpdateResponse]:
         """
-        Update a DEX Rule
+        Update a DEX Rule.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           rule_id: API Resource UUID tag.
 
           match: The wirefilter expression to match.
@@ -452,18 +466,20 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[RuleListResponse], AsyncV4PagePagination[Optional[RuleListResponse]]]:
         """
-        List DEX Rules
+        List DEX Rules.
 
         Args:
-          page: Page number of paginated results
+          account_id: Unique identifier linked to an account.
 
-          per_page: Number of items per page
+          page: Page number of paginated results.
 
-          name: Filter results by rule name
+          per_page: Number of results per page.
 
-          sort_by: Which property to sort results by
+          name: Filter results by rule name.
 
-          sort_order: Sort direction for sort_by property
+          sort_by: Which property to sort results by.
+
+          sort_order: Sort direction for sort_by property.
 
           extra_headers: Send extra headers
 
@@ -510,9 +526,11 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleDeleteResponse]:
         """
-        Delete a DEX Rule
+        Delete a DEX Rule.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           rule_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
@@ -552,9 +570,11 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleGetResponse]:
         """
-        Get details for a DEX Rule
+        Get details for a DEX Rule.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           rule_id: API Resource UUID tag.
 
           extra_headers: Send extra headers

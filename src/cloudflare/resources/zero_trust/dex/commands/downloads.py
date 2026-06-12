@@ -61,6 +61,8 @@ class DownloadsResource(SyncAPIResource):
         Bulk downloads are not supported
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           command_id: Unique identifier for a command
 
           extra_headers: Send extra headers
@@ -130,6 +132,8 @@ class AsyncDownloadsResource(AsyncAPIResource):
         Bulk downloads are not supported
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           command_id: Unique identifier for a command
 
           extra_headers: Send extra headers

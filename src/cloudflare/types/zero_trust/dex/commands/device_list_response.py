@@ -26,7 +26,7 @@ class Device(BaseModel):
     """User contact email address"""
 
     platform: Optional[str] = None
-    """Operating system"""
+    """Operating system."""
 
     registration_id: Optional[str] = FieldInfo(alias="registrationId", default=None)
     """Device registration identifier (UUID v4).
@@ -36,13 +36,12 @@ class Device(BaseModel):
     """
 
     status: Optional[str] = None
-    """Network status"""
+    """Network status."""
 
     timestamp: Optional[str] = None
-    """Timestamp in ISO format"""
 
     version: Optional[str] = None
-    """WARP client version"""
+    """WARP client version."""
 
 
 class DeviceListResponse(BaseModel):

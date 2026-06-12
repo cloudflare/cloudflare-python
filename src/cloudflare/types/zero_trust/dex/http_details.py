@@ -32,13 +32,13 @@ class HTTPStatsAvailabilityPct(BaseModel):
     slots: List[HTTPStatsAvailabilityPctSlot]
 
     avg: Optional[float] = None
-    """average observed in the time period"""
+    """average observed in the time period."""
 
     max: Optional[float] = None
-    """highest observed in the time period"""
+    """highest observed in the time period."""
 
     min: Optional[float] = None
-    """lowest observed in the time period"""
+    """lowest observed in the time period."""
 
 
 class HTTPStatsHTTPStatusCode(BaseModel):
@@ -65,7 +65,7 @@ class HTTPStats(BaseModel):
     server_response_time_ms: TestStatOverTime = FieldInfo(alias="serverResponseTimeMs")
 
     unique_devices_total: int = FieldInfo(alias="uniqueDevicesTotal")
-    """Count of unique devices that have run this test in the given time period"""
+    """Count of unique devices that have run this test in the given time period."""
 
 
 class HTTPStatsByColoAvailabilityPctSlot(BaseModel):
@@ -78,13 +78,13 @@ class HTTPStatsByColoAvailabilityPct(BaseModel):
     slots: List[HTTPStatsByColoAvailabilityPctSlot]
 
     avg: Optional[float] = None
-    """average observed in the time period"""
+    """average observed in the time period."""
 
     max: Optional[float] = None
-    """highest observed in the time period"""
+    """highest observed in the time period."""
 
     min: Optional[float] = None
-    """lowest observed in the time period"""
+    """lowest observed in the time period."""
 
 
 class HTTPStatsByColoHTTPStatusCode(BaseModel):
@@ -113,12 +113,12 @@ class HTTPStatsByColo(BaseModel):
     server_response_time_ms: TestStatOverTime = FieldInfo(alias="serverResponseTimeMs")
 
     unique_devices_total: int = FieldInfo(alias="uniqueDevicesTotal")
-    """Count of unique devices that have run this test in the given time period"""
+    """Count of unique devices that have run this test in the given time period."""
 
 
 class HTTPDetails(BaseModel):
     host: Optional[str] = None
-    """The url of the HTTP synthetic application test"""
+    """The url of the HTTP synthetic application test."""
 
     http_stats: Optional[HTTPStats] = FieldInfo(alias="httpStats", default=None)
 
@@ -130,10 +130,10 @@ class HTTPDetails(BaseModel):
     kind: Optional[Literal["http"]] = None
 
     method: Optional[str] = None
-    """The HTTP method to use when running the test"""
+    """The HTTP method to use when running the test."""
 
     name: Optional[str] = None
-    """The name of the HTTP synthetic application test"""
+    """The name of the HTTP synthetic application test."""
 
     target_policies: Optional[List[DigitalExperienceMonitor]] = None
 

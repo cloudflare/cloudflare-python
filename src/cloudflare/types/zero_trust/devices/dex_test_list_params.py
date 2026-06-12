@@ -11,15 +11,16 @@ __all__ = ["DEXTestListParams"]
 
 class DEXTestListParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     kind: Literal["http", "traceroute"]
-    """Filter by test type"""
+    """Filter by test type."""
 
     page: float
-    """Page number of paginated results"""
+    """Page number of paginated results."""
 
     per_page: float
-    """Number of items per page"""
+    """Number of results per page."""
 
     test_name: Annotated[str, PropertyInfo(alias="testName")]
-    """Filter by test name"""
+    """Filter by test name."""

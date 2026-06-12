@@ -40,16 +40,27 @@ class Hop(BaseModel):
 
 class NetworkPathGetResponse(BaseModel):
     hops: List[Hop]
-    """an array of the hops taken by the device to reach the end destination"""
+    """An array of the hops taken by the device to reach the end destination."""
 
     result_id: str = FieldInfo(alias="resultId")
     """API Resource UUID tag."""
 
+    colo: Optional[str] = None
+    """Cloudflare colo airport code."""
+
     device_name: Optional[str] = FieldInfo(alias="deviceName", default=None)
-    """name of the device associated with this network path response"""
+    """Name of the device associated with this network path response."""
+
+    execution_context: Optional[Literal["EXECUTION_CONTEXT_INVALID", "OUT_OF_TUNNEL", "IN_TUNNEL"]] = None
+    """Whether the test was run inside or outside of the WARP tunnel."""
 
     test_id: Optional[str] = FieldInfo(alias="testId", default=None)
     """API Resource UUID tag."""
 
     test_name: Optional[str] = FieldInfo(alias="testName", default=None)
-    """name of the tracroute test"""
+    """Name of the traceroute test."""
+
+    time_start: Optional[str] = None
+    """Timestamp indicating when the traceroute test execution began."""
+
+    tunnel_type: Optional[str] = None

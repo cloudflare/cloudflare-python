@@ -9,18 +9,19 @@ __all__ = ["RuleListParams"]
 
 class RuleListParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     page: Required[float]
-    """Page number of paginated results"""
+    """Page number of paginated results."""
 
     per_page: Required[float]
-    """Number of items per page"""
+    """Number of results per page."""
 
     name: str
-    """Filter results by rule name"""
+    """Filter results by rule name."""
 
     sort_by: Literal["name", "created_at", "updated_at"]
-    """Which property to sort results by"""
+    """Which property to sort results by."""
 
     sort_order: Literal["ASC", "DESC"]
-    """Sort direction for sort_by property"""
+    """Sort direction for sort_by property."""

@@ -11,18 +11,19 @@ __all__ = ["WARPChangeEventGetParams"]
 
 class WARPChangeEventGetParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
-    """Start time for the query in ISO (RFC3339 - ISO 8601) format"""
+    """Start time for the query in ISO (RFC3339 - ISO 8601) format."""
 
     page: Required[float]
-    """Page number of paginated results"""
+    """Page number of paginated results."""
 
     per_page: Required[float]
-    """Number of items per page"""
+    """Number of results per page."""
 
     to: Required[str]
-    """End time for the query in ISO (RFC3339 - ISO 8601) format"""
+    """End time for the query in ISO (RFC3339 - ISO 8601) format."""
 
     account_name: str
     """Filter events by account name."""
@@ -40,4 +41,4 @@ class WARPChangeEventGetParams(TypedDict, total=False):
     """Filter events by type toggle value. Applicable to type='toggle' events only."""
 
     type: Literal["config", "toggle"]
-    """Filter events by type 'config' or 'toggle'"""
+    """Filter events by type 'config' or 'toggle'."""

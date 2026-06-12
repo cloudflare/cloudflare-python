@@ -9,13 +9,13 @@ __all__ = ["Percentiles"]
 
 class Percentiles(BaseModel):
     p50: Optional[float] = None
-    """p50 observed in the time period"""
+    """p50 observed in the time period."""
 
     p90: Optional[float] = None
-    """p90 observed in the time period"""
+    """p90 observed in the time period."""
 
     p95: Optional[float] = None
-    """p95 observed in the time period"""
+    """p95 observed in the time period."""
 
     p99: Optional[float] = None
-    """p99 observed in the time period"""
+    """p99 observed in the time period."""

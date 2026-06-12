@@ -12,12 +12,13 @@ __all__ = ["PercentileGetParams"]
 
 class PercentileGetParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
-    """Start time for the query in ISO (RFC3339 - ISO 8601) format"""
+    """Start time for the query in ISO (RFC3339 - ISO 8601) format."""
 
     to: Required[str]
-    """End time for the query in ISO (RFC3339 - ISO 8601) format"""
+    """End time for the query in ISO (RFC3339 - ISO 8601) format."""
 
     colo: str
     """Optionally filter result stats to a Cloudflare colo.

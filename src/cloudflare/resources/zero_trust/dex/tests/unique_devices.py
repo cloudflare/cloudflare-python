@@ -62,10 +62,12 @@ class UniqueDevicesResource(SyncAPIResource):
         tests in the past 7 days.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           device_id: Optionally filter result stats to a specific device(s). Cannot be used in
               combination with colo param.
 
-          test_name: Optionally filter results by test name
+          test_name: Optionally filter results by test name.
 
           extra_headers: Send extra headers
 
@@ -135,10 +137,12 @@ class AsyncUniqueDevicesResource(AsyncAPIResource):
         tests in the past 7 days.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           device_id: Optionally filter result stats to a specific device(s). Cannot be used in
               combination with colo param.
 
-          test_name: Optionally filter results by test name
+          test_name: Optionally filter results by test name.
 
           extra_headers: Send extra headers
 

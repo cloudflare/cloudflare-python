@@ -11,7 +11,6 @@ __all__ = ["FleetStatusOverTimeResponse", "DeviceStats", "DeviceStatsByMode", "D
 
 class DeviceStatsByMode(BaseModel):
     timestamp: Optional[str] = None
-    """Timestamp in ISO format"""
 
     unique_devices_total: Optional[float] = FieldInfo(alias="uniqueDevicesTotal", default=None)
     """Number of unique devices"""
@@ -21,7 +20,6 @@ class DeviceStatsByMode(BaseModel):
 
 class DeviceStatsByStatus(BaseModel):
     timestamp: Optional[str] = None
-    """Timestamp in ISO format"""
 
     unique_devices_total: Optional[float] = FieldInfo(alias="uniqueDevicesTotal", default=None)
     """Number of unique devices"""

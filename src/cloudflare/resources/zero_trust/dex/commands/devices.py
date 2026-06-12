@@ -63,11 +63,13 @@ class DevicesResource(SyncAPIResource):
         connected in the last 1 hour.
 
         Args:
-          page: Page number of paginated results
+          account_id: Unique identifier linked to an account.
 
-          per_page: Number of items per page
+          page: Page number of paginated results.
 
-          search: Filter devices by name or email
+          per_page: Number of results per page.
+
+          search: Filter devices by name or email.
 
           extra_headers: Send extra headers
 
@@ -139,11 +141,13 @@ class AsyncDevicesResource(AsyncAPIResource):
         connected in the last 1 hour.
 
         Args:
-          page: Page number of paginated results
+          account_id: Unique identifier linked to an account.
 
-          per_page: Number of items per page
+          page: Page number of paginated results.
 
-          search: Filter devices by name or email
+          per_page: Number of results per page.
+
+          search: Filter devices by name or email.
 
           extra_headers: Send extra headers
 

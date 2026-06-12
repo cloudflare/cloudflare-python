@@ -10,6 +10,6 @@ class DigitalExperienceMonitor(BaseModel):
     """API Resource UUID tag."""
 
     default: bool
-    """Whether the policy is the default for the account"""
+    """Whether the policy is the default for the account."""
 
     name: str

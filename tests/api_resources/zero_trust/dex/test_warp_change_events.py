@@ -23,7 +23,7 @@ class TestWARPChangeEvents:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             page=1,
-            per_page=1,
+            per_page=10,
             to="2023-09-20T17:00:00Z",
         )
         assert_matches_type(Optional[WARPChangeEventGetResponse], warp_change_event, path=["response"])
@@ -34,7 +34,7 @@ class TestWARPChangeEvents:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             page=1,
-            per_page=1,
+            per_page=10,
             to="2023-09-20T17:00:00Z",
             account_name="Myorg",
             config_name="MASQUE",
@@ -50,7 +50,7 @@ class TestWARPChangeEvents:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             page=1,
-            per_page=1,
+            per_page=10,
             to="2023-09-20T17:00:00Z",
         )
 
@@ -65,7 +65,7 @@ class TestWARPChangeEvents:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             page=1,
-            per_page=1,
+            per_page=10,
             to="2023-09-20T17:00:00Z",
         ) as response:
             assert not response.is_closed
@@ -83,7 +83,7 @@ class TestWARPChangeEvents:
                 account_id="",
                 from_="2023-09-20T17:00:00Z",
                 page=1,
-                per_page=1,
+                per_page=10,
                 to="2023-09-20T17:00:00Z",
             )
 
@@ -99,7 +99,7 @@ class TestAsyncWARPChangeEvents:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             page=1,
-            per_page=1,
+            per_page=10,
             to="2023-09-20T17:00:00Z",
         )
         assert_matches_type(Optional[WARPChangeEventGetResponse], warp_change_event, path=["response"])
@@ -110,7 +110,7 @@ class TestAsyncWARPChangeEvents:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             page=1,
-            per_page=1,
+            per_page=10,
             to="2023-09-20T17:00:00Z",
             account_name="Myorg",
             config_name="MASQUE",
@@ -126,7 +126,7 @@ class TestAsyncWARPChangeEvents:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             page=1,
-            per_page=1,
+            per_page=10,
             to="2023-09-20T17:00:00Z",
         )
 
@@ -141,7 +141,7 @@ class TestAsyncWARPChangeEvents:
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             page=1,
-            per_page=1,
+            per_page=10,
             to="2023-09-20T17:00:00Z",
         ) as response:
             assert not response.is_closed
@@ -159,6 +159,6 @@ class TestAsyncWARPChangeEvents:
                 account_id="",
                 from_="2023-09-20T17:00:00Z",
                 page=1,
-                per_page=1,
+                per_page=10,
                 to="2023-09-20T17:00:00Z",
             )

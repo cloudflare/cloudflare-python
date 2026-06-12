@@ -59,6 +59,8 @@ class QuotaResource(SyncAPIResource):
         specific account, including the time when the quota will reset
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -118,6 +120,8 @@ class AsyncQuotaResource(AsyncAPIResource):
         specific account, including the time when the quota will reset
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

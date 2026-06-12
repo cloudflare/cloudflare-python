@@ -34,13 +34,13 @@ class TracerouteStatsAvailabilityPct(BaseModel):
     slots: List[TracerouteStatsAvailabilityPctSlot]
 
     avg: Optional[float] = None
-    """average observed in the time period"""
+    """average observed in the time period."""
 
     max: Optional[float] = None
-    """highest observed in the time period"""
+    """highest observed in the time period."""
 
     min: Optional[float] = None
-    """lowest observed in the time period"""
+    """lowest observed in the time period."""
 
 
 class TracerouteStatsPacketLossPctSlot(BaseModel):
@@ -53,13 +53,13 @@ class TracerouteStatsPacketLossPct(BaseModel):
     slots: List[TracerouteStatsPacketLossPctSlot]
 
     avg: Optional[float] = None
-    """average observed in the time period"""
+    """average observed in the time period."""
 
     max: Optional[float] = None
-    """highest observed in the time period"""
+    """highest observed in the time period."""
 
     min: Optional[float] = None
-    """lowest observed in the time period"""
+    """lowest observed in the time period."""
 
 
 class TracerouteStats(BaseModel):
@@ -72,7 +72,7 @@ class TracerouteStats(BaseModel):
     round_trip_time_ms: TestStatOverTime = FieldInfo(alias="roundTripTimeMs")
 
     unique_devices_total: int = FieldInfo(alias="uniqueDevicesTotal")
-    """Count of unique devices that have run this test in the given time period"""
+    """Count of unique devices that have run this test in the given time period."""
 
 
 class TracerouteStatsByColoAvailabilityPctSlot(BaseModel):
@@ -85,13 +85,13 @@ class TracerouteStatsByColoAvailabilityPct(BaseModel):
     slots: List[TracerouteStatsByColoAvailabilityPctSlot]
 
     avg: Optional[float] = None
-    """average observed in the time period"""
+    """average observed in the time period."""
 
     max: Optional[float] = None
-    """highest observed in the time period"""
+    """highest observed in the time period."""
 
     min: Optional[float] = None
-    """lowest observed in the time period"""
+    """lowest observed in the time period."""
 
 
 class TracerouteStatsByColoPacketLossPctSlot(BaseModel):
@@ -104,13 +104,13 @@ class TracerouteStatsByColoPacketLossPct(BaseModel):
     slots: List[TracerouteStatsByColoPacketLossPctSlot]
 
     avg: Optional[float] = None
-    """average observed in the time period"""
+    """average observed in the time period."""
 
     max: Optional[float] = None
-    """highest observed in the time period"""
+    """highest observed in the time period."""
 
     min: Optional[float] = None
-    """lowest observed in the time period"""
+    """lowest observed in the time period."""
 
 
 class TracerouteStatsByColo(BaseModel):
@@ -125,12 +125,12 @@ class TracerouteStatsByColo(BaseModel):
     round_trip_time_ms: TestStatOverTime = FieldInfo(alias="roundTripTimeMs")
 
     unique_devices_total: int = FieldInfo(alias="uniqueDevicesTotal")
-    """Count of unique devices that have run this test in the given time period"""
+    """Count of unique devices that have run this test in the given time period."""
 
 
 class Traceroute(BaseModel):
     host: str
-    """The host of the Traceroute synthetic application test"""
+    """The host of the Traceroute synthetic application test."""
 
     interval: str
     """The interval at which the Traceroute synthetic application test is set to run."""
@@ -138,7 +138,7 @@ class Traceroute(BaseModel):
     kind: Literal["traceroute"]
 
     name: str
-    """The name of the Traceroute synthetic application test"""
+    """The name of the Traceroute synthetic application test."""
 
     target_policies: Optional[List[DigitalExperienceMonitor]] = None
 

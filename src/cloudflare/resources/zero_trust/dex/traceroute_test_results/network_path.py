@@ -60,6 +60,8 @@ class NetworkPathResource(SyncAPIResource):
         run
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_result_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
@@ -128,6 +130,8 @@ class AsyncNetworkPathResource(AsyncAPIResource):
         run
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_result_id: API Resource UUID tag.
 
           extra_headers: Send extra headers

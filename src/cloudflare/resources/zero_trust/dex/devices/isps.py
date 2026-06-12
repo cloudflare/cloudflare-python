@@ -69,21 +69,23 @@ class ISPsResource(SyncAPIResource):
         List ISP information observed for a specific device during traceroute tests.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           device_id: API Resource UUID tag.
 
           per_page: Number of items per page
 
           cursor: Cursor for cursor-based pagination. Mutually exclusive with page.
 
-          from_: Start time for the query in ISO 8601 format
+          from_: Start time for the query in ISO 8601 format.
 
           page: Page number of paginated results. Mutually exclusive with cursor.
 
-          sort_by: The field to sort results by
+          sort_by: The field to sort results by.
 
-          sort_order: The order to sort results
+          sort_order: The order to sort results.
 
-          to: End time for the query in ISO 8601 format
+          to: End time for the query in ISO 8601 format.
 
           extra_headers: Send extra headers
 
@@ -167,21 +169,23 @@ class AsyncISPsResource(AsyncAPIResource):
         List ISP information observed for a specific device during traceroute tests.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           device_id: API Resource UUID tag.
 
           per_page: Number of items per page
 
           cursor: Cursor for cursor-based pagination. Mutually exclusive with page.
 
-          from_: Start time for the query in ISO 8601 format
+          from_: Start time for the query in ISO 8601 format.
 
           page: Page number of paginated results. Mutually exclusive with cursor.
 
-          sort_by: The field to sort results by
+          sort_by: The field to sort results by.
 
-          sort_order: The order to sort results
+          sort_order: The order to sort results.
 
-          to: End time for the query in ISO 8601 format
+          to: End time for the query in ISO 8601 format.
 
           extra_headers: Send extra headers
 

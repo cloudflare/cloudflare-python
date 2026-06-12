@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["CustomHostnameListParams", "Hostname"]
 
@@ -15,7 +17,8 @@ class CustomHostnameListParams(TypedDict, total=False):
     """Hostname ID to match against.
 
     This ID was generated and returned during the initial custom_hostname creation.
-    This parameter cannot be used with the 'hostname' parameter.
+    This parameter cannot be used with the 'hostname', 'hostname.exact',
+    'hostname.contain', or 'hostname.startsWith' parameters.
     """
 
     certificate_authority: Literal["google", "lets_encrypt", "ssl_com"]
@@ -94,5 +97,20 @@ class Hostname(TypedDict, total=False):
     contain: str
     """Filters hostnames by a substring match on the hostname value.
 
-    This parameter cannot be used with the 'id' parameter.
+    This parameter cannot be used with the 'id', 'hostname', 'hostname.exact', or
+    'hostname.startsWith' parameters.
+    """
+
+    exact: str
+    """Fully qualified domain name to match against.
+
+    This parameter cannot be used with the 'id', 'hostname', 'hostname.contain', or
+    'hostname.startsWith' parameters.
+    """
+
+    starts_with: Annotated[str, PropertyInfo(alias="startsWith")]
+    """Filters hostnames by a prefix match on the hostname value.
+
+    This parameter cannot be used with the 'id', 'hostname', 'hostname.exact', or
+    'hostname.contain' parameters.
     """

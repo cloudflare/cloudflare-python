@@ -70,10 +70,12 @@ class FleetStatusResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FleetStatusLiveResponse]:
         """
-        List details for live (up to 60 minutes) devices using WARP
+        List details for live (up to 60 minutes) devices using WARP.
 
         Args:
-          since_minutes: Number of minutes before current time
+          account_id: Unique identifier linked to an account.
+
+          since_minutes: Number of minutes before current time.
 
           extra_headers: Send extra headers
 
@@ -114,16 +116,20 @@ class FleetStatusResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FleetStatusOverTimeResponse]:
         """
-        List details for devices using WARP, up to 7 days
+        List details for devices using WARP, up to 7 days.
 
         Args:
-          from_: Time range beginning in ISO format
+          account_id: Unique identifier linked to an account.
 
-          to: Time range end in ISO format
+          from_: Start of the time range to query. Timestamp can be provided in ISO 8601 datetime
+              format or milliseconds since epoch.
 
-          colo: Cloudflare colo
+          to: End of the time range to query. Timestamp can be provided in ISO 8601 datetime
+              format or milliseconds since epoch.
 
-          device_id: Device-specific ID, given as UUID v4
+          colo: Cloudflare colo airport code.
+
+          device_id: Device-specific ID, given as UUID.
 
           extra_headers: Send extra headers
 
@@ -194,10 +200,12 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FleetStatusLiveResponse]:
         """
-        List details for live (up to 60 minutes) devices using WARP
+        List details for live (up to 60 minutes) devices using WARP.
 
         Args:
-          since_minutes: Number of minutes before current time
+          account_id: Unique identifier linked to an account.
+
+          since_minutes: Number of minutes before current time.
 
           extra_headers: Send extra headers
 
@@ -240,16 +248,20 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FleetStatusOverTimeResponse]:
         """
-        List details for devices using WARP, up to 7 days
+        List details for devices using WARP, up to 7 days.
 
         Args:
-          from_: Time range beginning in ISO format
+          account_id: Unique identifier linked to an account.
 
-          to: Time range end in ISO format
+          from_: Start of the time range to query. Timestamp can be provided in ISO 8601 datetime
+              format or milliseconds since epoch.
 
-          colo: Cloudflare colo
+          to: End of the time range to query. Timestamp can be provided in ISO 8601 datetime
+              format or milliseconds since epoch.
 
-          device_id: Device-specific ID, given as UUID v4
+          colo: Cloudflare colo airport code.
+
+          device_id: Device-specific ID, given as UUID.
 
           extra_headers: Send extra headers
 

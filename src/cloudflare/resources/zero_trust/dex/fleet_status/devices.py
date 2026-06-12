@@ -68,26 +68,30 @@ class DevicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DeviceListResponse]:
         """
-        List details for devices using WARP
+        List details for devices using WARP.
 
         Args:
-          from_: Time range beginning in ISO format
+          account_id: Unique identifier linked to an account.
 
-          page: Page number
+          from_: Start of the time range to query. Timestamp can be provided in ISO 8601 datetime
+              format or milliseconds since epoch.
 
-          per_page: Number of results per page
+          page: Page number of paginated results.
 
-          to: Time range end in ISO format
+          per_page: Number of results per page.
 
-          colo: Cloudflare colo
+          to: End of the time range to query. Timestamp can be provided in ISO 8601 datetime
+              format or milliseconds since epoch.
 
-          device_id: Device-specific ID, given as UUID v4
+          colo: Cloudflare colo airport code.
 
-          mode: The mode under which the WARP client is run
+          device_id: Device-specific ID, given as UUID.
 
-          platform: Operating system
+          mode: The mode under which the WARP client is run.
 
-          sort_by: Dimension to sort results by
+          platform: Operating system.
+
+          sort_by: Dimension to sort results by.
 
           source:
               Source:
@@ -98,9 +102,9 @@ class DevicesResource(SyncAPIResource):
                 instead for longer time ranges.
               - `raw` - device details, up to 7 days prior
 
-          status: Network status
+          status: Network status.
 
-          version: WARP client version
+          version: WARP client version.
 
           extra_headers: Send extra headers
 
@@ -186,26 +190,30 @@ class AsyncDevicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DeviceListResponse, AsyncV4PagePaginationArray[DeviceListResponse]]:
         """
-        List details for devices using WARP
+        List details for devices using WARP.
 
         Args:
-          from_: Time range beginning in ISO format
+          account_id: Unique identifier linked to an account.
 
-          page: Page number
+          from_: Start of the time range to query. Timestamp can be provided in ISO 8601 datetime
+              format or milliseconds since epoch.
 
-          per_page: Number of results per page
+          page: Page number of paginated results.
 
-          to: Time range end in ISO format
+          per_page: Number of results per page.
 
-          colo: Cloudflare colo
+          to: End of the time range to query. Timestamp can be provided in ISO 8601 datetime
+              format or milliseconds since epoch.
 
-          device_id: Device-specific ID, given as UUID v4
+          colo: Cloudflare colo airport code.
 
-          mode: The mode under which the WARP client is run
+          device_id: Device-specific ID, given as UUID.
 
-          platform: Operating system
+          mode: The mode under which the WARP client is run.
 
-          sort_by: Dimension to sort results by
+          platform: Operating system.
+
+          sort_by: Dimension to sort results by.
 
           source:
               Source:
@@ -216,9 +224,9 @@ class AsyncDevicesResource(AsyncAPIResource):
                 instead for longer time ranges.
               - `raw` - device details, up to 7 days prior
 
-          status: Network status
+          status: Network status.
 
-          version: WARP client version
+          version: WARP client version.
 
           extra_headers: Send extra headers
 

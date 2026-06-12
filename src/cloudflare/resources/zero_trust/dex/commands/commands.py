@@ -97,9 +97,11 @@ class CommandsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CommandCreateResponse]:
         """
-        Initiate commands for up to 10 devices per account
+        Initiate commands for up to 10 devices per account.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           commands: List of device-level commands to execute
 
           extra_headers: Send extra headers
@@ -149,21 +151,23 @@ class CommandsResource(SyncAPIResource):
         account, optionally filtered by time range, device, or other parameters
 
         Args:
-          page: Page number for pagination
+          account_id: Unique identifier linked to an account.
 
-          per_page: Number of results per page
+          page: Page number of paginated results.
 
-          command_type: Optionally filter executed commands by command type
+          per_page: Number of results per page.
 
-          device_id: Unique identifier for a device
+          command_type: Optionally filter executed commands by command type.
 
-          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
+          device_id: Unique identifier for a device.
 
-          status: Optionally filter executed commands by status
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format.
 
-          to: End time for the query in ISO (RFC3339 - ISO 8601) format
+          status: Optionally filter executed commands by status.
 
-          user_email: Email tied to the device
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format.
+
+          user_email: Email tied to the device.
 
           extra_headers: Send extra headers
 
@@ -246,9 +250,11 @@ class AsyncCommandsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CommandCreateResponse]:
         """
-        Initiate commands for up to 10 devices per account
+        Initiate commands for up to 10 devices per account.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           commands: List of device-level commands to execute
 
           extra_headers: Send extra headers
@@ -298,21 +304,23 @@ class AsyncCommandsResource(AsyncAPIResource):
         account, optionally filtered by time range, device, or other parameters
 
         Args:
-          page: Page number for pagination
+          account_id: Unique identifier linked to an account.
 
-          per_page: Number of results per page
+          page: Page number of paginated results.
 
-          command_type: Optionally filter executed commands by command type
+          per_page: Number of results per page.
 
-          device_id: Unique identifier for a device
+          command_type: Optionally filter executed commands by command type.
 
-          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
+          device_id: Unique identifier for a device.
 
-          status: Optionally filter executed commands by status
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format.
 
-          to: End time for the query in ISO (RFC3339 - ISO 8601) format
+          status: Optionally filter executed commands by status.
 
-          user_email: Email tied to the device
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format.
+
+          user_email: Email tied to the device.
 
           extra_headers: Send extra headers
 

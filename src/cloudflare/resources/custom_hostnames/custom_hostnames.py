@@ -216,7 +216,8 @@ class CustomHostnamesResource(SyncAPIResource):
 
           id: Hostname ID to match against. This ID was generated and returned during the
               initial custom_hostname creation. This parameter cannot be used with the
-              'hostname' parameter.
+              'hostname', 'hostname.exact', 'hostname.contain', or 'hostname.startsWith'
+              parameters.
 
           certificate_authority: Filter by the certificate authority that issued the SSL certificate.
 
@@ -620,7 +621,8 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
 
           id: Hostname ID to match against. This ID was generated and returned during the
               initial custom_hostname creation. This parameter cannot be used with the
-              'hostname' parameter.
+              'hostname', 'hostname.exact', 'hostname.contain', or 'hostname.startsWith'
+              parameters.
 
           certificate_authority: Filter by the certificate authority that issued the SSL certificate.
 

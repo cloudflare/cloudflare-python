@@ -61,13 +61,15 @@ class FleetStatusResource(SyncAPIResource):
         table
 
         Args:
-          device_id: Device-specific ID, given as UUID v4
+          account_id: Unique identifier linked to an account.
 
-          since_minutes: Number of minutes before current time
+          device_id: Unique identifier for the physical device (UUID).
 
-          colo: List of data centers to filter results
+          since_minutes: Number of minutes before current time.
 
-          time_now: Number of minutes before current time
+          colo: List of data centers to filter results.
+
+          time_now: Current time in ISO format.
 
           extra_headers: Send extra headers
 
@@ -145,13 +147,15 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         table
 
         Args:
-          device_id: Device-specific ID, given as UUID v4
+          account_id: Unique identifier linked to an account.
 
-          since_minutes: Number of minutes before current time
+          device_id: Unique identifier for the physical device (UUID).
 
-          colo: List of data centers to filter results
+          since_minutes: Number of minutes before current time.
 
-          time_now: Number of minutes before current time
+          colo: List of data centers to filter results.
+
+          time_now: Current time in ISO format.
 
           extra_headers: Send extra headers
 

@@ -69,17 +69,19 @@ class TracerouteTestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Traceroute]:
         """
-        Get test details and aggregate performance metrics for an traceroute test for a
+        Get test details and aggregate performance metrics for a traceroute test for a
         given time period between 1 hour and 7 days.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO ms
+          from_: Start time for aggregate metrics in ISO ms.
 
           interval: Time interval for aggregate time slots.
 
-          to: End time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms.
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -140,18 +142,20 @@ class TracerouteTestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NetworkPathResponse]:
         """
-        Get a breakdown of metrics by hop for individual traceroute test runs
+        Get a breakdown of metrics by hop for individual traceroute test runs.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_id: API Resource UUID tag.
 
-          device_id: Device to filter tracroute result runs to
+          device_id: Device to filter traceroute result runs to.
 
-          from_: Start time for aggregate metrics in ISO ms
+          from_: Start time for aggregate metrics in ISO ms.
 
           interval: Time interval for aggregate time slots.
 
-          to: End time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms.
 
           extra_headers: Send extra headers
 
@@ -211,11 +215,13 @@ class TracerouteTestsResource(SyncAPIResource):
         7 days.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_id: API Resource UUID tag.
 
-          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format.
 
-          to: End time for the query in ISO (RFC3339 - ISO 8601) format
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format.
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -301,17 +307,19 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Traceroute]:
         """
-        Get test details and aggregate performance metrics for an traceroute test for a
+        Get test details and aggregate performance metrics for a traceroute test for a
         given time period between 1 hour and 7 days.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO ms
+          from_: Start time for aggregate metrics in ISO ms.
 
           interval: Time interval for aggregate time slots.
 
-          to: End time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms.
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -372,18 +380,20 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NetworkPathResponse]:
         """
-        Get a breakdown of metrics by hop for individual traceroute test runs
+        Get a breakdown of metrics by hop for individual traceroute test runs.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_id: API Resource UUID tag.
 
-          device_id: Device to filter tracroute result runs to
+          device_id: Device to filter traceroute result runs to.
 
-          from_: Start time for aggregate metrics in ISO ms
+          from_: Start time for aggregate metrics in ISO ms.
 
           interval: Time interval for aggregate time slots.
 
-          to: End time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms.
 
           extra_headers: Send extra headers
 
@@ -443,11 +453,13 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         7 days.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_id: API Resource UUID tag.
 
-          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format.
 
-          to: End time for the query in ISO (RFC3339 - ISO 8601) format
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format.
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.

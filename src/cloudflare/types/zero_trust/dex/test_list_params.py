@@ -12,6 +12,7 @@ __all__ = ["TestListParams"]
 
 class TestListParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     colo: str
     """Optionally filter result stats to a Cloudflare colo.
@@ -26,7 +27,7 @@ class TestListParams(TypedDict, total=False):
     """
 
     kind: Literal["http", "traceroute"]
-    """Filter by test type"""
+    """Filter by test type."""
 
     page: float
     """Page number of paginated results"""
@@ -41,4 +42,4 @@ class TestListParams(TypedDict, total=False):
     """
 
     test_name: Annotated[str, PropertyInfo(alias="testName")]
-    """Optionally filter results by test name"""
+    """Optionally filter results by test name."""

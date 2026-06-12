@@ -10,6 +10,7 @@ __all__ = ["DEXTestCreateParams", "Data", "TargetPolicy"]
 
 class DEXTestCreateParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     data: Required[Data]
     """
@@ -52,10 +53,10 @@ class Data(TypedDict, total=False):
 
 class TargetPolicy(TypedDict, total=False):
     id: Required[str]
-    """API Resource UUID tag."""
+    """The id of the DEX rule."""
 
     default: bool
-    """Whether the DEX rule is the account default"""
+    """Whether the DEX rule is the account default."""
 
     name: str
-    """The name of the DEX rule"""
+    """The name of the DEX rule."""

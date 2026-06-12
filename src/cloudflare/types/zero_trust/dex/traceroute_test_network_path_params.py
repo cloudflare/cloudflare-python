@@ -11,15 +11,16 @@ __all__ = ["TracerouteTestNetworkPathParams"]
 
 class TracerouteTestNetworkPathParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     device_id: Required[Annotated[str, PropertyInfo(alias="deviceId")]]
-    """Device to filter tracroute result runs to"""
+    """Device to filter traceroute result runs to."""
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
-    """Start time for aggregate metrics in ISO ms"""
+    """Start time for aggregate metrics in ISO ms."""
 
     interval: Required[Literal["minute", "hour"]]
     """Time interval for aggregate time slots."""
 
     to: Required[str]
-    """End time for aggregate metrics in ISO ms"""
+    """End time for aggregate metrics in ISO ms."""

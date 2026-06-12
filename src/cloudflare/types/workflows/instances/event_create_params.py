@@ -13,5 +13,11 @@ class EventCreateParams(TypedDict, total=False):
     workflow_name: Required[str]
 
     instance_id: Required[str]
+    """Instance identifier.
+
+    User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$` (max 100
+    characters); cron-triggered instances can use a longer, system-generated id
+    derived from the cron expression.
+    """
 
     body: object

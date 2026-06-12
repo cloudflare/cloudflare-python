@@ -11,33 +11,42 @@ __all__ = ["DeviceListParams"]
 
 class DeviceListParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
-    """Time range beginning in ISO format"""
+    """Start of the time range to query.
+
+    Timestamp can be provided in ISO 8601 datetime format or milliseconds since
+    epoch.
+    """
 
     page: Required[float]
-    """Page number"""
+    """Page number of paginated results."""
 
     per_page: Required[float]
-    """Number of results per page"""
+    """Number of results per page."""
 
     to: Required[str]
-    """Time range end in ISO format"""
+    """End of the time range to query.
+
+    Timestamp can be provided in ISO 8601 datetime format or milliseconds since
+    epoch.
+    """
 
     colo: str
-    """Cloudflare colo"""
+    """Cloudflare colo airport code."""
 
     device_id: str
-    """Device-specific ID, given as UUID v4"""
+    """Device-specific ID, given as UUID."""
 
     mode: str
-    """The mode under which the WARP client is run"""
+    """The mode under which the WARP client is run."""
 
     platform: str
-    """Operating system"""
+    """Operating system."""
 
     sort_by: Literal["colo", "device_id", "mode", "platform", "status", "timestamp", "version"]
-    """Dimension to sort results by"""
+    """Dimension to sort results by."""
 
     source: Literal["last_seen", "hourly", "raw"]
     """Source:
@@ -50,7 +59,7 @@ class DeviceListParams(TypedDict, total=False):
     """
 
     status: str
-    """Network status"""
+    """Network status."""
 
     version: str
-    """WARP client version"""
+    """WARP client version."""

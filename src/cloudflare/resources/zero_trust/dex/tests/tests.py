@@ -78,16 +78,18 @@ class TestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[Optional[Tests]]:
         """
-        List DEX tests with overview metrics
+        List DEX tests with overview metrics.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
 
           device_id: Optionally filter result stats to a specific device(s). Cannot be used in
               combination with colo param.
 
-          kind: Filter by test type
+          kind: Filter by test type.
 
           page: Page number of paginated results
 
@@ -96,7 +98,7 @@ class TestsResource(SyncAPIResource):
           registration_id: Optionally filter results to a specific device registration. Must be used in
               combination with a single deviceId.
 
-          test_name: Optionally filter results by test name
+          test_name: Optionally filter results by test name.
 
           extra_headers: Send extra headers
 
@@ -176,16 +178,18 @@ class AsyncTestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[Tests], AsyncV4PagePagination[Optional[Tests]]]:
         """
-        List DEX tests with overview metrics
+        List DEX tests with overview metrics.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
 
           device_id: Optionally filter result stats to a specific device(s). Cannot be used in
               combination with colo param.
 
-          kind: Filter by test type
+          kind: Filter by test type.
 
           page: Page number of paginated results
 
@@ -194,7 +198,7 @@ class AsyncTestsResource(AsyncAPIResource):
           registration_id: Optionally filter results to a specific device registration. Must be used in
               combination with a single deviceId.
 
-          test_name: Optionally filter results by test name
+          test_name: Optionally filter results by test name.
 
           extra_headers: Send extra headers
 

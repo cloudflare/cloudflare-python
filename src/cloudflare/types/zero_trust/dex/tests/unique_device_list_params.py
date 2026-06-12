@@ -12,6 +12,7 @@ __all__ = ["UniqueDeviceListParams"]
 
 class UniqueDeviceListParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     device_id: Annotated[SequenceNotStr[str], PropertyInfo(alias="deviceId")]
     """Optionally filter result stats to a specific device(s).
@@ -20,4 +21,4 @@ class UniqueDeviceListParams(TypedDict, total=False):
     """
 
     test_name: Annotated[str, PropertyInfo(alias="testName")]
-    """Optionally filter results by test name"""
+    """Optionally filter results by test name."""

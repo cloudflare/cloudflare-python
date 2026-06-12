@@ -62,6 +62,10 @@ class EventsResource(SyncAPIResource):
         Sends an event to a running workflow instance to trigger state transitions.
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -137,6 +141,10 @@ class AsyncEventsResource(AsyncAPIResource):
         Sends an event to a running workflow instance to trigger state transitions.
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -9,12 +9,13 @@ __all__ = ["DeviceListParams"]
 
 class DeviceListParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     page: Required[float]
-    """Page number of paginated results"""
+    """Page number of paginated results."""
 
     per_page: Required[float]
-    """Number of items per page"""
+    """Number of results per page."""
 
     search: str
-    """Filter devices by name or email"""
+    """Filter devices by name or email."""

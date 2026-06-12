@@ -79,13 +79,15 @@ class HTTPTestsResource(SyncAPIResource):
         time period between 1 hour and 7 days.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO ms
+          from_: Start time for aggregate metrics in ISO ms.
 
           interval: Time interval for aggregate time slots.
 
-          to: End time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms.
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -174,13 +176,15 @@ class AsyncHTTPTestsResource(AsyncAPIResource):
         time period between 1 hour and 7 days.
 
         Args:
+          account_id: Unique identifier linked to an account.
+
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO ms
+          from_: Start time for aggregate metrics in ISO ms.
 
           interval: Time interval for aggregate time slots.
 
-          to: End time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms.
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.

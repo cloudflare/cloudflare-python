@@ -13,27 +13,28 @@ __all__ = ["CommandListParams"]
 
 class CommandListParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     page: Required[float]
-    """Page number for pagination"""
+    """Page number of paginated results."""
 
     per_page: Required[float]
-    """Number of results per page"""
+    """Number of results per page."""
 
     command_type: Literal["pcap", "speed-test", "warp-diag"]
-    """Optionally filter executed commands by command type"""
+    """Optionally filter executed commands by command type."""
 
     device_id: str
-    """Unique identifier for a device"""
+    """Unique identifier for a device."""
 
     from_: Annotated[Union[str, datetime], PropertyInfo(alias="from", format="iso8601")]
-    """Start time for the query in ISO (RFC3339 - ISO 8601) format"""
+    """Start time for the query in ISO (RFC3339 - ISO 8601) format."""
 
     status: Literal["PENDING_EXEC", "PENDING_UPLOAD", "SUCCESS", "FAILED"]
-    """Optionally filter executed commands by status"""
+    """Optionally filter executed commands by status."""
 
     to: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """End time for the query in ISO (RFC3339 - ISO 8601) format"""
+    """End time for the query in ISO (RFC3339 - ISO 8601) format."""
 
     user_email: str
-    """Email tied to the device"""
+    """Email tied to the device."""

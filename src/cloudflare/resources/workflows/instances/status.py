@@ -65,6 +65,10 @@ class StatusResource(SyncAPIResource):
         terminate).
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -95,6 +99,10 @@ class StatusResource(SyncAPIResource):
         terminate).
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -126,6 +134,10 @@ class StatusResource(SyncAPIResource):
         terminate).
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           rollback: Run rollback before terminating.
 
           extra_headers: Send extra headers
@@ -159,6 +171,10 @@ class StatusResource(SyncAPIResource):
         terminate).
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           from_: Step to restart from.
 
           extra_headers: Send extra headers
@@ -260,6 +276,10 @@ class AsyncStatusResource(AsyncAPIResource):
         terminate).
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -290,6 +310,10 @@ class AsyncStatusResource(AsyncAPIResource):
         terminate).
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -321,6 +345,10 @@ class AsyncStatusResource(AsyncAPIResource):
         terminate).
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           rollback: Run rollback before terminating.
 
           extra_headers: Send extra headers
@@ -354,6 +382,10 @@ class AsyncStatusResource(AsyncAPIResource):
         terminate).
 
         Args:
+          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
+              (max 100 characters); cron-triggered instances can use a longer,
+              system-generated id derived from the cron expression.
+
           from_: Step to restart from.
 
           extra_headers: Send extra headers

@@ -23,7 +23,7 @@ class TestDevices:
         device = client.zero_trust.dex.commands.devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         )
         assert_matches_type(SyncV4PagePagination[Optional[DeviceListResponse]], device, path=["response"])
 
@@ -32,7 +32,7 @@ class TestDevices:
         device = client.zero_trust.dex.commands.devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
             search="search",
         )
         assert_matches_type(SyncV4PagePagination[Optional[DeviceListResponse]], device, path=["response"])
@@ -42,7 +42,7 @@ class TestDevices:
         response = client.zero_trust.dex.commands.devices.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         )
 
         assert response.is_closed is True
@@ -55,7 +55,7 @@ class TestDevices:
         with client.zero_trust.dex.commands.devices.with_streaming_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,7 +71,7 @@ class TestDevices:
             client.zero_trust.dex.commands.devices.with_raw_response.list(
                 account_id="",
                 page=1,
-                per_page=1,
+                per_page=10,
             )
 
 
@@ -85,7 +85,7 @@ class TestAsyncDevices:
         device = await async_client.zero_trust.dex.commands.devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         )
         assert_matches_type(AsyncV4PagePagination[Optional[DeviceListResponse]], device, path=["response"])
 
@@ -94,7 +94,7 @@ class TestAsyncDevices:
         device = await async_client.zero_trust.dex.commands.devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
             search="search",
         )
         assert_matches_type(AsyncV4PagePagination[Optional[DeviceListResponse]], device, path=["response"])
@@ -104,7 +104,7 @@ class TestAsyncDevices:
         response = await async_client.zero_trust.dex.commands.devices.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         )
 
         assert response.is_closed is True
@@ -117,7 +117,7 @@ class TestAsyncDevices:
         async with async_client.zero_trust.dex.commands.devices.with_streaming_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             page=1,
-            per_page=1,
+            per_page=10,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -133,5 +133,5 @@ class TestAsyncDevices:
             await async_client.zero_trust.dex.commands.devices.with_raw_response.list(
                 account_id="",
                 page=1,
-                per_page=1,
+                per_page=10,
             )

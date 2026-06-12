@@ -37,10 +37,10 @@ class ISPIP(BaseModel):
     """IP address. Returned as `"REDACTED"` without PII permission."""
 
     asn: Optional[int] = None
-    """Autonomous System Number"""
+    """Autonomous System Number."""
 
     aso: Optional[str] = None
-    """Autonomous System Organization name"""
+    """Autonomous System Organization name."""
 
     location: Optional[ISPIPLocation] = None
     """Geographic location information.
@@ -59,18 +59,18 @@ class ISPIP(BaseModel):
     """Network mask. Returned as `"REDACTED"` without PII permission."""
 
     version: Optional[int] = None
-    """IP version (`1` for IPv4, `2` for IPv6, `0` if unknown)"""
+    """IP version (`1` for IPv4, `2` for IPv6, `0` if unknown)."""
 
 
 class ISP(BaseModel):
     test_id: str
-    """The test that generated this result"""
+    """The test that generated this result."""
 
     test_result_id: str
-    """The specific test result"""
+    """The specific test result."""
 
     time_start: datetime
-    """Timestamp of when the ISP was observed"""
+    """Timestamp of when the ISP was observed."""
 
     ip: Optional[ISPIP] = None
     """IP address information for the ISP hop.

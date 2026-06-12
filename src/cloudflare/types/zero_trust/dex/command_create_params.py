@@ -19,6 +19,7 @@ __all__ = [
 
 class CommandCreateParams(TypedDict, total=False):
     account_id: Required[str]
+    """Unique identifier linked to an account."""
 
     commands: Required[Iterable[Command]]
     """List of device-level commands to execute"""

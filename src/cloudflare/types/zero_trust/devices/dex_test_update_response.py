@@ -25,13 +25,13 @@ class Data(BaseModel):
 
 class TargetPolicy(BaseModel):
     id: str
-    """API Resource UUID tag."""
+    """The id of the DEX rule."""
 
     default: Optional[bool] = None
-    """Whether the DEX rule is the account default"""
+    """Whether the DEX rule is the account default."""
 
     name: Optional[str] = None
-    """The name of the DEX rule"""
+    """The name of the DEX rule."""
 
 
 class DEXTestUpdateResponse(BaseModel):
