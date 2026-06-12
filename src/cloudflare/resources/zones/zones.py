@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .ct.ct import (
+    CTResource,
+    AsyncCTResource,
+    CTResourceWithRawResponse,
+    AsyncCTResourceWithRawResponse,
+    CTResourceWithStreamingResponse,
+    AsyncCTResourceWithStreamingResponse,
+)
 from .holds import (
     HoldsResource,
     AsyncHoldsResource,
@@ -124,6 +132,10 @@ class ZonesResource(SyncAPIResource):
     @cached_property
     def rate_plans(self) -> RatePlansResource:
         return RatePlansResource(self._client)
+
+    @cached_property
+    def ct(self) -> CTResource:
+        return CTResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ZonesResourceWithRawResponse:
@@ -458,6 +470,10 @@ class AsyncZonesResource(AsyncAPIResource):
     @cached_property
     def rate_plans(self) -> AsyncRatePlansResource:
         return AsyncRatePlansResource(self._client)
+
+    @cached_property
+    def ct(self) -> AsyncCTResource:
+        return AsyncCTResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncZonesResourceWithRawResponse:
@@ -812,6 +828,10 @@ class ZonesResourceWithRawResponse:
     def rate_plans(self) -> RatePlansResourceWithRawResponse:
         return RatePlansResourceWithRawResponse(self._zones.rate_plans)
 
+    @cached_property
+    def ct(self) -> CTResourceWithRawResponse:
+        return CTResourceWithRawResponse(self._zones.ct)
+
 
 class AsyncZonesResourceWithRawResponse:
     def __init__(self, zones: AsyncZonesResource) -> None:
@@ -864,6 +884,10 @@ class AsyncZonesResourceWithRawResponse:
     @cached_property
     def rate_plans(self) -> AsyncRatePlansResourceWithRawResponse:
         return AsyncRatePlansResourceWithRawResponse(self._zones.rate_plans)
+
+    @cached_property
+    def ct(self) -> AsyncCTResourceWithRawResponse:
+        return AsyncCTResourceWithRawResponse(self._zones.ct)
 
 
 class ZonesResourceWithStreamingResponse:
@@ -918,6 +942,10 @@ class ZonesResourceWithStreamingResponse:
     def rate_plans(self) -> RatePlansResourceWithStreamingResponse:
         return RatePlansResourceWithStreamingResponse(self._zones.rate_plans)
 
+    @cached_property
+    def ct(self) -> CTResourceWithStreamingResponse:
+        return CTResourceWithStreamingResponse(self._zones.ct)
+
 
 class AsyncZonesResourceWithStreamingResponse:
     def __init__(self, zones: AsyncZonesResource) -> None:
@@ -970,3 +998,7 @@ class AsyncZonesResourceWithStreamingResponse:
     @cached_property
     def rate_plans(self) -> AsyncRatePlansResourceWithStreamingResponse:
         return AsyncRatePlansResourceWithStreamingResponse(self._zones.rate_plans)
+
+    @cached_property
+    def ct(self) -> AsyncCTResourceWithStreamingResponse:
+        return AsyncCTResourceWithStreamingResponse(self._zones.ct)

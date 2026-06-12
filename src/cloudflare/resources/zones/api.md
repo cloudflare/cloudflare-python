@@ -186,3 +186,18 @@ from cloudflare.types.zones import RatePlanGetResponse
 Methods:
 
 - <code title="get /zones/{zone_id}/available_rate_plans">client.zones.rate_plans.<a href="./src/cloudflare/resources/zones/rate_plans.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/rate_plan_get_response.py">SyncSinglePage[RatePlanGetResponse]</a></code>
+
+## CT
+
+### Alerting
+
+Types:
+
+```python
+from cloudflare.types.zones.ct import AlertingEditResponse, AlertingGetResponse
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_id}/ct/alerting">client.zones.ct.alerting.<a href="./src/cloudflare/resources/zones/ct/alerting.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/ct/alerting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/ct/alerting_edit_response.py">Optional[AlertingEditResponse]</a></code>
+- <code title="get /zones/{zone_id}/ct/alerting">client.zones.ct.alerting.<a href="./src/cloudflare/resources/zones/ct/alerting.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/ct/alerting_get_response.py">Optional[AlertingGetResponse]</a></code>
