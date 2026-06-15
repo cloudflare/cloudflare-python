@@ -56,6 +56,14 @@ from .dynamic_routing import (
     DynamicRoutingResourceWithStreamingResponse,
     AsyncDynamicRoutingResourceWithStreamingResponse,
 )
+from .custom_providers import (
+    CustomProvidersResource,
+    AsyncCustomProvidersResource,
+    CustomProvidersResourceWithRawResponse,
+    AsyncCustomProvidersResourceWithRawResponse,
+    CustomProvidersResourceWithStreamingResponse,
+    AsyncCustomProvidersResourceWithStreamingResponse,
+)
 from .evaluation_types import (
     EvaluationTypesResource,
     AsyncEvaluationTypesResource,
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncEvaluationTypesResourceWithRawResponse",
     "EvaluationTypesResourceWithStreamingResponse",
     "AsyncEvaluationTypesResourceWithStreamingResponse",
+    "CustomProvidersResource",
+    "AsyncCustomProvidersResource",
+    "CustomProvidersResourceWithRawResponse",
+    "AsyncCustomProvidersResourceWithRawResponse",
+    "CustomProvidersResourceWithStreamingResponse",
+    "AsyncCustomProvidersResourceWithStreamingResponse",
     "LogsResource",
     "AsyncLogsResource",
     "LogsResourceWithRawResponse",

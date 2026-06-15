@@ -68,6 +68,14 @@ from .dynamic_routing import (
     DynamicRoutingResourceWithStreamingResponse,
     AsyncDynamicRoutingResourceWithStreamingResponse,
 )
+from .custom_providers import (
+    CustomProvidersResource,
+    AsyncCustomProvidersResource,
+    CustomProvidersResourceWithRawResponse,
+    AsyncCustomProvidersResourceWithRawResponse,
+    CustomProvidersResourceWithStreamingResponse,
+    AsyncCustomProvidersResourceWithStreamingResponse,
+)
 from .evaluation_types import (
     EvaluationTypesResource,
     AsyncEvaluationTypesResource,
@@ -98,6 +106,10 @@ class AIGatewayResource(SyncAPIResource):
     @cached_property
     def evaluation_types(self) -> EvaluationTypesResource:
         return EvaluationTypesResource(self._client)
+
+    @cached_property
+    def custom_providers(self) -> CustomProvidersResource:
+        return CustomProvidersResource(self._client)
 
     @cached_property
     def logs(self) -> LogsResource:
@@ -472,6 +484,10 @@ class AsyncAIGatewayResource(AsyncAPIResource):
     @cached_property
     def evaluation_types(self) -> AsyncEvaluationTypesResource:
         return AsyncEvaluationTypesResource(self._client)
+
+    @cached_property
+    def custom_providers(self) -> AsyncCustomProvidersResource:
+        return AsyncCustomProvidersResource(self._client)
 
     @cached_property
     def logs(self) -> AsyncLogsResource:
@@ -867,6 +883,10 @@ class AIGatewayResourceWithRawResponse:
         return EvaluationTypesResourceWithRawResponse(self._ai_gateway.evaluation_types)
 
     @cached_property
+    def custom_providers(self) -> CustomProvidersResourceWithRawResponse:
+        return CustomProvidersResourceWithRawResponse(self._ai_gateway.custom_providers)
+
+    @cached_property
     def logs(self) -> LogsResourceWithRawResponse:
         return LogsResourceWithRawResponse(self._ai_gateway.logs)
 
@@ -918,6 +938,10 @@ class AsyncAIGatewayResourceWithRawResponse:
     @cached_property
     def evaluation_types(self) -> AsyncEvaluationTypesResourceWithRawResponse:
         return AsyncEvaluationTypesResourceWithRawResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
+    def custom_providers(self) -> AsyncCustomProvidersResourceWithRawResponse:
+        return AsyncCustomProvidersResourceWithRawResponse(self._ai_gateway.custom_providers)
 
     @cached_property
     def logs(self) -> AsyncLogsResourceWithRawResponse:
@@ -973,6 +997,10 @@ class AIGatewayResourceWithStreamingResponse:
         return EvaluationTypesResourceWithStreamingResponse(self._ai_gateway.evaluation_types)
 
     @cached_property
+    def custom_providers(self) -> CustomProvidersResourceWithStreamingResponse:
+        return CustomProvidersResourceWithStreamingResponse(self._ai_gateway.custom_providers)
+
+    @cached_property
     def logs(self) -> LogsResourceWithStreamingResponse:
         return LogsResourceWithStreamingResponse(self._ai_gateway.logs)
 
@@ -1024,6 +1052,10 @@ class AsyncAIGatewayResourceWithStreamingResponse:
     @cached_property
     def evaluation_types(self) -> AsyncEvaluationTypesResourceWithStreamingResponse:
         return AsyncEvaluationTypesResourceWithStreamingResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
+    def custom_providers(self) -> AsyncCustomProvidersResourceWithStreamingResponse:
+        return AsyncCustomProvidersResourceWithStreamingResponse(self._ai_gateway.custom_providers)
 
     @cached_property
     def logs(self) -> AsyncLogsResourceWithStreamingResponse:

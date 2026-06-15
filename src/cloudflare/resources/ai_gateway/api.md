@@ -32,6 +32,26 @@ Methods:
 
 - <code title="get /accounts/{account_id}/ai-gateway/evaluation-types">client.ai_gateway.evaluation_types.<a href="./src/cloudflare/resources/ai_gateway/evaluation_types.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/evaluation_type_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/evaluation_type_list_response.py">SyncV4PagePaginationArray[EvaluationTypeListResponse]</a></code>
 
+## CustomProviders
+
+Types:
+
+```python
+from cloudflare.types.ai_gateway import (
+    CustomProviderCreateResponse,
+    CustomProviderListResponse,
+    CustomProviderDeleteResponse,
+    CustomProviderGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai-gateway/custom-providers">client.ai_gateway.custom_providers.<a href="./src/cloudflare/resources/ai_gateway/custom_providers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/custom_provider_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/custom_provider_create_response.py">CustomProviderCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/custom-providers">client.ai_gateway.custom_providers.<a href="./src/cloudflare/resources/ai_gateway/custom_providers.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/custom_provider_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/custom_provider_list_response.py">SyncV4PagePaginationArray[CustomProviderListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/ai-gateway/custom-providers/{id}">client.ai_gateway.custom_providers.<a href="./src/cloudflare/resources/ai_gateway/custom_providers.py">delete</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/ai_gateway/custom_provider_delete_response.py">CustomProviderDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/custom-providers/{id}">client.ai_gateway.custom_providers.<a href="./src/cloudflare/resources/ai_gateway/custom_providers.py">get</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/ai_gateway/custom_provider_get_response.py">CustomProviderGetResponse</a></code>
+
 ## Logs
 
 Types:
