@@ -42,6 +42,8 @@ class TagCreateResponse(BaseModel):
 
     origin_country_iso: Optional[str] = FieldInfo(alias="originCountryISO", default=None)
 
+    origin_country_iso_alpha3: Optional[str] = FieldInfo(alias="originCountryISOAlpha3", default=None)
+
     priority: Optional[float] = None
 
     sophistication_level: Optional[str] = FieldInfo(alias="sophisticationLevel", default=None)

@@ -14,6 +14,8 @@ class ThreatEventCreateResponse(BaseModel):
 
     attacker_country: str = FieldInfo(alias="attackerCountry")
 
+    attacker_country_alpha3: str = FieldInfo(alias="attackerCountryAlpha3")
+
     category: str
 
     dataset_id: str = FieldInfo(alias="datasetId")
@@ -53,6 +55,8 @@ class ThreatEventCreateResponse(BaseModel):
     tags: List[str]
 
     target_country: str = FieldInfo(alias="targetCountry")
+
+    target_country_alpha3: str = FieldInfo(alias="targetCountryAlpha3")
 
     target_industry: str = FieldInfo(alias="targetIndustry")
 
