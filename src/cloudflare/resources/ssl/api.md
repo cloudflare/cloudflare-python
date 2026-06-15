@@ -56,6 +56,19 @@ Methods:
 
 - <code title="get /zones/{zone_id}/ssl/recommendation">client.ssl.recommendations.<a href="./src/cloudflare/resources/ssl/recommendations.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/recommendation_get_response.py">RecommendationGetResponse</a></code>
 
+## AutoOriginTLSKex
+
+Types:
+
+```python
+from cloudflare.types.ssl import AutoOriginTLSKexEditResponse, AutoOriginTLSKexGetResponse
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_id}/settings/auto_origin_tls_kex">client.ssl.auto_origin_tls_kex.<a href="./src/cloudflare/resources/ssl/auto_origin_tls_kex.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/auto_origin_tls_kex_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/auto_origin_tls_kex_edit_response.py">AutoOriginTLSKexEditResponse</a></code>
+- <code title="get /zones/{zone_id}/settings/auto_origin_tls_kex">client.ssl.auto_origin_tls_kex.<a href="./src/cloudflare/resources/ssl/auto_origin_tls_kex.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/auto_origin_tls_kex_get_response.py">AutoOriginTLSKexGetResponse</a></code>
+
 ## Universal
 
 ### Settings

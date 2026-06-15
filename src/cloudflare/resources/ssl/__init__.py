@@ -48,6 +48,14 @@ from .certificate_packs import (
     CertificatePacksResourceWithStreamingResponse,
     AsyncCertificatePacksResourceWithStreamingResponse,
 )
+from .auto_origin_tls_kex import (
+    AutoOriginTLSKexResource,
+    AsyncAutoOriginTLSKexResource,
+    AutoOriginTLSKexResourceWithRawResponse,
+    AsyncAutoOriginTLSKexResourceWithRawResponse,
+    AutoOriginTLSKexResourceWithStreamingResponse,
+    AsyncAutoOriginTLSKexResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AnalyzeResource",
@@ -68,6 +76,12 @@ __all__ = [
     "AsyncRecommendationsResourceWithRawResponse",
     "RecommendationsResourceWithStreamingResponse",
     "AsyncRecommendationsResourceWithStreamingResponse",
+    "AutoOriginTLSKexResource",
+    "AsyncAutoOriginTLSKexResource",
+    "AutoOriginTLSKexResourceWithRawResponse",
+    "AsyncAutoOriginTLSKexResourceWithRawResponse",
+    "AutoOriginTLSKexResourceWithStreamingResponse",
+    "AsyncAutoOriginTLSKexResourceWithStreamingResponse",
     "UniversalResource",
     "AsyncUniversalResource",
     "UniversalResourceWithRawResponse",

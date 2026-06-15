@@ -28,6 +28,14 @@ from .recommendations import (
     RecommendationsResourceWithStreamingResponse,
     AsyncRecommendationsResourceWithStreamingResponse,
 )
+from .auto_origin_tls_kex import (
+    AutoOriginTLSKexResource,
+    AsyncAutoOriginTLSKexResource,
+    AutoOriginTLSKexResourceWithRawResponse,
+    AsyncAutoOriginTLSKexResourceWithRawResponse,
+    AutoOriginTLSKexResourceWithStreamingResponse,
+    AsyncAutoOriginTLSKexResourceWithStreamingResponse,
+)
 from .universal.universal import (
     UniversalResource,
     AsyncUniversalResource,
@@ -60,6 +68,10 @@ class SSLResource(SyncAPIResource):
     @cached_property
     def recommendations(self) -> RecommendationsResource:
         return RecommendationsResource(self._client)
+
+    @cached_property
+    def auto_origin_tls_kex(self) -> AutoOriginTLSKexResource:
+        return AutoOriginTLSKexResource(self._client)
 
     @cached_property
     def universal(self) -> UniversalResource:
@@ -101,6 +113,10 @@ class AsyncSSLResource(AsyncAPIResource):
     @cached_property
     def recommendations(self) -> AsyncRecommendationsResource:
         return AsyncRecommendationsResource(self._client)
+
+    @cached_property
+    def auto_origin_tls_kex(self) -> AsyncAutoOriginTLSKexResource:
+        return AsyncAutoOriginTLSKexResource(self._client)
 
     @cached_property
     def universal(self) -> AsyncUniversalResource:
@@ -147,6 +163,10 @@ class SSLResourceWithRawResponse:
         return RecommendationsResourceWithRawResponse(self._ssl.recommendations)
 
     @cached_property
+    def auto_origin_tls_kex(self) -> AutoOriginTLSKexResourceWithRawResponse:
+        return AutoOriginTLSKexResourceWithRawResponse(self._ssl.auto_origin_tls_kex)
+
+    @cached_property
     def universal(self) -> UniversalResourceWithRawResponse:
         return UniversalResourceWithRawResponse(self._ssl.universal)
 
@@ -170,6 +190,10 @@ class AsyncSSLResourceWithRawResponse:
     @cached_property
     def recommendations(self) -> AsyncRecommendationsResourceWithRawResponse:
         return AsyncRecommendationsResourceWithRawResponse(self._ssl.recommendations)
+
+    @cached_property
+    def auto_origin_tls_kex(self) -> AsyncAutoOriginTLSKexResourceWithRawResponse:
+        return AsyncAutoOriginTLSKexResourceWithRawResponse(self._ssl.auto_origin_tls_kex)
 
     @cached_property
     def universal(self) -> AsyncUniversalResourceWithRawResponse:
@@ -197,6 +221,10 @@ class SSLResourceWithStreamingResponse:
         return RecommendationsResourceWithStreamingResponse(self._ssl.recommendations)
 
     @cached_property
+    def auto_origin_tls_kex(self) -> AutoOriginTLSKexResourceWithStreamingResponse:
+        return AutoOriginTLSKexResourceWithStreamingResponse(self._ssl.auto_origin_tls_kex)
+
+    @cached_property
     def universal(self) -> UniversalResourceWithStreamingResponse:
         return UniversalResourceWithStreamingResponse(self._ssl.universal)
 
@@ -220,6 +248,10 @@ class AsyncSSLResourceWithStreamingResponse:
     @cached_property
     def recommendations(self) -> AsyncRecommendationsResourceWithStreamingResponse:
         return AsyncRecommendationsResourceWithStreamingResponse(self._ssl.recommendations)
+
+    @cached_property
+    def auto_origin_tls_kex(self) -> AsyncAutoOriginTLSKexResourceWithStreamingResponse:
+        return AsyncAutoOriginTLSKexResourceWithStreamingResponse(self._ssl.auto_origin_tls_kex)
 
     @cached_property
     def universal(self) -> AsyncUniversalResourceWithStreamingResponse:
