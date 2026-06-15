@@ -92,7 +92,7 @@ class InferenceResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceSummaryV2Response:
         """
-        Retrieves an aggregated summary of unique accounts using Workers AI inference
+        Retrieves an aggregated summary of the number of inferences run on Workers AI,
         grouped by the specified dimension.
 
         Args:
@@ -186,7 +186,7 @@ class InferenceResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceTimeseriesGroupsV2Response:
         """
-        Retrieves the distribution of unique accounts using Workers AI inference,
+        Retrieves the distribution of the number of inferences run on Workers AI,
         grouped by the specified dimension over time.
 
         Args:
@@ -316,7 +316,7 @@ class AsyncInferenceResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceSummaryV2Response:
         """
-        Retrieves an aggregated summary of unique accounts using Workers AI inference
+        Retrieves an aggregated summary of the number of inferences run on Workers AI,
         grouped by the specified dimension.
 
         Args:
@@ -410,7 +410,7 @@ class AsyncInferenceResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InferenceTimeseriesGroupsV2Response:
         """
-        Retrieves the distribution of unique accounts using Workers AI inference,
+        Retrieves the distribution of the number of inferences run on Workers AI,
         grouped by the specified dimension over time.
 
         Args:

@@ -68,7 +68,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryModelResponse:
         """
-        Retrieves the distribution of unique accounts by model.
+        Retrieves the distribution of the number of inferences by model.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -138,7 +138,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryTaskResponse:
         """
-        Retrieves the distribution of unique accounts by task.
+        Retrieves the distribution of the number of inferences by task.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -229,7 +229,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryModelResponse:
         """
-        Retrieves the distribution of unique accounts by model.
+        Retrieves the distribution of the number of inferences by model.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -299,7 +299,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryTaskResponse:
         """
-        Retrieves the distribution of unique accounts by task.
+        Retrieves the distribution of the number of inferences by task.
 
         Args:
           date_end: End of the date range (inclusive).

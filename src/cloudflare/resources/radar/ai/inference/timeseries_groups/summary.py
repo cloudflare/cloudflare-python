@@ -69,7 +69,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryModelResponse:
         """
-        Retrieves the distribution of unique accounts by model over time.
+        Retrieves the distribution of the number of inferences by model over time.
 
         Args:
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
@@ -145,7 +145,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryTaskResponse:
         """
-        Retrieves the distribution of unique accounts by task over time.
+        Retrieves the distribution of the number of inferences by task over time.
 
         Args:
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
@@ -242,7 +242,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryModelResponse:
         """
-        Retrieves the distribution of unique accounts by model over time.
+        Retrieves the distribution of the number of inferences by model over time.
 
         Args:
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
@@ -318,7 +318,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryTaskResponse:
         """
-        Retrieves the distribution of unique accounts by task over time.
+        Retrieves the distribution of the number of inferences by task over time.
 
         Args:
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).

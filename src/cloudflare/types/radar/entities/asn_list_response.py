@@ -6,7 +6,12 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["ASNListResponse", "ASN"]
+__all__ = ["ASNListResponse", "ASN", "ASNEstimatedUsers"]
+
+
+class ASNEstimatedUsers(BaseModel):
+    estimated_users: Optional[int] = FieldInfo(alias="estimatedUsers", default=None)
+    """Total estimated users."""
 
 
 class ASN(BaseModel):
@@ -15,6 +20,8 @@ class ASN(BaseModel):
     country: str
 
     country_name: str = FieldInfo(alias="countryName")
+
+    estimated_users: ASNEstimatedUsers = FieldInfo(alias="estimatedUsers")
 
     name: str
 

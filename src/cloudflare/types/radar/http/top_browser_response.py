@@ -67,6 +67,8 @@ class MetaConfidenceInfoAnnotation(BaseModel):
 
     start_date: datetime = FieldInfo(alias="startDate")
 
+    tags: Optional[List[str]] = None
+
 
 class MetaConfidenceInfo(BaseModel):
     annotations: List[MetaConfidenceInfoAnnotation]

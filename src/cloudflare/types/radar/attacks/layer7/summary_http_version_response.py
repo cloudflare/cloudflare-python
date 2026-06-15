@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -66,6 +66,8 @@ class MetaConfidenceInfoAnnotation(BaseModel):
     linked_url: str = FieldInfo(alias="linkedUrl")
 
     start_date: datetime = FieldInfo(alias="startDate")
+
+    tags: Optional[List[str]] = None
 
 
 class MetaConfidenceInfo(BaseModel):
