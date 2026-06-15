@@ -60,6 +60,14 @@ from .cf_interconnects import (
     CfInterconnectsResourceWithStreamingResponse,
     AsyncCfInterconnectsResourceWithStreamingResponse,
 )
+from .cf1_sites.cf1_sites import (
+    Cf1SitesResource,
+    AsyncCf1SitesResource,
+    Cf1SitesResourceWithRawResponse,
+    AsyncCf1SitesResourceWithRawResponse,
+    Cf1SitesResourceWithStreamingResponse,
+    AsyncCf1SitesResourceWithStreamingResponse,
+)
 from .connectors.connectors import (
     ConnectorsResource,
     AsyncConnectorsResource,
@@ -100,6 +108,10 @@ class MagicTransitResource(SyncAPIResource):
     @cached_property
     def connectors(self) -> ConnectorsResource:
         return ConnectorsResource(self._client)
+
+    @cached_property
+    def cf1_sites(self) -> Cf1SitesResource:
+        return Cf1SitesResource(self._client)
 
     @cached_property
     def pcaps(self) -> PCAPsResource:
@@ -153,6 +165,10 @@ class AsyncMagicTransitResource(AsyncAPIResource):
     @cached_property
     def connectors(self) -> AsyncConnectorsResource:
         return AsyncConnectorsResource(self._client)
+
+    @cached_property
+    def cf1_sites(self) -> AsyncCf1SitesResource:
+        return AsyncCf1SitesResource(self._client)
 
     @cached_property
     def pcaps(self) -> AsyncPCAPsResource:
@@ -211,6 +227,10 @@ class MagicTransitResourceWithRawResponse:
         return ConnectorsResourceWithRawResponse(self._magic_transit.connectors)
 
     @cached_property
+    def cf1_sites(self) -> Cf1SitesResourceWithRawResponse:
+        return Cf1SitesResourceWithRawResponse(self._magic_transit.cf1_sites)
+
+    @cached_property
     def pcaps(self) -> PCAPsResourceWithRawResponse:
         return PCAPsResourceWithRawResponse(self._magic_transit.pcaps)
 
@@ -246,6 +266,10 @@ class AsyncMagicTransitResourceWithRawResponse:
     @cached_property
     def connectors(self) -> AsyncConnectorsResourceWithRawResponse:
         return AsyncConnectorsResourceWithRawResponse(self._magic_transit.connectors)
+
+    @cached_property
+    def cf1_sites(self) -> AsyncCf1SitesResourceWithRawResponse:
+        return AsyncCf1SitesResourceWithRawResponse(self._magic_transit.cf1_sites)
 
     @cached_property
     def pcaps(self) -> AsyncPCAPsResourceWithRawResponse:
@@ -285,6 +309,10 @@ class MagicTransitResourceWithStreamingResponse:
         return ConnectorsResourceWithStreamingResponse(self._magic_transit.connectors)
 
     @cached_property
+    def cf1_sites(self) -> Cf1SitesResourceWithStreamingResponse:
+        return Cf1SitesResourceWithStreamingResponse(self._magic_transit.cf1_sites)
+
+    @cached_property
     def pcaps(self) -> PCAPsResourceWithStreamingResponse:
         return PCAPsResourceWithStreamingResponse(self._magic_transit.pcaps)
 
@@ -320,6 +348,10 @@ class AsyncMagicTransitResourceWithStreamingResponse:
     @cached_property
     def connectors(self) -> AsyncConnectorsResourceWithStreamingResponse:
         return AsyncConnectorsResourceWithStreamingResponse(self._magic_transit.connectors)
+
+    @cached_property
+    def cf1_sites(self) -> AsyncCf1SitesResourceWithStreamingResponse:
+        return AsyncCf1SitesResourceWithStreamingResponse(self._magic_transit.cf1_sites)
 
     @cached_property
     def pcaps(self) -> AsyncPCAPsResourceWithStreamingResponse:

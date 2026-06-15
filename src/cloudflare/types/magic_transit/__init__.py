@@ -5,11 +5,13 @@ from __future__ import annotations
 from .pcap import PCAP as PCAP
 from .site import Site as Site
 from .scope import Scope as Scope
+from .cf1_site import Cf1Site as Cf1Site
 from .pcap_filter import PCAPFilter as PCAPFilter
 from .scope_param import ScopeParam as ScopeParam
 from .health_check import HealthCheck as HealthCheck
 from .psk_metadata import PSKMetadata as PSKMetadata
 from .site_location import SiteLocation as SiteLocation
+from .cf1_site_param import Cf1SiteParam as Cf1SiteParam
 from .app_edit_params import AppEditParams as AppEditParams
 from .site_edit_params import SiteEditParams as SiteEditParams
 from .site_list_params import SiteListParams as SiteListParams
@@ -17,6 +19,7 @@ from .app_create_params import AppCreateParams as AppCreateParams
 from .app_edit_response import AppEditResponse as AppEditResponse
 from .app_list_response import AppListResponse as AppListResponse
 from .app_update_params import AppUpdateParams as AppUpdateParams
+from .cf1_site_location import Cf1SiteLocation as Cf1SiteLocation
 from .health_check_rate import HealthCheckRate as HealthCheckRate
 from .health_check_type import HealthCheckType as HealthCheckType
 from .pcap_filter_param import PCAPFilterParam as PCAPFilterParam
@@ -41,7 +44,10 @@ from .connector_list_params import ConnectorListParams as ConnectorListParams
 from .route_create_response import RouteCreateResponse as RouteCreateResponse
 from .route_delete_response import RouteDeleteResponse as RouteDeleteResponse
 from .route_update_response import RouteUpdateResponse as RouteUpdateResponse
+from .cf1_site_create_params import Cf1SiteCreateParams as Cf1SiteCreateParams
+from .cf1_site_update_params import Cf1SiteUpdateParams as Cf1SiteUpdateParams
 from .connector_get_response import ConnectorGetResponse as ConnectorGetResponse
+from .cf1_site_location_param import Cf1SiteLocationParam as Cf1SiteLocationParam
 from .connector_create_params import ConnectorCreateParams as ConnectorCreateParams
 from .connector_edit_response import ConnectorEditResponse as ConnectorEditResponse
 from .connector_list_response import ConnectorListResponse as ConnectorListResponse
@@ -62,6 +68,7 @@ from .ipsec_tunnel_create_params import IPSECTunnelCreateParams as IPSECTunnelCr
 from .ipsec_tunnel_list_response import IPSECTunnelListResponse as IPSECTunnelListResponse
 from .ipsec_tunnel_update_params import IPSECTunnelUpdateParams as IPSECTunnelUpdateParams
 from .route_bulk_update_response import RouteBulkUpdateResponse as RouteBulkUpdateResponse
+from .ipsec_tunnel_psk_set_params import IPSECTunnelPSKSetParams as IPSECTunnelPSKSetParams
 from .cf_interconnect_get_response import CfInterconnectGetResponse as CfInterconnectGetResponse
 from .ipsec_tunnel_create_response import IPSECTunnelCreateResponse as IPSECTunnelCreateResponse
 from .ipsec_tunnel_delete_response import IPSECTunnelDeleteResponse as IPSECTunnelDeleteResponse
@@ -69,6 +76,7 @@ from .ipsec_tunnel_update_response import IPSECTunnelUpdateResponse as IPSECTunn
 from .cf_interconnect_list_response import CfInterconnectListResponse as CfInterconnectListResponse
 from .cf_interconnect_update_params import CfInterconnectUpdateParams as CfInterconnectUpdateParams
 from .gre_tunnel_bulk_update_params import GRETunnelBulkUpdateParams as GRETunnelBulkUpdateParams
+from .ipsec_tunnel_psk_set_response import IPSECTunnelPSKSetResponse as IPSECTunnelPSKSetResponse
 from .cf_interconnect_update_response import CfInterconnectUpdateResponse as CfInterconnectUpdateResponse
 from .gre_tunnel_bulk_update_response import GRETunnelBulkUpdateResponse as GRETunnelBulkUpdateResponse
 from .ipsec_tunnel_bulk_update_params import IPSECTunnelBulkUpdateParams as IPSECTunnelBulkUpdateParams

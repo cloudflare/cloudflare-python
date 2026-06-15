@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -21,6 +21,7 @@ from ..._base_client import make_request_options
 from ...types.magic_transit import (
     ipsec_tunnel_create_params,
     ipsec_tunnel_update_params,
+    ipsec_tunnel_psk_set_params,
     ipsec_tunnel_bulk_update_params,
     ipsec_tunnel_psk_generate_params,
 )
@@ -29,6 +30,7 @@ from ...types.magic_transit.ipsec_tunnel_list_response import IPSECTunnelListRes
 from ...types.magic_transit.ipsec_tunnel_create_response import IPSECTunnelCreateResponse
 from ...types.magic_transit.ipsec_tunnel_delete_response import IPSECTunnelDeleteResponse
 from ...types.magic_transit.ipsec_tunnel_update_response import IPSECTunnelUpdateResponse
+from ...types.magic_transit.ipsec_tunnel_psk_set_response import IPSECTunnelPSKSetResponse
 from ...types.magic_transit.ipsec_tunnel_bulk_update_response import IPSECTunnelBulkUpdateResponse
 from ...types.magic_transit.ipsec_tunnel_psk_generate_response import IPSECTunnelPSKGenerateResponse
 
@@ -561,6 +563,60 @@ class IPSECTunnelsResource(SyncAPIResource):
             cast_to=cast(Type[IPSECTunnelPSKGenerateResponse], ResultWrapper[IPSECTunnelPSKGenerateResponse]),
         )
 
+    def psk_set(
+        self,
+        *,
+        account_id: str,
+        psks: Iterable[ipsec_tunnel_psk_set_params.PSK],
+        validate_only: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPSECTunnelPSKSetResponse:
+        """Sets Pre-Shared Keys for multiple IPsec tunnels associated with an account.
+
+        Use
+        `?validate_only=true` as an optional query parameter to only run validation
+        without persisting changes. After PSKs are applied, they are immediately
+        persisted to Cloudflare's edge and cannot be retrieved later. Store the PSKs in
+        a safe place.
+
+        Args:
+          account_id: Identifier
+
+          psks: List of tunnel ID and PSK pairs.
+
+          validate_only: If `true`, only run validation without persisting changes.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template("/accounts/{account_id}/magic/ipsec_tunnels/psk", account_id=account_id),
+            body=maybe_transform({"psks": psks}, ipsec_tunnel_psk_set_params.IPSECTunnelPSKSetParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"validate_only": validate_only}, ipsec_tunnel_psk_set_params.IPSECTunnelPSKSetParams
+                ),
+                post_parser=ResultWrapper[IPSECTunnelPSKSetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[IPSECTunnelPSKSetResponse], ResultWrapper[IPSECTunnelPSKSetResponse]),
+        )
+
 
 class AsyncIPSECTunnelsResource(AsyncAPIResource):
     @cached_property
@@ -1088,6 +1144,60 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
             cast_to=cast(Type[IPSECTunnelPSKGenerateResponse], ResultWrapper[IPSECTunnelPSKGenerateResponse]),
         )
 
+    async def psk_set(
+        self,
+        *,
+        account_id: str,
+        psks: Iterable[ipsec_tunnel_psk_set_params.PSK],
+        validate_only: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IPSECTunnelPSKSetResponse:
+        """Sets Pre-Shared Keys for multiple IPsec tunnels associated with an account.
+
+        Use
+        `?validate_only=true` as an optional query parameter to only run validation
+        without persisting changes. After PSKs are applied, they are immediately
+        persisted to Cloudflare's edge and cannot be retrieved later. Store the PSKs in
+        a safe place.
+
+        Args:
+          account_id: Identifier
+
+          psks: List of tunnel ID and PSK pairs.
+
+          validate_only: If `true`, only run validation without persisting changes.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template("/accounts/{account_id}/magic/ipsec_tunnels/psk", account_id=account_id),
+            body=await async_maybe_transform({"psks": psks}, ipsec_tunnel_psk_set_params.IPSECTunnelPSKSetParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"validate_only": validate_only}, ipsec_tunnel_psk_set_params.IPSECTunnelPSKSetParams
+                ),
+                post_parser=ResultWrapper[IPSECTunnelPSKSetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[IPSECTunnelPSKSetResponse], ResultWrapper[IPSECTunnelPSKSetResponse]),
+        )
+
 
 class IPSECTunnelsResourceWithRawResponse:
     def __init__(self, ipsec_tunnels: IPSECTunnelsResource) -> None:
@@ -1113,6 +1223,9 @@ class IPSECTunnelsResourceWithRawResponse:
         )
         self.psk_generate = to_raw_response_wrapper(
             ipsec_tunnels.psk_generate,
+        )
+        self.psk_set = to_raw_response_wrapper(
+            ipsec_tunnels.psk_set,
         )
 
 
@@ -1141,6 +1254,9 @@ class AsyncIPSECTunnelsResourceWithRawResponse:
         self.psk_generate = async_to_raw_response_wrapper(
             ipsec_tunnels.psk_generate,
         )
+        self.psk_set = async_to_raw_response_wrapper(
+            ipsec_tunnels.psk_set,
+        )
 
 
 class IPSECTunnelsResourceWithStreamingResponse:
@@ -1168,6 +1284,9 @@ class IPSECTunnelsResourceWithStreamingResponse:
         self.psk_generate = to_streamed_response_wrapper(
             ipsec_tunnels.psk_generate,
         )
+        self.psk_set = to_streamed_response_wrapper(
+            ipsec_tunnels.psk_set,
+        )
 
 
 class AsyncIPSECTunnelsResourceWithStreamingResponse:
@@ -1194,4 +1313,7 @@ class AsyncIPSECTunnelsResourceWithStreamingResponse:
         )
         self.psk_generate = async_to_streamed_response_wrapper(
             ipsec_tunnels.psk_generate,
+        )
+        self.psk_set = async_to_streamed_response_wrapper(
+            ipsec_tunnels.psk_set,
         )

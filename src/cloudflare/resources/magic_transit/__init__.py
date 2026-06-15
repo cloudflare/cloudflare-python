@@ -32,6 +32,14 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
+from .cf1_sites import (
+    Cf1SitesResource,
+    AsyncCf1SitesResource,
+    Cf1SitesResourceWithRawResponse,
+    AsyncCf1SitesResourceWithRawResponse,
+    Cf1SitesResourceWithStreamingResponse,
+    AsyncCf1SitesResourceWithStreamingResponse,
+)
 from .connectors import (
     ConnectorsResource,
     AsyncConnectorsResource,
@@ -116,6 +124,12 @@ __all__ = [
     "AsyncConnectorsResourceWithRawResponse",
     "ConnectorsResourceWithStreamingResponse",
     "AsyncConnectorsResourceWithStreamingResponse",
+    "Cf1SitesResource",
+    "AsyncCf1SitesResource",
+    "Cf1SitesResourceWithRawResponse",
+    "AsyncCf1SitesResourceWithRawResponse",
+    "Cf1SitesResourceWithStreamingResponse",
+    "AsyncCf1SitesResourceWithStreamingResponse",
     "PCAPsResource",
     "AsyncPCAPsResource",
     "PCAPsResourceWithRawResponse",

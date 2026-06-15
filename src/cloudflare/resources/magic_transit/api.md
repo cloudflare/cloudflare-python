@@ -86,6 +86,7 @@ from cloudflare.types.magic_transit import (
     IPSECTunnelBulkUpdateResponse,
     IPSECTunnelGetResponse,
     IPSECTunnelPSKGenerateResponse,
+    IPSECTunnelPSKSetResponse,
 )
 ```
 
@@ -98,6 +99,7 @@ Methods:
 - <code title="put /accounts/{account_id}/magic/ipsec_tunnels">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">bulk_update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/ipsec_tunnel_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_bulk_update_response.py">IPSECTunnelBulkUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">get</a>(ipsec_tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_get_response.py">IPSECTunnelGetResponse</a></code>
 - <code title="post /accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}/psk_generate">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">psk_generate</a>(ipsec_tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/ipsec_tunnel_psk_generate_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_psk_generate_response.py">IPSECTunnelPSKGenerateResponse</a></code>
+- <code title="post /accounts/{account_id}/magic/ipsec_tunnels/psk">client.magic_transit.ipsec_tunnels.<a href="./src/cloudflare/resources/magic_transit/ipsec_tunnels.py">psk_set</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/ipsec_tunnel_psk_set_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/ipsec_tunnel_psk_set_response.py">IPSECTunnelPSKSetResponse</a></code>
 
 ## Routes
 
@@ -274,6 +276,37 @@ from cloudflare.types.magic_transit.connectors.snapshots import LatestListRespon
 Methods:
 
 - <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots/latest">client.magic_transit.connectors.snapshots.latest.<a href="./src/cloudflare/resources/magic_transit/connectors/snapshots/latest.py">list</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connectors/snapshots/latest_list_response.py">LatestListResponse</a></code>
+
+## Cf1Sites
+
+Types:
+
+```python
+from cloudflare.types.magic_transit import Cf1Site, Cf1SiteLocation
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/cf1_sites">client.magic_transit.cf1_sites.<a href="./src/cloudflare/resources/magic_transit/cf1_sites/cf1_sites.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/cf1_site_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/cf1_site.py">SyncSinglePage[Cf1Site]</a></code>
+- <code title="patch /accounts/{account_id}/magic/cf1_sites/{cf1_site_id}">client.magic_transit.cf1_sites.<a href="./src/cloudflare/resources/magic_transit/cf1_sites/cf1_sites.py">update</a>(cf1_site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/cf1_site_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/cf1_site.py">Cf1Site</a></code>
+- <code title="get /accounts/{account_id}/magic/cf1_sites">client.magic_transit.cf1_sites.<a href="./src/cloudflare/resources/magic_transit/cf1_sites/cf1_sites.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/cf1_site.py">SyncSinglePage[Cf1Site]</a></code>
+- <code title="delete /accounts/{account_id}/magic/cf1_sites/{cf1_site_id}">client.magic_transit.cf1_sites.<a href="./src/cloudflare/resources/magic_transit/cf1_sites/cf1_sites.py">delete</a>(cf1_site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/cf1_site.py">Cf1Site</a></code>
+- <code title="get /accounts/{account_id}/magic/cf1_sites/{cf1_site_id}">client.magic_transit.cf1_sites.<a href="./src/cloudflare/resources/magic_transit/cf1_sites/cf1_sites.py">get</a>(cf1_site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/cf1_site.py">Cf1Site</a></code>
+
+### Ramps
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.cf1_sites import Ramp, RampType
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/cf1_sites/{cf1_site_id}/ramps">client.magic_transit.cf1_sites.ramps.<a href="./src/cloudflare/resources/magic_transit/cf1_sites/ramps.py">create</a>(cf1_site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/cf1_sites/ramp_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/cf1_sites/ramp.py">SyncSinglePage[Ramp]</a></code>
+- <code title="get /accounts/{account_id}/magic/cf1_sites/{cf1_site_id}/ramps">client.magic_transit.cf1_sites.ramps.<a href="./src/cloudflare/resources/magic_transit/cf1_sites/ramps.py">list</a>(cf1_site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/cf1_sites/ramp.py">SyncSinglePage[Ramp]</a></code>
+- <code title="delete /accounts/{account_id}/magic/cf1_sites/{cf1_site_id}/ramps/{ramp_id}">client.magic_transit.cf1_sites.ramps.<a href="./src/cloudflare/resources/magic_transit/cf1_sites/ramps.py">delete</a>(ramp_id, \*, account_id, cf1_site_id) -> <a href="./src/cloudflare/types/magic_transit/cf1_sites/ramp.py">Ramp</a></code>
+- <code title="get /accounts/{account_id}/magic/cf1_sites/{cf1_site_id}/ramps/{ramp_id}">client.magic_transit.cf1_sites.ramps.<a href="./src/cloudflare/resources/magic_transit/cf1_sites/ramps.py">get</a>(ramp_id, \*, account_id, cf1_site_id) -> <a href="./src/cloudflare/types/magic_transit/cf1_sites/ramp.py">Ramp</a></code>
 
 ## PCAPs
 

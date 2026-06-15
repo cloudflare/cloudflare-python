@@ -14,6 +14,7 @@ from cloudflare.types.magic_transit import (
     IPSECTunnelListResponse,
     IPSECTunnelCreateResponse,
     IPSECTunnelDeleteResponse,
+    IPSECTunnelPSKSetResponse,
     IPSECTunnelUpdateResponse,
     IPSECTunnelBulkUpdateResponse,
     IPSECTunnelPSKGenerateResponse,
@@ -473,6 +474,82 @@ class TestIPSECTunnels:
                 body={},
             )
 
+    @parametrize
+    def test_method_psk_set(self, client: Cloudflare) -> None:
+        ipsec_tunnel = client.magic_transit.ipsec_tunnels.psk_set(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            psks=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                }
+            ],
+        )
+        assert_matches_type(IPSECTunnelPSKSetResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    def test_method_psk_set_with_all_params(self, client: Cloudflare) -> None:
+        ipsec_tunnel = client.magic_transit.ipsec_tunnels.psk_set(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            psks=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                }
+            ],
+            validate_only=True,
+        )
+        assert_matches_type(IPSECTunnelPSKSetResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    def test_raw_response_psk_set(self, client: Cloudflare) -> None:
+        response = client.magic_transit.ipsec_tunnels.with_raw_response.psk_set(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            psks=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ipsec_tunnel = response.parse()
+        assert_matches_type(IPSECTunnelPSKSetResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    def test_streaming_response_psk_set(self, client: Cloudflare) -> None:
+        with client.magic_transit.ipsec_tunnels.with_streaming_response.psk_set(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            psks=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ipsec_tunnel = response.parse()
+            assert_matches_type(IPSECTunnelPSKSetResponse, ipsec_tunnel, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_psk_set(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_transit.ipsec_tunnels.with_raw_response.psk_set(
+                account_id="",
+                psks=[
+                    {
+                        "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                        "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                    }
+                ],
+            )
+
 
 class TestAsyncIPSECTunnels:
     parametrize = pytest.mark.parametrize(
@@ -925,4 +1002,80 @@ class TestAsyncIPSECTunnels:
                 ipsec_tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
+            )
+
+    @parametrize
+    async def test_method_psk_set(self, async_client: AsyncCloudflare) -> None:
+        ipsec_tunnel = await async_client.magic_transit.ipsec_tunnels.psk_set(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            psks=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                }
+            ],
+        )
+        assert_matches_type(IPSECTunnelPSKSetResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    async def test_method_psk_set_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        ipsec_tunnel = await async_client.magic_transit.ipsec_tunnels.psk_set(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            psks=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                }
+            ],
+            validate_only=True,
+        )
+        assert_matches_type(IPSECTunnelPSKSetResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    async def test_raw_response_psk_set(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_set(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            psks=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ipsec_tunnel = await response.parse()
+        assert_matches_type(IPSECTunnelPSKSetResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_psk_set(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.magic_transit.ipsec_tunnels.with_streaming_response.psk_set(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            psks=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ipsec_tunnel = await response.parse()
+            assert_matches_type(IPSECTunnelPSKSetResponse, ipsec_tunnel, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_psk_set(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_set(
+                account_id="",
+                psks=[
+                    {
+                        "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                        "psk": "O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
+                    }
+                ],
             )
