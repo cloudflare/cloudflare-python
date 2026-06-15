@@ -29,6 +29,8 @@ class TestBulks:
         bulk = client.intel.domains.bulks.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain=["string"],
+            include_ranking=True,
+            skip_ranking=True,
         )
         assert_matches_type(Optional[BulkGetResponse], bulk, path=["response"])
 
@@ -81,6 +83,8 @@ class TestAsyncBulks:
         bulk = await async_client.intel.domains.bulks.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain=["string"],
+            include_ranking=True,
+            skip_ranking=True,
         )
         assert_matches_type(Optional[BulkGetResponse], bulk, path=["response"])
 

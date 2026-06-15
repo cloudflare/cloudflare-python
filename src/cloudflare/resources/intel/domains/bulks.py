@@ -49,6 +49,8 @@ class BulksResource(SyncAPIResource):
         *,
         account_id: str,
         domain: SequenceNotStr[str] | Omit = omit,
+        include_ranking: bool | Omit = omit,
+        skip_ranking: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,12 +59,31 @@ class BulksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BulkGetResponse]:
         """
-        Same as summary.
+        Returns security details and statistics about multiple domains in a single
+        request.
+
+        **Behavior change — domain ranking is becoming opt-in.** This endpoint
+        previously included domain ranking data in every response and accepted a
+        `skip_ranking=true` query parameter to opt out. That parameter is being
+        deprecated and ranking will no longer be returned by default. Callers that want
+        ranking data must pass `include_ranking=true`. The `skip_ranking` parameter will
+        be silently ignored once the change ships.
 
         Args:
           account_id: Identifier.
 
           domain: Accepts multiple values like `?domain=cloudflare.com&domain=example.com`.
+
+          include_ranking: Whether to include domain ranking data in the response. Defaults to `false` —
+              ranking lookups are expensive at bulk scale and most callers do not need them.
+              Set to `true` to opt in. This parameter replaces the deprecated `skip_ranking`
+              (see below).
+
+          skip_ranking: **Deprecated.** Previously controlled whether the ranking lookup was skipped
+              (defaulted to `false`, meaning ranking ran). The endpoint's default behavior is
+              being flipped — ranking is now opt-in via `include_ranking=true` — and this
+              parameter will be silently ignored. Remove it from your callers and use
+              `include_ranking` instead.
 
           extra_headers: Send extra headers
 
@@ -81,7 +102,14 @@ class BulksResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"domain": domain}, bulk_get_params.BulkGetParams),
+                query=maybe_transform(
+                    {
+                        "domain": domain,
+                        "include_ranking": include_ranking,
+                        "skip_ranking": skip_ranking,
+                    },
+                    bulk_get_params.BulkGetParams,
+                ),
                 post_parser=ResultWrapper[Optional[BulkGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BulkGetResponse]], ResultWrapper[BulkGetResponse]),
@@ -113,6 +141,8 @@ class AsyncBulksResource(AsyncAPIResource):
         *,
         account_id: str,
         domain: SequenceNotStr[str] | Omit = omit,
+        include_ranking: bool | Omit = omit,
+        skip_ranking: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,12 +151,31 @@ class AsyncBulksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BulkGetResponse]:
         """
-        Same as summary.
+        Returns security details and statistics about multiple domains in a single
+        request.
+
+        **Behavior change — domain ranking is becoming opt-in.** This endpoint
+        previously included domain ranking data in every response and accepted a
+        `skip_ranking=true` query parameter to opt out. That parameter is being
+        deprecated and ranking will no longer be returned by default. Callers that want
+        ranking data must pass `include_ranking=true`. The `skip_ranking` parameter will
+        be silently ignored once the change ships.
 
         Args:
           account_id: Identifier.
 
           domain: Accepts multiple values like `?domain=cloudflare.com&domain=example.com`.
+
+          include_ranking: Whether to include domain ranking data in the response. Defaults to `false` —
+              ranking lookups are expensive at bulk scale and most callers do not need them.
+              Set to `true` to opt in. This parameter replaces the deprecated `skip_ranking`
+              (see below).
+
+          skip_ranking: **Deprecated.** Previously controlled whether the ranking lookup was skipped
+              (defaulted to `false`, meaning ranking ran). The endpoint's default behavior is
+              being flipped — ranking is now opt-in via `include_ranking=true` — and this
+              parameter will be silently ignored. Remove it from your callers and use
+              `include_ranking` instead.
 
           extra_headers: Send extra headers
 
@@ -145,7 +194,14 @@ class AsyncBulksResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"domain": domain}, bulk_get_params.BulkGetParams),
+                query=await async_maybe_transform(
+                    {
+                        "domain": domain,
+                        "include_ranking": include_ranking,
+                        "skip_ranking": skip_ranking,
+                    },
+                    bulk_get_params.BulkGetParams,
+                ),
                 post_parser=ResultWrapper[Optional[BulkGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BulkGetResponse]], ResultWrapper[BulkGetResponse]),
