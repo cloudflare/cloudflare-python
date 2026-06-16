@@ -96,3 +96,15 @@ class RegistrationListResponse(BaseModel):
     """Type of the tunnel - wireguard or masque."""
 
     user: Optional[User] = None
+
+    virtual_ipv4: Optional[str] = None
+    """
+    The virtual IPv4 address assigned to the network interface of the tunnel for
+    this registration.
+    """
+
+    virtual_ipv6: Optional[str] = None
+    """
+    The virtual IPv6 address assigned to the network interface of the tunnel for
+    this registration.
+    """

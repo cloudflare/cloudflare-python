@@ -30,7 +30,7 @@ class TestDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
         )
@@ -45,7 +45,7 @@ class TestDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
             policy_ids=["string"],
@@ -61,7 +61,7 @@ class TestDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
         )
@@ -80,7 +80,7 @@ class TestDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
         ) as response:
@@ -102,7 +102,7 @@ class TestDeploymentGroups:
                 version_config=[
                     {
                         "target_environment": "windows",
-                        "version": "2026.5.234.0",
+                        "version": "2026.6.234.0",
                     }
                 ],
             )
@@ -231,7 +231,7 @@ class TestDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
         )
@@ -347,7 +347,7 @@ class TestAsyncDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
         )
@@ -362,7 +362,7 @@ class TestAsyncDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
             policy_ids=["string"],
@@ -378,7 +378,7 @@ class TestAsyncDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
         )
@@ -397,7 +397,7 @@ class TestAsyncDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
         ) as response:
@@ -419,7 +419,7 @@ class TestAsyncDeploymentGroups:
                 version_config=[
                     {
                         "target_environment": "windows",
-                        "version": "2026.5.234.0",
+                        "version": "2026.6.234.0",
                     }
                 ],
             )
@@ -548,7 +548,7 @@ class TestAsyncDeploymentGroups:
             version_config=[
                 {
                     "target_environment": "windows",
-                    "version": "2026.5.234.0",
+                    "version": "2026.6.234.0",
                 }
             ],
         )
