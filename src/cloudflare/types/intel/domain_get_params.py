@@ -15,3 +15,12 @@ class DomainGetParams(TypedDict, total=False):
 
     skip_dns: bool
     """Skip DNS resolution lookups for faster response."""
+
+    skip_ranking: bool
+    """Skip the domain ranking lookup for faster responses.
+
+    Defaults to `false` (ranking is included). Set to `true` to opt out — primarily
+    used by callers like Cloudflare Radar that need to avoid a circular dependency
+    when building the domain details page. Note: the bulk endpoint
+    (`/intel/domain/bulk`) uses opposite defaults — see `include_ranking` there.
+    """

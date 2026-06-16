@@ -62,6 +62,7 @@ class DomainsResource(SyncAPIResource):
         account_id: str,
         domain: str | Omit = omit,
         skip_dns: bool | Omit = omit,
+        skip_ranking: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,6 +77,12 @@ class DomainsResource(SyncAPIResource):
           account_id: Identifier.
 
           skip_dns: Skip DNS resolution lookups for faster response.
+
+          skip_ranking: Skip the domain ranking lookup for faster responses. Defaults to `false`
+              (ranking is included). Set to `true` to opt out — primarily used by callers like
+              Cloudflare Radar that need to avoid a circular dependency when building the
+              domain details page. Note: the bulk endpoint (`/intel/domain/bulk`) uses
+              opposite defaults — see `include_ranking` there.
 
           extra_headers: Send extra headers
 
@@ -98,6 +105,7 @@ class DomainsResource(SyncAPIResource):
                     {
                         "domain": domain,
                         "skip_dns": skip_dns,
+                        "skip_ranking": skip_ranking,
                     },
                     domain_get_params.DomainGetParams,
                 ),
@@ -137,6 +145,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         account_id: str,
         domain: str | Omit = omit,
         skip_dns: bool | Omit = omit,
+        skip_ranking: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,6 +160,12 @@ class AsyncDomainsResource(AsyncAPIResource):
           account_id: Identifier.
 
           skip_dns: Skip DNS resolution lookups for faster response.
+
+          skip_ranking: Skip the domain ranking lookup for faster responses. Defaults to `false`
+              (ranking is included). Set to `true` to opt out — primarily used by callers like
+              Cloudflare Radar that need to avoid a circular dependency when building the
+              domain details page. Note: the bulk endpoint (`/intel/domain/bulk`) uses
+              opposite defaults — see `include_ranking` there.
 
           extra_headers: Send extra headers
 
@@ -173,6 +188,7 @@ class AsyncDomainsResource(AsyncAPIResource):
                     {
                         "domain": domain,
                         "skip_dns": skip_dns,
+                        "skip_ranking": skip_ranking,
                     },
                     domain_get_params.DomainGetParams,
                 ),
