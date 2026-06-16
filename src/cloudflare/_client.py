@@ -150,6 +150,7 @@ if TYPE_CHECKING:
         leaked_credential_checks,
         magic_network_monitoring,
         tenant_custom_nameservers,
+        origin_tls_compliance_modes,
         origin_post_quantum_encryption,
     )
     from .resources.ai.ai import AIResource, AsyncAIResource
@@ -309,6 +310,10 @@ if TYPE_CHECKING:
     from .resources.tenant_custom_nameservers.tenant_custom_nameservers import (
         TenantCustomNameserversResource,
         AsyncTenantCustomNameserversResource,
+    )
+    from .resources.origin_tls_compliance_modes.origin_tls_compliance_modes import (
+        OriginTLSComplianceModesResource,
+        AsyncOriginTLSComplianceModesResource,
     )
     from .resources.origin_post_quantum_encryption.origin_post_quantum_encryption import (
         OriginPostQuantumEncryptionResource,
@@ -900,6 +905,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.origin_post_quantum_encryption import OriginPostQuantumEncryptionResource
 
         return OriginPostQuantumEncryptionResource(self)
+
+    @cached_property
+    def origin_tls_compliance_modes(self) -> OriginTLSComplianceModesResource:
+        from .resources.origin_tls_compliance_modes import OriginTLSComplianceModesResource
+
+        return OriginTLSComplianceModesResource(self)
 
     @cached_property
     def google_tag_gateway(self) -> GoogleTagGatewayResource:
@@ -1834,6 +1845,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncOriginPostQuantumEncryptionResource(self)
 
     @cached_property
+    def origin_tls_compliance_modes(self) -> AsyncOriginTLSComplianceModesResource:
+        from .resources.origin_tls_compliance_modes import AsyncOriginTLSComplianceModesResource
+
+        return AsyncOriginTLSComplianceModesResource(self)
+
+    @cached_property
     def google_tag_gateway(self) -> AsyncGoogleTagGatewayResource:
         from .resources.google_tag_gateway import AsyncGoogleTagGatewayResource
 
@@ -2692,6 +2709,14 @@ class CloudflareWithRawResponse:
         return OriginPostQuantumEncryptionResourceWithRawResponse(self._client.origin_post_quantum_encryption)
 
     @cached_property
+    def origin_tls_compliance_modes(
+        self,
+    ) -> origin_tls_compliance_modes.OriginTLSComplianceModesResourceWithRawResponse:
+        from .resources.origin_tls_compliance_modes import OriginTLSComplianceModesResourceWithRawResponse
+
+        return OriginTLSComplianceModesResourceWithRawResponse(self._client.origin_tls_compliance_modes)
+
+    @cached_property
     def google_tag_gateway(self) -> google_tag_gateway.GoogleTagGatewayResourceWithRawResponse:
         from .resources.google_tag_gateway import GoogleTagGatewayResourceWithRawResponse
 
@@ -3387,6 +3412,14 @@ class AsyncCloudflareWithRawResponse:
         return AsyncOriginPostQuantumEncryptionResourceWithRawResponse(self._client.origin_post_quantum_encryption)
 
     @cached_property
+    def origin_tls_compliance_modes(
+        self,
+    ) -> origin_tls_compliance_modes.AsyncOriginTLSComplianceModesResourceWithRawResponse:
+        from .resources.origin_tls_compliance_modes import AsyncOriginTLSComplianceModesResourceWithRawResponse
+
+        return AsyncOriginTLSComplianceModesResourceWithRawResponse(self._client.origin_tls_compliance_modes)
+
+    @cached_property
     def google_tag_gateway(self) -> google_tag_gateway.AsyncGoogleTagGatewayResourceWithRawResponse:
         from .resources.google_tag_gateway import AsyncGoogleTagGatewayResourceWithRawResponse
 
@@ -4080,6 +4113,14 @@ class CloudflareWithStreamedResponse:
         from .resources.origin_post_quantum_encryption import OriginPostQuantumEncryptionResourceWithStreamingResponse
 
         return OriginPostQuantumEncryptionResourceWithStreamingResponse(self._client.origin_post_quantum_encryption)
+
+    @cached_property
+    def origin_tls_compliance_modes(
+        self,
+    ) -> origin_tls_compliance_modes.OriginTLSComplianceModesResourceWithStreamingResponse:
+        from .resources.origin_tls_compliance_modes import OriginTLSComplianceModesResourceWithStreamingResponse
+
+        return OriginTLSComplianceModesResourceWithStreamingResponse(self._client.origin_tls_compliance_modes)
 
     @cached_property
     def google_tag_gateway(self) -> google_tag_gateway.GoogleTagGatewayResourceWithStreamingResponse:
@@ -4783,6 +4824,14 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse(
             self._client.origin_post_quantum_encryption
         )
+
+    @cached_property
+    def origin_tls_compliance_modes(
+        self,
+    ) -> origin_tls_compliance_modes.AsyncOriginTLSComplianceModesResourceWithStreamingResponse:
+        from .resources.origin_tls_compliance_modes import AsyncOriginTLSComplianceModesResourceWithStreamingResponse
+
+        return AsyncOriginTLSComplianceModesResourceWithStreamingResponse(self._client.origin_tls_compliance_modes)
 
     @cached_property
     def google_tag_gateway(self) -> google_tag_gateway.AsyncGoogleTagGatewayResourceWithStreamingResponse:
