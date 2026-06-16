@@ -103,13 +103,6 @@ class TestInstances:
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
-                    "crawl_options": {
-                        "depth": 1,
-                        "include_external_links": True,
-                        "include_subdomains": True,
-                        "max_age": 0,
-                        "source": "all",
-                    },
                     "parse_options": {
                         "content_selector": [
                             {
@@ -252,13 +245,6 @@ class TestInstances:
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
-                    "crawl_options": {
-                        "depth": 1,
-                        "include_external_links": True,
-                        "include_subdomains": True,
-                        "max_age": 0,
-                        "source": "all",
-                    },
                     "parse_options": {
                         "content_selector": [
                             {
@@ -834,13 +820,6 @@ class TestAsyncInstances:
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
-                    "crawl_options": {
-                        "depth": 1,
-                        "include_external_links": True,
-                        "include_subdomains": True,
-                        "max_age": 0,
-                        "source": "all",
-                    },
                     "parse_options": {
                         "content_selector": [
                             {
@@ -983,13 +962,6 @@ class TestAsyncInstances:
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
-                    "crawl_options": {
-                        "depth": 1,
-                        "include_external_links": True,
-                        "include_subdomains": True,
-                        "max_age": 0,
-                        "source": "all",
-                    },
                     "parse_options": {
                         "content_selector": [
                             {
