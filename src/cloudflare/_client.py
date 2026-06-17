@@ -46,6 +46,7 @@ if TYPE_CHECKING:
         dns,
         iam,
         ips,
+        moq,
         rum,
         ssl,
         argo,
@@ -162,6 +163,7 @@ if TYPE_CHECKING:
     from .resources.dns.dns import DNSResource, AsyncDNSResource
     from .resources.iam.iam import IAMResource, AsyncIAMResource
     from .resources.ips.ips import IPsResource, AsyncIPsResource
+    from .resources.moq.moq import MoqResource, AsyncMoqResource
     from .resources.rum.rum import RUMResource, AsyncRUMResource
     from .resources.ssl.ssl import SSLResource, AsyncSSLResource
     from .resources.argo.argo import ArgoResource, AsyncArgoResource
@@ -959,6 +961,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.calls import CallsResource
 
         return CallsResource(self)
+
+    @cached_property
+    def moq(self) -> MoqResource:
+        from .resources.moq import MoqResource
+
+        return MoqResource(self)
 
     @cached_property
     def cloudforce_one(self) -> CloudforceOneResource:
@@ -1899,6 +1907,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncCallsResource(self)
 
     @cached_property
+    def moq(self) -> AsyncMoqResource:
+        from .resources.moq import AsyncMoqResource
+
+        return AsyncMoqResource(self)
+
+    @cached_property
     def cloudforce_one(self) -> AsyncCloudforceOneResource:
         from .resources.cloudforce_one import AsyncCloudforceOneResource
 
@@ -2765,6 +2779,12 @@ class CloudflareWithRawResponse:
         return CallsResourceWithRawResponse(self._client.calls)
 
     @cached_property
+    def moq(self) -> moq.MoqResourceWithRawResponse:
+        from .resources.moq import MoqResourceWithRawResponse
+
+        return MoqResourceWithRawResponse(self._client.moq)
+
+    @cached_property
     def cloudforce_one(self) -> cloudforce_one.CloudforceOneResourceWithRawResponse:
         from .resources.cloudforce_one import CloudforceOneResourceWithRawResponse
 
@@ -3468,6 +3488,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncCallsResourceWithRawResponse(self._client.calls)
 
     @cached_property
+    def moq(self) -> moq.AsyncMoqResourceWithRawResponse:
+        from .resources.moq import AsyncMoqResourceWithRawResponse
+
+        return AsyncMoqResourceWithRawResponse(self._client.moq)
+
+    @cached_property
     def cloudforce_one(self) -> cloudforce_one.AsyncCloudforceOneResourceWithRawResponse:
         from .resources.cloudforce_one import AsyncCloudforceOneResourceWithRawResponse
 
@@ -4169,6 +4195,12 @@ class CloudflareWithStreamedResponse:
         from .resources.calls import CallsResourceWithStreamingResponse
 
         return CallsResourceWithStreamingResponse(self._client.calls)
+
+    @cached_property
+    def moq(self) -> moq.MoqResourceWithStreamingResponse:
+        from .resources.moq import MoqResourceWithStreamingResponse
+
+        return MoqResourceWithStreamingResponse(self._client.moq)
 
     @cached_property
     def cloudforce_one(self) -> cloudforce_one.CloudforceOneResourceWithStreamingResponse:
@@ -4880,6 +4912,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.calls import AsyncCallsResourceWithStreamingResponse
 
         return AsyncCallsResourceWithStreamingResponse(self._client.calls)
+
+    @cached_property
+    def moq(self) -> moq.AsyncMoqResourceWithStreamingResponse:
+        from .resources.moq import AsyncMoqResourceWithStreamingResponse
+
+        return AsyncMoqResourceWithStreamingResponse(self._client.moq)
 
     @cached_property
     def cloudforce_one(self) -> cloudforce_one.AsyncCloudforceOneResourceWithStreamingResponse:
