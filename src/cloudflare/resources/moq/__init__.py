@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .moq import (
-    MoqResource,
-    AsyncMoqResource,
-    MoqResourceWithRawResponse,
-    AsyncMoqResourceWithRawResponse,
-    MoqResourceWithStreamingResponse,
-    AsyncMoqResourceWithStreamingResponse,
+    MoQResource,
+    AsyncMoQResource,
+    MoQResourceWithRawResponse,
+    AsyncMoQResourceWithRawResponse,
+    MoQResourceWithStreamingResponse,
+    AsyncMoQResourceWithStreamingResponse,
 )
 from .relays import (
     RelaysResource,
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncRelaysResourceWithRawResponse",
     "RelaysResourceWithStreamingResponse",
     "AsyncRelaysResourceWithStreamingResponse",
-    "MoqResource",
-    "AsyncMoqResource",
-    "MoqResourceWithRawResponse",
-    "AsyncMoqResourceWithRawResponse",
-    "MoqResourceWithStreamingResponse",
-    "AsyncMoqResourceWithStreamingResponse",
+    "MoQResource",
+    "AsyncMoQResource",
+    "MoQResourceWithRawResponse",
+    "AsyncMoQResourceWithRawResponse",
+    "MoQResourceWithStreamingResponse",
+    "AsyncMoQResourceWithStreamingResponse",
 ]

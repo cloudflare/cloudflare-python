@@ -163,7 +163,7 @@ if TYPE_CHECKING:
     from .resources.dns.dns import DNSResource, AsyncDNSResource
     from .resources.iam.iam import IAMResource, AsyncIAMResource
     from .resources.ips.ips import IPsResource, AsyncIPsResource
-    from .resources.moq.moq import MoqResource, AsyncMoqResource
+    from .resources.moq.moq import MoQResource, AsyncMoQResource
     from .resources.rum.rum import RUMResource, AsyncRUMResource
     from .resources.ssl.ssl import SSLResource, AsyncSSLResource
     from .resources.argo.argo import ArgoResource, AsyncArgoResource
@@ -963,10 +963,10 @@ class Cloudflare(SyncAPIClient):
         return CallsResource(self)
 
     @cached_property
-    def moq(self) -> MoqResource:
-        from .resources.moq import MoqResource
+    def moq(self) -> MoQResource:
+        from .resources.moq import MoQResource
 
-        return MoqResource(self)
+        return MoQResource(self)
 
     @cached_property
     def cloudforce_one(self) -> CloudforceOneResource:
@@ -1907,10 +1907,10 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncCallsResource(self)
 
     @cached_property
-    def moq(self) -> AsyncMoqResource:
-        from .resources.moq import AsyncMoqResource
+    def moq(self) -> AsyncMoQResource:
+        from .resources.moq import AsyncMoQResource
 
-        return AsyncMoqResource(self)
+        return AsyncMoQResource(self)
 
     @cached_property
     def cloudforce_one(self) -> AsyncCloudforceOneResource:
@@ -2779,10 +2779,10 @@ class CloudflareWithRawResponse:
         return CallsResourceWithRawResponse(self._client.calls)
 
     @cached_property
-    def moq(self) -> moq.MoqResourceWithRawResponse:
-        from .resources.moq import MoqResourceWithRawResponse
+    def moq(self) -> moq.MoQResourceWithRawResponse:
+        from .resources.moq import MoQResourceWithRawResponse
 
-        return MoqResourceWithRawResponse(self._client.moq)
+        return MoQResourceWithRawResponse(self._client.moq)
 
     @cached_property
     def cloudforce_one(self) -> cloudforce_one.CloudforceOneResourceWithRawResponse:
@@ -3488,10 +3488,10 @@ class AsyncCloudflareWithRawResponse:
         return AsyncCallsResourceWithRawResponse(self._client.calls)
 
     @cached_property
-    def moq(self) -> moq.AsyncMoqResourceWithRawResponse:
-        from .resources.moq import AsyncMoqResourceWithRawResponse
+    def moq(self) -> moq.AsyncMoQResourceWithRawResponse:
+        from .resources.moq import AsyncMoQResourceWithRawResponse
 
-        return AsyncMoqResourceWithRawResponse(self._client.moq)
+        return AsyncMoQResourceWithRawResponse(self._client.moq)
 
     @cached_property
     def cloudforce_one(self) -> cloudforce_one.AsyncCloudforceOneResourceWithRawResponse:
@@ -4197,10 +4197,10 @@ class CloudflareWithStreamedResponse:
         return CallsResourceWithStreamingResponse(self._client.calls)
 
     @cached_property
-    def moq(self) -> moq.MoqResourceWithStreamingResponse:
-        from .resources.moq import MoqResourceWithStreamingResponse
+    def moq(self) -> moq.MoQResourceWithStreamingResponse:
+        from .resources.moq import MoQResourceWithStreamingResponse
 
-        return MoqResourceWithStreamingResponse(self._client.moq)
+        return MoQResourceWithStreamingResponse(self._client.moq)
 
     @cached_property
     def cloudforce_one(self) -> cloudforce_one.CloudforceOneResourceWithStreamingResponse:
@@ -4914,10 +4914,10 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncCallsResourceWithStreamingResponse(self._client.calls)
 
     @cached_property
-    def moq(self) -> moq.AsyncMoqResourceWithStreamingResponse:
-        from .resources.moq import AsyncMoqResourceWithStreamingResponse
+    def moq(self) -> moq.AsyncMoQResourceWithStreamingResponse:
+        from .resources.moq import AsyncMoQResourceWithStreamingResponse
 
-        return AsyncMoqResourceWithStreamingResponse(self._client.moq)
+        return AsyncMoQResourceWithStreamingResponse(self._client.moq)
 
     @cached_property
     def cloudforce_one(self) -> cloudforce_one.AsyncCloudforceOneResourceWithStreamingResponse:

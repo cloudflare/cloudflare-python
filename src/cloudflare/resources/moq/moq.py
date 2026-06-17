@@ -13,61 +13,61 @@ from .relays.relays import (
     AsyncRelaysResourceWithStreamingResponse,
 )
 
-__all__ = ["MoqResource", "AsyncMoqResource"]
+__all__ = ["MoQResource", "AsyncMoQResource"]
 
 
-class MoqResource(SyncAPIResource):
+class MoQResource(SyncAPIResource):
     @cached_property
     def relays(self) -> RelaysResource:
         return RelaysResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> MoqResourceWithRawResponse:
+    def with_raw_response(self) -> MoQResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return MoqResourceWithRawResponse(self)
+        return MoQResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MoqResourceWithStreamingResponse:
+    def with_streaming_response(self) -> MoQResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return MoqResourceWithStreamingResponse(self)
+        return MoQResourceWithStreamingResponse(self)
 
 
-class AsyncMoqResource(AsyncAPIResource):
+class AsyncMoQResource(AsyncAPIResource):
     @cached_property
     def relays(self) -> AsyncRelaysResource:
         return AsyncRelaysResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncMoqResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncMoQResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncMoqResourceWithRawResponse(self)
+        return AsyncMoQResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMoqResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncMoQResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncMoqResourceWithStreamingResponse(self)
+        return AsyncMoQResourceWithStreamingResponse(self)
 
 
-class MoqResourceWithRawResponse:
-    def __init__(self, moq: MoqResource) -> None:
+class MoQResourceWithRawResponse:
+    def __init__(self, moq: MoQResource) -> None:
         self._moq = moq
 
     @cached_property
@@ -75,8 +75,8 @@ class MoqResourceWithRawResponse:
         return RelaysResourceWithRawResponse(self._moq.relays)
 
 
-class AsyncMoqResourceWithRawResponse:
-    def __init__(self, moq: AsyncMoqResource) -> None:
+class AsyncMoQResourceWithRawResponse:
+    def __init__(self, moq: AsyncMoQResource) -> None:
         self._moq = moq
 
     @cached_property
@@ -84,8 +84,8 @@ class AsyncMoqResourceWithRawResponse:
         return AsyncRelaysResourceWithRawResponse(self._moq.relays)
 
 
-class MoqResourceWithStreamingResponse:
-    def __init__(self, moq: MoqResource) -> None:
+class MoQResourceWithStreamingResponse:
+    def __init__(self, moq: MoQResource) -> None:
         self._moq = moq
 
     @cached_property
@@ -93,8 +93,8 @@ class MoqResourceWithStreamingResponse:
         return RelaysResourceWithStreamingResponse(self._moq.relays)
 
 
-class AsyncMoqResourceWithStreamingResponse:
-    def __init__(self, moq: AsyncMoqResource) -> None:
+class AsyncMoQResourceWithStreamingResponse:
+    def __init__(self, moq: AsyncMoQResource) -> None:
         self._moq = moq
 
     @cached_property

@@ -211,7 +211,7 @@ from cloudflare.types import (
 
 # [Calls](src/cloudflare/resources/calls/api.md)
 
-# [Moq](src/cloudflare/resources/moq/api.md)
+# [MoQ](src/cloudflare/resources/moq/api.md)
 
 # [CloudforceOne](src/cloudflare/resources/cloudforce_one/api.md)
 
