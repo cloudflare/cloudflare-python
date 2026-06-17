@@ -220,6 +220,9 @@ __all__ = [
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
     "SetCacheSettingsRuleActionParametersServeStale",
     "SetCacheSettingsRuleActionParametersSharedDictionary",
+    "SetCacheSettingsRuleActionParametersVary",
+    "SetCacheSettingsRuleActionParametersVaryDefault",
+    "SetCacheSettingsRuleActionParametersVaryHeaders",
     "SetCacheSettingsRuleExposedCredentialCheck",
     "SetCacheSettingsRulePosition",
     "SetCacheSettingsRulePositionBeforePosition",
@@ -3425,6 +3428,64 @@ class SetCacheSettingsRuleActionParametersSharedDictionary(TypedDict, total=Fals
     """
 
 
+class SetCacheSettingsRuleActionParametersVaryDefault(TypedDict, total=False):
+    """
+    Controls how a single request header (or the default for all headers) contributes to the cache key.
+    """
+
+    action: Required[Literal["bypass", "passthrough", "normalize"]]
+    """How the header value is treated when building the cache key."""
+
+    languages: SequenceNotStr[str]
+    """The set of languages to normalize against.
+
+    Only valid for the `accept-language` header.
+    """
+
+    media_types: SequenceNotStr[str]
+    """The set of media types to normalize against.
+
+    Only valid for the `accept` header.
+    """
+
+
+class SetCacheSettingsRuleActionParametersVaryHeaders(TypedDict, total=False):
+    """
+    Controls how a single request header (or the default for all headers) contributes to the cache key.
+    """
+
+    action: Required[Literal["bypass", "passthrough", "normalize"]]
+    """How the header value is treated when building the cache key."""
+
+    languages: SequenceNotStr[str]
+    """The set of languages to normalize against.
+
+    Only valid for the `accept-language` header.
+    """
+
+    media_types: SequenceNotStr[str]
+    """The set of media types to normalize against.
+
+    Only valid for the `accept` header.
+    """
+
+
+class SetCacheSettingsRuleActionParametersVary(TypedDict, total=False):
+    """Controls how cached responses vary based on request headers.
+
+    At least one of `default` or `headers` must be set, and `default` is required when `headers` is set.
+    """
+
+    default: SetCacheSettingsRuleActionParametersVaryDefault
+    """
+    Controls how a single request header (or the default for all headers)
+    contributes to the cache key.
+    """
+
+    headers: Dict[str, SetCacheSettingsRuleActionParametersVaryHeaders]
+    """A mapping of lowercase request header names to their vary configuration."""
+
+
 class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
     """The parameters configuring the rule's action."""
 
@@ -3499,6 +3560,13 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
 
     strip_set_cookie: bool
     """Whether to strip Set-Cookie headers from the origin response before caching."""
+
+    vary: SetCacheSettingsRuleActionParametersVary
+    """Controls how cached responses vary based on request headers.
+
+    At least one of `default` or `headers` must be set, and `default` is required
+    when `headers` is set.
+    """
 
 
 class SetCacheSettingsRuleExposedCredentialCheck(TypedDict, total=False):
