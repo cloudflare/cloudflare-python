@@ -76,8 +76,8 @@ class OrganizationsResource(SyncAPIResource):
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         mfa_config: organization_create_params.MfaConfig | Omit = omit,
+        mfa_piv_key_requirements: organization_create_params.MfaPivKeyRequirements | Omit = omit,
         mfa_required_for_all_apps: bool | Omit = omit,
-        mfa_ssh_piv_key_requirements: organization_create_params.MfaSSHPivKeyRequirements | Omit = omit,
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
         user_seat_expiration_inactive_time: str | Omit = omit,
@@ -123,13 +123,13 @@ class OrganizationsResource(SyncAPIResource):
 
           mfa_config: Configures multi-factor authentication (MFA) settings for an organization.
 
+          mfa_piv_key_requirements: Configures PIV key requirements for MFA using hardware security keys.
+
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
               session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'ssh_piv_key' if the organization has any non-infrastructure applications
-              because PIV keys are only compatible with infrastructure apps.
-
-          mfa_ssh_piv_key_requirements: Configures SSH PIV key requirements for MFA using hardware security keys.
+              'piv_key' if the organization has any non-infrastructure applications because
+              PIV keys are only compatible with infrastructure apps.
 
           session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m,
@@ -183,8 +183,8 @@ class OrganizationsResource(SyncAPIResource):
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "mfa_config": mfa_config,
+                    "mfa_piv_key_requirements": mfa_piv_key_requirements,
                     "mfa_required_for_all_apps": mfa_required_for_all_apps,
-                    "mfa_ssh_piv_key_requirements": mfa_ssh_piv_key_requirements,
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,
                     "user_seat_expiration_inactive_time": user_seat_expiration_inactive_time,
@@ -216,8 +216,8 @@ class OrganizationsResource(SyncAPIResource):
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         mfa_config: organization_update_params.MfaConfig | Omit = omit,
+        mfa_piv_key_requirements: organization_update_params.MfaPivKeyRequirements | Omit = omit,
         mfa_required_for_all_apps: bool | Omit = omit,
-        mfa_ssh_piv_key_requirements: organization_update_params.MfaSSHPivKeyRequirements | Omit = omit,
         name: str | Omit = omit,
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
@@ -262,13 +262,13 @@ class OrganizationsResource(SyncAPIResource):
 
           mfa_config: Configures multi-factor authentication (MFA) settings for an organization.
 
+          mfa_piv_key_requirements: Configures PIV key requirements for MFA using hardware security keys.
+
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
               session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'ssh_piv_key' if the organization has any non-infrastructure applications
-              because PIV keys are only compatible with infrastructure apps.
-
-          mfa_ssh_piv_key_requirements: Configures SSH PIV key requirements for MFA using hardware security keys.
+              'piv_key' if the organization has any non-infrastructure applications because
+              PIV keys are only compatible with infrastructure apps.
 
           name: The name of your Zero Trust organization.
 
@@ -324,8 +324,8 @@ class OrganizationsResource(SyncAPIResource):
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "mfa_config": mfa_config,
+                    "mfa_piv_key_requirements": mfa_piv_key_requirements,
                     "mfa_required_for_all_apps": mfa_required_for_all_apps,
-                    "mfa_ssh_piv_key_requirements": mfa_ssh_piv_key_requirements,
                     "name": name,
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,
@@ -526,8 +526,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         mfa_config: organization_create_params.MfaConfig | Omit = omit,
+        mfa_piv_key_requirements: organization_create_params.MfaPivKeyRequirements | Omit = omit,
         mfa_required_for_all_apps: bool | Omit = omit,
-        mfa_ssh_piv_key_requirements: organization_create_params.MfaSSHPivKeyRequirements | Omit = omit,
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
         user_seat_expiration_inactive_time: str | Omit = omit,
@@ -573,13 +573,13 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           mfa_config: Configures multi-factor authentication (MFA) settings for an organization.
 
+          mfa_piv_key_requirements: Configures PIV key requirements for MFA using hardware security keys.
+
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
               session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'ssh_piv_key' if the organization has any non-infrastructure applications
-              because PIV keys are only compatible with infrastructure apps.
-
-          mfa_ssh_piv_key_requirements: Configures SSH PIV key requirements for MFA using hardware security keys.
+              'piv_key' if the organization has any non-infrastructure applications because
+              PIV keys are only compatible with infrastructure apps.
 
           session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m,
@@ -633,8 +633,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "mfa_config": mfa_config,
+                    "mfa_piv_key_requirements": mfa_piv_key_requirements,
                     "mfa_required_for_all_apps": mfa_required_for_all_apps,
-                    "mfa_ssh_piv_key_requirements": mfa_ssh_piv_key_requirements,
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,
                     "user_seat_expiration_inactive_time": user_seat_expiration_inactive_time,
@@ -666,8 +666,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         mfa_config: organization_update_params.MfaConfig | Omit = omit,
+        mfa_piv_key_requirements: organization_update_params.MfaPivKeyRequirements | Omit = omit,
         mfa_required_for_all_apps: bool | Omit = omit,
-        mfa_ssh_piv_key_requirements: organization_update_params.MfaSSHPivKeyRequirements | Omit = omit,
         name: str | Omit = omit,
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
@@ -712,13 +712,13 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           mfa_config: Configures multi-factor authentication (MFA) settings for an organization.
 
+          mfa_piv_key_requirements: Configures PIV key requirements for MFA using hardware security keys.
+
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
               session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'ssh_piv_key' if the organization has any non-infrastructure applications
-              because PIV keys are only compatible with infrastructure apps.
-
-          mfa_ssh_piv_key_requirements: Configures SSH PIV key requirements for MFA using hardware security keys.
+              'piv_key' if the organization has any non-infrastructure applications because
+              PIV keys are only compatible with infrastructure apps.
 
           name: The name of your Zero Trust organization.
 
@@ -774,8 +774,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "mfa_config": mfa_config,
+                    "mfa_piv_key_requirements": mfa_piv_key_requirements,
                     "mfa_required_for_all_apps": mfa_required_for_all_apps,
-                    "mfa_ssh_piv_key_requirements": mfa_ssh_piv_key_requirements,
                     "name": name,
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,

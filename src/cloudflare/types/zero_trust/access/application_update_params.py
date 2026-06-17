@@ -3039,10 +3039,10 @@ class InfrastructureApplicationPolicyMfaConfig(TypedDict, total=False):
     Configures multi-factor authentication (MFA) settings for infrastructure applications.
     """
 
-    allowed_authenticators: List[Literal["ssh_piv_key"]]
+    allowed_authenticators: List[Literal["piv_key"]]
     """Lists the MFA methods that users can authenticate with.
 
-    For infrastructure applications, only `ssh_piv_key` is supported.
+    For infrastructure applications, only `piv_key` is supported.
     """
 
     mfa_disabled: bool

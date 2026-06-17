@@ -1084,7 +1084,7 @@ class TestApplications:
                     },
                     "exclude": [{"certificate": {}}],
                     "mfa_config": {
-                        "allowed_authenticators": ["ssh_piv_key"],
+                        "allowed_authenticators": ["piv_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
@@ -2874,7 +2874,7 @@ class TestApplications:
                     },
                     "exclude": [{"certificate": {}}],
                     "mfa_config": {
-                        "allowed_authenticators": ["ssh_piv_key"],
+                        "allowed_authenticators": ["piv_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
@@ -4879,7 +4879,7 @@ class TestAsyncApplications:
                     },
                     "exclude": [{"certificate": {}}],
                     "mfa_config": {
-                        "allowed_authenticators": ["ssh_piv_key"],
+                        "allowed_authenticators": ["piv_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
@@ -6669,7 +6669,7 @@ class TestAsyncApplications:
                     },
                     "exclude": [{"certificate": {}}],
                     "mfa_config": {
-                        "allowed_authenticators": ["ssh_piv_key"],
+                        "allowed_authenticators": ["piv_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
