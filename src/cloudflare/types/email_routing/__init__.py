@@ -12,7 +12,6 @@ from .matcher_param import MatcherParam as MatcherParam
 from .dns_get_params import DNSGetParams as DNSGetParams
 from .dns_edit_params import DNSEditParams as DNSEditParams
 from .dns_get_response import DNSGetResponse as DNSGetResponse
-from .rule_list_params import RuleListParams as RuleListParams
 from .dns_create_params import DNSCreateParams as DNSCreateParams
 from .email_routing_rule import EmailRoutingRule as EmailRoutingRule
 from .rule_create_params import RuleCreateParams as RuleCreateParams
