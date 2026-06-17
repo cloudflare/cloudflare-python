@@ -14,3 +14,7 @@ class MoveCreateParams(TypedDict, total=False):
     destination: Required[
         Literal["Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"]
     ]
+
+    expected_disposition: Literal[
+        "MALICIOUS", "MALICIOUS-BEC", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "ENCRYPTED", "EXTERNAL", "UNKNOWN", "NONE"
+    ]

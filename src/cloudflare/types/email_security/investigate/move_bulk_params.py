@@ -17,6 +17,10 @@ class MoveBulkParams(TypedDict, total=False):
         Literal["Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"]
     ]
 
+    expected_disposition: Literal[
+        "MALICIOUS", "MALICIOUS-BEC", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "ENCRYPTED", "EXTERNAL", "UNKNOWN", "NONE"
+    ]
+
     ids: SequenceNotStr[str]
     """List of message IDs to move"""
 
