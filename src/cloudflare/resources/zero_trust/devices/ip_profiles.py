@@ -17,7 +17,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.devices import ip_profile_list_params, ip_profile_create_params, ip_profile_update_params
 from ....types.zero_trust.devices.ip_profile import IPProfile
@@ -201,6 +201,7 @@ class IPProfilesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -208,11 +209,13 @@ class IPProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[IPProfile]:
+    ) -> SyncV4PagePaginationArray[IPProfile]:
         """
         Lists WARP Device IP profiles.
 
         Args:
+          page: The page number to return.
+
           per_page: The number of IP profiles to return per page.
 
           extra_headers: Send extra headers
@@ -227,13 +230,19 @@ class IPProfilesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/devices/ip-profiles", account_id=account_id),
-            page=SyncSinglePage[IPProfile],
+            page=SyncV4PagePaginationArray[IPProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"per_page": per_page}, ip_profile_list_params.IPProfileListParams),
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    ip_profile_list_params.IPProfileListParams,
+                ),
             ),
             model=IPProfile,
         )
@@ -498,6 +507,7 @@ class AsyncIPProfilesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -505,11 +515,13 @@ class AsyncIPProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[IPProfile, AsyncSinglePage[IPProfile]]:
+    ) -> AsyncPaginator[IPProfile, AsyncV4PagePaginationArray[IPProfile]]:
         """
         Lists WARP Device IP profiles.
 
         Args:
+          page: The page number to return.
+
           per_page: The number of IP profiles to return per page.
 
           extra_headers: Send extra headers
@@ -524,13 +536,19 @@ class AsyncIPProfilesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/devices/ip-profiles", account_id=account_id),
-            page=AsyncSinglePage[IPProfile],
+            page=AsyncV4PagePaginationArray[IPProfile],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"per_page": per_page}, ip_profile_list_params.IPProfileListParams),
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    ip_profile_list_params.IPProfileListParams,
+                ),
             ),
             model=IPProfile,
         )

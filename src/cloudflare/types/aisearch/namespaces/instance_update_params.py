@@ -7,7 +7,6 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
-from ...r2.buckets.provider import Provider
 
 __all__ = [
     "InstanceUpdateParams",
@@ -26,7 +25,6 @@ __all__ = [
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerParseOptionsContentSelector",
-    "SourceParamsWebCrawlerStoreOptions",
 ]
 
 
@@ -170,6 +168,8 @@ class InstanceUpdateParams(TypedDict, total=False):
     rewrite_query: bool
 
     score_threshold: float
+
+    source: Optional[str]
 
     source_params: Optional[SourceParams]
 
@@ -382,20 +382,10 @@ class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
     use_browser_rendering: bool
 
 
-class SourceParamsWebCrawlerStoreOptions(TypedDict, total=False):
-    storage_id: Required[str]
-
-    r2_jurisdiction: str
-
-    storage_type: Provider
-
-
 class SourceParamsWebCrawler(TypedDict, total=False):
     parse_options: SourceParamsWebCrawlerParseOptions
 
-    parse_type: Literal["sitemap", "feed-rss", "crawl"]
-
-    store_options: SourceParamsWebCrawlerStoreOptions
+    parse_type: Literal["sitemap", "crawl"]
 
 
 class SourceParams(TypedDict, total=False):

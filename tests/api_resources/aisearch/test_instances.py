@@ -123,11 +123,6 @@ class TestInstances:
                         "use_browser_rendering": True,
                     },
                     "parse_type": "sitemap",
-                    "store_options": {
-                        "storage_id": "storage_id",
-                        "r2_jurisdiction": "r2_jurisdiction",
-                        "storage_type": "r2",
-                    },
                 },
             },
             sync_interval=900,
@@ -239,6 +234,7 @@ class TestInstances:
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             rewrite_query=True,
             score_threshold=0,
+            source="source",
             source_params={
                 "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
                 "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
@@ -265,11 +261,6 @@ class TestInstances:
                         "use_browser_rendering": True,
                     },
                     "parse_type": "sitemap",
-                    "store_options": {
-                        "storage_id": "storage_id",
-                        "r2_jurisdiction": "r2_jurisdiction",
-                        "storage_type": "r2",
-                    },
                 },
             },
             summarization=True,
@@ -840,11 +831,6 @@ class TestAsyncInstances:
                         "use_browser_rendering": True,
                     },
                     "parse_type": "sitemap",
-                    "store_options": {
-                        "storage_id": "storage_id",
-                        "r2_jurisdiction": "r2_jurisdiction",
-                        "storage_type": "r2",
-                    },
                 },
             },
             sync_interval=900,
@@ -956,6 +942,7 @@ class TestAsyncInstances:
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             rewrite_query=True,
             score_threshold=0,
+            source="source",
             source_params={
                 "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
                 "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
@@ -982,11 +969,6 @@ class TestAsyncInstances:
                         "use_browser_rendering": True,
                     },
                     "parse_type": "sitemap",
-                    "store_options": {
-                        "storage_id": "storage_id",
-                        "r2_jurisdiction": "r2_jurisdiction",
-                        "storage_type": "r2",
-                    },
                 },
             },
             summarization=True,

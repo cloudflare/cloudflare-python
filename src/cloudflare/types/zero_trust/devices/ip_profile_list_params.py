@@ -10,5 +10,8 @@ __all__ = ["IPProfileListParams"]
 class IPProfileListParams(TypedDict, total=False):
     account_id: Required[str]
 
+    page: int
+    """The page number to return."""
+
     per_page: int
     """The number of IP profiles to return per page."""

@@ -7,7 +7,7 @@ from ..fallback_domain import FallbackDomain
 from ..split_tunnel_exclude import SplitTunnelExclude
 from ..split_tunnel_include import SplitTunnelInclude
 
-__all__ = ["DefaultEditResponse", "DNSSearchSuffix", "ServiceModeV2", "VirtualNetworks"]
+__all__ = ["DefaultEditResponse", "DNSSearchSuffix", "GlobalAcceleration", "ServiceModeV2", "VirtualNetworks"]
 
 
 class DNSSearchSuffix(BaseModel):
@@ -16,6 +16,31 @@ class DNSSearchSuffix(BaseModel):
 
     description: Optional[str] = None
     """A description of the DNS search suffix."""
+
+
+class GlobalAcceleration(BaseModel):
+    """Global Acceleration settings for China.
+
+    When configured, WARP clients connect to the Global Accelerator addresses instead of the default ones. Please contact your account representative to enable this feature on your account. See https://developers.cloudflare.com/china-network/concepts/global-acceleration/.
+    """
+
+    api_endpoints: List[str]
+    """IP:port entries for the API endpoints."""
+
+    enabled: bool
+    """Global acceleration settings are used only when "enabled"."""
+
+    masque_endpoints: List[str]
+    """IP:port entries for the MASQUE tunnel endpoints.
+
+    Either wireguard_endpoints or masque_endpoints must be provided.
+    """
+
+    wireguard_endpoints: List[str]
+    """IP:port entries for the WireGuard tunnel endpoints.
+
+    Either wireguard_endpoints or masque_endpoints must be provided.
+    """
 
 
 class ServiceModeV2(BaseModel):
@@ -86,6 +111,15 @@ class DefaultEditResponse(BaseModel):
     fallback_domains: Optional[List[FallbackDomain]] = None
 
     gateway_unique_id: Optional[str] = None
+
+    global_acceleration: Optional[GlobalAcceleration] = None
+    """Global Acceleration settings for China.
+
+    When configured, WARP clients connect to the Global Accelerator addresses
+    instead of the default ones. Please contact your account representative to
+    enable this feature on your account. See
+    https://developers.cloudflare.com/china-network/concepts/global-acceleration/.
+    """
 
     include: Optional[List[SplitTunnelInclude]] = None
     """List of routes included in the WARP client's tunnel."""

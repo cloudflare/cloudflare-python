@@ -378,6 +378,7 @@ class InstancesResource(SyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
+        source: Optional[str] | Omit = omit,
         source_params: Optional[instance_update_params.SourceParams] | Omit = omit,
         summarization: bool | Omit = omit,
         summarization_model: Optional[
@@ -481,6 +482,7 @@ class InstancesResource(SyncAPIResource):
                     "rewrite_model": rewrite_model,
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,
+                    "source": source,
                     "source_params": source_params,
                     "summarization": summarization,
                     "summarization_model": summarization_model,
@@ -1165,6 +1167,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
+        source: Optional[str] | Omit = omit,
         source_params: Optional[instance_update_params.SourceParams] | Omit = omit,
         summarization: bool | Omit = omit,
         summarization_model: Optional[
@@ -1268,6 +1271,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "rewrite_model": rewrite_model,
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,
+                    "source": source,
                     "source_params": source_params,
                     "summarization": summarization,
                     "summarization_model": summarization_model,
