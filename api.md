@@ -75,6 +75,8 @@ from cloudflare.types import (
 
 # [EmailSecurity](src/cloudflare/resources/email_security/api.md)
 
+# [EmailAuth](src/cloudflare/resources/email_auth/api.md)
+
 # [EmailRouting](src/cloudflare/resources/email_routing/api.md)
 
 # [EmailSending](src/cloudflare/resources/email_sending/api.md)
