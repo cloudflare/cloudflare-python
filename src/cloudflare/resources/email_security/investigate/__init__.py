@@ -8,6 +8,14 @@ from .raw import (
     RawResourceWithStreamingResponse,
     AsyncRawResourceWithStreamingResponse,
 )
+from .bulk import (
+    BulkResource,
+    AsyncBulkResource,
+    BulkResourceWithRawResponse,
+    AsyncBulkResourceWithRawResponse,
+    BulkResourceWithStreamingResponse,
+    AsyncBulkResourceWithStreamingResponse,
+)
 from .move import (
     MoveResource,
     AsyncMoveResource,
@@ -108,6 +116,12 @@ __all__ = [
     "AsyncReleaseResourceWithRawResponse",
     "ReleaseResourceWithStreamingResponse",
     "AsyncReleaseResourceWithStreamingResponse",
+    "BulkResource",
+    "AsyncBulkResource",
+    "BulkResourceWithRawResponse",
+    "AsyncBulkResourceWithRawResponse",
+    "BulkResourceWithStreamingResponse",
+    "AsyncBulkResourceWithStreamingResponse",
     "InvestigateResource",
     "AsyncInvestigateResource",
     "InvestigateResourceWithRawResponse",
