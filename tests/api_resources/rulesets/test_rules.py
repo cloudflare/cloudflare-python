@@ -1689,11 +1689,7 @@ class TestRules:
                 "strip_last_modified": True,
                 "strip_set_cookie": True,
                 "vary": {
-                    "default": {
-                        "action": "normalize",
-                        "languages": ["en"],
-                        "media_types": ["image/webp"],
-                    },
+                    "default": {"action": "normalize"},
                     "headers": {
                         "accept": {
                             "action": "normalize",
@@ -4057,11 +4053,7 @@ class TestRules:
                 "strip_last_modified": True,
                 "strip_set_cookie": True,
                 "vary": {
-                    "default": {
-                        "action": "normalize",
-                        "languages": ["en"],
-                        "media_types": ["image/webp"],
-                    },
+                    "default": {"action": "normalize"},
                     "headers": {
                         "accept": {
                             "action": "normalize",
@@ -6178,11 +6170,7 @@ class TestAsyncRules:
                 "strip_last_modified": True,
                 "strip_set_cookie": True,
                 "vary": {
-                    "default": {
-                        "action": "normalize",
-                        "languages": ["en"],
-                        "media_types": ["image/webp"],
-                    },
+                    "default": {"action": "normalize"},
                     "headers": {
                         "accept": {
                             "action": "normalize",
@@ -8546,11 +8534,7 @@ class TestAsyncRules:
                 "strip_last_modified": True,
                 "strip_set_cookie": True,
                 "vary": {
-                    "default": {
-                        "action": "normalize",
-                        "languages": ["en"],
-                        "media_types": ["image/webp"],
-                    },
+                    "default": {"action": "normalize"},
                     "headers": {
                         "accept": {
                             "action": "normalize",

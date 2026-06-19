@@ -265,29 +265,15 @@ class ActionParametersSharedDictionary(TypedDict, total=False):
 
 class ActionParametersVaryDefault(TypedDict, total=False):
     """
-    Controls how a single request header (or the default for all headers) contributes to the cache key.
+    Controls how response Vary headers without a per-header override contribute to the cache key.
     """
 
     action: Required[Literal["bypass", "passthrough", "normalize"]]
     """How the header value is treated when building the cache key."""
 
-    languages: SequenceNotStr[str]
-    """The set of languages to normalize against.
-
-    Only valid for the `accept-language` header.
-    """
-
-    media_types: SequenceNotStr[str]
-    """The set of media types to normalize against.
-
-    Only valid for the `accept` header.
-    """
-
 
 class ActionParametersVaryHeaders(TypedDict, total=False):
-    """
-    Controls how a single request header (or the default for all headers) contributes to the cache key.
-    """
+    """Controls how a single request header contributes to the cache key."""
 
     action: Required[Literal["bypass", "passthrough", "normalize"]]
     """How the header value is treated when building the cache key."""
@@ -308,13 +294,13 @@ class ActionParametersVaryHeaders(TypedDict, total=False):
 class ActionParametersVary(TypedDict, total=False):
     """Controls how cached responses vary based on request headers.
 
-    At least one of `default` or `headers` must be set, and `default` is required when `headers` is set.
+    `default` is required by the API and applies to any Vary response header that does not have a per-header override.
     """
 
     default: ActionParametersVaryDefault
     """
-    Controls how a single request header (or the default for all headers)
-    contributes to the cache key.
+    Controls how response Vary headers without a per-header override contribute to
+    the cache key.
     """
 
     headers: Dict[str, ActionParametersVaryHeaders]
@@ -399,8 +385,8 @@ class ActionParameters(TypedDict, total=False):
     vary: ActionParametersVary
     """Controls how cached responses vary based on request headers.
 
-    At least one of `default` or `headers` must be set, and `default` is required
-    when `headers` is set.
+    `default` is required by the API and applies to any Vary response header that
+    does not have a per-header override.
     """
 
 

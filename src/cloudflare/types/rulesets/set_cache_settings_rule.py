@@ -258,29 +258,15 @@ class ActionParametersSharedDictionary(BaseModel):
 
 class ActionParametersVaryDefault(BaseModel):
     """
-    Controls how a single request header (or the default for all headers) contributes to the cache key.
+    Controls how response Vary headers without a per-header override contribute to the cache key.
     """
 
     action: Literal["bypass", "passthrough", "normalize"]
     """How the header value is treated when building the cache key."""
 
-    languages: Optional[List[str]] = None
-    """The set of languages to normalize against.
-
-    Only valid for the `accept-language` header.
-    """
-
-    media_types: Optional[List[str]] = None
-    """The set of media types to normalize against.
-
-    Only valid for the `accept` header.
-    """
-
 
 class ActionParametersVaryHeaders(BaseModel):
-    """
-    Controls how a single request header (or the default for all headers) contributes to the cache key.
-    """
+    """Controls how a single request header contributes to the cache key."""
 
     action: Literal["bypass", "passthrough", "normalize"]
     """How the header value is treated when building the cache key."""
@@ -301,13 +287,13 @@ class ActionParametersVaryHeaders(BaseModel):
 class ActionParametersVary(BaseModel):
     """Controls how cached responses vary based on request headers.
 
-    At least one of `default` or `headers` must be set, and `default` is required when `headers` is set.
+    `default` is required by the API and applies to any Vary response header that does not have a per-header override.
     """
 
     default: Optional[ActionParametersVaryDefault] = None
     """
-    Controls how a single request header (or the default for all headers)
-    contributes to the cache key.
+    Controls how response Vary headers without a per-header override contribute to
+    the cache key.
     """
 
     headers: Optional[Dict[str, ActionParametersVaryHeaders]] = None
@@ -392,8 +378,8 @@ class ActionParameters(BaseModel):
     vary: Optional[ActionParametersVary] = None
     """Controls how cached responses vary based on request headers.
 
-    At least one of `default` or `headers` must be set, and `default` is required
-    when `headers` is set.
+    `default` is required by the API and applies to any Vary response header that
+    does not have a per-header override.
     """
 
 
