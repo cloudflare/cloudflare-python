@@ -1,5 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
+
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
@@ -13,3 +15,5 @@ class DatasetEditResponse(BaseModel):
     name: str
 
     uuid: str
+
+    deleted_at: Optional[str] = FieldInfo(alias="deletedAt", default=None)
