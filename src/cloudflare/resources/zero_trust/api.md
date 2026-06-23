@@ -576,7 +576,6 @@ from cloudflare.types.zero_trust.access import (
     AppID,
     Application,
     ApplicationPolicy,
-    ApplicationSCIMConfig,
     ApplicationType,
     CORSHeaders,
     Decision,
@@ -625,10 +624,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import (
-    UserPolicyCheckGeo,
-    UserPolicyCheckListResponse,
-)
+from cloudflare.types.zero_trust.access.applications import UserPolicyCheckListResponse
 ```
 
 Methods:

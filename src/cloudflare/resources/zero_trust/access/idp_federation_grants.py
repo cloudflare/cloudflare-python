@@ -63,8 +63,8 @@ class IdPFederationGrantsResource(SyncAPIResource):
         available for federation to other accounts in the same Cloudflare organization.
 
         The account must belong to a Cloudflare organization. One-time pin and
-        Cloudflare-managed identity providers cannot be federated. An identity provider
-        may only have one active grant at a time.
+        Cloudflare-managed identity providers cannot be federated. An account can
+        federate at most five identity providers at a time.
 
         Args:
           account_id: Identifier.
@@ -273,8 +273,8 @@ class AsyncIdPFederationGrantsResource(AsyncAPIResource):
         available for federation to other accounts in the same Cloudflare organization.
 
         The account must belong to a Cloudflare organization. One-time pin and
-        Cloudflare-managed identity providers cannot be federated. An identity provider
-        may only have one active grant at a time.
+        Cloudflare-managed identity providers cannot be federated. An account can
+        federate at most five identity providers at a time.
 
         Args:
           account_id: Identifier.
