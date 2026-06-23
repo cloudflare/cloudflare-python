@@ -468,7 +468,7 @@ class TestInstances:
             name="my-namespace",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -483,7 +483,7 @@ class TestInstances:
             name="my-namespace",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -532,7 +532,7 @@ class TestInstances:
             name="my-namespace",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -551,7 +551,7 @@ class TestInstances:
             name="my-namespace",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -573,7 +573,7 @@ class TestInstances:
                 name="my-namespace",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -586,7 +586,7 @@ class TestInstances:
                 name="",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -599,7 +599,7 @@ class TestInstances:
                 name="my-namespace",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -714,7 +714,7 @@ class TestInstances:
             },
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1280,7 +1280,7 @@ class TestAsyncInstances:
             name="my-namespace",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1295,7 +1295,7 @@ class TestAsyncInstances:
             name="my-namespace",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1344,7 +1344,7 @@ class TestAsyncInstances:
             name="my-namespace",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1363,7 +1363,7 @@ class TestAsyncInstances:
             name="my-namespace",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1385,7 +1385,7 @@ class TestAsyncInstances:
                 name="my-namespace",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -1398,7 +1398,7 @@ class TestAsyncInstances:
                 name="",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -1411,7 +1411,7 @@ class TestAsyncInstances:
                 name="my-namespace",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -1526,7 +1526,7 @@ class TestAsyncInstances:
             },
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],

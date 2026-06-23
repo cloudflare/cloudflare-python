@@ -419,7 +419,7 @@ class TestInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -433,7 +433,7 @@ class TestInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -481,7 +481,7 @@ class TestInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -499,7 +499,7 @@ class TestInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -520,7 +520,7 @@ class TestInstances:
                 account_id="",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -532,7 +532,7 @@ class TestInstances:
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -633,7 +633,7 @@ class TestInstances:
             },
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1127,7 +1127,7 @@ class TestAsyncInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1141,7 +1141,7 @@ class TestAsyncInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1189,7 +1189,7 @@ class TestAsyncInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1207,7 +1207,7 @@ class TestAsyncInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -1228,7 +1228,7 @@ class TestAsyncInstances:
                 account_id="",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -1240,7 +1240,7 @@ class TestAsyncInstances:
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -1341,7 +1341,7 @@ class TestAsyncInstances:
             },
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],

@@ -1,18 +1,50 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import builtins
-from typing import TYPE_CHECKING, Dict, List, Optional
-from typing_extensions import Literal
+from typing import TYPE_CHECKING, Dict, List, Union, Optional
+from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["InstanceChatCompletionsResponse", "Choice", "ChoiceMessage", "Chunk", "ChunkItem", "ChunkScoringDetails"]
+__all__ = [
+    "InstanceChatCompletionsResponse",
+    "Choice",
+    "ChoiceMessage",
+    "ChoiceMessageContentUnionMember1",
+    "ChoiceMessageContentUnionMember1UnionMember0",
+    "ChoiceMessageContentUnionMember1UnionMember1",
+    "ChoiceMessageContentUnionMember1UnionMember1ImageURL",
+    "Chunk",
+    "ChunkItem",
+    "ChunkScoringDetails",
+]
+
+
+class ChoiceMessageContentUnionMember1UnionMember0(BaseModel):
+    text: str
+
+    type: Literal["text"]
+
+
+class ChoiceMessageContentUnionMember1UnionMember1ImageURL(BaseModel):
+    url: str
+
+
+class ChoiceMessageContentUnionMember1UnionMember1(BaseModel):
+    image_url: ChoiceMessageContentUnionMember1UnionMember1ImageURL
+
+    type: Literal["image_url"]
+
+
+ChoiceMessageContentUnionMember1: TypeAlias = Union[
+    ChoiceMessageContentUnionMember1UnionMember0, ChoiceMessageContentUnionMember1UnionMember1
+]
 
 
 class ChoiceMessage(BaseModel):
-    content: Optional[str] = None
+    content: Union[str, List[ChoiceMessageContentUnionMember1], None] = None
 
     role: Literal["system", "developer", "user", "assistant", "tool"]
 

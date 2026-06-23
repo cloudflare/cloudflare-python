@@ -96,6 +96,7 @@ class InstanceCreateParams(TypedDict, total=False):
     embedding_model: Optional[
         Literal[
             "@cf/qwen/qwen3-embedding-0.6b",
+            "@cf/qwen/qwen3-vl-embedding-2b",
             "@cf/baai/bge-m3",
             "@cf/baai/bge-large-en-v1.5",
             "@cf/google/embeddinggemma-300m",
