@@ -12,4 +12,4 @@ class SinkDeleteParams(TypedDict, total=False):
     """Specifies the public ID of the account."""
 
     force: str
-    """Delete sink forcefully, including deleting any dependent pipelines."""
+    """Deprecated: Delete sink forcefully, including deleting any dependent pipelines."""

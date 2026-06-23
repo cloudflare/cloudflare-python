@@ -12,4 +12,7 @@ class StreamDeleteParams(TypedDict, total=False):
     """Specifies the public ID of the account."""
 
     force: str
-    """Delete stream forcefully, including deleting any dependent pipelines."""
+    """
+    Deprecated: Delete stream forcefully, including deleting any dependent
+    pipelines.
+    """
