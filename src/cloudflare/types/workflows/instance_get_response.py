@@ -66,7 +66,10 @@ class StepUnionMember0Attempt(BaseModel):
 
 class StepUnionMember0ConfigRetries(BaseModel):
     delay: Union[str, float]
-    """Specifies the delay duration."""
+    """Specifies the delay duration.
+
+    '[dynamic]' indicates the delay is computed by a user-supplied function.
+    """
 
     limit: float
 
