@@ -2,11 +2,32 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .endpoint import Endpoint
 from ...._models import BaseModel
 
-__all__ = ["Location", "Network"]
+__all__ = ["Location", "MaxTTL", "Network"]
+
+
+class MaxTTL(BaseModel):
+    """Configure DNS response TTL behavior for this Gateway location.
+
+    Gateway can rewrite DNS responses to cap returned record TTLs using the account setting or a location-specific value, or leave TTLs unchanged.
+    """
+
+    mode: Literal["inherit", "override", "disabled"]
+    """
+    Specify how this location handles DNS response TTLs by using the account
+    setting, using a location-specific value, or leaving TTLs unchanged.
+    """
+
+    ttl_secs: Optional[int] = None
+    """Set the location-specific DNS TTL cap, in seconds.
+
+    Required when `mode` is `override`. Must be omitted when `mode` is `inherit` or
+    `disabled`.
+    """
 
 
 class Network(BaseModel):
@@ -63,6 +84,13 @@ class Location(BaseModel):
     """
     Show the backup destination IPv4 address from the pair identified
     dns_destination_ips_id. This field read-only.
+    """
+
+    max_ttl: Optional[MaxTTL] = None
+    """Configure DNS response TTL behavior for this Gateway location.
+
+    Gateway can rewrite DNS responses to cap returned record TTLs using the account
+    setting or a location-specific value, or leave TTLs unchanged.
     """
 
     name: Optional[str] = None
