@@ -55,7 +55,7 @@ class OutgoingResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#accessing-raw-response-data-eg-headers
         """
         return OutgoingResourceWithRawResponse(self)
 
@@ -64,7 +64,7 @@ class OutgoingResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#with_streaming_response
         """
         return OutgoingResourceWithStreamingResponse(self)
 
@@ -372,7 +372,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#accessing-raw-response-data-eg-headers
         """
         return AsyncOutgoingResourceWithRawResponse(self)
 
@@ -381,7 +381,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#with_streaming_response
         """
         return AsyncOutgoingResourceWithStreamingResponse(self)
 
