@@ -211,10 +211,10 @@ class BulkResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkDeleteResponse:
-        """Soft-deletes the job, hiding it from all list and detail endpoints.
+        """Deletes the job, removing it from all list and detail endpoints.
 
-        Only jobs in
-        a terminal state (`COMPLETED`, `CANCELLED`, `FAILED`, or `SKIPPED`) can be
+        Only jobs in a
+        terminal state (`COMPLETED`, `CANCELLED`, `FAILED`, or `SKIPPED`) can be
         deleted. To stop an in-progress job without removing it, use the cancel endpoint
         instead.
 
@@ -458,10 +458,10 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkDeleteResponse:
-        """Soft-deletes the job, hiding it from all list and detail endpoints.
+        """Deletes the job, removing it from all list and detail endpoints.
 
-        Only jobs in
-        a terminal state (`COMPLETED`, `CANCELLED`, `FAILED`, or `SKIPPED`) can be
+        Only jobs in a
+        terminal state (`COMPLETED`, `CANCELLED`, `FAILED`, or `SKIPPED`) can be
         deleted. To stop an in-progress job without removing it, use the cancel endpoint
         instead.
 
