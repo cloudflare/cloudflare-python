@@ -61,6 +61,7 @@ __all__ = [
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
     "Module",
+    "PackageDependency",
     "Placement",
     "PlacementMode",
     "PlacementRegion",
@@ -153,6 +154,12 @@ class VersionCreateParams(TypedDict, total=False):
     [Static Assets](https://developers.cloudflare.com/workers/static-assets/).
     `_headers` and `_redirects` files should be included as modules named `_headers`
     and `_redirects` with content type `text/plain`.
+    """
+
+    package_dependencies: Iterable[PackageDependency]
+    """
+    The list of npm packages that were installed and used when this Worker version
+    was built.
     """
 
     placement: Placement
@@ -840,6 +847,17 @@ class Module(TypedDict, total=False):
 
 
 set_pydantic_config(Module, {"arbitrary_types_allowed": True})
+
+
+class PackageDependency(TypedDict, total=False):
+    installed_version: Required[Annotated[str, PropertyInfo(alias="installedVersion")]]
+    """The exact version that was resolved and installed by the package manager."""
+
+    name: Required[str]
+    """The npm package name."""
+
+    package_json_version: Required[Annotated[str, PropertyInfo(alias="packageJsonVersion")]]
+    """The version constraint as written in package.json."""
 
 
 class PlacementMode(TypedDict, total=False):

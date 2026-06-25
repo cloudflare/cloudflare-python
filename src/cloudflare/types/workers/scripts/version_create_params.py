@@ -52,6 +52,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindWasmModule",
     "MetadataBindingWorkersBindingKindVPCService",
     "MetadataBindingWorkersBindingKindVPCNetwork",
+    "MetadataPackageDependency",
 ]
 
 
@@ -674,6 +675,17 @@ MetadataBinding: TypeAlias = Union[
 ]
 
 
+class MetadataPackageDependency(TypedDict, total=False):
+    installed_version: Required[Annotated[str, PropertyInfo(alias="installedVersion")]]
+    """The exact version that was resolved and installed by the package manager."""
+
+    name: Required[str]
+    """The npm package name."""
+
+    package_json_version: Required[Annotated[str, PropertyInfo(alias="packageJsonVersion")]]
+    """The version constraint as written in package.json."""
+
+
 class Metadata(TypedDict, total=False):
     """JSON-encoded metadata about the uploaded parts and Worker configuration."""
 
@@ -709,6 +721,12 @@ class Metadata(TypedDict, total=False):
 
     keep_bindings: SequenceNotStr[str]
     """List of binding types to keep from previous_upload."""
+
+    package_dependencies: Iterable[MetadataPackageDependency]
+    """
+    The list of npm packages that were installed and used when this Worker version
+    was built.
+    """
 
     usage_model: Literal["standard", "bundled", "unbound"]
     """Usage model for the Worker invocations."""

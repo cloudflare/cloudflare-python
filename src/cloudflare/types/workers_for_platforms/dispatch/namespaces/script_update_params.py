@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ....._types import FileTypes, SequenceNotStr
+from ....._utils import PropertyInfo
 from ....workers.migration_step_param import MigrationStepParam
 from ....workers.single_step_migration_param import SingleStepMigrationParam
 from ....workers.scripts.consumer_script_param import ConsumerScriptParam
@@ -61,6 +62,7 @@ __all__ = [
     "MetadataObservability",
     "MetadataObservabilityLogs",
     "MetadataObservabilityTraces",
+    "MetadataPackageDependency",
     "MetadataPlacement",
     "MetadataPlacementUnionMember0",
     "MetadataPlacementUnionMember1",
@@ -832,6 +834,17 @@ class MetadataObservability(TypedDict, total=False):
     """Trace settings for the Worker."""
 
 
+class MetadataPackageDependency(TypedDict, total=False):
+    installed_version: Required[Annotated[str, PropertyInfo(alias="installedVersion")]]
+    """The exact version that was resolved and installed by the package manager."""
+
+    name: Required[str]
+    """The npm package name."""
+
+    package_json_version: Required[Annotated[str, PropertyInfo(alias="packageJsonVersion")]]
+    """The version constraint as written in package.json."""
+
+
 class MetadataPlacementUnionMember0(TypedDict, total=False):
     mode: Required[Literal["smart"]]
     """
@@ -982,6 +995,12 @@ class Metadata(TypedDict, total=False):
 
     observability: MetadataObservability
     """Observability settings for the Worker."""
+
+    package_dependencies: Iterable[MetadataPackageDependency]
+    """
+    The list of npm packages that were installed and used when this Worker version
+    was built.
+    """
 
     placement: MetadataPlacement
     """

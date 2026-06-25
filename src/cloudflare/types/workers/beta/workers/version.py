@@ -60,6 +60,7 @@ __all__ = [
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
     "Module",
+    "PackageDependency",
     "Placement",
     "PlacementMode",
     "PlacementRegion",
@@ -732,6 +733,17 @@ class Module(BaseModel):
     """The name of the module."""
 
 
+class PackageDependency(BaseModel):
+    installed_version: str = FieldInfo(alias="installedVersion")
+    """The exact version that was resolved and installed by the package manager."""
+
+    name: str
+    """The npm package name."""
+
+    package_json_version: str = FieldInfo(alias="packageJsonVersion")
+    """The version constraint as written in package.json."""
+
+
 class PlacementMode(BaseModel):
     mode: Literal["smart"]
     """
@@ -909,6 +921,12 @@ class Version(BaseModel):
     [Static Assets](https://developers.cloudflare.com/workers/static-assets/).
     `_headers` and `_redirects` files should be included as modules named `_headers`
     and `_redirects` with content type `text/plain`.
+    """
+
+    package_dependencies: Optional[List[PackageDependency]] = None
+    """
+    The list of npm packages that were installed and used when this Worker version
+    was built.
     """
 
     placement: Optional[Placement] = None

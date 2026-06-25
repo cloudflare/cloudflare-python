@@ -110,6 +110,13 @@ class TestScripts:
                         "propagation_policy": "authenticated",
                     },
                 },
+                "package_dependencies": [
+                    {
+                        "installed_version": "4.17.22",
+                        "name": "lodash",
+                        "package_json_version": "^4.17.21",
+                    }
+                ],
                 "placement": {"mode": "smart"},
                 "tags": ["string"],
                 "tail_consumers": [
@@ -468,6 +475,13 @@ class TestAsyncScripts:
                         "propagation_policy": "authenticated",
                     },
                 },
+                "package_dependencies": [
+                    {
+                        "installed_version": "4.17.22",
+                        "name": "lodash",
+                        "package_json_version": "^4.17.21",
+                    }
+                ],
                 "placement": {"mode": "smart"},
                 "tags": ["string"],
                 "tail_consumers": [

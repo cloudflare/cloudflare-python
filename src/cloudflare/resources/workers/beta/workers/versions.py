@@ -63,6 +63,7 @@ class VersionsResource(SyncAPIResource):
         main_module: str | Omit = omit,
         migrations: version_create_params.Migrations | Omit = omit,
         modules: Iterable[version_create_params.Module] | Omit = omit,
+        package_dependencies: Iterable[version_create_params.PackageDependency] | Omit = omit,
         placement: version_create_params.Placement | Omit = omit,
         usage_model: Literal["standard", "bundled", "unbound"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -126,6 +127,9 @@ class VersionsResource(SyncAPIResource):
               `_headers` and `_redirects` files should be included as modules named `_headers`
               and `_redirects` with content type `text/plain`.
 
+          package_dependencies: The list of npm packages that were installed and used when this Worker version
+              was built.
+
           placement: Configuration for
               [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
               Specify mode='smart' for Smart Placement, or one of region/hostname/host.
@@ -162,6 +166,7 @@ class VersionsResource(SyncAPIResource):
                     "main_module": main_module,
                     "migrations": migrations,
                     "modules": modules,
+                    "package_dependencies": package_dependencies,
                     "placement": placement,
                     "usage_model": usage_model,
                 },
@@ -388,6 +393,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         main_module: str | Omit = omit,
         migrations: version_create_params.Migrations | Omit = omit,
         modules: Iterable[version_create_params.Module] | Omit = omit,
+        package_dependencies: Iterable[version_create_params.PackageDependency] | Omit = omit,
         placement: version_create_params.Placement | Omit = omit,
         usage_model: Literal["standard", "bundled", "unbound"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -451,6 +457,9 @@ class AsyncVersionsResource(AsyncAPIResource):
               `_headers` and `_redirects` files should be included as modules named `_headers`
               and `_redirects` with content type `text/plain`.
 
+          package_dependencies: The list of npm packages that were installed and used when this Worker version
+              was built.
+
           placement: Configuration for
               [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
               Specify mode='smart' for Smart Placement, or one of region/hostname/host.
@@ -487,6 +496,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                     "main_module": main_module,
                     "migrations": migrations,
                     "modules": modules,
+                    "package_dependencies": package_dependencies,
                     "placement": placement,
                     "usage_model": usage_model,
                 },

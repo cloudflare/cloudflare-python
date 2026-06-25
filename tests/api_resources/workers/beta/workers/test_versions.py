@@ -89,6 +89,13 @@ class TestVersions:
                     "name": "index.js",
                 }
             ],
+            package_dependencies=[
+                {
+                    "installed_version": "4.17.22",
+                    "name": "lodash",
+                    "package_json_version": "^4.17.21",
+                }
+            ],
             placement={"mode": "smart"},
             usage_model="standard",
         )
@@ -394,6 +401,13 @@ class TestAsyncVersions:
                     "content_base64": "ZXhwb3J0IGRlZmF1bHQgewogIGFzeW5jIGZldGNoKHJlcXVlc3QsIGVudiwgY3R4KSB7CiAgICByZXR1cm4gbmV3IFJlc3BvbnNlKCdIZWxsbyBXb3JsZCEnKQogIH0KfQ==",
                     "content_type": "application/javascript+module",
                     "name": "index.js",
+                }
+            ],
+            package_dependencies=[
+                {
+                    "installed_version": "4.17.22",
+                    "name": "lodash",
+                    "package_json_version": "^4.17.21",
                 }
             ],
             placement={"mode": "smart"},

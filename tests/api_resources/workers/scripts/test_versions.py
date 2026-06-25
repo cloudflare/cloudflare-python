@@ -55,6 +55,13 @@ class TestVersions:
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
                 "keep_bindings": ["string"],
+                "package_dependencies": [
+                    {
+                        "installed_version": "4.17.22",
+                        "name": "lodash",
+                        "package_json_version": "^4.17.21",
+                    }
+                ],
                 "usage_model": "standard",
             },
             bindings_inherit="strict",
@@ -267,6 +274,13 @@ class TestAsyncVersions:
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
                 "keep_bindings": ["string"],
+                "package_dependencies": [
+                    {
+                        "installed_version": "4.17.22",
+                        "name": "lodash",
+                        "package_json_version": "^4.17.21",
+                    }
+                ],
                 "usage_model": "standard",
             },
             bindings_inherit="strict",
