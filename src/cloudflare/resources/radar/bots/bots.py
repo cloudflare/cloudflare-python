@@ -115,7 +115,8 @@ class BotsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
-          kind: Filters results by bot kind.
+          kind: Filters results by bot kind. Deprecated: the Verified Bot / Signed Agent
+              distinction is being removed.
 
           limit: Limits the number of objects returned in the response.
 
@@ -257,7 +258,8 @@ class BotsResource(SyncAPIResource):
 
           bot_category: Filters results by bot category.
 
-          bot_kind: Filters results by bot kind.
+          bot_kind: Filters results by bot kind. Deprecated: the Verified Bot / Signed Agent
+              distinction is being removed.
 
           bot_operator: Filters results by bot operator.
 
@@ -389,7 +391,8 @@ class BotsResource(SyncAPIResource):
 
           bot_category: Filters results by bot category.
 
-          bot_kind: Filters results by bot kind.
+          bot_kind: Filters results by bot kind. Deprecated: the Verified Bot / Signed Agent
+              distinction is being removed.
 
           bot_operator: Filters results by bot operator.
 
@@ -520,7 +523,8 @@ class BotsResource(SyncAPIResource):
 
           bot_category: Filters results by bot category.
 
-          bot_kind: Filters results by bot kind.
+          bot_kind: Filters results by bot kind. Deprecated: the Verified Bot / Signed Agent
+              distinction is being removed.
 
           bot_operator: Filters results by bot operator.
 
@@ -664,7 +668,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
-          kind: Filters results by bot kind.
+          kind: Filters results by bot kind. Deprecated: the Verified Bot / Signed Agent
+              distinction is being removed.
 
           limit: Limits the number of objects returned in the response.
 
@@ -806,7 +811,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           bot_category: Filters results by bot category.
 
-          bot_kind: Filters results by bot kind.
+          bot_kind: Filters results by bot kind. Deprecated: the Verified Bot / Signed Agent
+              distinction is being removed.
 
           bot_operator: Filters results by bot operator.
 
@@ -938,7 +944,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           bot_category: Filters results by bot category.
 
-          bot_kind: Filters results by bot kind.
+          bot_kind: Filters results by bot kind. Deprecated: the Verified Bot / Signed Agent
+              distinction is being removed.
 
           bot_operator: Filters results by bot operator.
 
@@ -1069,7 +1076,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           bot_category: Filters results by bot category.
 
-          bot_kind: Filters results by bot kind.
+          bot_kind: Filters results by bot kind. Deprecated: the Verified Bot / Signed Agent
+              distinction is being removed.
 
           bot_operator: Filters results by bot operator.
 

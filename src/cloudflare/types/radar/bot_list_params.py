@@ -43,7 +43,10 @@ class BotListParams(TypedDict, total=False):
     """Format in which results will be returned."""
 
     kind: Literal["AGENT", "BOT"]
-    """Filters results by bot kind."""
+    """Filters results by bot kind.
+
+    Deprecated: the Verified Bot / Signed Agent distinction is being removed.
+    """
 
     limit: int
     """Limits the number of objects returned in the response."""
