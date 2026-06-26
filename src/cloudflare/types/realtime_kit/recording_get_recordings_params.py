@@ -46,5 +46,5 @@ class RecordingGetRecordingsParams(TypedDict, total=False):
     The time must be specified in ISO format.
     """
 
-    status: List[Literal["INVOKED", "RECORDING", "UPLOADING", "UPLOADED"]]
+    status: List[Literal["INVOKED", "RECORDING", "UPLOADING", "UPLOADED", "ERRORED", "PAUSED"]]
     """Filter by one or more recording status"""

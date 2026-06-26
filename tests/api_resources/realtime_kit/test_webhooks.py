@@ -168,7 +168,7 @@ class TestWebhooks:
     @parametrize
     def test_method_delete_webhook(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.delete_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -178,7 +178,7 @@ class TestWebhooks:
     @parametrize
     def test_raw_response_delete_webhook(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.delete_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -192,7 +192,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_delete_webhook(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.delete_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         ) as response:
@@ -209,14 +209,14 @@ class TestWebhooks:
     def test_path_params_delete_webhook(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.realtime_kit.webhooks.with_raw_response.delete_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="app_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.realtime_kit.webhooks.with_raw_response.delete_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
             )
@@ -232,7 +232,7 @@ class TestWebhooks:
     @parametrize
     def test_method_edit_webhook(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.edit_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -242,7 +242,7 @@ class TestWebhooks:
     @parametrize
     def test_method_edit_webhook_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.edit_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             enabled=True,
@@ -256,7 +256,7 @@ class TestWebhooks:
     @parametrize
     def test_raw_response_edit_webhook(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.edit_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -270,7 +270,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_edit_webhook(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.edit_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         ) as response:
@@ -287,14 +287,14 @@ class TestWebhooks:
     def test_path_params_edit_webhook(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.realtime_kit.webhooks.with_raw_response.edit_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="app_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.realtime_kit.webhooks.with_raw_response.edit_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
             )
@@ -310,7 +310,7 @@ class TestWebhooks:
     @parametrize
     def test_method_get_webhook_by_id(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.get_webhook_by_id(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -320,7 +320,7 @@ class TestWebhooks:
     @parametrize
     def test_raw_response_get_webhook_by_id(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.get_webhook_by_id(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -334,7 +334,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_get_webhook_by_id(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.get_webhook_by_id(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         ) as response:
@@ -351,14 +351,14 @@ class TestWebhooks:
     def test_path_params_get_webhook_by_id(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.realtime_kit.webhooks.with_raw_response.get_webhook_by_id(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="app_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.realtime_kit.webhooks.with_raw_response.get_webhook_by_id(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
             )
@@ -426,7 +426,7 @@ class TestWebhooks:
     @parametrize
     def test_method_replace_webhook(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.replace_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             events=[
@@ -449,7 +449,7 @@ class TestWebhooks:
     @parametrize
     def test_method_replace_webhook_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.replace_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             events=[
@@ -473,7 +473,7 @@ class TestWebhooks:
     @parametrize
     def test_raw_response_replace_webhook(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.replace_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             events=[
@@ -500,7 +500,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_replace_webhook(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.replace_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             events=[
@@ -530,7 +530,7 @@ class TestWebhooks:
     def test_path_params_replace_webhook(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.realtime_kit.webhooks.with_raw_response.replace_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="app_id",
                 events=[
@@ -550,7 +550,7 @@ class TestWebhooks:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.realtime_kit.webhooks.with_raw_response.replace_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
                 events=[
@@ -738,7 +738,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_delete_webhook(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.delete_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -748,7 +748,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_raw_response_delete_webhook(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.delete_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -762,7 +762,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_delete_webhook(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.delete_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         ) as response:
@@ -779,14 +779,14 @@ class TestAsyncWebhooks:
     async def test_path_params_delete_webhook(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.realtime_kit.webhooks.with_raw_response.delete_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="app_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.realtime_kit.webhooks.with_raw_response.delete_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
             )
@@ -802,7 +802,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_edit_webhook(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.edit_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -812,7 +812,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_edit_webhook_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.edit_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             enabled=True,
@@ -826,7 +826,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_raw_response_edit_webhook(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.edit_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -840,7 +840,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_edit_webhook(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.edit_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         ) as response:
@@ -857,14 +857,14 @@ class TestAsyncWebhooks:
     async def test_path_params_edit_webhook(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.realtime_kit.webhooks.with_raw_response.edit_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="app_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.realtime_kit.webhooks.with_raw_response.edit_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
             )
@@ -880,7 +880,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_get_webhook_by_id(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.get_webhook_by_id(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -890,7 +890,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_raw_response_get_webhook_by_id(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.get_webhook_by_id(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         )
@@ -904,7 +904,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_get_webhook_by_id(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.get_webhook_by_id(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
         ) as response:
@@ -921,14 +921,14 @@ class TestAsyncWebhooks:
     async def test_path_params_get_webhook_by_id(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.realtime_kit.webhooks.with_raw_response.get_webhook_by_id(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="app_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.realtime_kit.webhooks.with_raw_response.get_webhook_by_id(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
             )
@@ -996,7 +996,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_replace_webhook(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.replace_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             events=[
@@ -1019,7 +1019,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_replace_webhook_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.replace_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             events=[
@@ -1043,7 +1043,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_raw_response_replace_webhook(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.replace_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             events=[
@@ -1070,7 +1070,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_replace_webhook(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.replace_webhook(
-            webhook_id="webhook_id",
+            webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
             events=[
@@ -1100,7 +1100,7 @@ class TestAsyncWebhooks:
     async def test_path_params_replace_webhook(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.realtime_kit.webhooks.with_raw_response.replace_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="app_id",
                 events=[
@@ -1120,7 +1120,7 @@ class TestAsyncWebhooks:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.realtime_kit.webhooks.with_raw_response.replace_webhook(
-                webhook_id="webhook_id",
+                webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
                 events=[

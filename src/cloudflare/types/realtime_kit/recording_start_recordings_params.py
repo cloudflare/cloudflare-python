@@ -22,6 +22,9 @@ class RecordingStartRecordingsParams(TypedDict, total=False):
     account_id: Required[str]
     """The account identifier tag."""
 
+    meeting_id: Required[str]
+    """ID of the meeting to record."""
+
     allow_multiple_recordings: bool
     """By default, a meeting allows only one recording to run at a time.
 
@@ -51,9 +54,6 @@ class RecordingStartRecordingsParams(TypedDict, total=False):
     Specifies the maximum duration for recording in seconds, ranging from a minimum
     of 60 seconds to a maximum of 24 hours.
     """
-
-    meeting_id: str
-    """ID of the meeting to record."""
 
     realtimekit_bucket_config: RealtimekitBucketConfig
 

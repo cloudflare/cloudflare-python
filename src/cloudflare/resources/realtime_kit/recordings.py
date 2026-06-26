@@ -167,7 +167,7 @@ class RecordingsResource(SyncAPIResource):
         sort_by: Literal["invokedTime"] | Omit = omit,
         sort_order: Literal["ASC", "DESC"] | Omit = omit,
         start_time: Union[str, datetime] | Omit = omit,
-        status: List[Literal["INVOKED", "RECORDING", "UPLOADING", "UPLOADED"]] | Omit = omit,
+        status: List[Literal["INVOKED", "RECORDING", "UPLOADING", "UPLOADED", "ERRORED", "PAUSED"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -298,12 +298,12 @@ class RecordingsResource(SyncAPIResource):
         app_id: str,
         *,
         account_id: str,
+        meeting_id: str,
         allow_multiple_recordings: bool | Omit = omit,
         audio_config: recording_start_recordings_params.AudioConfig | Omit = omit,
         file_name_prefix: str | Omit = omit,
         interactive_config: recording_start_recordings_params.InteractiveConfig | Omit = omit,
         max_seconds: int | Omit = omit,
-        meeting_id: str | Omit = omit,
         realtimekit_bucket_config: recording_start_recordings_params.RealtimekitBucketConfig | Omit = omit,
         rtmp_out_config: recording_start_recordings_params.RtmpOutConfig | Omit = omit,
         storage_config: Optional[recording_start_recordings_params.StorageConfig] | Omit = omit,
@@ -327,6 +327,8 @@ class RecordingsResource(SyncAPIResource):
 
           app_id: The app identifier tag.
 
+          meeting_id: ID of the meeting to record.
+
           allow_multiple_recordings: By default, a meeting allows only one recording to run at a time. Enabling the
               `allow_multiple_recordings` parameter to true allows you to initiate multiple
               recordings concurrently in the same meeting. This allows you to record separate
@@ -345,8 +347,6 @@ class RecordingsResource(SyncAPIResource):
 
           max_seconds: Specifies the maximum duration for recording in seconds, ranging from a minimum
               of 60 seconds to a maximum of 24 hours.
-
-          meeting_id: ID of the meeting to record.
 
           url: Pass a custom url to record arbitary screen
 
@@ -368,12 +368,12 @@ class RecordingsResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
+                    "meeting_id": meeting_id,
                     "allow_multiple_recordings": allow_multiple_recordings,
                     "audio_config": audio_config,
                     "file_name_prefix": file_name_prefix,
                     "interactive_config": interactive_config,
                     "max_seconds": max_seconds,
-                    "meeting_id": meeting_id,
                     "realtimekit_bucket_config": realtimekit_bucket_config,
                     "rtmp_out_config": rtmp_out_config,
                     "storage_config": storage_config,
@@ -584,7 +584,7 @@ class AsyncRecordingsResource(AsyncAPIResource):
         sort_by: Literal["invokedTime"] | Omit = omit,
         sort_order: Literal["ASC", "DESC"] | Omit = omit,
         start_time: Union[str, datetime] | Omit = omit,
-        status: List[Literal["INVOKED", "RECORDING", "UPLOADING", "UPLOADED"]] | Omit = omit,
+        status: List[Literal["INVOKED", "RECORDING", "UPLOADING", "UPLOADED", "ERRORED", "PAUSED"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -715,12 +715,12 @@ class AsyncRecordingsResource(AsyncAPIResource):
         app_id: str,
         *,
         account_id: str,
+        meeting_id: str,
         allow_multiple_recordings: bool | Omit = omit,
         audio_config: recording_start_recordings_params.AudioConfig | Omit = omit,
         file_name_prefix: str | Omit = omit,
         interactive_config: recording_start_recordings_params.InteractiveConfig | Omit = omit,
         max_seconds: int | Omit = omit,
-        meeting_id: str | Omit = omit,
         realtimekit_bucket_config: recording_start_recordings_params.RealtimekitBucketConfig | Omit = omit,
         rtmp_out_config: recording_start_recordings_params.RtmpOutConfig | Omit = omit,
         storage_config: Optional[recording_start_recordings_params.StorageConfig] | Omit = omit,
@@ -744,6 +744,8 @@ class AsyncRecordingsResource(AsyncAPIResource):
 
           app_id: The app identifier tag.
 
+          meeting_id: ID of the meeting to record.
+
           allow_multiple_recordings: By default, a meeting allows only one recording to run at a time. Enabling the
               `allow_multiple_recordings` parameter to true allows you to initiate multiple
               recordings concurrently in the same meeting. This allows you to record separate
@@ -762,8 +764,6 @@ class AsyncRecordingsResource(AsyncAPIResource):
 
           max_seconds: Specifies the maximum duration for recording in seconds, ranging from a minimum
               of 60 seconds to a maximum of 24 hours.
-
-          meeting_id: ID of the meeting to record.
 
           url: Pass a custom url to record arbitary screen
 
@@ -785,12 +785,12 @@ class AsyncRecordingsResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
+                    "meeting_id": meeting_id,
                     "allow_multiple_recordings": allow_multiple_recordings,
                     "audio_config": audio_config,
                     "file_name_prefix": file_name_prefix,
                     "interactive_config": interactive_config,
                     "max_seconds": max_seconds,
-                    "meeting_id": meeting_id,
                     "realtimekit_bucket_config": realtimekit_bucket_config,
                     "rtmp_out_config": rtmp_out_config,
                     "storage_config": storage_config,

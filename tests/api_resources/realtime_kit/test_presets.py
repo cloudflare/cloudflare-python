@@ -126,7 +126,7 @@ class TestPresets:
                         "video_bg": "video_bg",
                         "warning": "warning",
                     },
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                 }
             },
@@ -252,7 +252,7 @@ class TestPresets:
                         "video_bg": "video_bg",
                         "warning": "warning",
                     },
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                     "font_family": "font_family",
                     "google_font": "google_font",
@@ -365,7 +365,7 @@ class TestPresets:
                         "video_bg": "video_bg",
                         "warning": "warning",
                     },
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                 }
             },
@@ -479,7 +479,7 @@ class TestPresets:
                         "video_bg": "video_bg",
                         "warning": "warning",
                     },
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                 }
             },
@@ -596,7 +596,7 @@ class TestPresets:
                             "video_bg": "video_bg",
                             "warning": "warning",
                         },
-                        "spacing_base": 0,
+                        "spacing_base": 1,
                         "theme": "darkest",
                     }
                 },
@@ -703,7 +703,7 @@ class TestPresets:
                             "video_bg": "video_bg",
                             "warning": "warning",
                         },
-                        "spacing_base": 0,
+                        "spacing_base": 1,
                         "theme": "darkest",
                     }
                 },
@@ -842,7 +842,7 @@ class TestPresets:
                     "font_family": "font_family",
                     "google_font": "google_font",
                     "logo": "https://example.com",
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                 }
             },
@@ -1204,7 +1204,7 @@ class TestAsyncPresets:
                         "video_bg": "video_bg",
                         "warning": "warning",
                     },
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                 }
             },
@@ -1330,7 +1330,7 @@ class TestAsyncPresets:
                         "video_bg": "video_bg",
                         "warning": "warning",
                     },
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                     "font_family": "font_family",
                     "google_font": "google_font",
@@ -1443,7 +1443,7 @@ class TestAsyncPresets:
                         "video_bg": "video_bg",
                         "warning": "warning",
                     },
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                 }
             },
@@ -1557,7 +1557,7 @@ class TestAsyncPresets:
                         "video_bg": "video_bg",
                         "warning": "warning",
                     },
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                 }
             },
@@ -1674,7 +1674,7 @@ class TestAsyncPresets:
                             "video_bg": "video_bg",
                             "warning": "warning",
                         },
-                        "spacing_base": 0,
+                        "spacing_base": 1,
                         "theme": "darkest",
                     }
                 },
@@ -1781,7 +1781,7 @@ class TestAsyncPresets:
                             "video_bg": "video_bg",
                             "warning": "warning",
                         },
-                        "spacing_base": 0,
+                        "spacing_base": 1,
                         "theme": "darkest",
                     }
                 },
@@ -1920,7 +1920,7 @@ class TestAsyncPresets:
                     "font_family": "font_family",
                     "google_font": "google_font",
                     "logo": "https://example.com",
-                    "spacing_base": 0,
+                    "spacing_base": 1,
                     "theme": "darkest",
                 }
             },
