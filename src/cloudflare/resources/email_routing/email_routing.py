@@ -15,7 +15,7 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .addresses import (
@@ -43,7 +43,11 @@ from .rules.rules import (
     AsyncRulesResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
-from ...types.email_routing import email_routing_enable_params, email_routing_disable_params
+from ...types.email_routing import (
+    email_routing_enable_params,
+    email_routing_unlock_params,
+    email_routing_disable_params,
+)
 from ...types.email_routing.settings import Settings
 
 __all__ = ["EmailRoutingResource", "AsyncEmailRoutingResource"]
@@ -197,6 +201,52 @@ class EmailRoutingResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
             path_template("/zones/{zone_id}/email/routing", zone_id=zone_id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+        )
+
+    @typing_extensions.deprecated("This endpoint is deprecated. Use PATCH /zones/{zone_id}/email/routing/dns instead.")
+    def unlock(
+        self,
+        *,
+        zone_id: str,
+        name: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Settings]:
+        """Unlock MX records previously locked by Email Routing.
+
+        Deprecated - use PATCH
+        /zones/{zone_id}/email/routing/dns instead.
+
+        Args:
+          zone_id: Identifier.
+
+          name: Domain of your zone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._post(
+            path_template("/zones/{zone_id}/email/routing/unlock", zone_id=zone_id),
+            body=maybe_transform({"name": name}, email_routing_unlock_params.EmailRoutingUnlockParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -366,6 +416,52 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
+    @typing_extensions.deprecated("This endpoint is deprecated. Use PATCH /zones/{zone_id}/email/routing/dns instead.")
+    async def unlock(
+        self,
+        *,
+        zone_id: str,
+        name: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Settings]:
+        """Unlock MX records previously locked by Email Routing.
+
+        Deprecated - use PATCH
+        /zones/{zone_id}/email/routing/dns instead.
+
+        Args:
+          zone_id: Identifier.
+
+          name: Domain of your zone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            path_template("/zones/{zone_id}/email/routing/unlock", zone_id=zone_id),
+            body=await async_maybe_transform({"name": name}, email_routing_unlock_params.EmailRoutingUnlockParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+        )
+
 
 class EmailRoutingResourceWithRawResponse:
     def __init__(self, email_routing: EmailRoutingResource) -> None:
@@ -383,6 +479,11 @@ class EmailRoutingResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             email_routing.get,
+        )
+        self.unlock = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                email_routing.unlock,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -415,6 +516,11 @@ class AsyncEmailRoutingResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             email_routing.get,
         )
+        self.unlock = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                email_routing.unlock,  # pyright: ignore[reportDeprecated],
+            )
+        )
 
     @cached_property
     def dns(self) -> AsyncDNSResourceWithRawResponse:
@@ -446,6 +552,11 @@ class EmailRoutingResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             email_routing.get,
         )
+        self.unlock = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                email_routing.unlock,  # pyright: ignore[reportDeprecated],
+            )
+        )
 
     @cached_property
     def dns(self) -> DNSResourceWithStreamingResponse:
@@ -476,6 +587,11 @@ class AsyncEmailRoutingResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             email_routing.get,
+        )
+        self.unlock = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                email_routing.unlock,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

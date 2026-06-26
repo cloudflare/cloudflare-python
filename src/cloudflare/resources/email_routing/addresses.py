@@ -20,7 +20,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.email_routing import address_list_params, address_create_params
+from ...types.email_routing import address_edit_params, address_list_params, address_create_params
 from ...types.email_routing.address import Address
 
 __all__ = ["AddressesResource", "AsyncAddressesResource"]
@@ -191,6 +191,61 @@ class AddressesResource(SyncAPIResource):
                 account_id=account_id,
                 destination_address_identifier=destination_address_identifier,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Address]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Address]], ResultWrapper[Address]),
+        )
+
+    def edit(
+        self,
+        destination_address_identifier: str,
+        *,
+        account_id: str,
+        status: Literal["unverified", "verified"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Address]:
+        """
+        Updates the status of a specific destination address.
+
+        Args:
+          account_id: Identifier.
+
+          destination_address_identifier: Destination address identifier.
+
+          status: Destination address status. Non-admin callers may only set verified addresses
+              back to unverified; setting to verified requires admin privileges.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not destination_address_identifier:
+            raise ValueError(
+                f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
+            )
+        return self._patch(
+            path_template(
+                "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+                account_id=account_id,
+                destination_address_identifier=destination_address_identifier,
+            ),
+            body=maybe_transform({"status": status}, address_edit_params.AddressEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -427,6 +482,61 @@ class AsyncAddressesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Address]], ResultWrapper[Address]),
         )
 
+    async def edit(
+        self,
+        destination_address_identifier: str,
+        *,
+        account_id: str,
+        status: Literal["unverified", "verified"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Address]:
+        """
+        Updates the status of a specific destination address.
+
+        Args:
+          account_id: Identifier.
+
+          destination_address_identifier: Destination address identifier.
+
+          status: Destination address status. Non-admin callers may only set verified addresses
+              back to unverified; setting to verified requires admin privileges.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not destination_address_identifier:
+            raise ValueError(
+                f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
+            )
+        return await self._patch(
+            path_template(
+                "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+                account_id=account_id,
+                destination_address_identifier=destination_address_identifier,
+            ),
+            body=await async_maybe_transform({"status": status}, address_edit_params.AddressEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Address]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Address]], ResultWrapper[Address]),
+        )
+
     async def get(
         self,
         destination_address_identifier: str,
@@ -491,6 +601,9 @@ class AddressesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             addresses.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            addresses.edit,
+        )
         self.get = to_raw_response_wrapper(
             addresses.get,
         )
@@ -508,6 +621,9 @@ class AsyncAddressesResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             addresses.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            addresses.edit,
         )
         self.get = async_to_raw_response_wrapper(
             addresses.get,
@@ -527,6 +643,9 @@ class AddressesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             addresses.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            addresses.edit,
+        )
         self.get = to_streamed_response_wrapper(
             addresses.get,
         )
@@ -544,6 +663,9 @@ class AsyncAddressesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             addresses.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            addresses.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             addresses.get,
