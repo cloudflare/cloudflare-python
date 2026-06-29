@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -67,6 +67,7 @@ class AuditResource(SyncAPIResource):
         cursor: str | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
         limit: float | Omit = omit,
+        product_category: SequenceNotStr[str] | Omit = omit,
         raw_cf_rayid: audit_list_params.RawCfRayID | Omit = omit,
         raw_method: audit_list_params.RawMethod | Omit = omit,
         raw_status_code: audit_list_params.RawStatusCode | Omit = omit,
@@ -108,6 +109,12 @@ class AuditResource(SyncAPIResource):
           limit: The number limits the objects to return. The cursor attribute may be used to
               iterate over the next batch of objects if there are more than the limit.
 
+          product_category: Filters audit logs by one or more predefined product categories. Each product
+              category expands into a curated set of resource_product values and is unioned
+              with any explicit resource_product filter. Matched case-insensitively; unknown
+              product categories return 400. Repeatable. Use the audit log product categories
+              endpoint to discover the available values.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -145,6 +152,7 @@ class AuditResource(SyncAPIResource):
                         "cursor": cursor,
                         "direction": direction,
                         "limit": limit,
+                        "product_category": product_category,
                         "raw_cf_rayid": raw_cf_rayid,
                         "raw_method": raw_method,
                         "raw_status_code": raw_status_code,
@@ -204,6 +212,7 @@ class AsyncAuditResource(AsyncAPIResource):
         cursor: str | Omit = omit,
         direction: Literal["desc", "asc"] | Omit = omit,
         limit: float | Omit = omit,
+        product_category: SequenceNotStr[str] | Omit = omit,
         raw_cf_rayid: audit_list_params.RawCfRayID | Omit = omit,
         raw_method: audit_list_params.RawMethod | Omit = omit,
         raw_status_code: audit_list_params.RawStatusCode | Omit = omit,
@@ -245,6 +254,12 @@ class AsyncAuditResource(AsyncAPIResource):
           limit: The number limits the objects to return. The cursor attribute may be used to
               iterate over the next batch of objects if there are more than the limit.
 
+          product_category: Filters audit logs by one or more predefined product categories. Each product
+              category expands into a curated set of resource_product values and is unioned
+              with any explicit resource_product filter. Matched case-insensitively; unknown
+              product categories return 400. Repeatable. Use the audit log product categories
+              endpoint to discover the available values.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -282,6 +297,7 @@ class AsyncAuditResource(AsyncAPIResource):
                         "cursor": cursor,
                         "direction": direction,
                         "limit": limit,
+                        "product_category": product_category,
                         "raw_cf_rayid": raw_cf_rayid,
                         "raw_method": raw_method,
                         "raw_status_code": raw_status_code,
