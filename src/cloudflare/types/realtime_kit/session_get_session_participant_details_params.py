@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["SessionGetSessionParticipantDetailsParams"]
 
@@ -15,12 +15,6 @@ class SessionGetSessionParticipantDetailsParams(TypedDict, total=False):
     """The app identifier tag."""
 
     session_id: Required[str]
-
-    filters: Literal["device_info", "ip_information", "precall_network_information", "events", "quality_stats"]
-    """Comma separated list of filters to apply.
-
-    Note that there must be no spaces between the filters.
-    """
 
     include_peer_events: bool
     """if true, response includes all the peer events of participant."""

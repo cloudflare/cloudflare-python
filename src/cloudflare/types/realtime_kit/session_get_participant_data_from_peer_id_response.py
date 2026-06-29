@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
@@ -321,7 +321,7 @@ class DataParticipantPeerReportMetadataDeviceInfo(BaseModel):
 class DataParticipantPeerReportMetadataEvent(BaseModel):
     """A timestamped event recorded during the participant's connection."""
 
-    metadata: Optional[Dict[str, object]] = None
+    metadata: Optional[Dict[str, Union[str, float, bool, None]]] = None
     """Event-specific metadata.
 
     Keys vary per event; values are primitive scalars (string, number, boolean, or

@@ -54,9 +54,6 @@ class Data(BaseModel):
     ended_at: Optional[str] = None
     """timestamp when session ended"""
 
-    meta: Optional[object] = None
-    """Any meta data about session."""
-
 
 class ActiveSessionGetActiveSessionResponse(BaseModel):
     data: Optional[Data] = None
