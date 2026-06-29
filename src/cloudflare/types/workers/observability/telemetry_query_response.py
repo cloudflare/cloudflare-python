@@ -658,7 +658,18 @@ class EventsEventWorkersUnionMember0ScriptVersion(BaseModel):
 
 class EventsEventWorkersUnionMember0(BaseModel):
     event_type: Literal[
-        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "workflow", "unknown"
+        "fetch",
+        "scheduled",
+        "alarm",
+        "cron",
+        "queue",
+        "email",
+        "tail",
+        "rpc",
+        "jsrpc",
+        "websocket",
+        "workflow",
+        "unknown",
     ] = FieldInfo(alias="eventType")
 
     request_id: str = FieldInfo(alias="requestId")
@@ -716,7 +727,18 @@ class EventsEventWorkersUnionMember1(BaseModel):
     cpu_time_ms: float = FieldInfo(alias="cpuTimeMs")
 
     event_type: Literal[
-        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "workflow", "unknown"
+        "fetch",
+        "scheduled",
+        "alarm",
+        "cron",
+        "queue",
+        "email",
+        "tail",
+        "rpc",
+        "jsrpc",
+        "websocket",
+        "workflow",
+        "unknown",
     ] = FieldInfo(alias="eventType")
 
     outcome: str
@@ -976,7 +998,18 @@ class InvocationWorkersUnionMember0ScriptVersion(BaseModel):
 
 class InvocationWorkersUnionMember0(BaseModel):
     event_type: Literal[
-        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "workflow", "unknown"
+        "fetch",
+        "scheduled",
+        "alarm",
+        "cron",
+        "queue",
+        "email",
+        "tail",
+        "rpc",
+        "jsrpc",
+        "websocket",
+        "workflow",
+        "unknown",
     ] = FieldInfo(alias="eventType")
 
     request_id: str = FieldInfo(alias="requestId")
@@ -1034,7 +1067,18 @@ class InvocationWorkersUnionMember1(BaseModel):
     cpu_time_ms: float = FieldInfo(alias="cpuTimeMs")
 
     event_type: Literal[
-        "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "workflow", "unknown"
+        "fetch",
+        "scheduled",
+        "alarm",
+        "cron",
+        "queue",
+        "email",
+        "tail",
+        "rpc",
+        "jsrpc",
+        "websocket",
+        "workflow",
+        "unknown",
     ] = FieldInfo(alias="eventType")
 
     outcome: str
