@@ -84,7 +84,7 @@ class BrowserResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrowserCreateResponse:
         """
-        Acquire a new browser DevTools session
+        Get a browser session ID.
 
         Args:
           account_id: Account ID.
@@ -420,7 +420,7 @@ class AsyncBrowserResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrowserCreateResponse:
         """
-        Acquire a new browser DevTools session
+        Get a browser session ID.
 
         Args:
           account_id: Account ID.
