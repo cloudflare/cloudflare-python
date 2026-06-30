@@ -47,7 +47,7 @@ class DomainsResource(SyncAPIResource):
         return DomainsResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+        "This operation is deprecated and will reach end of life on September 27, 2026. Use the new Registrar API endpoints (domain-search, domain-check, registrations) instead. Refer to https://developers.cloudflare.com/fundamentals/api/reference/deprecations/ for details."
     )
     def update(
         self,
@@ -117,7 +117,7 @@ class DomainsResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+        "This operation is deprecated and will reach end of life on September 27, 2026. Use the new Registrar API endpoints (domain-search, domain-check, registrations) instead. Refer to https://developers.cloudflare.com/fundamentals/api/reference/deprecations/ for details."
     )
     def list(
         self,
@@ -156,7 +156,7 @@ class DomainsResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+        "This operation is deprecated and will reach end of life on September 27, 2026. Use the new Registrar API endpoints (domain-search, domain-check, registrations) instead. Refer to https://developers.cloudflare.com/fundamentals/api/reference/deprecations/ for details."
     )
     def get(
         self,
@@ -229,7 +229,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         return AsyncDomainsResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+        "This operation is deprecated and will reach end of life on September 27, 2026. Use the new Registrar API endpoints (domain-search, domain-check, registrations) instead. Refer to https://developers.cloudflare.com/fundamentals/api/reference/deprecations/ for details."
     )
     async def update(
         self,
@@ -299,7 +299,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+        "This operation is deprecated and will reach end of life on September 27, 2026. Use the new Registrar API endpoints (domain-search, domain-check, registrations) instead. Refer to https://developers.cloudflare.com/fundamentals/api/reference/deprecations/ for details."
     )
     def list(
         self,
@@ -338,7 +338,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "This operation is deprecated and will be removed in a future release. A replacement Registrar API will be announced separately."
+        "This operation is deprecated and will reach end of life on September 27, 2026. Use the new Registrar API endpoints (domain-search, domain-check, registrations) instead. Refer to https://developers.cloudflare.com/fundamentals/api/reference/deprecations/ for details."
     )
     async def get(
         self,
