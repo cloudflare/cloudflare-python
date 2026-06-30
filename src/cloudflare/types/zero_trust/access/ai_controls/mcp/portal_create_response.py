@@ -66,6 +66,9 @@ class Server(BaseModel):
 
     prompts: List[Dict[str, object]]
 
+    server_id: str
+    """server id"""
+
     tools: List[Dict[str, object]]
 
     created_at: Optional[datetime] = None
