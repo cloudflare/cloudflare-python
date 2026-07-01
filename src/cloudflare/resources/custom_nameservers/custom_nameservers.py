@@ -60,7 +60,7 @@ class CustomNameserversResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomNameserver]:
         """
-        Add Account Custom Nameserver
+        Adds a custom nameserver to the account for use as a vanity nameserver on zones.
 
         Args:
           account_id: Account identifier tag.
@@ -111,7 +111,7 @@ class CustomNameserversResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[CustomNameserverDeleteResponse]:
         """
-        Delete Account Custom Nameserver
+        Removes a custom nameserver from the account.
 
         Args:
           account_id: Account identifier tag.
@@ -213,7 +213,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomNameserver]:
         """
-        Add Account Custom Nameserver
+        Adds a custom nameserver to the account for use as a vanity nameserver on zones.
 
         Args:
           account_id: Account identifier tag.
@@ -264,7 +264,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomNameserverDeleteResponse, AsyncSinglePage[CustomNameserverDeleteResponse]]:
         """
-        Delete Account Custom Nameserver
+        Removes a custom nameserver from the account.
 
         Args:
           account_id: Account identifier tag.
