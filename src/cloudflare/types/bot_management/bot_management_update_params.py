@@ -19,11 +19,7 @@ class BotFightModeConfiguration(TypedDict, total=False):
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
-    """Enable rule to block AI Scrapers and Crawlers.
-
-    Please note the value `only_on_ad_pages` is currently not available for
-    Enterprise customers.
-    """
+    """Enable rule to block AI Scrapers and Crawlers."""
 
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
@@ -60,11 +56,7 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
-    """Enable rule to block AI Scrapers and Crawlers.
-
-    Please note the value `only_on_ad_pages` is currently not available for
-    Enterprise customers.
-    """
+    """Enable rule to block AI Scrapers and Crawlers."""
 
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
@@ -114,11 +106,7 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
-    """Enable rule to block AI Scrapers and Crawlers.
-
-    Please note the value `only_on_ad_pages` is currently not available for
-    Enterprise customers.
-    """
+    """Enable rule to block AI Scrapers and Crawlers."""
 
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
@@ -171,11 +159,7 @@ class SubscriptionConfiguration(TypedDict, total=False):
     """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
-    """Enable rule to block AI Scrapers and Crawlers.
-
-    Please note the value `only_on_ad_pages` is currently not available for
-    Enterprise customers.
-    """
+    """Enable rule to block AI Scrapers and Crawlers."""
 
     auto_update_model: bool
     """

@@ -40,11 +40,7 @@ class StaleZoneConfiguration(BaseModel):
 
 class BotFightModeConfiguration(BaseModel):
     ai_bots_protection: Optional[Literal["block", "disabled", "only_on_ad_pages"]] = None
-    """Enable rule to block AI Scrapers and Crawlers.
-
-    Please note the value `only_on_ad_pages` is currently not available for
-    Enterprise customers.
-    """
+    """Enable rule to block AI Scrapers and Crawlers."""
 
     cf_robots_variant: Optional[Literal["off", "policy_only"]] = None
     """Specifies the Robots Access Control License variant to use."""
