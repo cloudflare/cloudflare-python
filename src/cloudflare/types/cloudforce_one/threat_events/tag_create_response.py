@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["TagCreateResponse", "Alias", "InternalAlias"]
+__all__ = ["TagCreateResponse", "Alias", "ExternalReference", "InternalAlias"]
 
 
 class Alias(BaseModel):
@@ -16,6 +16,12 @@ class Alias(BaseModel):
     confidence: Optional[int] = None
 
     tlp: Optional[Literal["red", "amber", "green", "white"]] = None
+
+
+class ExternalReference(BaseModel):
+    url: str
+
+    description: Optional[str] = None
 
 
 class InternalAlias(BaseModel):
@@ -34,6 +40,12 @@ class TagCreateResponse(BaseModel):
     active_duration: Optional[str] = FieldInfo(alias="activeDuration", default=None)
 
     actor_category: Optional[str] = FieldInfo(alias="actorCategory", default=None)
+
+    actor_category_confidence: Optional[int] = FieldInfo(alias="actorCategoryConfidence", default=None)
+    """Confidence (1-10) in the actor variety (actorCategory).
+
+    CFONE-only: stripped from responses to non-CFONE accounts.
+    """
 
     aliases: Optional[List[Alias]] = None
     """Structured aliases ({ value, confidence 1-10, tlp }).
@@ -61,6 +73,12 @@ class TagCreateResponse(BaseModel):
 
     external_reference_links: Optional[List[str]] = FieldInfo(alias="externalReferenceLinks", default=None)
 
+    external_references: Optional[List[ExternalReference]] = FieldInfo(alias="externalReferences", default=None)
+    """Structured external references ({ url, description }).
+
+    Public: returned to all accounts.
+    """
+
     internal_aliases: Optional[List[InternalAlias]] = FieldInfo(alias="internalAliases", default=None)
     """Internal structured aliases ({ value, confidence 1-10, tlp }).
 
@@ -71,11 +89,31 @@ class TagCreateResponse(BaseModel):
 
     motive: Optional[str] = None
 
+    motive_confidence: Optional[int] = FieldInfo(alias="motiveConfidence", default=None)
+    """Confidence (1-10) in the actor motive.
+
+    CFONE-only: stripped from responses to non-CFONE accounts.
+    """
+
     opsec_level: Optional[str] = FieldInfo(alias="opsecLevel", default=None)
+
+    origin_country_confidence: Optional[int] = FieldInfo(alias="originCountryConfidence", default=None)
+    """Confidence (1-10) in the origin-country attribution.
+
+    CFONE-only: stripped from responses to non-CFONE accounts.
+    """
 
     origin_country_iso: Optional[str] = FieldInfo(alias="originCountryISO", default=None)
 
     origin_country_iso_alpha3: Optional[str] = FieldInfo(alias="originCountryISOAlpha3", default=None)
+
+    origin_country_tlp: Optional[Literal["red", "amber", "green", "white"]] = FieldInfo(
+        alias="originCountryTlp", default=None
+    )
+    """TLP marking for the origin-country attribution.
+
+    CFONE-only: stripped from responses to non-CFONE accounts.
+    """
 
     priority: Optional[float] = None
 

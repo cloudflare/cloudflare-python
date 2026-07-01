@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
+from typing_extensions import Literal
 
 import httpx
 
@@ -50,6 +51,7 @@ class TagsResource(SyncAPIResource):
         value: str,
         active_duration: str | Omit = omit,
         actor_category: str | Omit = omit,
+        actor_category_confidence: int | Omit = omit,
         aliases: Iterable[tag_create_params.Alias] | Omit = omit,
         alias_group_names: SequenceNotStr[str] | Omit = omit,
         alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
@@ -60,11 +62,15 @@ class TagsResource(SyncAPIResource):
         category_uuid: str | Omit = omit,
         date_of_discovery: str | Omit = omit,
         external_reference_links: SequenceNotStr[str] | Omit = omit,
+        external_references: Iterable[tag_create_params.ExternalReference] | Omit = omit,
         internal_aliases: Iterable[tag_create_params.InternalAlias] | Omit = omit,
         internal_description: str | Omit = omit,
         motive: str | Omit = omit,
+        motive_confidence: int | Omit = omit,
         opsec_level: str | Omit = omit,
+        origin_country_confidence: int | Omit = omit,
         origin_country_iso: str | Omit = omit,
+        origin_country_tlp: Literal["red", "amber", "green", "white"] | Omit = omit,
         priority: float | Omit = omit,
         sophistication_level: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -84,16 +90,31 @@ class TagsResource(SyncAPIResource):
               Former Employee, Nation State, Organized Crime, Nation State Affiliated,
               Terrorist, Unaffiliated.
 
+          actor_category_confidence: Confidence (1-10) in the actor variety (actorCategory). CFONE-only: stripped
+              from responses to non-CFONE accounts.
+
           aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
               responses to non-CFONE accounts.
 
           date_of_discovery: Date the actor was discovered (ISO YYYY-MM-DD).
+
+          external_references: Structured external references ({ url, description }). Public: returned to all
+              accounts.
 
           internal_aliases: Internal structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: never
               returned to non-CFONE accounts.
 
           motive: Actor motive. Allowed values: Convenience, Fear, Fun, Financial, Grudge,
               Ideology, Espionage.
+
+          motive_confidence: Confidence (1-10) in the actor motive. CFONE-only: stripped from responses to
+              non-CFONE accounts.
+
+          origin_country_confidence: Confidence (1-10) in the origin-country attribution. CFONE-only: stripped from
+              responses to non-CFONE accounts.
+
+          origin_country_tlp: TLP marking for the origin-country attribution. CFONE-only: stripped from
+              responses to non-CFONE accounts.
 
           extra_headers: Send extra headers
 
@@ -112,6 +133,7 @@ class TagsResource(SyncAPIResource):
                     "value": value,
                     "active_duration": active_duration,
                     "actor_category": actor_category,
+                    "actor_category_confidence": actor_category_confidence,
                     "aliases": aliases,
                     "alias_group_names": alias_group_names,
                     "alias_group_names_internal": alias_group_names_internal,
@@ -122,11 +144,15 @@ class TagsResource(SyncAPIResource):
                     "category_uuid": category_uuid,
                     "date_of_discovery": date_of_discovery,
                     "external_reference_links": external_reference_links,
+                    "external_references": external_references,
                     "internal_aliases": internal_aliases,
                     "internal_description": internal_description,
                     "motive": motive,
+                    "motive_confidence": motive_confidence,
                     "opsec_level": opsec_level,
+                    "origin_country_confidence": origin_country_confidence,
                     "origin_country_iso": origin_country_iso,
+                    "origin_country_tlp": origin_country_tlp,
                     "priority": priority,
                     "sophistication_level": sophistication_level,
                 },
@@ -166,6 +192,7 @@ class AsyncTagsResource(AsyncAPIResource):
         value: str,
         active_duration: str | Omit = omit,
         actor_category: str | Omit = omit,
+        actor_category_confidence: int | Omit = omit,
         aliases: Iterable[tag_create_params.Alias] | Omit = omit,
         alias_group_names: SequenceNotStr[str] | Omit = omit,
         alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
@@ -176,11 +203,15 @@ class AsyncTagsResource(AsyncAPIResource):
         category_uuid: str | Omit = omit,
         date_of_discovery: str | Omit = omit,
         external_reference_links: SequenceNotStr[str] | Omit = omit,
+        external_references: Iterable[tag_create_params.ExternalReference] | Omit = omit,
         internal_aliases: Iterable[tag_create_params.InternalAlias] | Omit = omit,
         internal_description: str | Omit = omit,
         motive: str | Omit = omit,
+        motive_confidence: int | Omit = omit,
         opsec_level: str | Omit = omit,
+        origin_country_confidence: int | Omit = omit,
         origin_country_iso: str | Omit = omit,
+        origin_country_tlp: Literal["red", "amber", "green", "white"] | Omit = omit,
         priority: float | Omit = omit,
         sophistication_level: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -200,16 +231,31 @@ class AsyncTagsResource(AsyncAPIResource):
               Former Employee, Nation State, Organized Crime, Nation State Affiliated,
               Terrorist, Unaffiliated.
 
+          actor_category_confidence: Confidence (1-10) in the actor variety (actorCategory). CFONE-only: stripped
+              from responses to non-CFONE accounts.
+
           aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
               responses to non-CFONE accounts.
 
           date_of_discovery: Date the actor was discovered (ISO YYYY-MM-DD).
+
+          external_references: Structured external references ({ url, description }). Public: returned to all
+              accounts.
 
           internal_aliases: Internal structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: never
               returned to non-CFONE accounts.
 
           motive: Actor motive. Allowed values: Convenience, Fear, Fun, Financial, Grudge,
               Ideology, Espionage.
+
+          motive_confidence: Confidence (1-10) in the actor motive. CFONE-only: stripped from responses to
+              non-CFONE accounts.
+
+          origin_country_confidence: Confidence (1-10) in the origin-country attribution. CFONE-only: stripped from
+              responses to non-CFONE accounts.
+
+          origin_country_tlp: TLP marking for the origin-country attribution. CFONE-only: stripped from
+              responses to non-CFONE accounts.
 
           extra_headers: Send extra headers
 
@@ -228,6 +274,7 @@ class AsyncTagsResource(AsyncAPIResource):
                     "value": value,
                     "active_duration": active_duration,
                     "actor_category": actor_category,
+                    "actor_category_confidence": actor_category_confidence,
                     "aliases": aliases,
                     "alias_group_names": alias_group_names,
                     "alias_group_names_internal": alias_group_names_internal,
@@ -238,11 +285,15 @@ class AsyncTagsResource(AsyncAPIResource):
                     "category_uuid": category_uuid,
                     "date_of_discovery": date_of_discovery,
                     "external_reference_links": external_reference_links,
+                    "external_references": external_references,
                     "internal_aliases": internal_aliases,
                     "internal_description": internal_description,
                     "motive": motive,
+                    "motive_confidence": motive_confidence,
                     "opsec_level": opsec_level,
+                    "origin_country_confidence": origin_country_confidence,
                     "origin_country_iso": origin_country_iso,
+                    "origin_country_tlp": origin_country_tlp,
                     "priority": priority,
                     "sophistication_level": sophistication_level,
                 },

@@ -51,6 +51,13 @@ class ThreatEventListParams(TypedDict, total=False):
 
     search: Iterable[Search]
 
+    source: Literal["do", "r2catalog"]
+    """Read backend.
+
+    'do' (default) reads Durable Object storage. 'r2catalog' reads R2 Data Catalog
+    (admin-only, experimental; supports a subset of search fields — no 'tags').
+    """
+
 
 class Search(TypedDict, total=False):
     field: str

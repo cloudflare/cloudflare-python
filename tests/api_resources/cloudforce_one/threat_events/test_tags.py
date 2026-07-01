@@ -34,6 +34,7 @@ class TestTags:
             value="APT28",
             active_duration="activeDuration",
             actor_category="Nation State",
+            actor_category_confidence=7,
             aliases=[
                 {
                     "value": "Fancy Bear",
@@ -50,6 +51,12 @@ class TestTags:
             category_uuid="12345678-1234-1234-1234-1234567890ab",
             date_of_discovery="2024-01-15",
             external_reference_links=["string"],
+            external_references=[
+                {
+                    "url": "https://example.com/report",
+                    "description": "Vendor threat report",
+                }
+            ],
             internal_aliases=[
                 {
                     "value": "Fancy Bear",
@@ -59,8 +66,11 @@ class TestTags:
             ],
             internal_description="internalDescription",
             motive="Espionage",
+            motive_confidence=7,
             opsec_level="opsecLevel",
+            origin_country_confidence=7,
             origin_country_iso="originCountryISO",
+            origin_country_tlp="amber",
             priority=0,
             sophistication_level="sophisticationLevel",
         )
@@ -126,6 +136,7 @@ class TestAsyncTags:
             value="APT28",
             active_duration="activeDuration",
             actor_category="Nation State",
+            actor_category_confidence=7,
             aliases=[
                 {
                     "value": "Fancy Bear",
@@ -142,6 +153,12 @@ class TestAsyncTags:
             category_uuid="12345678-1234-1234-1234-1234567890ab",
             date_of_discovery="2024-01-15",
             external_reference_links=["string"],
+            external_references=[
+                {
+                    "url": "https://example.com/report",
+                    "description": "Vendor threat report",
+                }
+            ],
             internal_aliases=[
                 {
                     "value": "Fancy Bear",
@@ -151,8 +168,11 @@ class TestAsyncTags:
             ],
             internal_description="internalDescription",
             motive="Espionage",
+            motive_confidence=7,
             opsec_level="opsecLevel",
+            origin_country_confidence=7,
             origin_country_iso="originCountryISO",
+            origin_country_tlp="amber",
             priority=0,
             sophistication_level="sophisticationLevel",
         )

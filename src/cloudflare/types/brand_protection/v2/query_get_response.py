@@ -14,8 +14,6 @@ __all__ = [
 
 
 class QueryGetResponseItemParametersStringMatch(BaseModel):
-    max_edit_distance: float
-
     pattern: str
 
 
