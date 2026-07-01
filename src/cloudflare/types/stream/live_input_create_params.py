@@ -35,6 +35,13 @@ class LiveInputCreateParams(TypedDict, total=False):
     managing live inputs.
     """
 
+    prefer_low_latency: Annotated[bool, PropertyInfo(alias="preferLowLatency")]
+    """
+    When enabled, the live stream is delivered using Low-Latency HLS (LL-HLS),
+    reducing glass-to-glass latency for viewers at the cost of reduced player
+    compatibility.
+    """
+
     recording: Recording
     """Records the input to a Cloudflare Stream video.
 

@@ -16,6 +16,14 @@ from .dlp import (
     DLPResourceWithStreamingResponse,
     AsyncDLPResourceWithStreamingResponse,
 )
+from .casb import (
+    CasbResource,
+    AsyncCasbResource,
+    CasbResourceWithRawResponse,
+    AsyncCasbResourceWithRawResponse,
+    CasbResourceWithStreamingResponse,
+    AsyncCasbResourceWithStreamingResponse,
+)
 from .seats import (
     SeatsResource,
     AsyncSeatsResource,
@@ -144,6 +152,12 @@ __all__ = [
     "AsyncAccessResourceWithRawResponse",
     "AccessResourceWithStreamingResponse",
     "AsyncAccessResourceWithStreamingResponse",
+    "CasbResource",
+    "AsyncCasbResource",
+    "CasbResourceWithRawResponse",
+    "AsyncCasbResourceWithRawResponse",
+    "CasbResourceWithStreamingResponse",
+    "AsyncCasbResourceWithStreamingResponse",
     "DEXResource",
     "AsyncDEXResource",
     "DEXResourceWithRawResponse",

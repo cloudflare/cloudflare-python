@@ -65,6 +65,7 @@ class LiveInputsResource(SyncAPIResource):
         delete_recording_after_days: float | Omit = omit,
         enabled: bool | Omit = omit,
         meta: object | Omit = omit,
+        prefer_low_latency: bool | Omit = omit,
         recording: live_input_create_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -93,6 +94,10 @@ class LiveInputsResource(SyncAPIResource):
           meta: A user modifiable key-value store used to reference other systems of record for
               managing live inputs.
 
+          prefer_low_latency: When enabled, the live stream is delivered using Low-Latency HLS (LL-HLS),
+              reducing glass-to-glass latency for viewers at the cost of reduced player
+              compatibility.
+
           recording: Records the input to a Cloudflare Stream video. Behavior depends on the mode. In
               most cases, the video will initially be viewable as a live video and transition
               to on-demand after a condition is satisfied.
@@ -115,6 +120,7 @@ class LiveInputsResource(SyncAPIResource):
                     "delete_recording_after_days": delete_recording_after_days,
                     "enabled": enabled,
                     "meta": meta,
+                    "prefer_low_latency": prefer_low_latency,
                     "recording": recording,
                 },
                 live_input_create_params.LiveInputCreateParams,
@@ -138,6 +144,7 @@ class LiveInputsResource(SyncAPIResource):
         delete_recording_after_days: float | Omit = omit,
         enabled: bool | Omit = omit,
         meta: object | Omit = omit,
+        prefer_low_latency: bool | Omit = omit,
         recording: live_input_update_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -166,6 +173,10 @@ class LiveInputsResource(SyncAPIResource):
 
           meta: A user modifiable key-value store used to reference other systems of record for
               managing live inputs.
+
+          prefer_low_latency: When enabled, the live stream is delivered using Low-Latency HLS (LL-HLS),
+              reducing glass-to-glass latency for viewers at the cost of reduced player
+              compatibility.
 
           recording: Records the input to a Cloudflare Stream video. Behavior depends on the mode. In
               most cases, the video will initially be viewable as a live video and transition
@@ -197,6 +208,7 @@ class LiveInputsResource(SyncAPIResource):
                     "delete_recording_after_days": delete_recording_after_days,
                     "enabled": enabled,
                     "meta": meta,
+                    "prefer_low_latency": prefer_low_latency,
                     "recording": recording,
                 },
                 live_input_update_params.LiveInputUpdateParams,
@@ -388,6 +400,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         delete_recording_after_days: float | Omit = omit,
         enabled: bool | Omit = omit,
         meta: object | Omit = omit,
+        prefer_low_latency: bool | Omit = omit,
         recording: live_input_create_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -416,6 +429,10 @@ class AsyncLiveInputsResource(AsyncAPIResource):
           meta: A user modifiable key-value store used to reference other systems of record for
               managing live inputs.
 
+          prefer_low_latency: When enabled, the live stream is delivered using Low-Latency HLS (LL-HLS),
+              reducing glass-to-glass latency for viewers at the cost of reduced player
+              compatibility.
+
           recording: Records the input to a Cloudflare Stream video. Behavior depends on the mode. In
               most cases, the video will initially be viewable as a live video and transition
               to on-demand after a condition is satisfied.
@@ -438,6 +455,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
                     "delete_recording_after_days": delete_recording_after_days,
                     "enabled": enabled,
                     "meta": meta,
+                    "prefer_low_latency": prefer_low_latency,
                     "recording": recording,
                 },
                 live_input_create_params.LiveInputCreateParams,
@@ -461,6 +479,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         delete_recording_after_days: float | Omit = omit,
         enabled: bool | Omit = omit,
         meta: object | Omit = omit,
+        prefer_low_latency: bool | Omit = omit,
         recording: live_input_update_params.Recording | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -489,6 +508,10 @@ class AsyncLiveInputsResource(AsyncAPIResource):
 
           meta: A user modifiable key-value store used to reference other systems of record for
               managing live inputs.
+
+          prefer_low_latency: When enabled, the live stream is delivered using Low-Latency HLS (LL-HLS),
+              reducing glass-to-glass latency for viewers at the cost of reduced player
+              compatibility.
 
           recording: Records the input to a Cloudflare Stream video. Behavior depends on the mode. In
               most cases, the video will initially be viewable as a live video and transition
@@ -520,6 +543,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
                     "delete_recording_after_days": delete_recording_after_days,
                     "enabled": enabled,
                     "meta": meta,
+                    "prefer_low_latency": prefer_low_latency,
                     "recording": recording,
                 },
                 live_input_update_params.LiveInputUpdateParams,

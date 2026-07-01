@@ -84,9 +84,9 @@ class TestRelays:
                     "enabled": True,
                     "max_timeout_ms": 0,
                 },
-                "origin_fallback": {
+                "upstreams": {
                     "enabled": True,
-                    "origins": [{"url": "url"}],
+                    "upstreams": [{"url": "url"}],
                 },
             },
             name="name",
@@ -344,9 +344,9 @@ class TestAsyncRelays:
                     "enabled": True,
                     "max_timeout_ms": 0,
                 },
-                "origin_fallback": {
+                "upstreams": {
                     "enabled": True,
-                    "origins": [{"url": "url"}],
+                    "upstreams": [{"url": "url"}],
                 },
             },
             name="name",

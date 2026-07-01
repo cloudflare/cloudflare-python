@@ -6,13 +6,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = [
-    "RelayUpdateResponse",
-    "Config",
-    "ConfigLingeringSubscribe",
-    "ConfigOriginFallback",
-    "ConfigOriginFallbackOrigin",
-]
+__all__ = ["RelayUpdateResponse", "Config", "ConfigLingeringSubscribe", "ConfigUpstreams", "ConfigUpstreamsUpstream"]
 
 
 class ConfigLingeringSubscribe(BaseModel):
@@ -22,37 +16,46 @@ class ConfigLingeringSubscribe(BaseModel):
     """Relay-level ceiling on lingering subscribe timeout (ms). Default 30000."""
 
 
-class ConfigOriginFallbackOrigin(BaseModel):
-    """A single upstream origin relay."""
+class ConfigUpstreamsUpstream(BaseModel):
+    """A single upstream MOQT server publisher."""
 
     url: Optional[str] = None
-    """Upstream origin relay URL."""
+    """Upstream MOQT server publisher URL."""
 
 
-class ConfigOriginFallback(BaseModel):
+class ConfigUpstreams(BaseModel):
+    """
+    Upstreams are external MOQT server publishers that a relay falls back
+    to when it has no local publisher for a requested namespace/track.
+    """
+
     enabled: Optional[bool] = None
 
-    origins: Optional[List[ConfigOriginFallbackOrigin]] = None
-    """Ordered list of upstream origin relays.
+    upstreams: Optional[List[ConfigUpstreamsUpstream]] = None
+    """Ordered list of upstream MOQT server publishers.
 
-    Each entry is an object (not a bare string) so per-origin configuration can be
+    Each entry is an object (not a bare string) so per-upstream configuration can be
     added in the future without another breaking change.
     """
 
 
 class Config(BaseModel):
-    """origin_fallback and lingering_subscribe are mutually exclusive."""
+    """upstreams and lingering_subscribe are mutually exclusive."""
 
     lingering_subscribe: Optional[ConfigLingeringSubscribe] = None
 
-    origin_fallback: Optional[ConfigOriginFallback] = None
+    upstreams: Optional[ConfigUpstreams] = None
+    """
+    Upstreams are external MOQT server publishers that a relay falls back to when it
+    has no local publisher for a requested namespace/track.
+    """
 
 
 class RelayUpdateResponse(BaseModel):
     """Full relay details (no tokens)."""
 
     config: Config
-    """origin_fallback and lingering_subscribe are mutually exclusive."""
+    """upstreams and lingering_subscribe are mutually exclusive."""
 
     created: datetime
 

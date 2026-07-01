@@ -35,6 +35,7 @@ class TestLiveInputs:
             delete_recording_after_days=45,
             enabled=True,
             meta={"name": "test stream 1"},
+            prefer_low_latency=True,
             recording={
                 "allowed_origins": ["example.com"],
                 "hide_live_viewer_count": False,
@@ -93,6 +94,7 @@ class TestLiveInputs:
             delete_recording_after_days=45,
             enabled=True,
             meta={"name": "test stream 1"},
+            prefer_low_latency=True,
             recording={
                 "allowed_origins": ["example.com"],
                 "hide_live_viewer_count": False,
@@ -306,6 +308,7 @@ class TestAsyncLiveInputs:
             delete_recording_after_days=45,
             enabled=True,
             meta={"name": "test stream 1"},
+            prefer_low_latency=True,
             recording={
                 "allowed_origins": ["example.com"],
                 "hide_live_viewer_count": False,
@@ -364,6 +367,7 @@ class TestAsyncLiveInputs:
             delete_recording_after_days=45,
             enabled=True,
             meta={"name": "test stream 1"},
+            prefer_low_latency=True,
             recording={
                 "allowed_origins": ["example.com"],
                 "hide_live_viewer_count": False,

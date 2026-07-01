@@ -27,6 +27,14 @@ from .dlp.dlp import (
     AsyncDLPResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .casb.casb import (
+    CasbResource,
+    AsyncCasbResource,
+    CasbResourceWithRawResponse,
+    AsyncCasbResourceWithRawResponse,
+    CasbResourceWithStreamingResponse,
+    AsyncCasbResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .access.access import (
     AccessResource,
@@ -134,6 +142,10 @@ class ZeroTrustResource(SyncAPIResource):
         return AccessResource(self._client)
 
     @cached_property
+    def casb(self) -> CasbResource:
+        return CasbResource(self._client)
+
+    @cached_property
     def dex(self) -> DEXResource:
         return DEXResource(self._client)
 
@@ -205,6 +217,10 @@ class AsyncZeroTrustResource(AsyncAPIResource):
     @cached_property
     def access(self) -> AsyncAccessResource:
         return AsyncAccessResource(self._client)
+
+    @cached_property
+    def casb(self) -> AsyncCasbResource:
+        return AsyncCasbResource(self._client)
 
     @cached_property
     def dex(self) -> AsyncDEXResource:
@@ -283,6 +299,10 @@ class ZeroTrustResourceWithRawResponse:
         return AccessResourceWithRawResponse(self._zero_trust.access)
 
     @cached_property
+    def casb(self) -> CasbResourceWithRawResponse:
+        return CasbResourceWithRawResponse(self._zero_trust.casb)
+
+    @cached_property
     def dex(self) -> DEXResourceWithRawResponse:
         return DEXResourceWithRawResponse(self._zero_trust.dex)
 
@@ -338,6 +358,10 @@ class AsyncZeroTrustResourceWithRawResponse:
     @cached_property
     def access(self) -> AsyncAccessResourceWithRawResponse:
         return AsyncAccessResourceWithRawResponse(self._zero_trust.access)
+
+    @cached_property
+    def casb(self) -> AsyncCasbResourceWithRawResponse:
+        return AsyncCasbResourceWithRawResponse(self._zero_trust.casb)
 
     @cached_property
     def dex(self) -> AsyncDEXResourceWithRawResponse:
@@ -397,6 +421,10 @@ class ZeroTrustResourceWithStreamingResponse:
         return AccessResourceWithStreamingResponse(self._zero_trust.access)
 
     @cached_property
+    def casb(self) -> CasbResourceWithStreamingResponse:
+        return CasbResourceWithStreamingResponse(self._zero_trust.casb)
+
+    @cached_property
     def dex(self) -> DEXResourceWithStreamingResponse:
         return DEXResourceWithStreamingResponse(self._zero_trust.dex)
 
@@ -452,6 +480,10 @@ class AsyncZeroTrustResourceWithStreamingResponse:
     @cached_property
     def access(self) -> AsyncAccessResourceWithStreamingResponse:
         return AsyncAccessResourceWithStreamingResponse(self._zero_trust.access)
+
+    @cached_property
+    def casb(self) -> AsyncCasbResourceWithStreamingResponse:
+        return AsyncCasbResourceWithStreamingResponse(self._zero_trust.casb)
 
     @cached_property
     def dex(self) -> AsyncDEXResourceWithStreamingResponse:

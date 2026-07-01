@@ -131,6 +131,12 @@ class LiveInput(BaseModel):
     enabled: Optional[bool] = None
     """Indicates whether the live input is enabled and can accept streams."""
 
+    keys_rotated_at: Optional[datetime] = FieldInfo(alias="keysRotatedAt", default=None)
+    """The date and time the live input keys were last rotated.
+
+    Omitted for live inputs that have never had their keys rotated.
+    """
+
     meta: Optional[object] = None
     """
     A user modifiable key-value store used to reference other systems of record for
@@ -139,6 +145,13 @@ class LiveInput(BaseModel):
 
     modified: Optional[datetime] = None
     """The date and time the live input was last modified."""
+
+    prefer_low_latency: Optional[bool] = FieldInfo(alias="preferLowLatency", default=None)
+    """
+    When enabled, the live stream is delivered using Low-Latency HLS (LL-HLS),
+    reducing glass-to-glass latency for viewers at the cost of reduced player
+    compatibility.
+    """
 
     recording: Optional[Recording] = None
     """Records the input to a Cloudflare Stream video.

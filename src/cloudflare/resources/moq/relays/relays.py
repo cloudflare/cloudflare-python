@@ -77,8 +77,8 @@ class RelaysResource(SyncAPIResource):
 
         Auto-creates a publish+subscribe token and
         a subscribe-only token. Token values are included in the response (shown once).
-        Config is set to defaults (lingering subscribe enabled, 30s ceiling, origin
-        fallback off). Use PUT to modify.
+        Config is set to defaults (lingering subscribe enabled, 30s ceiling, upstreams
+        off). Use PUT to modify.
 
         Args:
           account_id: Cloudflare account identifier.
@@ -125,13 +125,13 @@ class RelaysResource(SyncAPIResource):
         """Updates a relay's name and/or configuration.
 
         Partial updates: omitted fields are
-        preserved. Config sub-objects replace as whole objects when present.
-        origin_fallback and lingering_subscribe are mutually exclusive.
+        preserved. Config sub-objects replace as whole objects when present. upstreams
+        and lingering_subscribe are mutually exclusive.
 
         Args:
           account_id: Cloudflare account identifier.
 
-          config: origin_fallback and lingering_subscribe are mutually exclusive.
+          config: upstreams and lingering_subscribe are mutually exclusive.
 
           extra_headers: Send extra headers
 
@@ -363,8 +363,8 @@ class AsyncRelaysResource(AsyncAPIResource):
 
         Auto-creates a publish+subscribe token and
         a subscribe-only token. Token values are included in the response (shown once).
-        Config is set to defaults (lingering subscribe enabled, 30s ceiling, origin
-        fallback off). Use PUT to modify.
+        Config is set to defaults (lingering subscribe enabled, 30s ceiling, upstreams
+        off). Use PUT to modify.
 
         Args:
           account_id: Cloudflare account identifier.
@@ -411,13 +411,13 @@ class AsyncRelaysResource(AsyncAPIResource):
         """Updates a relay's name and/or configuration.
 
         Partial updates: omitted fields are
-        preserved. Config sub-objects replace as whole objects when present.
-        origin_fallback and lingering_subscribe are mutually exclusive.
+        preserved. Config sub-objects replace as whole objects when present. upstreams
+        and lingering_subscribe are mutually exclusive.
 
         Args:
           account_id: Cloudflare account identifier.
 
-          config: origin_fallback and lingering_subscribe are mutually exclusive.
+          config: upstreams and lingering_subscribe are mutually exclusive.
 
           extra_headers: Send extra headers
 
