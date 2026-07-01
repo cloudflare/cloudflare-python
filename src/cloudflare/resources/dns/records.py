@@ -3182,7 +3182,7 @@ class RecordsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordDeleteResponse]:
         """
-        Delete DNS Record
+        Permanently removes a DNS record from the zone.
 
         Args:
           zone_id: Identifier.
@@ -4860,7 +4860,7 @@ class RecordsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
-        DNS Record Details
+        Retrieves details for a specific DNS record in the zone.
 
         Args:
           zone_id: Identifier.
@@ -8277,7 +8277,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordDeleteResponse]:
         """
-        Delete DNS Record
+        Permanently removes a DNS record from the zone.
 
         Args:
           zone_id: Identifier.
@@ -9955,7 +9955,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
-        DNS Record Details
+        Retrieves details for a specific DNS record in the zone.
 
         Args:
           zone_id: Identifier.
