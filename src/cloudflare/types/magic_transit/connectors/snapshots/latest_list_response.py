@@ -263,6 +263,17 @@ class ItemTunnel(BaseModel):
     tunnel_id: str
     """Tunnel identifier"""
 
+    natd_result: Optional[str] = None
+    """Public socket address returned by the NAT detector"""
+
+    natd_state: Optional[float] = None
+    """Numeric NAT detector state (0 = detected, 1 = missing result, 2 = stale result)"""
+
+    natd_target: Optional[str] = None
+    """
+    Target socket address probed by the NAT detector, using the detector source port
+    """
+
     probed_mtu: Optional[float] = None
     """MTU as measured between the two ends of the tunnel"""
 
