@@ -42,6 +42,10 @@ class Meta(TypedDict, total=False):
     **Operators:**
 
     - `eq`, `eq:string`, `eq:number`, `eq:boolean` - Exact match
+    - `gt`, `gt:number` - Greater than (number only)
+    - `gte`, `gte:number` - Greater than or equal (number only)
+    - `lt`, `lt:number` - Less than (number only)
+    - `lte`, `lte:number` - Less than or equal (number only)
     - `in`, `in:string`, `in:number` - Match any value in pipe-separated list
 
     **Examples:**
@@ -49,5 +53,11 @@ class Meta(TypedDict, total=False):
     - `meta.status[eq]=active`
     - `meta.priority[eq:number]=5`
     - `meta.enabled[eq:boolean]=true`
+    - `meta.priority[gte:number]=1`
+    - `meta.score[lt:number]=100`
     - `meta.region[in]=us-east|us-west|eu-west`
+
+    **Note:** Filter consistency is not validated. Contradictory filters (e.g.,
+    `meta.priority[eq:number]=5&meta.priority[lte:number]=3`) will return zero
+    results.
     """
