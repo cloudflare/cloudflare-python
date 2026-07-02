@@ -36,6 +36,7 @@ class TestTargets:
         target = client.browser_rendering.devtools.browser.targets.create(
             session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
+            live_view_url_expires_in_ms=60000,
             url="https://example.com",
         )
         assert_matches_type(TargetCreateResponse, target, path=["response"])
@@ -85,6 +86,15 @@ class TestTargets:
         target = client.browser_rendering.devtools.browser.targets.list(
             session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
+        )
+        assert_matches_type(TargetListResponse, target, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        target = client.browser_rendering.devtools.browser.targets.list(
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            live_view_url_expires_in_ms=60000,
         )
         assert_matches_type(TargetListResponse, target, path=["response"])
 
@@ -327,6 +337,7 @@ class TestAsyncTargets:
         target = await async_client.browser_rendering.devtools.browser.targets.create(
             session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
+            live_view_url_expires_in_ms=60000,
             url="https://example.com",
         )
         assert_matches_type(TargetCreateResponse, target, path=["response"])
@@ -376,6 +387,15 @@ class TestAsyncTargets:
         target = await async_client.browser_rendering.devtools.browser.targets.list(
             session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
+        )
+        assert_matches_type(TargetListResponse, target, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        target = await async_client.browser_rendering.devtools.browser.targets.list(
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            live_view_url_expires_in_ms=60000,
         )
         assert_matches_type(TargetListResponse, target, path=["response"])
 

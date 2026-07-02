@@ -15,7 +15,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.browser_rendering.devtools.browser import target_create_params
+from .....types.browser_rendering.devtools.browser import target_list_params, target_create_params
 from .....types.browser_rendering.devtools.browser.target_get_response import TargetGetResponse
 from .....types.browser_rendering.devtools.browser.target_list_response import TargetListResponse
 from .....types.browser_rendering.devtools.browser.target_close_response import TargetCloseResponse
@@ -50,6 +50,7 @@ class TargetsResource(SyncAPIResource):
         session_id: str,
         *,
         account_id: str,
+        live_view_url_expires_in_ms: float | Omit = omit,
         url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -66,6 +67,8 @@ class TargetsResource(SyncAPIResource):
           account_id: Account ID.
 
           session_id: Browser session ID.
+
+          live_view_url_expires_in_ms: How long the live view URL remains valid, in milliseconds (max 60 minutes)
 
           extra_headers: Send extra headers
 
@@ -90,7 +93,13 @@ class TargetsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"url": url}, target_create_params.TargetCreateParams),
+                query=maybe_transform(
+                    {
+                        "live_view_url_expires_in_ms": live_view_url_expires_in_ms,
+                        "url": url,
+                    },
+                    target_create_params.TargetCreateParams,
+                ),
             ),
             cast_to=TargetCreateResponse,
         )
@@ -100,6 +109,7 @@ class TargetsResource(SyncAPIResource):
         session_id: str,
         *,
         account_id: str,
+        live_view_url_expires_in_ms: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -115,6 +125,8 @@ class TargetsResource(SyncAPIResource):
           account_id: Account ID.
 
           session_id: Browser session ID.
+
+          live_view_url_expires_in_ms: How long the live view URLs remain valid, in milliseconds (max 60 minutes)
 
           extra_headers: Send extra headers
 
@@ -135,7 +147,13 @@ class TargetsResource(SyncAPIResource):
                 session_id=session_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"live_view_url_expires_in_ms": live_view_url_expires_in_ms}, target_list_params.TargetListParams
+                ),
             ),
             cast_to=TargetListResponse,
         )
@@ -318,6 +336,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         session_id: str,
         *,
         account_id: str,
+        live_view_url_expires_in_ms: float | Omit = omit,
         url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -334,6 +353,8 @@ class AsyncTargetsResource(AsyncAPIResource):
           account_id: Account ID.
 
           session_id: Browser session ID.
+
+          live_view_url_expires_in_ms: How long the live view URL remains valid, in milliseconds (max 60 minutes)
 
           extra_headers: Send extra headers
 
@@ -358,7 +379,13 @@ class AsyncTargetsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"url": url}, target_create_params.TargetCreateParams),
+                query=await async_maybe_transform(
+                    {
+                        "live_view_url_expires_in_ms": live_view_url_expires_in_ms,
+                        "url": url,
+                    },
+                    target_create_params.TargetCreateParams,
+                ),
             ),
             cast_to=TargetCreateResponse,
         )
@@ -368,6 +395,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         session_id: str,
         *,
         account_id: str,
+        live_view_url_expires_in_ms: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -383,6 +411,8 @@ class AsyncTargetsResource(AsyncAPIResource):
           account_id: Account ID.
 
           session_id: Browser session ID.
+
+          live_view_url_expires_in_ms: How long the live view URLs remain valid, in milliseconds (max 60 minutes)
 
           extra_headers: Send extra headers
 
@@ -403,7 +433,13 @@ class AsyncTargetsResource(AsyncAPIResource):
                 session_id=session_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"live_view_url_expires_in_ms": live_view_url_expires_in_ms}, target_list_params.TargetListParams
+                ),
             ),
             cast_to=TargetListResponse,
         )

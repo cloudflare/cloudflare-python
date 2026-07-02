@@ -35,6 +35,7 @@ class TestBrowser:
             account_id="account_id",
             keep_alive=10000,
             lab=True,
+            live_view_url_expires_in_ms=60000,
             recording=True,
             targets=True,
         )
@@ -351,6 +352,7 @@ class TestAsyncBrowser:
             account_id="account_id",
             keep_alive=10000,
             lab=True,
+            live_view_url_expires_in_ms=60000,
             recording=True,
             targets=True,
         )

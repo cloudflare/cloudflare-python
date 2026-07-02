@@ -74,6 +74,7 @@ class BrowserResource(SyncAPIResource):
         account_id: str,
         keep_alive: float | Omit = omit,
         lab: bool | Omit = omit,
+        live_view_url_expires_in_ms: float | Omit = omit,
         recording: bool | Omit = omit,
         targets: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -92,6 +93,9 @@ class BrowserResource(SyncAPIResource):
           keep_alive: Keep-alive time in milliseconds.
 
           lab: Use experimental browser.
+
+          live_view_url_expires_in_ms: How long the live view URL remains valid, in milliseconds (max 60 minutes). Only
+              used when targets is true.
 
           targets: Include browser targets in response.
 
@@ -116,6 +120,7 @@ class BrowserResource(SyncAPIResource):
                     {
                         "keep_alive": keep_alive,
                         "lab": lab,
+                        "live_view_url_expires_in_ms": live_view_url_expires_in_ms,
                         "recording": recording,
                         "targets": targets,
                     },
@@ -410,6 +415,7 @@ class AsyncBrowserResource(AsyncAPIResource):
         account_id: str,
         keep_alive: float | Omit = omit,
         lab: bool | Omit = omit,
+        live_view_url_expires_in_ms: float | Omit = omit,
         recording: bool | Omit = omit,
         targets: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -428,6 +434,9 @@ class AsyncBrowserResource(AsyncAPIResource):
           keep_alive: Keep-alive time in milliseconds.
 
           lab: Use experimental browser.
+
+          live_view_url_expires_in_ms: How long the live view URL remains valid, in milliseconds (max 60 minutes). Only
+              used when targets is true.
 
           targets: Include browser targets in response.
 
@@ -452,6 +461,7 @@ class AsyncBrowserResource(AsyncAPIResource):
                     {
                         "keep_alive": keep_alive,
                         "lab": lab,
+                        "live_view_url_expires_in_ms": live_view_url_expires_in_ms,
                         "recording": recording,
                         "targets": targets,
                     },

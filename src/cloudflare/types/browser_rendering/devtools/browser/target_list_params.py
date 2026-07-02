@@ -6,14 +6,12 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
 
-__all__ = ["TargetCreateParams"]
+__all__ = ["TargetListParams"]
 
 
-class TargetCreateParams(TypedDict, total=False):
+class TargetListParams(TypedDict, total=False):
     account_id: Required[str]
     """Account ID."""
 
     live_view_url_expires_in_ms: Annotated[float, PropertyInfo(alias="liveViewUrlExpiresInMs")]
-    """How long the live view URL remains valid, in milliseconds (max 60 minutes)"""
-
-    url: str
+    """How long the live view URLs remain valid, in milliseconds (max 60 minutes)"""
