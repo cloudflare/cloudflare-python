@@ -29,5 +29,12 @@ class EmailRoutingRule(BaseModel):
     priority: Optional[float] = None
     """Priority of the routing rule."""
 
+    source: Optional[Literal["api", "wrangler"]] = None
+    """Who manages the rule.
+
+    `api` covers dashboard, generic API, and Terraform; `wrangler` means the rule is
+    managed by a Worker's wrangler.jsonc. Defaults to `api` when omitted on write.
+    """
+
     tag: Optional[str] = None
     """Routing rule tag. (Deprecated, replaced by routing rule identifier)"""

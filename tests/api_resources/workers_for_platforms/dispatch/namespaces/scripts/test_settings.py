@@ -45,8 +45,22 @@ class TestSettings:
                         "type": "plain_text",
                     }
                 ],
+                "cache_options": {
+                    "enabled": True,
+                    "cross_version_cache": True,
+                },
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
+                "exports": {
+                    "Admin": {
+                        "type": "worker",
+                        "cache": {"enabled": True},
+                    },
+                    "default": {
+                        "type": "worker",
+                        "cache": {"enabled": False},
+                    },
+                },
                 "limits": {
                     "cpu_ms": 50,
                     "subrequests": 1000,
@@ -249,8 +263,22 @@ class TestAsyncSettings:
                         "type": "plain_text",
                     }
                 ],
+                "cache_options": {
+                    "enabled": True,
+                    "cross_version_cache": True,
+                },
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
+                "exports": {
+                    "Admin": {
+                        "type": "worker",
+                        "cache": {"enabled": True},
+                    },
+                    "default": {
+                        "type": "worker",
+                        "cache": {"enabled": False},
+                    },
+                },
                 "limits": {
                     "cpu_ms": 50,
                     "subrequests": 1000,

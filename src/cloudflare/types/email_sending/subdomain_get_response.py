@@ -27,5 +27,8 @@ class SubdomainGetResponse(BaseModel):
     modified: Optional[datetime] = None
     """The date and time the destination address was last modified."""
 
+    preview_enabled: Optional[bool] = None
+    """Whether sent messages from this subdomain can be previewed in the activity log."""
+
     return_path_domain: Optional[str] = None
     """The return-path domain used for bounce handling."""

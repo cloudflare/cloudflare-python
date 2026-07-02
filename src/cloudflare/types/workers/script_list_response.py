@@ -9,6 +9,7 @@ from .scripts.consumer_script import ConsumerScript
 
 __all__ = [
     "ScriptListResponse",
+    "CacheOptions",
     "NamedHandler",
     "Observability",
     "ObservabilityLogs",
@@ -28,6 +29,26 @@ __all__ = [
     "PlacementUnionMember7TargetHost",
     "Route",
 ]
+
+
+class CacheOptions(BaseModel):
+    """Global CacheW configuration for the Worker.
+
+    When caching is on,
+    the platform provisions a `cloudflare.app` zone for the Worker.
+    A `type: worker` entry in the `exports` map can override this
+    value for a single entrypoint.
+    """
+
+    enabled: bool
+    """Whether caching is enabled for this Worker."""
+
+    cross_version_cache: Optional[bool] = None
+    """Whether cached responses are shared across Worker version uploads.
+
+    This is independent of `enabled`. It can stay true while caching is off, so the
+    preference survives turning caching off and back on.
+    """
 
 
 class NamedHandler(BaseModel):
@@ -305,6 +326,14 @@ class Route(BaseModel):
 class ScriptListResponse(BaseModel):
     id: Optional[str] = None
     """The name used to identify the script."""
+
+    cache_options: Optional[CacheOptions] = None
+    """Global CacheW configuration for the Worker.
+
+    When caching is on, the platform provisions a `cloudflare.app` zone for the
+    Worker. A `type: worker` entry in the `exports` map can override this value for
+    a single entrypoint.
+    """
 
     compatibility_date: Optional[str] = None
     """Date indicating targeted support in the Workers runtime.

@@ -52,6 +52,9 @@ __all__ = [
     "BindingWorkersBindingKindWasmModule",
     "BindingWorkersBindingKindVPCService",
     "BindingWorkersBindingKindVPCNetwork",
+    "CacheOptions",
+    "Exports",
+    "ExportsCache",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -644,6 +647,59 @@ Binding: TypeAlias = Annotated[
 ]
 
 
+class CacheOptions(BaseModel):
+    """Global CacheW configuration for the Worker.
+
+    When caching is on,
+    the platform provisions a `cloudflare.app` zone for the Worker.
+    A `type: worker` entry in the `exports` map can override this
+    value for a single entrypoint.
+    """
+
+    enabled: bool
+    """Whether caching is enabled for this Worker."""
+
+    cross_version_cache: Optional[bool] = None
+    """Whether cached responses are shared across Worker version uploads.
+
+    This is independent of `enabled`. It can stay true while caching is off, so the
+    preference survives turning caching off and back on.
+    """
+
+
+class ExportsCache(BaseModel):
+    """Cache override for this entrypoint.
+
+    It applies only to
+    `type: worker` entries and overrides the Worker's global
+    `cache_options.enabled` for that entrypoint.
+    """
+
+    enabled: bool
+    """Whether caching is enabled for this entrypoint."""
+
+
+class Exports(BaseModel):
+    """
+    A single entry in the `exports` map, keyed by export name (a
+    `WorkerEntrypoint` class name, a Durable Object class name, or
+    `default` for the Worker's default export). Worker entrypoint
+    entries set `type: worker` and may carry `cache` configuration
+    for that entrypoint. Durable Object entries set
+    `type: durable-object` and carry additional provisioning fields.
+    """
+
+    type: Literal["worker", "durable-object"]
+    """The kind of export."""
+
+    cache: Optional[ExportsCache] = None
+    """Cache override for this entrypoint.
+
+    It applies only to `type: worker` entries and overrides the Worker's global
+    `cache_options.enabled` for that entrypoint.
+    """
+
+
 class Limits(BaseModel):
     """Limits to apply for this Worker."""
 
@@ -826,6 +882,14 @@ class SettingEditResponse(BaseModel):
 
     You can find more about bindings on our docs:
     https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
+    """
+
+    cache_options: Optional[CacheOptions] = None
+    """Global CacheW configuration for the Worker.
+
+    When caching is on, the platform provisions a `cloudflare.app` zone for the
+    Worker. A `type: worker` entry in the `exports` map can override this value for
+    a single entrypoint.
     """
 
     compatibility_date: Optional[str] = None

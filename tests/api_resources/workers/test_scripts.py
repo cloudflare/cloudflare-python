@@ -62,8 +62,22 @@ class TestScripts:
                     }
                 ],
                 "body_part": "worker.js",
+                "cache_options": {
+                    "enabled": True,
+                    "cross_version_cache": True,
+                },
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
+                "exports": {
+                    "Admin": {
+                        "type": "worker",
+                        "cache": {"enabled": True},
+                    },
+                    "default": {
+                        "type": "worker",
+                        "cache": {"enabled": False},
+                    },
+                },
                 "keep_assets": False,
                 "keep_bindings": ["string"],
                 "limits": {
@@ -427,8 +441,22 @@ class TestAsyncScripts:
                     }
                 ],
                 "body_part": "worker.js",
+                "cache_options": {
+                    "enabled": True,
+                    "cross_version_cache": True,
+                },
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
+                "exports": {
+                    "Admin": {
+                        "type": "worker",
+                        "cache": {"enabled": True},
+                    },
+                    "default": {
+                        "type": "worker",
+                        "cache": {"enabled": False},
+                    },
+                },
                 "keep_assets": False,
                 "keep_bindings": ["string"],
                 "limits": {

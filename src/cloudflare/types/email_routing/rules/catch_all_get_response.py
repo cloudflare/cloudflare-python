@@ -26,5 +26,12 @@ class CatchAllGetResponse(BaseModel):
     name: Optional[str] = None
     """Routing rule name."""
 
+    source: Optional[Literal["api", "wrangler"]] = None
+    """Who manages the rule.
+
+    `api` covers dashboard, generic API, and Terraform; `wrangler` means the rule is
+    managed by a Worker's wrangler.jsonc. Defaults to `api` when omitted on write.
+    """
+
     tag: Optional[str] = None
     """Routing rule tag. (Deprecated, replaced by routing rule identifier)"""

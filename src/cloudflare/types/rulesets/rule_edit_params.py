@@ -260,6 +260,14 @@ __all__ = [
     "SkipRulePositionAfterPosition",
     "SkipRulePositionIndexPosition",
     "SkipRuleRatelimit",
+    "TransformResponseHTMLRule",
+    "TransformResponseHTMLRuleActionParameters",
+    "TransformResponseHTMLRuleExposedCredentialCheck",
+    "TransformResponseHTMLRulePosition",
+    "TransformResponseHTMLRulePositionBeforePosition",
+    "TransformResponseHTMLRulePositionAfterPosition",
+    "TransformResponseHTMLRulePositionIndexPosition",
+    "TransformResponseHTMLRuleRatelimit",
 ]
 
 
@@ -4287,6 +4295,147 @@ class SkipRuleRatelimit(TypedDict, total=False):
     """
 
 
+class TransformResponseHTMLRule(TypedDict, total=False):
+    ruleset_id: Required[str]
+    """The unique ID of the ruleset."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    id: str
+    """The unique ID of the rule."""
+
+    action: Literal["transform_response_html"]
+    """The action to perform when the rule matches."""
+
+    action_parameters: TransformResponseHTMLRuleActionParameters
+    """The parameters configuring the rule's action."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule should be executed."""
+
+    exposed_credential_check: TransformResponseHTMLRuleExposedCredentialCheck
+    """Configuration for exposed credential checking."""
+
+    expression: str
+    """The expression defining which traffic will match the rule."""
+
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
+
+    position: TransformResponseHTMLRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: TransformResponseHTMLRuleRatelimit
+    """An object configuring the rule's rate limit behavior."""
+
+    ref: str
+    """The reference of the rule (the rule's ID by default)."""
+
+
+class TransformResponseHTMLRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
+    link_maze: Required[object]
+    """Enables the link maze transformation on the response."""
+
+
+class TransformResponseHTMLRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
+    password_expression: Required[str]
+    """An expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """An expression that selects the user ID used in the credentials check."""
+
+
+class TransformResponseHTMLRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class TransformResponseHTMLRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class TransformResponseHTMLRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
+    index: int
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+TransformResponseHTMLRulePosition: TypeAlias = Union[
+    TransformResponseHTMLRulePositionBeforePosition,
+    TransformResponseHTMLRulePositionAfterPosition,
+    TransformResponseHTMLRulePositionIndexPosition,
+]
+
+
+class TransformResponseHTMLRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
+    characteristics: Required[SequenceNotStr[str]]
+    """
+    Characteristics of the request on which the rate limit counter will be
+    incremented.
+    """
+
+    period: Required[int]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """An expression that defines when the rate limit counter should be incremented.
+
+    It defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Whether counting is only performed when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
+    """
+
+
 RuleEditParams: TypeAlias = Union[
     BlockRule,
     ChallengeRule,
@@ -4308,4 +4457,5 @@ RuleEditParams: TypeAlias = Union[
     SetCacheTagsRule,
     SetConfigurationRule,
     SkipRule,
+    TransformResponseHTMLRule,
 ]

@@ -56,6 +56,7 @@ class VersionsResource(SyncAPIResource):
         annotations: version_create_params.Annotations | Omit = omit,
         assets: version_create_params.Assets | Omit = omit,
         bindings: Iterable[version_create_params.Binding] | Omit = omit,
+        cache_options: version_create_params.CacheOptions | Omit = omit,
         compatibility_date: str | Omit = omit,
         compatibility_flags: SequenceNotStr[str] | Omit = omit,
         containers: Iterable[version_create_params.Container] | Omit = omit,
@@ -97,6 +98,10 @@ class VersionsResource(SyncAPIResource):
           bindings: List of bindings attached to a Worker. You can find more about bindings on our
               docs:
               https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
+
+          cache_options: Global CacheW configuration for the Worker. When caching is on, the platform
+              provisions a `cloudflare.app` zone for the Worker. A `type: worker` entry in the
+              `exports` map can override this value for a single entrypoint.
 
           compatibility_date: Date indicating targeted support in the Workers runtime. Backwards incompatible
               fixes to the runtime following this date will not affect this Worker.
@@ -159,6 +164,7 @@ class VersionsResource(SyncAPIResource):
                     "annotations": annotations,
                     "assets": assets,
                     "bindings": bindings,
+                    "cache_options": cache_options,
                     "compatibility_date": compatibility_date,
                     "compatibility_flags": compatibility_flags,
                     "containers": containers,
@@ -386,6 +392,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         annotations: version_create_params.Annotations | Omit = omit,
         assets: version_create_params.Assets | Omit = omit,
         bindings: Iterable[version_create_params.Binding] | Omit = omit,
+        cache_options: version_create_params.CacheOptions | Omit = omit,
         compatibility_date: str | Omit = omit,
         compatibility_flags: SequenceNotStr[str] | Omit = omit,
         containers: Iterable[version_create_params.Container] | Omit = omit,
@@ -427,6 +434,10 @@ class AsyncVersionsResource(AsyncAPIResource):
           bindings: List of bindings attached to a Worker. You can find more about bindings on our
               docs:
               https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
+
+          cache_options: Global CacheW configuration for the Worker. When caching is on, the platform
+              provisions a `cloudflare.app` zone for the Worker. A `type: worker` entry in the
+              `exports` map can override this value for a single entrypoint.
 
           compatibility_date: Date indicating targeted support in the Workers runtime. Backwards incompatible
               fixes to the runtime following this date will not affect this Worker.
@@ -489,6 +500,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                     "annotations": annotations,
                     "assets": assets,
                     "bindings": bindings,
+                    "cache_options": cache_options,
                     "compatibility_date": compatibility_date,
                     "compatibility_flags": compatibility_flags,
                     "containers": containers,

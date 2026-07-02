@@ -39,6 +39,8 @@ class TestCatchAlls:
             matchers=[{"type": "all"}],
             enabled=True,
             name="Send to user@example.net rule.",
+            owner_worker_tag="a7e6fb77503c41d8a7f3113c6918f10c",
+            source="api",
         )
         assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
@@ -145,6 +147,8 @@ class TestAsyncCatchAlls:
             matchers=[{"type": "all"}],
             enabled=True,
             name="Send to user@example.net rule.",
+            owner_worker_tag="a7e6fb77503c41d8a7f3113c6918f10c",
+            source="api",
         )
         assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 

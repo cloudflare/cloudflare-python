@@ -54,6 +54,10 @@ class TestVersions:
                     "type": "plain_text",
                 }
             ],
+            cache_options={
+                "enabled": True,
+                "cross_version_cache": True,
+            },
             compatibility_date="2021-01-01",
             compatibility_flags=["nodejs_compat"],
             containers=[{"class_name": "MyDurableObject"}],
@@ -368,6 +372,10 @@ class TestAsyncVersions:
                     "type": "plain_text",
                 }
             ],
+            cache_options={
+                "enabled": True,
+                "cross_version_cache": True,
+            },
             compatibility_date="2021-01-01",
             compatibility_flags=["nodejs_compat"],
             containers=[{"class_name": "MyDurableObject"}],

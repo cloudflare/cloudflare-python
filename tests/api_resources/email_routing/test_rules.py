@@ -45,7 +45,9 @@ class TestRules:
             ],
             enabled=True,
             name="Send to user@example.net rule.",
+            owner_worker_tag="a7e6fb77503c41d8a7f3113c6918f10c",
             priority=0,
+            source="api",
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
 
@@ -116,7 +118,9 @@ class TestRules:
             ],
             enabled=True,
             name="Send to user@example.net rule.",
+            owner_worker_tag="a7e6fb77503c41d8a7f3113c6918f10c",
             priority=0,
+            source="api",
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
 
@@ -298,7 +302,9 @@ class TestAsyncRules:
             ],
             enabled=True,
             name="Send to user@example.net rule.",
+            owner_worker_tag="a7e6fb77503c41d8a7f3113c6918f10c",
             priority=0,
+            source="api",
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
 
@@ -369,7 +375,9 @@ class TestAsyncRules:
             ],
             enabled=True,
             name="Send to user@example.net rule.",
+            owner_worker_tag="a7e6fb77503c41d8a7f3113c6918f10c",
             priority=0,
+            source="api",
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
 

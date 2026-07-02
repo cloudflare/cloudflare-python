@@ -2080,6 +2080,96 @@ class TestRules:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    def test_method_create_overload_21(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params_overload_21(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="transform_response_html",
+            action_parameters={"link_maze": {}},
+            description="Apply a HTML transformation to the response.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_create_overload_21(self, client: Cloudflare) -> None:
+        response = client.rulesets.rules.with_raw_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_create_overload_21(self, client: Cloudflare) -> None:
+        with client.rulesets.rules.with_streaming_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = response.parse()
+            assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_create_overload_21(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            client.rulesets.rules.with_raw_response.create(
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         rule = client.rulesets.rules.delete(
             rule_id="3a03d665bac047339bb530ecb439a90d",
@@ -4496,6 +4586,110 @@ class TestRules:
                 account_id="account_id",
             )
 
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_edit_overload_21(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_edit_with_all_params_overload_21(self, client: Cloudflare) -> None:
+        rule = client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="transform_response_html",
+            action_parameters={"link_maze": {}},
+            description="Apply a HTML transformation to the response.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_edit_overload_21(self, client: Cloudflare) -> None:
+        response = client.rulesets.rules.with_raw_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_edit_overload_21(self, client: Cloudflare) -> None:
+        with client.rulesets.rules.with_streaming_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = response.parse()
+            assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_edit_overload_21(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
 
 class TestAsyncRules:
     parametrize = pytest.mark.parametrize(
@@ -6541,6 +6735,96 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_20(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.create(
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.create(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_overload_21(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params_overload_21(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="transform_response_html",
+            action_parameters={"link_maze": {}},
+            description="Apply a HTML transformation to the response.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_create_overload_21(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.rulesets.rules.with_raw_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_create_overload_21(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.rulesets.rules.with_streaming_response.create(
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = await response.parse()
+            assert_matches_type(RuleCreateResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_create_overload_21(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
@@ -8949,6 +9233,110 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.rulesets.rules.with_raw_response.edit(
+                rule_id="3a03d665bac047339bb530ecb439a90d",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_edit_with_all_params_overload_21(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.rulesets.rules.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            id="3a03d665bac047339bb530ecb439a90d",
+            action="transform_response_html",
+            action_parameters={"link_maze": {}},
+            description="Apply a HTML transformation to the response.",
+            enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
+            expression="ip.src eq 1.1.1.1",
+            logging={"enabled": True},
+            position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
+            ratelimit={
+                "characteristics": ["cf.colo.id"],
+                "period": 60,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": "my-score",
+            },
+            ref="my_ref",
+        )
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.rulesets.rules.with_raw_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.rulesets.rules.with_streaming_response.edit(
+            rule_id="3a03d665bac047339bb530ecb439a90d",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            rule = await response.parse()
+            assert_matches_type(RuleEditResponse, rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",

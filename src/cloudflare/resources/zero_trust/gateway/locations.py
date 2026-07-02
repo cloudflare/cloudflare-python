@@ -82,9 +82,9 @@ class LocationsResource(SyncAPIResource):
 
           endpoints: Configure the destination endpoints for this location.
 
-          max_ttl: Configure DNS response TTL behavior for this Gateway location. Gateway can
-              rewrite DNS responses to cap returned record TTLs using the account setting or a
-              location-specific value, or leave TTLs unchanged.
+          max_ttl: Controls how DNS response TTLs are capped for this location relative to the
+              account `max_ttl_secs` setting. Omitting `max_ttl` on update resets it to
+              `inherit`.
 
           networks: Specify the list of network ranges from which requests at this location
               originate. The list takes effect only if it is non-empty and the IPv4 endpoint
@@ -161,9 +161,9 @@ class LocationsResource(SyncAPIResource):
 
           endpoints: Configure the destination endpoints for this location.
 
-          max_ttl: Configure DNS response TTL behavior for this Gateway location. Gateway can
-              rewrite DNS responses to cap returned record TTLs using the account setting or a
-              location-specific value, or leave TTLs unchanged.
+          max_ttl: Controls how DNS response TTLs are capped for this location relative to the
+              account `max_ttl_secs` setting. Omitting `max_ttl` on update resets it to
+              `inherit`.
 
           networks: Specify the list of network ranges from which requests at this location
               originate. The list takes effect only if it is non-empty and the IPv4 endpoint
@@ -382,9 +382,9 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           endpoints: Configure the destination endpoints for this location.
 
-          max_ttl: Configure DNS response TTL behavior for this Gateway location. Gateway can
-              rewrite DNS responses to cap returned record TTLs using the account setting or a
-              location-specific value, or leave TTLs unchanged.
+          max_ttl: Controls how DNS response TTLs are capped for this location relative to the
+              account `max_ttl_secs` setting. Omitting `max_ttl` on update resets it to
+              `inherit`.
 
           networks: Specify the list of network ranges from which requests at this location
               originate. The list takes effect only if it is non-empty and the IPv4 endpoint
@@ -461,9 +461,9 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           endpoints: Configure the destination endpoints for this location.
 
-          max_ttl: Configure DNS response TTL behavior for this Gateway location. Gateway can
-              rewrite DNS responses to cap returned record TTLs using the account setting or a
-              location-specific value, or leave TTLs unchanged.
+          max_ttl: Controls how DNS response TTLs are capped for this location relative to the
+              account `max_ttl_secs` setting. Omitting `max_ttl` on update resets it to
+              `inherit`.
 
           networks: Specify the list of network ranges from which requests at this location
               originate. The list takes effect only if it is non-empty and the IPv4 endpoint

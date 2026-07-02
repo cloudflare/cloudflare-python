@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ......_types import SequenceNotStr
@@ -53,6 +53,9 @@ __all__ = [
     "SettingsBindingWorkersBindingKindWasmModule",
     "SettingsBindingWorkersBindingKindVPCService",
     "SettingsBindingWorkersBindingKindVPCNetwork",
+    "SettingsCacheOptions",
+    "SettingsExports",
+    "SettingsExportsCache",
     "SettingsLimits",
     "SettingsMigrations",
     "SettingsMigrationsWorkersMultipleStepMigrations",
@@ -672,6 +675,59 @@ SettingsBinding: TypeAlias = Union[
 ]
 
 
+class SettingsCacheOptions(TypedDict, total=False):
+    """Global CacheW configuration for the Worker.
+
+    When caching is on,
+    the platform provisions a `cloudflare.app` zone for the Worker.
+    A `type: worker` entry in the `exports` map can override this
+    value for a single entrypoint.
+    """
+
+    enabled: Required[bool]
+    """Whether caching is enabled for this Worker."""
+
+    cross_version_cache: bool
+    """Whether cached responses are shared across Worker version uploads.
+
+    This is independent of `enabled`. It can stay true while caching is off, so the
+    preference survives turning caching off and back on.
+    """
+
+
+class SettingsExportsCache(TypedDict, total=False):
+    """Cache override for this entrypoint.
+
+    It applies only to
+    `type: worker` entries and overrides the Worker's global
+    `cache_options.enabled` for that entrypoint.
+    """
+
+    enabled: Required[bool]
+    """Whether caching is enabled for this entrypoint."""
+
+
+class SettingsExports(TypedDict, total=False):
+    """
+    A single entry in the `exports` map, keyed by export name (a
+    `WorkerEntrypoint` class name, a Durable Object class name, or
+    `default` for the Worker's default export). Worker entrypoint
+    entries set `type: worker` and may carry `cache` configuration
+    for that entrypoint. Durable Object entries set
+    `type: durable-object` and carry additional provisioning fields.
+    """
+
+    type: Required[Literal["worker", "durable-object"]]
+    """The kind of export."""
+
+    cache: SettingsExportsCache
+    """Cache override for this entrypoint.
+
+    It applies only to `type: worker` entries and overrides the Worker's global
+    `cache_options.enabled` for that entrypoint.
+    """
+
+
 class SettingsLimits(TypedDict, total=False):
     """Limits to apply for this Worker."""
 
@@ -868,6 +924,14 @@ class Settings(TypedDict, total=False):
     https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
     """
 
+    cache_options: SettingsCacheOptions
+    """Global CacheW configuration for the Worker.
+
+    When caching is on, the platform provisions a `cloudflare.app` zone for the
+    Worker. A `type: worker` entry in the `exports` map can override this value for
+    a single entrypoint.
+    """
+
     compatibility_date: str
     """Date indicating targeted support in the Workers runtime.
 
@@ -880,6 +944,13 @@ class Settings(TypedDict, total=False):
 
     Used to enable upcoming features or opt in or out of specific changes not
     included in a `compatibility_date`.
+    """
+
+    exports: Dict[str, SettingsExports]
+    """Declarative exports for the Worker.
+
+    Worker entrypoint entries (`type: worker`) carry cache configuration for that
+    entrypoint.
     """
 
     limits: SettingsLimits

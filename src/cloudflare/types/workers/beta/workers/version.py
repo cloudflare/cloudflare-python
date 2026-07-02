@@ -55,6 +55,7 @@ __all__ = [
     "BindingWorkersBindingKindWasmModule",
     "BindingWorkersBindingKindVPCService",
     "BindingWorkersBindingKindVPCNetwork",
+    "CacheOptions",
     "Container",
     "Limits",
     "Migrations",
@@ -698,6 +699,26 @@ Binding: TypeAlias = Annotated[
 ]
 
 
+class CacheOptions(BaseModel):
+    """Global CacheW configuration for the Worker.
+
+    When caching is on,
+    the platform provisions a `cloudflare.app` zone for the Worker.
+    A `type: worker` entry in the `exports` map can override this
+    value for a single entrypoint.
+    """
+
+    enabled: bool
+    """Whether caching is enabled for this Worker."""
+
+    cross_version_cache: Optional[bool] = None
+    """Whether cached responses are shared across Worker version uploads.
+
+    This is independent of `enabled`. It can stay true while caching is off, so the
+    preference survives turning caching off and back on.
+    """
+
+
 class Container(BaseModel):
     """Container configuration for a Worker."""
 
@@ -866,6 +887,14 @@ class Version(BaseModel):
 
     You can find more about bindings on our docs:
     https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
+    """
+
+    cache_options: Optional[CacheOptions] = None
+    """Global CacheW configuration for the Worker.
+
+    When caching is on, the platform provisions a `cloudflare.app` zone for the
+    Worker. A `type: worker` entry in the `exports` map can override this value for
+    a single entrypoint.
     """
 
     compatibility_date: Optional[str] = None

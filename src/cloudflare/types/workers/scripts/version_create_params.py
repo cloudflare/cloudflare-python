@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._types import FileTypes, SequenceNotStr
@@ -52,6 +52,9 @@ __all__ = [
     "MetadataBindingWorkersBindingKindWasmModule",
     "MetadataBindingWorkersBindingKindVPCService",
     "MetadataBindingWorkersBindingKindVPCNetwork",
+    "MetadataCacheOptions",
+    "MetadataExports",
+    "MetadataExportsCache",
     "MetadataPackageDependency",
 ]
 
@@ -675,6 +678,59 @@ MetadataBinding: TypeAlias = Union[
 ]
 
 
+class MetadataCacheOptions(TypedDict, total=False):
+    """Global CacheW configuration for the Worker.
+
+    When caching is on,
+    the platform provisions a `cloudflare.app` zone for the Worker.
+    A `type: worker` entry in the `exports` map can override this
+    value for a single entrypoint.
+    """
+
+    enabled: Required[bool]
+    """Whether caching is enabled for this Worker."""
+
+    cross_version_cache: bool
+    """Whether cached responses are shared across Worker version uploads.
+
+    This is independent of `enabled`. It can stay true while caching is off, so the
+    preference survives turning caching off and back on.
+    """
+
+
+class MetadataExportsCache(TypedDict, total=False):
+    """Cache override for this entrypoint.
+
+    It applies only to
+    `type: worker` entries and overrides the Worker's global
+    `cache_options.enabled` for that entrypoint.
+    """
+
+    enabled: Required[bool]
+    """Whether caching is enabled for this entrypoint."""
+
+
+class MetadataExports(TypedDict, total=False):
+    """
+    A single entry in the `exports` map, keyed by export name (a
+    `WorkerEntrypoint` class name, a Durable Object class name, or
+    `default` for the Worker's default export). Worker entrypoint
+    entries set `type: worker` and may carry `cache` configuration
+    for that entrypoint. Durable Object entries set
+    `type: durable-object` and carry additional provisioning fields.
+    """
+
+    type: Required[Literal["worker", "durable-object"]]
+    """The kind of export."""
+
+    cache: MetadataExportsCache
+    """Cache override for this entrypoint.
+
+    It applies only to `type: worker` entries and overrides the Worker's global
+    `cache_options.enabled` for that entrypoint.
+    """
+
+
 class MetadataPackageDependency(TypedDict, total=False):
     installed_version: Required[Annotated[str, PropertyInfo(alias="installedVersion")]]
     """The exact version that was resolved and installed by the package manager."""
@@ -705,6 +761,14 @@ class Metadata(TypedDict, total=False):
     https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
     """
 
+    cache_options: MetadataCacheOptions
+    """Global CacheW configuration for the Worker.
+
+    When caching is on, the platform provisions a `cloudflare.app` zone for the
+    Worker. A `type: worker` entry in the `exports` map can override this value for
+    a single entrypoint.
+    """
+
     compatibility_date: str
     """Date indicating targeted support in the Workers runtime.
 
@@ -717,6 +781,13 @@ class Metadata(TypedDict, total=False):
 
     Used to enable upcoming features or opt in or out of specific changes not
     included in a `compatibility_date`.
+    """
+
+    exports: Dict[str, MetadataExports]
+    """Declarative exports for this version.
+
+    Worker entrypoint entries (`type: worker`) carry cache configuration for that
+    entrypoint.
     """
 
     keep_bindings: SequenceNotStr[str]

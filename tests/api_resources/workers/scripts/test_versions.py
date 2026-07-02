@@ -52,8 +52,22 @@ class TestVersions:
                         "type": "plain_text",
                     }
                 ],
+                "cache_options": {
+                    "enabled": True,
+                    "cross_version_cache": True,
+                },
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
+                "exports": {
+                    "Admin": {
+                        "type": "worker",
+                        "cache": {"enabled": True},
+                    },
+                    "default": {
+                        "type": "worker",
+                        "cache": {"enabled": False},
+                    },
+                },
                 "keep_bindings": ["string"],
                 "package_dependencies": [
                     {
@@ -271,8 +285,22 @@ class TestAsyncVersions:
                         "type": "plain_text",
                     }
                 ],
+                "cache_options": {
+                    "enabled": True,
+                    "cross_version_cache": True,
+                },
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
+                "exports": {
+                    "Admin": {
+                        "type": "worker",
+                        "cache": {"enabled": True},
+                    },
+                    "default": {
+                        "type": "worker",
+                        "cache": {"enabled": False},
+                    },
+                },
                 "keep_bindings": ["string"],
                 "package_dependencies": [
                     {

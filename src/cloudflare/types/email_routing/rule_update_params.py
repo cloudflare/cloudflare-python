@@ -27,5 +27,18 @@ class RuleUpdateParams(TypedDict, total=False):
     name: str
     """Routing rule name."""
 
+    owner_worker_tag: str
+    """Public tag (script_tag) of the Worker that owns this rule.
+
+    Required when `source` is `wrangler`.
+    """
+
     priority: float
     """Priority of the routing rule."""
+
+    source: Literal["api", "wrangler"]
+    """Who manages the rule.
+
+    `api` covers dashboard, generic API, and Terraform; `wrangler` means the rule is
+    managed by a Worker's wrangler.jsonc. Defaults to `api` when omitted on write.
+    """

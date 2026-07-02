@@ -35,10 +35,10 @@ class LocationCreateParams(TypedDict, total=False):
     """Configure the destination endpoints for this location."""
 
     max_ttl: Optional[MaxTTL]
-    """Configure DNS response TTL behavior for this Gateway location.
-
-    Gateway can rewrite DNS responses to cap returned record TTLs using the account
-    setting or a location-specific value, or leave TTLs unchanged.
+    """
+    Controls how DNS response TTLs are capped for this location relative to the
+    account `max_ttl_secs` setting. Omitting `max_ttl` on update resets it to
+    `inherit`.
     """
 
     networks: Optional[Iterable[Network]]
@@ -50,19 +50,19 @@ class LocationCreateParams(TypedDict, total=False):
 
 
 class MaxTTL(TypedDict, total=False):
-    """Configure DNS response TTL behavior for this Gateway location.
-
-    Gateway can rewrite DNS responses to cap returned record TTLs using the account setting or a location-specific value, or leave TTLs unchanged.
+    """
+    Controls how DNS response TTLs are capped for this location relative to the account `max_ttl_secs` setting. Omitting `max_ttl` on update resets it to `inherit`.
     """
 
     mode: Required[Literal["inherit", "override", "disabled"]]
-    """
-    Specify how this location handles DNS response TTLs by using the account
-    setting, using a location-specific value, or leaving TTLs unchanged.
+    """`inherit` uses the account `max_ttl_secs`.
+
+    `override` uses this location's `ttl_secs`. `disabled` leaves returned TTLs
+    unchanged.
     """
 
     ttl_secs: Optional[int]
-    """Set the location-specific DNS TTL cap, in seconds.
+    """Location-specific cap on DNS response TTLs, in seconds.
 
     Required when `mode` is `override`. Must be omitted when `mode` is `inherit` or
     `disabled`.
