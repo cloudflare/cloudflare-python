@@ -104,6 +104,8 @@ class BytimesResource(SyncAPIResource):
               | \\>>=      | Greater than or equal to | %3E%3D      |
               | \\<<=      | Less than or equal to    | %3C%3D      |
 
+              Use the above to construct filters.
+
           metrics:
               One or more metrics to compute. Options are:
 
@@ -237,6 +239,8 @@ class AsyncBytimesResource(AsyncAPIResource):
               | \\<<       | Less Than                | %3C         |
               | \\>>=      | Greater than or equal to | %3E%3D      |
               | \\<<=      | Less than or equal to    | %3C%3D      |
+
+              Use the above to construct filters.
 
           metrics:
               One or more metrics to compute. Options are:

@@ -15,16 +15,16 @@ class CurrentGetResponseItem(BaseModel):
     """Application identifier."""
 
     bytes_egress: float = FieldInfo(alias="bytesEgress")
-    """Number of bytes sent"""
+    """Number of bytes sent."""
 
     bytes_ingress: float = FieldInfo(alias="bytesIngress")
-    """Number of bytes received"""
+    """Number of bytes received."""
 
     connections: float
-    """Number of connections"""
+    """Number of connections."""
 
     duration_avg: float = FieldInfo(alias="durationAvg")
-    """Average duration of connections"""
+    """Average duration of connections."""
 
 
 CurrentGetResponse: TypeAlias = List[CurrentGetResponseItem]

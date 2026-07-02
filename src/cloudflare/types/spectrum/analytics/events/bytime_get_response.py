@@ -46,6 +46,8 @@ class Query(BaseModel):
     | \\<<       | Less Than                | %3C         |
     | \\>>=      | Greater than or equal to | %3E%3D      |
     | \\<<=      | Less than or equal to    | %3C%3D      |
+
+    Use the above to construct filters.
     """
 
     limit: Optional[float] = None
@@ -115,4 +117,4 @@ class BytimeGetResponse(BaseModel):
     """Total result for each selected metrics across all data."""
 
     time_intervals: Optional[List[List[datetime]]] = None
-    """List of time interval buckets: [start, end]"""
+    """List of time interval buckets: [start, end]."""
