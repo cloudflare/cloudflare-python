@@ -70,6 +70,7 @@ class TestInstances:
             public_endpoint_params={
                 "authorized_hosts": ["string"],
                 "chat_completions_endpoint": {"disabled": True},
+                "custom_domains": ["search.example.com"],
                 "enabled": True,
                 "mcp": {
                     "description": "description",
@@ -208,6 +209,7 @@ class TestInstances:
             public_endpoint_params={
                 "authorized_hosts": ["string"],
                 "chat_completions_endpoint": {"disabled": True},
+                "custom_domains": ["search.example.com"],
                 "enabled": True,
                 "mcp": {
                     "description": "description",
@@ -778,6 +780,7 @@ class TestAsyncInstances:
             public_endpoint_params={
                 "authorized_hosts": ["string"],
                 "chat_completions_endpoint": {"disabled": True},
+                "custom_domains": ["search.example.com"],
                 "enabled": True,
                 "mcp": {
                     "description": "description",
@@ -916,6 +919,7 @@ class TestAsyncInstances:
             public_endpoint_params={
                 "authorized_hosts": ["string"],
                 "chat_completions_endpoint": {"disabled": True},
+                "custom_domains": ["search.example.com"],
                 "enabled": True,
                 "mcp": {
                     "description": "description",

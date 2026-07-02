@@ -94,6 +94,14 @@ class PublicEndpointParams(BaseModel):
 
     chat_completions_endpoint: Optional[PublicEndpointParamsChatCompletionsEndpoint] = None
 
+    custom_domains: Optional[List[str]] = None
+    """Custom domain hostnames that alias this public endpoint.
+
+    GET and create responses return the current set; on update (PUT) this field is
+    only echoed back when supplied in the request body, otherwise it is null (omit
+    it to leave domains unchanged).
+    """
+
     enabled: Optional[bool] = None
 
     mcp: Optional[PublicEndpointParamsMcp] = None
