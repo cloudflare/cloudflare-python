@@ -43,8 +43,20 @@ class TestEmailSending:
                     "type": "application/pdf",
                 }
             ],
-            bcc="user@example.com",
-            cc="user@example.com",
+            bcc=[
+                "recipient-a@example.com",
+                {
+                    "address": "recipient-b@example.com",
+                    "name": "Recipient B",
+                },
+            ],
+            cc=[
+                "recipient-a@example.com",
+                {
+                    "address": "recipient-b@example.com",
+                    "name": "Recipient B",
+                },
+            ],
             headers={"X-Custom-Header": "value"},
             html="<h1>Hello</h1><p>Please find your report attached.</p>",
             reply_to="user@example.com",
@@ -169,8 +181,20 @@ class TestAsyncEmailSending:
                     "type": "application/pdf",
                 }
             ],
-            bcc="user@example.com",
-            cc="user@example.com",
+            bcc=[
+                "recipient-a@example.com",
+                {
+                    "address": "recipient-b@example.com",
+                    "name": "Recipient B",
+                },
+            ],
+            cc=[
+                "recipient-a@example.com",
+                {
+                    "address": "recipient-b@example.com",
+                    "name": "Recipient B",
+                },
+            ],
             headers={"X-Custom-Header": "value"},
             html="<h1>Hello</h1><p>Please find your report attached.</p>",
             reply_to="user@example.com",

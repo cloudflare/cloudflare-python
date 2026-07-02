@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Type, Union, Iterable, cast
+from typing import Dict, Type, Iterable, cast
 
 import httpx
 
@@ -64,13 +64,13 @@ class EmailSendingResource(SyncAPIResource):
         from_: email_sending_send_params.From,
         subject: str,
         attachments: Iterable[email_sending_send_params.Attachment] | Omit = omit,
-        bcc: Union[str, SequenceNotStr[str]] | Omit = omit,
-        cc: Union[str, SequenceNotStr[str]] | Omit = omit,
+        bcc: email_sending_send_params.Bcc | Omit = omit,
+        cc: email_sending_send_params.Cc | Omit = omit,
         headers: Dict[str, str] | Omit = omit,
         html: str | Omit = omit,
         reply_to: email_sending_send_params.ReplyTo | Omit = omit,
         text: str | Omit = omit,
-        to: Union[str, SequenceNotStr[str]] | Omit = omit,
+        to: email_sending_send_params.To | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -90,9 +90,11 @@ class EmailSendingResource(SyncAPIResource):
 
           attachments: File attachments and inline images.
 
-          bcc: BCC recipient(s). A single email string or an array of email strings.
+          bcc: BCC recipient(s). A single email string, a named address object, or an array of
+              either.
 
-          cc: CC recipient(s). A single email string or an array of email strings.
+          cc: CC recipient(s). A single email string, a named address object, or an array of
+              either.
 
           headers: Custom email headers as key-value pairs.
 
@@ -104,8 +106,8 @@ class EmailSendingResource(SyncAPIResource):
           text: Plain text body of the email. At least one of text or html must be provided
               (non-empty).
 
-          to: Recipient(s). Optional if cc or bcc is provided. A single email string or an
-              array of email strings.
+          to: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
           extra_headers: Send extra headers
 
@@ -235,13 +237,13 @@ class AsyncEmailSendingResource(AsyncAPIResource):
         from_: email_sending_send_params.From,
         subject: str,
         attachments: Iterable[email_sending_send_params.Attachment] | Omit = omit,
-        bcc: Union[str, SequenceNotStr[str]] | Omit = omit,
-        cc: Union[str, SequenceNotStr[str]] | Omit = omit,
+        bcc: email_sending_send_params.Bcc | Omit = omit,
+        cc: email_sending_send_params.Cc | Omit = omit,
         headers: Dict[str, str] | Omit = omit,
         html: str | Omit = omit,
         reply_to: email_sending_send_params.ReplyTo | Omit = omit,
         text: str | Omit = omit,
-        to: Union[str, SequenceNotStr[str]] | Omit = omit,
+        to: email_sending_send_params.To | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,9 +263,11 @@ class AsyncEmailSendingResource(AsyncAPIResource):
 
           attachments: File attachments and inline images.
 
-          bcc: BCC recipient(s). A single email string or an array of email strings.
+          bcc: BCC recipient(s). A single email string, a named address object, or an array of
+              either.
 
-          cc: CC recipient(s). A single email string or an array of email strings.
+          cc: CC recipient(s). A single email string, a named address object, or an array of
+              either.
 
           headers: Custom email headers as key-value pairs.
 
@@ -275,8 +279,8 @@ class AsyncEmailSendingResource(AsyncAPIResource):
           text: Plain text body of the email. At least one of text or html must be provided
               (non-empty).
 
-          to: Recipient(s). Optional if cc or bcc is provided. A single email string or an
-              array of email strings.
+          to: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
           extra_headers: Send extra headers
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
@@ -15,8 +15,20 @@ __all__ = [
     "Attachment",
     "AttachmentEmailSendingEmailInlineAttachment",
     "AttachmentEmailSendingEmailAttachment",
+    "Bcc",
+    "BccEmailSendingEmailAddressObject",
+    "BccUnionMember2",
+    "BccUnionMember2EmailSendingEmailAddressObject",
+    "Cc",
+    "CcEmailSendingEmailAddressObject",
+    "CcUnionMember2",
+    "CcUnionMember2EmailSendingEmailAddressObject",
     "ReplyTo",
     "ReplyToEmailSendingEmailAddressObject",
+    "To",
+    "ToEmailSendingEmailAddressObject",
+    "ToUnionMember2",
+    "ToUnionMember2EmailSendingEmailAddressObject",
 ]
 
 
@@ -33,11 +45,17 @@ class EmailSendingSendParams(TypedDict, total=False):
     attachments: Iterable[Attachment]
     """File attachments and inline images."""
 
-    bcc: Union[str, SequenceNotStr[str]]
-    """BCC recipient(s). A single email string or an array of email strings."""
+    bcc: Bcc
+    """BCC recipient(s).
 
-    cc: Union[str, SequenceNotStr[str]]
-    """CC recipient(s). A single email string or an array of email strings."""
+    A single email string, a named address object, or an array of either.
+    """
+
+    cc: Cc
+    """CC recipient(s).
+
+    A single email string, a named address object, or an array of either.
+    """
 
     headers: Dict[str, str]
     """Custom email headers as key-value pairs."""
@@ -57,11 +75,11 @@ class EmailSendingSendParams(TypedDict, total=False):
     At least one of text or html must be provided (non-empty).
     """
 
-    to: Union[str, SequenceNotStr[str]]
+    to: To
     """Recipient(s).
 
-    Optional if cc or bcc is provided. A single email string or an array of email
-    strings.
+    Optional if cc or bcc is provided. A single email string, a named address
+    object, or an array of either.
     """
 
 
@@ -69,8 +87,11 @@ class FromEmailSendingEmailAddressObject(TypedDict, total=False):
     address: Required[str]
     """Email address (e.g., 'user@example.com')."""
 
-    name: Required[str]
-    """Display name for the email address (e.g., 'John Doe')."""
+    name: Optional[str]
+    """Display name for the email address (e.g., 'John Doe').
+
+    Optional — omit or set to null for no display name.
+    """
 
 
 From: TypeAlias = Union[str, FromEmailSendingEmailAddressObject]
@@ -113,12 +134,96 @@ class AttachmentEmailSendingEmailAttachment(TypedDict, total=False):
 Attachment: TypeAlias = Union[AttachmentEmailSendingEmailInlineAttachment, AttachmentEmailSendingEmailAttachment]
 
 
+class BccEmailSendingEmailAddressObject(TypedDict, total=False):
+    address: Required[str]
+    """Email address (e.g., 'user@example.com')."""
+
+    name: Optional[str]
+    """Display name for the email address (e.g., 'John Doe').
+
+    Optional — omit or set to null for no display name.
+    """
+
+
+class BccUnionMember2EmailSendingEmailAddressObject(TypedDict, total=False):
+    address: Required[str]
+    """Email address (e.g., 'user@example.com')."""
+
+    name: Optional[str]
+    """Display name for the email address (e.g., 'John Doe').
+
+    Optional — omit or set to null for no display name.
+    """
+
+
+BccUnionMember2: TypeAlias = Union[str, BccUnionMember2EmailSendingEmailAddressObject]
+
+Bcc: TypeAlias = Union[str, BccEmailSendingEmailAddressObject, SequenceNotStr[BccUnionMember2]]
+
+
+class CcEmailSendingEmailAddressObject(TypedDict, total=False):
+    address: Required[str]
+    """Email address (e.g., 'user@example.com')."""
+
+    name: Optional[str]
+    """Display name for the email address (e.g., 'John Doe').
+
+    Optional — omit or set to null for no display name.
+    """
+
+
+class CcUnionMember2EmailSendingEmailAddressObject(TypedDict, total=False):
+    address: Required[str]
+    """Email address (e.g., 'user@example.com')."""
+
+    name: Optional[str]
+    """Display name for the email address (e.g., 'John Doe').
+
+    Optional — omit or set to null for no display name.
+    """
+
+
+CcUnionMember2: TypeAlias = Union[str, CcUnionMember2EmailSendingEmailAddressObject]
+
+Cc: TypeAlias = Union[str, CcEmailSendingEmailAddressObject, SequenceNotStr[CcUnionMember2]]
+
+
 class ReplyToEmailSendingEmailAddressObject(TypedDict, total=False):
     address: Required[str]
     """Email address (e.g., 'user@example.com')."""
 
-    name: Required[str]
-    """Display name for the email address (e.g., 'John Doe')."""
+    name: Optional[str]
+    """Display name for the email address (e.g., 'John Doe').
+
+    Optional — omit or set to null for no display name.
+    """
 
 
 ReplyTo: TypeAlias = Union[str, ReplyToEmailSendingEmailAddressObject]
+
+
+class ToEmailSendingEmailAddressObject(TypedDict, total=False):
+    address: Required[str]
+    """Email address (e.g., 'user@example.com')."""
+
+    name: Optional[str]
+    """Display name for the email address (e.g., 'John Doe').
+
+    Optional — omit or set to null for no display name.
+    """
+
+
+class ToUnionMember2EmailSendingEmailAddressObject(TypedDict, total=False):
+    address: Required[str]
+    """Email address (e.g., 'user@example.com')."""
+
+    name: Optional[str]
+    """Display name for the email address (e.g., 'John Doe').
+
+    Optional — omit or set to null for no display name.
+    """
+
+
+ToUnionMember2: TypeAlias = Union[str, ToUnionMember2EmailSendingEmailAddressObject]
+
+To: TypeAlias = Union[str, ToEmailSendingEmailAddressObject, SequenceNotStr[ToUnionMember2]]
