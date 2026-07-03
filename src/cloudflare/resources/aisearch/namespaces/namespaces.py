@@ -396,12 +396,12 @@ class NamespacesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceSearchResponse:
-        """Multi-Instance Search
+        """
+        Performs a semantic search query against multiple AI Search instances in
+        parallel, merging the retrieved results into a single ranked response.
 
         Args:
-          messages: OpenAI-compatible message array.
-
-        For multimodal queries, set the last user
+          messages: OpenAI-compatible message array. For multimodal queries, set the last user
               message's `content` to an array of typed parts:
               `[{type:'text', text:'…'}, {type:'image_url', image_url:{url:'…'}}]`. Image
               inputs require the RAG's embedding_model to declare 'image' in
@@ -798,12 +798,12 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceSearchResponse:
-        """Multi-Instance Search
+        """
+        Performs a semantic search query against multiple AI Search instances in
+        parallel, merging the retrieved results into a single ranked response.
 
         Args:
-          messages: OpenAI-compatible message array.
-
-        For multimodal queries, set the last user
+          messages: OpenAI-compatible message array. For multimodal queries, set the last user
               message's `content` to an array of typed parts:
               `[{type:'text', text:'…'}, {type:'image_url', image_url:{url:'…'}}]`. Image
               inputs require the RAG's embedding_model to declare 'image' in

@@ -294,6 +294,7 @@ class InstanceListResponse(BaseModel):
             "@cf/google/embeddinggemma-300m",
             "google-ai-studio/gemini-embedding-001",
             "google-ai-studio/gemini-embedding-2-preview",
+            "google-ai-studio/gemini-embedding-2",
             "openai/text-embedding-3-small",
             "openai/text-embedding-3-large",
             "",
