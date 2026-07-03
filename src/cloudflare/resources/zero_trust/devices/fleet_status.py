@@ -57,8 +57,7 @@ class FleetStatusResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FleetStatusGetResponse:
         """
-        Get the live status of a latest device given device_id from the device_state
-        table
+        Get the latest status of a device given device_id from the device_state table.
 
         Args:
           account_id: Unique identifier linked to an account.
@@ -143,8 +142,7 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FleetStatusGetResponse:
         """
-        Get the live status of a latest device given device_id from the device_state
-        table
+        Get the latest status of a device given device_id from the device_state table.
 
         Args:
           account_id: Unique identifier linked to an account.

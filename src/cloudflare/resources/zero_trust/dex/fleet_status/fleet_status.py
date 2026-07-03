@@ -70,7 +70,7 @@ class FleetStatusResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FleetStatusLiveResponse]:
         """
-        List details for live (up to 60 minutes) devices using WARP.
+        Get details for live (up to 60 minutes) devices using WARP.
 
         Args:
           account_id: Unique identifier linked to an account.
@@ -116,7 +116,7 @@ class FleetStatusResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FleetStatusOverTimeResponse]:
         """
-        List details for devices using WARP, up to 7 days.
+        Get aggregate details for devices using WARP, up to 7 days.
 
         Args:
           account_id: Unique identifier linked to an account.
@@ -200,7 +200,7 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FleetStatusLiveResponse]:
         """
-        List details for live (up to 60 minutes) devices using WARP.
+        Get details for live (up to 60 minutes) devices using WARP.
 
         Args:
           account_id: Unique identifier linked to an account.
@@ -248,7 +248,7 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FleetStatusOverTimeResponse]:
         """
-        List details for devices using WARP, up to 7 days.
+        Get aggregate details for devices using WARP, up to 7 days.
 
         Args:
           account_id: Unique identifier linked to an account.

@@ -68,7 +68,7 @@ class DevicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DeviceListResponse]:
         """
-        List details for devices using WARP.
+        List details of devices using WARP.
 
         Args:
           account_id: Unique identifier linked to an account.
@@ -190,7 +190,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DeviceListResponse, AsyncV4PagePaginationArray[DeviceListResponse]]:
         """
-        List details for devices using WARP.
+        List details of devices using WARP.
 
         Args:
           account_id: Unique identifier linked to an account.
