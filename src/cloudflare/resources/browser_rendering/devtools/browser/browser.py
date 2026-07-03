@@ -85,7 +85,7 @@ class BrowserResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrowserCreateResponse:
         """
-        Get a browser session ID.
+        Acquires a browser and returns its session ID and websocket URL.
 
         Args:
           account_id: Account ID.
@@ -426,7 +426,7 @@ class AsyncBrowserResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrowserCreateResponse:
         """
-        Get a browser session ID.
+        Acquires a browser and returns its session ID and websocket URL.
 
         Args:
           account_id: Account ID.
