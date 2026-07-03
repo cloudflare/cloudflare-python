@@ -73,11 +73,11 @@ class V2Resource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V2ListResponse:
-        """List up to 10000 images with up to 1000 results per page.
+        """List up to 10000 images from CF Images, with up to 1000 results per page.
 
-        Use the optional
-        parameters below to get a specific range of images. Pagination is supported via
-        continuation_token.
+        Use
+        the optional parameters below to get a specific range of images. Pagination is
+        supported via continuation_token.
 
         **Metadata Filtering (Optional):**
 
@@ -224,11 +224,11 @@ class AsyncV2Resource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V2ListResponse:
-        """List up to 10000 images with up to 1000 results per page.
+        """List up to 10000 images from CF Images, with up to 1000 results per page.
 
-        Use the optional
-        parameters below to get a specific range of images. Pagination is supported via
-        continuation_token.
+        Use
+        the optional parameters below to get a specific range of images. Pagination is
+        supported via continuation_token.
 
         **Metadata Filtering (Optional):**
 

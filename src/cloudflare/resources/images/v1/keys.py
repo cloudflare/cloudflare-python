@@ -57,9 +57,10 @@ class KeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KeyUpdateResponse:
-        """Create a new signing key with specified name.
+        """Create a new CF Images signing key with specified name.
 
-        Returns all keys available.
+        Returns all keys
+        available.
 
         Args:
           account_id: Account identifier tag.
@@ -103,9 +104,8 @@ class KeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KeyListResponse:
-        """Lists your signing keys.
-
-        These can be found on your Cloudflare Images dashboard.
+        """
+        List your CF Images signing keys.
 
         Args:
           account_id: Account identifier tag.
@@ -144,10 +144,10 @@ class KeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KeyDeleteResponse:
-        """Delete signing key with specified name.
+        """Delete a CF Images signing key with specified name.
 
-        Returns all keys available. When last
-        key is removed, a new default signing key will be generated.
+        Returns all keys available.
+        When the last key is removed, a new default signing key will be generated.
 
         Args:
           account_id: Account identifier tag.
@@ -213,9 +213,10 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KeyUpdateResponse:
-        """Create a new signing key with specified name.
+        """Create a new CF Images signing key with specified name.
 
-        Returns all keys available.
+        Returns all keys
+        available.
 
         Args:
           account_id: Account identifier tag.
@@ -259,9 +260,8 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KeyListResponse:
-        """Lists your signing keys.
-
-        These can be found on your Cloudflare Images dashboard.
+        """
+        List your CF Images signing keys.
 
         Args:
           account_id: Account identifier tag.
@@ -300,10 +300,10 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KeyDeleteResponse:
-        """Delete signing key with specified name.
+        """Delete a CF Images signing key with specified name.
 
-        Returns all keys available. When last
-        key is removed, a new default signing key will be generated.
+        Returns all keys available.
+        When the last key is removed, a new default signing key will be generated.
 
         Args:
           account_id: Account identifier tag.

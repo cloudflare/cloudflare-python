@@ -63,7 +63,8 @@ class VariantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantCreateResponse:
         """
-        Specify variants that allow you to resize images for different use cases.
+        Create a CF Images variant that allows you to resize images for different use
+        cases.
 
         Args:
           account_id: Account identifier tag.
@@ -115,7 +116,7 @@ class VariantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Variant:
         """
-        Lists existing variants.
+        List existing CF Images variants.
 
         Args:
           account_id: Account identifier tag.
@@ -154,8 +155,10 @@ class VariantsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantDeleteResponse:
-        """
-        Deleting a variant purges the cache for all images associated with the variant.
+        """Delete a CF Images variant.
+
+        This will purge the cache for all images associated
+        with the variant.
 
         Args:
           account_id: Account identifier tag.
@@ -207,8 +210,10 @@ class VariantsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantEditResponse:
-        """
-        Updating a variant purges the cache for all images associated with the variant.
+        """Update a CF Images variant.
+
+        This will purge the cache for all images associated
+        with the variant.
 
         Args:
           account_id: Account identifier tag.
@@ -264,7 +269,7 @@ class VariantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantGetResponse:
         """
-        Fetch details for a single variant.
+        Fetch details for a CF Images variant.
 
         Args:
           account_id: Account identifier tag.
@@ -331,7 +336,8 @@ class AsyncVariantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantCreateResponse:
         """
-        Specify variants that allow you to resize images for different use cases.
+        Create a CF Images variant that allows you to resize images for different use
+        cases.
 
         Args:
           account_id: Account identifier tag.
@@ -383,7 +389,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Variant:
         """
-        Lists existing variants.
+        List existing CF Images variants.
 
         Args:
           account_id: Account identifier tag.
@@ -422,8 +428,10 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantDeleteResponse:
-        """
-        Deleting a variant purges the cache for all images associated with the variant.
+        """Delete a CF Images variant.
+
+        This will purge the cache for all images associated
+        with the variant.
 
         Args:
           account_id: Account identifier tag.
@@ -475,8 +483,10 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantEditResponse:
-        """
-        Updating a variant purges the cache for all images associated with the variant.
+        """Update a CF Images variant.
+
+        This will purge the cache for all images associated
+        with the variant.
 
         Args:
           account_id: Account identifier tag.
@@ -532,7 +542,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VariantGetResponse:
         """
-        Fetch details for a single variant.
+        Fetch details for a CF Images variant.
 
         Args:
           account_id: Account identifier tag.

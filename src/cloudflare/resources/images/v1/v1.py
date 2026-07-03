@@ -114,10 +114,11 @@ class V1Resource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
-        """
-        Upload an image with up to 10 Megabytes using a single HTTP POST
-        (multipart/form-data) request. An image can be uploaded by sending an image file
-        or passing an accessible to an API url.
+        """Upload an image to CF Images.
+
+        Images up to 10 Megabytes can be uploaded using a
+        single HTTP POST (multipart/form-data) request by sending an image file or
+        passing a URL accessible to the API.
 
         Args:
           account_id: Account identifier tag.
@@ -302,10 +303,10 @@ class V1Resource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
-        """Update image access control.
+        """Update a CF Images image's metadata, creator, or access control.
 
-        On access control change, all copies of the image
-        are purged from cache.
+        On access
+        control change, all copies of the image are purged from cache.
 
         Args:
           account_id: Account identifier tag.
@@ -366,7 +367,7 @@ class V1Resource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
-        Fetch details for a single image.
+        Fetch details for a CF Images image.
 
         Args:
           account_id: Account identifier tag.
@@ -451,10 +452,11 @@ class AsyncV1Resource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
-        """
-        Upload an image with up to 10 Megabytes using a single HTTP POST
-        (multipart/form-data) request. An image can be uploaded by sending an image file
-        or passing an accessible to an API url.
+        """Upload an image to CF Images.
+
+        Images up to 10 Megabytes can be uploaded using a
+        single HTTP POST (multipart/form-data) request by sending an image file or
+        passing a URL accessible to the API.
 
         Args:
           account_id: Account identifier tag.
@@ -639,10 +641,10 @@ class AsyncV1Resource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
-        """Update image access control.
+        """Update a CF Images image's metadata, creator, or access control.
 
-        On access control change, all copies of the image
-        are purged from cache.
+        On access
+        control change, all copies of the image are purged from cache.
 
         Args:
           account_id: Account identifier tag.
@@ -703,7 +705,7 @@ class AsyncV1Resource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
-        Fetch details for a single image.
+        Fetch details for a CF Images image.
 
         Args:
           account_id: Account identifier tag.

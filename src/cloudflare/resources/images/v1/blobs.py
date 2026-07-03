@@ -55,10 +55,11 @@ class BlobsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
-        """Fetch base image.
+        """Download an image from CF Images.
 
-        For most images this will be the originally uploaded file. For
-        larger images it can be a near-lossless version of the original.
+        For most images this will be the originally
+        uploaded file. For larger images it can be a near-lossless version of the
+        original.
 
         Args:
           account_id: Account identifier tag.
@@ -119,10 +120,11 @@ class AsyncBlobsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
-        """Fetch base image.
+        """Download an image from CF Images.
 
-        For most images this will be the originally uploaded file. For
-        larger images it can be a near-lossless version of the original.
+        For most images this will be the originally
+        uploaded file. For larger images it can be a near-lossless version of the
+        original.
 
         Args:
           account_id: Account identifier tag.
