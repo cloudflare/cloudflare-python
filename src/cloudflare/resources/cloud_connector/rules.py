@@ -58,7 +58,8 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[RuleUpdateResponse]:
         """
-        Put Rules
+        Updates Cloud Connector rules for a zone, replacing the existing rule
+        configuration.
 
         Args:
           zone_id: Identifier.
@@ -95,8 +96,10 @@ class RulesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[RuleListResponse]:
-        """
-        Rules
+        """Retrieves the Cloud Connector rules configured for a zone.
+
+        Rules define how
+        traffic is routed to cloud services.
 
         Args:
           zone_id: Identifier.
@@ -154,7 +157,8 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RuleUpdateResponse, AsyncSinglePage[RuleUpdateResponse]]:
         """
-        Put Rules
+        Updates Cloud Connector rules for a zone, replacing the existing rule
+        configuration.
 
         Args:
           zone_id: Identifier.
@@ -191,8 +195,10 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RuleListResponse, AsyncSinglePage[RuleListResponse]]:
-        """
-        Rules
+        """Retrieves the Cloud Connector rules configured for a zone.
+
+        Rules define how
+        traffic is routed to cloud services.
 
         Args:
           zone_id: Identifier.
