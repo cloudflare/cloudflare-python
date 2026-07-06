@@ -20,6 +20,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.dns import (
+    record_get_params,
     record_edit_params,
     record_list_params,
     record_scan_params,
@@ -75,6 +76,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -109,6 +111,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -141,6 +147,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -175,6 +182,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -207,6 +218,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -240,6 +252,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -270,6 +286,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         priority: float | Omit = omit,
@@ -303,6 +320,10 @@ class RecordsResource(SyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -338,6 +359,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -371,6 +393,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -401,6 +427,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -434,6 +461,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -464,6 +495,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -497,6 +529,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -527,6 +563,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -559,6 +596,10 @@ class RecordsResource(SyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -595,6 +636,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.CAARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -628,6 +670,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -658,6 +704,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.CERTRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -691,6 +738,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -721,6 +772,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.DNSKEYRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -754,6 +806,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -784,6 +840,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.DSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -817,6 +874,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -847,6 +908,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.HTTPSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -880,6 +942,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -910,6 +976,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.LOCRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -943,6 +1010,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -973,6 +1044,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.NAPTRRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1006,6 +1078,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1036,6 +1112,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.SMIMEARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1069,6 +1146,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1099,6 +1180,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.SRVRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1132,6 +1214,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1162,6 +1248,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.SSHFPRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1195,6 +1282,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1225,6 +1316,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.SVCBRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1258,6 +1350,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1288,6 +1384,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.TLSARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1321,6 +1418,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1351,6 +1452,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.URIRecordData | Omit = omit,
         priority: float | Omit = omit,
@@ -1384,6 +1486,10 @@ class RecordsResource(SyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1439,6 +1545,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -1515,6 +1622,9 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=maybe_transform(
+                        {"include_shadow_metadata": include_shadow_metadata}, record_create_params.RecordCreateParams
+                    ),
                     post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
                 ),
                 cast_to=cast(
@@ -1532,6 +1642,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -1568,6 +1679,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1601,6 +1716,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -1637,6 +1753,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1670,6 +1790,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1705,6 +1826,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1736,6 +1861,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         priority: float | Omit = omit,
@@ -1772,6 +1898,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1807,6 +1937,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1842,6 +1973,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1873,6 +2008,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1908,6 +2044,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1939,6 +2079,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -1974,6 +2115,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2005,6 +2150,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2039,6 +2185,10 @@ class RecordsResource(SyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2076,6 +2226,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.CAARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2111,6 +2262,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2142,6 +2297,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.CERTRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2177,6 +2333,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2208,6 +2368,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.DNSKEYRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2243,6 +2404,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2274,6 +2439,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.DSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2309,6 +2475,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2340,6 +2510,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.HTTPSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2375,6 +2546,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2406,6 +2581,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.LOCRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2441,6 +2617,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2472,6 +2652,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.NAPTRRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2507,6 +2688,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2538,6 +2723,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.SMIMEARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2573,6 +2759,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2604,6 +2794,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.SRVRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2639,6 +2830,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2670,6 +2865,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.SSHFPRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2705,6 +2901,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2736,6 +2936,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.SVCBRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2771,6 +2972,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2802,6 +3007,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.TLSARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -2837,6 +3043,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2868,6 +3078,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.URIRecordData | Omit = omit,
         priority: float | Omit = omit,
@@ -2903,6 +3114,10 @@ class RecordsResource(SyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2959,6 +3174,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -3039,6 +3255,9 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=maybe_transform(
+                        {"include_shadow_metadata": include_shadow_metadata}, record_update_params.RecordUpdateParams
+                    ),
                     post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
                 ),
                 cast_to=cast(
@@ -3054,6 +3273,7 @@ class RecordsResource(SyncAPIResource):
         comment: record_list_params.Comment | Omit = omit,
         content: record_list_params.Content | Omit = omit,
         direction: SortDirection | Omit = omit,
+        include_shadow_metadata: bool | Omit = omit,
         match: Literal["any", "all"] | Omit = omit,
         name: record_list_params.Name | Omit = omit,
         order: Literal["type", "name", "content", "ttl", "proxied"] | Omit = omit,
@@ -3061,6 +3281,8 @@ class RecordsResource(SyncAPIResource):
         per_page: float | Omit = omit,
         proxied: bool | Omit = omit,
         search: str | Omit = omit,
+        shadowed_by_name: str | Omit = omit,
+        shadowing_name: str | Omit = omit,
         tag: record_list_params.Tag | Omit = omit,
         tag_match: Literal["any", "all"] | Omit = omit,
         type: Literal[
@@ -3102,6 +3324,10 @@ class RecordsResource(SyncAPIResource):
 
           direction: Direction to order DNS records in.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           match: Whether to match all search requirements or at least one (any). If set to `all`,
               acts like a logical AND between filters. If set to `any`, acts like a logical OR
               instead. Note that the interaction between tag filters is controlled by the
@@ -3121,6 +3347,17 @@ class RecordsResource(SyncAPIResource):
               intentionally left unspecified and is subject to change in the future. This
               parameter works independently of the `match` setting. For automated searches,
               please use the other available parameters.
+
+          shadowed_by_name: Filters to records at or below the given NS delegation name, excluding the NS
+              records that form the delegation itself. The value must be a subdomain of the
+              zone; the zone apex is not accepted. Requires `include_shadow_metadata=true`.
+              See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
+          shadowing_name: Returns NS records that shadow the given name, searching at the name itself and
+              each of its ancestor names within the zone, excluding the zone apex. The value
+              must be a subdomain of the zone; the zone apex is not accepted. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           tag_match: Whether to match all tag search requirements or at least one (any). If set to
               `all`, acts like a logical AND between tag filters. If set to `any`, acts like a
@@ -3152,6 +3389,7 @@ class RecordsResource(SyncAPIResource):
                         "comment": comment,
                         "content": content,
                         "direction": direction,
+                        "include_shadow_metadata": include_shadow_metadata,
                         "match": match,
                         "name": name,
                         "order": order,
@@ -3159,6 +3397,8 @@ class RecordsResource(SyncAPIResource):
                         "per_page": per_page,
                         "proxied": proxied,
                         "search": search,
+                        "shadowed_by_name": shadowed_by_name,
+                        "shadowing_name": shadowing_name,
                         "tag": tag,
                         "tag_match": tag_match,
                         "type": type,
@@ -3217,6 +3457,7 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        include_shadow_metadata: bool | Omit = omit,
         deletes: Iterable[record_batch_params.Delete] | Omit = omit,
         patches: Iterable[BatchPatchParam] | Omit = omit,
         posts: Iterable[record_batch_params.Post] | Omit = omit,
@@ -3250,6 +3491,10 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -3276,6 +3521,9 @@ class RecordsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {"include_shadow_metadata": include_shadow_metadata}, record_batch_params.RecordBatchParams
+                ),
                 post_parser=ResultWrapper[Optional[RecordBatchResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecordBatchResponse]], ResultWrapper[RecordBatchResponse]),
@@ -3290,6 +3538,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -3326,6 +3575,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3359,6 +3612,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -3395,6 +3649,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3428,6 +3686,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -3463,6 +3722,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3494,6 +3757,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         priority: float | Omit = omit,
@@ -3530,6 +3794,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3565,6 +3833,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -3600,6 +3869,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3631,6 +3904,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -3666,6 +3940,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3697,6 +3975,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -3732,6 +4011,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3763,6 +4046,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -3797,6 +4081,10 @@ class RecordsResource(SyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3834,6 +4122,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.CAARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -3869,6 +4158,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3900,6 +4193,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.CERTRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -3935,6 +4229,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3966,6 +4264,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.DNSKEYRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4001,6 +4300,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4032,6 +4335,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.DSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4067,6 +4371,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4098,6 +4406,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.HTTPSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4133,6 +4442,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4164,6 +4477,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.LOCRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4199,6 +4513,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4230,6 +4548,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.NAPTRRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4265,6 +4584,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4296,6 +4619,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.SMIMEARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4331,6 +4655,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4362,6 +4690,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.SRVRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4397,6 +4726,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4428,6 +4761,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.SSHFPRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4463,6 +4797,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4494,6 +4832,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.SVCBRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4529,6 +4868,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4560,6 +4903,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.TLSARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -4595,6 +4939,10 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4626,6 +4974,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.URIRecordData | Omit = omit,
         priority: float | Omit = omit,
@@ -4661,6 +5010,10 @@ class RecordsResource(SyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4717,6 +5070,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -4797,6 +5151,9 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=maybe_transform(
+                        {"include_shadow_metadata": include_shadow_metadata}, record_edit_params.RecordEditParams
+                    ),
                     post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
                 ),
                 cast_to=cast(
@@ -4852,6 +5209,7 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        include_shadow_metadata: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4866,6 +5224,10 @@ class RecordsResource(SyncAPIResource):
           zone_id: Identifier.
 
           dns_record_id: Identifier.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           extra_headers: Send extra headers
 
@@ -4890,6 +5252,9 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=maybe_transform(
+                        {"include_shadow_metadata": include_shadow_metadata}, record_get_params.RecordGetParams
+                    ),
                     post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
                 ),
                 cast_to=cast(
@@ -5170,6 +5535,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -5204,6 +5570,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5236,6 +5606,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -5270,6 +5641,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5302,6 +5677,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5335,6 +5711,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5365,6 +5745,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         priority: float | Omit = omit,
@@ -5398,6 +5779,10 @@ class AsyncRecordsResource(AsyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5433,6 +5818,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5466,6 +5852,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5496,6 +5886,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5529,6 +5920,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5559,6 +5954,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5592,6 +5988,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5622,6 +6022,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5654,6 +6055,10 @@ class AsyncRecordsResource(AsyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5690,6 +6095,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.CAARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5723,6 +6129,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5753,6 +6163,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.CERTRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5786,6 +6197,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5816,6 +6231,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.DNSKEYRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5849,6 +6265,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5879,6 +6299,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.DSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5912,6 +6333,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5942,6 +6367,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.HTTPSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -5975,6 +6401,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6005,6 +6435,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.LOCRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -6038,6 +6469,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6068,6 +6503,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.NAPTRRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -6101,6 +6537,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6131,6 +6571,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.SMIMEARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -6164,6 +6605,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6194,6 +6639,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.SRVRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -6227,6 +6673,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6257,6 +6707,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.SSHFPRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -6290,6 +6741,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6320,6 +6775,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.SVCBRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -6353,6 +6809,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6383,6 +6843,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.TLSARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -6416,6 +6877,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6446,6 +6911,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_create_params.URIRecordData | Omit = omit,
         priority: float | Omit = omit,
@@ -6479,6 +6945,10 @@ class AsyncRecordsResource(AsyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6534,6 +7004,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -6610,6 +7081,9 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=await async_maybe_transform(
+                        {"include_shadow_metadata": include_shadow_metadata}, record_create_params.RecordCreateParams
+                    ),
                     post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
                 ),
                 cast_to=cast(
@@ -6627,6 +7101,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -6663,6 +7138,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6696,6 +7175,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -6732,6 +7212,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6765,6 +7249,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -6800,6 +7285,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6831,6 +7320,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         priority: float | Omit = omit,
@@ -6867,6 +7357,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6902,6 +7396,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -6937,6 +7432,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6968,6 +7467,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7003,6 +7503,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7034,6 +7538,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7069,6 +7574,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7100,6 +7609,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7134,6 +7644,10 @@ class AsyncRecordsResource(AsyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7171,6 +7685,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.CAARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7206,6 +7721,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7237,6 +7756,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.CERTRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7272,6 +7792,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7303,6 +7827,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.DNSKEYRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7338,6 +7863,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7369,6 +7898,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.DSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7404,6 +7934,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7435,6 +7969,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.HTTPSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7470,6 +8005,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7501,6 +8040,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.LOCRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7536,6 +8076,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7567,6 +8111,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.NAPTRRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7602,6 +8147,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7633,6 +8182,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.SMIMEARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7668,6 +8218,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7699,6 +8253,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.SRVRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7734,6 +8289,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7765,6 +8324,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.SSHFPRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7800,6 +8360,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7831,6 +8395,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.SVCBRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7866,6 +8431,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7897,6 +8466,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.TLSARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -7932,6 +8502,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7963,6 +8537,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_update_params.URIRecordData | Omit = omit,
         priority: float | Omit = omit,
@@ -7998,6 +8573,10 @@ class AsyncRecordsResource(AsyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8054,6 +8633,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -8134,6 +8714,9 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=await async_maybe_transform(
+                        {"include_shadow_metadata": include_shadow_metadata}, record_update_params.RecordUpdateParams
+                    ),
                     post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
                 ),
                 cast_to=cast(
@@ -8149,6 +8732,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         comment: record_list_params.Comment | Omit = omit,
         content: record_list_params.Content | Omit = omit,
         direction: SortDirection | Omit = omit,
+        include_shadow_metadata: bool | Omit = omit,
         match: Literal["any", "all"] | Omit = omit,
         name: record_list_params.Name | Omit = omit,
         order: Literal["type", "name", "content", "ttl", "proxied"] | Omit = omit,
@@ -8156,6 +8740,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         per_page: float | Omit = omit,
         proxied: bool | Omit = omit,
         search: str | Omit = omit,
+        shadowed_by_name: str | Omit = omit,
+        shadowing_name: str | Omit = omit,
         tag: record_list_params.Tag | Omit = omit,
         tag_match: Literal["any", "all"] | Omit = omit,
         type: Literal[
@@ -8197,6 +8783,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           direction: Direction to order DNS records in.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           match: Whether to match all search requirements or at least one (any). If set to `all`,
               acts like a logical AND between filters. If set to `any`, acts like a logical OR
               instead. Note that the interaction between tag filters is controlled by the
@@ -8216,6 +8806,17 @@ class AsyncRecordsResource(AsyncAPIResource):
               intentionally left unspecified and is subject to change in the future. This
               parameter works independently of the `match` setting. For automated searches,
               please use the other available parameters.
+
+          shadowed_by_name: Filters to records at or below the given NS delegation name, excluding the NS
+              records that form the delegation itself. The value must be a subdomain of the
+              zone; the zone apex is not accepted. Requires `include_shadow_metadata=true`.
+              See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
+          shadowing_name: Returns NS records that shadow the given name, searching at the name itself and
+              each of its ancestor names within the zone, excluding the zone apex. The value
+              must be a subdomain of the zone; the zone apex is not accepted. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           tag_match: Whether to match all tag search requirements or at least one (any). If set to
               `all`, acts like a logical AND between tag filters. If set to `any`, acts like a
@@ -8247,6 +8848,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "comment": comment,
                         "content": content,
                         "direction": direction,
+                        "include_shadow_metadata": include_shadow_metadata,
                         "match": match,
                         "name": name,
                         "order": order,
@@ -8254,6 +8856,8 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "per_page": per_page,
                         "proxied": proxied,
                         "search": search,
+                        "shadowed_by_name": shadowed_by_name,
+                        "shadowing_name": shadowing_name,
                         "tag": tag,
                         "tag_match": tag_match,
                         "type": type,
@@ -8312,6 +8916,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        include_shadow_metadata: bool | Omit = omit,
         deletes: Iterable[record_batch_params.Delete] | Omit = omit,
         patches: Iterable[BatchPatchParam] | Omit = omit,
         posts: Iterable[record_batch_params.Post] | Omit = omit,
@@ -8345,6 +8950,10 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -8371,6 +8980,9 @@ class AsyncRecordsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"include_shadow_metadata": include_shadow_metadata}, record_batch_params.RecordBatchParams
+                ),
                 post_parser=ResultWrapper[Optional[RecordBatchResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecordBatchResponse]], ResultWrapper[RecordBatchResponse]),
@@ -8385,6 +8997,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -8421,6 +9034,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8454,6 +9071,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -8490,6 +9108,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8523,6 +9145,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -8558,6 +9181,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8589,6 +9216,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         priority: float | Omit = omit,
@@ -8625,6 +9253,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8660,6 +9292,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -8695,6 +9328,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8726,6 +9363,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -8761,6 +9399,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8792,6 +9434,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -8827,6 +9470,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8858,6 +9505,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         proxied: bool | Omit = omit,
@@ -8892,6 +9540,10 @@ class AsyncRecordsResource(AsyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8929,6 +9581,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.CAARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -8964,6 +9617,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8995,6 +9652,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.CERTRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9030,6 +9688,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9061,6 +9723,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.DNSKEYRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9096,6 +9759,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9127,6 +9794,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.DSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9162,6 +9830,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9193,6 +9865,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.HTTPSRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9228,6 +9901,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9259,6 +9936,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.LOCRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9294,6 +9972,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9325,6 +10007,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.NAPTRRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9360,6 +10043,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9391,6 +10078,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.SMIMEARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9426,6 +10114,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9457,6 +10149,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.SRVRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9492,6 +10185,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9523,6 +10220,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.SSHFPRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9558,6 +10256,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9589,6 +10291,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.SVCBRecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9624,6 +10327,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9655,6 +10362,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.TLSARecordData | Omit = omit,
         proxied: bool | Omit = omit,
@@ -9690,6 +10398,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -9721,6 +10433,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         data: record_edit_params.URIRecordData | Omit = omit,
         priority: float | Omit = omit,
@@ -9756,6 +10469,10 @@ class AsyncRecordsResource(AsyncAPIResource):
               Enterprise zones.
 
           type: Record type.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -9812,6 +10529,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
+        include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
         private_routing: bool | Omit = omit,
@@ -9892,6 +10610,9 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=await async_maybe_transform(
+                        {"include_shadow_metadata": include_shadow_metadata}, record_edit_params.RecordEditParams
+                    ),
                     post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
                 ),
                 cast_to=cast(
@@ -9947,6 +10668,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        include_shadow_metadata: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9961,6 +10683,10 @@ class AsyncRecordsResource(AsyncAPIResource):
           zone_id: Identifier.
 
           dns_record_id: Identifier.
+
+          include_shadow_metadata: Whether to include shadow metadata in the `meta` field of each record in the
+              response. See
+              [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
 
           extra_headers: Send extra headers
 
@@ -9985,6 +10711,9 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=await async_maybe_transform(
+                        {"include_shadow_metadata": include_shadow_metadata}, record_get_params.RecordGetParams
+                    ),
                     post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
                 ),
                 cast_to=cast(

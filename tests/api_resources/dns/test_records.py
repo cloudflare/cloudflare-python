@@ -47,6 +47,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="A",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="198.51.100.4",
             private_routing=True,
@@ -121,6 +122,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="AAAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="2400:cb00:2049::1",
             private_routing=True,
@@ -195,6 +197,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="CNAME",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -269,6 +272,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="MX",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
             priority=10,
@@ -343,6 +347,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="NS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="ns1.example.com",
             proxied=True,
@@ -416,6 +421,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="OPENPGPKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -489,6 +495,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="PTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="example.com",
             proxied=True,
@@ -562,6 +569,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="TXT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
             proxied=True,
@@ -635,6 +643,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="CAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": 1,
@@ -712,6 +721,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="CERT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 8,
@@ -790,6 +800,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="DNSKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 5,
@@ -868,6 +879,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="DS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 3,
@@ -946,6 +958,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="HTTPS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -1023,6 +1036,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="LOC",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "altitude": 0,
@@ -1109,6 +1123,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="NAPTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": "flags",
@@ -1189,6 +1204,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SMIMEA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -1267,6 +1283,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SRV",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "port": 8806,
@@ -1345,6 +1362,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SSHFP",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 2,
@@ -1422,6 +1440,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SVCB",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -1499,6 +1518,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="TLSA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -1577,6 +1597,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="URI",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
@@ -1656,6 +1677,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="A",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="198.51.100.4",
             private_routing=True,
@@ -1744,6 +1766,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="AAAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="2400:cb00:2049::1",
             private_routing=True,
@@ -1832,6 +1855,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="CNAME",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -1920,6 +1944,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="MX",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
             priority=10,
@@ -2008,6 +2033,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="NS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="ns1.example.com",
             proxied=True,
@@ -2095,6 +2121,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="OPENPGPKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -2182,6 +2209,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="PTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="example.com",
             proxied=True,
@@ -2269,6 +2297,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="TXT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
             proxied=True,
@@ -2356,6 +2385,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="CAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": 1,
@@ -2447,6 +2477,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="CERT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 8,
@@ -2539,6 +2570,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="DNSKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 5,
@@ -2631,6 +2663,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="DS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 3,
@@ -2723,6 +2756,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="HTTPS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -2814,6 +2848,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="LOC",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "altitude": 0,
@@ -2914,6 +2949,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="NAPTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": "flags",
@@ -3008,6 +3044,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SMIMEA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -3100,6 +3137,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SRV",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "port": 8806,
@@ -3192,6 +3230,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SSHFP",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 2,
@@ -3283,6 +3322,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SVCB",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -3374,6 +3414,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="TLSA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -3466,6 +3507,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="URI",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
@@ -3564,6 +3606,7 @@ class TestRecords:
                 "startswith": "127.0.",
             },
             direction="asc",
+            include_shadow_metadata=True,
             match="any",
             name={
                 "contains": "w.example.",
@@ -3576,6 +3619,8 @@ class TestRecords:
             per_page=5,
             proxied=True,
             search="www.cloudflare.com",
+            shadowed_by_name="sub.example.com",
+            shadowing_name="www.sub.example.com",
             tag={
                 "absent": "important",
                 "contains": "greeting:ello, worl",
@@ -3684,6 +3729,7 @@ class TestRecords:
     def test_method_batch_with_all_params(self, client: Cloudflare) -> None:
         record = client.dns.records.batch(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            include_shadow_metadata=True,
             deletes=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             patches=[
                 {
@@ -3793,6 +3839,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="A",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="198.51.100.4",
             private_routing=True,
@@ -3881,6 +3928,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="AAAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="2400:cb00:2049::1",
             private_routing=True,
@@ -3969,6 +4017,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="CNAME",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -4057,6 +4106,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="MX",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
             priority=10,
@@ -4145,6 +4195,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="NS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="ns1.example.com",
             proxied=True,
@@ -4232,6 +4283,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="OPENPGPKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -4319,6 +4371,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="PTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="example.com",
             proxied=True,
@@ -4406,6 +4459,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="TXT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
             proxied=True,
@@ -4493,6 +4547,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="CAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": 1,
@@ -4584,6 +4639,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="CERT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 8,
@@ -4676,6 +4732,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="DNSKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 5,
@@ -4768,6 +4825,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="DS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 3,
@@ -4860,6 +4918,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="HTTPS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -4951,6 +5010,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="LOC",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "altitude": 0,
@@ -5051,6 +5111,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="NAPTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": "flags",
@@ -5145,6 +5206,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SMIMEA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -5237,6 +5299,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SRV",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "port": 8806,
@@ -5329,6 +5392,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SSHFP",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 2,
@@ -5420,6 +5484,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="SVCB",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -5511,6 +5576,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="TLSA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -5603,6 +5669,7 @@ class TestRecords:
             name="example.com",
             ttl=3600,
             type="URI",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
@@ -5717,6 +5784,16 @@ class TestRecords:
         record = client.dns.records.get(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
+
+    @pytest.mark.skip(reason="mock server returns invalid data")
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        record = client.dns.records.get(
+            dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            include_shadow_metadata=True,
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6038,6 +6115,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="A",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="198.51.100.4",
             private_routing=True,
@@ -6112,6 +6190,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="AAAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="2400:cb00:2049::1",
             private_routing=True,
@@ -6186,6 +6265,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="CNAME",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -6260,6 +6340,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="MX",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
             priority=10,
@@ -6334,6 +6415,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="NS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="ns1.example.com",
             proxied=True,
@@ -6407,6 +6489,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="OPENPGPKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -6480,6 +6563,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="PTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="example.com",
             proxied=True,
@@ -6553,6 +6637,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="TXT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
             proxied=True,
@@ -6626,6 +6711,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="CAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": 1,
@@ -6703,6 +6789,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="CERT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 8,
@@ -6781,6 +6868,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="DNSKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 5,
@@ -6859,6 +6947,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="DS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 3,
@@ -6937,6 +7026,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="HTTPS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -7014,6 +7104,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="LOC",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "altitude": 0,
@@ -7100,6 +7191,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="NAPTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": "flags",
@@ -7180,6 +7272,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SMIMEA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -7258,6 +7351,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SRV",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "port": 8806,
@@ -7336,6 +7430,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SSHFP",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 2,
@@ -7413,6 +7508,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SVCB",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -7490,6 +7586,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="TLSA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -7568,6 +7665,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="URI",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
@@ -7647,6 +7745,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="A",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="198.51.100.4",
             private_routing=True,
@@ -7735,6 +7834,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="AAAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="2400:cb00:2049::1",
             private_routing=True,
@@ -7823,6 +7923,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="CNAME",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -7911,6 +8012,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="MX",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
             priority=10,
@@ -7999,6 +8101,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="NS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="ns1.example.com",
             proxied=True,
@@ -8086,6 +8189,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="OPENPGPKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -8173,6 +8277,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="PTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="example.com",
             proxied=True,
@@ -8260,6 +8365,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="TXT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
             proxied=True,
@@ -8347,6 +8453,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="CAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": 1,
@@ -8438,6 +8545,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="CERT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 8,
@@ -8530,6 +8638,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="DNSKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 5,
@@ -8622,6 +8731,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="DS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 3,
@@ -8714,6 +8824,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="HTTPS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -8805,6 +8916,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="LOC",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "altitude": 0,
@@ -8905,6 +9017,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="NAPTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": "flags",
@@ -8999,6 +9112,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SMIMEA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -9091,6 +9205,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SRV",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "port": 8806,
@@ -9183,6 +9298,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SSHFP",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 2,
@@ -9274,6 +9390,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SVCB",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -9365,6 +9482,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="TLSA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -9457,6 +9575,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="URI",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
@@ -9555,6 +9674,7 @@ class TestAsyncRecords:
                 "startswith": "127.0.",
             },
             direction="asc",
+            include_shadow_metadata=True,
             match="any",
             name={
                 "contains": "w.example.",
@@ -9567,6 +9687,8 @@ class TestAsyncRecords:
             per_page=5,
             proxied=True,
             search="www.cloudflare.com",
+            shadowed_by_name="sub.example.com",
+            shadowing_name="www.sub.example.com",
             tag={
                 "absent": "important",
                 "contains": "greeting:ello, worl",
@@ -9675,6 +9797,7 @@ class TestAsyncRecords:
     async def test_method_batch_with_all_params(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.batch(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            include_shadow_metadata=True,
             deletes=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             patches=[
                 {
@@ -9784,6 +9907,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="A",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="198.51.100.4",
             private_routing=True,
@@ -9872,6 +9996,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="AAAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="2400:cb00:2049::1",
             private_routing=True,
@@ -9960,6 +10085,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="CNAME",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -10048,6 +10174,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="MX",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
             priority=10,
@@ -10136,6 +10263,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="NS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="ns1.example.com",
             proxied=True,
@@ -10223,6 +10351,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="OPENPGPKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="content",
             proxied=True,
@@ -10310,6 +10439,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="PTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content="example.com",
             proxied=True,
@@ -10397,6 +10527,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="TXT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
             proxied=True,
@@ -10484,6 +10615,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="CAA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": 1,
@@ -10575,6 +10707,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="CERT",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 8,
@@ -10667,6 +10800,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="DNSKEY",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 5,
@@ -10759,6 +10893,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="DS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 3,
@@ -10851,6 +10986,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="HTTPS",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -10942,6 +11078,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="LOC",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "altitude": 0,
@@ -11042,6 +11179,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="NAPTR",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "flags": "flags",
@@ -11136,6 +11274,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SMIMEA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -11228,6 +11367,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SRV",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "port": 8806,
@@ -11320,6 +11460,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SSHFP",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "algorithm": 2,
@@ -11411,6 +11552,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="SVCB",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "priority": 1,
@@ -11502,6 +11644,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="TLSA",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "certificate": "certificate",
@@ -11594,6 +11737,7 @@ class TestAsyncRecords:
             name="example.com",
             ttl=3600,
             type="URI",
+            include_shadow_metadata=True,
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
@@ -11708,6 +11852,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.get(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
+
+    @pytest.mark.skip(reason="mock server returns invalid data")
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        record = await async_client.dns.records.get(
+            dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            include_shadow_metadata=True,
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 

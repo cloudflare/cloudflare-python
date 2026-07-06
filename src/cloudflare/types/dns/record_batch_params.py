@@ -44,6 +44,13 @@ class RecordBatchParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
+    include_shadow_metadata: bool
+    """
+    Whether to include shadow metadata in the `meta` field of each record in the
+    response. See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
     deletes: Iterable[Delete]
 
     patches: Iterable[BatchPatchParam]

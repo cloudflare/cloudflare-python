@@ -41,6 +41,7 @@ from .uri_record_param import URIRecordParam as URIRecordParam
 from .aaaa_record_param import AAAARecordParam as AAAARecordParam
 from .batch_patch_param import BatchPatchParam as BatchPatchParam
 from .cert_record_param import CERTRecordParam as CERTRecordParam
+from .record_get_params import RecordGetParams as RecordGetParams
 from .svcb_record_param import SVCBRecordParam as SVCBRecordParam
 from .tlsa_record_param import TLSARecordParam as TLSARecordParam
 from .cname_record_param import CNAMERecordParam as CNAMERecordParam

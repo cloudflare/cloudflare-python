@@ -2,69 +2,124 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypeAlias
+from typing_extensions import Literal, TypeAlias
 
+from . import (
+    a_record,
+    ds_record,
+    mx_record,
+    ns_record,
+    caa_record,
+    loc_record,
+    ptr_record,
+    srv_record,
+    txt_record,
+    uri_record,
+    aaaa_record,
+    cert_record,
+    svcb_record,
+    tlsa_record,
+    cname_record,
+    https_record,
+    naptr_record,
+    sshfp_record,
+    dnskey_record,
+    smimea_record,
+)
 from .ttl import TTL
-from ..._utils import PropertyInfo
-from .a_record import ARecord
 from ..._models import BaseModel
-from .ds_record import DSRecord
-from .mx_record import MXRecord
-from .ns_record import NSRecord
-from .caa_record import CAARecord
-from .loc_record import LOCRecord
-from .ptr_record import PTRRecord
-from .srv_record import SRVRecord
-from .txt_record import TXTRecord
-from .uri_record import URIRecord
-from .aaaa_record import AAAARecord
-from .cert_record import CERTRecord
 from .record_tags import RecordTags
-from .svcb_record import SVCBRecord
-from .tlsa_record import TLSARecord
-from .cname_record import CNAMERecord
-from .https_record import HTTPSRecord
-from .naptr_record import NAPTRRecord
-from .sshfp_record import SSHFPRecord
-from .dnskey_record import DNSKEYRecord
-from .smimea_record import SMIMEARecord
 
 __all__ = [
     "RecordResponse",
-    "A",
-    "AAAA",
-    "CNAME",
-    "MX",
-    "NS",
-    "Openpgpkey",
-    "OpenpgpkeySettings",
-    "PTR",
-    "TXT",
-    "CAA",
-    "CERT",
-    "DNSKEY",
-    "DS",
-    "HTTPS",
-    "LOC",
-    "NAPTR",
-    "SMIMEA",
-    "SRV",
-    "SSHFP",
-    "SVCB",
-    "TLSA",
-    "URI",
+    "ARecord",
+    "ARecordMeta",
+    "AAAARecord",
+    "AAAARecordMeta",
+    "CNAMERecord",
+    "CNAMERecordMeta",
+    "MXRecord",
+    "MXRecordMeta",
+    "NSRecord",
+    "NSRecordMeta",
+    "OpenpgpkeyRecord",
+    "OpenpgpkeyRecordMeta",
+    "OpenpgpkeyRecordSettings",
+    "PTRRecord",
+    "PTRRecordMeta",
+    "TXTRecord",
+    "TXTRecordMeta",
+    "CAARecord",
+    "CAARecordMeta",
+    "CERTRecord",
+    "CERTRecordMeta",
+    "DNSKEYRecord",
+    "DNSKEYRecordMeta",
+    "DSRecord",
+    "DSRecordMeta",
+    "HTTPSRecord",
+    "HTTPSRecordMeta",
+    "LOCRecord",
+    "LOCRecordMeta",
+    "NAPTRRecord",
+    "NAPTRRecordMeta",
+    "SMIMEARecord",
+    "SMIMEARecordMeta",
+    "SRVRecord",
+    "SRVRecordMeta",
+    "SSHFPRecord",
+    "SSHFPRecordMeta",
+    "SVCBRecord",
+    "SVCBRecordMeta",
+    "TLSARecord",
+    "TLSARecordMeta",
+    "URIRecord",
+    "URIRecordMeta",
 ]
 
 
-class A(ARecord):
+class ARecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class ARecord(a_record.ARecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: ARecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -79,15 +134,48 @@ class A(ARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class AAAA(AAAARecord):
+class AAAARecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class AAAARecord(aaaa_record.AAAARecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: AAAARecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -102,15 +190,48 @@ class AAAA(AAAARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class CNAME(CNAMERecord):
+class CNAMERecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class CNAMERecord(cname_record.CNAMERecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: CNAMERecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -125,15 +246,48 @@ class CNAME(CNAMERecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class MX(MXRecord):
+class MXRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class MXRecord(mx_record.MXRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: MXRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -148,15 +302,48 @@ class MX(MXRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class NS(NSRecord):
+class NSRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class NSRecord(ns_record.NSRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: NSRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -171,7 +358,40 @@ class NS(NSRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class OpenpgpkeySettings(BaseModel):
+class OpenpgpkeyRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class OpenpgpkeyRecordSettings(BaseModel):
     """Settings for the DNS record."""
 
     ipv4_only: Optional[bool] = None
@@ -191,7 +411,7 @@ class OpenpgpkeySettings(BaseModel):
     """
 
 
-class Openpgpkey(BaseModel):
+class OpenpgpkeyRecord(BaseModel):
     id: str
     """Identifier."""
 
@@ -207,8 +427,8 @@ class Openpgpkey(BaseModel):
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: OpenpgpkeyRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -225,7 +445,7 @@ class Openpgpkey(BaseModel):
     Cloudflare.
     """
 
-    settings: OpenpgpkeySettings
+    settings: OpenpgpkeyRecordSettings
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -248,15 +468,48 @@ class Openpgpkey(BaseModel):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class PTR(PTRRecord):
+class PTRRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class PTRRecord(ptr_record.PTRRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: PTRRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -271,15 +524,48 @@ class PTR(PTRRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class TXT(TXTRecord):
+class TXTRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class TXTRecord(txt_record.TXTRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: TXTRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -294,15 +580,48 @@ class TXT(TXTRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class CAA(CAARecord):
+class CAARecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class CAARecord(caa_record.CAARecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: CAARecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -317,15 +636,48 @@ class CAA(CAARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class CERT(CERTRecord):
+class CERTRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class CERTRecord(cert_record.CERTRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: CERTRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -340,15 +692,48 @@ class CERT(CERTRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class DNSKEY(DNSKEYRecord):
+class DNSKEYRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class DNSKEYRecord(dnskey_record.DNSKEYRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: DNSKEYRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -363,15 +748,48 @@ class DNSKEY(DNSKEYRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class DS(DSRecord):
+class DSRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class DSRecord(ds_record.DSRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: DSRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -386,15 +804,48 @@ class DS(DSRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class HTTPS(HTTPSRecord):
+class HTTPSRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class HTTPSRecord(https_record.HTTPSRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: HTTPSRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -409,15 +860,48 @@ class HTTPS(HTTPSRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class LOC(LOCRecord):
+class LOCRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class LOCRecord(loc_record.LOCRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: LOCRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -432,15 +916,48 @@ class LOC(LOCRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class NAPTR(NAPTRRecord):
+class NAPTRRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class NAPTRRecord(naptr_record.NAPTRRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: NAPTRRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -455,15 +972,48 @@ class NAPTR(NAPTRRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class SMIMEA(SMIMEARecord):
+class SMIMEARecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class SMIMEARecord(smimea_record.SMIMEARecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: SMIMEARecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -478,15 +1028,48 @@ class SMIMEA(SMIMEARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class SRV(SRVRecord):
+class SRVRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class SRVRecord(srv_record.SRVRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: SRVRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -501,15 +1084,48 @@ class SRV(SRVRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class SSHFP(SSHFPRecord):
+class SSHFPRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class SSHFPRecord(sshfp_record.SSHFPRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: SSHFPRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -524,15 +1140,48 @@ class SSHFP(SSHFPRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class SVCB(SVCBRecord):
+class SVCBRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class SVCBRecord(svcb_record.SVCBRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: SVCBRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -547,15 +1196,48 @@ class SVCB(SVCBRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class TLSA(TLSARecord):
+class TLSARecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class TLSARecord(tlsa_record.TLSARecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: TLSARecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -570,15 +1252,48 @@ class TLSA(TLSARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class URI(URIRecord):
+class URIRecordMeta(BaseModel):
+    """Extra Cloudflare-specific metadata about the record."""
+
+    dead_glue: Optional[bool] = None
+    """
+    Whether this glue record is not served because a shallower NS delegation takes
+    precedence over the deeper delegation that needs it. Present only when true;
+    reachable glue carries only `is_glue`. See
+    [Unreachable glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#unreachable-glue-records).
+    """
+
+    is_glue: Optional[bool] = None
+    """Whether this A or AAAA record is glue for a subdomain NS delegation.
+
+    See
+    [Glue records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records#glue-records).
+    """
+
+    shadowed_by: Optional[List[str]] = None
+    """IDs of the NS records that shadow this record.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowed_records_count: Optional[int] = None
+    """Number of records shadowed by this NS delegation.
+
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+
+class URIRecord(uri_record.URIRecord):
     id: str
     """Identifier."""
 
     created_on: datetime
     """When the record was created."""
 
-    meta: object
-    """Extra Cloudflare-specific information about the record."""
+    meta: URIRecordMeta
+    """Extra Cloudflare-specific metadata about the record."""
 
     modified_on: datetime
     """When the record was last modified."""
@@ -593,29 +1308,26 @@ class URI(URIRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-RecordResponse: TypeAlias = Annotated[
-    Union[
-        A,
-        AAAA,
-        CNAME,
-        MX,
-        NS,
-        Openpgpkey,
-        PTR,
-        TXT,
-        CAA,
-        CERT,
-        DNSKEY,
-        DS,
-        HTTPS,
-        LOC,
-        NAPTR,
-        SMIMEA,
-        SRV,
-        SSHFP,
-        SVCB,
-        TLSA,
-        URI,
-    ],
-    PropertyInfo(discriminator="type"),
+RecordResponse: TypeAlias = Union[
+    ARecord,
+    AAAARecord,
+    CNAMERecord,
+    MXRecord,
+    NSRecord,
+    OpenpgpkeyRecord,
+    PTRRecord,
+    TXTRecord,
+    CAARecord,
+    CERTRecord,
+    DNSKEYRecord,
+    DSRecord,
+    HTTPSRecord,
+    LOCRecord,
+    NAPTRRecord,
+    SMIMEARecord,
+    SRVRecord,
+    SSHFPRecord,
+    SVCBRecord,
+    TLSARecord,
+    URIRecord,
 ]

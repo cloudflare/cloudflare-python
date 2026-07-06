@@ -20,6 +20,13 @@ class RecordListParams(TypedDict, total=False):
     direction: SortDirection
     """Direction to order DNS records in."""
 
+    include_shadow_metadata: bool
+    """
+    Whether to include shadow metadata in the `meta` field of each record in the
+    response. See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
     match: Literal["any", "all"]
     """Whether to match all search requirements or at least one (any).
 
@@ -52,6 +59,23 @@ class RecordListParams(TypedDict, total=False):
     is intentionally left unspecified and is subject to change in the future. This
     parameter works independently of the `match` setting. For automated searches,
     please use the other available parameters.
+    """
+
+    shadowed_by_name: str
+    """
+    Filters to records at or below the given NS delegation name, excluding the NS
+    records that form the delegation itself. The value must be a subdomain of the
+    zone; the zone apex is not accepted. Requires `include_shadow_metadata=true`.
+    See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
+    """
+
+    shadowing_name: str
+    """
+    Returns NS records that shadow the given name, searching at the name itself and
+    each of its ancestor names within the zone, excluding the zone apex. The value
+    must be a subdomain of the zone; the zone apex is not accepted. See
+    [Shadowed records](https://developers.cloudflare.com/dns/manage-dns-records/reference/shadowed-records).
     """
 
     tag: Tag
