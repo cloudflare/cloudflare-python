@@ -59,7 +59,7 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaListResponse:
         """
-        Retrieve operations and features as OpenAPI schemas
+        Retrieves API operations and their features exported as OpenAPI schemas.
 
         Args:
           zone_id: Identifier.
@@ -134,7 +134,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaListResponse:
         """
-        Retrieve operations and features as OpenAPI schemas
+        Retrieves API operations and their features exported as OpenAPI schemas.
 
         Args:
           zone_id: Identifier.

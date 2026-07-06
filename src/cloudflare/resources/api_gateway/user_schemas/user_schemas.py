@@ -97,8 +97,10 @@ class UserSchemasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaCreateResponse:
-        """
-        Upload a schema to a zone
+        """Uploads a new OpenAPI schema for API Shield schema validation.
+
+        The schema
+        defines expected request/response formats for API endpoints.
 
         Args:
           zone_id: Identifier.
@@ -412,8 +414,10 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaCreateResponse:
-        """
-        Upload a schema to a zone
+        """Uploads a new OpenAPI schema for API Shield schema validation.
+
+        The schema
+        defines expected request/response formats for API endpoints.
 
         Args:
           zone_id: Identifier.
