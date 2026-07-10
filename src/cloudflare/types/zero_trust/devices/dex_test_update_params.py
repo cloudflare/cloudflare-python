@@ -3,16 +3,18 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["DEXTestUpdateParams", "Data", "TargetPolicy"]
+from .schema_data_param import SchemaDataParam
+
+__all__ = ["DEXTestUpdateParams", "TargetPolicy"]
 
 
 class DEXTestUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Unique identifier linked to an account."""
 
-    data: Required[Data]
+    data: Required[SchemaDataParam]
     """
     The configuration object which contains the details for the WARP client to
     conduct the test.
@@ -34,21 +36,6 @@ class DEXTestUpdateParams(TypedDict, total=False):
     """DEX rules targeted by this test"""
 
     targeted: bool
-
-
-class Data(TypedDict, total=False):
-    """
-    The configuration object which contains the details for the WARP client to conduct the test.
-    """
-
-    host: Required[str]
-    """The desired endpoint to test."""
-
-    kind: Required[Literal["http", "traceroute"]]
-    """The type of test."""
-
-    method: Literal["GET"]
-    """The HTTP request method type."""
 
 
 class TargetPolicy(TypedDict, total=False):

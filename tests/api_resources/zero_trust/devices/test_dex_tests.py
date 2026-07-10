@@ -11,11 +11,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.devices import (
-    DEXTestGetResponse,
-    DEXTestListResponse,
-    DEXTestCreateResponse,
+    SchemaHTTP,
     DEXTestDeleteResponse,
-    DEXTestUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -36,7 +33,7 @@ class TestDEXTests:
             interval="30m",
             name="HTTP dash health check",
         )
-        assert_matches_type(Optional[DEXTestCreateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -60,7 +57,7 @@ class TestDEXTests:
             ],
             targeted=True,
         )
-        assert_matches_type(Optional[DEXTestCreateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -78,7 +75,7 @@ class TestDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = response.parse()
-        assert_matches_type(Optional[DEXTestCreateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -96,7 +93,7 @@ class TestDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = response.parse()
-            assert_matches_type(Optional[DEXTestCreateResponse], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -127,7 +124,7 @@ class TestDEXTests:
             interval="30m",
             name="HTTP dash health check",
         )
-        assert_matches_type(Optional[DEXTestUpdateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -152,7 +149,7 @@ class TestDEXTests:
             ],
             targeted=True,
         )
-        assert_matches_type(Optional[DEXTestUpdateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -171,7 +168,7 @@ class TestDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = response.parse()
-        assert_matches_type(Optional[DEXTestUpdateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -190,7 +187,7 @@ class TestDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = response.parse()
-            assert_matches_type(Optional[DEXTestUpdateResponse], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -227,7 +224,7 @@ class TestDEXTests:
         dex_test = client.zero_trust.devices.dex_tests.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -238,7 +235,7 @@ class TestDEXTests:
             per_page=10,
             test_name="testName",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -249,7 +246,7 @@ class TestDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -260,7 +257,7 @@ class TestDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -325,7 +322,7 @@ class TestDEXTests:
             dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(Optional[DEXTestGetResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -337,7 +334,7 @@ class TestDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = response.parse()
-        assert_matches_type(Optional[DEXTestGetResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -349,7 +346,7 @@ class TestDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = response.parse()
-            assert_matches_type(Optional[DEXTestGetResponse], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -385,7 +382,7 @@ class TestAsyncDEXTests:
             interval="30m",
             name="HTTP dash health check",
         )
-        assert_matches_type(Optional[DEXTestCreateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -409,7 +406,7 @@ class TestAsyncDEXTests:
             ],
             targeted=True,
         )
-        assert_matches_type(Optional[DEXTestCreateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -427,7 +424,7 @@ class TestAsyncDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = await response.parse()
-        assert_matches_type(Optional[DEXTestCreateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -445,7 +442,7 @@ class TestAsyncDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = await response.parse()
-            assert_matches_type(Optional[DEXTestCreateResponse], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -476,7 +473,7 @@ class TestAsyncDEXTests:
             interval="30m",
             name="HTTP dash health check",
         )
-        assert_matches_type(Optional[DEXTestUpdateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -501,7 +498,7 @@ class TestAsyncDEXTests:
             ],
             targeted=True,
         )
-        assert_matches_type(Optional[DEXTestUpdateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -520,7 +517,7 @@ class TestAsyncDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = await response.parse()
-        assert_matches_type(Optional[DEXTestUpdateResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -539,7 +536,7 @@ class TestAsyncDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = await response.parse()
-            assert_matches_type(Optional[DEXTestUpdateResponse], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -576,7 +573,7 @@ class TestAsyncDEXTests:
         dex_test = await async_client.zero_trust.devices.dex_tests.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -587,7 +584,7 @@ class TestAsyncDEXTests:
             per_page=10,
             test_name="testName",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -598,7 +595,7 @@ class TestAsyncDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -609,7 +606,7 @@ class TestAsyncDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[DEXTestListResponse], dex_test, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -674,7 +671,7 @@ class TestAsyncDEXTests:
             dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(Optional[DEXTestGetResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -686,7 +683,7 @@ class TestAsyncDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = await response.parse()
-        assert_matches_type(Optional[DEXTestGetResponse], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -698,7 +695,7 @@ class TestAsyncDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = await response.parse()
-            assert_matches_type(Optional[DEXTestGetResponse], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -90,6 +90,18 @@ Methods:
 
 - <code title="post /accounts/{account_id}/browser-rendering/markdown">client.browser_rendering.markdown.<a href="./src/cloudflare/resources/browser_rendering/markdown.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/markdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/markdown_create_response.py">str</a></code>
 
+## AccessibilityTree
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering import AccessibilityTreeCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/accessibilityTree">client.browser_rendering.accessibility_tree.<a href="./src/cloudflare/resources/browser_rendering/accessibility_tree.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/accessibility_tree_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/accessibility_tree_create_response.py">AccessibilityTreeCreateResponse</a></code>
+
 ## Crawl
 
 Types:

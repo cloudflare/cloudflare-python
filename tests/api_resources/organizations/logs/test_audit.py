@@ -9,9 +9,12 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare._utils import parse_date
+from cloudflare._utils import parse_date, parse_datetime
 from cloudflare.pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
-from cloudflare.types.organizations.logs import AuditListResponse
+from cloudflare.types.organizations.logs import (
+    AuditListResponse,
+    AuditHistoryResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -100,6 +103,83 @@ class TestAudit:
                 since=parse_date("2024-10-30"),
             )
 
+    @parametrize
+    def test_method_history(self, client: Cloudflare) -> None:
+        audit = client.organizations.logs.audit.history(
+            id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+            organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+            action_time=parse_datetime("2024-10-30T15:00:00Z"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
+        )
+        assert_matches_type(AuditHistoryResponse, audit, path=["response"])
+
+    @parametrize
+    def test_method_history_with_all_params(self, client: Cloudflare) -> None:
+        audit = client.organizations.logs.audit.history(
+            id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+            organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+            action_time=parse_datetime("2024-10-30T15:00:00Z"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
+            cursor="Q1buH-__DQqqig7SVYXT-SsMOTGY2Z3Y80W-fGgva7yaDdmPKveucH5ddOcHsJRhNb-xUK8agZQqkJSMAENGO8NU6g==",
+            direction="desc",
+            limit=25,
+        )
+        assert_matches_type(AuditHistoryResponse, audit, path=["response"])
+
+    @parametrize
+    def test_raw_response_history(self, client: Cloudflare) -> None:
+        response = client.organizations.logs.audit.with_raw_response.history(
+            id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+            organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+            action_time=parse_datetime("2024-10-30T15:00:00Z"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        audit = response.parse()
+        assert_matches_type(AuditHistoryResponse, audit, path=["response"])
+
+    @parametrize
+    def test_streaming_response_history(self, client: Cloudflare) -> None:
+        with client.organizations.logs.audit.with_streaming_response.history(
+            id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+            organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+            action_time=parse_datetime("2024-10-30T15:00:00Z"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            audit = response.parse()
+            assert_matches_type(AuditHistoryResponse, audit, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_history(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `organization_id` but received ''"):
+            client.organizations.logs.audit.with_raw_response.history(
+                id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+                organization_id="",
+                action_time=parse_datetime("2024-10-30T15:00:00Z"),
+                before=parse_date("2024-10-31"),
+                since=parse_date("2024-10-30"),
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.organizations.logs.audit.with_raw_response.history(
+                id="",
+                organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+                action_time=parse_datetime("2024-10-30T15:00:00Z"),
+                before=parse_date("2024-10-31"),
+                since=parse_date("2024-10-30"),
+            )
+
 
 class TestAsyncAudit:
     parametrize = pytest.mark.parametrize(
@@ -183,6 +263,83 @@ class TestAsyncAudit:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `organization_id` but received ''"):
             await async_client.organizations.logs.audit.with_raw_response.list(
                 organization_id="",
+                before=parse_date("2024-10-31"),
+                since=parse_date("2024-10-30"),
+            )
+
+    @parametrize
+    async def test_method_history(self, async_client: AsyncCloudflare) -> None:
+        audit = await async_client.organizations.logs.audit.history(
+            id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+            organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+            action_time=parse_datetime("2024-10-30T15:00:00Z"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
+        )
+        assert_matches_type(AuditHistoryResponse, audit, path=["response"])
+
+    @parametrize
+    async def test_method_history_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        audit = await async_client.organizations.logs.audit.history(
+            id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+            organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+            action_time=parse_datetime("2024-10-30T15:00:00Z"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
+            cursor="Q1buH-__DQqqig7SVYXT-SsMOTGY2Z3Y80W-fGgva7yaDdmPKveucH5ddOcHsJRhNb-xUK8agZQqkJSMAENGO8NU6g==",
+            direction="desc",
+            limit=25,
+        )
+        assert_matches_type(AuditHistoryResponse, audit, path=["response"])
+
+    @parametrize
+    async def test_raw_response_history(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.organizations.logs.audit.with_raw_response.history(
+            id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+            organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+            action_time=parse_datetime("2024-10-30T15:00:00Z"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        audit = await response.parse()
+        assert_matches_type(AuditHistoryResponse, audit, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_history(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.organizations.logs.audit.with_streaming_response.history(
+            id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+            organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+            action_time=parse_datetime("2024-10-30T15:00:00Z"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            audit = await response.parse()
+            assert_matches_type(AuditHistoryResponse, audit, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_history(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `organization_id` but received ''"):
+            await async_client.organizations.logs.audit.with_raw_response.history(
+                id="f174be97-19b1-40d6-954d-70cd5fbd52db",
+                organization_id="",
+                action_time=parse_datetime("2024-10-30T15:00:00Z"),
+                before=parse_date("2024-10-31"),
+                since=parse_date("2024-10-30"),
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.organizations.logs.audit.with_raw_response.history(
+                id="",
+                organization_id="a67e14daa5f8dceeb91fe5449ba496ef",
+                action_time=parse_datetime("2024-10-30T15:00:00Z"),
                 before=parse_date("2024-10-31"),
                 since=parse_date("2024-10-30"),
             )

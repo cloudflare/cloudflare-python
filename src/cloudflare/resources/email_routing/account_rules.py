@@ -1,0 +1,248 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Literal
+
+import httpx
+
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import path_template, maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.email_routing import account_rule_list_params
+from ...types.email_routing.account_rule import AccountRule
+
+__all__ = ["AccountRulesResource", "AsyncAccountRulesResource"]
+
+
+class AccountRulesResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AccountRulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return AccountRulesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AccountRulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return AccountRulesResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        enabled: Literal[True, False] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[AccountRule]:
+        """
+        Lists existing routing rules across all zones in the account or zone.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          enabled: Filter by enabled routing rules.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/email/routing/rules",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            page=SyncV4PagePaginationArray[AccountRule],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "enabled": enabled,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    account_rule_list_params.AccountRuleListParams,
+                ),
+            ),
+            model=AccountRule,
+        )
+
+
+class AsyncAccountRulesResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncAccountRulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncAccountRulesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAccountRulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return AsyncAccountRulesResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        enabled: Literal[True, False] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[AccountRule, AsyncV4PagePaginationArray[AccountRule]]:
+        """
+        Lists existing routing rules across all zones in the account or zone.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          enabled: Filter by enabled routing rules.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/email/routing/rules",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            page=AsyncV4PagePaginationArray[AccountRule],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "enabled": enabled,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    account_rule_list_params.AccountRuleListParams,
+                ),
+            ),
+            model=AccountRule,
+        )
+
+
+class AccountRulesResourceWithRawResponse:
+    def __init__(self, account_rules: AccountRulesResource) -> None:
+        self._account_rules = account_rules
+
+        self.list = to_raw_response_wrapper(
+            account_rules.list,
+        )
+
+
+class AsyncAccountRulesResourceWithRawResponse:
+    def __init__(self, account_rules: AsyncAccountRulesResource) -> None:
+        self._account_rules = account_rules
+
+        self.list = async_to_raw_response_wrapper(
+            account_rules.list,
+        )
+
+
+class AccountRulesResourceWithStreamingResponse:
+    def __init__(self, account_rules: AccountRulesResource) -> None:
+        self._account_rules = account_rules
+
+        self.list = to_streamed_response_wrapper(
+            account_rules.list,
+        )
+
+
+class AsyncAccountRulesResourceWithStreamingResponse:
+    def __init__(self, account_rules: AsyncAccountRulesResource) -> None:
+        self._account_rules = account_rules
+
+        self.list = async_to_streamed_response_wrapper(
+            account_rules.list,
+        )

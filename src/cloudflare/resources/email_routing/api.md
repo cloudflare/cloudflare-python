@@ -40,6 +40,7 @@ Methods:
 
 - <code title="post /zones/{zone_id}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/email_routing/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/email_routing_rule.py">Optional[EmailRoutingRule]</a></code>
 - <code title="put /zones/{zone_id}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">update</a>(rule_identifier, \*, zone_id, \*\*<a href="src/cloudflare/types/email_routing/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/email_routing_rule.py">Optional[EmailRoutingRule]</a></code>
+- <code title="get /{accounts_or_zones}/{account_or_zone_id}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">list</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/email_routing/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/account_rule.py">SyncV4PagePaginationArray[AccountRule]</a></code>
 - <code title="delete /zones/{zone_id}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">delete</a>(rule_identifier, \*, zone_id) -> <a href="./src/cloudflare/types/email_routing/email_routing_rule.py">Optional[EmailRoutingRule]</a></code>
 - <code title="get /zones/{zone_id}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">get</a>(rule_identifier, \*, zone_id) -> <a href="./src/cloudflare/types/email_routing/email_routing_rule.py">Optional[EmailRoutingRule]</a></code>
 
@@ -60,6 +61,18 @@ Methods:
 
 - <code title="put /zones/{zone_id}/email/routing/rules/catch_all">client.email_routing.rules.catch_alls.<a href="./src/cloudflare/resources/email_routing/rules/catch_alls.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/email_routing/rules/catch_all_update_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/rules/catch_all_update_response.py">Optional[CatchAllUpdateResponse]</a></code>
 - <code title="get /zones/{zone_id}/email/routing/rules/catch_all">client.email_routing.rules.catch_alls.<a href="./src/cloudflare/resources/email_routing/rules/catch_alls.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/email_routing/rules/catch_all_get_response.py">Optional[CatchAllGetResponse]</a></code>
+
+## AccountRules
+
+Types:
+
+```python
+from cloudflare.types.email_routing import AccountRule
+```
+
+Methods:
+
+- <code title="get /{accounts_or_zones}/{account_or_zone_id}/email/routing/rules">client.email_routing.account_rules.<a href="./src/cloudflare/resources/email_routing/account_rules.py">list</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/email_routing/account_rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/account_rule.py">SyncV4PagePaginationArray[AccountRule]</a></code>
 
 ## Addresses
 

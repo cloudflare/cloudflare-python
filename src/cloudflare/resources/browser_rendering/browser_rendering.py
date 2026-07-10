@@ -84,6 +84,14 @@ from .devtools.devtools import (
     DevtoolsResourceWithStreamingResponse,
     AsyncDevtoolsResourceWithStreamingResponse,
 )
+from .accessibility_tree import (
+    AccessibilityTreeResource,
+    AsyncAccessibilityTreeResource,
+    AccessibilityTreeResourceWithRawResponse,
+    AsyncAccessibilityTreeResourceWithRawResponse,
+    AccessibilityTreeResourceWithStreamingResponse,
+    AsyncAccessibilityTreeResourceWithStreamingResponse,
+)
 
 __all__ = ["BrowserRenderingResource", "AsyncBrowserRenderingResource"]
 
@@ -122,6 +130,10 @@ class BrowserRenderingResource(SyncAPIResource):
         return MarkdownResource(self._client)
 
     @cached_property
+    def accessibility_tree(self) -> AccessibilityTreeResource:
+        return AccessibilityTreeResource(self._client)
+
+    @cached_property
     def crawl(self) -> CrawlResource:
         return CrawlResource(self._client)
 
@@ -135,7 +147,7 @@ class BrowserRenderingResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
         return BrowserRenderingResourceWithRawResponse(self)
 
@@ -144,7 +156,7 @@ class BrowserRenderingResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#with_streaming_response
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return BrowserRenderingResourceWithStreamingResponse(self)
 
@@ -183,6 +195,10 @@ class AsyncBrowserRenderingResource(AsyncAPIResource):
         return AsyncMarkdownResource(self._client)
 
     @cached_property
+    def accessibility_tree(self) -> AsyncAccessibilityTreeResource:
+        return AsyncAccessibilityTreeResource(self._client)
+
+    @cached_property
     def crawl(self) -> AsyncCrawlResource:
         return AsyncCrawlResource(self._client)
 
@@ -196,7 +212,7 @@ class AsyncBrowserRenderingResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
         return AsyncBrowserRenderingResourceWithRawResponse(self)
 
@@ -205,7 +221,7 @@ class AsyncBrowserRenderingResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#with_streaming_response
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return AsyncBrowserRenderingResourceWithStreamingResponse(self)
 
@@ -245,6 +261,10 @@ class BrowserRenderingResourceWithRawResponse:
     @cached_property
     def markdown(self) -> MarkdownResourceWithRawResponse:
         return MarkdownResourceWithRawResponse(self._browser_rendering.markdown)
+
+    @cached_property
+    def accessibility_tree(self) -> AccessibilityTreeResourceWithRawResponse:
+        return AccessibilityTreeResourceWithRawResponse(self._browser_rendering.accessibility_tree)
 
     @cached_property
     def crawl(self) -> CrawlResourceWithRawResponse:
@@ -292,6 +312,10 @@ class AsyncBrowserRenderingResourceWithRawResponse:
         return AsyncMarkdownResourceWithRawResponse(self._browser_rendering.markdown)
 
     @cached_property
+    def accessibility_tree(self) -> AsyncAccessibilityTreeResourceWithRawResponse:
+        return AsyncAccessibilityTreeResourceWithRawResponse(self._browser_rendering.accessibility_tree)
+
+    @cached_property
     def crawl(self) -> AsyncCrawlResourceWithRawResponse:
         return AsyncCrawlResourceWithRawResponse(self._browser_rendering.crawl)
 
@@ -337,6 +361,10 @@ class BrowserRenderingResourceWithStreamingResponse:
         return MarkdownResourceWithStreamingResponse(self._browser_rendering.markdown)
 
     @cached_property
+    def accessibility_tree(self) -> AccessibilityTreeResourceWithStreamingResponse:
+        return AccessibilityTreeResourceWithStreamingResponse(self._browser_rendering.accessibility_tree)
+
+    @cached_property
     def crawl(self) -> CrawlResourceWithStreamingResponse:
         return CrawlResourceWithStreamingResponse(self._browser_rendering.crawl)
 
@@ -380,6 +408,10 @@ class AsyncBrowserRenderingResourceWithStreamingResponse:
     @cached_property
     def markdown(self) -> AsyncMarkdownResourceWithStreamingResponse:
         return AsyncMarkdownResourceWithStreamingResponse(self._browser_rendering.markdown)
+
+    @cached_property
+    def accessibility_tree(self) -> AsyncAccessibilityTreeResourceWithStreamingResponse:
+        return AsyncAccessibilityTreeResourceWithStreamingResponse(self._browser_rendering.accessibility_tree)
 
     @cached_property
     def crawl(self) -> AsyncCrawlResourceWithStreamingResponse:

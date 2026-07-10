@@ -1,26 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 from ...._models import BaseModel
+from .schema_data import SchemaData
 
-__all__ = ["DEXTestListResponse", "Data", "TargetPolicy"]
-
-
-class Data(BaseModel):
-    """
-    The configuration object which contains the details for the WARP client to conduct the test.
-    """
-
-    host: str
-    """The desired endpoint to test."""
-
-    kind: Literal["http", "traceroute"]
-    """The type of test."""
-
-    method: Optional[Literal["GET"]] = None
-    """The HTTP request method type."""
+__all__ = ["SchemaHTTP", "TargetPolicy"]
 
 
 class TargetPolicy(BaseModel):
@@ -34,8 +19,8 @@ class TargetPolicy(BaseModel):
     """The name of the DEX rule."""
 
 
-class DEXTestListResponse(BaseModel):
-    data: Data
+class SchemaHTTP(BaseModel):
+    data: SchemaData
     """
     The configuration object which contains the details for the WARP client to
     conduct the test.

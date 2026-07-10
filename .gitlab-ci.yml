@@ -1,0 +1,67 @@
+stages:
+  - lint
+  - build
+  - test
+
+default:
+  image: python:3.9
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH !~ /^(integrated\/|stl-preview-head\/|stl-preview-base\/|generated|codegen\/)/
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH =~ /^codegen\/stl\//
+
+lint:
+  stage: lint
+  timeout: 10 minutes
+  rules:
+    - if: $CI_COMMIT_TITLE == "codegen metadata"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_MERGE_REQUEST_SOURCE_PROJECT_PATH != $CI_PROJECT_PATH
+  script:
+    - pip install uv
+    - uv sync --all-extras
+    - ./scripts/lint
+
+build:
+  stage: build
+  timeout: 10 minutes
+  rules:
+    - if: $CI_COMMIT_TITLE == "codegen metadata"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_MERGE_REQUEST_SOURCE_PROJECT_PATH != $CI_PROJECT_PATH
+  script:
+    - pip install uv
+    - uv sync --all-extras
+    - uv build
+
+test:
+  stage: test
+  timeout: 10 minutes
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_MERGE_REQUEST_SOURCE_PROJECT_PATH != $CI_PROJECT_PATH
+  script:
+    - pip install uv
+    - uv sync --all-extras
+    - ./scripts/bootstrap
+    - ./scripts/test
+examples:
+  stage: test
+  timeout: 10 minutes
+  rules:
+    - if: $CI_COMMIT_TITLE == "codegen metadata"
+      when: never
+    - if: $CI_PROJECT_PATH == "cloudflare/cloudflare-python" && ($CI_PIPELINE_SOURCE == "push" || $CI_MERGE_REQUEST_SOURCE_PROJECT_PATH != $CI_PROJECT_PATH)
+  variables:
+    CLOUDFLARE_ACCOUNT_ID: "f037e56e89293a057740de681ac9abbe"
+    CLOUDFLARE_EMAIL: "terraform-acceptance-test@cfapi.net"
+    CLOUDFLARE_ZONE_ID: "0da42c8d2132a9ddaf714f9e7c92011"
+    CLOUDFLARE_API_KEY: "${{ secrets.CLOUDFLARE_API_KEY }}"
+  script:
+    - pip install uv
+    - uv sync --all-extras
+    - uv run python ./examples/ai/demo.py

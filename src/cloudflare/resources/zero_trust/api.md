@@ -68,24 +68,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices import (
-    SchemaData,
-    SchemaHTTP,
-    DEXTestCreateResponse,
-    DEXTestUpdateResponse,
-    DEXTestListResponse,
-    DEXTestDeleteResponse,
-    DEXTestGetResponse,
-)
+from cloudflare.types.zero_trust.devices import SchemaData, SchemaHTTP, DEXTestDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/dex/devices/dex_tests">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_create_response.py">Optional[DEXTestCreateResponse]</a></code>
-- <code title="put /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">update</a>(dex_test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_update_response.py">Optional[DEXTestUpdateResponse]</a></code>
-- <code title="get /accounts/{account_id}/dex/devices/dex_tests">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_list_response.py">SyncV4PagePaginationArray[DEXTestListResponse]</a></code>
+- <code title="post /accounts/{account_id}/dex/devices/dex_tests">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/schema_http.py">Optional[SchemaHTTP]</a></code>
+- <code title="put /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">update</a>(dex_test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/schema_http.py">Optional[SchemaHTTP]</a></code>
+- <code title="get /accounts/{account_id}/dex/devices/dex_tests">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/schema_http.py">SyncV4PagePaginationArray[SchemaHTTP]</a></code>
 - <code title="delete /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">delete</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_delete_response.py">Optional[DEXTestDeleteResponse]</a></code>
-- <code title="get /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">get</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_get_response.py">Optional[DEXTestGetResponse]</a></code>
+- <code title="get /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">get</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/schema_http.py">Optional[SchemaHTTP]</a></code>
 
 ### IPProfiles
 

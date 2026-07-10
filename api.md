@@ -155,6 +155,8 @@ from cloudflare.types import (
 
 # [Registrar](src/cloudflare/resources/registrar/api.md)
 
+# [RegistrarSandbox](src/cloudflare/resources/registrar_sandbox/api.md)
+
 # [RequestTracers](src/cloudflare/resources/request_tracers/api.md)
 
 # [Rules](src/cloudflare/resources/rules/api.md)

@@ -20,12 +20,14 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.devices import dex_test_list_params, dex_test_create_params, dex_test_update_params
-from ....types.zero_trust.devices.dex_test_get_response import DEXTestGetResponse
-from ....types.zero_trust.devices.dex_test_list_response import DEXTestListResponse
-from ....types.zero_trust.devices.dex_test_create_response import DEXTestCreateResponse
+from ....types.zero_trust.devices import (
+    dex_test_list_params,
+    dex_test_create_params,
+    dex_test_update_params,
+)
+from ....types.zero_trust.devices.schema_http import SchemaHTTP
+from ....types.zero_trust.devices.schema_data_param import SchemaDataParam
 from ....types.zero_trust.devices.dex_test_delete_response import DEXTestDeleteResponse
-from ....types.zero_trust.devices.dex_test_update_response import DEXTestUpdateResponse
 
 __all__ = ["DEXTestsResource", "AsyncDEXTestsResource"]
 
@@ -37,7 +39,7 @@ class DEXTestsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
         return DEXTestsResourceWithRawResponse(self)
 
@@ -46,7 +48,7 @@ class DEXTestsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#with_streaming_response
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return DEXTestsResourceWithStreamingResponse(self)
 
@@ -54,7 +56,7 @@ class DEXTestsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        data: dex_test_create_params.Data,
+        data: SchemaDataParam,
         enabled: bool,
         interval: str,
         name: str,
@@ -67,7 +69,7 @@ class DEXTestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DEXTestCreateResponse]:
+    ) -> Optional[SchemaHTTP]:
         """
         Create a DEX test.
 
@@ -116,9 +118,9 @@ class DEXTestsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestCreateResponse]], ResultWrapper[DEXTestCreateResponse]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
     def update(
@@ -126,7 +128,7 @@ class DEXTestsResource(SyncAPIResource):
         dex_test_id: str,
         *,
         account_id: str,
-        data: dex_test_update_params.Data,
+        data: SchemaDataParam,
         enabled: bool,
         interval: str,
         name: str,
@@ -139,7 +141,7 @@ class DEXTestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DEXTestUpdateResponse]:
+    ) -> Optional[SchemaHTTP]:
         """
         Update a DEX test.
 
@@ -196,9 +198,9 @@ class DEXTestsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestUpdateResponse]], ResultWrapper[DEXTestUpdateResponse]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
     def list(
@@ -215,7 +217,7 @@ class DEXTestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[DEXTestListResponse]:
+    ) -> SyncV4PagePaginationArray[SchemaHTTP]:
         """
         Fetch all DEX tests.
 
@@ -242,7 +244,7 @@ class DEXTestsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/dex/devices/dex_tests", account_id=account_id),
-            page=SyncV4PagePaginationArray[DEXTestListResponse],
+            page=SyncV4PagePaginationArray[SchemaHTTP],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -258,7 +260,7 @@ class DEXTestsResource(SyncAPIResource):
                     dex_test_list_params.DEXTestListParams,
                 ),
             ),
-            model=DEXTestListResponse,
+            model=SchemaHTTP,
         )
 
     def delete(
@@ -322,7 +324,7 @@ class DEXTestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DEXTestGetResponse]:
+    ) -> Optional[SchemaHTTP]:
         """
         Fetch a single DEX test.
 
@@ -354,9 +356,9 @@ class DEXTestsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestGetResponse]], ResultWrapper[DEXTestGetResponse]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
 
@@ -367,7 +369,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
         return AsyncDEXTestsResourceWithRawResponse(self)
 
@@ -376,7 +378,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#with_streaming_response
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return AsyncDEXTestsResourceWithStreamingResponse(self)
 
@@ -384,7 +386,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        data: dex_test_create_params.Data,
+        data: SchemaDataParam,
         enabled: bool,
         interval: str,
         name: str,
@@ -397,7 +399,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DEXTestCreateResponse]:
+    ) -> Optional[SchemaHTTP]:
         """
         Create a DEX test.
 
@@ -446,9 +448,9 @@ class AsyncDEXTestsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestCreateResponse]], ResultWrapper[DEXTestCreateResponse]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
     async def update(
@@ -456,7 +458,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         dex_test_id: str,
         *,
         account_id: str,
-        data: dex_test_update_params.Data,
+        data: SchemaDataParam,
         enabled: bool,
         interval: str,
         name: str,
@@ -469,7 +471,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DEXTestUpdateResponse]:
+    ) -> Optional[SchemaHTTP]:
         """
         Update a DEX test.
 
@@ -526,9 +528,9 @@ class AsyncDEXTestsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestUpdateResponse]], ResultWrapper[DEXTestUpdateResponse]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
     def list(
@@ -545,7 +547,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DEXTestListResponse, AsyncV4PagePaginationArray[DEXTestListResponse]]:
+    ) -> AsyncPaginator[SchemaHTTP, AsyncV4PagePaginationArray[SchemaHTTP]]:
         """
         Fetch all DEX tests.
 
@@ -572,7 +574,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/dex/devices/dex_tests", account_id=account_id),
-            page=AsyncV4PagePaginationArray[DEXTestListResponse],
+            page=AsyncV4PagePaginationArray[SchemaHTTP],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -588,7 +590,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
                     dex_test_list_params.DEXTestListParams,
                 ),
             ),
-            model=DEXTestListResponse,
+            model=SchemaHTTP,
         )
 
     async def delete(
@@ -652,7 +654,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DEXTestGetResponse]:
+    ) -> Optional[SchemaHTTP]:
         """
         Fetch a single DEX test.
 
@@ -684,9 +686,9 @@ class AsyncDEXTestsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestGetResponse]], ResultWrapper[DEXTestGetResponse]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
 

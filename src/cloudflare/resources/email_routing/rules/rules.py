@@ -26,8 +26,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.email_routing import rule_create_params, rule_update_params
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.email_routing import rule_list_params, rule_create_params, rule_update_params
+from ....types.email_routing.account_rule import AccountRule
 from ....types.email_routing.action_param import ActionParam
 from ....types.email_routing.matcher_param import MatcherParam
 from ....types.email_routing.email_routing_rule import EmailRoutingRule
@@ -46,7 +48,7 @@ class RulesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
         return RulesResourceWithRawResponse(self)
 
@@ -55,7 +57,7 @@ class RulesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#with_streaming_response
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return RulesResourceWithStreamingResponse(self)
 
@@ -223,6 +225,79 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
 
+    def list(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        enabled: Literal[True, False] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePaginationArray[AccountRule]:
+        """
+        Lists existing routing rules across all zones in the account or zone.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          enabled: Filter by enabled routing rules.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/email/routing/rules",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            page=SyncV4PagePaginationArray[AccountRule],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "enabled": enabled,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
+            ),
+            model=AccountRule,
+        )
+
     def delete(
         self,
         rule_identifier: str,
@@ -331,7 +406,7 @@ class AsyncRulesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
         return AsyncRulesResourceWithRawResponse(self)
 
@@ -340,7 +415,7 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/cloudflare-python#with_streaming_response
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return AsyncRulesResourceWithStreamingResponse(self)
 
@@ -508,6 +583,79 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
 
+    def list(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        enabled: Literal[True, False] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[AccountRule, AsyncV4PagePaginationArray[AccountRule]]:
+        """
+        Lists existing routing rules across all zones in the account or zone.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          enabled: Filter by enabled routing rules.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/email/routing/rules",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            page=AsyncV4PagePaginationArray[AccountRule],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "enabled": enabled,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
+            ),
+            model=AccountRule,
+        )
+
     async def delete(
         self,
         rule_identifier: str,
@@ -615,6 +763,9 @@ class RulesResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             rules.update,
         )
+        self.list = to_raw_response_wrapper(
+            rules.list,
+        )
         self.delete = to_raw_response_wrapper(
             rules.delete,
         )
@@ -636,6 +787,9 @@ class AsyncRulesResourceWithRawResponse:
         )
         self.update = async_to_raw_response_wrapper(
             rules.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            rules.list,
         )
         self.delete = async_to_raw_response_wrapper(
             rules.delete,
@@ -659,6 +813,9 @@ class RulesResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             rules.update,
         )
+        self.list = to_streamed_response_wrapper(
+            rules.list,
+        )
         self.delete = to_streamed_response_wrapper(
             rules.delete,
         )
@@ -680,6 +837,9 @@ class AsyncRulesResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             rules.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            rules.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             rules.delete,

@@ -88,6 +88,14 @@ from .browser_rendering import (
     BrowserRenderingResourceWithStreamingResponse,
     AsyncBrowserRenderingResourceWithStreamingResponse,
 )
+from .accessibility_tree import (
+    AccessibilityTreeResource,
+    AsyncAccessibilityTreeResource,
+    AccessibilityTreeResourceWithRawResponse,
+    AsyncAccessibilityTreeResourceWithRawResponse,
+    AccessibilityTreeResourceWithStreamingResponse,
+    AsyncAccessibilityTreeResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ContentResource",
@@ -138,6 +146,12 @@ __all__ = [
     "AsyncMarkdownResourceWithRawResponse",
     "MarkdownResourceWithStreamingResponse",
     "AsyncMarkdownResourceWithStreamingResponse",
+    "AccessibilityTreeResource",
+    "AsyncAccessibilityTreeResource",
+    "AccessibilityTreeResourceWithRawResponse",
+    "AsyncAccessibilityTreeResourceWithRawResponse",
+    "AccessibilityTreeResourceWithStreamingResponse",
+    "AsyncAccessibilityTreeResourceWithStreamingResponse",
     "CrawlResource",
     "AsyncCrawlResource",
     "CrawlResourceWithRawResponse",

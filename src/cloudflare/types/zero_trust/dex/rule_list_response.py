@@ -1,30 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 from ...._models import BaseModel
+from ..devices.schema_data import SchemaData
 
-__all__ = ["RuleListResponse", "Rule", "RuleTargetedTest", "RuleTargetedTestData"]
-
-
-class RuleTargetedTestData(BaseModel):
-    """
-    The configuration object which contains the details for the WARP client to conduct the test.
-    """
-
-    host: str
-    """The desired endpoint to test."""
-
-    kind: Literal["http", "traceroute"]
-    """The type of test."""
-
-    method: Optional[Literal["GET"]] = None
-    """The HTTP request method type."""
+__all__ = ["RuleListResponse", "Rule", "RuleTargetedTest"]
 
 
 class RuleTargetedTest(BaseModel):
-    data: RuleTargetedTestData
+    data: SchemaData
     """
     The configuration object which contains the details for the WARP client to
     conduct the test.

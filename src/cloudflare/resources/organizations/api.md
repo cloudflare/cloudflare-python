@@ -34,12 +34,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.organizations.logs import AuditListResponse
+from cloudflare.types.organizations.logs import AuditListResponse, AuditHistoryResponse
 ```
 
 Methods:
 
 - <code title="get /organizations/{organization_id}/logs/audit">client.organizations.logs.audit.<a href="./src/cloudflare/resources/organizations/logs/audit.py">list</a>(organization_id, \*\*<a href="src/cloudflare/types/organizations/logs/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/organizations/logs/audit_list_response.py">SyncCursorPaginationAfter[AuditListResponse]</a></code>
+- <code title="get /organizations/{organization_id}/logs/audit/{id}/history">client.organizations.logs.audit.<a href="./src/cloudflare/resources/organizations/logs/audit.py">history</a>(id, \*, organization_id, \*\*<a href="src/cloudflare/types/organizations/logs/audit_history_params.py">params</a>) -> <a href="./src/cloudflare/types/organizations/logs/audit_history_response.py">AuditHistoryResponse</a></code>
 
 ## Billing
 
