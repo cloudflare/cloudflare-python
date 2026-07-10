@@ -83,6 +83,15 @@ class TestDatasets:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        dataset = client.cloudforce_one.threat_events.datasets.list(
+            account_id="account_id",
+            include_deleted=True,
+        )
+        assert_matches_type(DatasetListResponse, dataset, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.datasets.with_raw_response.list(
             account_id="account_id",
@@ -354,6 +363,15 @@ class TestAsyncDatasets:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.cloudforce_one.threat_events.datasets.list(
             account_id="account_id",
+        )
+        assert_matches_type(DatasetListResponse, dataset, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        dataset = await async_client.cloudforce_one.threat_events.datasets.list(
+            account_id="account_id",
+            include_deleted=True,
         )
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
 

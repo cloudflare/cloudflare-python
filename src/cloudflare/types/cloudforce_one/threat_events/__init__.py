@@ -7,6 +7,7 @@ from .raw_get_response import RawGetResponse as RawGetResponse
 from .raw_edit_response import RawEditResponse as RawEditResponse
 from .tag_create_params import TagCreateParams as TagCreateParams
 from .dataset_edit_params import DatasetEditParams as DatasetEditParams
+from .dataset_list_params import DatasetListParams as DatasetListParams
 from .tag_create_response import TagCreateResponse as TagCreateResponse
 from .attacker_list_params import AttackerListParams as AttackerListParams
 from .category_edit_params import CategoryEditParams as CategoryEditParams

@@ -3,9 +3,8 @@
 from typing import List, Optional
 
 from ....._models import BaseModel
-from .user_policy_check_geo import UserPolicyCheckGeo
 
-__all__ = ["UserPolicyCheckListResponse", "AppState", "UserIdentity"]
+__all__ = ["UserPolicyCheckListResponse", "AppState", "UserIdentity", "UserIdentityGeo"]
 
 
 class AppState(BaseModel):
@@ -23,6 +22,10 @@ class AppState(BaseModel):
     status: Optional[str] = None
 
 
+class UserIdentityGeo(BaseModel):
+    country: Optional[str] = None
+
+
 class UserIdentity(BaseModel):
     id: Optional[str] = None
 
@@ -32,7 +35,7 @@ class UserIdentity(BaseModel):
 
     email: Optional[str] = None
 
-    geo: Optional[UserPolicyCheckGeo] = None
+    geo: Optional[UserIdentityGeo] = None
 
     iat: Optional[int] = None
 

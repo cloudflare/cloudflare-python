@@ -47,6 +47,7 @@ if TYPE_CHECKING:
         dns,
         iam,
         ips,
+        moq,
         rum,
         ssl,
         argo,
@@ -88,6 +89,7 @@ if TYPE_CHECKING:
         addressing,
         ai_gateway,
         audit_logs,
+        email_auth,
         hyperdrive,
         page_rules,
         zero_trust,
@@ -163,6 +165,7 @@ if TYPE_CHECKING:
     from .resources.dns.dns import DNSResource, AsyncDNSResource
     from .resources.iam.iam import IAMResource, AsyncIAMResource
     from .resources.ips.ips import IPsResource, AsyncIPsResource
+    from .resources.moq.moq import MoQResource, AsyncMoQResource
     from .resources.rum.rum import RUMResource, AsyncRUMResource
     from .resources.ssl.ssl import SSLResource, AsyncSSLResource
     from .resources.argo.argo import ArgoResource, AsyncArgoResource
@@ -204,6 +207,7 @@ if TYPE_CHECKING:
     from .resources.addressing.addressing import AddressingResource, AsyncAddressingResource
     from .resources.ai_gateway.ai_gateway import AIGatewayResource, AsyncAIGatewayResource
     from .resources.audit_logs.audit_logs import AuditLogsResource, AsyncAuditLogsResource
+    from .resources.email_auth.email_auth import EmailAuthResource, AsyncEmailAuthResource
     from .resources.hyperdrive.hyperdrive import HyperdriveResource, AsyncHyperdriveResource
     from .resources.page_rules.page_rules import PageRulesResource, AsyncPageRulesResource
     from .resources.zero_trust.zero_trust import ZeroTrustResource, AsyncZeroTrustResource
@@ -556,6 +560,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.email_security import EmailSecurityResource
 
         return EmailSecurityResource(self)
+
+    @cached_property
+    def email_auth(self) -> EmailAuthResource:
+        from .resources.email_auth import EmailAuthResource
+
+        return EmailAuthResource(self)
 
     @cached_property
     def email_routing(self) -> EmailRoutingResource:
@@ -964,6 +974,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.calls import CallsResource
 
         return CallsResource(self)
+
+    @cached_property
+    def moq(self) -> MoQResource:
+        from .resources.moq import MoQResource
+
+        return MoQResource(self)
 
     @cached_property
     def cloudforce_one(self) -> CloudforceOneResource:
@@ -1510,6 +1526,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncEmailSecurityResource(self)
 
     @cached_property
+    def email_auth(self) -> AsyncEmailAuthResource:
+        from .resources.email_auth import AsyncEmailAuthResource
+
+        return AsyncEmailAuthResource(self)
+
+    @cached_property
     def email_routing(self) -> AsyncEmailRoutingResource:
         from .resources.email_routing import AsyncEmailRoutingResource
 
@@ -1916,6 +1938,12 @@ class AsyncCloudflare(AsyncAPIClient):
         from .resources.calls import AsyncCallsResource
 
         return AsyncCallsResource(self)
+
+    @cached_property
+    def moq(self) -> AsyncMoQResource:
+        from .resources.moq import AsyncMoQResource
+
+        return AsyncMoQResource(self)
 
     @cached_property
     def cloudforce_one(self) -> AsyncCloudforceOneResource:
@@ -2382,6 +2410,12 @@ class CloudflareWithRawResponse:
         return EmailSecurityResourceWithRawResponse(self._client.email_security)
 
     @cached_property
+    def email_auth(self) -> email_auth.EmailAuthResourceWithRawResponse:
+        from .resources.email_auth import EmailAuthResourceWithRawResponse
+
+        return EmailAuthResourceWithRawResponse(self._client.email_auth)
+
+    @cached_property
     def email_routing(self) -> email_routing.EmailRoutingResourceWithRawResponse:
         from .resources.email_routing import EmailRoutingResourceWithRawResponse
 
@@ -2794,6 +2828,12 @@ class CloudflareWithRawResponse:
         return CallsResourceWithRawResponse(self._client.calls)
 
     @cached_property
+    def moq(self) -> moq.MoQResourceWithRawResponse:
+        from .resources.moq import MoQResourceWithRawResponse
+
+        return MoQResourceWithRawResponse(self._client.moq)
+
+    @cached_property
     def cloudforce_one(self) -> cloudforce_one.CloudforceOneResourceWithRawResponse:
         from .resources.cloudforce_one import CloudforceOneResourceWithRawResponse
 
@@ -3083,6 +3123,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.email_security import AsyncEmailSecurityResourceWithRawResponse
 
         return AsyncEmailSecurityResourceWithRawResponse(self._client.email_security)
+
+    @cached_property
+    def email_auth(self) -> email_auth.AsyncEmailAuthResourceWithRawResponse:
+        from .resources.email_auth import AsyncEmailAuthResourceWithRawResponse
+
+        return AsyncEmailAuthResourceWithRawResponse(self._client.email_auth)
 
     @cached_property
     def email_routing(self) -> email_routing.AsyncEmailRoutingResourceWithRawResponse:
@@ -3497,6 +3543,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncCallsResourceWithRawResponse(self._client.calls)
 
     @cached_property
+    def moq(self) -> moq.AsyncMoQResourceWithRawResponse:
+        from .resources.moq import AsyncMoQResourceWithRawResponse
+
+        return AsyncMoQResourceWithRawResponse(self._client.moq)
+
+    @cached_property
     def cloudforce_one(self) -> cloudforce_one.AsyncCloudforceOneResourceWithRawResponse:
         from .resources.cloudforce_one import AsyncCloudforceOneResourceWithRawResponse
 
@@ -3786,6 +3838,12 @@ class CloudflareWithStreamedResponse:
         from .resources.email_security import EmailSecurityResourceWithStreamingResponse
 
         return EmailSecurityResourceWithStreamingResponse(self._client.email_security)
+
+    @cached_property
+    def email_auth(self) -> email_auth.EmailAuthResourceWithStreamingResponse:
+        from .resources.email_auth import EmailAuthResourceWithStreamingResponse
+
+        return EmailAuthResourceWithStreamingResponse(self._client.email_auth)
 
     @cached_property
     def email_routing(self) -> email_routing.EmailRoutingResourceWithStreamingResponse:
@@ -4200,6 +4258,12 @@ class CloudflareWithStreamedResponse:
         return CallsResourceWithStreamingResponse(self._client.calls)
 
     @cached_property
+    def moq(self) -> moq.MoQResourceWithStreamingResponse:
+        from .resources.moq import MoQResourceWithStreamingResponse
+
+        return MoQResourceWithStreamingResponse(self._client.moq)
+
+    @cached_property
     def cloudforce_one(self) -> cloudforce_one.CloudforceOneResourceWithStreamingResponse:
         from .resources.cloudforce_one import CloudforceOneResourceWithStreamingResponse
 
@@ -4491,6 +4555,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.email_security import AsyncEmailSecurityResourceWithStreamingResponse
 
         return AsyncEmailSecurityResourceWithStreamingResponse(self._client.email_security)
+
+    @cached_property
+    def email_auth(self) -> email_auth.AsyncEmailAuthResourceWithStreamingResponse:
+        from .resources.email_auth import AsyncEmailAuthResourceWithStreamingResponse
+
+        return AsyncEmailAuthResourceWithStreamingResponse(self._client.email_auth)
 
     @cached_property
     def email_routing(self) -> email_routing.AsyncEmailRoutingResourceWithStreamingResponse:
@@ -4909,6 +4979,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.calls import AsyncCallsResourceWithStreamingResponse
 
         return AsyncCallsResourceWithStreamingResponse(self._client.calls)
+
+    @cached_property
+    def moq(self) -> moq.AsyncMoQResourceWithStreamingResponse:
+        from .resources.moq import AsyncMoQResourceWithStreamingResponse
+
+        return AsyncMoQResourceWithStreamingResponse(self._client.moq)
 
     @cached_property
     def cloudforce_one(self) -> cloudforce_one.AsyncCloudforceOneResourceWithStreamingResponse:

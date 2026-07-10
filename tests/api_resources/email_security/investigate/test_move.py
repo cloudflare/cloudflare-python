@@ -31,6 +31,16 @@ class TestMove:
         assert_matches_type(SyncSinglePage[MoveCreateResponse], move, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        move = client.email_security.investigate.move.create(
+            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            destination="Inbox",
+            expected_disposition="MALICIOUS",
+        )
+        assert_matches_type(SyncSinglePage[MoveCreateResponse], move, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.email_security.investigate.move.with_raw_response.create(
             investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
@@ -87,6 +97,7 @@ class TestMove:
         move = client.email_security.investigate.move.bulk(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination="Inbox",
+            expected_disposition="MALICIOUS",
             ids=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
             postfix_ids=["4Njp3P0STMz2c02Q"],
         )
@@ -138,6 +149,16 @@ class TestAsyncMove:
             investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination="Inbox",
+        )
+        assert_matches_type(AsyncSinglePage[MoveCreateResponse], move, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        move = await async_client.email_security.investigate.move.create(
+            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            destination="Inbox",
+            expected_disposition="MALICIOUS",
         )
         assert_matches_type(AsyncSinglePage[MoveCreateResponse], move, path=["response"])
 
@@ -198,6 +219,7 @@ class TestAsyncMove:
         move = await async_client.email_security.investigate.move.bulk(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination="Inbox",
+            expected_disposition="MALICIOUS",
             ids=["4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678"],
             postfix_ids=["4Njp3P0STMz2c02Q"],
         )

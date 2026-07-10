@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from typing import Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .endpoint_param import EndpointParam
 
-__all__ = ["LocationUpdateParams", "Network"]
+__all__ = ["LocationUpdateParams", "MaxTTL", "Network"]
 
 
 class LocationUpdateParams(TypedDict, total=False):
@@ -34,11 +34,38 @@ class LocationUpdateParams(TypedDict, total=False):
     endpoints: Optional[EndpointParam]
     """Configure the destination endpoints for this location."""
 
+    max_ttl: Optional[MaxTTL]
+    """Configure DNS response TTL behavior for this Gateway location.
+
+    Gateway can rewrite DNS responses to cap returned record TTLs using the account
+    setting or a location-specific value, or leave TTLs unchanged.
+    """
+
     networks: Optional[Iterable[Network]]
     """
     Specify the list of network ranges from which requests at this location
     originate. The list takes effect only if it is non-empty and the IPv4 endpoint
     is enabled for this location.
+    """
+
+
+class MaxTTL(TypedDict, total=False):
+    """Configure DNS response TTL behavior for this Gateway location.
+
+    Gateway can rewrite DNS responses to cap returned record TTLs using the account setting or a location-specific value, or leave TTLs unchanged.
+    """
+
+    mode: Required[Literal["inherit", "override", "disabled"]]
+    """
+    Specify how this location handles DNS response TTLs by using the account
+    setting, using a location-specific value, or leaving TTLs unchanged.
+    """
+
+    ttl_secs: Optional[int]
+    """Set the location-specific DNS TTL cap, in seconds.
+
+    Required when `mode` is `override`. Must be omitted when `mode` is `inherit` or
+    `disabled`.
     """
 
 

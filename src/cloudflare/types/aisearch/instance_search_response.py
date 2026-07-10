@@ -47,4 +47,6 @@ class Chunk(BaseModel):
 class InstanceSearchResponse(BaseModel):
     chunks: List[Chunk]
 
-    search_query: str
+    query_kind: Literal["text", "image", "multimodal"]
+
+    search_query: Optional[str] = None

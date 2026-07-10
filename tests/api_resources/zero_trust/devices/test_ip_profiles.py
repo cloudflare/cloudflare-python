@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.devices import (
     IPProfile,
     IPProfileDeleteResponse,
@@ -166,16 +166,17 @@ class TestIPProfiles:
         ip_profile = client.zero_trust.devices.ip_profiles.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[IPProfile], ip_profile, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[IPProfile], ip_profile, path=["response"])
 
     @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ip_profile = client.zero_trust.devices.ip_profiles.list(
             account_id="account_id",
+            page=1,
             per_page=1,
         )
-        assert_matches_type(SyncSinglePage[IPProfile], ip_profile, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[IPProfile], ip_profile, path=["response"])
 
     @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
@@ -187,7 +188,7 @@ class TestIPProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip_profile = response.parse()
-        assert_matches_type(SyncSinglePage[IPProfile], ip_profile, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[IPProfile], ip_profile, path=["response"])
 
     @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
@@ -199,7 +200,7 @@ class TestIPProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip_profile = response.parse()
-            assert_matches_type(SyncSinglePage[IPProfile], ip_profile, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[IPProfile], ip_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -466,16 +467,17 @@ class TestAsyncIPProfiles:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[IPProfile], ip_profile, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[IPProfile], ip_profile, path=["response"])
 
     @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ip_profile = await async_client.zero_trust.devices.ip_profiles.list(
             account_id="account_id",
+            page=1,
             per_page=1,
         )
-        assert_matches_type(AsyncSinglePage[IPProfile], ip_profile, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[IPProfile], ip_profile, path=["response"])
 
     @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
@@ -487,7 +489,7 @@ class TestAsyncIPProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip_profile = await response.parse()
-        assert_matches_type(AsyncSinglePage[IPProfile], ip_profile, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[IPProfile], ip_profile, path=["response"])
 
     @pytest.mark.skip(reason="401 Unauthorized: Prism doesnt handle api tokens")
     @parametrize
@@ -499,7 +501,7 @@ class TestAsyncIPProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip_profile = await response.parse()
-            assert_matches_type(AsyncSinglePage[IPProfile], ip_profile, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[IPProfile], ip_profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

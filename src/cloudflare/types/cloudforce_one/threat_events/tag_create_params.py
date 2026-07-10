@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing import Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
-__all__ = ["TagCreateParams"]
+__all__ = ["TagCreateParams", "Alias", "InternalAlias"]
 
 
 class TagCreateParams(TypedDict, total=False):
@@ -19,6 +20,18 @@ class TagCreateParams(TypedDict, total=False):
     active_duration: Annotated[str, PropertyInfo(alias="activeDuration")]
 
     actor_category: Annotated[str, PropertyInfo(alias="actorCategory")]
+    """Actor variety.
+
+    Allowed values: Activist, Competitor, Customer, Crime Syndicate, Former
+    Employee, Nation State, Organized Crime, Nation State Affiliated, Terrorist,
+    Unaffiliated.
+    """
+
+    aliases: Iterable[Alias]
+    """Structured aliases ({ value, confidence 1-10, tlp }).
+
+    CFONE-only: stripped from responses to non-CFONE accounts.
+    """
 
     alias_group_names: Annotated[SequenceNotStr[str], PropertyInfo(alias="aliasGroupNames")]
 
@@ -28,15 +41,30 @@ class TagCreateParams(TypedDict, total=False):
 
     attribution_confidence: Annotated[str, PropertyInfo(alias="attributionConfidence")]
 
+    attribution_confidence_score: Annotated[int, PropertyInfo(alias="attributionConfidenceScore")]
+
     attribution_organization: Annotated[str, PropertyInfo(alias="attributionOrganization")]
 
     category_uuid: Annotated[str, PropertyInfo(alias="categoryUuid")]
 
+    date_of_discovery: Annotated[str, PropertyInfo(alias="dateOfDiscovery")]
+    """Date the actor was discovered (ISO YYYY-MM-DD)."""
+
     external_reference_links: Annotated[SequenceNotStr[str], PropertyInfo(alias="externalReferenceLinks")]
+
+    internal_aliases: Annotated[Iterable[InternalAlias], PropertyInfo(alias="internalAliases")]
+    """Internal structured aliases ({ value, confidence 1-10, tlp }).
+
+    CFONE-only: never returned to non-CFONE accounts.
+    """
 
     internal_description: Annotated[str, PropertyInfo(alias="internalDescription")]
 
     motive: str
+    """Actor motive.
+
+    Allowed values: Convenience, Fear, Fun, Financial, Grudge, Ideology, Espionage.
+    """
 
     opsec_level: Annotated[str, PropertyInfo(alias="opsecLevel")]
 
@@ -45,3 +73,19 @@ class TagCreateParams(TypedDict, total=False):
     priority: float
 
     sophistication_level: Annotated[str, PropertyInfo(alias="sophisticationLevel")]
+
+
+class Alias(TypedDict, total=False):
+    value: Required[str]
+
+    confidence: Optional[int]
+
+    tlp: Optional[Literal["red", "amber", "green", "white"]]
+
+
+class InternalAlias(TypedDict, total=False):
+    value: Required[str]
+
+    confidence: Optional[int]
+
+    tlp: Optional[Literal["red", "amber", "green", "white"]]

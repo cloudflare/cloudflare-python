@@ -28,6 +28,9 @@ __all__ = [
     "ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
     "ActionParametersServeStale",
     "ActionParametersSharedDictionary",
+    "ActionParametersVary",
+    "ActionParametersVaryDefault",
+    "ActionParametersVaryHeaders",
     "ExposedCredentialCheck",
     "Ratelimit",
 ]
@@ -253,6 +256,50 @@ class ActionParametersSharedDictionary(BaseModel):
     """
 
 
+class ActionParametersVaryDefault(BaseModel):
+    """
+    Controls how response Vary headers without a per-header override contribute to the cache key.
+    """
+
+    action: Literal["bypass", "passthrough", "normalize"]
+    """How the header value is treated when building the cache key."""
+
+
+class ActionParametersVaryHeaders(BaseModel):
+    """Controls how a single request header contributes to the cache key."""
+
+    action: Literal["bypass", "passthrough", "normalize"]
+    """How the header value is treated when building the cache key."""
+
+    languages: Optional[List[str]] = None
+    """The set of languages to normalize against.
+
+    Only valid for the `accept-language` header.
+    """
+
+    media_types: Optional[List[str]] = None
+    """The set of media types to normalize against.
+
+    Only valid for the `accept` header.
+    """
+
+
+class ActionParametersVary(BaseModel):
+    """Controls how cached responses vary based on request headers.
+
+    `default` is required by the API and applies to any Vary response header that does not have a per-header override.
+    """
+
+    default: Optional[ActionParametersVaryDefault] = None
+    """
+    Controls how response Vary headers without a per-header override contribute to
+    the cache key.
+    """
+
+    headers: Optional[Dict[str, ActionParametersVaryHeaders]] = None
+    """A mapping of lowercase request header names to their vary configuration."""
+
+
 class ActionParameters(BaseModel):
     """The parameters configuring the rule's action."""
 
@@ -327,6 +374,13 @@ class ActionParameters(BaseModel):
 
     strip_set_cookie: Optional[bool] = None
     """Whether to strip Set-Cookie headers from the origin response before caching."""
+
+    vary: Optional[ActionParametersVary] = None
+    """Controls how cached responses vary based on request headers.
+
+    `default` is required by the API and applies to any Vary response header that
+    does not have a per-header override.
+    """
 
 
 class ExposedCredentialCheck(BaseModel):

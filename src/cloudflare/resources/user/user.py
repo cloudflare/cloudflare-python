@@ -198,7 +198,10 @@ class UserResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[UserGetResponse]:
-        """User Details"""
+        """
+        Retrieves detailed information about the currently authenticated user, including
+        email, name, and account memberships.
+        """
         return self._get(
             "/user",
             options=make_request_options(
@@ -329,7 +332,10 @@ class AsyncUserResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[UserGetResponse]:
-        """User Details"""
+        """
+        Retrieves detailed information about the currently authenticated user, including
+        email, name, and account memberships.
+        """
         return await self._get(
             "/user",
             options=make_request_options(

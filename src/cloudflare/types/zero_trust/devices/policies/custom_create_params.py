@@ -9,7 +9,7 @@ from ....._types import SequenceNotStr
 from ..split_tunnel_exclude_param import SplitTunnelExcludeParam
 from ..split_tunnel_include_param import SplitTunnelIncludeParam
 
-__all__ = ["CustomCreateParams", "DNSSearchSuffix", "ServiceModeV2", "VirtualNetworks"]
+__all__ = ["CustomCreateParams", "DNSSearchSuffix", "GlobalAcceleration", "ServiceModeV2", "VirtualNetworks"]
 
 
 class CustomCreateParams(TypedDict, total=False):
@@ -79,6 +79,15 @@ class CustomCreateParams(TypedDict, total=False):
     exclude_office_ips: bool
     """Whether to add Microsoft IPs to Split Tunnel exclusions."""
 
+    global_acceleration: Optional[GlobalAcceleration]
+    """Global Acceleration settings for China.
+
+    When configured, WARP clients connect to the Global Accelerator addresses
+    instead of the default ones. Please contact your account representative to
+    enable this feature on your account. See
+    https://developers.cloudflare.com/china-network/concepts/global-acceleration/.
+    """
+
     include: Iterable[SplitTunnelIncludeParam]
     """List of routes included in the WARP client's tunnel.
 
@@ -134,6 +143,31 @@ class DNSSearchSuffix(TypedDict, total=False):
 
     description: str
     """A description of the DNS search suffix."""
+
+
+class GlobalAcceleration(TypedDict, total=False):
+    """Global Acceleration settings for China.
+
+    When configured, WARP clients connect to the Global Accelerator addresses instead of the default ones. Please contact your account representative to enable this feature on your account. See https://developers.cloudflare.com/china-network/concepts/global-acceleration/.
+    """
+
+    api_endpoints: Required[SequenceNotStr[str]]
+    """IP:port entries for the API endpoints."""
+
+    enabled: Required[bool]
+    """Global acceleration settings are used only when "enabled"."""
+
+    masque_endpoints: Required[SequenceNotStr[str]]
+    """IP:port entries for the MASQUE tunnel endpoints.
+
+    Either wireguard_endpoints or masque_endpoints must be provided.
+    """
+
+    wireguard_endpoints: Required[SequenceNotStr[str]]
+    """IP:port entries for the WireGuard tunnel endpoints.
+
+    Either wireguard_endpoints or masque_endpoints must be provided.
+    """
 
 
 class ServiceModeV2(TypedDict, total=False):

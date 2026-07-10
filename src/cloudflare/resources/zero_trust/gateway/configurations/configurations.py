@@ -118,9 +118,9 @@ class ConfigurationsResource(SyncAPIResource):
         """
         Update (PATCH) a single subcollection of settings such as `antivirus`,
         `tls_decrypt`, `activity_log`, `block_page`, `browser_isolation`, `fips`,
-        `body_scanning`, or `certificate` without updating the entire configuration
-        object. This endpoint returns an error if any settings collection lacks proper
-        configuration.
+        `body_scanning`, `certificate`, or `max_ttl_secs` without updating the entire
+        configuration object. This endpoint returns an error if any settings collection
+        lacks proper configuration.
 
         Args:
           settings: Specify account settings.
@@ -268,9 +268,9 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         """
         Update (PATCH) a single subcollection of settings such as `antivirus`,
         `tls_decrypt`, `activity_log`, `block_page`, `browser_isolation`, `fips`,
-        `body_scanning`, or `certificate` without updating the entire configuration
-        object. This endpoint returns an error if any settings collection lacks proper
-        configuration.
+        `body_scanning`, `certificate`, or `max_ttl_secs` without updating the entire
+        configuration object. This endpoint returns an error if any settings collection
+        lacks proper configuration.
 
         Args:
           settings: Specify account settings.

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Dict, Union, Iterable
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
@@ -17,6 +17,10 @@ __all__ = [
     "AISearchOptionsRetrieval",
     "AISearchOptionsRetrievalBoostBy",
     "Message",
+    "MessageContentUnionMember1",
+    "MessageContentUnionMember1UnionMember0",
+    "MessageContentUnionMember1UnionMember1",
+    "MessageContentUnionMember1UnionMember1ImageURL",
 ]
 
 
@@ -180,7 +184,28 @@ class AISearchOptions(TypedDict, total=False):
     retrieval: AISearchOptionsRetrieval
 
 
+class MessageContentUnionMember1UnionMember0(TypedDict, total=False):
+    text: Required[str]
+
+    type: Required[Literal["text"]]
+
+
+class MessageContentUnionMember1UnionMember1ImageURL(TypedDict, total=False):
+    url: Required[str]
+
+
+class MessageContentUnionMember1UnionMember1(TypedDict, total=False):
+    image_url: Required[MessageContentUnionMember1UnionMember1ImageURL]
+
+    type: Required[Literal["image_url"]]
+
+
+MessageContentUnionMember1: TypeAlias = Union[
+    MessageContentUnionMember1UnionMember0, MessageContentUnionMember1UnionMember1
+]
+
+
 class Message(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
-    content: Required[Optional[str]]
+    content: Required[Union[str, Iterable[MessageContentUnionMember1], None]]
 
     role: Required[Literal["system", "developer", "user", "assistant", "tool"]]

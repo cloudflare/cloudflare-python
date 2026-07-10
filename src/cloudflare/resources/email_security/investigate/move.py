@@ -53,6 +53,19 @@ class MoveResource(SyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
+        expected_disposition: Literal[
+            "MALICIOUS",
+            "MALICIOUS-BEC",
+            "SUSPICIOUS",
+            "SPOOF",
+            "SPAM",
+            "BULK",
+            "ENCRYPTED",
+            "EXTERNAL",
+            "UNKNOWN",
+            "NONE",
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -89,7 +102,13 @@ class MoveResource(SyncAPIResource):
                 investigate_id=investigate_id,
             ),
             page=SyncSinglePage[MoveCreateResponse],
-            body=maybe_transform({"destination": destination}, move_create_params.MoveCreateParams),
+            body=maybe_transform(
+                {
+                    "destination": destination,
+                    "expected_disposition": expected_disposition,
+                },
+                move_create_params.MoveCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -104,6 +123,19 @@ class MoveResource(SyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
+        expected_disposition: Literal[
+            "MALICIOUS",
+            "MALICIOUS-BEC",
+            "SUSPICIOUS",
+            "SPOOF",
+            "SPAM",
+            "BULK",
+            "ENCRYPTED",
+            "EXTERNAL",
+            "UNKNOWN",
+            "NONE",
+        ]
+        | Omit = omit,
         ids: SequenceNotStr[str] | Omit = omit,
         postfix_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -142,6 +174,7 @@ class MoveResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "destination": destination,
+                    "expected_disposition": expected_disposition,
                     "ids": ids,
                     "postfix_ids": postfix_ids,
                 },
@@ -183,6 +216,19 @@ class AsyncMoveResource(AsyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
+        expected_disposition: Literal[
+            "MALICIOUS",
+            "MALICIOUS-BEC",
+            "SUSPICIOUS",
+            "SPOOF",
+            "SPAM",
+            "BULK",
+            "ENCRYPTED",
+            "EXTERNAL",
+            "UNKNOWN",
+            "NONE",
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -219,7 +265,13 @@ class AsyncMoveResource(AsyncAPIResource):
                 investigate_id=investigate_id,
             ),
             page=AsyncSinglePage[MoveCreateResponse],
-            body=maybe_transform({"destination": destination}, move_create_params.MoveCreateParams),
+            body=maybe_transform(
+                {
+                    "destination": destination,
+                    "expected_disposition": expected_disposition,
+                },
+                move_create_params.MoveCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -234,6 +286,19 @@ class AsyncMoveResource(AsyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
+        expected_disposition: Literal[
+            "MALICIOUS",
+            "MALICIOUS-BEC",
+            "SUSPICIOUS",
+            "SPOOF",
+            "SPAM",
+            "BULK",
+            "ENCRYPTED",
+            "EXTERNAL",
+            "UNKNOWN",
+            "NONE",
+        ]
+        | Omit = omit,
         ids: SequenceNotStr[str] | Omit = omit,
         postfix_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -272,6 +337,7 @@ class AsyncMoveResource(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "destination": destination,
+                    "expected_disposition": expected_disposition,
                     "ids": ids,
                     "postfix_ids": postfix_ids,
                 },

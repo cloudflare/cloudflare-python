@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 from typing_extensions import Literal
 
@@ -50,6 +51,7 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
         """
         return OriginPostQuantumEncryptionResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         *,
@@ -103,6 +105,7 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         *,
@@ -171,6 +174,7 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
         """
         return AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         *,
@@ -224,6 +228,7 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         *,
@@ -276,11 +281,15 @@ class OriginPostQuantumEncryptionResourceWithRawResponse:
     def __init__(self, origin_post_quantum_encryption: OriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
 
-        self.update = to_raw_response_wrapper(
-            origin_post_quantum_encryption.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                origin_post_quantum_encryption.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            origin_post_quantum_encryption.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                origin_post_quantum_encryption.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -288,11 +297,15 @@ class AsyncOriginPostQuantumEncryptionResourceWithRawResponse:
     def __init__(self, origin_post_quantum_encryption: AsyncOriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
 
-        self.update = async_to_raw_response_wrapper(
-            origin_post_quantum_encryption.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                origin_post_quantum_encryption.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            origin_post_quantum_encryption.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                origin_post_quantum_encryption.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -300,11 +313,15 @@ class OriginPostQuantumEncryptionResourceWithStreamingResponse:
     def __init__(self, origin_post_quantum_encryption: OriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
 
-        self.update = to_streamed_response_wrapper(
-            origin_post_quantum_encryption.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                origin_post_quantum_encryption.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            origin_post_quantum_encryption.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                origin_post_quantum_encryption.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -312,9 +329,13 @@ class AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse:
     def __init__(self, origin_post_quantum_encryption: AsyncOriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
 
-        self.update = async_to_streamed_response_wrapper(
-            origin_post_quantum_encryption.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                origin_post_quantum_encryption.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            origin_post_quantum_encryption.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                origin_post_quantum_encryption.get,  # pyright: ignore[reportDeprecated],
+            )
         )

@@ -83,11 +83,17 @@ class BGP(TypedDict, total=False):
     customer_asn: Required[int]
     """ASN used on the customer end of the BGP session"""
 
+    export_filter_id: str
+    """ID of the BGP filter profile applied to routes advertised to the customer."""
+
     extra_prefixes: SequenceNotStr[str]
     """
     Prefixes in this list will be advertised to the customer device, in addition to
     the routes in the Magic routing table.
     """
+
+    import_filter_id: str
+    """ID of the BGP filter profile applied to routes received from the customer."""
 
     md5_key: str
     """MD5 key to use for session authentication.

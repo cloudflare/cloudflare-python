@@ -55,6 +55,8 @@ class Error(BaseModel):
 class NamespaceSearchResponse(BaseModel):
     chunks: List[Chunk]
 
-    search_query: str
+    query_kind: Literal["text", "image", "multimodal"]
 
     errors: Optional[List[Error]] = None
+
+    search_query: Optional[str] = None

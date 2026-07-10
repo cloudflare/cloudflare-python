@@ -32,8 +32,22 @@ from .received import (
     ReceivedResourceWithStreamingResponse,
     AsyncReceivedResourceWithStreamingResponse,
 )
+from .log_explorer import (
+    LogExplorerResource,
+    AsyncLogExplorerResource,
+    LogExplorerResourceWithRawResponse,
+    AsyncLogExplorerResourceWithRawResponse,
+    LogExplorerResourceWithStreamingResponse,
+    AsyncLogExplorerResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "LogExplorerResource",
+    "AsyncLogExplorerResource",
+    "LogExplorerResourceWithRawResponse",
+    "AsyncLogExplorerResourceWithRawResponse",
+    "LogExplorerResourceWithStreamingResponse",
+    "AsyncLogExplorerResourceWithStreamingResponse",
     "ControlResource",
     "AsyncControlResource",
     "ControlResourceWithRawResponse",

@@ -399,9 +399,15 @@ class NamespacesResource(SyncAPIResource):
         """Multi-Instance Search
 
         Args:
-          query: A simple text query string.
+          messages: OpenAI-compatible message array.
 
-        Alternative to 'messages' — provide either this or
+        For multimodal queries, set the last user
+              message's `content` to an array of typed parts:
+              `[{type:'text', text:'…'}, {type:'image_url', image_url:{url:'…'}}]`. Image
+              inputs require the RAG's embedding_model to declare 'image' in
+              supported_modalities.
+
+          query: A simple text query string. Alternative to 'messages' — provide either this or
               'messages', not both.
 
           extra_headers: Send extra headers
@@ -795,9 +801,15 @@ class AsyncNamespacesResource(AsyncAPIResource):
         """Multi-Instance Search
 
         Args:
-          query: A simple text query string.
+          messages: OpenAI-compatible message array.
 
-        Alternative to 'messages' — provide either this or
+        For multimodal queries, set the last user
+              message's `content` to an array of typed parts:
+              `[{type:'text', text:'…'}, {type:'image_url', image_url:{url:'…'}}]`. Image
+              inputs require the RAG's embedding_model to declare 'image' in
+              supported_modalities.
+
+          query: A simple text query string. Alternative to 'messages' — provide either this or
               'messages', not both.
 
           extra_headers: Send extra headers

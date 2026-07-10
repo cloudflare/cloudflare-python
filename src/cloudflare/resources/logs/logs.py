@@ -28,11 +28,23 @@ from .received.received import (
     ReceivedResourceWithStreamingResponse,
     AsyncReceivedResourceWithStreamingResponse,
 )
+from .log_explorer.log_explorer import (
+    LogExplorerResource,
+    AsyncLogExplorerResource,
+    LogExplorerResourceWithRawResponse,
+    AsyncLogExplorerResourceWithRawResponse,
+    LogExplorerResourceWithStreamingResponse,
+    AsyncLogExplorerResourceWithStreamingResponse,
+)
 
 __all__ = ["LogsResource", "AsyncLogsResource"]
 
 
 class LogsResource(SyncAPIResource):
+    @cached_property
+    def log_explorer(self) -> LogExplorerResource:
+        return LogExplorerResource(self._client)
+
     @cached_property
     def control(self) -> ControlResource:
         return ControlResource(self._client)
@@ -66,6 +78,10 @@ class LogsResource(SyncAPIResource):
 
 
 class AsyncLogsResource(AsyncAPIResource):
+    @cached_property
+    def log_explorer(self) -> AsyncLogExplorerResource:
+        return AsyncLogExplorerResource(self._client)
+
     @cached_property
     def control(self) -> AsyncControlResource:
         return AsyncControlResource(self._client)
@@ -103,6 +119,10 @@ class LogsResourceWithRawResponse:
         self._logs = logs
 
     @cached_property
+    def log_explorer(self) -> LogExplorerResourceWithRawResponse:
+        return LogExplorerResourceWithRawResponse(self._logs.log_explorer)
+
+    @cached_property
     def control(self) -> ControlResourceWithRawResponse:
         return ControlResourceWithRawResponse(self._logs.control)
 
@@ -118,6 +138,10 @@ class LogsResourceWithRawResponse:
 class AsyncLogsResourceWithRawResponse:
     def __init__(self, logs: AsyncLogsResource) -> None:
         self._logs = logs
+
+    @cached_property
+    def log_explorer(self) -> AsyncLogExplorerResourceWithRawResponse:
+        return AsyncLogExplorerResourceWithRawResponse(self._logs.log_explorer)
 
     @cached_property
     def control(self) -> AsyncControlResourceWithRawResponse:
@@ -137,6 +161,10 @@ class LogsResourceWithStreamingResponse:
         self._logs = logs
 
     @cached_property
+    def log_explorer(self) -> LogExplorerResourceWithStreamingResponse:
+        return LogExplorerResourceWithStreamingResponse(self._logs.log_explorer)
+
+    @cached_property
     def control(self) -> ControlResourceWithStreamingResponse:
         return ControlResourceWithStreamingResponse(self._logs.control)
 
@@ -152,6 +180,10 @@ class LogsResourceWithStreamingResponse:
 class AsyncLogsResourceWithStreamingResponse:
     def __init__(self, logs: AsyncLogsResource) -> None:
         self._logs = logs
+
+    @cached_property
+    def log_explorer(self) -> AsyncLogExplorerResourceWithStreamingResponse:
+        return AsyncLogExplorerResourceWithStreamingResponse(self._logs.log_explorer)
 
     @cached_property
     def control(self) -> AsyncControlResourceWithStreamingResponse:

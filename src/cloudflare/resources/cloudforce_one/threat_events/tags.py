@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Iterable
+
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
@@ -48,13 +50,17 @@ class TagsResource(SyncAPIResource):
         value: str,
         active_duration: str | Omit = omit,
         actor_category: str | Omit = omit,
+        aliases: Iterable[tag_create_params.Alias] | Omit = omit,
         alias_group_names: SequenceNotStr[str] | Omit = omit,
         alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
         analytic_priority: float | Omit = omit,
         attribution_confidence: str | Omit = omit,
+        attribution_confidence_score: int | Omit = omit,
         attribution_organization: str | Omit = omit,
         category_uuid: str | Omit = omit,
+        date_of_discovery: str | Omit = omit,
         external_reference_links: SequenceNotStr[str] | Omit = omit,
+        internal_aliases: Iterable[tag_create_params.InternalAlias] | Omit = omit,
         internal_description: str | Omit = omit,
         motive: str | Omit = omit,
         opsec_level: str | Omit = omit,
@@ -74,6 +80,21 @@ class TagsResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          actor_category: Actor variety. Allowed values: Activist, Competitor, Customer, Crime Syndicate,
+              Former Employee, Nation State, Organized Crime, Nation State Affiliated,
+              Terrorist, Unaffiliated.
+
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
+              responses to non-CFONE accounts.
+
+          date_of_discovery: Date the actor was discovered (ISO YYYY-MM-DD).
+
+          internal_aliases: Internal structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: never
+              returned to non-CFONE accounts.
+
+          motive: Actor motive. Allowed values: Convenience, Fear, Fun, Financial, Grudge,
+              Ideology, Espionage.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -91,13 +112,17 @@ class TagsResource(SyncAPIResource):
                     "value": value,
                     "active_duration": active_duration,
                     "actor_category": actor_category,
+                    "aliases": aliases,
                     "alias_group_names": alias_group_names,
                     "alias_group_names_internal": alias_group_names_internal,
                     "analytic_priority": analytic_priority,
                     "attribution_confidence": attribution_confidence,
+                    "attribution_confidence_score": attribution_confidence_score,
                     "attribution_organization": attribution_organization,
                     "category_uuid": category_uuid,
+                    "date_of_discovery": date_of_discovery,
                     "external_reference_links": external_reference_links,
+                    "internal_aliases": internal_aliases,
                     "internal_description": internal_description,
                     "motive": motive,
                     "opsec_level": opsec_level,
@@ -141,13 +166,17 @@ class AsyncTagsResource(AsyncAPIResource):
         value: str,
         active_duration: str | Omit = omit,
         actor_category: str | Omit = omit,
+        aliases: Iterable[tag_create_params.Alias] | Omit = omit,
         alias_group_names: SequenceNotStr[str] | Omit = omit,
         alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
         analytic_priority: float | Omit = omit,
         attribution_confidence: str | Omit = omit,
+        attribution_confidence_score: int | Omit = omit,
         attribution_organization: str | Omit = omit,
         category_uuid: str | Omit = omit,
+        date_of_discovery: str | Omit = omit,
         external_reference_links: SequenceNotStr[str] | Omit = omit,
+        internal_aliases: Iterable[tag_create_params.InternalAlias] | Omit = omit,
         internal_description: str | Omit = omit,
         motive: str | Omit = omit,
         opsec_level: str | Omit = omit,
@@ -167,6 +196,21 @@ class AsyncTagsResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          actor_category: Actor variety. Allowed values: Activist, Competitor, Customer, Crime Syndicate,
+              Former Employee, Nation State, Organized Crime, Nation State Affiliated,
+              Terrorist, Unaffiliated.
+
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
+              responses to non-CFONE accounts.
+
+          date_of_discovery: Date the actor was discovered (ISO YYYY-MM-DD).
+
+          internal_aliases: Internal structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: never
+              returned to non-CFONE accounts.
+
+          motive: Actor motive. Allowed values: Convenience, Fear, Fun, Financial, Grudge,
+              Ideology, Espionage.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -184,13 +228,17 @@ class AsyncTagsResource(AsyncAPIResource):
                     "value": value,
                     "active_duration": active_duration,
                     "actor_category": actor_category,
+                    "aliases": aliases,
                     "alias_group_names": alias_group_names,
                     "alias_group_names_internal": alias_group_names_internal,
                     "analytic_priority": analytic_priority,
                     "attribution_confidence": attribution_confidence,
+                    "attribution_confidence_score": attribution_confidence_score,
                     "attribution_organization": attribution_organization,
                     "category_uuid": category_uuid,
+                    "date_of_discovery": date_of_discovery,
                     "external_reference_links": external_reference_links,
+                    "internal_aliases": internal_aliases,
                     "internal_description": internal_description,
                     "motive": motive,
                     "opsec_level": opsec_level,

@@ -140,6 +140,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -207,6 +208,11 @@ class ApplicationsResource(SyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -384,6 +390,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -451,6 +458,11 @@ class ApplicationsResource(SyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -559,6 +571,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -626,6 +639,11 @@ class ApplicationsResource(SyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -1113,6 +1131,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_create_params.BrowserRDPApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -1180,6 +1199,11 @@ class ApplicationsResource(SyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -1523,6 +1547,7 @@ class ApplicationsResource(SyncAPIResource):
         | Iterable[application_create_params.McpServerApplicationDestination]
         | Iterable[application_create_params.McpServerPortalApplicationDestination]
         | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -1623,6 +1648,7 @@ class ApplicationsResource(SyncAPIResource):
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
                         "destinations": destinations,
+                        "eager_redirect_cookie_setting": eager_redirect_cookie_setting,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -1685,6 +1711,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -1754,6 +1781,11 @@ class ApplicationsResource(SyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -1935,6 +1967,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -2004,6 +2037,11 @@ class ApplicationsResource(SyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -2113,6 +2151,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -2182,6 +2221,11 @@ class ApplicationsResource(SyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -2688,6 +2732,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_update_params.BrowserRDPApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -2757,6 +2802,11 @@ class ApplicationsResource(SyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -3107,6 +3157,7 @@ class ApplicationsResource(SyncAPIResource):
         | Iterable[application_update_params.McpServerApplicationDestination]
         | Iterable[application_update_params.McpServerPortalApplicationDestination]
         | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -3210,6 +3261,7 @@ class ApplicationsResource(SyncAPIResource):
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
                         "destinations": destinations,
+                        "eager_redirect_cookie_setting": eager_redirect_cookie_setting,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -3596,6 +3648,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -3663,6 +3716,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -3840,6 +3898,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -3907,6 +3966,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -4015,6 +4079,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -4082,6 +4147,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -4569,6 +4639,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_create_params.BrowserRDPApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -4636,6 +4707,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -4979,6 +5055,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | Iterable[application_create_params.McpServerApplicationDestination]
         | Iterable[application_create_params.McpServerPortalApplicationDestination]
         | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -5079,6 +5156,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
                         "destinations": destinations,
+                        "eager_redirect_cookie_setting": eager_redirect_cookie_setting,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -5141,6 +5219,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -5210,6 +5289,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -5391,6 +5475,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -5460,6 +5545,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -5569,6 +5659,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -5638,6 +5729,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -6144,6 +6240,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
         destinations: Iterable[application_update_params.BrowserRDPApplicationDestination] | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -6213,6 +6310,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
               allow for more flexibility in defining different types of domains. If
               `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          eager_redirect_cookie_setting: Preemptively sets the Access session cookie on every hostname in a
+              multi-hostname self-hosted application during the initial redirect chain, rather
+              than setting it lazily on first visit. Defaults to true. Set to false to disable
+              the eager redirect cookie behavior.
 
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
@@ -6563,6 +6665,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | Iterable[application_update_params.McpServerApplicationDestination]
         | Iterable[application_update_params.McpServerPortalApplicationDestination]
         | Omit = omit,
+        eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
         logo_url: str | Omit = omit,
@@ -6666,6 +6769,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
                         "destinations": destinations,
+                        "eager_redirect_cookie_setting": eager_redirect_cookie_setting,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,

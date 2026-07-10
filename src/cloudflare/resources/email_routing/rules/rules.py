@@ -26,9 +26,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_routing import rule_list_params, rule_create_params, rule_update_params
+from ...._base_client import make_request_options
+from ....types.email_routing import rule_create_params, rule_update_params
 from ....types.email_routing.action_param import ActionParam
 from ....types.email_routing.matcher_param import MatcherParam
 from ....types.email_routing.email_routing_rule import EmailRoutingRule
@@ -200,62 +199,6 @@ class RulesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
-        )
-
-    def list(
-        self,
-        *,
-        zone_id: str,
-        enabled: Literal[True, False] | Omit = omit,
-        page: float | Omit = omit,
-        per_page: float | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[EmailRoutingRule]:
-        """
-        Lists existing routing rules.
-
-        Args:
-          zone_id: Identifier.
-
-          enabled: Filter by enabled routing rules.
-
-          page: Page number of paginated results.
-
-          per_page: Maximum number of results per page.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get_api_list(
-            path_template("/zones/{zone_id}/email/routing/rules", zone_id=zone_id),
-            page=SyncV4PagePaginationArray[EmailRoutingRule],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "enabled": enabled,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    rule_list_params.RuleListParams,
-                ),
-            ),
-            model=EmailRoutingRule,
         )
 
     def delete(
@@ -521,62 +464,6 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        enabled: Literal[True, False] | Omit = omit,
-        page: float | Omit = omit,
-        per_page: float | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[EmailRoutingRule, AsyncV4PagePaginationArray[EmailRoutingRule]]:
-        """
-        Lists existing routing rules.
-
-        Args:
-          zone_id: Identifier.
-
-          enabled: Filter by enabled routing rules.
-
-          page: Page number of paginated results.
-
-          per_page: Maximum number of results per page.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get_api_list(
-            path_template("/zones/{zone_id}/email/routing/rules", zone_id=zone_id),
-            page=AsyncV4PagePaginationArray[EmailRoutingRule],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "enabled": enabled,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    rule_list_params.RuleListParams,
-                ),
-            ),
-            model=EmailRoutingRule,
-        )
-
     async def delete(
         self,
         rule_identifier: str,
@@ -684,9 +571,6 @@ class RulesResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             rules.update,
         )
-        self.list = to_raw_response_wrapper(
-            rules.list,
-        )
         self.delete = to_raw_response_wrapper(
             rules.delete,
         )
@@ -708,9 +592,6 @@ class AsyncRulesResourceWithRawResponse:
         )
         self.update = async_to_raw_response_wrapper(
             rules.update,
-        )
-        self.list = async_to_raw_response_wrapper(
-            rules.list,
         )
         self.delete = async_to_raw_response_wrapper(
             rules.delete,
@@ -734,9 +615,6 @@ class RulesResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             rules.update,
         )
-        self.list = to_streamed_response_wrapper(
-            rules.list,
-        )
         self.delete = to_streamed_response_wrapper(
             rules.delete,
         )
@@ -758,9 +636,6 @@ class AsyncRulesResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             rules.update,
-        )
-        self.list = async_to_streamed_response_wrapper(
-            rules.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             rules.delete,

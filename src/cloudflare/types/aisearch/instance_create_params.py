@@ -7,7 +7,6 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
-from ..r2.buckets.provider import Provider
 
 __all__ = [
     "InstanceCreateParams",
@@ -26,7 +25,6 @@ __all__ = [
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerParseOptionsContentSelector",
-    "SourceParamsWebCrawlerStoreOptions",
 ]
 
 
@@ -98,6 +96,7 @@ class InstanceCreateParams(TypedDict, total=False):
     embedding_model: Optional[
         Literal[
             "@cf/qwen/qwen3-embedding-0.6b",
+            "@cf/qwen/qwen3-vl-embedding-2b",
             "@cf/baai/bge-m3",
             "@cf/baai/bge-large-en-v1.5",
             "@cf/google/embeddinggemma-300m",
@@ -345,20 +344,10 @@ class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
     use_browser_rendering: bool
 
 
-class SourceParamsWebCrawlerStoreOptions(TypedDict, total=False):
-    storage_id: Required[str]
-
-    r2_jurisdiction: str
-
-    storage_type: Provider
-
-
 class SourceParamsWebCrawler(TypedDict, total=False):
     parse_options: SourceParamsWebCrawlerParseOptions
 
-    parse_type: Literal["sitemap", "feed-rss", "crawl"]
-
-    store_options: SourceParamsWebCrawlerStoreOptions
+    parse_type: Literal["sitemap", "crawl"]
 
 
 class SourceParams(TypedDict, total=False):

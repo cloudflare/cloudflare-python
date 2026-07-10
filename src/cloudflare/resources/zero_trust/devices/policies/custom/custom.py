@@ -101,6 +101,7 @@ class CustomResource(SyncAPIResource):
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
+        global_acceleration: Optional[custom_create_params.GlobalAcceleration] | Omit = omit,
         include: Iterable[SplitTunnelIncludeParam] | Omit = omit,
         lan_allow_minutes: float | Omit = omit,
         lan_allow_subnet_size: float | Omit = omit,
@@ -160,6 +161,11 @@ class CustomResource(SyncAPIResource):
 
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
 
+          global_acceleration: Global Acceleration settings for China. When configured, WARP clients connect to
+              the Global Accelerator addresses instead of the default ones. Please contact
+              your account representative to enable this feature on your account. See
+              https://developers.cloudflare.com/china-network/concepts/global-acceleration/.
+
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
 
@@ -213,6 +219,7 @@ class CustomResource(SyncAPIResource):
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "global_acceleration": global_acceleration,
                     "include": include,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
@@ -327,6 +334,7 @@ class CustomResource(SyncAPIResource):
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
+        global_acceleration: Optional[custom_edit_params.GlobalAcceleration] | Omit = omit,
         include: Iterable[SplitTunnelIncludeParam] | Omit = omit,
         lan_allow_minutes: float | Omit = omit,
         lan_allow_subnet_size: float | Omit = omit,
@@ -377,6 +385,11 @@ class CustomResource(SyncAPIResource):
               'include' cannot be set in the same request.
 
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          global_acceleration: Global Acceleration settings for China. When configured, WARP clients connect to
+              the Global Accelerator addresses instead of the default ones. Please contact
+              your account representative to enable this feature on your account. See
+              https://developers.cloudflare.com/china-network/concepts/global-acceleration/.
 
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
@@ -442,6 +455,7 @@ class CustomResource(SyncAPIResource):
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "global_acceleration": global_acceleration,
                     "include": include,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
@@ -561,6 +575,7 @@ class AsyncCustomResource(AsyncAPIResource):
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
+        global_acceleration: Optional[custom_create_params.GlobalAcceleration] | Omit = omit,
         include: Iterable[SplitTunnelIncludeParam] | Omit = omit,
         lan_allow_minutes: float | Omit = omit,
         lan_allow_subnet_size: float | Omit = omit,
@@ -620,6 +635,11 @@ class AsyncCustomResource(AsyncAPIResource):
 
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
 
+          global_acceleration: Global Acceleration settings for China. When configured, WARP clients connect to
+              the Global Accelerator addresses instead of the default ones. Please contact
+              your account representative to enable this feature on your account. See
+              https://developers.cloudflare.com/china-network/concepts/global-acceleration/.
+
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
 
@@ -673,6 +693,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "global_acceleration": global_acceleration,
                     "include": include,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
@@ -787,6 +808,7 @@ class AsyncCustomResource(AsyncAPIResource):
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
+        global_acceleration: Optional[custom_edit_params.GlobalAcceleration] | Omit = omit,
         include: Iterable[SplitTunnelIncludeParam] | Omit = omit,
         lan_allow_minutes: float | Omit = omit,
         lan_allow_subnet_size: float | Omit = omit,
@@ -837,6 +859,11 @@ class AsyncCustomResource(AsyncAPIResource):
               'include' cannot be set in the same request.
 
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          global_acceleration: Global Acceleration settings for China. When configured, WARP clients connect to
+              the Global Accelerator addresses instead of the default ones. Please contact
+              your account representative to enable this feature on your account. See
+              https://developers.cloudflare.com/china-network/concepts/global-acceleration/.
 
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
@@ -902,6 +929,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "global_acceleration": global_acceleration,
                     "include": include,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
