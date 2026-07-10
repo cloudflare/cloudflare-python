@@ -90,7 +90,8 @@ class LogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[LogListResponse]:
         """
-        List Gateway Logs
+        Lists request/response log entries for the AI gateway with filtering and
+        pagination.
 
         Args:
           gateway_id: gateway id
@@ -186,7 +187,7 @@ class LogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogDeleteResponse:
         """
-        Delete Gateway Logs
+        Deletes gateway log entries matching the specified criteria.
 
         Args:
           gateway_id: gateway id
@@ -492,7 +493,8 @@ class AsyncLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LogListResponse, AsyncV4PagePaginationArray[LogListResponse]]:
         """
-        List Gateway Logs
+        Lists request/response log entries for the AI gateway with filtering and
+        pagination.
 
         Args:
           gateway_id: gateway id
@@ -588,7 +590,7 @@ class AsyncLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogDeleteResponse:
         """
-        Delete Gateway Logs
+        Deletes gateway log entries matching the specified criteria.
 
         Args:
           gateway_id: gateway id

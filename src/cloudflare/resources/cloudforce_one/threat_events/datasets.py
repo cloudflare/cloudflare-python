@@ -59,7 +59,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
-        Creates a dataset
+        Create a new dataset in the account.
 
         Args:
           account_id: Account ID.
@@ -107,7 +107,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
         """
-        Lists all datasets in an account
+        List all datasets accessible to the account.
 
         Args:
           account_id: Account ID.
@@ -152,7 +152,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetEditResponse:
         """
-        Updates an existing dataset
+        Update an existing dataset by its identifier.
 
         Args:
           account_id: Account ID.
@@ -208,7 +208,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
-        Reads a dataset
+        Retrieve metadata for a specific dataset.
 
         Args:
           account_id: Account ID.
@@ -326,7 +326,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
-        Creates a dataset
+        Create a new dataset in the account.
 
         Args:
           account_id: Account ID.
@@ -374,7 +374,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
         """
-        Lists all datasets in an account
+        List all datasets accessible to the account.
 
         Args:
           account_id: Account ID.
@@ -421,7 +421,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetEditResponse:
         """
-        Updates an existing dataset
+        Update an existing dataset by its identifier.
 
         Args:
           account_id: Account ID.
@@ -477,7 +477,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
-        Reads a dataset
+        Retrieve metadata for a specific dataset.
 
         Args:
           account_id: Account ID.

@@ -33,7 +33,7 @@ class DomainEditParams(TypedDict, total=False):
         ]
     ]
 
-    folder: Literal["AllItems", "Inbox"]
+    folder: Optional[Literal["AllItems", "Inbox"]]
 
     integration_id: Optional[str]
 

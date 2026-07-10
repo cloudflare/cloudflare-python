@@ -56,7 +56,7 @@ class RelateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RelateDeleteResponse:
         """
-        Removes an event reference
+        Remove one or more references from an event.
 
         Args:
           account_id: Account ID.
@@ -125,7 +125,7 @@ class AsyncRelateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RelateDeleteResponse:
         """
-        Removes an event reference
+        Remove one or more references from an event.
 
         Args:
           account_id: Account ID.

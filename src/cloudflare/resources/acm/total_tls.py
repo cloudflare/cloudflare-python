@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -17,9 +18,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.acm import CertificateAuthority, total_tls_edit_params, total_tls_update_params
+from ...types.acm import total_tls_edit_params, total_tls_update_params
 from ..._base_client import make_request_options
-from ...types.acm.certificate_authority import CertificateAuthority
 from ...types.acm.total_tls_get_response import TotalTLSGetResponse
 from ...types.acm.total_tls_edit_response import TotalTLSEditResponse
 from ...types.acm.total_tls_update_response import TotalTLSUpdateResponse
@@ -52,7 +52,7 @@ class TotalTLSResource(SyncAPIResource):
         *,
         zone_id: str,
         enabled: bool,
-        certificate_authority: CertificateAuthority | Omit = omit,
+        certificate_authority: Literal["google", "lets_encrypt", "ssl_com"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -105,7 +105,7 @@ class TotalTLSResource(SyncAPIResource):
         *,
         zone_id: str,
         enabled: bool,
-        certificate_authority: CertificateAuthority | Omit = omit,
+        certificate_authority: Literal["google", "lets_encrypt", "ssl_com"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -218,7 +218,7 @@ class AsyncTotalTLSResource(AsyncAPIResource):
         *,
         zone_id: str,
         enabled: bool,
-        certificate_authority: CertificateAuthority | Omit = omit,
+        certificate_authority: Literal["google", "lets_encrypt", "ssl_com"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -271,7 +271,7 @@ class AsyncTotalTLSResource(AsyncAPIResource):
         *,
         zone_id: str,
         enabled: bool,
-        certificate_authority: CertificateAuthority | Omit = omit,
+        certificate_authority: Literal["google", "lets_encrypt", "ssl_com"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

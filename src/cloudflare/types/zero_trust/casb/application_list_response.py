@@ -77,9 +77,11 @@ class ApplicationListResponseItem(BaseModel):
     permissions: List[ApplicationListResponseItemPermission]
     """All permissions with severity."""
 
-    slug: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"]
+    slug: Literal["BOX", "DROPBOX", "GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"]
     """Vendor identifier (e.g. microsoft_internal, google_workspace).
 
+    - `BOX` - BOX
+    - `DROPBOX` - DROPBOX
     - `GITHUB` - GITHUB
     - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
     - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL

@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["MTLSCertificate"]
+__all__ = ["MTLSCertificateGetResponse"]
 
 
-class MTLSCertificate(BaseModel):
+class MTLSCertificateGetResponse(BaseModel):
     id: Optional[str] = None
     """Identifier."""
 

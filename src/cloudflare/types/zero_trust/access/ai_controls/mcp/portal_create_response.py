@@ -105,7 +105,8 @@ class Server(BaseModel):
     secure_web_gateway: Optional[bool] = None
     """Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway"""
 
-    status: Optional[str] = None
+    status: Optional[Literal["waiting", "ready", "stale", "error"]] = None
+    """Current sync state of the server"""
 
     updated_prompts: Optional[List[ServerUpdatedPrompt]] = None
 

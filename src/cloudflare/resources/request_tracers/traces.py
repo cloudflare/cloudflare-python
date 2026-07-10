@@ -64,7 +64,11 @@ class TracesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TraceCreateResponse]:
         """
-        Request Trace
+        Traces a simulated HTTP request through Cloudflare's edge to analyze how rules,
+        settings, and configurations would process the request. Useful for debugging
+        firewall rules, page rules, and other request transformations without sending
+        actual traffic. Supports custom headers, cookies, body content, and geolocation
+        context.
 
         Args:
           account_id: Identifier.
@@ -159,7 +163,11 @@ class AsyncTracesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TraceCreateResponse]:
         """
-        Request Trace
+        Traces a simulated HTTP request through Cloudflare's edge to analyze how rules,
+        settings, and configurations would process the request. Useful for debugging
+        firewall rules, page rules, and other request transformations without sending
+        actual traffic. Supports custom headers, cookies, body content, and geolocation
+        context.
 
         Args:
           account_id: Identifier.

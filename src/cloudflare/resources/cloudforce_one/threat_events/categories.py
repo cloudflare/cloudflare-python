@@ -62,7 +62,7 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
         """
-        Creates a new category
+        Create a new event category for the account.
 
         Args:
           account_id: Account ID.
@@ -108,7 +108,7 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
-        Lists categories across multiple datasets
+        List categories across one or more datasets for the account.
 
         Args:
           account_id: Account ID.
@@ -151,7 +151,7 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
         """
-        Deletes a category
+        Delete a category by its identifier.
 
         Args:
           account_id: Account ID.
@@ -200,7 +200,7 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
         """
-        Updates a category
+        Update an existing category by its identifier.
 
         Args:
           account_id: Account ID.
@@ -254,7 +254,7 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryGetResponse:
         """
-        Reads a category
+        Retrieve a single category by its identifier.
 
         Args:
           account_id: Account ID.
@@ -323,7 +323,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
         """
-        Creates a new category
+        Create a new event category for the account.
 
         Args:
           account_id: Account ID.
@@ -369,7 +369,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
-        Lists categories across multiple datasets
+        List categories across one or more datasets for the account.
 
         Args:
           account_id: Account ID.
@@ -414,7 +414,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
         """
-        Deletes a category
+        Delete a category by its identifier.
 
         Args:
           account_id: Account ID.
@@ -463,7 +463,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
         """
-        Updates a category
+        Update an existing category by its identifier.
 
         Args:
           account_id: Account ID.
@@ -517,7 +517,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryGetResponse:
         """
-        Reads a category
+        Retrieve a single category by its identifier.
 
         Args:
           account_id: Account ID.

@@ -52,7 +52,9 @@ class IntegrationsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        application: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"],
+        application: Literal[
+            "BOX", "DROPBOX", "GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"
+        ],
         credentials: Dict[str, object],
         name: str,
         auth_method: Optional[str] | Omit = omit,
@@ -66,12 +68,18 @@ class IntegrationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IntegrationCreateResponse:
-        """
-        Creates a new integration for the specified application.
+        """Creates a new integration for the specified application.
+
+        Integration creation
+        with OAuth is not supported by API at the moment. For other auth methods, use
+        `GET /v2/applications/{slug}/credential-guide` to see the required credential
+        structure and example payloads for each vendor.
 
         Args:
           application: Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
+              - `BOX` - BOX
+              - `DROPBOX` - DROPBOX
               - `GITHUB` - GITHUB
               - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
               - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
@@ -432,7 +440,9 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        application: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"],
+        application: Literal[
+            "BOX", "DROPBOX", "GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"
+        ],
         credentials: Dict[str, object],
         name: str,
         auth_method: Optional[str] | Omit = omit,
@@ -446,12 +456,18 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IntegrationCreateResponse:
-        """
-        Creates a new integration for the specified application.
+        """Creates a new integration for the specified application.
+
+        Integration creation
+        with OAuth is not supported by API at the moment. For other auth methods, use
+        `GET /v2/applications/{slug}/credential-guide` to see the required credential
+        structure and example payloads for each vendor.
 
         Args:
           application: Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
+              - `BOX` - BOX
+              - `DROPBOX` - DROPBOX
               - `GITHUB` - GITHUB
               - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
               - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL

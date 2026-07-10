@@ -40,7 +40,7 @@ class SpectrumConfigAppConfig(TypedDict, total=False):
     argo_smart_routing: bool
     """
     Enables Argo Smart Routing for this application. Notes: Only available for TCP
-    applications with traffic_type set to "direct".
+    or UDP applications with traffic_type set to "direct".
     """
 
     edge_ips: EdgeIPsParam

@@ -78,8 +78,11 @@ class EmailSendingResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailSendingSendResponse:
-        """
-        Send an email
+        """Send an email for the specified account using the structured builder.
+
+        Provide
+        the sender, recipients, subject, and at least one of text or html; attachments
+        are optional.
 
         Args:
           account_id: Identifier of the account.
@@ -98,13 +101,11 @@ class EmailSendingResource(SyncAPIResource):
 
           headers: Custom email headers as key-value pairs.
 
-          html: HTML body of the email. At least one of text or html must be provided
-              (non-empty).
+          html: HTML body of the email. Provide at least one of text or html (non-empty).
 
           reply_to: Reply-to address. Either a plain string or an object with address and name.
 
-          text: Plain text body of the email. At least one of text or html must be provided
-              (non-empty).
+          text: Plain text body of the email. Provide at least one of text or html (non-empty).
 
           to: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
               address object, or an array of either.
@@ -160,8 +161,10 @@ class EmailSendingResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailSendingSendRawResponse:
-        """
-        Send a raw MIME email
+        """Send a raw RFC 5322 (MIME) email for the specified account.
+
+        Provide the full
+        MIME message plus the SMTP envelope (from and recipients).
 
         Args:
           account_id: Identifier of the account.
@@ -251,8 +254,11 @@ class AsyncEmailSendingResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailSendingSendResponse:
-        """
-        Send an email
+        """Send an email for the specified account using the structured builder.
+
+        Provide
+        the sender, recipients, subject, and at least one of text or html; attachments
+        are optional.
 
         Args:
           account_id: Identifier of the account.
@@ -271,13 +277,11 @@ class AsyncEmailSendingResource(AsyncAPIResource):
 
           headers: Custom email headers as key-value pairs.
 
-          html: HTML body of the email. At least one of text or html must be provided
-              (non-empty).
+          html: HTML body of the email. Provide at least one of text or html (non-empty).
 
           reply_to: Reply-to address. Either a plain string or an object with address and name.
 
-          text: Plain text body of the email. At least one of text or html must be provided
-              (non-empty).
+          text: Plain text body of the email. Provide at least one of text or html (non-empty).
 
           to: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
               address object, or an array of either.
@@ -333,8 +337,10 @@ class AsyncEmailSendingResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailSendingSendRawResponse:
-        """
-        Send a raw MIME email
+        """Send a raw RFC 5322 (MIME) email for the specified account.
+
+        Provide the full
+        MIME message plus the SMTP envelope (from and recipients).
 
         Args:
           account_id: Identifier of the account.

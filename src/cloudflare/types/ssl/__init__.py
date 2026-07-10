@@ -2,11 +2,8 @@
 
 from __future__ import annotations
 
-from .host import Host as Host
-from .status import Status as Status
 from .verification import Verification as Verification
 from .request_validity import RequestValidity as RequestValidity
-from .validation_method import ValidationMethod as ValidationMethod
 from .analyze_create_params import AnalyzeCreateParams as AnalyzeCreateParams
 from .verification_get_params import VerificationGetParams as VerificationGetParams
 from .verification_edit_params import VerificationEditParams as VerificationEditParams

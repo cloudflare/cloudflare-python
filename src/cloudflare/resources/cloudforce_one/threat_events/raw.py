@@ -59,7 +59,7 @@ class RawResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawEditResponse:
         """
-        Updates a raw event
+        Update raw data for a specific event.
 
         Args:
           account_id: Account ID.
@@ -117,7 +117,7 @@ class RawResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawGetResponse:
         """
-        Reads data for a raw event
+        Retrieve raw data for a specific event.
 
         Args:
           account_id: Account ID.
@@ -191,7 +191,7 @@ class AsyncRawResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawEditResponse:
         """
-        Updates a raw event
+        Update raw data for a specific event.
 
         Args:
           account_id: Account ID.
@@ -249,7 +249,7 @@ class AsyncRawResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawGetResponse:
         """
-        Reads data for a raw event
+        Retrieve raw data for a specific event.
 
         Args:
           account_id: Account ID.

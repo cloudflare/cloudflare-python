@@ -54,7 +54,7 @@ class TargetIndustriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TargetIndustryListResponse:
         """
-        Lists target industries across multiple datasets
+        List target industries referenced in events across one or more datasets.
 
         Args:
           account_id: Account ID.
@@ -120,7 +120,7 @@ class AsyncTargetIndustriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TargetIndustryListResponse:
         """
-        Lists target industries across multiple datasets
+        List target industries referenced in events across one or more datasets.
 
         Args:
           account_id: Account ID.

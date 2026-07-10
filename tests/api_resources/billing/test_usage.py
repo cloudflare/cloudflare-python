@@ -30,7 +30,7 @@ class TestUsage:
         usage = client.billing.usage.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=parse_date("2025-05-01"),
-            metric="workers_standard_requests",
+            metric_id=["workers_standard_requests", "http_transferred_bytes"],
             to=parse_date("2025-05-31"),
         )
         assert_matches_type(UsageGetResponse, usage, path=["response"])
@@ -131,7 +131,7 @@ class TestAsyncUsage:
         usage = await async_client.billing.usage.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=parse_date("2025-05-01"),
-            metric="workers_standard_requests",
+            metric_id=["workers_standard_requests", "http_transferred_bytes"],
             to=parse_date("2025-05-31"),
         )
         assert_matches_type(UsageGetResponse, usage, path=["response"])

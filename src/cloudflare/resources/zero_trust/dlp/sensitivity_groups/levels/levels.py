@@ -75,7 +75,7 @@ class LevelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LevelCreateResponse]:
         """
-        Creates a new sensitivity level.
+        Creates a sensitivity level in a group.
 
         Args:
           extra_headers: Send extra headers
@@ -131,7 +131,7 @@ class LevelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LevelUpdateResponse]:
         """
-        Update the attributes of a single sensitivity level.
+        Updates a sensitivity level in a group.
 
         Args:
           extra_headers: Send extra headers
@@ -189,7 +189,7 @@ class LevelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[LevelListResponse]:
         """
-        Retrieve all sensitivity levels in a sensitivity group
+        Lists sensitivity levels in a sensitivity group.
 
         Args:
           extra_headers: Send extra headers
@@ -233,7 +233,7 @@ class LevelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single sensitivity level.
+        Deletes a sensitivity level from a group.
 
         Args:
           extra_headers: Send extra headers
@@ -285,7 +285,7 @@ class LevelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LevelGetResponse]:
         """
-        Retrieve a specific sensitivity level.
+        Gets a sensitivity level from a group.
 
         Args:
           extra_headers: Send extra headers
@@ -363,7 +363,7 @@ class AsyncLevelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LevelCreateResponse]:
         """
-        Creates a new sensitivity level.
+        Creates a sensitivity level in a group.
 
         Args:
           extra_headers: Send extra headers
@@ -419,7 +419,7 @@ class AsyncLevelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LevelUpdateResponse]:
         """
-        Update the attributes of a single sensitivity level.
+        Updates a sensitivity level in a group.
 
         Args:
           extra_headers: Send extra headers
@@ -477,7 +477,7 @@ class AsyncLevelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LevelListResponse, AsyncSinglePage[LevelListResponse]]:
         """
-        Retrieve all sensitivity levels in a sensitivity group
+        Lists sensitivity levels in a sensitivity group.
 
         Args:
           extra_headers: Send extra headers
@@ -521,7 +521,7 @@ class AsyncLevelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single sensitivity level.
+        Deletes a sensitivity level from a group.
 
         Args:
           extra_headers: Send extra headers
@@ -573,7 +573,7 @@ class AsyncLevelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LevelGetResponse]:
         """
-        Retrieve a specific sensitivity level.
+        Gets a sensitivity level from a group.
 
         Args:
           extra_headers: Send extra headers

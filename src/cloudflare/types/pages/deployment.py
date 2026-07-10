@@ -210,5 +210,17 @@ class Deployment(BaseModel):
     url: str
     """The live URL to view this deployment."""
 
+    skip_reason: Optional[
+        Literal[
+            "commit_message",
+            "preview_deployments_disabled",
+            "production_deployments_disabled",
+            "path_config",
+            "branch_config",
+            "pages_to_workers_conversion",
+        ]
+    ] = None
+    """Why the deployment was skipped."""
+
     uses_functions: Optional[bool] = None
     """Whether the deployment uses functions."""

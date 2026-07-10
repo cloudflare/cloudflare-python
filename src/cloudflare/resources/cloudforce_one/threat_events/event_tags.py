@@ -59,7 +59,7 @@ class EventTagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagCreateResponse:
         """
-        Adds a tag to an event
+        Add one or more tags to an event.
 
         Args:
           account_id: Account ID.
@@ -108,7 +108,7 @@ class EventTagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagDeleteResponse:
         """
-        Removes a tag from an event
+        Remove one or more tags from an event.
 
         Args:
           account_id: Account ID.
@@ -178,7 +178,7 @@ class AsyncEventTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagCreateResponse:
         """
-        Adds a tag to an event
+        Add one or more tags to an event.
 
         Args:
           account_id: Account ID.
@@ -227,7 +227,7 @@ class AsyncEventTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagDeleteResponse:
         """
-        Removes a tag from an event
+        Remove one or more tags from an event.
 
         Args:
           account_id: Account ID.

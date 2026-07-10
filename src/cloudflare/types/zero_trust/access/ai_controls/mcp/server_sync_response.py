@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from typing_extensions import Literal
 
 from ......_models import BaseModel
 
@@ -29,4 +30,4 @@ class ServerSyncResponse(BaseModel):
 
     error_details: Optional[ErrorDetails] = None
 
-    status: Optional[str] = None
+    status: Optional[Literal["waiting", "ready", "stale", "error"]] = None

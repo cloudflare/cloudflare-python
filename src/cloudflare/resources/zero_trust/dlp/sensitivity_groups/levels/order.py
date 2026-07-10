@@ -59,7 +59,7 @@ class OrderResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OrderUpdateResponse]:
         """
-        Set the ordering of levels within a sensitivity group.
+        Updates the order of sensitivity levels in a group.
 
         Args:
           extra_headers: Send extra headers
@@ -106,7 +106,7 @@ class OrderResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OrderGetResponse]:
         """
-        Retrieve the ordered list of level IDs for a sensitivity group.
+        Gets the current order of sensitivity levels in a group.
 
         Args:
           extra_headers: Send extra headers
@@ -174,7 +174,7 @@ class AsyncOrderResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OrderUpdateResponse]:
         """
-        Set the ordering of levels within a sensitivity group.
+        Updates the order of sensitivity levels in a group.
 
         Args:
           extra_headers: Send extra headers
@@ -221,7 +221,7 @@ class AsyncOrderResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OrderGetResponse]:
         """
-        Retrieve the ordered list of level IDs for a sensitivity group.
+        Gets the current order of sensitivity levels in a group.
 
         Args:
           extra_headers: Send extra headers

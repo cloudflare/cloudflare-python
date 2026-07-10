@@ -128,9 +128,11 @@ class ApplicationGetResponse(BaseModel):
     logo: Optional[str] = None
     """Logo path."""
 
-    slug: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"]
+    slug: Literal["BOX", "DROPBOX", "GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"]
     """Vendor identifier.
 
+    - `BOX` - BOX
+    - `DROPBOX` - DROPBOX
     - `GITHUB` - GITHUB
     - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
     - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL

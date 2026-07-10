@@ -98,7 +98,7 @@ class ApplicationsResource(SyncAPIResource):
 
     def get(
         self,
-        slug: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"],
+        slug: Literal["BOX", "DROPBOX", "GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"],
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -202,7 +202,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
     async def get(
         self,
-        slug: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"],
+        slug: Literal["BOX", "DROPBOX", "GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"],
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

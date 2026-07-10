@@ -1,194 +1,113 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import Literal, Annotated, TypeAlias
+from typing import TYPE_CHECKING, Dict, List, Optional
+from typing_extensions import Literal
 
-from ....._utils import PropertyInfo
+from pydantic import Field as FieldInfo
+
 from ....._models import BaseModel
 
-__all__ = [
-    "LatestListResponse",
-    "Item",
-    "ItemE",
-    "ItemEInit",
-    "ItemELeave",
-    "ItemEStartAttestation",
-    "ItemEFinishAttestationSuccess",
-    "ItemEFinishAttestationFailure",
-    "ItemEStartRotateCryptKey",
-    "ItemEFinishRotateCryptKeySuccess",
-    "ItemEFinishRotateCryptKeyFailure",
-    "ItemEStartRotatePki",
-    "ItemEFinishRotatePkiSuccess",
-    "ItemEFinishRotatePkiFailure",
-    "ItemEStartUpgrade",
-    "ItemEFinishUpgradeSuccess",
-    "ItemEFinishUpgradeFailure",
-    "ItemEReconcile",
-    "ItemEConfigureCloudflaredTunnel",
-    "ItemERekeyInstallBoth",
-    "ItemERekeyStart",
-    "ItemERekeyAdvance",
-    "ItemERekeyComplete",
-    "ItemERekeyReset",
-]
+__all__ = ["LatestListResponse", "Item", "ItemE"]
 
 
-class ItemEInit(BaseModel):
-    k: Literal["Init"]
-    """Initialized process"""
+class ItemE(BaseModel):
+    """Event kind plus event-specific payload fields.
 
+    Event kinds:
+    - `Init`: Initialized process
+    - `Leave`: Stopped process
+    - `StartAttestation`: Started attestation
+    - `FinishAttestationSuccess`: Finished attestation
+    - `FinishAttestationFailure`: Failed attestation
+    - `StartRotateCryptKey`: Started crypt key rotation
+    - `FinishRotateCryptKeySuccess`: Finished crypt key rotation
+    - `FinishRotateCryptKeyFailure`: Failed crypt key rotation
+    - `StartRotatePki`: Started PKI rotation
+    - `FinishRotatePkiSuccess`: Finished PKI rotation
+    - `FinishRotatePkiFailure`: Failed PKI rotation
+    - `StartUpgrade`: Started upgrade
+    - `FinishUpgradeSuccess`: Finished upgrade
+    - `FinishUpgradeFailure`: Failed upgrade
+    - `Reconcile`: Reconciled
+    - `ConfigureCloudflaredTunnel`: Configured Cloudflared tunnel
+    - `RekeyInstallBoth`: Installed initial inbound and outbound keys
+    - `RekeyStart`: Installed new inbound key, kept old outbound
+    - `RekeyRestart`: Restarted in-progress rekey with newer key material
+    - `RekeyAdvance`: Confirmed traffic on new inbound key, swapped outbound to new
+    - `RekeyComplete`: Deleted old keys
+    - `RekeyReset`: Deleted all keys after receiving an unexpected key
+    """
 
-class ItemELeave(BaseModel):
-    k: Literal["Leave"]
-    """Stopped process"""
+    k: Literal[
+        "Init",
+        "Leave",
+        "StartAttestation",
+        "FinishAttestationSuccess",
+        "FinishAttestationFailure",
+        "StartRotateCryptKey",
+        "FinishRotateCryptKeySuccess",
+        "FinishRotateCryptKeyFailure",
+        "StartRotatePki",
+        "FinishRotatePkiSuccess",
+        "FinishRotatePkiFailure",
+        "StartUpgrade",
+        "FinishUpgradeSuccess",
+        "FinishUpgradeFailure",
+        "Reconcile",
+        "ConfigureCloudflaredTunnel",
+        "RekeyInstallBoth",
+        "RekeyStart",
+        "RekeyRestart",
+        "RekeyAdvance",
+        "RekeyComplete",
+        "RekeyReset",
+    ]
+    """Event kind"""
 
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
-class ItemEStartAttestation(BaseModel):
-    k: Literal["StartAttestation"]
-    """Started attestation"""
-
-
-class ItemEFinishAttestationSuccess(BaseModel):
-    k: Literal["FinishAttestationSuccess"]
-    """Finished attestation"""
-
-
-class ItemEFinishAttestationFailure(BaseModel):
-    k: Literal["FinishAttestationFailure"]
-    """Failed attestation"""
-
-
-class ItemEStartRotateCryptKey(BaseModel):
-    k: Literal["StartRotateCryptKey"]
-    """Started crypt key rotation"""
-
-
-class ItemEFinishRotateCryptKeySuccess(BaseModel):
-    k: Literal["FinishRotateCryptKeySuccess"]
-    """Finished crypt key rotation"""
-
-
-class ItemEFinishRotateCryptKeyFailure(BaseModel):
-    k: Literal["FinishRotateCryptKeyFailure"]
-    """Failed crypt key rotation"""
-
-
-class ItemEStartRotatePki(BaseModel):
-    k: Literal["StartRotatePki"]
-    """Started PKI rotation"""
-
-
-class ItemEFinishRotatePkiSuccess(BaseModel):
-    k: Literal["FinishRotatePkiSuccess"]
-    """Finished PKI rotation"""
-
-
-class ItemEFinishRotatePkiFailure(BaseModel):
-    k: Literal["FinishRotatePkiFailure"]
-    """Failed PKI rotation"""
-
-
-class ItemEStartUpgrade(BaseModel):
-    k: Literal["StartUpgrade"]
-    """Started upgrade"""
-
-    url: str
-    """Location of upgrade bundle"""
-
-
-class ItemEFinishUpgradeSuccess(BaseModel):
-    k: Literal["FinishUpgradeSuccess"]
-    """Finished upgrade"""
-
-
-class ItemEFinishUpgradeFailure(BaseModel):
-    k: Literal["FinishUpgradeFailure"]
-    """Failed upgrade"""
-
-
-class ItemEReconcile(BaseModel):
-    k: Literal["Reconcile"]
-    """Reconciled"""
-
-
-class ItemEConfigureCloudflaredTunnel(BaseModel):
-    k: Literal["ConfigureCloudflaredTunnel"]
-    """Configured Cloudflared tunnel"""
-
-
-class ItemERekeyInstallBoth(BaseModel):
-    k: Literal["RekeyInstallBoth"]
-    """Installed initial inbound and outbound keys"""
-
-    tunnel_id: str
-    """Tunnel identifier"""
-
-
-class ItemERekeyStart(BaseModel):
-    k: Literal["RekeyStart"]
-    """Installed new inbound key, kept old outbound"""
-
-    tunnel_id: str
-    """Tunnel identifier"""
-
-
-class ItemERekeyAdvance(BaseModel):
-    k: Literal["RekeyAdvance"]
-    """Confirmed traffic on new inbound key, swapped outbound to new"""
-
-    tunnel_id: str
-    """Tunnel identifier"""
-
-
-class ItemERekeyComplete(BaseModel):
-    k: Literal["RekeyComplete"]
-    """Deleted old keys"""
-
-    tunnel_id: str
-    """Tunnel identifier"""
-
-
-class ItemERekeyReset(BaseModel):
-    k: Literal["RekeyReset"]
-    """Deleted all keys after receiving an unexpected key"""
-
-    tunnel_id: str
-    """Tunnel identifier"""
-
-
-ItemE: TypeAlias = Annotated[
-    Union[
-        ItemEInit,
-        ItemELeave,
-        ItemEStartAttestation,
-        ItemEFinishAttestationSuccess,
-        ItemEFinishAttestationFailure,
-        ItemEStartRotateCryptKey,
-        ItemEFinishRotateCryptKeySuccess,
-        ItemEFinishRotateCryptKeyFailure,
-        ItemEStartRotatePki,
-        ItemEFinishRotatePkiSuccess,
-        ItemEFinishRotatePkiFailure,
-        ItemEStartUpgrade,
-        ItemEFinishUpgradeSuccess,
-        ItemEFinishUpgradeFailure,
-        ItemEReconcile,
-        ItemEConfigureCloudflaredTunnel,
-        ItemERekeyInstallBoth,
-        ItemERekeyStart,
-        ItemERekeyAdvance,
-        ItemERekeyComplete,
-        ItemERekeyReset,
-    ],
-    PropertyInfo(discriminator="k"),
-]
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+    else:
+        __pydantic_extra__: Dict[str, object]
 
 
 class Item(BaseModel):
     """Recorded Event"""
 
     e: ItemE
+    """Event kind plus event-specific payload fields.
+
+    Event kinds:
+
+    - `Init`: Initialized process
+    - `Leave`: Stopped process
+    - `StartAttestation`: Started attestation
+    - `FinishAttestationSuccess`: Finished attestation
+    - `FinishAttestationFailure`: Failed attestation
+    - `StartRotateCryptKey`: Started crypt key rotation
+    - `FinishRotateCryptKeySuccess`: Finished crypt key rotation
+    - `FinishRotateCryptKeyFailure`: Failed crypt key rotation
+    - `StartRotatePki`: Started PKI rotation
+    - `FinishRotatePkiSuccess`: Finished PKI rotation
+    - `FinishRotatePkiFailure`: Failed PKI rotation
+    - `StartUpgrade`: Started upgrade
+    - `FinishUpgradeSuccess`: Finished upgrade
+    - `FinishUpgradeFailure`: Failed upgrade
+    - `Reconcile`: Reconciled
+    - `ConfigureCloudflaredTunnel`: Configured Cloudflared tunnel
+    - `RekeyInstallBoth`: Installed initial inbound and outbound keys
+    - `RekeyStart`: Installed new inbound key, kept old outbound
+    - `RekeyRestart`: Restarted in-progress rekey with newer key material
+    - `RekeyAdvance`: Confirmed traffic on new inbound key, swapped outbound to new
+    - `RekeyComplete`: Deleted old keys
+    - `RekeyReset`: Deleted all keys after receiving an unexpected key
+    """
 
     n: float
     """Sequence number, used to order events with the same timestamp"""

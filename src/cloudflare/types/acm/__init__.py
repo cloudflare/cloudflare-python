@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from .custom_trust_store import CustomTrustStore as CustomTrustStore
-from .certificate_authority import CertificateAuthority as CertificateAuthority
 from .total_tls_edit_params import TotalTLSEditParams as TotalTLSEditParams
 from .total_tls_get_response import TotalTLSGetResponse as TotalTLSGetResponse
 from .total_tls_edit_response import TotalTLSEditResponse as TotalTLSEditResponse

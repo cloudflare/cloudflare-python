@@ -63,7 +63,7 @@ class DataTagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagCreateResponse]:
         """
-        Creates a new data tag.
+        Creates a data tag in a category.
 
         Args:
           extra_headers: Send extra headers
@@ -117,7 +117,7 @@ class DataTagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagUpdateResponse]:
         """
-        Update the attributes of a single data tag.
+        Updates a data tag in a category.
 
         Args:
           extra_headers: Send extra headers
@@ -171,7 +171,7 @@ class DataTagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DataTagListResponse]:
         """
-        Retrieve all data tags in a data tag category
+        Lists data tags in a category.
 
         Args:
           extra_headers: Send extra headers
@@ -213,7 +213,7 @@ class DataTagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single data tag.
+        Deletes a data tag from a category.
 
         Args:
           extra_headers: Send extra headers
@@ -261,7 +261,7 @@ class DataTagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagGetResponse]:
         """
-        Retrieve a specific data tag.
+        Gets a data tag from a category.
 
         Args:
           extra_headers: Send extra headers
@@ -331,7 +331,7 @@ class AsyncDataTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagCreateResponse]:
         """
-        Creates a new data tag.
+        Creates a data tag in a category.
 
         Args:
           extra_headers: Send extra headers
@@ -385,7 +385,7 @@ class AsyncDataTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagUpdateResponse]:
         """
-        Update the attributes of a single data tag.
+        Updates a data tag in a category.
 
         Args:
           extra_headers: Send extra headers
@@ -439,7 +439,7 @@ class AsyncDataTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DataTagListResponse, AsyncSinglePage[DataTagListResponse]]:
         """
-        Retrieve all data tags in a data tag category
+        Lists data tags in a category.
 
         Args:
           extra_headers: Send extra headers
@@ -481,7 +481,7 @@ class AsyncDataTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single data tag.
+        Deletes a data tag from a category.
 
         Args:
           extra_headers: Send extra headers
@@ -529,7 +529,7 @@ class AsyncDataTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagGetResponse]:
         """
-        Retrieve a specific data tag.
+        Gets a data tag from a category.
 
         Args:
           extra_headers: Send extra headers

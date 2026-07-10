@@ -7,7 +7,7 @@ from datetime import date
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,7 +51,7 @@ class UsageResource(SyncAPIResource):
         *,
         account_id: str,
         from_: Union[str, date] | Omit = omit,
-        metric: str | Omit = omit,
+        metric_id: SequenceNotStr[str] | Omit = omit,
         to: Union[str, date] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -83,7 +83,8 @@ class UsageResource(SyncAPIResource):
               period (when consumption happened), not billing period. The maximum date range
               is 31 days.
 
-          metric: Filter results by billable metric id (e.g., workers_standard_requests).
+          metric_id: Filter results by one or more billable metric ids. Repeat the parameter to
+              filter by multiple metrics. Maximum 10 values.
 
           to: End date for the usage query (ISO 8601). Required if `from` is set. When omitted
               along with `from`, defaults to today. Filters by charge period (when consumption
@@ -109,7 +110,7 @@ class UsageResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "from_": from_,
-                        "metric": metric,
+                        "metric_id": metric_id,
                         "to": to,
                     },
                     usage_get_params.UsageGetParams,
@@ -201,7 +202,7 @@ class AsyncUsageResource(AsyncAPIResource):
         *,
         account_id: str,
         from_: Union[str, date] | Omit = omit,
-        metric: str | Omit = omit,
+        metric_id: SequenceNotStr[str] | Omit = omit,
         to: Union[str, date] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -233,7 +234,8 @@ class AsyncUsageResource(AsyncAPIResource):
               period (when consumption happened), not billing period. The maximum date range
               is 31 days.
 
-          metric: Filter results by billable metric id (e.g., workers_standard_requests).
+          metric_id: Filter results by one or more billable metric ids. Repeat the parameter to
+              filter by multiple metrics. Maximum 10 values.
 
           to: End date for the usage query (ISO 8601). Required if `from` is set. When omitted
               along with `from`, defaults to today. Filters by charge period (when consumption
@@ -259,7 +261,7 @@ class AsyncUsageResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "from_": from_,
-                        "metric": metric,
+                        "metric_id": metric_id,
                         "to": to,
                     },
                     usage_get_params.UsageGetParams,

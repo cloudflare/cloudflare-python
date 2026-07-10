@@ -61,7 +61,8 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[MessageListResponse]:
         """
-        List messages for a bulk action job
+        Returns the individual messages associated with a bulk action job, including
+        their processing status.
 
         Args:
           account_id: Identifier.
@@ -144,7 +145,8 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MessageListResponse, AsyncV4PagePaginationArray[MessageListResponse]]:
         """
-        List messages for a bulk action job
+        Returns the individual messages associated with a bulk action job, including
+        their processing status.
 
         Args:
           account_id: Identifier.

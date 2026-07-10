@@ -6,7 +6,6 @@ Types:
 
 ```python
 from cloudflare.types.certificate_authorities import (
-    HostnameAssociation,
     TLSHostnameAssociation,
     HostnameAssociationUpdateResponse,
     HostnameAssociationGetResponse,

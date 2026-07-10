@@ -75,12 +75,11 @@ class DataTagCategoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagCategoryCreateResponse]:
-        """Creates a new data tag category.
+        """
+        Creates a data tag category, optionally from a template.
 
         Args:
-          tags: Tags to create with the category.
-
-        Mutually exclusive with `template_id`.
+          tags: Tags to create with the category. Mutually exclusive with `template_id`.
 
           extra_headers: Send extra headers
 
@@ -129,7 +128,7 @@ class DataTagCategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagCategoryUpdateResponse]:
         """
-        Update the attributes of a single data tag category.
+        Updates a data tag category and its tags.
 
         Args:
           tags: The desired final state of tags.
@@ -186,7 +185,7 @@ class DataTagCategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DataTagCategoryListResponse]:
         """
-        Retrieve all data tag categories in an account
+        Lists data tag categories configured for the account.
 
         Args:
           extra_headers: Send extra headers
@@ -221,7 +220,7 @@ class DataTagCategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single data tag category.
+        Deletes a data tag category and its tags.
 
         Args:
           extra_headers: Send extra headers
@@ -265,7 +264,7 @@ class DataTagCategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagCategoryGetResponse]:
         """
-        Retrieve a specific data tag category.
+        Gets a data tag category and its tags.
 
         Args:
           extra_headers: Send extra headers
@@ -336,12 +335,11 @@ class AsyncDataTagCategoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagCategoryCreateResponse]:
-        """Creates a new data tag category.
+        """
+        Creates a data tag category, optionally from a template.
 
         Args:
-          tags: Tags to create with the category.
-
-        Mutually exclusive with `template_id`.
+          tags: Tags to create with the category. Mutually exclusive with `template_id`.
 
           extra_headers: Send extra headers
 
@@ -390,7 +388,7 @@ class AsyncDataTagCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagCategoryUpdateResponse]:
         """
-        Update the attributes of a single data tag category.
+        Updates a data tag category and its tags.
 
         Args:
           tags: The desired final state of tags.
@@ -447,7 +445,7 @@ class AsyncDataTagCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DataTagCategoryListResponse, AsyncSinglePage[DataTagCategoryListResponse]]:
         """
-        Retrieve all data tag categories in an account
+        Lists data tag categories configured for the account.
 
         Args:
           extra_headers: Send extra headers
@@ -482,7 +480,7 @@ class AsyncDataTagCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single data tag category.
+        Deletes a data tag category and its tags.
 
         Args:
           extra_headers: Send extra headers
@@ -526,7 +524,7 @@ class AsyncDataTagCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataTagCategoryGetResponse]:
         """
-        Retrieve a specific data tag category.
+        Gets a data tag category and its tags.
 
         Args:
           extra_headers: Send extra headers

@@ -29,7 +29,6 @@ from ...._wrappers import ResultWrapper
 from ....types.ssl import certificate_pack_edit_params, certificate_pack_list_params, certificate_pack_create_params
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.ssl.host import Host
 from ....types.ssl.certificate_pack_get_response import CertificatePackGetResponse
 from ....types.ssl.certificate_pack_edit_response import CertificatePackEditResponse
 from ....types.ssl.certificate_pack_list_response import CertificatePackListResponse
@@ -68,7 +67,7 @@ class CertificatePacksResource(SyncAPIResource):
         *,
         zone_id: str,
         certificate_authority: Literal["google", "lets_encrypt", "ssl_com"],
-        hosts: SequenceNotStr[Host],
+        hosts: SequenceNotStr[str],
         type: Literal["advanced"],
         validation_method: Literal["txt", "http", "email"],
         validity_days: Literal[14, 30, 90, 365],
@@ -384,7 +383,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         *,
         zone_id: str,
         certificate_authority: Literal["google", "lets_encrypt", "ssl_com"],
-        hosts: SequenceNotStr[Host],
+        hosts: SequenceNotStr[str],
         type: Literal["advanced"],
         validation_method: Literal["txt", "http", "email"],
         validity_days: Literal[14, 30, 90, 365],

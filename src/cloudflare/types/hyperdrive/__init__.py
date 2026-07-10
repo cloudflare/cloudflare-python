@@ -4,5 +4,6 @@ from __future__ import annotations
 
 from .hyperdrive import Hyperdrive as Hyperdrive
 from .config_edit_params import ConfigEditParams as ConfigEditParams
+from .config_list_params import ConfigListParams as ConfigListParams
 from .config_create_params import ConfigCreateParams as ConfigCreateParams
 from .config_update_params import ConfigUpdateParams as ConfigUpdateParams
