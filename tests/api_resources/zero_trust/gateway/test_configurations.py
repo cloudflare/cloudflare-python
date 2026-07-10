@@ -73,6 +73,7 @@ class TestConfigurations:
                 "fips": {"tls": True},
                 "host_selector": {"enabled": False},
                 "inspection": {"mode": "static"},
+                "max_ttl_secs": 3600,
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -166,6 +167,7 @@ class TestConfigurations:
                 "fips": {"tls": True},
                 "host_selector": {"enabled": False},
                 "inspection": {"mode": "static"},
+                "max_ttl_secs": 3600,
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -303,6 +305,7 @@ class TestAsyncConfigurations:
                 "fips": {"tls": True},
                 "host_selector": {"enabled": False},
                 "inspection": {"mode": "static"},
+                "max_ttl_secs": 3600,
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -396,6 +399,7 @@ class TestAsyncConfigurations:
                 "fips": {"tls": True},
                 "host_selector": {"enabled": False},
                 "inspection": {"mode": "static"},
+                "max_ttl_secs": 3600,
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,

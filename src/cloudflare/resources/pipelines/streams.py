@@ -236,7 +236,8 @@ class StreamsResource(SyncAPIResource):
 
           stream_id: Specifies the public ID of the stream.
 
-          force: Delete stream forcefully, including deleting any dependent pipelines.
+          force: Deprecated: Delete stream forcefully, including deleting any dependent
+              pipelines.
 
           extra_headers: Send extra headers
 
@@ -520,7 +521,8 @@ class AsyncStreamsResource(AsyncAPIResource):
 
           stream_id: Specifies the public ID of the stream.
 
-          force: Delete stream forcefully, including deleting any dependent pipelines.
+          force: Deprecated: Delete stream forcefully, including deleting any dependent
+              pipelines.
 
           extra_headers: Send extra headers
 

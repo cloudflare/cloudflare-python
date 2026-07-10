@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -15,7 +15,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloudforce_one.threat_events import dataset_edit_params, dataset_create_params
+from ....types.cloudforce_one.threat_events import dataset_edit_params, dataset_list_params, dataset_create_params
 from ....types.cloudforce_one.threat_events.dataset_get_response import DatasetGetResponse
 from ....types.cloudforce_one.threat_events.dataset_raw_response import DatasetRawResponse
 from ....types.cloudforce_one.threat_events.dataset_edit_response import DatasetEditResponse
@@ -98,6 +98,7 @@ class DatasetsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        include_deleted: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,6 +111,9 @@ class DatasetsResource(SyncAPIResource):
 
         Args:
           account_id: Account ID.
+
+          include_deleted: When true, include soft-deleted datasets in the response. Each item includes a
+              `deletedAt` field (ISO 8601 or null). Default: false.
 
           extra_headers: Send extra headers
 
@@ -124,7 +128,11 @@ class DatasetsResource(SyncAPIResource):
         return self._get(
             path_template("/accounts/{account_id}/cloudforce-one/events/dataset", account_id=account_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"include_deleted": include_deleted}, dataset_list_params.DatasetListParams),
             ),
             cast_to=DatasetListResponse,
         )
@@ -357,6 +365,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        include_deleted: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -369,6 +378,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
         Args:
           account_id: Account ID.
+
+          include_deleted: When true, include soft-deleted datasets in the response. Each item includes a
+              `deletedAt` field (ISO 8601 or null). Default: false.
 
           extra_headers: Send extra headers
 
@@ -383,7 +395,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
         return await self._get(
             path_template("/accounts/{account_id}/cloudforce-one/events/dataset", account_id=account_id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"include_deleted": include_deleted}, dataset_list_params.DatasetListParams
+                ),
             ),
             cast_to=DatasetListResponse,
         )

@@ -27,6 +27,9 @@ __all__ = [
     "ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
     "ActionParametersServeStale",
     "ActionParametersSharedDictionary",
+    "ActionParametersVary",
+    "ActionParametersVaryDefault",
+    "ActionParametersVaryHeaders",
     "ExposedCredentialCheck",
     "Ratelimit",
 ]
@@ -260,6 +263,50 @@ class ActionParametersSharedDictionary(TypedDict, total=False):
     """
 
 
+class ActionParametersVaryDefault(TypedDict, total=False):
+    """
+    Controls how response Vary headers without a per-header override contribute to the cache key.
+    """
+
+    action: Required[Literal["bypass", "passthrough", "normalize"]]
+    """How the header value is treated when building the cache key."""
+
+
+class ActionParametersVaryHeaders(TypedDict, total=False):
+    """Controls how a single request header contributes to the cache key."""
+
+    action: Required[Literal["bypass", "passthrough", "normalize"]]
+    """How the header value is treated when building the cache key."""
+
+    languages: SequenceNotStr[str]
+    """The set of languages to normalize against.
+
+    Only valid for the `accept-language` header.
+    """
+
+    media_types: SequenceNotStr[str]
+    """The set of media types to normalize against.
+
+    Only valid for the `accept` header.
+    """
+
+
+class ActionParametersVary(TypedDict, total=False):
+    """Controls how cached responses vary based on request headers.
+
+    `default` is required by the API and applies to any Vary response header that does not have a per-header override.
+    """
+
+    default: ActionParametersVaryDefault
+    """
+    Controls how response Vary headers without a per-header override contribute to
+    the cache key.
+    """
+
+    headers: Dict[str, ActionParametersVaryHeaders]
+    """A mapping of lowercase request header names to their vary configuration."""
+
+
 class ActionParameters(TypedDict, total=False):
     """The parameters configuring the rule's action."""
 
@@ -334,6 +381,13 @@ class ActionParameters(TypedDict, total=False):
 
     strip_set_cookie: bool
     """Whether to strip Set-Cookie headers from the origin response before caching."""
+
+    vary: ActionParametersVary
+    """Controls how cached responses vary based on request headers.
+
+    `default` is required by the API and applies to any Vary response header that
+    does not have a per-header override.
+    """
 
 
 class ExposedCredentialCheck(TypedDict, total=False):

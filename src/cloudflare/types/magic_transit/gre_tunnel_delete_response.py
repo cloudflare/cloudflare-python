@@ -23,11 +23,17 @@ class DeletedGRETunnelBGP(BaseModel):
     customer_asn: int
     """ASN used on the customer end of the BGP session"""
 
+    export_filter_id: Optional[str] = None
+    """ID of the BGP filter profile applied to routes advertised to the customer."""
+
     extra_prefixes: Optional[List[str]] = None
     """
     Prefixes in this list will be advertised to the customer device, in addition to
     the routes in the Magic routing table.
     """
+
+    import_filter_id: Optional[str] = None
+    """ID of the BGP filter profile applied to routes received from the customer."""
 
     md5_key: Optional[str] = None
     """MD5 key to use for session authentication.

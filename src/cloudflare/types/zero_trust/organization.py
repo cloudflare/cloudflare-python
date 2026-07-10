@@ -6,7 +6,7 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .login_design import LoginDesign
 
-__all__ = ["Organization", "CustomPages", "MfaConfig", "MfaSSHPivKeyRequirements"]
+__all__ = ["Organization", "CustomPages", "MfaConfig", "MfaPivKeyRequirements"]
 
 
 class CustomPages(BaseModel):
@@ -23,7 +23,7 @@ class CustomPages(BaseModel):
 class MfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings for an organization."""
 
-    allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key", "ssh_piv_key"]]] = None
+    allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key", "piv_key"]]] = None
     """Lists the MFA methods that users can authenticate with."""
 
     amr_matching_session_duration: Optional[str] = None
@@ -45,8 +45,8 @@ class MfaConfig(BaseModel):
     """
 
 
-class MfaSSHPivKeyRequirements(BaseModel):
-    """Configures SSH PIV key requirements for MFA using hardware security keys."""
+class MfaPivKeyRequirements(BaseModel):
+    """Configures PIV key requirements for MFA using hardware security keys."""
 
     pin_policy: Optional[Literal["never", "once", "always"]] = None
     """Defines when a PIN is required to use the SSH key.
@@ -57,8 +57,8 @@ class MfaSSHPivKeyRequirements(BaseModel):
 
     require_fips_device: Optional[bool] = None
     """
-    Requires the SSH PIV key to be stored on a FIPS 140-2 Level 1 or higher
-    validated device.
+    Requires the PIV key to be stored on a FIPS 140-2 Level 1 or higher validated
+    device.
     """
 
     ssh_key_size: Optional[List[Literal[256, 384, 521, 2048, 3072, 4096]]] = None
@@ -128,17 +128,17 @@ class Organization(BaseModel):
     mfa_config: Optional[MfaConfig] = None
     """Configures multi-factor authentication (MFA) settings for an organization."""
 
+    mfa_piv_key_requirements: Optional[MfaPivKeyRequirements] = None
+    """Configures PIV key requirements for MFA using hardware security keys."""
+
     mfa_required_for_all_apps: Optional[bool] = None
     """Determines whether global MFA settings apply to applications by default.
 
     The organization must have MFA enabled with at least one authentication method
     and a session duration configured. Note: 'allowed_authenticators' cannot only
-    contain 'ssh_piv_key' if the organization has any non-infrastructure
-    applications because PIV keys are only compatible with infrastructure apps.
+    contain 'piv_key' if the organization has any non-infrastructure applications
+    because PIV keys are only compatible with infrastructure apps.
     """
-
-    mfa_ssh_piv_key_requirements: Optional[MfaSSHPivKeyRequirements] = None
-    """Configures SSH PIV key requirements for MFA using hardware security keys."""
 
     name: Optional[str] = None
     """The name of your Zero Trust organization."""

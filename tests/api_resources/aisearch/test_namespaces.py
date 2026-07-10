@@ -237,7 +237,7 @@ class TestNamespaces:
             aisearch_options={"instance_ids": ["my-ai-search"]},
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -284,7 +284,7 @@ class TestNamespaces:
             },
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -301,7 +301,7 @@ class TestNamespaces:
             aisearch_options={"instance_ids": ["my-ai-search"]},
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -320,7 +320,7 @@ class TestNamespaces:
             aisearch_options={"instance_ids": ["my-ai-search"]},
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -342,7 +342,7 @@ class TestNamespaces:
                 aisearch_options={"instance_ids": ["my-ai-search"]},
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -355,7 +355,7 @@ class TestNamespaces:
                 aisearch_options={"instance_ids": ["my-ai-search"]},
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -458,7 +458,7 @@ class TestNamespaces:
             },
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -728,7 +728,7 @@ class TestAsyncNamespaces:
             aisearch_options={"instance_ids": ["my-ai-search"]},
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -775,7 +775,7 @@ class TestAsyncNamespaces:
             },
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -792,7 +792,7 @@ class TestAsyncNamespaces:
             aisearch_options={"instance_ids": ["my-ai-search"]},
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -811,7 +811,7 @@ class TestAsyncNamespaces:
             aisearch_options={"instance_ids": ["my-ai-search"]},
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],
@@ -833,7 +833,7 @@ class TestAsyncNamespaces:
                 aisearch_options={"instance_ids": ["my-ai-search"]},
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -846,7 +846,7 @@ class TestAsyncNamespaces:
                 aisearch_options={"instance_ids": ["my-ai-search"]},
                 messages=[
                     {
-                        "content": "content",
+                        "content": "string",
                         "role": "system",
                     }
                 ],
@@ -949,7 +949,7 @@ class TestAsyncNamespaces:
             },
             messages=[
                 {
-                    "content": "content",
+                    "content": "string",
                     "role": "system",
                 }
             ],

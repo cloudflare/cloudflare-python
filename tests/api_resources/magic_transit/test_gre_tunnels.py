@@ -48,7 +48,9 @@ class TestGRETunnels:
             automatic_return_routing=True,
             bgp={
                 "customer_asn": 0,
+                "export_filter_id": "a1b2c3d4e5f647890a1b2c3d4e5f6789",
                 "extra_prefixes": ["string"],
+                "import_filter_id": "a1b2c3d4e5f647890a1b2c3d4e5f6789",
                 "md5_key": "md5_key",
             },
             description="Tunnel for ISP X",
@@ -456,7 +458,9 @@ class TestAsyncGRETunnels:
             automatic_return_routing=True,
             bgp={
                 "customer_asn": 0,
+                "export_filter_id": "a1b2c3d4e5f647890a1b2c3d4e5f6789",
                 "extra_prefixes": ["string"],
+                "import_filter_id": "a1b2c3d4e5f647890a1b2c3d4e5f6789",
                 "md5_key": "md5_key",
             },
             description="Tunnel for ISP X",

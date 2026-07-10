@@ -26,6 +26,10 @@ __all__ = [
     "SelfHostedApplicationDestinationPublicDestination",
     "SelfHostedApplicationDestinationPrivateDestination",
     "SelfHostedApplicationDestinationViaMcpServerPortalDestination",
+    "SelfHostedApplicationDestinationWorkerDestination",
+    "SelfHostedApplicationDestinationPreviewWorkerDestination",
+    "SelfHostedApplicationDestinationAllWorkersDestination",
+    "SelfHostedApplicationDestinationAllPreviewWorkersDestination",
     "SelfHostedApplicationMfaConfig",
     "SelfHostedApplicationOAuthConfiguration",
     "SelfHostedApplicationOAuthConfigurationDynamicClientRegistration",
@@ -55,6 +59,10 @@ __all__ = [
     "BrowserSSHApplicationDestinationPublicDestination",
     "BrowserSSHApplicationDestinationPrivateDestination",
     "BrowserSSHApplicationDestinationViaMcpServerPortalDestination",
+    "BrowserSSHApplicationDestinationWorkerDestination",
+    "BrowserSSHApplicationDestinationPreviewWorkerDestination",
+    "BrowserSSHApplicationDestinationAllWorkersDestination",
+    "BrowserSSHApplicationDestinationAllPreviewWorkersDestination",
     "BrowserSSHApplicationMfaConfig",
     "BrowserSSHApplicationOAuthConfiguration",
     "BrowserSSHApplicationOAuthConfigurationDynamicClientRegistration",
@@ -73,6 +81,10 @@ __all__ = [
     "BrowserVNCApplicationDestinationPublicDestination",
     "BrowserVNCApplicationDestinationPrivateDestination",
     "BrowserVNCApplicationDestinationViaMcpServerPortalDestination",
+    "BrowserVNCApplicationDestinationWorkerDestination",
+    "BrowserVNCApplicationDestinationPreviewWorkerDestination",
+    "BrowserVNCApplicationDestinationAllWorkersDestination",
+    "BrowserVNCApplicationDestinationAllPreviewWorkersDestination",
     "BrowserVNCApplicationMfaConfig",
     "BrowserVNCApplicationOAuthConfiguration",
     "BrowserVNCApplicationOAuthConfigurationDynamicClientRegistration",
@@ -125,6 +137,10 @@ __all__ = [
     "BrowserRDPApplicationDestinationPublicDestination",
     "BrowserRDPApplicationDestinationPrivateDestination",
     "BrowserRDPApplicationDestinationViaMcpServerPortalDestination",
+    "BrowserRDPApplicationDestinationWorkerDestination",
+    "BrowserRDPApplicationDestinationPreviewWorkerDestination",
+    "BrowserRDPApplicationDestinationAllWorkersDestination",
+    "BrowserRDPApplicationDestinationAllPreviewWorkersDestination",
     "BrowserRDPApplicationMfaConfig",
     "BrowserRDPApplicationOAuthConfiguration",
     "BrowserRDPApplicationOAuthConfigurationDynamicClientRegistration",
@@ -143,6 +159,10 @@ __all__ = [
     "McpServerApplicationDestinationPublicDestination",
     "McpServerApplicationDestinationPrivateDestination",
     "McpServerApplicationDestinationViaMcpServerPortalDestination",
+    "McpServerApplicationDestinationWorkerDestination",
+    "McpServerApplicationDestinationPreviewWorkerDestination",
+    "McpServerApplicationDestinationAllWorkersDestination",
+    "McpServerApplicationDestinationAllPreviewWorkersDestination",
     "McpServerApplicationOAuthConfiguration",
     "McpServerApplicationOAuthConfigurationDynamicClientRegistration",
     "McpServerApplicationOAuthConfigurationGrant",
@@ -160,6 +180,10 @@ __all__ = [
     "McpServerPortalApplicationDestinationPublicDestination",
     "McpServerPortalApplicationDestinationPrivateDestination",
     "McpServerPortalApplicationDestinationViaMcpServerPortalDestination",
+    "McpServerPortalApplicationDestinationWorkerDestination",
+    "McpServerPortalApplicationDestinationPreviewWorkerDestination",
+    "McpServerPortalApplicationDestinationAllWorkersDestination",
+    "McpServerPortalApplicationDestinationAllPreviewWorkersDestination",
     "McpServerPortalApplicationOAuthConfiguration",
     "McpServerPortalApplicationOAuthConfigurationDynamicClientRegistration",
     "McpServerPortalApplicationOAuthConfigurationGrant",
@@ -228,10 +252,57 @@ class SelfHostedApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
+class SelfHostedApplicationDestinationWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker that Access will secure.
+
+    All requests routed to the specified Worker, including its preview deployments, will be protected. The `preview_worker` and `public` destination types takes precedence, so you can create separate applications to override the policies for the Worker's previews or specific paths.
+    """
+
+    type: Literal["worker"]
+
+    worker_id: str
+    """The ID of the Cloudflare Worker to protect with Access."""
+
+
+class SelfHostedApplicationDestinationPreviewWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker whose preview deployments Access will secure.
+
+    Only requests routed to the preview deployments of the specified Worker will be protected. The `public` destination type takes precedence, so you can create separate applications to override the policies for specific paths.
+    """
+
+    type: Literal["preview_worker"]
+
+    worker_id: str
+    """
+    The ID of the Cloudflare Worker whose preview deployments to protect with
+    Access.
+    """
+
+
+class SelfHostedApplicationDestinationAllWorkersDestination(BaseModel):
+    """
+    Protects all Cloudflare Workers on the account with Access, including their preview deployments. At most one destination of this type can exist per account. The `worker`, `preview_worker`, `all_preview_workers`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_workers"]
+
+
+class SelfHostedApplicationDestinationAllPreviewWorkersDestination(BaseModel):
+    """
+    Protects the preview deployments of all Cloudflare Workers on the account with Access. At most one destination of this type can exist per account. The `worker`, `preview_worker`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_preview_workers"]
+
+
 SelfHostedApplicationDestination: TypeAlias = Union[
     SelfHostedApplicationDestinationPublicDestination,
     SelfHostedApplicationDestinationPrivateDestination,
     SelfHostedApplicationDestinationViaMcpServerPortalDestination,
+    SelfHostedApplicationDestinationWorkerDestination,
+    SelfHostedApplicationDestinationPreviewWorkerDestination,
+    SelfHostedApplicationDestinationAllWorkersDestination,
+    SelfHostedApplicationDestinationAllPreviewWorkersDestination,
 ]
 
 
@@ -605,6 +676,14 @@ class SelfHostedApplication(BaseModel):
     This supersedes `self_hosted_domains` to allow for more flexibility in defining
     different types of domains. If `destinations` are provided, then
     `self_hosted_domains` will be ignored.
+    """
+
+    eager_redirect_cookie_setting: Optional[bool] = None
+    """
+    Preemptively sets the Access session cookie on every hostname in a
+    multi-hostname self-hosted application during the initial redirect chain, rather
+    than setting it lazily on first visit. Defaults to true. Set to false to disable
+    the eager redirect cookie behavior.
     """
 
     enable_binding_cookie: Optional[bool] = None
@@ -1040,10 +1119,57 @@ class BrowserSSHApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
+class BrowserSSHApplicationDestinationWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker that Access will secure.
+
+    All requests routed to the specified Worker, including its preview deployments, will be protected. The `preview_worker` and `public` destination types takes precedence, so you can create separate applications to override the policies for the Worker's previews or specific paths.
+    """
+
+    type: Literal["worker"]
+
+    worker_id: str
+    """The ID of the Cloudflare Worker to protect with Access."""
+
+
+class BrowserSSHApplicationDestinationPreviewWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker whose preview deployments Access will secure.
+
+    Only requests routed to the preview deployments of the specified Worker will be protected. The `public` destination type takes precedence, so you can create separate applications to override the policies for specific paths.
+    """
+
+    type: Literal["preview_worker"]
+
+    worker_id: str
+    """
+    The ID of the Cloudflare Worker whose preview deployments to protect with
+    Access.
+    """
+
+
+class BrowserSSHApplicationDestinationAllWorkersDestination(BaseModel):
+    """
+    Protects all Cloudflare Workers on the account with Access, including their preview deployments. At most one destination of this type can exist per account. The `worker`, `preview_worker`, `all_preview_workers`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_workers"]
+
+
+class BrowserSSHApplicationDestinationAllPreviewWorkersDestination(BaseModel):
+    """
+    Protects the preview deployments of all Cloudflare Workers on the account with Access. At most one destination of this type can exist per account. The `worker`, `preview_worker`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_preview_workers"]
+
+
 BrowserSSHApplicationDestination: TypeAlias = Union[
     BrowserSSHApplicationDestinationPublicDestination,
     BrowserSSHApplicationDestinationPrivateDestination,
     BrowserSSHApplicationDestinationViaMcpServerPortalDestination,
+    BrowserSSHApplicationDestinationWorkerDestination,
+    BrowserSSHApplicationDestinationPreviewWorkerDestination,
+    BrowserSSHApplicationDestinationAllWorkersDestination,
+    BrowserSSHApplicationDestinationAllPreviewWorkersDestination,
 ]
 
 
@@ -1434,6 +1560,14 @@ class BrowserSSHApplication(BaseModel):
     `self_hosted_domains` will be ignored.
     """
 
+    eager_redirect_cookie_setting: Optional[bool] = None
+    """
+    Preemptively sets the Access session cookie on every hostname in a
+    multi-hostname self-hosted application during the initial redirect chain, rather
+    than setting it lazily on first visit. Defaults to true. Set to false to disable
+    the eager redirect cookie behavior.
+    """
+
     enable_binding_cookie: Optional[bool] = None
     """
     Enables the binding cookie, which increases security against compromised
@@ -1590,10 +1724,57 @@ class BrowserVNCApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
+class BrowserVNCApplicationDestinationWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker that Access will secure.
+
+    All requests routed to the specified Worker, including its preview deployments, will be protected. The `preview_worker` and `public` destination types takes precedence, so you can create separate applications to override the policies for the Worker's previews or specific paths.
+    """
+
+    type: Literal["worker"]
+
+    worker_id: str
+    """The ID of the Cloudflare Worker to protect with Access."""
+
+
+class BrowserVNCApplicationDestinationPreviewWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker whose preview deployments Access will secure.
+
+    Only requests routed to the preview deployments of the specified Worker will be protected. The `public` destination type takes precedence, so you can create separate applications to override the policies for specific paths.
+    """
+
+    type: Literal["preview_worker"]
+
+    worker_id: str
+    """
+    The ID of the Cloudflare Worker whose preview deployments to protect with
+    Access.
+    """
+
+
+class BrowserVNCApplicationDestinationAllWorkersDestination(BaseModel):
+    """
+    Protects all Cloudflare Workers on the account with Access, including their preview deployments. At most one destination of this type can exist per account. The `worker`, `preview_worker`, `all_preview_workers`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_workers"]
+
+
+class BrowserVNCApplicationDestinationAllPreviewWorkersDestination(BaseModel):
+    """
+    Protects the preview deployments of all Cloudflare Workers on the account with Access. At most one destination of this type can exist per account. The `worker`, `preview_worker`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_preview_workers"]
+
+
 BrowserVNCApplicationDestination: TypeAlias = Union[
     BrowserVNCApplicationDestinationPublicDestination,
     BrowserVNCApplicationDestinationPrivateDestination,
     BrowserVNCApplicationDestinationViaMcpServerPortalDestination,
+    BrowserVNCApplicationDestinationWorkerDestination,
+    BrowserVNCApplicationDestinationPreviewWorkerDestination,
+    BrowserVNCApplicationDestinationAllWorkersDestination,
+    BrowserVNCApplicationDestinationAllPreviewWorkersDestination,
 ]
 
 
@@ -1982,6 +2163,14 @@ class BrowserVNCApplication(BaseModel):
     This supersedes `self_hosted_domains` to allow for more flexibility in defining
     different types of domains. If `destinations` are provided, then
     `self_hosted_domains` will be ignored.
+    """
+
+    eager_redirect_cookie_setting: Optional[bool] = None
+    """
+    Preemptively sets the Access session cookie on every hostname in a
+    multi-hostname self-hosted application during the initial redirect chain, rather
+    than setting it lazily on first visit. Defaults to true. Set to false to disable
+    the eager redirect cookie behavior.
     """
 
     enable_binding_cookie: Optional[bool] = None
@@ -3068,10 +3257,10 @@ class InfrastructureApplicationPolicyMfaConfig(BaseModel):
     Configures multi-factor authentication (MFA) settings for infrastructure applications.
     """
 
-    allowed_authenticators: Optional[List[Literal["ssh_piv_key"]]] = None
+    allowed_authenticators: Optional[List[Literal["piv_key"]]] = None
     """Lists the MFA methods that users can authenticate with.
 
-    For infrastructure applications, only `ssh_piv_key` is supported.
+    For infrastructure applications, only `piv_key` is supported.
     """
 
     mfa_disabled: Optional[bool] = None
@@ -3221,10 +3410,57 @@ class BrowserRDPApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
+class BrowserRDPApplicationDestinationWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker that Access will secure.
+
+    All requests routed to the specified Worker, including its preview deployments, will be protected. The `preview_worker` and `public` destination types takes precedence, so you can create separate applications to override the policies for the Worker's previews or specific paths.
+    """
+
+    type: Literal["worker"]
+
+    worker_id: str
+    """The ID of the Cloudflare Worker to protect with Access."""
+
+
+class BrowserRDPApplicationDestinationPreviewWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker whose preview deployments Access will secure.
+
+    Only requests routed to the preview deployments of the specified Worker will be protected. The `public` destination type takes precedence, so you can create separate applications to override the policies for specific paths.
+    """
+
+    type: Literal["preview_worker"]
+
+    worker_id: str
+    """
+    The ID of the Cloudflare Worker whose preview deployments to protect with
+    Access.
+    """
+
+
+class BrowserRDPApplicationDestinationAllWorkersDestination(BaseModel):
+    """
+    Protects all Cloudflare Workers on the account with Access, including their preview deployments. At most one destination of this type can exist per account. The `worker`, `preview_worker`, `all_preview_workers`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_workers"]
+
+
+class BrowserRDPApplicationDestinationAllPreviewWorkersDestination(BaseModel):
+    """
+    Protects the preview deployments of all Cloudflare Workers on the account with Access. At most one destination of this type can exist per account. The `worker`, `preview_worker`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_preview_workers"]
+
+
 BrowserRDPApplicationDestination: TypeAlias = Union[
     BrowserRDPApplicationDestinationPublicDestination,
     BrowserRDPApplicationDestinationPrivateDestination,
     BrowserRDPApplicationDestinationViaMcpServerPortalDestination,
+    BrowserRDPApplicationDestinationWorkerDestination,
+    BrowserRDPApplicationDestinationPreviewWorkerDestination,
+    BrowserRDPApplicationDestinationAllWorkersDestination,
+    BrowserRDPApplicationDestinationAllPreviewWorkersDestination,
 ]
 
 
@@ -3602,6 +3838,14 @@ class BrowserRDPApplication(BaseModel):
     `self_hosted_domains` will be ignored.
     """
 
+    eager_redirect_cookie_setting: Optional[bool] = None
+    """
+    Preemptively sets the Access session cookie on every hostname in a
+    multi-hostname self-hosted application during the initial redirect chain, rather
+    than setting it lazily on first visit. Defaults to true. Set to false to disable
+    the eager redirect cookie behavior.
+    """
+
     enable_binding_cookie: Optional[bool] = None
     """
     Enables the binding cookie, which increases security against compromised
@@ -3758,10 +4002,57 @@ class McpServerApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
+class McpServerApplicationDestinationWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker that Access will secure.
+
+    All requests routed to the specified Worker, including its preview deployments, will be protected. The `preview_worker` and `public` destination types takes precedence, so you can create separate applications to override the policies for the Worker's previews or specific paths.
+    """
+
+    type: Literal["worker"]
+
+    worker_id: str
+    """The ID of the Cloudflare Worker to protect with Access."""
+
+
+class McpServerApplicationDestinationPreviewWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker whose preview deployments Access will secure.
+
+    Only requests routed to the preview deployments of the specified Worker will be protected. The `public` destination type takes precedence, so you can create separate applications to override the policies for specific paths.
+    """
+
+    type: Literal["preview_worker"]
+
+    worker_id: str
+    """
+    The ID of the Cloudflare Worker whose preview deployments to protect with
+    Access.
+    """
+
+
+class McpServerApplicationDestinationAllWorkersDestination(BaseModel):
+    """
+    Protects all Cloudflare Workers on the account with Access, including their preview deployments. At most one destination of this type can exist per account. The `worker`, `preview_worker`, `all_preview_workers`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_workers"]
+
+
+class McpServerApplicationDestinationAllPreviewWorkersDestination(BaseModel):
+    """
+    Protects the preview deployments of all Cloudflare Workers on the account with Access. At most one destination of this type can exist per account. The `worker`, `preview_worker`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_preview_workers"]
+
+
 McpServerApplicationDestination: TypeAlias = Union[
     McpServerApplicationDestinationPublicDestination,
     McpServerApplicationDestinationPrivateDestination,
     McpServerApplicationDestinationViaMcpServerPortalDestination,
+    McpServerApplicationDestinationWorkerDestination,
+    McpServerApplicationDestinationPreviewWorkerDestination,
+    McpServerApplicationDestinationAllWorkersDestination,
+    McpServerApplicationDestinationAllPreviewWorkersDestination,
 ]
 
 
@@ -4211,10 +4502,57 @@ class McpServerPortalApplicationDestinationViaMcpServerPortalDestination(BaseMod
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
+class McpServerPortalApplicationDestinationWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker that Access will secure.
+
+    All requests routed to the specified Worker, including its preview deployments, will be protected. The `preview_worker` and `public` destination types takes precedence, so you can create separate applications to override the policies for the Worker's previews or specific paths.
+    """
+
+    type: Literal["worker"]
+
+    worker_id: str
+    """The ID of the Cloudflare Worker to protect with Access."""
+
+
+class McpServerPortalApplicationDestinationPreviewWorkerDestination(BaseModel):
+    """A specific Cloudflare Worker whose preview deployments Access will secure.
+
+    Only requests routed to the preview deployments of the specified Worker will be protected. The `public` destination type takes precedence, so you can create separate applications to override the policies for specific paths.
+    """
+
+    type: Literal["preview_worker"]
+
+    worker_id: str
+    """
+    The ID of the Cloudflare Worker whose preview deployments to protect with
+    Access.
+    """
+
+
+class McpServerPortalApplicationDestinationAllWorkersDestination(BaseModel):
+    """
+    Protects all Cloudflare Workers on the account with Access, including their preview deployments. At most one destination of this type can exist per account. The `worker`, `preview_worker`, `all_preview_workers`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_workers"]
+
+
+class McpServerPortalApplicationDestinationAllPreviewWorkersDestination(BaseModel):
+    """
+    Protects the preview deployments of all Cloudflare Workers on the account with Access. At most one destination of this type can exist per account. The `worker`, `preview_worker`, and `public` destination types take precedence, so you can create separate applications to override the policies for specific Workers, their previews, or specific paths.
+    """
+
+    type: Literal["all_preview_workers"]
+
+
 McpServerPortalApplicationDestination: TypeAlias = Union[
     McpServerPortalApplicationDestinationPublicDestination,
     McpServerPortalApplicationDestinationPrivateDestination,
     McpServerPortalApplicationDestinationViaMcpServerPortalDestination,
+    McpServerPortalApplicationDestinationWorkerDestination,
+    McpServerPortalApplicationDestinationPreviewWorkerDestination,
+    McpServerPortalApplicationDestinationAllWorkersDestination,
+    McpServerPortalApplicationDestinationAllPreviewWorkersDestination,
 ]
 
 

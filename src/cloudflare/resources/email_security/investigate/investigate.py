@@ -50,6 +50,14 @@ from .release import (
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
+from .bulk.bulk import (
+    BulkResource,
+    AsyncBulkResource,
+    BulkResourceWithRawResponse,
+    AsyncBulkResourceWithRawResponse,
+    BulkResourceWithStreamingResponse,
+    AsyncBulkResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
 from .detections import (
     DetectionsResource,
@@ -112,6 +120,10 @@ class InvestigateResource(SyncAPIResource):
     @cached_property
     def release(self) -> ReleaseResource:
         return ReleaseResource(self._client)
+
+    @cached_property
+    def bulk(self) -> BulkResource:
+        return BulkResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> InvestigateResourceWithRawResponse:
@@ -317,6 +329,10 @@ class AsyncInvestigateResource(AsyncAPIResource):
     @cached_property
     def release(self) -> AsyncReleaseResource:
         return AsyncReleaseResource(self._client)
+
+    @cached_property
+    def bulk(self) -> AsyncBulkResource:
+        return AsyncBulkResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncInvestigateResourceWithRawResponse:
@@ -535,6 +551,10 @@ class InvestigateResourceWithRawResponse:
     def release(self) -> ReleaseResourceWithRawResponse:
         return ReleaseResourceWithRawResponse(self._investigate.release)
 
+    @cached_property
+    def bulk(self) -> BulkResourceWithRawResponse:
+        return BulkResourceWithRawResponse(self._investigate.bulk)
+
 
 class AsyncInvestigateResourceWithRawResponse:
     def __init__(self, investigate: AsyncInvestigateResource) -> None:
@@ -574,6 +594,10 @@ class AsyncInvestigateResourceWithRawResponse:
     @cached_property
     def release(self) -> AsyncReleaseResourceWithRawResponse:
         return AsyncReleaseResourceWithRawResponse(self._investigate.release)
+
+    @cached_property
+    def bulk(self) -> AsyncBulkResourceWithRawResponse:
+        return AsyncBulkResourceWithRawResponse(self._investigate.bulk)
 
 
 class InvestigateResourceWithStreamingResponse:
@@ -615,6 +639,10 @@ class InvestigateResourceWithStreamingResponse:
     def release(self) -> ReleaseResourceWithStreamingResponse:
         return ReleaseResourceWithStreamingResponse(self._investigate.release)
 
+    @cached_property
+    def bulk(self) -> BulkResourceWithStreamingResponse:
+        return BulkResourceWithStreamingResponse(self._investigate.bulk)
+
 
 class AsyncInvestigateResourceWithStreamingResponse:
     def __init__(self, investigate: AsyncInvestigateResource) -> None:
@@ -654,3 +682,7 @@ class AsyncInvestigateResourceWithStreamingResponse:
     @cached_property
     def release(self) -> AsyncReleaseResourceWithStreamingResponse:
         return AsyncReleaseResourceWithStreamingResponse(self._investigate.release)
+
+    @cached_property
+    def bulk(self) -> AsyncBulkResourceWithStreamingResponse:
+        return AsyncBulkResourceWithStreamingResponse(self._investigate.bulk)

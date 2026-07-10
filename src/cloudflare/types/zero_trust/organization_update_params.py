@@ -8,7 +8,7 @@ from typing_extensions import Literal, TypedDict
 from ..._types import SequenceNotStr
 from .login_design_param import LoginDesignParam
 
-__all__ = ["OrganizationUpdateParams", "CustomPages", "MfaConfig", "MfaSSHPivKeyRequirements"]
+__all__ = ["OrganizationUpdateParams", "CustomPages", "MfaConfig", "MfaPivKeyRequirements"]
 
 
 class OrganizationUpdateParams(TypedDict, total=False):
@@ -63,17 +63,17 @@ class OrganizationUpdateParams(TypedDict, total=False):
     mfa_config: MfaConfig
     """Configures multi-factor authentication (MFA) settings for an organization."""
 
+    mfa_piv_key_requirements: MfaPivKeyRequirements
+    """Configures PIV key requirements for MFA using hardware security keys."""
+
     mfa_required_for_all_apps: bool
     """Determines whether global MFA settings apply to applications by default.
 
     The organization must have MFA enabled with at least one authentication method
     and a session duration configured. Note: 'allowed_authenticators' cannot only
-    contain 'ssh_piv_key' if the organization has any non-infrastructure
-    applications because PIV keys are only compatible with infrastructure apps.
+    contain 'piv_key' if the organization has any non-infrastructure applications
+    because PIV keys are only compatible with infrastructure apps.
     """
-
-    mfa_ssh_piv_key_requirements: MfaSSHPivKeyRequirements
-    """Configures SSH PIV key requirements for MFA using hardware security keys."""
 
     name: str
     """The name of your Zero Trust organization."""
@@ -118,7 +118,7 @@ class CustomPages(TypedDict, total=False):
 class MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings for an organization."""
 
-    allowed_authenticators: List[Literal["totp", "biometrics", "security_key", "ssh_piv_key"]]
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key", "piv_key"]]
     """Lists the MFA methods that users can authenticate with."""
 
     amr_matching_session_duration: str
@@ -140,8 +140,8 @@ class MfaConfig(TypedDict, total=False):
     """
 
 
-class MfaSSHPivKeyRequirements(TypedDict, total=False):
-    """Configures SSH PIV key requirements for MFA using hardware security keys."""
+class MfaPivKeyRequirements(TypedDict, total=False):
+    """Configures PIV key requirements for MFA using hardware security keys."""
 
     pin_policy: Literal["never", "once", "always"]
     """Defines when a PIN is required to use the SSH key.
@@ -152,8 +152,8 @@ class MfaSSHPivKeyRequirements(TypedDict, total=False):
 
     require_fips_device: bool
     """
-    Requires the SSH PIV key to be stored on a FIPS 140-2 Level 1 or higher
-    validated device.
+    Requires the PIV key to be stored on a FIPS 140-2 Level 1 or higher validated
+    device.
     """
 
     ssh_key_size: Iterable[Literal[256, 384, 521, 2048, 3072, 4096]]

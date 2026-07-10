@@ -1,32 +1,5 @@
 # Changelog
 
-## 5.4.0 (2026-06-16)
-
-Full Changelog: [v5.3.0...v5.4.0](https://github.com/cloudflare/cloudflare-python/compare/v5.3.0...v5.4.0)
-
-### Features
-
-* feat(ai_gateway): add custom_providers resource ([b982ff3](https://github.com/cloudflare/cloudflare-python/commit/b982ff391eab267ef16c719d0fc798d970292ed2))
-* feat(api): map ipsec_tunnels/psk, sites/app_policies and cf1_sites for magic-on-ramps ([5d8e422](https://github.com/cloudflare/cloudflare-python/commit/5d8e422736d8e044d2c73065cbb8595573b2656d))
-* feat(ct_alerter): add CT alerting subscription endpoint mappings ([5bb529c](https://github.com/cloudflare/cloudflare-python/commit/5bb529c2eabe4ce0c23cddbf8073c6a025dc3024))
-* feat(tenants): add tenants resource SDK mapping [PT-2567] ([7677b4c](https://github.com/cloudflare/cloudflare-python/commit/7677b4c9566495b627b2cd90c9220268f9c6c46d))
-
-
-### Chores
-
-* **api:** update composite API spec ([2b0e738](https://github.com/cloudflare/cloudflare-python/commit/2b0e7388107c4110489484c2b38d4d9295b15af2))
-* **api:** update composite API spec ([c7202c9](https://github.com/cloudflare/cloudflare-python/commit/c7202c9f9215a179b17362439c59b2e99566ab40))
-* **api:** update composite API spec ([f94e4de](https://github.com/cloudflare/cloudflare-python/commit/f94e4de91421e736243f75eee987c888f06d8f0b))
-* **api:** update composite API spec ([656f973](https://github.com/cloudflare/cloudflare-python/commit/656f97390d51da3e224e67f2305d6d46f7ae239a))
-* **api:** update composite API spec ([05e802d](https://github.com/cloudflare/cloudflare-python/commit/05e802d1940e1b0bfe59a25c388b83f53edd238e))
-* **api:** update composite API spec ([3817b57](https://github.com/cloudflare/cloudflare-python/commit/3817b571d02b2d23f087bbdb574853632d0bc1db))
-* **api:** update composite API spec ([3e26c73](https://github.com/cloudflare/cloudflare-python/commit/3e26c739c29586ab33e05bb4dc6673d06748d013))
-* **api:** update composite API spec ([0ff89f9](https://github.com/cloudflare/cloudflare-python/commit/0ff89f99ddfbaf078d3b20eada5fd2bc4139fc65))
-* **api:** update composite API spec ([eeec39a](https://github.com/cloudflare/cloudflare-python/commit/eeec39a7ab478625ead7a1e6276c1c258ff574fd))
-* **api:** update composite API spec ([45260b9](https://github.com/cloudflare/cloudflare-python/commit/45260b91f48ed30eb69f1ecd184f245b03a59146))
-* **api:** update composite API spec ([72eb205](https://github.com/cloudflare/cloudflare-python/commit/72eb20551c18d2cae3dfbef960a12ff22b4a7de7))
-* **internal:** codegen related update ([86bdf98](https://github.com/cloudflare/cloudflare-python/commit/86bdf981e37d4b028f4e555d7e0b1e76324f23b3))
-
 ## 5.3.0 (2026-06-11)
 
 Full Changelog: [v5.2.0...v5.3.0](https://github.com/cloudflare/cloudflare-python/compare/v5.2.0...v5.3.0)

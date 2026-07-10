@@ -58,6 +58,12 @@ class TestCustom:
                 }
             ],
             exclude_office_ips=True,
+            global_acceleration={
+                "api_endpoints": ["198.51.100.1:443"],
+                "enabled": True,
+                "masque_endpoints": ["198.51.100.1:443"],
+                "wireguard_endpoints": ["198.51.100.1:2408"],
+            },
             include=[
                 {
                     "address": "192.0.2.0/24",
@@ -247,6 +253,12 @@ class TestCustom:
                 }
             ],
             exclude_office_ips=True,
+            global_acceleration={
+                "api_endpoints": ["198.51.100.1:443"],
+                "enabled": True,
+                "masque_endpoints": ["198.51.100.1:443"],
+                "wireguard_endpoints": ["198.51.100.1:2408"],
+            },
             include=[
                 {
                     "address": "192.0.2.0/24",
@@ -415,6 +427,12 @@ class TestAsyncCustom:
                 }
             ],
             exclude_office_ips=True,
+            global_acceleration={
+                "api_endpoints": ["198.51.100.1:443"],
+                "enabled": True,
+                "masque_endpoints": ["198.51.100.1:443"],
+                "wireguard_endpoints": ["198.51.100.1:2408"],
+            },
             include=[
                 {
                     "address": "192.0.2.0/24",
@@ -604,6 +622,12 @@ class TestAsyncCustom:
                 }
             ],
             exclude_office_ips=True,
+            global_acceleration={
+                "api_endpoints": ["198.51.100.1:443"],
+                "enabled": True,
+                "masque_endpoints": ["198.51.100.1:443"],
+                "wireguard_endpoints": ["198.51.100.1:2408"],
+            },
             include=[
                 {
                     "address": "192.0.2.0/24",

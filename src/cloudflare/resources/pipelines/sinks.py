@@ -183,7 +183,7 @@ class SinksResource(SyncAPIResource):
 
           sink_id: Specifies the publid ID of the sink.
 
-          force: Delete sink forcefully, including deleting any dependent pipelines.
+          force: Deprecated: Delete sink forcefully, including deleting any dependent pipelines.
 
           extra_headers: Send extra headers
 
@@ -414,7 +414,7 @@ class AsyncSinksResource(AsyncAPIResource):
 
           sink_id: Specifies the publid ID of the sink.
 
-          force: Delete sink forcefully, including deleting any dependent pipelines.
+          force: Deprecated: Delete sink forcefully, including deleting any dependent pipelines.
 
           extra_headers: Send extra headers
 

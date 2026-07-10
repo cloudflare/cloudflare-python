@@ -7,7 +7,6 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..r2.buckets.provider import Provider
 
 __all__ = [
     "InstanceDeleteResponse",
@@ -26,7 +25,6 @@ __all__ = [
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerParseOptionsContentSelector",
-    "SourceParamsWebCrawlerStoreOptions",
 ]
 
 
@@ -186,20 +184,10 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
     use_browser_rendering: Optional[bool] = None
 
 
-class SourceParamsWebCrawlerStoreOptions(BaseModel):
-    storage_id: str
-
-    r2_jurisdiction: Optional[str] = None
-
-    storage_type: Optional[Provider] = None
-
-
 class SourceParamsWebCrawler(BaseModel):
     parse_options: Optional[SourceParamsWebCrawlerParseOptions] = None
 
-    parse_type: Optional[Literal["sitemap", "feed-rss", "crawl"]] = None
-
-    store_options: Optional[SourceParamsWebCrawlerStoreOptions] = None
+    parse_type: Optional[Literal["sitemap", "crawl"]] = None
 
 
 class SourceParams(BaseModel):
@@ -292,6 +280,7 @@ class InstanceDeleteResponse(BaseModel):
     embedding_model: Optional[
         Literal[
             "@cf/qwen/qwen3-embedding-0.6b",
+            "@cf/qwen/qwen3-vl-embedding-2b",
             "@cf/baai/bge-m3",
             "@cf/baai/bge-large-en-v1.5",
             "@cf/google/embeddinggemma-300m",

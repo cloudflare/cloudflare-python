@@ -93,6 +93,50 @@ Methods:
 
 - <code title="post /accounts/{account_id}/email-security/investigate/release">client.email_security.investigate.release.<a href="./src/cloudflare/resources/email_security/investigate/release.py">bulk</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/release_bulk_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/release_bulk_response.py">SyncSinglePage[ReleaseBulkResponse]</a></code>
 
+### Bulk
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate import (
+    BulkCreateResponse,
+    BulkListResponse,
+    BulkDeleteResponse,
+    BulkGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/investigate/bulk">client.email_security.investigate.bulk.<a href="./src/cloudflare/resources/email_security/investigate/bulk/bulk.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/bulk_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/bulk_create_response.py">BulkCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/investigate/bulk">client.email_security.investigate.bulk.<a href="./src/cloudflare/resources/email_security/investigate/bulk/bulk.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/bulk_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/bulk_list_response.py">SyncV4PagePaginationArray[BulkListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/investigate/bulk/{job_id}">client.email_security.investigate.bulk.<a href="./src/cloudflare/resources/email_security/investigate/bulk/bulk.py">delete</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate/bulk_delete_response.py">BulkDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/investigate/bulk/{job_id}">client.email_security.investigate.bulk.<a href="./src/cloudflare/resources/email_security/investigate/bulk/bulk.py">get</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate/bulk_get_response.py">BulkGetResponse</a></code>
+
+#### Cancel
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate.bulk import CancelCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/investigate/bulk/{job_id}/cancel">client.email_security.investigate.bulk.cancel.<a href="./src/cloudflare/resources/email_security/investigate/bulk/cancel.py">create</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate/bulk/cancel_create_response.py">CancelCreateResponse</a></code>
+
+#### Messages
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate.bulk import MessageListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/investigate/bulk/{job_id}/messages">client.email_security.investigate.bulk.messages.<a href="./src/cloudflare/resources/email_security/investigate/bulk/messages.py">list</a>(job_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/bulk/message_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/bulk/message_list_response.py">SyncV4PagePaginationArray[MessageListResponse]</a></code>
+
 ## Phishguard
 
 ### Reports

@@ -33,16 +33,32 @@ class TestTags:
             account_id="account_id",
             value="APT28",
             active_duration="activeDuration",
-            actor_category="actorCategory",
+            actor_category="Nation State",
+            aliases=[
+                {
+                    "value": "Fancy Bear",
+                    "confidence": 8,
+                    "tlp": "amber",
+                }
+            ],
             alias_group_names=["string"],
             alias_group_names_internal=["string"],
             analytic_priority=0,
             attribution_confidence="attributionConfidence",
+            attribution_confidence_score=7,
             attribution_organization="attributionOrganization",
             category_uuid="12345678-1234-1234-1234-1234567890ab",
+            date_of_discovery="2024-01-15",
             external_reference_links=["string"],
+            internal_aliases=[
+                {
+                    "value": "Fancy Bear",
+                    "confidence": 8,
+                    "tlp": "amber",
+                }
+            ],
             internal_description="internalDescription",
-            motive="motive",
+            motive="Espionage",
             opsec_level="opsecLevel",
             origin_country_iso="originCountryISO",
             priority=0,
@@ -109,16 +125,32 @@ class TestAsyncTags:
             account_id="account_id",
             value="APT28",
             active_duration="activeDuration",
-            actor_category="actorCategory",
+            actor_category="Nation State",
+            aliases=[
+                {
+                    "value": "Fancy Bear",
+                    "confidence": 8,
+                    "tlp": "amber",
+                }
+            ],
             alias_group_names=["string"],
             alias_group_names_internal=["string"],
             analytic_priority=0,
             attribution_confidence="attributionConfidence",
+            attribution_confidence_score=7,
             attribution_organization="attributionOrganization",
             category_uuid="12345678-1234-1234-1234-1234567890ab",
+            date_of_discovery="2024-01-15",
             external_reference_links=["string"],
+            internal_aliases=[
+                {
+                    "value": "Fancy Bear",
+                    "confidence": 8,
+                    "tlp": "amber",
+                }
+            ],
             internal_description="internalDescription",
-            motive="motive",
+            motive="Espionage",
             opsec_level="opsecLevel",
             origin_country_iso="originCountryISO",
             priority=0,

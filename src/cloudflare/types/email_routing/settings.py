@@ -31,6 +31,12 @@ class Settings(BaseModel):
     status: Optional[Literal["ready", "unconfigured", "misconfigured", "misconfigured/locked", "unlocked"]] = None
     """Show the state of your account, and the type or configuration error."""
 
+    support_subaddress: Optional[Literal[True, False]] = None
+    """
+    Whether subaddressing (plus-addressing) is honored when matching incoming mail
+    against routing rules.
+    """
+
     tag: Optional[str] = None
     """Email Routing settings tag.
 

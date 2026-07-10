@@ -65,7 +65,8 @@ class SSOResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SSOCreateResponse]:
         """
-        Initialize new SSO connector
+        Creates a new SSO connector for logging into Cloudflare through an identity
+        provider.
 
         Args:
           account_id: Account identifier tag.
@@ -121,7 +122,7 @@ class SSOResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SSOUpdateResponse]:
         """
-        Update SSO connector state
+        Updates the state or configuration of an SSO connector.
 
         Args:
           account_id: Account identifier tag.
@@ -179,7 +180,7 @@ class SSOResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[SSOListResponse]:
         """
-        Get all SSO connectors
+        Lists all SSO connectors configured for the account.
 
         Args:
           account_id: Account identifier tag.
@@ -216,7 +217,7 @@ class SSOResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SSODeleteResponse]:
         """
-        Delete SSO connector
+        Deletes an SSO connector from the account.
 
         Args:
           account_id: Account identifier tag.
@@ -264,7 +265,8 @@ class SSOResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SSOBeginVerificationResponse:
         """
-        Begin SSO connector verification
+        Validates the user has added the DNS TXT record required for validating
+        ownership of the domain they are trying to set up a connector for.
 
         Args:
           account_id: Account identifier tag.
@@ -308,7 +310,7 @@ class SSOResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SSOGetResponse]:
         """
-        Get single SSO connector
+        Retrieves details for a specific SSO connector.
 
         Args:
           account_id: Account identifier tag.
@@ -379,7 +381,8 @@ class AsyncSSOResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SSOCreateResponse]:
         """
-        Initialize new SSO connector
+        Creates a new SSO connector for logging into Cloudflare through an identity
+        provider.
 
         Args:
           account_id: Account identifier tag.
@@ -435,7 +438,7 @@ class AsyncSSOResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SSOUpdateResponse]:
         """
-        Update SSO connector state
+        Updates the state or configuration of an SSO connector.
 
         Args:
           account_id: Account identifier tag.
@@ -493,7 +496,7 @@ class AsyncSSOResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SSOListResponse, AsyncSinglePage[SSOListResponse]]:
         """
-        Get all SSO connectors
+        Lists all SSO connectors configured for the account.
 
         Args:
           account_id: Account identifier tag.
@@ -530,7 +533,7 @@ class AsyncSSOResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SSODeleteResponse]:
         """
-        Delete SSO connector
+        Deletes an SSO connector from the account.
 
         Args:
           account_id: Account identifier tag.
@@ -578,7 +581,8 @@ class AsyncSSOResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SSOBeginVerificationResponse:
         """
-        Begin SSO connector verification
+        Validates the user has added the DNS TXT record required for validating
+        ownership of the domain they are trying to set up a connector for.
 
         Args:
           account_id: Account identifier tag.
@@ -622,7 +626,7 @@ class AsyncSSOResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SSOGetResponse]:
         """
-        Get single SSO connector
+        Retrieves details for a specific SSO connector.
 
         Args:
           account_id: Account identifier tag.

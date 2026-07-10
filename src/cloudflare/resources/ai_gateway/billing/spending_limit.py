@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, cast
 from typing_extensions import Literal
 
@@ -45,6 +46,7 @@ class SpendingLimitResource(SyncAPIResource):
         """
         return SpendingLimitResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -60,7 +62,10 @@ class SpendingLimitResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Configure a spending limit with amount, strategy, and duration.
+        Deprecated: spending limits can no longer be created, enabled, or modified and
+        this endpoint always responds 403. Use the new AI Gateway spend limits instead:
+        https://developers.cloudflare.com/ai-gateway/features/spend-limits/. Existing
+        limits can be removed via DELETE /spending-limit.
 
         Args:
           amount: Spending limit amount in cents (min 100).
@@ -194,6 +199,7 @@ class AsyncSpendingLimitResource(AsyncAPIResource):
         """
         return AsyncSpendingLimitResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -209,7 +215,10 @@ class AsyncSpendingLimitResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Configure a spending limit with amount, strategy, and duration.
+        Deprecated: spending limits can no longer be created, enabled, or modified and
+        this endpoint always responds 403. Use the new AI Gateway spend limits instead:
+        https://developers.cloudflare.com/ai-gateway/features/spend-limits/. Existing
+        limits can be removed via DELETE /spending-limit.
 
         Args:
           amount: Spending limit amount in cents (min 100).
@@ -327,8 +336,10 @@ class SpendingLimitResourceWithRawResponse:
     def __init__(self, spending_limit: SpendingLimitResource) -> None:
         self._spending_limit = spending_limit
 
-        self.create = to_raw_response_wrapper(
-            spending_limit.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                spending_limit.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = to_raw_response_wrapper(
             spending_limit.delete,
@@ -342,8 +353,10 @@ class AsyncSpendingLimitResourceWithRawResponse:
     def __init__(self, spending_limit: AsyncSpendingLimitResource) -> None:
         self._spending_limit = spending_limit
 
-        self.create = async_to_raw_response_wrapper(
-            spending_limit.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                spending_limit.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = async_to_raw_response_wrapper(
             spending_limit.delete,
@@ -357,8 +370,10 @@ class SpendingLimitResourceWithStreamingResponse:
     def __init__(self, spending_limit: SpendingLimitResource) -> None:
         self._spending_limit = spending_limit
 
-        self.create = to_streamed_response_wrapper(
-            spending_limit.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                spending_limit.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = to_streamed_response_wrapper(
             spending_limit.delete,
@@ -372,8 +387,10 @@ class AsyncSpendingLimitResourceWithStreamingResponse:
     def __init__(self, spending_limit: AsyncSpendingLimitResource) -> None:
         self._spending_limit = spending_limit
 
-        self.create = async_to_streamed_response_wrapper(
-            spending_limit.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                spending_limit.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = async_to_streamed_response_wrapper(
             spending_limit.delete,

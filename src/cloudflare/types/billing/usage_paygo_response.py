@@ -54,6 +54,9 @@ class UsagePaygoResponseItem(BaseModel):
     service_family_name: Optional[str] = FieldInfo(alias="ServiceFamilyName", default=None)
     """Identifies the product family for the Cloudflare service."""
 
+    subscription_id: Optional[str] = FieldInfo(alias="SubscriptionId", default=None)
+    """The identifier for the Cloudflare subscription."""
+
     zone_id: Optional[str] = FieldInfo(alias="ZoneId", default=None)
     """The identifier for the Cloudflare zone (zone tag)."""
 

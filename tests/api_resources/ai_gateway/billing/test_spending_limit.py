@@ -11,6 +11,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.ai_gateway.billing import SpendingLimitGetResponse
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -20,23 +22,26 @@ class TestSpendingLimit:
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        spending_limit = client.ai_gateway.billing.spending_limit.create(
-            account_id="account_id",
-            amount=10000,
-            duration="monthly",
-            strategy="fixed",
-        )
+        with pytest.warns(DeprecationWarning):
+            spending_limit = client.ai_gateway.billing.spending_limit.create(
+                account_id="account_id",
+                amount=10000,
+                duration="monthly",
+                strategy="fixed",
+            )
+
         assert_matches_type(object, spending_limit, path=["response"])
 
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.ai_gateway.billing.spending_limit.with_raw_response.create(
-            account_id="account_id",
-            amount=10000,
-            duration="monthly",
-            strategy="fixed",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.ai_gateway.billing.spending_limit.with_raw_response.create(
+                account_id="account_id",
+                amount=10000,
+                duration="monthly",
+                strategy="fixed",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -46,30 +51,32 @@ class TestSpendingLimit:
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.ai_gateway.billing.spending_limit.with_streaming_response.create(
-            account_id="account_id",
-            amount=10000,
-            duration="monthly",
-            strategy="fixed",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.ai_gateway.billing.spending_limit.with_streaming_response.create(
+                account_id="account_id",
+                amount=10000,
+                duration="monthly",
+                strategy="fixed",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            spending_limit = response.parse()
-            assert_matches_type(object, spending_limit, path=["response"])
+                spending_limit = response.parse()
+                assert_matches_type(object, spending_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.ai_gateway.billing.spending_limit.with_raw_response.create(
-                account_id="",
-                amount=10000,
-                duration="monthly",
-                strategy="fixed",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                client.ai_gateway.billing.spending_limit.with_raw_response.create(
+                    account_id="",
+                    amount=10000,
+                    duration="monthly",
+                    strategy="fixed",
+                )
 
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
@@ -164,23 +171,26 @@ class TestAsyncSpendingLimit:
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        spending_limit = await async_client.ai_gateway.billing.spending_limit.create(
-            account_id="account_id",
-            amount=10000,
-            duration="monthly",
-            strategy="fixed",
-        )
+        with pytest.warns(DeprecationWarning):
+            spending_limit = await async_client.ai_gateway.billing.spending_limit.create(
+                account_id="account_id",
+                amount=10000,
+                duration="monthly",
+                strategy="fixed",
+            )
+
         assert_matches_type(object, spending_limit, path=["response"])
 
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.ai_gateway.billing.spending_limit.with_raw_response.create(
-            account_id="account_id",
-            amount=10000,
-            duration="monthly",
-            strategy="fixed",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.ai_gateway.billing.spending_limit.with_raw_response.create(
+                account_id="account_id",
+                amount=10000,
+                duration="monthly",
+                strategy="fixed",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -190,30 +200,32 @@ class TestAsyncSpendingLimit:
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.ai_gateway.billing.spending_limit.with_streaming_response.create(
-            account_id="account_id",
-            amount=10000,
-            duration="monthly",
-            strategy="fixed",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.ai_gateway.billing.spending_limit.with_streaming_response.create(
+                account_id="account_id",
+                amount=10000,
+                duration="monthly",
+                strategy="fixed",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            spending_limit = await response.parse()
-            assert_matches_type(object, spending_limit, path=["response"])
+                spending_limit = await response.parse()
+                assert_matches_type(object, spending_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.ai_gateway.billing.spending_limit.with_raw_response.create(
-                account_id="",
-                amount=10000,
-                duration="monthly",
-                strategy="fixed",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                await async_client.ai_gateway.billing.spending_limit.with_raw_response.create(
+                    account_id="",
+                    amount=10000,
+                    duration="monthly",
+                    strategy="fixed",
+                )
 
     @pytest.mark.skip(reason="HTTP 404 error from prism")
     @parametrize

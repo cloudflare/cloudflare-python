@@ -1688,6 +1688,16 @@ class TestRules:
                 "strip_etags": True,
                 "strip_last_modified": True,
                 "strip_set_cookie": True,
+                "vary": {
+                    "default": {"action": "normalize"},
+                    "headers": {
+                        "accept": {
+                            "action": "normalize",
+                            "languages": ["en"],
+                            "media_types": ["image/webp", "image/png"],
+                        }
+                    },
+                },
             },
             description="Configure settings for how the response is cached.",
             enabled=True,
@@ -4042,6 +4052,16 @@ class TestRules:
                 "strip_etags": True,
                 "strip_last_modified": True,
                 "strip_set_cookie": True,
+                "vary": {
+                    "default": {"action": "normalize"},
+                    "headers": {
+                        "accept": {
+                            "action": "normalize",
+                            "languages": ["en"],
+                            "media_types": ["image/webp", "image/png"],
+                        }
+                    },
+                },
             },
             description="Configure settings for how the response is cached.",
             enabled=True,
@@ -6149,6 +6169,16 @@ class TestAsyncRules:
                 "strip_etags": True,
                 "strip_last_modified": True,
                 "strip_set_cookie": True,
+                "vary": {
+                    "default": {"action": "normalize"},
+                    "headers": {
+                        "accept": {
+                            "action": "normalize",
+                            "languages": ["en"],
+                            "media_types": ["image/webp", "image/png"],
+                        }
+                    },
+                },
             },
             description="Configure settings for how the response is cached.",
             enabled=True,
@@ -8503,6 +8533,16 @@ class TestAsyncRules:
                 "strip_etags": True,
                 "strip_last_modified": True,
                 "strip_set_cookie": True,
+                "vary": {
+                    "default": {"action": "normalize"},
+                    "headers": {
+                        "accept": {
+                            "action": "normalize",
+                            "languages": ["en"],
+                            "media_types": ["image/webp", "image/png"],
+                        }
+                    },
+                },
             },
             description="Configure settings for how the response is cached.",
             enabled=True,
