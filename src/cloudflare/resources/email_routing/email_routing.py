@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import typing_extensions
 from typing import Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -52,8 +53,10 @@ from .account_rules import (
 )
 from ..._base_client import make_request_options
 from ...types.email_routing import (
+    email_routing_edit_params,
     email_routing_enable_params,
     email_routing_unlock_params,
+    email_routing_update_params,
     email_routing_disable_params,
 )
 from ...types.email_routing.settings import Settings
@@ -97,6 +100,64 @@ class EmailRoutingResource(SyncAPIResource):
         """
         return EmailRoutingResourceWithStreamingResponse(self)
 
+    def update(
+        self,
+        *,
+        zone_id: str,
+        enabled: Literal[True, False] | Omit = omit,
+        skip_wizard: Literal[True, False] | Omit = omit,
+        support_subaddress: Literal[True, False] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Settings]:
+        """
+        Update the settings for your Email Routing zone.
+
+        Args:
+          zone_id: Identifier.
+
+          enabled: State of your zone Email Routing settings. No-op on this endpoint - use
+              `POST`/`DELETE /zones/{zone_id}/email/routing/dns`.
+
+          skip_wizard: Flag to check if the user skipped the configuration wizard.
+
+          support_subaddress: Whether subaddressing (plus-addressing) is honored when matching incoming mail
+              against routing rules.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._put(
+            path_template("/zones/{zone_id}/email/routing", zone_id=zone_id),
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "skip_wizard": skip_wizard,
+                    "support_subaddress": support_subaddress,
+                },
+                email_routing_update_params.EmailRoutingUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+        )
+
     @typing_extensions.deprecated("deprecated")
     def disable(
         self,
@@ -131,6 +192,64 @@ class EmailRoutingResource(SyncAPIResource):
         return self._post(
             path_template("/zones/{zone_id}/email/routing/disable", zone_id=zone_id),
             body=maybe_transform(body, email_routing_disable_params.EmailRoutingDisableParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+        )
+
+    def edit(
+        self,
+        *,
+        zone_id: str,
+        enabled: Literal[True, False] | Omit = omit,
+        skip_wizard: Literal[True, False] | Omit = omit,
+        support_subaddress: Literal[True, False] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Settings]:
+        """
+        Update the settings for your Email Routing zone.
+
+        Args:
+          zone_id: Identifier.
+
+          enabled: State of your zone Email Routing settings. No-op on this endpoint - use
+              `POST`/`DELETE /zones/{zone_id}/email/routing/dns`.
+
+          skip_wizard: Flag to check if the user skipped the configuration wizard.
+
+          support_subaddress: Whether subaddressing (plus-addressing) is honored when matching incoming mail
+              against routing rules.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._patch(
+            path_template("/zones/{zone_id}/email/routing", zone_id=zone_id),
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "skip_wizard": skip_wizard,
+                    "support_subaddress": support_subaddress,
+                },
+                email_routing_edit_params.EmailRoutingEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -306,6 +425,64 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         """
         return AsyncEmailRoutingResourceWithStreamingResponse(self)
 
+    async def update(
+        self,
+        *,
+        zone_id: str,
+        enabled: Literal[True, False] | Omit = omit,
+        skip_wizard: Literal[True, False] | Omit = omit,
+        support_subaddress: Literal[True, False] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Settings]:
+        """
+        Update the settings for your Email Routing zone.
+
+        Args:
+          zone_id: Identifier.
+
+          enabled: State of your zone Email Routing settings. No-op on this endpoint - use
+              `POST`/`DELETE /zones/{zone_id}/email/routing/dns`.
+
+          skip_wizard: Flag to check if the user skipped the configuration wizard.
+
+          support_subaddress: Whether subaddressing (plus-addressing) is honored when matching incoming mail
+              against routing rules.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._put(
+            path_template("/zones/{zone_id}/email/routing", zone_id=zone_id),
+            body=await async_maybe_transform(
+                {
+                    "enabled": enabled,
+                    "skip_wizard": skip_wizard,
+                    "support_subaddress": support_subaddress,
+                },
+                email_routing_update_params.EmailRoutingUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+        )
+
     @typing_extensions.deprecated("deprecated")
     async def disable(
         self,
@@ -340,6 +517,64 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         return await self._post(
             path_template("/zones/{zone_id}/email/routing/disable", zone_id=zone_id),
             body=await async_maybe_transform(body, email_routing_disable_params.EmailRoutingDisableParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+        )
+
+    async def edit(
+        self,
+        *,
+        zone_id: str,
+        enabled: Literal[True, False] | Omit = omit,
+        skip_wizard: Literal[True, False] | Omit = omit,
+        support_subaddress: Literal[True, False] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Settings]:
+        """
+        Update the settings for your Email Routing zone.
+
+        Args:
+          zone_id: Identifier.
+
+          enabled: State of your zone Email Routing settings. No-op on this endpoint - use
+              `POST`/`DELETE /zones/{zone_id}/email/routing/dns`.
+
+          skip_wizard: Flag to check if the user skipped the configuration wizard.
+
+          support_subaddress: Whether subaddressing (plus-addressing) is honored when matching incoming mail
+              against routing rules.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._patch(
+            path_template("/zones/{zone_id}/email/routing", zone_id=zone_id),
+            body=await async_maybe_transform(
+                {
+                    "enabled": enabled,
+                    "skip_wizard": skip_wizard,
+                    "support_subaddress": support_subaddress,
+                },
+                email_routing_edit_params.EmailRoutingEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -483,10 +718,16 @@ class EmailRoutingResourceWithRawResponse:
     def __init__(self, email_routing: EmailRoutingResource) -> None:
         self._email_routing = email_routing
 
+        self.update = to_raw_response_wrapper(
+            email_routing.update,
+        )
         self.disable = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 email_routing.disable,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.edit = to_raw_response_wrapper(
+            email_routing.edit,
         )
         self.enable = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -523,10 +764,16 @@ class AsyncEmailRoutingResourceWithRawResponse:
     def __init__(self, email_routing: AsyncEmailRoutingResource) -> None:
         self._email_routing = email_routing
 
+        self.update = async_to_raw_response_wrapper(
+            email_routing.update,
+        )
         self.disable = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 email_routing.disable,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.edit = async_to_raw_response_wrapper(
+            email_routing.edit,
         )
         self.enable = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -563,10 +810,16 @@ class EmailRoutingResourceWithStreamingResponse:
     def __init__(self, email_routing: EmailRoutingResource) -> None:
         self._email_routing = email_routing
 
+        self.update = to_streamed_response_wrapper(
+            email_routing.update,
+        )
         self.disable = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 email_routing.disable,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.edit = to_streamed_response_wrapper(
+            email_routing.edit,
         )
         self.enable = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -603,10 +856,16 @@ class AsyncEmailRoutingResourceWithStreamingResponse:
     def __init__(self, email_routing: AsyncEmailRoutingResource) -> None:
         self._email_routing = email_routing
 
+        self.update = async_to_streamed_response_wrapper(
+            email_routing.update,
+        )
         self.disable = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 email_routing.disable,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            email_routing.edit,
         )
         self.enable = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
