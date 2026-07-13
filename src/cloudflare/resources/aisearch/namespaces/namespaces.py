@@ -229,8 +229,9 @@ class NamespacesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Delete namespace.
+        """Permanently delete a namespace.
+
+        The namespace must be empty (no instances).
 
         Args:
           extra_headers: Send extra headers
@@ -631,8 +632,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Delete namespace.
+        """Permanently delete a namespace.
+
+        The namespace must be empty (no instances).
 
         Args:
           extra_headers: Send extra headers

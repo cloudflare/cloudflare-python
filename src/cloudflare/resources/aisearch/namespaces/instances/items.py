@@ -601,8 +601,7 @@ class ItemsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemUploadResponse:
         """
-        Uploads a file to a managed AI Search instance via multipart/form-data (max
-        4MB).
+        Uploads a file to a managed AI Search instance via multipart/form-data.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -1199,8 +1198,7 @@ class AsyncItemsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemUploadResponse:
         """
-        Uploads a file to a managed AI Search instance via multipart/form-data (max
-        4MB).
+        Uploads a file to a managed AI Search instance via multipart/form-data.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
