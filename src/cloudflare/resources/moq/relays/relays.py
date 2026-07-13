@@ -7,29 +7,41 @@ from datetime import datetime
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .tokens import (
+    TokensResource,
+    AsyncTokensResource,
+    TokensResourceWithRawResponse,
+    AsyncTokensResourceWithRawResponse,
+    TokensResourceWithStreamingResponse,
+    AsyncTokensResourceWithStreamingResponse,
+)
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...types.moq import relay_list_params, relay_create_params, relay_update_params
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.moq.relay_get_response import RelayGetResponse
-from ...types.moq.relay_list_response import RelayListResponse
-from ...types.moq.relay_create_response import RelayCreateResponse
-from ...types.moq.relay_update_response import RelayUpdateResponse
+from ...._wrappers import ResultWrapper
+from ....types.moq import relay_list_params, relay_create_params, relay_update_params
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.moq.relay_get_response import RelayGetResponse
+from ....types.moq.relay_list_response import RelayListResponse
+from ....types.moq.relay_create_response import RelayCreateResponse
+from ....types.moq.relay_update_response import RelayUpdateResponse
 
 __all__ = ["RelaysResource", "AsyncRelaysResource"]
 
 
 class RelaysResource(SyncAPIResource):
+    @cached_property
+    def tokens(self) -> TokensResource:
+        return TokensResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> RelaysResourceWithRawResponse:
         """
@@ -308,6 +320,10 @@ class RelaysResource(SyncAPIResource):
 
 
 class AsyncRelaysResource(AsyncAPIResource):
+    @cached_property
+    def tokens(self) -> AsyncTokensResource:
+        return AsyncTokensResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncRelaysResourceWithRawResponse:
         """
@@ -605,6 +621,10 @@ class RelaysResourceWithRawResponse:
             relays.get,
         )
 
+    @cached_property
+    def tokens(self) -> TokensResourceWithRawResponse:
+        return TokensResourceWithRawResponse(self._relays.tokens)
+
 
 class AsyncRelaysResourceWithRawResponse:
     def __init__(self, relays: AsyncRelaysResource) -> None:
@@ -625,6 +645,10 @@ class AsyncRelaysResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             relays.get,
         )
+
+    @cached_property
+    def tokens(self) -> AsyncTokensResourceWithRawResponse:
+        return AsyncTokensResourceWithRawResponse(self._relays.tokens)
 
 
 class RelaysResourceWithStreamingResponse:
@@ -647,6 +671,10 @@ class RelaysResourceWithStreamingResponse:
             relays.get,
         )
 
+    @cached_property
+    def tokens(self) -> TokensResourceWithStreamingResponse:
+        return TokensResourceWithStreamingResponse(self._relays.tokens)
+
 
 class AsyncRelaysResourceWithStreamingResponse:
     def __init__(self, relays: AsyncRelaysResource) -> None:
@@ -667,3 +695,7 @@ class AsyncRelaysResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             relays.get,
         )
+
+    @cached_property
+    def tokens(self) -> AsyncTokensResourceWithStreamingResponse:
+        return AsyncTokensResourceWithStreamingResponse(self._relays.tokens)

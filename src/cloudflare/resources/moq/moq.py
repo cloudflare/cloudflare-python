@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .relays import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .relays.relays import (
     RelaysResource,
     AsyncRelaysResource,
     RelaysResourceWithRawResponse,
@@ -10,8 +12,6 @@ from .relays import (
     RelaysResourceWithStreamingResponse,
     AsyncRelaysResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["MoQResource", "AsyncMoQResource"]
 
