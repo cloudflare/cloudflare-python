@@ -79,6 +79,7 @@ class TestRules:
                     "duration": "300s",
                     "enforce": True,
                 },
+                "delete_headers": ["X-Old-Header", "X-Remove-Me"],
                 "dns_resolvers": {
                     "ipv4": [
                         {
@@ -131,6 +132,7 @@ class TestRules:
                     "view_id": "view_id",
                 },
                 "resolve_dns_through_cloudflare": True,
+                "set_headers": {"X-User-Identity": ["user=@{identity.name}"]},
                 "untrusted_cert": {"action": "error"},
             },
             schedule={
@@ -244,6 +246,7 @@ class TestRules:
                     "duration": "300s",
                     "enforce": True,
                 },
+                "delete_headers": ["X-Old-Header", "X-Remove-Me"],
                 "dns_resolvers": {
                     "ipv4": [
                         {
@@ -296,6 +299,7 @@ class TestRules:
                     "view_id": "view_id",
                 },
                 "resolve_dns_through_cloudflare": True,
+                "set_headers": {"X-User-Identity": ["user=@{identity.name}"]},
                 "untrusted_cert": {"action": "error"},
             },
             schedule={
@@ -644,6 +648,7 @@ class TestAsyncRules:
                     "duration": "300s",
                     "enforce": True,
                 },
+                "delete_headers": ["X-Old-Header", "X-Remove-Me"],
                 "dns_resolvers": {
                     "ipv4": [
                         {
@@ -696,6 +701,7 @@ class TestAsyncRules:
                     "view_id": "view_id",
                 },
                 "resolve_dns_through_cloudflare": True,
+                "set_headers": {"X-User-Identity": ["user=@{identity.name}"]},
                 "untrusted_cert": {"action": "error"},
             },
             schedule={
@@ -809,6 +815,7 @@ class TestAsyncRules:
                     "duration": "300s",
                     "enforce": True,
                 },
+                "delete_headers": ["X-Old-Header", "X-Remove-Me"],
                 "dns_resolvers": {
                     "ipv4": [
                         {
@@ -861,6 +868,7 @@ class TestAsyncRules:
                     "view_id": "view_id",
                 },
                 "resolve_dns_through_cloudflare": True,
+                "set_headers": {"X-User-Identity": ["user=@{identity.name}"]},
                 "untrusted_cert": {"action": "error"},
             },
             schedule={
