@@ -120,6 +120,7 @@ if TYPE_CHECKING:
         dcv_delegation,
         email_security,
         load_balancers,
+        analytics_query,
         cloud_connector,
         ddos_protection,
         durable_objects,
@@ -239,6 +240,7 @@ if TYPE_CHECKING:
     from .resources.dcv_delegation.dcv_delegation import DCVDelegationResource, AsyncDCVDelegationResource
     from .resources.email_security.email_security import EmailSecurityResource, AsyncEmailSecurityResource
     from .resources.load_balancers.load_balancers import LoadBalancersResource, AsyncLoadBalancersResource
+    from .resources.analytics_query.analytics_query import AnalyticsQueryResource, AsyncAnalyticsQueryResource
     from .resources.cloud_connector.cloud_connector import CloudConnectorResource, AsyncCloudConnectorResource
     from .resources.ddos_protection.ddos_protection import DDoSProtectionResource, AsyncDDoSProtectionResource
     from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
@@ -491,6 +493,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.acm import ACMResource
 
         return ACMResource(self)
+
+    @cached_property
+    def analytics_query(self) -> AnalyticsQueryResource:
+        from .resources.analytics_query import AnalyticsQueryResource
+
+        return AnalyticsQueryResource(self)
 
     @cached_property
     def argo(self) -> ArgoResource:
@@ -1649,6 +1657,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncACMResource(self)
 
     @cached_property
+    def analytics_query(self) -> AsyncAnalyticsQueryResource:
+        from .resources.analytics_query import AsyncAnalyticsQueryResource
+
+        return AsyncAnalyticsQueryResource(self)
+
+    @cached_property
     def argo(self) -> AsyncArgoResource:
         from .resources.argo import AsyncArgoResource
 
@@ -2729,6 +2743,12 @@ class CloudflareWithRawResponse:
         return ACMResourceWithRawResponse(self._client.acm)
 
     @cached_property
+    def analytics_query(self) -> analytics_query.AnalyticsQueryResourceWithRawResponse:
+        from .resources.analytics_query import AnalyticsQueryResourceWithRawResponse
+
+        return AnalyticsQueryResourceWithRawResponse(self._client.analytics_query)
+
+    @cached_property
     def argo(self) -> argo.ArgoResourceWithRawResponse:
         from .resources.argo import ArgoResourceWithRawResponse
 
@@ -3646,6 +3666,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.acm import AsyncACMResourceWithRawResponse
 
         return AsyncACMResourceWithRawResponse(self._client.acm)
+
+    @cached_property
+    def analytics_query(self) -> analytics_query.AsyncAnalyticsQueryResourceWithRawResponse:
+        from .resources.analytics_query import AsyncAnalyticsQueryResourceWithRawResponse
+
+        return AsyncAnalyticsQueryResourceWithRawResponse(self._client.analytics_query)
 
     @cached_property
     def argo(self) -> argo.AsyncArgoResourceWithRawResponse:
@@ -4569,6 +4595,12 @@ class CloudflareWithStreamedResponse:
         return ACMResourceWithStreamingResponse(self._client.acm)
 
     @cached_property
+    def analytics_query(self) -> analytics_query.AnalyticsQueryResourceWithStreamingResponse:
+        from .resources.analytics_query import AnalyticsQueryResourceWithStreamingResponse
+
+        return AnalyticsQueryResourceWithStreamingResponse(self._client.analytics_query)
+
+    @cached_property
     def argo(self) -> argo.ArgoResourceWithStreamingResponse:
         from .resources.argo import ArgoResourceWithStreamingResponse
 
@@ -5488,6 +5520,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.acm import AsyncACMResourceWithStreamingResponse
 
         return AsyncACMResourceWithStreamingResponse(self._client.acm)
+
+    @cached_property
+    def analytics_query(self) -> analytics_query.AsyncAnalyticsQueryResourceWithStreamingResponse:
+        from .resources.analytics_query import AsyncAnalyticsQueryResourceWithStreamingResponse
+
+        return AsyncAnalyticsQueryResourceWithStreamingResponse(self._client.analytics_query)
 
     @cached_property
     def argo(self) -> argo.AsyncArgoResourceWithStreamingResponse:
