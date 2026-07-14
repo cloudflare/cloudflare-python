@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 
 from ...._models import BaseModel
 from .schema_data import SchemaData
@@ -35,6 +36,9 @@ class SchemaHTTP(BaseModel):
     name: str
     """The name of the DEX test. Must be unique."""
 
+    created: Optional[datetime] = None
+    """Date the test was created, in RFC 3339 format."""
+
     description: Optional[str] = None
     """Additional details about the test."""
 
@@ -45,3 +49,6 @@ class SchemaHTTP(BaseModel):
 
     test_id: Optional[str] = None
     """The unique identifier for the test."""
+
+    updated: Optional[datetime] = None
+    """Date the test was last updated, in RFC 3339 format."""
