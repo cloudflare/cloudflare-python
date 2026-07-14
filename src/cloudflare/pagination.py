@@ -88,6 +88,11 @@ class V4PagePaginationArrayResultInfo(BaseModel):
 
     per_page: Optional[int] = None
 
+    # Added missing fields present in V4 API
+    total_pages: Optional[int] = None
+    total_count: Optional[int] = None
+    count: Optional[int] = None
+
 
 class SyncV4PagePaginationArray(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
@@ -103,6 +108,10 @@ class SyncV4PagePaginationArray(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     @override
     def next_page_info(self) -> Optional[PageInfo]:
         last_page = cast("int | None", self._options.params.get("page")) or 1
+
+        # Guard against infinite loops where API returns data past the last page
+        if self.result_info and self.result_info.total_pages is not None and last_page >= self.result_info.total_pages:
+            return None
 
         return PageInfo(params={"page": last_page + 1})
 
@@ -122,6 +131,9 @@ class AsyncV4PagePaginationArray(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     def next_page_info(self) -> Optional[PageInfo]:
         last_page = cast("int | None", self._options.params.get("page")) or 1
 
+        # Guard against infinite loops where API returns data past the last page
+        if self.result_info and self.result_info.total_pages is not None and last_page >= self.result_info.total_pages:
+            return None
         return PageInfo(params={"page": last_page + 1})
 
 
