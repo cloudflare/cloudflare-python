@@ -53,7 +53,16 @@ class IntegrationsResource(SyncAPIResource):
         *,
         account_id: str,
         application: Literal[
-            "BOX", "DROPBOX", "GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"
+            "BITBUCKET",
+            "BOX",
+            "CONFLUENCE",
+            "DROPBOX",
+            "GITHUB",
+            "GOOGLE_WORKSPACE",
+            "JIRA",
+            "MICROSOFT_INTERNAL",
+            "SALESFORCE",
+            "SLACK",
         ],
         credentials: Dict[str, object],
         name: str,
@@ -72,16 +81,19 @@ class IntegrationsResource(SyncAPIResource):
 
         Integration creation
         with OAuth is not supported by API at the moment. For other auth methods, use
-        `GET /v2/applications/{slug}/credential-guide` to see the required credential
-        structure and example payloads for each vendor.
+        `GET /v2/applications/{application_id}/credential-guide` to see the required
+        credential structure and example payloads for each vendor.
 
         Args:
           application: Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
+              - `BITBUCKET` - BITBUCKET
               - `BOX` - BOX
+              - `CONFLUENCE` - CONFLUENCE
               - `DROPBOX` - DROPBOX
               - `GITHUB` - GITHUB
               - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
+              - `JIRA` - JIRA
               - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
               - `SALESFORCE` - SALESFORCE
               - `SLACK` - SLACK
@@ -441,7 +453,16 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         *,
         account_id: str,
         application: Literal[
-            "BOX", "DROPBOX", "GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"
+            "BITBUCKET",
+            "BOX",
+            "CONFLUENCE",
+            "DROPBOX",
+            "GITHUB",
+            "GOOGLE_WORKSPACE",
+            "JIRA",
+            "MICROSOFT_INTERNAL",
+            "SALESFORCE",
+            "SLACK",
         ],
         credentials: Dict[str, object],
         name: str,
@@ -460,16 +481,19 @@ class AsyncIntegrationsResource(AsyncAPIResource):
 
         Integration creation
         with OAuth is not supported by API at the moment. For other auth methods, use
-        `GET /v2/applications/{slug}/credential-guide` to see the required credential
-        structure and example payloads for each vendor.
+        `GET /v2/applications/{application_id}/credential-guide` to see the required
+        credential structure and example payloads for each vendor.
 
         Args:
           application: Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
+              - `BITBUCKET` - BITBUCKET
               - `BOX` - BOX
+              - `CONFLUENCE` - CONFLUENCE
               - `DROPBOX` - DROPBOX
               - `GITHUB` - GITHUB
               - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
+              - `JIRA` - JIRA
               - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
               - `SALESFORCE` - SALESFORCE
               - `SLACK` - SLACK

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .application_list_params import ApplicationListParams as ApplicationListParams
 from .integration_list_params import IntegrationListParams as IntegrationListParams
-from .application_get_response import ApplicationGetResponse as ApplicationGetResponse
 from .integration_get_response import IntegrationGetResponse as IntegrationGetResponse
 from .application_list_response import ApplicationListResponse as ApplicationListResponse
 from .integration_create_params import IntegrationCreateParams as IntegrationCreateParams
