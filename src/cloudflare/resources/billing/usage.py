@@ -136,9 +136,7 @@ class UsageResource(SyncAPIResource):
         """Returns billable usage data for PayGo (self-serve) accounts.
 
         When no query
-        parameters are provided, returns usage for the current billing period. This
-        endpoint is currently in alpha and access is restricted to select accounts.
-        While in alpha, the endpoint may get breaking changes.
+        parameters are provided, returns usage for the current billing period.
 
         Args:
           account_id: Represents a Cloudflare resource identifier tag.
@@ -287,9 +285,7 @@ class AsyncUsageResource(AsyncAPIResource):
         """Returns billable usage data for PayGo (self-serve) accounts.
 
         When no query
-        parameters are provided, returns usage for the current billing period. This
-        endpoint is currently in alpha and access is restricted to select accounts.
-        While in alpha, the endpoint may get breaking changes.
+        parameters are provided, returns usage for the current billing period.
 
         Args:
           account_id: Represents a Cloudflare resource identifier tag.
