@@ -21,8 +21,18 @@ from cloudflare.types.load_balancers import (
     SessionAffinity,
     SessionAffinityAttributes,
     SteeringPolicy,
+    LoadBalancerDeleteResponse,
 )
 ```
+
+Methods:
+
+- <code title="post /{accounts_or_zones}/{account_or_zone_id}/load_balancers">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/load_balancers/load_balancer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/load_balancer.py">LoadBalancer</a></code>
+- <code title="put /{accounts_or_zones}/{account_or_zone_id}/load_balancers/{load_balancer_id}">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">update</a>(load_balancer_id, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/load_balancers/load_balancer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/load_balancer.py">LoadBalancer</a></code>
+- <code title="get /{accounts_or_zones}/{account_or_zone_id}/load_balancers">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/load_balancers/load_balancer.py">SyncSinglePage[LoadBalancer]</a></code>
+- <code title="delete /{accounts_or_zones}/{account_or_zone_id}/load_balancers/{load_balancer_id}">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">delete</a>(load_balancer_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/load_balancers/load_balancer_delete_response.py">LoadBalancerDeleteResponse</a></code>
+- <code title="patch /{accounts_or_zones}/{account_or_zone_id}/load_balancers/{load_balancer_id}">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">edit</a>(load_balancer_id, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/load_balancers/load_balancer_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/load_balancer.py">LoadBalancer</a></code>
+- <code title="get /{accounts_or_zones}/{account_or_zone_id}/load_balancers/{load_balancer_id}">client.load_balancers.<a href="./src/cloudflare/resources/load_balancers/load_balancers.py">get</a>(load_balancer_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/load_balancers/load_balancer.py">LoadBalancer</a></code>
 
 ## Monitors
 
