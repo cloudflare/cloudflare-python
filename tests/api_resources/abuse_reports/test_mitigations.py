@@ -96,12 +96,38 @@ class TestMitigations:
         mitigation = client.abuse_reports.mitigations.review(
             report_id="report_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(SyncSinglePage[MitigationReviewResponse], mitigation, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
+    @parametrize
+    def test_method_review_with_all_params(self, client: Cloudflare) -> None:
+        mitigation = client.abuse_reports.mitigations.review(
+            report_id="report_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             appeals=[
                 {
                     "id": "id",
                     "reason": "misclassified",
                 }
             ],
+            data={
+                "city": "city",
+                "country": "country",
+                "email": "dev@stainless.com",
+                "full_name": "full_name",
+                "jurisdiction_consent": True,
+                "perjury_attestation": True,
+                "phone_number": "phone_number",
+                "signature": "signature",
+                "state": "state",
+                "street_address": "street_address",
+                "urls": ["https://example.com"],
+                "zip_code": "zip_code",
+                "company": "company",
+                "counter_notice_response": "counter_notice_response",
+            },
+            type="counter_notice",
         )
         assert_matches_type(SyncSinglePage[MitigationReviewResponse], mitigation, path=["response"])
 
@@ -111,12 +137,6 @@ class TestMitigations:
         response = client.abuse_reports.mitigations.with_raw_response.review(
             report_id="report_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            appeals=[
-                {
-                    "id": "id",
-                    "reason": "misclassified",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -130,12 +150,6 @@ class TestMitigations:
         with client.abuse_reports.mitigations.with_streaming_response.review(
             report_id="report_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            appeals=[
-                {
-                    "id": "id",
-                    "reason": "misclassified",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -152,24 +166,12 @@ class TestMitigations:
             client.abuse_reports.mitigations.with_raw_response.review(
                 report_id="report_id",
                 account_id="",
-                appeals=[
-                    {
-                        "id": "id",
-                        "reason": "misclassified",
-                    }
-                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_id` but received ''"):
             client.abuse_reports.mitigations.with_raw_response.review(
                 report_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                appeals=[
-                    {
-                        "id": "id",
-                        "reason": "misclassified",
-                    }
-                ],
             )
 
 
@@ -253,12 +255,38 @@ class TestAsyncMitigations:
         mitigation = await async_client.abuse_reports.mitigations.review(
             report_id="report_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[MitigationReviewResponse], mitigation, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
+    @parametrize
+    async def test_method_review_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        mitigation = await async_client.abuse_reports.mitigations.review(
+            report_id="report_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             appeals=[
                 {
                     "id": "id",
                     "reason": "misclassified",
                 }
             ],
+            data={
+                "city": "city",
+                "country": "country",
+                "email": "dev@stainless.com",
+                "full_name": "full_name",
+                "jurisdiction_consent": True,
+                "perjury_attestation": True,
+                "phone_number": "phone_number",
+                "signature": "signature",
+                "state": "state",
+                "street_address": "street_address",
+                "urls": ["https://example.com"],
+                "zip_code": "zip_code",
+                "company": "company",
+                "counter_notice_response": "counter_notice_response",
+            },
+            type="counter_notice",
         )
         assert_matches_type(AsyncSinglePage[MitigationReviewResponse], mitigation, path=["response"])
 
@@ -268,12 +296,6 @@ class TestAsyncMitigations:
         response = await async_client.abuse_reports.mitigations.with_raw_response.review(
             report_id="report_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            appeals=[
-                {
-                    "id": "id",
-                    "reason": "misclassified",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -287,12 +309,6 @@ class TestAsyncMitigations:
         async with async_client.abuse_reports.mitigations.with_streaming_response.review(
             report_id="report_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            appeals=[
-                {
-                    "id": "id",
-                    "reason": "misclassified",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -309,22 +325,10 @@ class TestAsyncMitigations:
             await async_client.abuse_reports.mitigations.with_raw_response.review(
                 report_id="report_id",
                 account_id="",
-                appeals=[
-                    {
-                        "id": "id",
-                        "reason": "misclassified",
-                    }
-                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_id` but received ''"):
             await async_client.abuse_reports.mitigations.with_raw_response.review(
                 report_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                appeals=[
-                    {
-                        "id": "id",
-                        "reason": "misclassified",
-                    }
-                ],
             )
