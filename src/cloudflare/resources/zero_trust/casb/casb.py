@@ -4,14 +4,6 @@ from __future__ import annotations
 
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .applications import (
-    ApplicationsResource,
-    AsyncApplicationsResource,
-    ApplicationsResourceWithRawResponse,
-    AsyncApplicationsResourceWithRawResponse,
-    ApplicationsResourceWithStreamingResponse,
-    AsyncApplicationsResourceWithStreamingResponse,
-)
 from .integrations import (
     IntegrationsResource,
     AsyncIntegrationsResource,
@@ -19,6 +11,14 @@ from .integrations import (
     AsyncIntegrationsResourceWithRawResponse,
     IntegrationsResourceWithStreamingResponse,
     AsyncIntegrationsResourceWithStreamingResponse,
+)
+from .applications.applications import (
+    ApplicationsResource,
+    AsyncApplicationsResource,
+    ApplicationsResourceWithRawResponse,
+    AsyncApplicationsResourceWithRawResponse,
+    ApplicationsResourceWithStreamingResponse,
+    AsyncApplicationsResourceWithStreamingResponse,
 )
 
 __all__ = ["CasbResource", "AsyncCasbResource"]
