@@ -82,9 +82,11 @@ class RoasResource(SyncAPIResource):
           asn: Filters results by Autonomous System Number. Specify one or more ASNs. Multiple
               values generate one series per ASN.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`.
 
-          date_start: Start of the date range (inclusive).
+          date_start: Start of the date range (inclusive). Alternative to `dateRange`; provide
+              together with `dateEnd`.
 
           format: Format in which results will be returned.
 
@@ -187,9 +189,11 @@ class AsyncRoasResource(AsyncAPIResource):
           asn: Filters results by Autonomous System Number. Specify one or more ASNs. Multiple
               values generate one series per ASN.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`.
 
-          date_start: Start of the date range (inclusive).
+          date_start: Start of the date range (inclusive). Alternative to `dateRange`; provide
+              together with `dateEnd`.
 
           format: Format in which results will be returned.
 

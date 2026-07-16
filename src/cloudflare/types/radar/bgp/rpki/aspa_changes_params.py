@@ -16,10 +16,16 @@ class ASPAChangesParams(TypedDict, total=False):
     """Filter changes involving this ASN (as customer or provider)."""
 
     date_end: Annotated[Union[str, datetime], PropertyInfo(alias="dateEnd", format="iso8601")]
-    """End of the date range (inclusive)."""
+    """End of the date range (inclusive).
+
+    Alternative to `dateRange`; provide together with `dateStart`.
+    """
 
     date_start: Annotated[Union[str, datetime], PropertyInfo(alias="dateStart", format="iso8601")]
-    """Start of the date range (inclusive)."""
+    """Start of the date range (inclusive).
+
+    Alternative to `dateRange`; provide together with `dateEnd`.
+    """
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""

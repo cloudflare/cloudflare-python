@@ -30,7 +30,14 @@ class TopLocationsParams(TypedDict, total=False):
     """
 
     date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
-    """End of the date range (inclusive)."""
+    """End of the date range (inclusive).
+
+    Alternative to `dateRange`; provide together with `dateStart`. When requesting
+    comparison series, every series must resolve to the same duration as the main
+    series. Each `dateStart`/`dateEnd` is floored to the nearest 15 minutes before
+    evaluation, so windows whose durations match only before alignment may be
+    rejected.
+    """
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""

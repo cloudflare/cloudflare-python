@@ -214,13 +214,29 @@ class TopResource(SyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -228,7 +244,9 @@ class TopResource(SyncAPIResource):
 
           dnssec_e2e: Filters results based on DNSSEC-validated answers by end-to-end security status.
 
-          domain: Filters results by domain name.
+          domain: Filters results by domain name. When set, no other DNS filter may be used — only
+              date filtering (`dateRange`, or `dateStart`/`dateEnd`) is allowed — and the date
+              range cannot exceed 31 days.
 
           format: Format in which results will be returned.
 
@@ -467,13 +485,29 @@ class TopResource(SyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -481,7 +515,9 @@ class TopResource(SyncAPIResource):
 
           dnssec_e2e: Filters results based on DNSSEC-validated answers by end-to-end security status.
 
-          domain: Filters results by domain name.
+          domain: Filters results by domain name. When set, no other DNS filter may be used — only
+              date filtering (`dateRange`, or `dateStart`/`dateEnd`) is allowed — and the date
+              range cannot exceed 31 days.
 
           format: Format in which results will be returned.
 
@@ -507,7 +543,10 @@ class TopResource(SyncAPIResource):
 
           response_ttl: Filters results by DNS response TTL.
 
-          tld: Filters results by top-level domain.
+          tld: Filters results by top-level domain. Incompatible with the `ipVersion`,
+              `protocol`, `dnssecE2e`, `dnssecAware`, `responseTtl`, and `cacheHit`
+              filters/dimensions; this restriction does not apply to country-code TLDs
+              (2-letter, e.g. `uk`).
 
           extra_headers: Send extra headers
 
@@ -744,13 +783,29 @@ class AsyncTopResource(AsyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -758,7 +813,9 @@ class AsyncTopResource(AsyncAPIResource):
 
           dnssec_e2e: Filters results based on DNSSEC-validated answers by end-to-end security status.
 
-          domain: Filters results by domain name.
+          domain: Filters results by domain name. When set, no other DNS filter may be used — only
+              date filtering (`dateRange`, or `dateStart`/`dateEnd`) is allowed — and the date
+              range cannot exceed 31 days.
 
           format: Format in which results will be returned.
 
@@ -997,13 +1054,29 @@ class AsyncTopResource(AsyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -1011,7 +1084,9 @@ class AsyncTopResource(AsyncAPIResource):
 
           dnssec_e2e: Filters results based on DNSSEC-validated answers by end-to-end security status.
 
-          domain: Filters results by domain name.
+          domain: Filters results by domain name. When set, no other DNS filter may be used — only
+              date filtering (`dateRange`, or `dateStart`/`dateEnd`) is allowed — and the date
+              range cannot exceed 31 days.
 
           format: Format in which results will be returned.
 
@@ -1037,7 +1112,10 @@ class AsyncTopResource(AsyncAPIResource):
 
           response_ttl: Filters results by DNS response TTL.
 
-          tld: Filters results by top-level domain.
+          tld: Filters results by top-level domain. Incompatible with the `ipVersion`,
+              `protocol`, `dnssecE2e`, `dnssecAware`, `responseTtl`, and `cacheHit`
+              filters/dimensions; this restriction does not apply to country-code TLDs
+              (2-letter, e.g. `uk`).
 
           extra_headers: Send extra headers
 
