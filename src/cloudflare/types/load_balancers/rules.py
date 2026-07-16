@@ -16,7 +16,7 @@ __all__ = ["Rules", "FixedResponse", "Overrides"]
 
 class FixedResponse(BaseModel):
     """
-    A collection of fields used to directly respond to the eyeball instead of routing to a pool. If a fixed_response is supplied the rule will be marked as terminates.
+    A collection of fields used to directly respond to the client instead of routing to a pool. When supplied on a rule, that rule stops further rule evaluation.
     """
 
     content_type: Optional[str] = None
@@ -34,7 +34,7 @@ class FixedResponse(BaseModel):
 
 class Overrides(BaseModel):
     """
-    A collection of overrides to apply to the load balancer when this rule's condition is true. All fields are optional.
+    A collection of overrides to apply when this rule's condition (or a pool set's `match`) is true. All fields are optional.
     """
 
     adaptive_routing: Optional[AdaptiveRouting] = None
@@ -69,6 +69,27 @@ class Overrides(BaseModel):
     """Controls location-based steering for non-proxied requests.
 
     See `steering_policy` to learn how steering is affected.
+    """
+
+    pool_default_weight: Optional[float] = None
+    """The default weight for pools not listed in `pool_weights`.
+
+    The declarative alternative to `random_steering.default_weight`; mutually
+    exclusive with `random_steering`.
+    """
+
+    pool_weights: Optional[Dict[str, float]] = None
+    """A mapping of pool IDs to custom weights, relative to the other pools.
+
+    The declarative alternative to `random_steering.pool_weights`; mutually
+    exclusive with `random_steering`.
+    """
+
+    pools: Optional[List[str]] = None
+    """A flat, ordered list of pool IDs to route the matched audience to.
+
+    Replaces the resolved topology with exactly these pools. Mutually exclusive with
+    `fixed_response`.
     """
 
     pop_pools: Optional[Dict[str, List[str]]] = None
@@ -191,9 +212,8 @@ class Rules(BaseModel):
 
     fixed_response: Optional[FixedResponse] = None
     """
-    A collection of fields used to directly respond to the eyeball instead of
-    routing to a pool. If a fixed_response is supplied the rule will be marked as
-    terminates.
+    A collection of fields used to directly respond to the client instead of routing
+    to a pool. When supplied on a rule, that rule stops further rule evaluation.
     """
 
     name: Optional[str] = None
@@ -201,8 +221,8 @@ class Rules(BaseModel):
 
     overrides: Optional[Overrides] = None
     """
-    A collection of overrides to apply to the load balancer when this rule's
-    condition is true. All fields are optional.
+    A collection of overrides to apply when this rule's condition (or a pool set's
+    `match`) is true. All fields are optional.
     """
 
     priority: Optional[int] = None
