@@ -12,6 +12,14 @@ from .integrations import (
     IntegrationsResourceWithStreamingResponse,
     AsyncIntegrationsResourceWithStreamingResponse,
 )
+from .posture.posture import (
+    PostureResource,
+    AsyncPostureResource,
+    PostureResourceWithRawResponse,
+    AsyncPostureResourceWithRawResponse,
+    PostureResourceWithStreamingResponse,
+    AsyncPostureResourceWithStreamingResponse,
+)
 from .applications.applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -32,6 +40,10 @@ class CasbResource(SyncAPIResource):
     @cached_property
     def integrations(self) -> IntegrationsResource:
         return IntegrationsResource(self._client)
+
+    @cached_property
+    def posture(self) -> PostureResource:
+        return PostureResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CasbResourceWithRawResponse:
@@ -61,6 +73,10 @@ class AsyncCasbResource(AsyncAPIResource):
     @cached_property
     def integrations(self) -> AsyncIntegrationsResource:
         return AsyncIntegrationsResource(self._client)
+
+    @cached_property
+    def posture(self) -> AsyncPostureResource:
+        return AsyncPostureResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCasbResourceWithRawResponse:
@@ -94,6 +110,10 @@ class CasbResourceWithRawResponse:
     def integrations(self) -> IntegrationsResourceWithRawResponse:
         return IntegrationsResourceWithRawResponse(self._casb.integrations)
 
+    @cached_property
+    def posture(self) -> PostureResourceWithRawResponse:
+        return PostureResourceWithRawResponse(self._casb.posture)
+
 
 class AsyncCasbResourceWithRawResponse:
     def __init__(self, casb: AsyncCasbResource) -> None:
@@ -106,6 +126,10 @@ class AsyncCasbResourceWithRawResponse:
     @cached_property
     def integrations(self) -> AsyncIntegrationsResourceWithRawResponse:
         return AsyncIntegrationsResourceWithRawResponse(self._casb.integrations)
+
+    @cached_property
+    def posture(self) -> AsyncPostureResourceWithRawResponse:
+        return AsyncPostureResourceWithRawResponse(self._casb.posture)
 
 
 class CasbResourceWithStreamingResponse:
@@ -120,6 +144,10 @@ class CasbResourceWithStreamingResponse:
     def integrations(self) -> IntegrationsResourceWithStreamingResponse:
         return IntegrationsResourceWithStreamingResponse(self._casb.integrations)
 
+    @cached_property
+    def posture(self) -> PostureResourceWithStreamingResponse:
+        return PostureResourceWithStreamingResponse(self._casb.posture)
+
 
 class AsyncCasbResourceWithStreamingResponse:
     def __init__(self, casb: AsyncCasbResource) -> None:
@@ -132,3 +160,7 @@ class AsyncCasbResourceWithStreamingResponse:
     @cached_property
     def integrations(self) -> AsyncIntegrationsResourceWithStreamingResponse:
         return AsyncIntegrationsResourceWithStreamingResponse(self._casb.integrations)
+
+    @cached_property
+    def posture(self) -> AsyncPostureResourceWithStreamingResponse:
+        return AsyncPostureResourceWithStreamingResponse(self._casb.posture)

@@ -8,6 +8,14 @@ from .casb import (
     CasbResourceWithStreamingResponse,
     AsyncCasbResourceWithStreamingResponse,
 )
+from .posture import (
+    PostureResource,
+    AsyncPostureResource,
+    PostureResourceWithRawResponse,
+    AsyncPostureResourceWithRawResponse,
+    PostureResourceWithStreamingResponse,
+    AsyncPostureResourceWithStreamingResponse,
+)
 from .applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncIntegrationsResourceWithRawResponse",
     "IntegrationsResourceWithStreamingResponse",
     "AsyncIntegrationsResourceWithStreamingResponse",
+    "PostureResource",
+    "AsyncPostureResource",
+    "PostureResourceWithRawResponse",
+    "AsyncPostureResourceWithRawResponse",
+    "PostureResourceWithStreamingResponse",
+    "AsyncPostureResourceWithStreamingResponse",
     "CasbResource",
     "AsyncCasbResource",
     "CasbResourceWithRawResponse",
