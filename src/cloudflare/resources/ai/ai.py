@@ -991,7 +991,7 @@ class AIResource(SyncAPIResource):
             Optional[AIRunResponse],
             self._post(
                 path_template(
-                    "/accounts/{account_id}/ai/run/{model_name}", account_id=account_id, model_name=model_name
+                    "/accounts/{account_id}/ai/run/{+model_name}", account_id=account_id, model_name=model_name
                 ),
                 body=maybe_transform(
                     {
@@ -1971,7 +1971,7 @@ class AsyncAIResource(AsyncAPIResource):
             Optional[AIRunResponse],
             await self._post(
                 path_template(
-                    "/accounts/{account_id}/ai/run/{model_name}", account_id=account_id, model_name=model_name
+                    "/accounts/{account_id}/ai/run/{+model_name}", account_id=account_id, model_name=model_name
                 ),
                 body=await async_maybe_transform(
                     {

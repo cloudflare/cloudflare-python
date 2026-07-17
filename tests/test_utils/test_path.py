@@ -54,6 +54,18 @@ from cloudflare._utils._path import path_template
         ),
         ("/v1/{val}", dict(val="x?admin=true"), "/v1/x%3Fadmin=true"),  # query injection
         ("/v1/{val}", dict(val="x#admin"), "/v1/x%23admin"),  # fragment injection
+        # Reserved expansion ({+name}): '/' is preserved in the path portion
+        (
+            "/accounts/{account_id}/ai/run/{+model_name}",
+            dict(account_id="a1", model_name="@cf/vendor/model"),
+            "/accounts/a1/ai/run/@cf/vendor/model",
+        ),
+        ("/v1/{+v}", dict(v="a/b/c"), "/v1/a/b/c"),
+        ("/v1/{+v}", dict(v="a b"), "/v1/a%20b"),  # other characters still escaped
+        ("/v1/{+v}", dict(v="a?b"), "/v1/a%3Fb"),  # '?' still escaped, only '/' is preserved
+        ("/v1/{+v}?q={v}", dict(v="a/b"), "/v1/a/b?q=a/b"),  # reserved flag only affects the path portion
+        ("/v1/{+v}", dict(v=None), "/v1/null"),
+        ("/v1/{+v}", dict(v=True), "/v1/true"),
     ],
 )
 def test_interpolation(template: str, kwargs: dict[str, Any], expected: str) -> None:
@@ -82,6 +94,8 @@ def test_missing_kwarg_raises_key_error() -> None:
         ("/v1/.%2E/{x}", dict(x="ok")),  # mixed encoded ".." in static
         ("/v1/{v}?q=1", dict(v="..")),
         ("/v1/{v}#frag", dict(v="..")),
+        ("/v1/{+v}", dict(v="..")),  # reserved expansion still rejects dot-segments
+        ("/v1/{+v}", dict(v="../../secret")),
     ],
 )
 def test_dot_segment_rejected(template: str, kwargs: dict[str, Any]) -> None:

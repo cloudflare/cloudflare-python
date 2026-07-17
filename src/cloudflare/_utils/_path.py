@@ -11,7 +11,12 @@ from urllib.parse import quote
 # Matches '.' or '..' where each dot is either literal or percent-encoded (%2e / %2E).
 _DOT_SEGMENT_RE = re.compile(r"^(?:\.|%2[eE]){1,2}$")
 
-_PLACEHOLDER_RE = re.compile(r"\{(\w+)\}")
+# A placeholder name may optionally be prefixed with '+', matching the RFC 6570
+# "reserved expansion" operator. This is used for path segments where the value
+# itself is allowed to contain additional '/' separators (e.g. AI model names
+# like `@cf/meta/llama-3.1-8b-instruct`).
+# https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.3
+_PLACEHOLDER_RE = re.compile(r"\{(\+?\w+)\}")
 
 
 def _quote_path_segment_part(value: str) -> str:
@@ -24,6 +29,17 @@ def _quote_path_segment_part(value: str) -> str:
     # as safe, so we only need to add sub-delims, ':', and '@'.
     # Notably, unlike the default `safe` for quote(), / is unsafe and must be quoted.
     return quote(value, safe="!$&'()*+,;=:@")
+
+
+def _quote_path_segment_part_reserved(value: str) -> str:
+    """Percent-encode `value` for use in a URI path segment, allowing '/' through unescaped.
+
+    Same as `_quote_path_segment_part` but additionally treats '/' as safe, per the
+    RFC 6570 reserved expansion operator (`{+name}`). Dot-segments are still rejected
+    by `path_template()` after interpolation, so this does not weaken path traversal
+    protection.
+    """
+    return quote(value, safe="!$&'()*+,;=:@/")
 
 
 def _quote_query_part(value: str) -> str:
@@ -48,10 +64,13 @@ def _interpolate(
     template: str,
     values: Mapping[str, Any],
     quoter: Callable[[str], str],
+    reserved_quoter: Callable[[str], str] | None = None,
 ) -> str:
     """Replace {name} placeholders in `template`, quoting each value with `quoter`.
 
-    Placeholder names are looked up in `values`.
+    Placeholder names are looked up in `values`. A placeholder written as `{+name}`
+    uses `reserved_quoter` instead of `quoter`, matching the RFC 6570 reserved
+    expansion operator (falls back to `quoter` if `reserved_quoter` is not given).
 
     Raises:
         KeyError: If a placeholder is not found in `values`.
@@ -61,22 +80,30 @@ def _interpolate(
     parts = _PLACEHOLDER_RE.split(template)
 
     for i in range(1, len(parts), 2):
-        name = parts[i]
+        raw_name = parts[i]
+        is_reserved = raw_name.startswith("+")
+        name = raw_name[1:] if is_reserved else raw_name
         if name not in values:
-            raise KeyError(f"a value for placeholder {{{name}}} was not provided")
+            raise KeyError(f"a value for placeholder {{{raw_name}}} was not provided")
         val = values[name]
         if val is None:
             parts[i] = "null"
         elif isinstance(val, bool):
             parts[i] = "true" if val else "false"
         else:
-            parts[i] = quoter(str(values[name]))
+            active_quoter = reserved_quoter if is_reserved and reserved_quoter is not None else quoter
+            parts[i] = active_quoter(str(val))
 
     return "".join(parts)
 
 
 def path_template(template: str, /, **kwargs: Any) -> str:
     """Interpolate {name} placeholders in `template` from keyword arguments.
+
+    A placeholder can be written as `{+name}` (RFC 6570 reserved expansion) in the
+    path portion of the template to allow the interpolated value to contain
+    additional unescaped `/` separators, for parameters whose values are themselves
+    composed of multiple path segments (e.g. AI model names).
 
     Args:
         template: The template string containing {name} placeholders.
@@ -107,7 +134,9 @@ def path_template(template: str, /, **kwargs: Any) -> str:
     path_template = rest
 
     # Interpolate each portion with the appropriate quoting rules.
-    path_result = _interpolate(path_template, kwargs, _quote_path_segment_part)
+    path_result = _interpolate(
+        path_template, kwargs, _quote_path_segment_part, reserved_quoter=_quote_path_segment_part_reserved
+    )
 
     # Reject dot-segments (. and ..) in the final assembled path.  The check
     # runs after interpolation so that adjacent placeholders or a mix of static
