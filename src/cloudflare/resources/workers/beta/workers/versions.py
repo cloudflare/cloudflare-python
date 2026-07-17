@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Dict, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -60,6 +60,7 @@ class VersionsResource(SyncAPIResource):
         compatibility_date: str | Omit = omit,
         compatibility_flags: SequenceNotStr[str] | Omit = omit,
         containers: Iterable[version_create_params.Container] | Omit = omit,
+        exports: Dict[str, version_create_params.Exports] | Omit = omit,
         limits: version_create_params.Limits | Omit = omit,
         main_module: str | Omit = omit,
         migrations: version_create_params.Migrations | Omit = omit,
@@ -112,6 +113,12 @@ class VersionsResource(SyncAPIResource):
 
           containers: List of containers attached to a Worker. Containers can only be attached to
               Durable Object classes of this Worker script.
+
+          exports: Declarative exports for the version, including Durable Object classes (with
+              their `storage` backend) and named Worker entrypoints. On reads, tombstoned
+              lifecycle entries are omitted, so only live exports (`created` and
+              `expecting-transfer`) are returned. `exports` and `migrations` are mutually
+              exclusive on upload.
 
           limits: Resource limits enforced at runtime.
 
@@ -168,6 +175,7 @@ class VersionsResource(SyncAPIResource):
                     "compatibility_date": compatibility_date,
                     "compatibility_flags": compatibility_flags,
                     "containers": containers,
+                    "exports": exports,
                     "limits": limits,
                     "main_module": main_module,
                     "migrations": migrations,
@@ -396,6 +404,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         compatibility_date: str | Omit = omit,
         compatibility_flags: SequenceNotStr[str] | Omit = omit,
         containers: Iterable[version_create_params.Container] | Omit = omit,
+        exports: Dict[str, version_create_params.Exports] | Omit = omit,
         limits: version_create_params.Limits | Omit = omit,
         main_module: str | Omit = omit,
         migrations: version_create_params.Migrations | Omit = omit,
@@ -448,6 +457,12 @@ class AsyncVersionsResource(AsyncAPIResource):
 
           containers: List of containers attached to a Worker. Containers can only be attached to
               Durable Object classes of this Worker script.
+
+          exports: Declarative exports for the version, including Durable Object classes (with
+              their `storage` backend) and named Worker entrypoints. On reads, tombstoned
+              lifecycle entries are omitted, so only live exports (`created` and
+              `expecting-transfer`) are returned. `exports` and `migrations` are mutually
+              exclusive on upload.
 
           limits: Resource limits enforced at runtime.
 
@@ -504,6 +519,7 @@ class AsyncVersionsResource(AsyncAPIResource):
                     "compatibility_date": compatibility_date,
                     "compatibility_flags": compatibility_flags,
                     "containers": containers,
+                    "exports": exports,
                     "limits": limits,
                     "main_module": main_module,
                     "migrations": migrations,

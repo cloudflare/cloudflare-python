@@ -719,6 +719,36 @@ class Exports(BaseModel):
     `cache_options.enabled` for that entrypoint.
     """
 
+    state: Optional[Literal["created", "deleted", "renamed", "transferred", "expecting-transfer"]] = None
+    """Lifecycle state of the export entry.
+
+    Defaults to `created` (a normal, live export) when omitted.
+
+    `deleted`, `renamed`, and `transferred` are tombstones: write-only lifecycle
+    operations that retire, rename, or hand off a provisioned Durable Object
+    namespace. They are applied at upload and are filtered out of GET responses, so
+    a read only ever returns `created` or `expecting-transfer`.
+
+    `expecting-transfer` is a live export whose data is being received from another
+    script via the two-phase transfer flow; it carries `storage` and
+    `transfer_from`.
+    """
+
+    storage: Optional[Literal["sqlite", "legacy-kv"]] = None
+    """Storage backend for a `type: durable-object` export.
+
+    Required for live Durable Object entries (`created` and `expecting-transfer`).
+    `sqlite` selects SQLite-backed storage; `legacy-kv` selects the legacy key-value
+    storage.
+    """
+
+    transfer_from: Optional[str] = None
+    """Source script for a `state: expecting-transfer` entry.
+
+    The namespace on this script is materialised from the source script's data via
+    the pending-transfer flow. Present on reads for `expecting-transfer` entries.
+    """
+
 
 class Limits(BaseModel):
     """Limits to apply for this Worker."""
