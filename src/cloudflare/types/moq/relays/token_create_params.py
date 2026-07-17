@@ -21,7 +21,7 @@ class TokenCreateParams(TypedDict, total=False):
     Signed into the token.
     """
 
-    expires_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    expires: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Optional expiry (RFC 3339).
 
     Defaults to 1 year from creation; rejected if more than 1 year in the future.

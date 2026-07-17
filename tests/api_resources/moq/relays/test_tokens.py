@@ -33,7 +33,7 @@ class TestTokens:
             relay_id="a1b2c3d4e5f67890a1b2c3d4e5f67890",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             operations=["publish", "subscribe"],
-            expires_at=parse_datetime("2027-03-27T15:00:00Z"),
+            expires=parse_datetime("2027-03-27T15:00:00Z"),
             label="primary-encoder",
         )
         assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
@@ -211,7 +211,7 @@ class TestAsyncTokens:
             relay_id="a1b2c3d4e5f67890a1b2c3d4e5f67890",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             operations=["publish", "subscribe"],
-            expires_at=parse_datetime("2027-03-27T15:00:00Z"),
+            expires=parse_datetime("2027-03-27T15:00:00Z"),
             label="primary-encoder",
         )
         assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])

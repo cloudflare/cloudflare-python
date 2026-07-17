@@ -54,7 +54,7 @@ class TokensResource(SyncAPIResource):
         *,
         account_id: str,
         operations: List[Literal["publish", "subscribe"]],
-        expires_at: Union[str, datetime] | Omit = omit,
+        expires: Union[str, datetime] | Omit = omit,
         label: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -75,7 +75,7 @@ class TokensResource(SyncAPIResource):
           operations: Non-empty subset of the V1 roles the token is allowed to perform. Signed into
               the token.
 
-          expires_at: Optional expiry (RFC 3339). Defaults to 1 year from creation; rejected if more
+          expires: Optional expiry (RFC 3339). Defaults to 1 year from creation; rejected if more
               than 1 year in the future.
 
           label: Optional, customer-set label.
@@ -99,7 +99,7 @@ class TokensResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "operations": operations,
-                    "expires_at": expires_at,
+                    "expires": expires,
                     "label": label,
                 },
                 token_create_params.TokenCreateParams,
@@ -236,7 +236,7 @@ class AsyncTokensResource(AsyncAPIResource):
         *,
         account_id: str,
         operations: List[Literal["publish", "subscribe"]],
-        expires_at: Union[str, datetime] | Omit = omit,
+        expires: Union[str, datetime] | Omit = omit,
         label: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -257,7 +257,7 @@ class AsyncTokensResource(AsyncAPIResource):
           operations: Non-empty subset of the V1 roles the token is allowed to perform. Signed into
               the token.
 
-          expires_at: Optional expiry (RFC 3339). Defaults to 1 year from creation; rejected if more
+          expires: Optional expiry (RFC 3339). Defaults to 1 year from creation; rejected if more
               than 1 year in the future.
 
           label: Optional, customer-set label.
@@ -281,7 +281,7 @@ class AsyncTokensResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "operations": operations,
-                    "expires_at": expires_at,
+                    "expires": expires,
                     "label": label,
                 },
                 token_create_params.TokenCreateParams,
