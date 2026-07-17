@@ -178,7 +178,7 @@ class ConnectorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorUpdateResponse:
-        """Replaces properties of a Magic WAN Connector.
+        """Updates properties of a Magic WAN Connector.
 
         May be used to re-provision a
         license key.
@@ -349,10 +349,10 @@ class ConnectorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorEditResponse:
-        """Updates properties of a Magic WAN Connector.
+        """Edits properties of a Magic WAN Connector.
 
-        May be used to re-provision a
-        license key.
+        May be used to re-provision a license
+        key.
 
         Args:
           account_id: Account identifier
@@ -419,7 +419,7 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorGetResponse:
         """
-        Fetches a Magic WAN Connector.
+        Gets a Magic WAN Connector.
 
         Args:
           account_id: Account identifier
@@ -579,7 +579,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorUpdateResponse:
-        """Replaces properties of a Magic WAN Connector.
+        """Updates properties of a Magic WAN Connector.
 
         May be used to re-provision a
         license key.
@@ -750,10 +750,10 @@ class AsyncConnectorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorEditResponse:
-        """Updates properties of a Magic WAN Connector.
+        """Edits properties of a Magic WAN Connector.
 
-        May be used to re-provision a
-        license key.
+        May be used to re-provision a license
+        key.
 
         Args:
           account_id: Account identifier
@@ -820,7 +820,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorGetResponse:
         """
-        Fetches a Magic WAN Connector.
+        Gets a Magic WAN Connector.
 
         Args:
           account_id: Account identifier
