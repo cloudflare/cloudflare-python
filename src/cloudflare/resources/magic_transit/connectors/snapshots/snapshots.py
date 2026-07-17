@@ -130,7 +130,7 @@ class SnapshotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SnapshotGetResponse:
         """
-        Fetches Magic WAN Connector Telemetry Snapshot
+        Gets Magic WAN Connector Telemetry Snapshot
 
         Args:
           account_id: Account identifier
@@ -262,7 +262,7 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SnapshotGetResponse:
         """
-        Fetches Magic WAN Connector Telemetry Snapshot
+        Gets Magic WAN Connector Telemetry Snapshot
 
         Args:
           account_id: Account identifier
