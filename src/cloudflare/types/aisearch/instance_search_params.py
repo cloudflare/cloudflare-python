@@ -20,6 +20,8 @@ __all__ = [
     "MessageContentUnionMember1UnionMember0",
     "MessageContentUnionMember1UnionMember1",
     "MessageContentUnionMember1UnionMember1ImageURL",
+    "MessageContentUnionMember1UnionMember2",
+    "MessageContentUnionMember1UnionMember2File",
 ]
 
 
@@ -176,8 +178,24 @@ class MessageContentUnionMember1UnionMember1(TypedDict, total=False):
     type: Required[Literal["image_url"]]
 
 
+class MessageContentUnionMember1UnionMember2File(TypedDict, total=False):
+    filename: Required[str]
+
+    file_data: str
+
+    file_id: str
+
+
+class MessageContentUnionMember1UnionMember2(TypedDict, total=False):
+    file: Required[MessageContentUnionMember1UnionMember2File]
+
+    type: Required[Literal["file"]]
+
+
 MessageContentUnionMember1: TypeAlias = Union[
-    MessageContentUnionMember1UnionMember0, MessageContentUnionMember1UnionMember1
+    MessageContentUnionMember1UnionMember0,
+    MessageContentUnionMember1UnionMember1,
+    MessageContentUnionMember1UnionMember2,
 ]
 
 

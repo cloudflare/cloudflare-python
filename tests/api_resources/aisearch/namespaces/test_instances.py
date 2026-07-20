@@ -73,6 +73,7 @@ class TestInstances:
                 "authorized_hosts": ["string"],
                 "chat_completions_endpoint": {"disabled": True},
                 "custom_domains": ["search.example.com"],
+                "default_domain_enabled": True,
                 "enabled": True,
                 "mcp": {
                     "description": "description",
@@ -224,6 +225,7 @@ class TestInstances:
                 "authorized_hosts": ["string"],
                 "chat_completions_endpoint": {"disabled": True},
                 "custom_domains": ["search.example.com"],
+                "default_domain_enabled": True,
                 "enabled": True,
                 "mcp": {
                     "description": "description",
@@ -887,6 +889,7 @@ class TestAsyncInstances:
                 "authorized_hosts": ["string"],
                 "chat_completions_endpoint": {"disabled": True},
                 "custom_domains": ["search.example.com"],
+                "default_domain_enabled": True,
                 "enabled": True,
                 "mcp": {
                     "description": "description",
@@ -1038,6 +1041,7 @@ class TestAsyncInstances:
                 "authorized_hosts": ["string"],
                 "chat_completions_endpoint": {"disabled": True},
                 "custom_domains": ["search.example.com"],
+                "default_domain_enabled": True,
                 "enabled": True,
                 "mcp": {
                     "description": "description",

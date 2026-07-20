@@ -102,6 +102,15 @@ class PublicEndpointParams(BaseModel):
     it to leave domains unchanged).
     """
 
+    default_domain_enabled: Optional[bool] = None
+    """
+    When false, the instance is reachable only via a registered custom domain and
+    the default <public_endpoint_id>.search.ai.cloudflare.com host returns 404.
+    Requires at least one custom domain. Defaults to true. public_endpoint_params is
+    replaced wholesale on update, so resend default_domain_enabled on every update
+    to keep the default host off — omitting it resets to true.
+    """
+
     enabled: Optional[bool] = None
 
     mcp: Optional[PublicEndpointParamsMcp] = None

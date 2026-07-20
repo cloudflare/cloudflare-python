@@ -16,6 +16,8 @@ __all__ = [
     "ChoiceMessageContentUnionMember1UnionMember0",
     "ChoiceMessageContentUnionMember1UnionMember1",
     "ChoiceMessageContentUnionMember1UnionMember1ImageURL",
+    "ChoiceMessageContentUnionMember1UnionMember2",
+    "ChoiceMessageContentUnionMember1UnionMember2File",
     "Chunk",
     "ChunkItem",
     "ChunkScoringDetails",
@@ -38,8 +40,24 @@ class ChoiceMessageContentUnionMember1UnionMember1(BaseModel):
     type: Literal["image_url"]
 
 
+class ChoiceMessageContentUnionMember1UnionMember2File(BaseModel):
+    filename: str
+
+    file_data: Optional[str] = None
+
+    file_id: Optional[str] = None
+
+
+class ChoiceMessageContentUnionMember1UnionMember2(BaseModel):
+    file: ChoiceMessageContentUnionMember1UnionMember2File
+
+    type: Literal["file"]
+
+
 ChoiceMessageContentUnionMember1: TypeAlias = Union[
-    ChoiceMessageContentUnionMember1UnionMember0, ChoiceMessageContentUnionMember1UnionMember1
+    ChoiceMessageContentUnionMember1UnionMember0,
+    ChoiceMessageContentUnionMember1UnionMember1,
+    ChoiceMessageContentUnionMember1UnionMember2,
 ]
 
 
