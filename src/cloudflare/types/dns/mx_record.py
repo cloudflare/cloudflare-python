@@ -7,7 +7,21 @@ from .ttl import TTL
 from ..._models import BaseModel
 from .record_tags import RecordTags
 
-__all__ = ["MXRecord", "Settings"]
+__all__ = ["MXRecord", "Data", "Settings"]
+
+
+class Data(BaseModel):
+    """Components of a MX record."""
+
+    priority: Optional[float] = None
+    """
+    Required for MX and URI records; ignored for other record types (but may still
+    be returned by the API). Records with lower priorities are preferred. This field
+    is to be deprecated in favor of the priority field within the data map.
+    """
+
+    target: Optional[str] = None
+    """A valid mail server hostname, or "." for a NULL MX record."""
 
 
 class Settings(BaseModel):
@@ -52,6 +66,9 @@ class MXRecord(BaseModel):
 
     content: Optional[str] = None
     """A valid mail server hostname."""
+
+    data: Optional[Data] = None
+    """Components of a MX record."""
 
     priority: Optional[float] = None
     """

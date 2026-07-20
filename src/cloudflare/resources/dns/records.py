@@ -289,6 +289,7 @@ class RecordsResource(SyncAPIResource):
         include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        data: record_create_params.MXRecordData | Omit = omit,
         priority: float | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_create_params.MXRecordSettings | Omit = omit,
@@ -329,6 +330,8 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           content: A valid mail server hostname.
+
+          data: Components of a MX record.
 
           priority: Required for MX and URI records; ignored for other record types (but may still
               be returned by the API). Records with lower priorities are preferred. This field
@@ -1573,8 +1576,8 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.URIRecordSettings
         | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
-        priority: float | Omit = omit,
-        data: record_create_params.CAARecordData
+        data: record_create_params.MXRecordData
+        | record_create_params.CAARecordData
         | record_create_params.CERTRecordData
         | record_create_params.DNSKEYRecordData
         | record_create_params.DSRecordData
@@ -1588,6 +1591,7 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.TLSARecordData
         | record_create_params.URIRecordData
         | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1612,8 +1616,8 @@ class RecordsResource(SyncAPIResource):
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
-                        "priority": priority,
                         "data": data,
+                        "priority": priority,
                     },
                     record_create_params.RecordCreateParams,
                 ),
@@ -1864,6 +1868,7 @@ class RecordsResource(SyncAPIResource):
         include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        data: record_update_params.MXRecordData | Omit = omit,
         priority: float | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_update_params.MXRecordSettings | Omit = omit,
@@ -1906,6 +1911,8 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           content: A valid mail server hostname.
+
+          data: Components of a MX record.
 
           priority: Required for MX and URI records; ignored for other record types (but may still
               be returned by the API). Records with lower priorities are preferred. This field
@@ -3202,8 +3209,8 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.URIRecordSettings
         | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
-        priority: float | Omit = omit,
-        data: record_update_params.CAARecordData
+        data: record_update_params.MXRecordData
+        | record_update_params.CAARecordData
         | record_update_params.CERTRecordData
         | record_update_params.DNSKEYRecordData
         | record_update_params.DSRecordData
@@ -3217,6 +3224,7 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.TLSARecordData
         | record_update_params.URIRecordData
         | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3245,8 +3253,8 @@ class RecordsResource(SyncAPIResource):
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
-                        "priority": priority,
                         "data": data,
+                        "priority": priority,
                     },
                     record_update_params.RecordUpdateParams,
                 ),
@@ -3760,6 +3768,7 @@ class RecordsResource(SyncAPIResource):
         include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        data: record_edit_params.MXRecordData | Omit = omit,
         priority: float | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_edit_params.MXRecordSettings | Omit = omit,
@@ -3802,6 +3811,8 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           content: A valid mail server hostname.
+
+          data: Components of a MX record.
 
           priority: Required for MX and URI records; ignored for other record types (but may still
               be returned by the API). Records with lower priorities are preferred. This field
@@ -5098,8 +5109,8 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.URIRecordSettings
         | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
-        priority: float | Omit = omit,
-        data: record_edit_params.CAARecordData
+        data: record_edit_params.MXRecordData
+        | record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
         | record_edit_params.DNSKEYRecordData
         | record_edit_params.DSRecordData
@@ -5113,6 +5124,7 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.TLSARecordData
         | record_edit_params.URIRecordData
         | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5141,8 +5153,8 @@ class RecordsResource(SyncAPIResource):
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
-                        "priority": priority,
                         "data": data,
+                        "priority": priority,
                     },
                     record_edit_params.RecordEditParams,
                 ),
@@ -5748,6 +5760,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        data: record_create_params.MXRecordData | Omit = omit,
         priority: float | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_create_params.MXRecordSettings | Omit = omit,
@@ -5788,6 +5801,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           content: A valid mail server hostname.
+
+          data: Components of a MX record.
 
           priority: Required for MX and URI records; ignored for other record types (but may still
               be returned by the API). Records with lower priorities are preferred. This field
@@ -7032,8 +7047,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.URIRecordSettings
         | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
-        priority: float | Omit = omit,
-        data: record_create_params.CAARecordData
+        data: record_create_params.MXRecordData
+        | record_create_params.CAARecordData
         | record_create_params.CERTRecordData
         | record_create_params.DNSKEYRecordData
         | record_create_params.DSRecordData
@@ -7047,6 +7062,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.TLSARecordData
         | record_create_params.URIRecordData
         | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7071,8 +7087,8 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
-                        "priority": priority,
                         "data": data,
+                        "priority": priority,
                     },
                     record_create_params.RecordCreateParams,
                 ),
@@ -7323,6 +7339,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        data: record_update_params.MXRecordData | Omit = omit,
         priority: float | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_update_params.MXRecordSettings | Omit = omit,
@@ -7365,6 +7382,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           content: A valid mail server hostname.
+
+          data: Components of a MX record.
 
           priority: Required for MX and URI records; ignored for other record types (but may still
               be returned by the API). Records with lower priorities are preferred. This field
@@ -8661,8 +8680,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.URIRecordSettings
         | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
-        priority: float | Omit = omit,
-        data: record_update_params.CAARecordData
+        data: record_update_params.MXRecordData
+        | record_update_params.CAARecordData
         | record_update_params.CERTRecordData
         | record_update_params.DNSKEYRecordData
         | record_update_params.DSRecordData
@@ -8676,6 +8695,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.TLSARecordData
         | record_update_params.URIRecordData
         | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8704,8 +8724,8 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
-                        "priority": priority,
                         "data": data,
+                        "priority": priority,
                     },
                     record_update_params.RecordUpdateParams,
                 ),
@@ -9219,6 +9239,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         include_shadow_metadata: bool | Omit = omit,
         comment: str | Omit = omit,
         content: str | Omit = omit,
+        data: record_edit_params.MXRecordData | Omit = omit,
         priority: float | Omit = omit,
         proxied: bool | Omit = omit,
         settings: record_edit_params.MXRecordSettings | Omit = omit,
@@ -9261,6 +9282,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           content: A valid mail server hostname.
+
+          data: Components of a MX record.
 
           priority: Required for MX and URI records; ignored for other record types (but may still
               be returned by the API). Records with lower priorities are preferred. This field
@@ -10557,8 +10580,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.URIRecordSettings
         | Omit = omit,
         tags: SequenceNotStr[RecordTags] | Omit = omit,
-        priority: float | Omit = omit,
-        data: record_edit_params.CAARecordData
+        data: record_edit_params.MXRecordData
+        | record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
         | record_edit_params.DNSKEYRecordData
         | record_edit_params.DSRecordData
@@ -10572,6 +10595,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.TLSARecordData
         | record_edit_params.URIRecordData
         | Omit = omit,
+        priority: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -10600,8 +10624,8 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "proxied": proxied,
                         "settings": settings,
                         "tags": tags,
-                        "priority": priority,
                         "data": data,
+                        "priority": priority,
                     },
                     record_edit_params.RecordEditParams,
                 ),

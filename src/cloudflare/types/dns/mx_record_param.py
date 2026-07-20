@@ -8,7 +8,21 @@ from ..._types import SequenceNotStr
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 
-__all__ = ["MXRecordParam", "Settings"]
+__all__ = ["MXRecordParam", "Data", "Settings"]
+
+
+class Data(TypedDict, total=False):
+    """Components of a MX record."""
+
+    priority: float
+    """
+    Required for MX and URI records; ignored for other record types (but may still
+    be returned by the API). Records with lower priorities are preferred. This field
+    is to be deprecated in favor of the priority field within the data map.
+    """
+
+    target: str
+    """A valid mail server hostname, or "." for a NULL MX record."""
 
 
 class Settings(TypedDict, total=False):
@@ -53,6 +67,9 @@ class MXRecordParam(TypedDict, total=False):
 
     content: str
     """A valid mail server hostname."""
+
+    data: Data
+    """Components of a MX record."""
 
     priority: float
     """
