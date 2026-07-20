@@ -55,5 +55,5 @@ class SubnetListParams(TypedDict, total=False):
     will not be in any particular order.
     """
 
-    subnet_types: Literal["cloudflare_source", "warp"]
+    subnet_types: Literal["cloudflare_source", "initial_resolved_ip", "warp"]
     """If set, the types of subnets to include, separated by comma."""
