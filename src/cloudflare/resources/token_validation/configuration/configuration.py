@@ -82,6 +82,9 @@ class ConfigurationResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
+          credentials: Request payload for create and PUT credentials operations. Provided keys define
+              the complete stored key set. Key identities (`{alg,kid}`) must be unique.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -355,6 +358,9 @@ class AsyncConfigurationResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier.
+
+          credentials: Request payload for create and PUT credentials operations. Provided keys define
+              the complete stored key set. Key identities (`{alg,kid}`) must be unique.
 
           extra_headers: Send extra headers
 

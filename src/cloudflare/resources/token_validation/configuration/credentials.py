@@ -56,8 +56,11 @@ class CredentialsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CredentialUpdateResponse:
-        """
-        Update Token Configuration credentials
+        """Update Token Configuration credentials with full replacement semantics.
+
+        Key
+        identities (`{alg,kid}`) must be unique within the request. Symmetric keys
+        (`kty: "oct"`) require `k`; `k: null` is invalid.
 
         Args:
           zone_id: Identifier.
@@ -121,8 +124,11 @@ class AsyncCredentialsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CredentialUpdateResponse:
-        """
-        Update Token Configuration credentials
+        """Update Token Configuration credentials with full replacement semantics.
+
+        Key
+        identities (`{alg,kid}`) must be unique within the request. Symmetric keys
+        (`kty: "oct"`) require `k`; `k: null` is invalid.
 
         Args:
           zone_id: Identifier.

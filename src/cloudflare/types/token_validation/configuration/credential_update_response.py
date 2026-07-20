@@ -12,6 +12,7 @@ __all__ = [
     "KeyAPIShieldCredentialsJWTKeyRSA",
     "KeyAPIShieldCredentialsJWTKeyEcEs256",
     "KeyAPIShieldCredentialsJWTKeyEcEs384",
+    "KeyAPIShieldCredentialsJWTKeyOctResponse",
 ]
 
 
@@ -78,8 +79,26 @@ class KeyAPIShieldCredentialsJWTKeyEcEs384(BaseModel):
     """Y EC coordinate"""
 
 
+class KeyAPIShieldCredentialsJWTKeyOctResponse(BaseModel):
+    """
+    JSON representation of a symmetric verification key in API responses (secret material is redacted).
+    """
+
+    alg: Literal["HS256", "HS384", "HS512"]
+    """Algorithm"""
+
+    kid: str
+    """Key ID"""
+
+    kty: Literal["oct"]
+    """Key Type"""
+
+
 Key: TypeAlias = Union[
-    KeyAPIShieldCredentialsJWTKeyRSA, KeyAPIShieldCredentialsJWTKeyEcEs256, KeyAPIShieldCredentialsJWTKeyEcEs384
+    KeyAPIShieldCredentialsJWTKeyRSA,
+    KeyAPIShieldCredentialsJWTKeyEcEs256,
+    KeyAPIShieldCredentialsJWTKeyEcEs384,
+    KeyAPIShieldCredentialsJWTKeyOctResponse,
 ]
 
 

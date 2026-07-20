@@ -24,12 +24,11 @@ class TestCredentials:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             keys=[
                 {
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                    "kty": "EC",
-                    "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                    "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    "alg": "RS256",
+                    "e": "e",
+                    "kid": "kid",
+                    "kty": "RSA",
+                    "n": "n",
                 }
             ],
         )
@@ -42,12 +41,11 @@ class TestCredentials:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             keys=[
                 {
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                    "kty": "EC",
-                    "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                    "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    "alg": "RS256",
+                    "e": "e",
+                    "kid": "kid",
+                    "kty": "RSA",
+                    "n": "n",
                 }
             ],
         )
@@ -64,12 +62,11 @@ class TestCredentials:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             keys=[
                 {
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                    "kty": "EC",
-                    "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                    "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    "alg": "RS256",
+                    "e": "e",
+                    "kid": "kid",
+                    "kty": "RSA",
+                    "n": "n",
                 }
             ],
         ) as response:
@@ -89,12 +86,11 @@ class TestCredentials:
                 zone_id="",
                 keys=[
                     {
-                        "alg": "ES256",
-                        "crv": "P-256",
-                        "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                        "kty": "EC",
-                        "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                        "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                        "alg": "RS256",
+                        "e": "e",
+                        "kid": "kid",
+                        "kty": "RSA",
+                        "n": "n",
                     }
                 ],
             )
@@ -105,12 +101,11 @@ class TestCredentials:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 keys=[
                     {
-                        "alg": "ES256",
-                        "crv": "P-256",
-                        "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                        "kty": "EC",
-                        "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                        "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                        "alg": "RS256",
+                        "e": "e",
+                        "kid": "kid",
+                        "kty": "RSA",
+                        "n": "n",
                     }
                 ],
             )
@@ -128,12 +123,11 @@ class TestAsyncCredentials:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             keys=[
                 {
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                    "kty": "EC",
-                    "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                    "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    "alg": "RS256",
+                    "e": "e",
+                    "kid": "kid",
+                    "kty": "RSA",
+                    "n": "n",
                 }
             ],
         )
@@ -146,12 +140,11 @@ class TestAsyncCredentials:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             keys=[
                 {
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                    "kty": "EC",
-                    "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                    "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    "alg": "RS256",
+                    "e": "e",
+                    "kid": "kid",
+                    "kty": "RSA",
+                    "n": "n",
                 }
             ],
         )
@@ -168,12 +161,11 @@ class TestAsyncCredentials:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             keys=[
                 {
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                    "kty": "EC",
-                    "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                    "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    "alg": "RS256",
+                    "e": "e",
+                    "kid": "kid",
+                    "kty": "RSA",
+                    "n": "n",
                 }
             ],
         ) as response:
@@ -193,12 +185,11 @@ class TestAsyncCredentials:
                 zone_id="",
                 keys=[
                     {
-                        "alg": "ES256",
-                        "crv": "P-256",
-                        "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                        "kty": "EC",
-                        "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                        "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                        "alg": "RS256",
+                        "e": "e",
+                        "kid": "kid",
+                        "kty": "RSA",
+                        "n": "n",
                     }
                 ],
             )
@@ -209,12 +200,11 @@ class TestAsyncCredentials:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 keys=[
                     {
-                        "alg": "ES256",
-                        "crv": "P-256",
-                        "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
-                        "kty": "EC",
-                        "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
-                        "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                        "alg": "RS256",
+                        "e": "e",
+                        "kid": "kid",
+                        "kty": "RSA",
+                        "n": "n",
                     }
                 ],
             )
