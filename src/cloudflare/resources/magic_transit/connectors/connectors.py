@@ -10,6 +10,14 @@ import httpx
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
+from .interrupts import (
+    InterruptsResource,
+    AsyncInterruptsResource,
+    InterruptsResourceWithRawResponse,
+    AsyncInterruptsResourceWithRawResponse,
+    InterruptsResourceWithStreamingResponse,
+    AsyncInterruptsResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -53,6 +61,10 @@ __all__ = ["ConnectorsResource", "AsyncConnectorsResource"]
 
 
 class ConnectorsResource(SyncAPIResource):
+    @cached_property
+    def interrupts(self) -> InterruptsResource:
+        return InterruptsResource(self._client)
+
     @cached_property
     def events(self) -> EventsResource:
         return EventsResource(self._client)
@@ -454,6 +466,10 @@ class ConnectorsResource(SyncAPIResource):
 
 
 class AsyncConnectorsResource(AsyncAPIResource):
+    @cached_property
+    def interrupts(self) -> AsyncInterruptsResource:
+        return AsyncInterruptsResource(self._client)
+
     @cached_property
     def events(self) -> AsyncEventsResource:
         return AsyncEventsResource(self._client)
@@ -878,6 +894,10 @@ class ConnectorsResourceWithRawResponse:
         )
 
     @cached_property
+    def interrupts(self) -> InterruptsResourceWithRawResponse:
+        return InterruptsResourceWithRawResponse(self._connectors.interrupts)
+
+    @cached_property
     def events(self) -> EventsResourceWithRawResponse:
         return EventsResourceWithRawResponse(self._connectors.events)
 
@@ -908,6 +928,10 @@ class AsyncConnectorsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             connectors.get,
         )
+
+    @cached_property
+    def interrupts(self) -> AsyncInterruptsResourceWithRawResponse:
+        return AsyncInterruptsResourceWithRawResponse(self._connectors.interrupts)
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithRawResponse:
@@ -942,6 +966,10 @@ class ConnectorsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def interrupts(self) -> InterruptsResourceWithStreamingResponse:
+        return InterruptsResourceWithStreamingResponse(self._connectors.interrupts)
+
+    @cached_property
     def events(self) -> EventsResourceWithStreamingResponse:
         return EventsResourceWithStreamingResponse(self._connectors.events)
 
@@ -972,6 +1000,10 @@ class AsyncConnectorsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             connectors.get,
         )
+
+    @cached_property
+    def interrupts(self) -> AsyncInterruptsResourceWithStreamingResponse:
+        return AsyncInterruptsResourceWithStreamingResponse(self._connectors.interrupts)
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithStreamingResponse:

@@ -8,3 +8,6 @@ from .event_list_response import EventListResponse as EventListResponse
 from .snapshot_list_params import SnapshotListParams as SnapshotListParams
 from .snapshot_get_response import SnapshotGetResponse as SnapshotGetResponse
 from .snapshot_list_response import SnapshotListResponse as SnapshotListResponse
+from .interrupt_create_params import InterruptCreateParams as InterruptCreateParams
+from .interrupt_list_response import InterruptListResponse as InterruptListResponse
+from .interrupt_create_response import InterruptCreateResponse as InterruptCreateResponse

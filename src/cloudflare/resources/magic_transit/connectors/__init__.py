@@ -24,8 +24,22 @@ from .connectors import (
     ConnectorsResourceWithStreamingResponse,
     AsyncConnectorsResourceWithStreamingResponse,
 )
+from .interrupts import (
+    InterruptsResource,
+    AsyncInterruptsResource,
+    InterruptsResourceWithRawResponse,
+    AsyncInterruptsResourceWithRawResponse,
+    InterruptsResourceWithStreamingResponse,
+    AsyncInterruptsResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "InterruptsResource",
+    "AsyncInterruptsResource",
+    "InterruptsResourceWithRawResponse",
+    "AsyncInterruptsResourceWithRawResponse",
+    "InterruptsResourceWithStreamingResponse",
+    "AsyncInterruptsResourceWithStreamingResponse",
     "EventsResource",
     "AsyncEventsResource",
     "EventsResourceWithRawResponse",
