@@ -17,13 +17,13 @@ from .raw import (
     RawResourceWithStreamingResponse,
     AsyncRawResourceWithStreamingResponse,
 )
-from .tags import (
-    TagsResource,
-    AsyncTagsResource,
-    TagsResourceWithRawResponse,
-    AsyncTagsResourceWithRawResponse,
-    TagsResourceWithStreamingResponse,
-    AsyncTagsResourceWithStreamingResponse,
+from .graph import (
+    GraphResource,
+    AsyncGraphResource,
+    GraphResourceWithRawResponse,
+    AsyncGraphResourceWithRawResponse,
+    GraphResourceWithStreamingResponse,
+    AsyncGraphResourceWithStreamingResponse,
 )
 from .relate import (
     RelateResource,
@@ -33,16 +33,32 @@ from .relate import (
     RelateResourceWithStreamingResponse,
     AsyncRelateResourceWithStreamingResponse,
 )
-from .datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
-    DatasetsResourceWithRawResponse,
-    AsyncDatasetsResourceWithRawResponse,
-    DatasetsResourceWithStreamingResponse,
-    AsyncDatasetsResourceWithStreamingResponse,
+from .graphql import (
+    GraphqlResource,
+    AsyncGraphqlResource,
+    GraphqlResourceWithRawResponse,
+    AsyncGraphqlResourceWithRawResponse,
+    GraphqlResourceWithStreamingResponse,
+    AsyncGraphqlResourceWithStreamingResponse,
+)
+from .queries import (
+    QueriesResource,
+    AsyncQueriesResource,
+    QueriesResourceWithRawResponse,
+    AsyncQueriesResourceWithRawResponse,
+    QueriesResourceWithStreamingResponse,
+    AsyncQueriesResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
+from .aggregate import (
+    AggregateResource,
+    AsyncAggregateResource,
+    AggregateResourceWithRawResponse,
+    AsyncAggregateResourceWithRawResponse,
+    AggregateResourceWithStreamingResponse,
+    AsyncAggregateResourceWithStreamingResponse,
+)
 from .attackers import (
     AttackersResource,
     AsyncAttackersResource,
@@ -59,15 +75,15 @@ from .countries import (
     CountriesResourceWithStreamingResponse,
     AsyncCountriesResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from .categories import (
-    CategoriesResource,
-    AsyncCategoriesResource,
-    CategoriesResourceWithRawResponse,
-    AsyncCategoriesResourceWithRawResponse,
-    CategoriesResourceWithStreamingResponse,
-    AsyncCategoriesResourceWithStreamingResponse,
+from .tags.tags import (
+    TagsResource,
+    AsyncTagsResource,
+    TagsResourceWithRawResponse,
+    AsyncTagsResourceWithRawResponse,
+    TagsResourceWithStreamingResponse,
+    AsyncTagsResourceWithStreamingResponse,
 )
+from ...._compat import cached_property
 from .event_tags import (
     EventTagsResource,
     AsyncEventTagsResource,
@@ -83,6 +99,14 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .relationships import (
+    RelationshipsResource,
+    AsyncRelationshipsResource,
+    RelationshipsResourceWithRawResponse,
+    AsyncRelationshipsResourceWithRawResponse,
+    RelationshipsResourceWithStreamingResponse,
+    AsyncRelationshipsResourceWithStreamingResponse,
+)
 from ...._base_client import make_request_options
 from .indicator_types import (
     IndicatorTypesResource,
@@ -92,7 +116,38 @@ from .indicator_types import (
     IndicatorTypesResourceWithStreamingResponse,
     AsyncIndicatorTypesResourceWithStreamingResponse,
 )
-from .target_industries import (
+from .datasets.datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
+from .categories.categories import (
+    CategoriesResource,
+    AsyncCategoriesResource,
+    CategoriesResourceWithRawResponse,
+    AsyncCategoriesResourceWithRawResponse,
+    CategoriesResourceWithStreamingResponse,
+    AsyncCategoriesResourceWithStreamingResponse,
+)
+from .indicators.indicators import (
+    IndicatorsResource,
+    AsyncIndicatorsResource,
+    IndicatorsResourceWithRawResponse,
+    AsyncIndicatorsResourceWithRawResponse,
+    IndicatorsResourceWithStreamingResponse,
+    AsyncIndicatorsResourceWithStreamingResponse,
+)
+from ....types.cloudforce_one import (
+    threat_event_edit_params,
+    threat_event_list_params,
+    threat_event_create_params,
+    threat_event_bulk_create_params,
+    threat_event_bulk_create_relationships_params,
+)
+from .target_industries.target_industries import (
     TargetIndustriesResource,
     AsyncTargetIndustriesResource,
     TargetIndustriesResourceWithRawResponse,
@@ -100,22 +155,43 @@ from .target_industries import (
     TargetIndustriesResourceWithStreamingResponse,
     AsyncTargetIndustriesResourceWithStreamingResponse,
 )
-from ....types.cloudforce_one import (
-    threat_event_edit_params,
-    threat_event_list_params,
-    threat_event_create_params,
-    threat_event_bulk_create_params,
-)
 from ....types.cloudforce_one.threat_event_get_response import ThreatEventGetResponse
 from ....types.cloudforce_one.threat_event_edit_response import ThreatEventEditResponse
 from ....types.cloudforce_one.threat_event_list_response import ThreatEventListResponse
 from ....types.cloudforce_one.threat_event_create_response import ThreatEventCreateResponse
 from ....types.cloudforce_one.threat_event_bulk_create_response import ThreatEventBulkCreateResponse
+from ....types.cloudforce_one.threat_event_bulk_create_relationships_response import (
+    ThreatEventBulkCreateRelationshipsResponse,
+)
 
 __all__ = ["ThreatEventsResource", "AsyncThreatEventsResource"]
 
 
 class ThreatEventsResource(SyncAPIResource):
+    @cached_property
+    def aggregate(self) -> AggregateResource:
+        return AggregateResource(self._client)
+
+    @cached_property
+    def graphql(self) -> GraphqlResource:
+        return GraphqlResource(self._client)
+
+    @cached_property
+    def graph(self) -> GraphResource:
+        return GraphResource(self._client)
+
+    @cached_property
+    def queries(self) -> QueriesResource:
+        return QueriesResource(self._client)
+
+    @cached_property
+    def relationships(self) -> RelationshipsResource:
+        return RelationshipsResource(self._client)
+
+    @cached_property
+    def indicators(self) -> IndicatorsResource:
+        return IndicatorsResource(self._client)
+
     @cached_property
     def attackers(self) -> AttackersResource:
         return AttackersResource(self._client)
@@ -391,6 +467,54 @@ class ThreatEventsResource(SyncAPIResource):
             cast_to=ThreatEventBulkCreateResponse,
         )
 
+    @typing_extensions.deprecated("This endpoint is deprecated and will be removed in a future version.")
+    def bulk_create_relationships(
+        self,
+        *,
+        account_id: str,
+        data: Iterable[threat_event_bulk_create_relationships_params.Data],
+        dataset_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ThreatEventBulkCreateRelationshipsResponse:
+        """This method is deprecated.
+
+        Please use `event_create_bulk` instead
+
+        Args:
+          account_id: Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/create/bulk/relationships", account_id=account_id
+            ),
+            body=maybe_transform(
+                {
+                    "data": data,
+                    "dataset_id": dataset_id,
+                },
+                threat_event_bulk_create_relationships_params.ThreatEventBulkCreateRelationshipsParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ThreatEventBulkCreateRelationshipsResponse,
+        )
+
     def edit(
         self,
         event_id: str,
@@ -468,7 +592,9 @@ class ThreatEventsResource(SyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use datasets.events.get instead (GET /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/events/{event_id})."
+    )
     def get(
         self,
         event_id: str,
@@ -515,6 +641,30 @@ class ThreatEventsResource(SyncAPIResource):
 
 
 class AsyncThreatEventsResource(AsyncAPIResource):
+    @cached_property
+    def aggregate(self) -> AsyncAggregateResource:
+        return AsyncAggregateResource(self._client)
+
+    @cached_property
+    def graphql(self) -> AsyncGraphqlResource:
+        return AsyncGraphqlResource(self._client)
+
+    @cached_property
+    def graph(self) -> AsyncGraphResource:
+        return AsyncGraphResource(self._client)
+
+    @cached_property
+    def queries(self) -> AsyncQueriesResource:
+        return AsyncQueriesResource(self._client)
+
+    @cached_property
+    def relationships(self) -> AsyncRelationshipsResource:
+        return AsyncRelationshipsResource(self._client)
+
+    @cached_property
+    def indicators(self) -> AsyncIndicatorsResource:
+        return AsyncIndicatorsResource(self._client)
+
     @cached_property
     def attackers(self) -> AsyncAttackersResource:
         return AsyncAttackersResource(self._client)
@@ -790,6 +940,54 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             cast_to=ThreatEventBulkCreateResponse,
         )
 
+    @typing_extensions.deprecated("This endpoint is deprecated and will be removed in a future version.")
+    async def bulk_create_relationships(
+        self,
+        *,
+        account_id: str,
+        data: Iterable[threat_event_bulk_create_relationships_params.Data],
+        dataset_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ThreatEventBulkCreateRelationshipsResponse:
+        """This method is deprecated.
+
+        Please use `event_create_bulk` instead
+
+        Args:
+          account_id: Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template(
+                "/accounts/{account_id}/cloudforce-one/events/create/bulk/relationships", account_id=account_id
+            ),
+            body=await async_maybe_transform(
+                {
+                    "data": data,
+                    "dataset_id": dataset_id,
+                },
+                threat_event_bulk_create_relationships_params.ThreatEventBulkCreateRelationshipsParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ThreatEventBulkCreateRelationshipsResponse,
+        )
+
     async def edit(
         self,
         event_id: str,
@@ -867,7 +1065,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use datasets.events.get instead (GET /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/events/{event_id})."
+    )
     async def get(
         self,
         event_id: str,
@@ -926,6 +1126,11 @@ class ThreatEventsResourceWithRawResponse:
         self.bulk_create = to_raw_response_wrapper(
             threat_events.bulk_create,
         )
+        self.bulk_create_relationships = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                threat_events.bulk_create_relationships,  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.edit = to_raw_response_wrapper(
             threat_events.edit,
         )
@@ -934,6 +1139,30 @@ class ThreatEventsResourceWithRawResponse:
                 threat_events.get,  # pyright: ignore[reportDeprecated],
             )
         )
+
+    @cached_property
+    def aggregate(self) -> AggregateResourceWithRawResponse:
+        return AggregateResourceWithRawResponse(self._threat_events.aggregate)
+
+    @cached_property
+    def graphql(self) -> GraphqlResourceWithRawResponse:
+        return GraphqlResourceWithRawResponse(self._threat_events.graphql)
+
+    @cached_property
+    def graph(self) -> GraphResourceWithRawResponse:
+        return GraphResourceWithRawResponse(self._threat_events.graph)
+
+    @cached_property
+    def queries(self) -> QueriesResourceWithRawResponse:
+        return QueriesResourceWithRawResponse(self._threat_events.queries)
+
+    @cached_property
+    def relationships(self) -> RelationshipsResourceWithRawResponse:
+        return RelationshipsResourceWithRawResponse(self._threat_events.relationships)
+
+    @cached_property
+    def indicators(self) -> IndicatorsResourceWithRawResponse:
+        return IndicatorsResourceWithRawResponse(self._threat_events.indicators)
 
     @cached_property
     def attackers(self) -> AttackersResourceWithRawResponse:
@@ -989,6 +1218,11 @@ class AsyncThreatEventsResourceWithRawResponse:
         self.bulk_create = async_to_raw_response_wrapper(
             threat_events.bulk_create,
         )
+        self.bulk_create_relationships = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                threat_events.bulk_create_relationships,  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.edit = async_to_raw_response_wrapper(
             threat_events.edit,
         )
@@ -997,6 +1231,30 @@ class AsyncThreatEventsResourceWithRawResponse:
                 threat_events.get,  # pyright: ignore[reportDeprecated],
             )
         )
+
+    @cached_property
+    def aggregate(self) -> AsyncAggregateResourceWithRawResponse:
+        return AsyncAggregateResourceWithRawResponse(self._threat_events.aggregate)
+
+    @cached_property
+    def graphql(self) -> AsyncGraphqlResourceWithRawResponse:
+        return AsyncGraphqlResourceWithRawResponse(self._threat_events.graphql)
+
+    @cached_property
+    def graph(self) -> AsyncGraphResourceWithRawResponse:
+        return AsyncGraphResourceWithRawResponse(self._threat_events.graph)
+
+    @cached_property
+    def queries(self) -> AsyncQueriesResourceWithRawResponse:
+        return AsyncQueriesResourceWithRawResponse(self._threat_events.queries)
+
+    @cached_property
+    def relationships(self) -> AsyncRelationshipsResourceWithRawResponse:
+        return AsyncRelationshipsResourceWithRawResponse(self._threat_events.relationships)
+
+    @cached_property
+    def indicators(self) -> AsyncIndicatorsResourceWithRawResponse:
+        return AsyncIndicatorsResourceWithRawResponse(self._threat_events.indicators)
 
     @cached_property
     def attackers(self) -> AsyncAttackersResourceWithRawResponse:
@@ -1052,6 +1310,11 @@ class ThreatEventsResourceWithStreamingResponse:
         self.bulk_create = to_streamed_response_wrapper(
             threat_events.bulk_create,
         )
+        self.bulk_create_relationships = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                threat_events.bulk_create_relationships,  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.edit = to_streamed_response_wrapper(
             threat_events.edit,
         )
@@ -1060,6 +1323,30 @@ class ThreatEventsResourceWithStreamingResponse:
                 threat_events.get,  # pyright: ignore[reportDeprecated],
             )
         )
+
+    @cached_property
+    def aggregate(self) -> AggregateResourceWithStreamingResponse:
+        return AggregateResourceWithStreamingResponse(self._threat_events.aggregate)
+
+    @cached_property
+    def graphql(self) -> GraphqlResourceWithStreamingResponse:
+        return GraphqlResourceWithStreamingResponse(self._threat_events.graphql)
+
+    @cached_property
+    def graph(self) -> GraphResourceWithStreamingResponse:
+        return GraphResourceWithStreamingResponse(self._threat_events.graph)
+
+    @cached_property
+    def queries(self) -> QueriesResourceWithStreamingResponse:
+        return QueriesResourceWithStreamingResponse(self._threat_events.queries)
+
+    @cached_property
+    def relationships(self) -> RelationshipsResourceWithStreamingResponse:
+        return RelationshipsResourceWithStreamingResponse(self._threat_events.relationships)
+
+    @cached_property
+    def indicators(self) -> IndicatorsResourceWithStreamingResponse:
+        return IndicatorsResourceWithStreamingResponse(self._threat_events.indicators)
 
     @cached_property
     def attackers(self) -> AttackersResourceWithStreamingResponse:
@@ -1115,6 +1402,11 @@ class AsyncThreatEventsResourceWithStreamingResponse:
         self.bulk_create = async_to_streamed_response_wrapper(
             threat_events.bulk_create,
         )
+        self.bulk_create_relationships = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                threat_events.bulk_create_relationships,  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.edit = async_to_streamed_response_wrapper(
             threat_events.edit,
         )
@@ -1123,6 +1415,30 @@ class AsyncThreatEventsResourceWithStreamingResponse:
                 threat_events.get,  # pyright: ignore[reportDeprecated],
             )
         )
+
+    @cached_property
+    def aggregate(self) -> AsyncAggregateResourceWithStreamingResponse:
+        return AsyncAggregateResourceWithStreamingResponse(self._threat_events.aggregate)
+
+    @cached_property
+    def graphql(self) -> AsyncGraphqlResourceWithStreamingResponse:
+        return AsyncGraphqlResourceWithStreamingResponse(self._threat_events.graphql)
+
+    @cached_property
+    def graph(self) -> AsyncGraphResourceWithStreamingResponse:
+        return AsyncGraphResourceWithStreamingResponse(self._threat_events.graph)
+
+    @cached_property
+    def queries(self) -> AsyncQueriesResourceWithStreamingResponse:
+        return AsyncQueriesResourceWithStreamingResponse(self._threat_events.queries)
+
+    @cached_property
+    def relationships(self) -> AsyncRelationshipsResourceWithStreamingResponse:
+        return AsyncRelationshipsResourceWithStreamingResponse(self._threat_events.relationships)
+
+    @cached_property
+    def indicators(self) -> AsyncIndicatorsResourceWithStreamingResponse:
+        return AsyncIndicatorsResourceWithStreamingResponse(self._threat_events.indicators)
 
     @cached_property
     def attackers(self) -> AsyncAttackersResourceWithStreamingResponse:
