@@ -555,7 +555,8 @@ class SelfHostedApplicationOAuthConfigurationDynamicClientRegistration(TypedDict
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -1426,7 +1427,8 @@ class BrowserSSHApplicationOAuthConfigurationDynamicClientRegistration(TypedDict
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -2028,7 +2030,8 @@ class BrowserVNCApplicationOAuthConfigurationDynamicClientRegistration(TypedDict
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -3636,7 +3639,8 @@ class BrowserRDPApplicationOAuthConfigurationDynamicClientRegistration(TypedDict
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -4131,7 +4135,8 @@ class McpServerApplicationOAuthConfigurationDynamicClientRegistration(TypedDict,
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -4632,7 +4637,8 @@ class McpServerPortalApplicationOAuthConfigurationDynamicClientRegistration(Type
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool

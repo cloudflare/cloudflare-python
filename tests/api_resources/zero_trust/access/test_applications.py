@@ -122,7 +122,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -433,7 +433,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -626,7 +626,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -1310,7 +1310,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -1510,7 +1510,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -1673,7 +1673,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -1858,7 +1858,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -2195,7 +2195,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -2402,7 +2402,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -3184,7 +3184,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -3405,7 +3405,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -3581,7 +3581,7 @@ class TestApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -4045,7 +4045,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -4356,7 +4356,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -4549,7 +4549,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -5233,7 +5233,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -5433,7 +5433,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -5596,7 +5596,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -5781,7 +5781,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -6118,7 +6118,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -6325,7 +6325,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -7107,7 +7107,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -7328,7 +7328,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,
@@ -7504,7 +7504,7 @@ class TestAsyncApplications:
                 "dynamic_client_registration": {
                     "allow_any_on_localhost": True,
                     "allow_any_on_loopback": True,
-                    "allowed_uris": ["https://example.com/callback"],
+                    "allowed_uris": ["https://example.com/callback", "com.example.app:/oauth/callback"],
                     "enabled": True,
                 },
                 "enabled": True,

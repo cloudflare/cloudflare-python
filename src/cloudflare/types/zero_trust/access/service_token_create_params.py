@@ -32,8 +32,9 @@ class ServiceTokenCreateParams(TypedDict, total=False):
     duration: str
     """The duration for how long the service token will be valid.
 
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. The default is 1 year in hours (8760h).
+    Must be in the format `300ms` or `2h45m`, or the special value `forever` for
+    non-expiring tokens. Valid time units are: ns, us (or µs), ms, s, m, h. The
+    default is 1 year in hours (8760h).
     """
 
     previous_client_secret_expires_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

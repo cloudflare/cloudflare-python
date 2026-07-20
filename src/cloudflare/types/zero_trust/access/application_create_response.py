@@ -338,7 +338,8 @@ class SelfHostedApplicationOAuthConfigurationDynamicClientRegistration(BaseModel
     allowed_uris: Optional[List[str]] = None
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: Optional[bool] = None
@@ -1205,7 +1206,8 @@ class BrowserSSHApplicationOAuthConfigurationDynamicClientRegistration(BaseModel
     allowed_uris: Optional[List[str]] = None
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: Optional[bool] = None
@@ -1810,7 +1812,8 @@ class BrowserVNCApplicationOAuthConfigurationDynamicClientRegistration(BaseModel
     allowed_uris: Optional[List[str]] = None
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: Optional[bool] = None
@@ -3496,7 +3499,8 @@ class BrowserRDPApplicationOAuthConfigurationDynamicClientRegistration(BaseModel
     allowed_uris: Optional[List[str]] = None
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: Optional[bool] = None
@@ -4068,7 +4072,8 @@ class McpServerApplicationOAuthConfigurationDynamicClientRegistration(BaseModel)
     allowed_uris: Optional[List[str]] = None
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: Optional[bool] = None
@@ -4568,7 +4573,8 @@ class McpServerPortalApplicationOAuthConfigurationDynamicClientRegistration(Base
     allowed_uris: Optional[List[str]] = None
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: Optional[bool] = None
