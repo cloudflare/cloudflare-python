@@ -169,12 +169,15 @@ class ZonesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
-        """Create Zone
+        """
+        Creates a new zone (domain) in your Cloudflare account.
+
+        The zone is created in a pending state and must be activated by updating your
+        domain's nameservers to point to Cloudflare, or by completing the verification
+        process for partial (CNAME) setups.
 
         Args:
-          name: The domain name.
-
-        Per
+          name: The domain name. Per
               [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035#section-2.3.4) the
               overall zone name can be up to 253 characters, with each segment ("label") not
               exceeding 63 characters.
@@ -410,7 +413,9 @@ class ZonesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
         """
-        Zone Details
+        Retrieves detailed information about a specific zone identified by its zone ID.
+
+        Returns zone configuration, status, nameservers, and associated metadata.
 
         Args:
           zone_id: Identifier
@@ -507,12 +512,15 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
-        """Create Zone
+        """
+        Creates a new zone (domain) in your Cloudflare account.
+
+        The zone is created in a pending state and must be activated by updating your
+        domain's nameservers to point to Cloudflare, or by completing the verification
+        process for partial (CNAME) setups.
 
         Args:
-          name: The domain name.
-
-        Per
+          name: The domain name. Per
               [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035#section-2.3.4) the
               overall zone name can be up to 253 characters, with each segment ("label") not
               exceeding 63 characters.
@@ -748,7 +756,9 @@ class AsyncZonesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
         """
-        Zone Details
+        Retrieves detailed information about a specific zone identified by its zone ID.
+
+        Returns zone configuration, status, nameservers, and associated metadata.
 
         Args:
           zone_id: Identifier
