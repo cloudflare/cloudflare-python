@@ -26,7 +26,7 @@ class TestCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         )
         assert_matches_type(Optional[CustomPromptTopic], custom_prompt_topic, path=["response"])
 
@@ -36,7 +36,7 @@ class TestCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
             description="description",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -48,7 +48,7 @@ class TestCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         )
 
         assert response.is_closed is True
@@ -62,7 +62,7 @@ class TestCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -79,7 +79,7 @@ class TestCustomPromptTopics:
                 account_id="",
                 enabled=True,
                 name="name",
-                topic="topic",
+                topic="xx",
             )
 
     @parametrize
@@ -89,7 +89,7 @@ class TestCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         )
         assert_matches_type(Optional[CustomPromptTopic], custom_prompt_topic, path=["response"])
 
@@ -100,7 +100,7 @@ class TestCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
             description="description",
         )
         assert_matches_type(Optional[CustomPromptTopic], custom_prompt_topic, path=["response"])
@@ -112,7 +112,7 @@ class TestCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         )
 
         assert response.is_closed is True
@@ -127,7 +127,7 @@ class TestCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,7 +145,7 @@ class TestCustomPromptTopics:
                 account_id="",
                 enabled=True,
                 name="name",
-                topic="topic",
+                topic="xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
@@ -154,7 +154,7 @@ class TestCustomPromptTopics:
                 account_id="account_id",
                 enabled=True,
                 name="name",
-                topic="topic",
+                topic="xx",
             )
 
     @parametrize
@@ -303,7 +303,7 @@ class TestAsyncCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         )
         assert_matches_type(Optional[CustomPromptTopic], custom_prompt_topic, path=["response"])
 
@@ -313,7 +313,7 @@ class TestAsyncCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
             description="description",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -325,7 +325,7 @@ class TestAsyncCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         )
 
         assert response.is_closed is True
@@ -339,7 +339,7 @@ class TestAsyncCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -356,7 +356,7 @@ class TestAsyncCustomPromptTopics:
                 account_id="",
                 enabled=True,
                 name="name",
-                topic="topic",
+                topic="xx",
             )
 
     @parametrize
@@ -366,7 +366,7 @@ class TestAsyncCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         )
         assert_matches_type(Optional[CustomPromptTopic], custom_prompt_topic, path=["response"])
 
@@ -377,7 +377,7 @@ class TestAsyncCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
             description="description",
         )
         assert_matches_type(Optional[CustomPromptTopic], custom_prompt_topic, path=["response"])
@@ -389,7 +389,7 @@ class TestAsyncCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         )
 
         assert response.is_closed is True
@@ -404,7 +404,7 @@ class TestAsyncCustomPromptTopics:
             account_id="account_id",
             enabled=True,
             name="name",
-            topic="topic",
+            topic="xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -422,7 +422,7 @@ class TestAsyncCustomPromptTopics:
                 account_id="",
                 enabled=True,
                 name="name",
-                topic="topic",
+                topic="xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
@@ -431,7 +431,7 @@ class TestAsyncCustomPromptTopics:
                 account_id="account_id",
                 enabled=True,
                 name="name",
-                topic="topic",
+                topic="xx",
             )
 
     @parametrize
