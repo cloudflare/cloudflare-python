@@ -380,18 +380,6 @@ Methods:
 
 - <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/events/{event_id}">client.cloudforce_one.threat_events.datasets.events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/events.py">get</a>(event_id, \*, account_id, dataset_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/datasets/event_get_response.py">EventGetResponse</a></code>
 
-### IndicatorTypes
-
-Types:
-
-```python
-from cloudflare.types.cloudforce_one.threat_events import IndicatorTypeListResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/cloudforce-one/events/indicatorTypes">client.cloudforce_one.threat_events.indicator_types.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/indicator_types.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/indicator_type_list_response.py">IndicatorTypeListResponse</a></code>
-
 ### Raw
 
 Types:

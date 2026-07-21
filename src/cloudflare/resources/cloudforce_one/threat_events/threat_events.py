@@ -108,14 +108,6 @@ from .relationships import (
     AsyncRelationshipsResourceWithStreamingResponse,
 )
 from ...._base_client import make_request_options
-from .indicator_types import (
-    IndicatorTypesResource,
-    AsyncIndicatorTypesResource,
-    IndicatorTypesResourceWithRawResponse,
-    AsyncIndicatorTypesResourceWithRawResponse,
-    IndicatorTypesResourceWithStreamingResponse,
-    AsyncIndicatorTypesResourceWithStreamingResponse,
-)
 from .datasets.datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -207,10 +199,6 @@ class ThreatEventsResource(SyncAPIResource):
     @cached_property
     def datasets(self) -> DatasetsResource:
         return DatasetsResource(self._client)
-
-    @cached_property
-    def indicator_types(self) -> IndicatorTypesResource:
-        return IndicatorTypesResource(self._client)
 
     @cached_property
     def raw(self) -> RawResource:
@@ -680,10 +668,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     @cached_property
     def datasets(self) -> AsyncDatasetsResource:
         return AsyncDatasetsResource(self._client)
-
-    @cached_property
-    def indicator_types(self) -> AsyncIndicatorTypesResource:
-        return AsyncIndicatorTypesResource(self._client)
 
     @cached_property
     def raw(self) -> AsyncRawResource:
@@ -1181,10 +1165,6 @@ class ThreatEventsResourceWithRawResponse:
         return DatasetsResourceWithRawResponse(self._threat_events.datasets)
 
     @cached_property
-    def indicator_types(self) -> IndicatorTypesResourceWithRawResponse:
-        return IndicatorTypesResourceWithRawResponse(self._threat_events.indicator_types)
-
-    @cached_property
     def raw(self) -> RawResourceWithRawResponse:
         return RawResourceWithRawResponse(self._threat_events.raw)
 
@@ -1271,10 +1251,6 @@ class AsyncThreatEventsResourceWithRawResponse:
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
         return AsyncDatasetsResourceWithRawResponse(self._threat_events.datasets)
-
-    @cached_property
-    def indicator_types(self) -> AsyncIndicatorTypesResourceWithRawResponse:
-        return AsyncIndicatorTypesResourceWithRawResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> AsyncRawResourceWithRawResponse:
@@ -1365,10 +1341,6 @@ class ThreatEventsResourceWithStreamingResponse:
         return DatasetsResourceWithStreamingResponse(self._threat_events.datasets)
 
     @cached_property
-    def indicator_types(self) -> IndicatorTypesResourceWithStreamingResponse:
-        return IndicatorTypesResourceWithStreamingResponse(self._threat_events.indicator_types)
-
-    @cached_property
     def raw(self) -> RawResourceWithStreamingResponse:
         return RawResourceWithStreamingResponse(self._threat_events.raw)
 
@@ -1455,10 +1427,6 @@ class AsyncThreatEventsResourceWithStreamingResponse:
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
         return AsyncDatasetsResourceWithStreamingResponse(self._threat_events.datasets)
-
-    @cached_property
-    def indicator_types(self) -> AsyncIndicatorTypesResourceWithStreamingResponse:
-        return AsyncIndicatorTypesResourceWithStreamingResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> AsyncRawResourceWithStreamingResponse:

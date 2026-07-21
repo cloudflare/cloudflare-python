@@ -52,5 +52,4 @@ from .event_tag_create_response import EventTagCreateResponse as EventTagCreateR
 from .event_tag_delete_response import EventTagDeleteResponse as EventTagDeleteResponse
 from .relationship_list_response import RelationshipListResponse as RelationshipListResponse
 from .target_industry_list_params import TargetIndustryListParams as TargetIndustryListParams
-from .indicator_type_list_response import IndicatorTypeListResponse as IndicatorTypeListResponse
 from .target_industry_list_response import TargetIndustryListResponse as TargetIndustryListResponse
