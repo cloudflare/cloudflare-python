@@ -73,6 +73,7 @@ if TYPE_CHECKING:
         tenants,
         workers,
         accounts,
+        ai_audit,
         aisearch,
         alerting,
         firewall,
@@ -121,6 +122,7 @@ if TYPE_CHECKING:
         dcv_delegation,
         email_security,
         load_balancers,
+        analytics_query,
         cloud_connector,
         ddos_protection,
         durable_objects,
@@ -135,6 +137,7 @@ if TYPE_CHECKING:
         token_validation,
         browser_rendering,
         mtls_certificates,
+        registrar_sandbox,
         schema_validation,
         url_normalization,
         custom_nameservers,
@@ -191,6 +194,7 @@ if TYPE_CHECKING:
     from .resources.tenants.tenants import TenantsResource, AsyncTenantsResource
     from .resources.workers.workers import WorkersResource, AsyncWorkersResource
     from .resources.accounts.accounts import AccountsResource, AsyncAccountsResource
+    from .resources.ai_audit.ai_audit import AIAuditResource, AsyncAIAuditResource
     from .resources.aisearch.aisearch import AISearchResource, AsyncAISearchResource
     from .resources.alerting.alerting import AlertingResource, AsyncAlertingResource
     from .resources.firewall.firewall import FirewallResource, AsyncFirewallResource
@@ -239,6 +243,7 @@ if TYPE_CHECKING:
     from .resources.dcv_delegation.dcv_delegation import DCVDelegationResource, AsyncDCVDelegationResource
     from .resources.email_security.email_security import EmailSecurityResource, AsyncEmailSecurityResource
     from .resources.load_balancers.load_balancers import LoadBalancersResource, AsyncLoadBalancersResource
+    from .resources.analytics_query.analytics_query import AnalyticsQueryResource, AsyncAnalyticsQueryResource
     from .resources.cloud_connector.cloud_connector import CloudConnectorResource, AsyncCloudConnectorResource
     from .resources.ddos_protection.ddos_protection import DDoSProtectionResource, AsyncDDoSProtectionResource
     from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
@@ -253,6 +258,7 @@ if TYPE_CHECKING:
     from .resources.token_validation.token_validation import TokenValidationResource, AsyncTokenValidationResource
     from .resources.browser_rendering.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
     from .resources.mtls_certificates.mtls_certificates import MTLSCertificatesResource, AsyncMTLSCertificatesResource
+    from .resources.registrar_sandbox.registrar_sandbox import RegistrarSandboxResource, AsyncRegistrarSandboxResource
     from .resources.schema_validation.schema_validation import SchemaValidationResource, AsyncSchemaValidationResource
     from .resources.url_normalization.url_normalization import URLNormalizationResource, AsyncURLNormalizationResource
     from .resources.custom_nameservers.custom_nameservers import (
@@ -494,6 +500,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.acm import ACMResource
 
         return ACMResource(self)
+
+    @cached_property
+    def analytics_query(self) -> AnalyticsQueryResource:
+        from .resources.analytics_query import AnalyticsQueryResource
+
+        return AnalyticsQueryResource(self)
 
     @cached_property
     def argo(self) -> ArgoResource:
@@ -898,6 +910,116 @@ class Cloudflare(SyncAPIClient):
         return RegistrarResource(self)
 
     @cached_property
+    def registrar_sandbox(self) -> RegistrarSandboxResource:
+        """
+        Use the Registrar Sandbox API to test domain search, availability checks,
+        registration, and domain management flows without buying real domains.
+
+        **This API is a test environment for the production Registrar API.**
+
+        ## Prerequisites
+
+        Before using this API, make sure you have:
+
+        1. **Cloudflare account** — the caller must have a valid Cloudflare account.
+        2. **API authentication** — create an API token with Registrar Sandbox permissions.
+
+        ## How the Sandbox API differs from the production Registrar API
+
+        Because the Sandbox API is intended for testing, it behaves differently from
+        the production Registrar API in a few important ways:
+
+        1. **No billing** — you will not be charged real money for purchasing a domain.
+        2. **No real domains** — purchased domains are test records and will not be
+          reachable on the Internet.
+        3. **No DNS zones** — purchasing a domain does not create a zone resource.
+        4. **No Registration Express Mode** — you must provide full contact data.
+
+        Sandbox purchases are still persisted. If you purchase a domain in the sandbox,
+        that domain will not be available for others to purchase in the sandbox.
+
+        ## Terminology: domain extension
+
+        Throughout this API, "extension" refers to the domain extension part of a fully
+        qualified domain name — the portion after the registrable label. For example,
+        in `example.co.uk`, the extension is `co.uk` (not just `uk`). This covers both
+        top-level domains like `com` and multi-level extensions like `co.uk`. This is
+        distinct from other uses of the word "extension" (e.g., EPP extensions).
+
+        ## Supported extensions
+
+        The Sandbox API currently supports programmatic registration for these
+        extensions:
+
+        `com`, `net`
+
+        The production Registrar API supports 40+ extensions.
+
+        Cloudflare Registrar supports 400+ extensions in the dashboard. Extensions
+        not listed above can be registered at `https://dash.cloudflare.com/{account_id}/domains/registrations`.
+
+        ## Typical workflow
+
+        1. **Search** — call `GET /domain-search?q={keyword}` to discover available domains.
+        2. **Check** — call `POST /domain-check` with candidate domains to verify real-time
+          availability and pricing.
+        3. **Review the response** — if `registrable: false`, inspect `reason` to
+          understand whether the domain is unavailable, the extension is not supported
+          by this API, the extension is not supported by Cloudflare Registrar at all,
+          or the extension's registry has frozen new registrations.
+        4. **Handle premium domains** — if `tier: premium`, premium registration is
+          not currently supported by this API. The Sandbox API currently supports
+          only `com` and `net`, which do not have premium registrations, but clients
+          should still handle this response for consistency with the production
+          Registrar API. Surface the premium pricing to the user, but do not proceed
+          to `POST /registrations` for that domain.
+        5. **Register** — call `POST /registrations` with the chosen domain name for
+          supported non-premium registrations.
+        6. **Confirm completion** — if the response is `201 Created`, registration
+          completed within the default timeout and no polling is needed.
+        7. **Poll when needed** — if the response is `202 Accepted`, poll
+          `links.self` from the workflow response.
+        8. **Stop for user action** — if `state: action_required`, stop polling and
+          surface `context.action` to the user.
+          The workflow will not resolve on its own.
+        9. **Continue when blocked** — if `state: blocked`, continue polling and
+          inform the user that a third party, such as the extension registry or losing
+          registrar, is delaying progress.
+        10. **Review failures before retrying** — if `state: failed`, review
+          `error.code` and `error.message`, then decide whether user action or a new
+          Check call is needed.
+
+        ## Default behavior for mutating operations
+
+        By default, mutating operations such as create and update hold the connection
+        for a bounded, server-defined amount of time while the operation completes.
+        In most cases, the response contains a completed workflow status and no
+        polling is required.
+
+        - **Completed within the synchronous wait window:** Returns `201` (create)
+        or `200` (update) with a `workflow_status` where `state: succeeded` and
+        `completed: true`.
+        - **Still processing after the synchronous wait window:** Returns
+        `202 Accepted` with a `workflow_status` where `completed: false`. Use
+        the `links.self` URL to poll for completion.
+
+        ## Non-blocking mode
+
+        To receive an immediate `202 Accepted` response without waiting, send the
+        `Prefer: respond-async` request header (RFC 7240). The server will acknowledge
+        it with a `Preference-Applied: respond-async` response header.
+
+        ## Polling
+
+        When the response is `202`, poll the workflow status endpoint indicated by
+        `links.self` in the response body until the workflow reaches a terminal
+        state or requires user action.
+        """
+        from .resources.registrar_sandbox import RegistrarSandboxResource
+
+        return RegistrarSandboxResource(self)
+
+    @cached_property
     def request_tracers(self) -> RequestTracersResource:
         from .resources.request_tracers import RequestTracersResource
 
@@ -1172,6 +1294,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.ai import AIResource
 
         return AIResource(self)
+
+    @cached_property
+    def ai_audit(self) -> AIAuditResource:
+        from .resources.ai_audit import AIAuditResource
+
+        return AIAuditResource(self)
 
     @cached_property
     def aisearch(self) -> AISearchResource:
@@ -1554,6 +1682,12 @@ class AsyncCloudflare(AsyncAPIClient):
         from .resources.acm import AsyncACMResource
 
         return AsyncACMResource(self)
+
+    @cached_property
+    def analytics_query(self) -> AsyncAnalyticsQueryResource:
+        from .resources.analytics_query import AsyncAnalyticsQueryResource
+
+        return AsyncAnalyticsQueryResource(self)
 
     @cached_property
     def argo(self) -> AsyncArgoResource:
@@ -1958,6 +2092,116 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncRegistrarResource(self)
 
     @cached_property
+    def registrar_sandbox(self) -> AsyncRegistrarSandboxResource:
+        """
+        Use the Registrar Sandbox API to test domain search, availability checks,
+        registration, and domain management flows without buying real domains.
+
+        **This API is a test environment for the production Registrar API.**
+
+        ## Prerequisites
+
+        Before using this API, make sure you have:
+
+        1. **Cloudflare account** — the caller must have a valid Cloudflare account.
+        2. **API authentication** — create an API token with Registrar Sandbox permissions.
+
+        ## How the Sandbox API differs from the production Registrar API
+
+        Because the Sandbox API is intended for testing, it behaves differently from
+        the production Registrar API in a few important ways:
+
+        1. **No billing** — you will not be charged real money for purchasing a domain.
+        2. **No real domains** — purchased domains are test records and will not be
+          reachable on the Internet.
+        3. **No DNS zones** — purchasing a domain does not create a zone resource.
+        4. **No Registration Express Mode** — you must provide full contact data.
+
+        Sandbox purchases are still persisted. If you purchase a domain in the sandbox,
+        that domain will not be available for others to purchase in the sandbox.
+
+        ## Terminology: domain extension
+
+        Throughout this API, "extension" refers to the domain extension part of a fully
+        qualified domain name — the portion after the registrable label. For example,
+        in `example.co.uk`, the extension is `co.uk` (not just `uk`). This covers both
+        top-level domains like `com` and multi-level extensions like `co.uk`. This is
+        distinct from other uses of the word "extension" (e.g., EPP extensions).
+
+        ## Supported extensions
+
+        The Sandbox API currently supports programmatic registration for these
+        extensions:
+
+        `com`, `net`
+
+        The production Registrar API supports 40+ extensions.
+
+        Cloudflare Registrar supports 400+ extensions in the dashboard. Extensions
+        not listed above can be registered at `https://dash.cloudflare.com/{account_id}/domains/registrations`.
+
+        ## Typical workflow
+
+        1. **Search** — call `GET /domain-search?q={keyword}` to discover available domains.
+        2. **Check** — call `POST /domain-check` with candidate domains to verify real-time
+          availability and pricing.
+        3. **Review the response** — if `registrable: false`, inspect `reason` to
+          understand whether the domain is unavailable, the extension is not supported
+          by this API, the extension is not supported by Cloudflare Registrar at all,
+          or the extension's registry has frozen new registrations.
+        4. **Handle premium domains** — if `tier: premium`, premium registration is
+          not currently supported by this API. The Sandbox API currently supports
+          only `com` and `net`, which do not have premium registrations, but clients
+          should still handle this response for consistency with the production
+          Registrar API. Surface the premium pricing to the user, but do not proceed
+          to `POST /registrations` for that domain.
+        5. **Register** — call `POST /registrations` with the chosen domain name for
+          supported non-premium registrations.
+        6. **Confirm completion** — if the response is `201 Created`, registration
+          completed within the default timeout and no polling is needed.
+        7. **Poll when needed** — if the response is `202 Accepted`, poll
+          `links.self` from the workflow response.
+        8. **Stop for user action** — if `state: action_required`, stop polling and
+          surface `context.action` to the user.
+          The workflow will not resolve on its own.
+        9. **Continue when blocked** — if `state: blocked`, continue polling and
+          inform the user that a third party, such as the extension registry or losing
+          registrar, is delaying progress.
+        10. **Review failures before retrying** — if `state: failed`, review
+          `error.code` and `error.message`, then decide whether user action or a new
+          Check call is needed.
+
+        ## Default behavior for mutating operations
+
+        By default, mutating operations such as create and update hold the connection
+        for a bounded, server-defined amount of time while the operation completes.
+        In most cases, the response contains a completed workflow status and no
+        polling is required.
+
+        - **Completed within the synchronous wait window:** Returns `201` (create)
+        or `200` (update) with a `workflow_status` where `state: succeeded` and
+        `completed: true`.
+        - **Still processing after the synchronous wait window:** Returns
+        `202 Accepted` with a `workflow_status` where `completed: false`. Use
+        the `links.self` URL to poll for completion.
+
+        ## Non-blocking mode
+
+        To receive an immediate `202 Accepted` response without waiting, send the
+        `Prefer: respond-async` request header (RFC 7240). The server will acknowledge
+        it with a `Preference-Applied: respond-async` response header.
+
+        ## Polling
+
+        When the response is `202`, poll the workflow status endpoint indicated by
+        `links.self` in the response body until the workflow reaches a terminal
+        state or requires user action.
+        """
+        from .resources.registrar_sandbox import AsyncRegistrarSandboxResource
+
+        return AsyncRegistrarSandboxResource(self)
+
+    @cached_property
     def request_tracers(self) -> AsyncRequestTracersResource:
         from .resources.request_tracers import AsyncRequestTracersResource
 
@@ -2232,6 +2476,12 @@ class AsyncCloudflare(AsyncAPIClient):
         from .resources.ai import AsyncAIResource
 
         return AsyncAIResource(self)
+
+    @cached_property
+    def ai_audit(self) -> AsyncAIAuditResource:
+        from .resources.ai_audit import AsyncAIAuditResource
+
+        return AsyncAIAuditResource(self)
 
     @cached_property
     def aisearch(self) -> AsyncAISearchResource:
@@ -2534,6 +2784,12 @@ class CloudflareWithRawResponse:
         from .resources.acm import ACMResourceWithRawResponse
 
         return ACMResourceWithRawResponse(self._client.acm)
+
+    @cached_property
+    def analytics_query(self) -> analytics_query.AnalyticsQueryResourceWithRawResponse:
+        from .resources.analytics_query import AnalyticsQueryResourceWithRawResponse
+
+        return AnalyticsQueryResourceWithRawResponse(self._client.analytics_query)
 
     @cached_property
     def argo(self) -> argo.ArgoResourceWithRawResponse:
@@ -2938,6 +3194,116 @@ class CloudflareWithRawResponse:
         return RegistrarResourceWithRawResponse(self._client.registrar)
 
     @cached_property
+    def registrar_sandbox(self) -> registrar_sandbox.RegistrarSandboxResourceWithRawResponse:
+        """
+        Use the Registrar Sandbox API to test domain search, availability checks,
+        registration, and domain management flows without buying real domains.
+
+        **This API is a test environment for the production Registrar API.**
+
+        ## Prerequisites
+
+        Before using this API, make sure you have:
+
+        1. **Cloudflare account** — the caller must have a valid Cloudflare account.
+        2. **API authentication** — create an API token with Registrar Sandbox permissions.
+
+        ## How the Sandbox API differs from the production Registrar API
+
+        Because the Sandbox API is intended for testing, it behaves differently from
+        the production Registrar API in a few important ways:
+
+        1. **No billing** — you will not be charged real money for purchasing a domain.
+        2. **No real domains** — purchased domains are test records and will not be
+          reachable on the Internet.
+        3. **No DNS zones** — purchasing a domain does not create a zone resource.
+        4. **No Registration Express Mode** — you must provide full contact data.
+
+        Sandbox purchases are still persisted. If you purchase a domain in the sandbox,
+        that domain will not be available for others to purchase in the sandbox.
+
+        ## Terminology: domain extension
+
+        Throughout this API, "extension" refers to the domain extension part of a fully
+        qualified domain name — the portion after the registrable label. For example,
+        in `example.co.uk`, the extension is `co.uk` (not just `uk`). This covers both
+        top-level domains like `com` and multi-level extensions like `co.uk`. This is
+        distinct from other uses of the word "extension" (e.g., EPP extensions).
+
+        ## Supported extensions
+
+        The Sandbox API currently supports programmatic registration for these
+        extensions:
+
+        `com`, `net`
+
+        The production Registrar API supports 40+ extensions.
+
+        Cloudflare Registrar supports 400+ extensions in the dashboard. Extensions
+        not listed above can be registered at `https://dash.cloudflare.com/{account_id}/domains/registrations`.
+
+        ## Typical workflow
+
+        1. **Search** — call `GET /domain-search?q={keyword}` to discover available domains.
+        2. **Check** — call `POST /domain-check` with candidate domains to verify real-time
+          availability and pricing.
+        3. **Review the response** — if `registrable: false`, inspect `reason` to
+          understand whether the domain is unavailable, the extension is not supported
+          by this API, the extension is not supported by Cloudflare Registrar at all,
+          or the extension's registry has frozen new registrations.
+        4. **Handle premium domains** — if `tier: premium`, premium registration is
+          not currently supported by this API. The Sandbox API currently supports
+          only `com` and `net`, which do not have premium registrations, but clients
+          should still handle this response for consistency with the production
+          Registrar API. Surface the premium pricing to the user, but do not proceed
+          to `POST /registrations` for that domain.
+        5. **Register** — call `POST /registrations` with the chosen domain name for
+          supported non-premium registrations.
+        6. **Confirm completion** — if the response is `201 Created`, registration
+          completed within the default timeout and no polling is needed.
+        7. **Poll when needed** — if the response is `202 Accepted`, poll
+          `links.self` from the workflow response.
+        8. **Stop for user action** — if `state: action_required`, stop polling and
+          surface `context.action` to the user.
+          The workflow will not resolve on its own.
+        9. **Continue when blocked** — if `state: blocked`, continue polling and
+          inform the user that a third party, such as the extension registry or losing
+          registrar, is delaying progress.
+        10. **Review failures before retrying** — if `state: failed`, review
+          `error.code` and `error.message`, then decide whether user action or a new
+          Check call is needed.
+
+        ## Default behavior for mutating operations
+
+        By default, mutating operations such as create and update hold the connection
+        for a bounded, server-defined amount of time while the operation completes.
+        In most cases, the response contains a completed workflow status and no
+        polling is required.
+
+        - **Completed within the synchronous wait window:** Returns `201` (create)
+        or `200` (update) with a `workflow_status` where `state: succeeded` and
+        `completed: true`.
+        - **Still processing after the synchronous wait window:** Returns
+        `202 Accepted` with a `workflow_status` where `completed: false`. Use
+        the `links.self` URL to poll for completion.
+
+        ## Non-blocking mode
+
+        To receive an immediate `202 Accepted` response without waiting, send the
+        `Prefer: respond-async` request header (RFC 7240). The server will acknowledge
+        it with a `Preference-Applied: respond-async` response header.
+
+        ## Polling
+
+        When the response is `202`, poll the workflow status endpoint indicated by
+        `links.self` in the response body until the workflow reaches a terminal
+        state or requires user action.
+        """
+        from .resources.registrar_sandbox import RegistrarSandboxResourceWithRawResponse
+
+        return RegistrarSandboxResourceWithRawResponse(self._client.registrar_sandbox)
+
+    @cached_property
     def request_tracers(self) -> request_tracers.RequestTracersResourceWithRawResponse:
         from .resources.request_tracers import RequestTracersResourceWithRawResponse
 
@@ -3218,6 +3584,12 @@ class CloudflareWithRawResponse:
         return AIResourceWithRawResponse(self._client.ai)
 
     @cached_property
+    def ai_audit(self) -> ai_audit.AIAuditResourceWithRawResponse:
+        from .resources.ai_audit import AIAuditResourceWithRawResponse
+
+        return AIAuditResourceWithRawResponse(self._client.ai_audit)
+
+    @cached_property
     def aisearch(self) -> aisearch.AISearchResourceWithRawResponse:
         from .resources.aisearch import AISearchResourceWithRawResponse
 
@@ -3343,6 +3715,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.acm import AsyncACMResourceWithRawResponse
 
         return AsyncACMResourceWithRawResponse(self._client.acm)
+
+    @cached_property
+    def analytics_query(self) -> analytics_query.AsyncAnalyticsQueryResourceWithRawResponse:
+        from .resources.analytics_query import AsyncAnalyticsQueryResourceWithRawResponse
+
+        return AsyncAnalyticsQueryResourceWithRawResponse(self._client.analytics_query)
 
     @cached_property
     def argo(self) -> argo.AsyncArgoResourceWithRawResponse:
@@ -3749,6 +4127,116 @@ class AsyncCloudflareWithRawResponse:
         return AsyncRegistrarResourceWithRawResponse(self._client.registrar)
 
     @cached_property
+    def registrar_sandbox(self) -> registrar_sandbox.AsyncRegistrarSandboxResourceWithRawResponse:
+        """
+        Use the Registrar Sandbox API to test domain search, availability checks,
+        registration, and domain management flows without buying real domains.
+
+        **This API is a test environment for the production Registrar API.**
+
+        ## Prerequisites
+
+        Before using this API, make sure you have:
+
+        1. **Cloudflare account** — the caller must have a valid Cloudflare account.
+        2. **API authentication** — create an API token with Registrar Sandbox permissions.
+
+        ## How the Sandbox API differs from the production Registrar API
+
+        Because the Sandbox API is intended for testing, it behaves differently from
+        the production Registrar API in a few important ways:
+
+        1. **No billing** — you will not be charged real money for purchasing a domain.
+        2. **No real domains** — purchased domains are test records and will not be
+          reachable on the Internet.
+        3. **No DNS zones** — purchasing a domain does not create a zone resource.
+        4. **No Registration Express Mode** — you must provide full contact data.
+
+        Sandbox purchases are still persisted. If you purchase a domain in the sandbox,
+        that domain will not be available for others to purchase in the sandbox.
+
+        ## Terminology: domain extension
+
+        Throughout this API, "extension" refers to the domain extension part of a fully
+        qualified domain name — the portion after the registrable label. For example,
+        in `example.co.uk`, the extension is `co.uk` (not just `uk`). This covers both
+        top-level domains like `com` and multi-level extensions like `co.uk`. This is
+        distinct from other uses of the word "extension" (e.g., EPP extensions).
+
+        ## Supported extensions
+
+        The Sandbox API currently supports programmatic registration for these
+        extensions:
+
+        `com`, `net`
+
+        The production Registrar API supports 40+ extensions.
+
+        Cloudflare Registrar supports 400+ extensions in the dashboard. Extensions
+        not listed above can be registered at `https://dash.cloudflare.com/{account_id}/domains/registrations`.
+
+        ## Typical workflow
+
+        1. **Search** — call `GET /domain-search?q={keyword}` to discover available domains.
+        2. **Check** — call `POST /domain-check` with candidate domains to verify real-time
+          availability and pricing.
+        3. **Review the response** — if `registrable: false`, inspect `reason` to
+          understand whether the domain is unavailable, the extension is not supported
+          by this API, the extension is not supported by Cloudflare Registrar at all,
+          or the extension's registry has frozen new registrations.
+        4. **Handle premium domains** — if `tier: premium`, premium registration is
+          not currently supported by this API. The Sandbox API currently supports
+          only `com` and `net`, which do not have premium registrations, but clients
+          should still handle this response for consistency with the production
+          Registrar API. Surface the premium pricing to the user, but do not proceed
+          to `POST /registrations` for that domain.
+        5. **Register** — call `POST /registrations` with the chosen domain name for
+          supported non-premium registrations.
+        6. **Confirm completion** — if the response is `201 Created`, registration
+          completed within the default timeout and no polling is needed.
+        7. **Poll when needed** — if the response is `202 Accepted`, poll
+          `links.self` from the workflow response.
+        8. **Stop for user action** — if `state: action_required`, stop polling and
+          surface `context.action` to the user.
+          The workflow will not resolve on its own.
+        9. **Continue when blocked** — if `state: blocked`, continue polling and
+          inform the user that a third party, such as the extension registry or losing
+          registrar, is delaying progress.
+        10. **Review failures before retrying** — if `state: failed`, review
+          `error.code` and `error.message`, then decide whether user action or a new
+          Check call is needed.
+
+        ## Default behavior for mutating operations
+
+        By default, mutating operations such as create and update hold the connection
+        for a bounded, server-defined amount of time while the operation completes.
+        In most cases, the response contains a completed workflow status and no
+        polling is required.
+
+        - **Completed within the synchronous wait window:** Returns `201` (create)
+        or `200` (update) with a `workflow_status` where `state: succeeded` and
+        `completed: true`.
+        - **Still processing after the synchronous wait window:** Returns
+        `202 Accepted` with a `workflow_status` where `completed: false`. Use
+        the `links.self` URL to poll for completion.
+
+        ## Non-blocking mode
+
+        To receive an immediate `202 Accepted` response without waiting, send the
+        `Prefer: respond-async` request header (RFC 7240). The server will acknowledge
+        it with a `Preference-Applied: respond-async` response header.
+
+        ## Polling
+
+        When the response is `202`, poll the workflow status endpoint indicated by
+        `links.self` in the response body until the workflow reaches a terminal
+        state or requires user action.
+        """
+        from .resources.registrar_sandbox import AsyncRegistrarSandboxResourceWithRawResponse
+
+        return AsyncRegistrarSandboxResourceWithRawResponse(self._client.registrar_sandbox)
+
+    @cached_property
     def request_tracers(self) -> request_tracers.AsyncRequestTracersResourceWithRawResponse:
         from .resources.request_tracers import AsyncRequestTracersResourceWithRawResponse
 
@@ -4029,6 +4517,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncAIResourceWithRawResponse(self._client.ai)
 
     @cached_property
+    def ai_audit(self) -> ai_audit.AsyncAIAuditResourceWithRawResponse:
+        from .resources.ai_audit import AsyncAIAuditResourceWithRawResponse
+
+        return AsyncAIAuditResourceWithRawResponse(self._client.ai_audit)
+
+    @cached_property
     def aisearch(self) -> aisearch.AsyncAISearchResourceWithRawResponse:
         from .resources.aisearch import AsyncAISearchResourceWithRawResponse
 
@@ -4154,6 +4648,12 @@ class CloudflareWithStreamedResponse:
         from .resources.acm import ACMResourceWithStreamingResponse
 
         return ACMResourceWithStreamingResponse(self._client.acm)
+
+    @cached_property
+    def analytics_query(self) -> analytics_query.AnalyticsQueryResourceWithStreamingResponse:
+        from .resources.analytics_query import AnalyticsQueryResourceWithStreamingResponse
+
+        return AnalyticsQueryResourceWithStreamingResponse(self._client.analytics_query)
 
     @cached_property
     def argo(self) -> argo.ArgoResourceWithStreamingResponse:
@@ -4560,6 +5060,116 @@ class CloudflareWithStreamedResponse:
         return RegistrarResourceWithStreamingResponse(self._client.registrar)
 
     @cached_property
+    def registrar_sandbox(self) -> registrar_sandbox.RegistrarSandboxResourceWithStreamingResponse:
+        """
+        Use the Registrar Sandbox API to test domain search, availability checks,
+        registration, and domain management flows without buying real domains.
+
+        **This API is a test environment for the production Registrar API.**
+
+        ## Prerequisites
+
+        Before using this API, make sure you have:
+
+        1. **Cloudflare account** — the caller must have a valid Cloudflare account.
+        2. **API authentication** — create an API token with Registrar Sandbox permissions.
+
+        ## How the Sandbox API differs from the production Registrar API
+
+        Because the Sandbox API is intended for testing, it behaves differently from
+        the production Registrar API in a few important ways:
+
+        1. **No billing** — you will not be charged real money for purchasing a domain.
+        2. **No real domains** — purchased domains are test records and will not be
+          reachable on the Internet.
+        3. **No DNS zones** — purchasing a domain does not create a zone resource.
+        4. **No Registration Express Mode** — you must provide full contact data.
+
+        Sandbox purchases are still persisted. If you purchase a domain in the sandbox,
+        that domain will not be available for others to purchase in the sandbox.
+
+        ## Terminology: domain extension
+
+        Throughout this API, "extension" refers to the domain extension part of a fully
+        qualified domain name — the portion after the registrable label. For example,
+        in `example.co.uk`, the extension is `co.uk` (not just `uk`). This covers both
+        top-level domains like `com` and multi-level extensions like `co.uk`. This is
+        distinct from other uses of the word "extension" (e.g., EPP extensions).
+
+        ## Supported extensions
+
+        The Sandbox API currently supports programmatic registration for these
+        extensions:
+
+        `com`, `net`
+
+        The production Registrar API supports 40+ extensions.
+
+        Cloudflare Registrar supports 400+ extensions in the dashboard. Extensions
+        not listed above can be registered at `https://dash.cloudflare.com/{account_id}/domains/registrations`.
+
+        ## Typical workflow
+
+        1. **Search** — call `GET /domain-search?q={keyword}` to discover available domains.
+        2. **Check** — call `POST /domain-check` with candidate domains to verify real-time
+          availability and pricing.
+        3. **Review the response** — if `registrable: false`, inspect `reason` to
+          understand whether the domain is unavailable, the extension is not supported
+          by this API, the extension is not supported by Cloudflare Registrar at all,
+          or the extension's registry has frozen new registrations.
+        4. **Handle premium domains** — if `tier: premium`, premium registration is
+          not currently supported by this API. The Sandbox API currently supports
+          only `com` and `net`, which do not have premium registrations, but clients
+          should still handle this response for consistency with the production
+          Registrar API. Surface the premium pricing to the user, but do not proceed
+          to `POST /registrations` for that domain.
+        5. **Register** — call `POST /registrations` with the chosen domain name for
+          supported non-premium registrations.
+        6. **Confirm completion** — if the response is `201 Created`, registration
+          completed within the default timeout and no polling is needed.
+        7. **Poll when needed** — if the response is `202 Accepted`, poll
+          `links.self` from the workflow response.
+        8. **Stop for user action** — if `state: action_required`, stop polling and
+          surface `context.action` to the user.
+          The workflow will not resolve on its own.
+        9. **Continue when blocked** — if `state: blocked`, continue polling and
+          inform the user that a third party, such as the extension registry or losing
+          registrar, is delaying progress.
+        10. **Review failures before retrying** — if `state: failed`, review
+          `error.code` and `error.message`, then decide whether user action or a new
+          Check call is needed.
+
+        ## Default behavior for mutating operations
+
+        By default, mutating operations such as create and update hold the connection
+        for a bounded, server-defined amount of time while the operation completes.
+        In most cases, the response contains a completed workflow status and no
+        polling is required.
+
+        - **Completed within the synchronous wait window:** Returns `201` (create)
+        or `200` (update) with a `workflow_status` where `state: succeeded` and
+        `completed: true`.
+        - **Still processing after the synchronous wait window:** Returns
+        `202 Accepted` with a `workflow_status` where `completed: false`. Use
+        the `links.self` URL to poll for completion.
+
+        ## Non-blocking mode
+
+        To receive an immediate `202 Accepted` response without waiting, send the
+        `Prefer: respond-async` request header (RFC 7240). The server will acknowledge
+        it with a `Preference-Applied: respond-async` response header.
+
+        ## Polling
+
+        When the response is `202`, poll the workflow status endpoint indicated by
+        `links.self` in the response body until the workflow reaches a terminal
+        state or requires user action.
+        """
+        from .resources.registrar_sandbox import RegistrarSandboxResourceWithStreamingResponse
+
+        return RegistrarSandboxResourceWithStreamingResponse(self._client.registrar_sandbox)
+
+    @cached_property
     def request_tracers(self) -> request_tracers.RequestTracersResourceWithStreamingResponse:
         from .resources.request_tracers import RequestTracersResourceWithStreamingResponse
 
@@ -4840,6 +5450,12 @@ class CloudflareWithStreamedResponse:
         return AIResourceWithStreamingResponse(self._client.ai)
 
     @cached_property
+    def ai_audit(self) -> ai_audit.AIAuditResourceWithStreamingResponse:
+        from .resources.ai_audit import AIAuditResourceWithStreamingResponse
+
+        return AIAuditResourceWithStreamingResponse(self._client.ai_audit)
+
+    @cached_property
     def aisearch(self) -> aisearch.AISearchResourceWithStreamingResponse:
         from .resources.aisearch import AISearchResourceWithStreamingResponse
 
@@ -4965,6 +5581,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.acm import AsyncACMResourceWithStreamingResponse
 
         return AsyncACMResourceWithStreamingResponse(self._client.acm)
+
+    @cached_property
+    def analytics_query(self) -> analytics_query.AsyncAnalyticsQueryResourceWithStreamingResponse:
+        from .resources.analytics_query import AsyncAnalyticsQueryResourceWithStreamingResponse
+
+        return AsyncAnalyticsQueryResourceWithStreamingResponse(self._client.analytics_query)
 
     @cached_property
     def argo(self) -> argo.AsyncArgoResourceWithStreamingResponse:
@@ -5375,6 +5997,116 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncRegistrarResourceWithStreamingResponse(self._client.registrar)
 
     @cached_property
+    def registrar_sandbox(self) -> registrar_sandbox.AsyncRegistrarSandboxResourceWithStreamingResponse:
+        """
+        Use the Registrar Sandbox API to test domain search, availability checks,
+        registration, and domain management flows without buying real domains.
+
+        **This API is a test environment for the production Registrar API.**
+
+        ## Prerequisites
+
+        Before using this API, make sure you have:
+
+        1. **Cloudflare account** — the caller must have a valid Cloudflare account.
+        2. **API authentication** — create an API token with Registrar Sandbox permissions.
+
+        ## How the Sandbox API differs from the production Registrar API
+
+        Because the Sandbox API is intended for testing, it behaves differently from
+        the production Registrar API in a few important ways:
+
+        1. **No billing** — you will not be charged real money for purchasing a domain.
+        2. **No real domains** — purchased domains are test records and will not be
+          reachable on the Internet.
+        3. **No DNS zones** — purchasing a domain does not create a zone resource.
+        4. **No Registration Express Mode** — you must provide full contact data.
+
+        Sandbox purchases are still persisted. If you purchase a domain in the sandbox,
+        that domain will not be available for others to purchase in the sandbox.
+
+        ## Terminology: domain extension
+
+        Throughout this API, "extension" refers to the domain extension part of a fully
+        qualified domain name — the portion after the registrable label. For example,
+        in `example.co.uk`, the extension is `co.uk` (not just `uk`). This covers both
+        top-level domains like `com` and multi-level extensions like `co.uk`. This is
+        distinct from other uses of the word "extension" (e.g., EPP extensions).
+
+        ## Supported extensions
+
+        The Sandbox API currently supports programmatic registration for these
+        extensions:
+
+        `com`, `net`
+
+        The production Registrar API supports 40+ extensions.
+
+        Cloudflare Registrar supports 400+ extensions in the dashboard. Extensions
+        not listed above can be registered at `https://dash.cloudflare.com/{account_id}/domains/registrations`.
+
+        ## Typical workflow
+
+        1. **Search** — call `GET /domain-search?q={keyword}` to discover available domains.
+        2. **Check** — call `POST /domain-check` with candidate domains to verify real-time
+          availability and pricing.
+        3. **Review the response** — if `registrable: false`, inspect `reason` to
+          understand whether the domain is unavailable, the extension is not supported
+          by this API, the extension is not supported by Cloudflare Registrar at all,
+          or the extension's registry has frozen new registrations.
+        4. **Handle premium domains** — if `tier: premium`, premium registration is
+          not currently supported by this API. The Sandbox API currently supports
+          only `com` and `net`, which do not have premium registrations, but clients
+          should still handle this response for consistency with the production
+          Registrar API. Surface the premium pricing to the user, but do not proceed
+          to `POST /registrations` for that domain.
+        5. **Register** — call `POST /registrations` with the chosen domain name for
+          supported non-premium registrations.
+        6. **Confirm completion** — if the response is `201 Created`, registration
+          completed within the default timeout and no polling is needed.
+        7. **Poll when needed** — if the response is `202 Accepted`, poll
+          `links.self` from the workflow response.
+        8. **Stop for user action** — if `state: action_required`, stop polling and
+          surface `context.action` to the user.
+          The workflow will not resolve on its own.
+        9. **Continue when blocked** — if `state: blocked`, continue polling and
+          inform the user that a third party, such as the extension registry or losing
+          registrar, is delaying progress.
+        10. **Review failures before retrying** — if `state: failed`, review
+          `error.code` and `error.message`, then decide whether user action or a new
+          Check call is needed.
+
+        ## Default behavior for mutating operations
+
+        By default, mutating operations such as create and update hold the connection
+        for a bounded, server-defined amount of time while the operation completes.
+        In most cases, the response contains a completed workflow status and no
+        polling is required.
+
+        - **Completed within the synchronous wait window:** Returns `201` (create)
+        or `200` (update) with a `workflow_status` where `state: succeeded` and
+        `completed: true`.
+        - **Still processing after the synchronous wait window:** Returns
+        `202 Accepted` with a `workflow_status` where `completed: false`. Use
+        the `links.self` URL to poll for completion.
+
+        ## Non-blocking mode
+
+        To receive an immediate `202 Accepted` response without waiting, send the
+        `Prefer: respond-async` request header (RFC 7240). The server will acknowledge
+        it with a `Preference-Applied: respond-async` response header.
+
+        ## Polling
+
+        When the response is `202`, poll the workflow status endpoint indicated by
+        `links.self` in the response body until the workflow reaches a terminal
+        state or requires user action.
+        """
+        from .resources.registrar_sandbox import AsyncRegistrarSandboxResourceWithStreamingResponse
+
+        return AsyncRegistrarSandboxResourceWithStreamingResponse(self._client.registrar_sandbox)
+
+    @cached_property
     def request_tracers(self) -> request_tracers.AsyncRequestTracersResourceWithStreamingResponse:
         from .resources.request_tracers import AsyncRequestTracersResourceWithStreamingResponse
 
@@ -5659,6 +6391,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.ai import AsyncAIResourceWithStreamingResponse
 
         return AsyncAIResourceWithStreamingResponse(self._client.ai)
+
+    @cached_property
+    def ai_audit(self) -> ai_audit.AsyncAIAuditResourceWithStreamingResponse:
+        from .resources.ai_audit import AsyncAIAuditResourceWithStreamingResponse
+
+        return AsyncAIAuditResourceWithStreamingResponse(self._client.ai_audit)
 
     @cached_property
     def aisearch(self) -> aisearch.AsyncAISearchResourceWithStreamingResponse:

@@ -204,6 +204,7 @@ class TokensResource(SyncAPIResource):
         self,
         *,
         direction: Literal["asc", "desc"] | Omit = omit,
+        include_expired: bool | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -213,11 +214,15 @@ class TokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Token]:
-        """
-        List all access tokens you created.
+        """List all access tokens you created.
+
+        Results include active, disabled, and
+        recently-expired tokens when include_expired is set to true.
 
         Args:
           direction: Direction to order results.
+
+          include_expired: When true, includes recently-expired tokens in the response.
 
           page: Page number of paginated results.
 
@@ -242,6 +247,7 @@ class TokensResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "include_expired": include_expired,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -510,6 +516,7 @@ class AsyncTokensResource(AsyncAPIResource):
         self,
         *,
         direction: Literal["asc", "desc"] | Omit = omit,
+        include_expired: bool | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -519,11 +526,15 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Token, AsyncV4PagePaginationArray[Token]]:
-        """
-        List all access tokens you created.
+        """List all access tokens you created.
+
+        Results include active, disabled, and
+        recently-expired tokens when include_expired is set to true.
 
         Args:
           direction: Direction to order results.
+
+          include_expired: When true, includes recently-expired tokens in the response.
 
           page: Page number of paginated results.
 
@@ -548,6 +559,7 @@ class AsyncTokensResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "include_expired": include_expired,
                         "page": page,
                         "per_page": per_page,
                     },

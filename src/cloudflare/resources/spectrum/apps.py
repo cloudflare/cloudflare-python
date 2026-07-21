@@ -97,7 +97,7 @@ class AppsResource(SyncAPIResource):
               the application type matches this property exactly.
 
           argo_smart_routing: Enables Argo Smart Routing for this application. Notes: Only available for TCP
-              applications with traffic_type set to "direct".
+              or UDP applications with traffic_type set to "direct".
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
@@ -281,7 +281,7 @@ class AppsResource(SyncAPIResource):
               the application type matches this property exactly.
 
           argo_smart_routing: Enables Argo Smart Routing for this application. Notes: Only available for TCP
-              applications with traffic_type set to "direct".
+              or UDP applications with traffic_type set to "direct".
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
@@ -644,7 +644,7 @@ class AsyncAppsResource(AsyncAPIResource):
               the application type matches this property exactly.
 
           argo_smart_routing: Enables Argo Smart Routing for this application. Notes: Only available for TCP
-              applications with traffic_type set to "direct".
+              or UDP applications with traffic_type set to "direct".
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
@@ -828,7 +828,7 @@ class AsyncAppsResource(AsyncAPIResource):
               the application type matches this property exactly.
 
           argo_smart_routing: Enables Argo Smart Routing for this application. Notes: Only available for TCP
-              applications with traffic_type set to "direct".
+              or UDP applications with traffic_type set to "direct".
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 

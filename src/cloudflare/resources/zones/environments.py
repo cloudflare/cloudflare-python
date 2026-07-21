@@ -62,7 +62,7 @@ class EnvironmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentCreateResponse:
         """
-        Create zone environments
+        Creates environments for a zone.
 
         Args:
           extra_headers: Send extra headers
@@ -101,7 +101,7 @@ class EnvironmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentUpdateResponse:
         """
-        Upsert zone environments
+        Replaces the full environment configuration for a zone.
 
         Args:
           extra_headers: Send extra headers
@@ -139,7 +139,7 @@ class EnvironmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentListResponse:
         """
-        List zone environments
+        Lists configured environments for a zone.
 
         Args:
           extra_headers: Send extra headers
@@ -177,7 +177,7 @@ class EnvironmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentDeleteResponse:
         """
-        Delete zone environment
+        Deletes a zone environment by reference identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -219,7 +219,7 @@ class EnvironmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentEditResponse:
         """
-        Partially update zone environments
+        Applies partial updates to zone environments.
 
         Args:
           extra_headers: Send extra headers
@@ -258,7 +258,7 @@ class EnvironmentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentRollbackResponse:
         """
-        Roll back zone environment
+        Rolls a zone environment back to its previous version.
 
         Args:
           extra_headers: Send extra headers
@@ -323,7 +323,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentCreateResponse:
         """
-        Create zone environments
+        Creates environments for a zone.
 
         Args:
           extra_headers: Send extra headers
@@ -364,7 +364,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentUpdateResponse:
         """
-        Upsert zone environments
+        Replaces the full environment configuration for a zone.
 
         Args:
           extra_headers: Send extra headers
@@ -404,7 +404,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentListResponse:
         """
-        List zone environments
+        Lists configured environments for a zone.
 
         Args:
           extra_headers: Send extra headers
@@ -442,7 +442,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentDeleteResponse:
         """
-        Delete zone environment
+        Deletes a zone environment by reference identifier.
 
         Args:
           extra_headers: Send extra headers
@@ -484,7 +484,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentEditResponse:
         """
-        Partially update zone environments
+        Applies partial updates to zone environments.
 
         Args:
           extra_headers: Send extra headers
@@ -525,7 +525,7 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EnvironmentRollbackResponse:
         """
-        Roll back zone environment
+        Rolls a zone environment back to its previous version.
 
         Args:
           extra_headers: Send extra headers

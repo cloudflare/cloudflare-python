@@ -26,9 +26,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.moq.relays import TokenRotateResponse
+from cloudflare.types.moq.relays import TokenCreateResponse, TokenListResponse, TokenDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/moq/relays/{relay_id}/tokens/rotate">client.moq.relays.tokens.<a href="./src/cloudflare/resources/moq/relays/tokens.py">rotate</a>(relay_id, \*, account_id, \*\*<a href="src/cloudflare/types/moq/relays/token_rotate_params.py">params</a>) -> <a href="./src/cloudflare/types/moq/relays/token_rotate_response.py">Optional[TokenRotateResponse]</a></code>
+- <code title="post /accounts/{account_id}/moq/relays/{relay_id}/tokens">client.moq.relays.tokens.<a href="./src/cloudflare/resources/moq/relays/tokens.py">create</a>(relay_id, \*, account_id, \*\*<a href="src/cloudflare/types/moq/relays/token_create_params.py">params</a>) -> <a href="./src/cloudflare/types/moq/relays/token_create_response.py">Optional[TokenCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/moq/relays/{relay_id}/tokens">client.moq.relays.tokens.<a href="./src/cloudflare/resources/moq/relays/tokens.py">list</a>(relay_id, \*, account_id) -> <a href="./src/cloudflare/types/moq/relays/token_list_response.py">Optional[TokenListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/moq/relays/{relay_id}/tokens/{jti}">client.moq.relays.tokens.<a href="./src/cloudflare/resources/moq/relays/tokens.py">delete</a>(jti, \*, account_id, relay_id) -> <a href="./src/cloudflare/types/moq/relays/token_delete_response.py">TokenDeleteResponse</a></code>

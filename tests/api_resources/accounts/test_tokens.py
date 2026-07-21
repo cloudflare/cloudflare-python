@@ -311,6 +311,7 @@ class TestTokens:
         token = client.accounts.tokens.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
+            include_expired=True,
             page=1,
             per_page=5,
         )
@@ -789,6 +790,7 @@ class TestAsyncTokens:
         token = await async_client.accounts.tokens.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
+            include_expired=True,
             page=1,
             per_page=5,
         )

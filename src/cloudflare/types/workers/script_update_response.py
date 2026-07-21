@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -10,6 +10,8 @@ from .scripts.consumer_script import ConsumerScript
 __all__ = [
     "ScriptUpdateResponse",
     "CacheOptions",
+    "Exports",
+    "ExportsCache",
     "NamedHandler",
     "Observability",
     "ObservabilityLogs",
@@ -47,6 +49,69 @@ class CacheOptions(BaseModel):
 
     This is independent of `enabled`. It can stay true while caching is off, so the
     preference survives turning caching off and back on.
+    """
+
+
+class ExportsCache(BaseModel):
+    """Cache override for this entrypoint.
+
+    It applies only to
+    `type: worker` entries and overrides the Worker's global
+    `cache_options.enabled` for that entrypoint.
+    """
+
+    enabled: bool
+    """Whether caching is enabled for this entrypoint."""
+
+
+class Exports(BaseModel):
+    """
+    A single entry in the `exports` map, keyed by export name (a
+    `WorkerEntrypoint` class name, a Durable Object class name, or
+    `default` for the Worker's default export). Worker entrypoint
+    entries set `type: worker` and may carry `cache` configuration
+    for that entrypoint. Durable Object entries set
+    `type: durable-object` and carry additional provisioning fields.
+    """
+
+    type: Literal["worker", "durable-object"]
+    """The kind of export."""
+
+    cache: Optional[ExportsCache] = None
+    """Cache override for this entrypoint.
+
+    It applies only to `type: worker` entries and overrides the Worker's global
+    `cache_options.enabled` for that entrypoint.
+    """
+
+    state: Optional[Literal["created", "deleted", "renamed", "transferred", "expecting-transfer"]] = None
+    """Lifecycle state of the export entry.
+
+    Defaults to `created` (a normal, live export) when omitted.
+
+    `deleted`, `renamed`, and `transferred` are tombstones: write-only lifecycle
+    operations that retire, rename, or hand off a provisioned Durable Object
+    namespace. They are applied at upload and are filtered out of GET responses, so
+    a read only ever returns `created` or `expecting-transfer`.
+
+    `expecting-transfer` is a live export whose data is being received from another
+    script via the two-phase transfer flow; it carries `storage` and
+    `transfer_from`.
+    """
+
+    storage: Optional[Literal["sqlite", "legacy-kv"]] = None
+    """Storage backend for a `type: durable-object` export.
+
+    Required for live Durable Object entries (`created` and `expecting-transfer`).
+    `sqlite` selects SQLite-backed storage; `legacy-kv` selects the legacy key-value
+    storage.
+    """
+
+    transfer_from: Optional[str] = None
+    """Source script for a `state: expecting-transfer` entry.
+
+    The namespace on this script is materialised from the source script's data via
+    the pending-transfer flow. Present on reads for `expecting-transfer` entries.
     """
 
 
@@ -344,6 +409,14 @@ class ScriptUpdateResponse(BaseModel):
 
     etag: Optional[str] = None
     """Hashed script content, can be used in a If-None-Match header when updating."""
+
+    exports: Optional[Dict[str, Exports]] = None
+    """
+    Declarative exports for the Worker's most recent version, including Durable
+    Object classes (with their `storage` backend) and named Worker entrypoints.
+    Tombstoned lifecycle entries are omitted, so only live exports (`created` and
+    `expecting-transfer`) are returned.
+    """
 
     handlers: Optional[List[str]] = None
     """The names of handlers exported as part of the default export."""

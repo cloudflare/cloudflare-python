@@ -112,7 +112,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DLPSettings]:
         """
-        Delete (reset) DLP account-level settings to initial values.
+        Deletes account-level DLP settings and returns the initial values.
 
         Args:
           extra_headers: Send extra headers
@@ -205,7 +205,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DLPSettings]:
         """
-        Get DLP account-level settings.
+        Gets the account-level DLP settings.
 
         Args:
           extra_headers: Send extra headers
@@ -319,7 +319,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DLPSettings]:
         """
-        Delete (reset) DLP account-level settings to initial values.
+        Deletes account-level DLP settings and returns the initial values.
 
         Args:
           extra_headers: Send extra headers
@@ -412,7 +412,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DLPSettings]:
         """
-        Get DLP account-level settings.
+        Gets the account-level DLP settings.
 
         Args:
           extra_headers: Send extra headers

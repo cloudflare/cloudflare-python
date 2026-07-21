@@ -19,8 +19,6 @@ __all__ = ["LoadBalancerCreateParams"]
 
 
 class LoadBalancerCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
-
     default_pools: Required[SequenceNotStr[DefaultPools]]
     """A list of pool IDs ordered by their failover priority.
 
@@ -37,6 +35,12 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     If this hostname already exists as a DNS record in Cloudflare's DNS, the Load
     Balancer will take precedence and the DNS record will not be used.
     """
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     adaptive_routing: AdaptiveRoutingParam
     """
@@ -58,6 +62,9 @@ class LoadBalancerCreateParams(TypedDict, total=False):
 
     description: str
     """Object description."""
+
+    enabled: bool
+    """Whether to enable (the default) this load balancer."""
 
     location_strategy: LocationStrategyParam
     """Controls location-based steering for non-proxied requests.

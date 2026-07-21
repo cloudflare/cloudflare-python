@@ -6,12 +6,25 @@ from typing_extensions import Literal
 
 from ....._models import BaseModel
 
-__all__ = ["Subnet"]
+__all__ = ["Subnet", "Capacity"]
+
+
+class Capacity(BaseModel):
+    """IP capacity information for the subnet."""
+
+    total: Optional[int] = None
+    """Total number of assignable IPs in the subnet."""
+
+    used: Optional[int] = None
+    """Number of assigned IPs in the subnet."""
 
 
 class Subnet(BaseModel):
     id: Optional[str] = None
     """The UUID of the subnet."""
+
+    capacity: Optional[Capacity] = None
+    """IP capacity information for the subnet."""
 
     comment: Optional[str] = None
     """An optional description of the subnet."""
@@ -37,5 +50,5 @@ class Subnet(BaseModel):
     network: Optional[str] = None
     """The private IPv4 or IPv6 range defining the subnet, in CIDR notation."""
 
-    subnet_type: Optional[Literal["cloudflare_source", "warp"]] = None
+    subnet_type: Optional[Literal["cloudflare_source", "initial_resolved_ip", "warp"]] = None
     """The type of subnet."""

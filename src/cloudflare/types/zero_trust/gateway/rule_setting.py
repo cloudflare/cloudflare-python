@@ -290,8 +290,12 @@ class RuleSetting(BaseModel):
     add_headers: Optional[Dict[str, List[str]]] = None
     """Add custom headers to allowed requests as key-value pairs.
 
-    Use header names as keys that map to arrays of header values. Settable only for
-    `http` rules with the action set to `allow`.
+    Use header names as keys that map to arrays of header values. Header values may
+    contain `@{selector.name}` variable references that are interpolated at the
+    edge. Use `@@{` to escape a literal `@{`. A maximum of 20 header operations
+    (add + set + delete) is allowed per policy. Each header name may not exceed 256
+    bytes and each header value may not exceed 4 KB. Settable only for `http` rules
+    with the action set to `allow`.
     """
 
     allow_child_bypass: Optional[bool] = None
@@ -343,6 +347,14 @@ class RuleSetting(BaseModel):
     """Configure session check behavior.
 
     Settable only for `l4` and `http` rules with the action set to `allow`.
+    """
+
+    delete_headers: Optional[List[str]] = None
+    """Remove headers from allowed requests by name.
+
+    A maximum of 20 header operations (add + set + delete) is allowed per policy.
+    Each header name may not exceed 256 bytes. Settable only for `http` rules with
+    the action set to `allow`.
     """
 
     dns_resolvers: Optional[DNSResolvers] = None
@@ -447,6 +459,17 @@ class RuleSetting(BaseModel):
     resolver. Cannot set when 'dns_resolvers' specified or 'resolve_dns_internally'
     is set. Only valid when a rule's action set to 'resolve'. Settable only for
     `dns_resolver` rules.
+    """
+
+    set_headers: Optional[Dict[str, List[str]]] = None
+    """Replace existing headers on allowed requests with the specified key-value pairs.
+
+    If a header does not exist, it is added. Header values may contain
+    `@{selector.name}` variable references that are interpolated at the edge. Use
+    `@@{` to escape a literal `@{`. A maximum of 20 header operations (add + set +
+    delete) is allowed per policy. Each header name may not exceed 256 bytes and
+    each header value may not exceed 4 KB. Settable only for `http` rules with the
+    action set to `allow`.
     """
 
     untrusted_cert: Optional[UntrustedCERT] = None

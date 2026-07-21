@@ -138,6 +138,7 @@ from cloudflare.types.cloudforce_one import (
     ThreatEventCreateResponse,
     ThreatEventListResponse,
     ThreatEventBulkCreateResponse,
+    ThreatEventBulkCreateRelationshipsResponse,
     ThreatEventEditResponse,
     ThreatEventGetResponse,
 )
@@ -148,8 +149,142 @@ Methods:
 - <code title="post /accounts/{account_id}/cloudforce-one/events/create">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">create</a>(\*, path_account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_create_response.py">ThreatEventCreateResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/events">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_list_response.py">ThreatEventListResponse</a></code>
 - <code title="post /accounts/{account_id}/cloudforce-one/events/create/bulk">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">bulk_create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_bulk_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_bulk_create_response.py">ThreatEventBulkCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/cloudforce-one/events/create/bulk/relationships">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">bulk_create_relationships</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_bulk_create_relationships_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_bulk_create_relationships_response.py">ThreatEventBulkCreateRelationshipsResponse</a></code>
 - <code title="patch /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">edit</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_edit_response.py">ThreatEventEditResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">get</a>(event_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_get_response.py">ThreatEventGetResponse</a></code>
+
+### Aggregate
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events import AggregateListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/aggregate">client.cloudforce_one.threat_events.aggregate.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/aggregate.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/aggregate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/aggregate_list_response.py">AggregateListResponse</a></code>
+
+### Graphql
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events import GraphqlCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/events/graphql">client.cloudforce_one.threat_events.graphql.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/graphql.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/graphql_create_response.py">GraphqlCreateResponse</a></code>
+
+### Graph
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events import GraphListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/graph">client.cloudforce_one.threat_events.graph.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/graph.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/graph_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/graph_list_response.py">GraphListResponse</a></code>
+
+### Queries
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events import (
+    QueryCreateResponse,
+    QueryListResponse,
+    QueryEditResponse,
+    QueryGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/events/queries/create">client.cloudforce_one.threat_events.queries.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/queries.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/query_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/query_create_response.py">QueryCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/queries">client.cloudforce_one.threat_events.queries.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/queries.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/query_list_response.py">QueryListResponse</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/events/queries/{query_id}">client.cloudforce_one.threat_events.queries.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/queries.py">delete</a>(query_id, \*, account_id) -> None</code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/events/queries/{query_id}">client.cloudforce_one.threat_events.queries.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/queries.py">edit</a>(query_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/query_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/query_edit_response.py">QueryEditResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/queries/{query_id}">client.cloudforce_one.threat_events.queries.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/queries.py">get</a>(query_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/query_get_response.py">QueryGetResponse</a></code>
+
+### Relationships
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events import RelationshipListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/{event_id}/relationships">client.cloudforce_one.threat_events.relationships.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/relationships.py">list</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/relationship_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/relationship_list_response.py">RelationshipListResponse</a></code>
+
+### Indicators
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events import IndicatorListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/indicators">client.cloudforce_one.threat_events.indicators.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/indicators/indicators.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/indicator_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/indicator_list_response.py">IndicatorListResponse</a></code>
+
+#### Aggregate
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.indicators import AggregateListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/indicators/aggregate">client.cloudforce_one.threat_events.indicators.aggregate.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/indicators/aggregate.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/indicators/aggregate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/indicators/aggregate_list_response.py">AggregateListResponse</a></code>
+
+#### Types
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.indicators import TypeListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/indicator-types">client.cloudforce_one.threat_events.indicators.types.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/indicators/types.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/indicators/type_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/indicators/type_list_response.py">TypeListResponse</a></code>
+
+#### ByDataset
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.indicators import (
+    ByDatasetListResponse,
+    ByDatasetGetResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/indicators">client.cloudforce_one.threat_events.indicators.by_dataset.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/indicators/by_dataset/by_dataset.py">list</a>(dataset_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/indicators/by_dataset_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/indicators/by_dataset_list_response.py">ByDatasetListResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/indicators/{indicator_id}">client.cloudforce_one.threat_events.indicators.by_dataset.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/indicators/by_dataset/by_dataset.py">get</a>(indicator_id, \*, account_id, dataset_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/indicators/by_dataset_get_response.py">ByDatasetGetResponse</a></code>
+
+##### Tags
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.indicators.by_dataset import TagListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/indicators/tags">client.cloudforce_one.threat_events.indicators.by_dataset.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/indicators/by_dataset/tags.py">list</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/indicators/by_dataset/tag_list_response.py">TagListResponse</a></code>
 
 ### Attackers
 
@@ -179,11 +314,23 @@ from cloudflare.types.cloudforce_one.threat_events import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/cloudforce-one/events/categories/create">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/category_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_create_response.py">CategoryCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/events/categories">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/category_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_list_response.py">CategoryListResponse</a></code>
-- <code title="delete /accounts/{account_id}/cloudforce-one/events/categories/{category_id}">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories.py">delete</a>(category_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_delete_response.py">CategoryDeleteResponse</a></code>
-- <code title="patch /accounts/{account_id}/cloudforce-one/events/categories/{category_id}">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories.py">edit</a>(category_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/category_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_edit_response.py">CategoryEditResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/events/categories/{category_id}">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories.py">get</a>(category_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_get_response.py">CategoryGetResponse</a></code>
+- <code title="post /accounts/{account_id}/cloudforce-one/events/categories/create">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories/categories.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/category_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_create_response.py">CategoryCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/categories">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories/categories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/category_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_list_response.py">CategoryListResponse</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/events/categories/{category_id}">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories/categories.py">delete</a>(category_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_delete_response.py">CategoryDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/events/categories/{category_id}">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories/categories.py">edit</a>(category_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/category_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_edit_response.py">CategoryEditResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/categories/{category_id}">client.cloudforce_one.threat_events.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories/categories.py">get</a>(category_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/category_get_response.py">CategoryGetResponse</a></code>
+
+#### Catalog
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.categories import CatalogListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/categories/catalog">client.cloudforce_one.threat_events.categories.catalog.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/categories/catalog.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/categories/catalog_list_response.py">CatalogListResponse</a></code>
 
 ### Countries
 
@@ -205,6 +352,7 @@ Types:
 from cloudflare.types.cloudforce_one.threat_events import (
     DatasetCreateResponse,
     DatasetListResponse,
+    DatasetDeleteResponse,
     DatasetEditResponse,
     DatasetGetResponse,
     DatasetRawResponse,
@@ -213,23 +361,24 @@ from cloudflare.types.cloudforce_one.threat_events import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/cloudforce-one/events/dataset/create">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_create_response.py">DatasetCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_list_response.py">DatasetListResponse</a></code>
-- <code title="patch /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">edit</a>(dataset_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_response.py">DatasetEditResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">get</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_get_response.py">DatasetGetResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/events/raw/{dataset_id}/{event_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">raw</a>(event_id, \*, account_id, dataset_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_raw_response.py">DatasetRawResponse</a></code>
+- <code title="post /accounts/{account_id}/cloudforce-one/events/dataset/create">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_create_response.py">DatasetCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_list_response.py">DatasetListResponse</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">delete</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_delete_response.py">DatasetDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">edit</a>(dataset_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_response.py">DatasetEditResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">get</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_get_response.py">DatasetGetResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/raw/{dataset_id}/{event_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">raw</a>(event_id, \*, account_id, dataset_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_raw_response.py">DatasetRawResponse</a></code>
 
-### IndicatorTypes
+#### Events
 
 Types:
 
 ```python
-from cloudflare.types.cloudforce_one.threat_events import IndicatorTypeListResponse
+from cloudflare.types.cloudforce_one.threat_events.datasets import EventGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/cloudforce-one/events/indicatorTypes">client.cloudforce_one.threat_events.indicator_types.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/indicator_types.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/indicator_type_list_response.py">IndicatorTypeListResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/events/{event_id}">client.cloudforce_one.threat_events.datasets.events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/events.py">get</a>(event_id, \*, account_id, dataset_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/datasets/event_get_response.py">EventGetResponse</a></code>
 
 ### Raw
 
@@ -261,12 +410,64 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cloudforce_one.threat_events import TagCreateResponse
+from cloudflare.types.cloudforce_one.threat_events import (
+    TagCreateResponse,
+    TagListResponse,
+    TagDeleteResponse,
+    TagEditResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/cloudforce-one/events/tags/create">client.cloudforce_one.threat_events.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tag_create_response.py">TagCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/cloudforce-one/events/tags/create">client.cloudforce_one.threat_events.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/tags.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tag_create_response.py">TagCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/tags">client.cloudforce_one.threat_events.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/tags.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tag_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tag_list_response.py">TagListResponse</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/events/tags/{tag_uuid}">client.cloudforce_one.threat_events.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/tags.py">delete</a>(tag_uuid, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tag_delete_response.py">TagDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/events/tags/{tag_uuid}">client.cloudforce_one.threat_events.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/tags.py">edit</a>(tag_uuid, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tag_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tag_edit_response.py">TagEditResponse</a></code>
+
+#### Categories
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.tags import (
+    CategoryCreateResponse,
+    CategoryListResponse,
+    CategoryDeleteResponse,
+    CategoryEditResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/events/tags/categories/create">client.cloudforce_one.threat_events.tags.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/categories.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tags/category_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tags/category_create_response.py">CategoryCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/tags/categories">client.cloudforce_one.threat_events.tags.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/categories.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tags/category_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tags/category_list_response.py">CategoryListResponse</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/events/tags/categories/{category_uuid}">client.cloudforce_one.threat_events.tags.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/categories.py">delete</a>(category_uuid, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tags/category_delete_response.py">CategoryDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/events/tags/categories/{category_uuid}">client.cloudforce_one.threat_events.tags.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/categories.py">edit</a>(category_uuid, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tags/category_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tags/category_edit_response.py">CategoryEditResponse</a></code>
+
+#### Indicators
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.tags import IndicatorListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/tags/{tag_uuid}/indicators">client.cloudforce_one.threat_events.tags.indicators.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/indicators/indicators.py">list</a>(tag_uuid, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tags/indicator_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tags/indicator_list_response.py">IndicatorListResponse</a></code>
+
+##### ByDataset
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.tags.indicators import ByDatasetListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/tags/{tag_uuid}/indicators">client.cloudforce_one.threat_events.tags.indicators.by_dataset.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags/indicators/by_dataset.py">list</a>(tag_uuid, \*, account_id, dataset_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tags/indicators/by_dataset_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tags/indicators/by_dataset_list_response.py">ByDatasetListResponse</a></code>
 
 ### EventTags
 
@@ -294,4 +495,28 @@ from cloudflare.types.cloudforce_one.threat_events import TargetIndustryListResp
 
 Methods:
 
-- <code title="get /accounts/{account_id}/cloudforce-one/events/targetIndustries">client.cloudforce_one.threat_events.target_industries.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/target_industries.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/target_industry_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/target_industry_list_response.py">TargetIndustryListResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/targetIndustries">client.cloudforce_one.threat_events.target_industries.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/target_industries/target_industries.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/target_industry_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/target_industry_list_response.py">TargetIndustryListResponse</a></code>
+
+#### ByDataset
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.target_industries import ByDatasetListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/targetIndustries">client.cloudforce_one.threat_events.target_industries.by_dataset.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/target_industries/by_dataset.py">list</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/target_industries/by_dataset_list_response.py">ByDatasetListResponse</a></code>
+
+#### Catalog
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.target_industries import CatalogListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/targetIndustries/catalog">client.cloudforce_one.threat_events.target_industries.catalog.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/target_industries/catalog.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/target_industries/catalog_list_response.py">CatalogListResponse</a></code>

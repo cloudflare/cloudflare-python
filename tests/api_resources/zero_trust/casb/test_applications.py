@@ -66,7 +66,7 @@ class TestApplications:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         application = client.zero_trust.casb.applications.get(
-            slug="GITHUB",
+            application_id="BITBUCKET",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ApplicationGetResponse, application, path=["response"])
@@ -74,7 +74,7 @@ class TestApplications:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.casb.applications.with_raw_response.get(
-            slug="GITHUB",
+            application_id="BITBUCKET",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -86,7 +86,7 @@ class TestApplications:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.casb.applications.with_streaming_response.get(
-            slug="GITHUB",
+            application_id="BITBUCKET",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -101,7 +101,7 @@ class TestApplications:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.casb.applications.with_raw_response.get(
-                slug="GITHUB",
+                application_id="BITBUCKET",
                 account_id="",
             )
 
@@ -160,7 +160,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.casb.applications.get(
-            slug="GITHUB",
+            application_id="BITBUCKET",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ApplicationGetResponse, application, path=["response"])
@@ -168,7 +168,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.casb.applications.with_raw_response.get(
-            slug="GITHUB",
+            application_id="BITBUCKET",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -180,7 +180,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.casb.applications.with_streaming_response.get(
-            slug="GITHUB",
+            application_id="BITBUCKET",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -195,6 +195,6 @@ class TestAsyncApplications:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.casb.applications.with_raw_response.get(
-                slug="GITHUB",
+                application_id="BITBUCKET",
                 account_id="",
             )

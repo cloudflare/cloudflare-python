@@ -195,12 +195,11 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
-        """Create a new instance.
+        """
+        Create a new AI Search instance with the given configuration.
 
         Args:
-          id: AI Search instance ID.
-
-        Lowercase alphanumeric, hyphens, and underscores.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
@@ -432,12 +431,11 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """Update instance.
+        """
+        Update the configuration of an AI Search instance.
 
         Args:
-          cache_ttl: Cache entry TTL in seconds.
-
-        Allowed values: 600 (10min), 1800 (30min), 3600
+          cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
@@ -526,7 +524,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[InstanceListResponse]:
         """
-        List instances.
+        List all AI Search instances in the account.
 
         Args:
           namespace: Filter by namespace.
@@ -587,7 +585,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
         """
-        Delete instance.
+        Permanently delete an AI Search instance and all its indexed data.
 
         Args:
           extra_headers: Send extra headers
@@ -713,7 +711,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceReadResponse:
         """
-        Read instance.
+        Retrieve the configuration and status of an AI Search instance.
 
         Args:
           extra_headers: Send extra headers
@@ -816,7 +814,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceStatsResponse:
         """
-        Retrieves usage statistics for AI Search instances.
+        Retrieve usage and indexing statistics for an AI Search instance.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -994,12 +992,11 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
-        """Create a new instance.
+        """
+        Create a new AI Search instance with the given configuration.
 
         Args:
-          id: AI Search instance ID.
-
-        Lowercase alphanumeric, hyphens, and underscores.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
@@ -1231,12 +1228,11 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """Update instance.
+        """
+        Update the configuration of an AI Search instance.
 
         Args:
-          cache_ttl: Cache entry TTL in seconds.
-
-        Allowed values: 600 (10min), 1800 (30min), 3600
+          cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
@@ -1325,7 +1321,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InstanceListResponse, AsyncV4PagePaginationArray[InstanceListResponse]]:
         """
-        List instances.
+        List all AI Search instances in the account.
 
         Args:
           namespace: Filter by namespace.
@@ -1386,7 +1382,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
         """
-        Delete instance.
+        Permanently delete an AI Search instance and all its indexed data.
 
         Args:
           extra_headers: Send extra headers
@@ -1512,7 +1508,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceReadResponse:
         """
-        Read instance.
+        Retrieve the configuration and status of an AI Search instance.
 
         Args:
           extra_headers: Send extra headers
@@ -1615,7 +1611,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceStatsResponse:
         """
-        Retrieves usage statistics for AI Search instances.
+        Retrieve usage and indexing statistics for an AI Search instance.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.

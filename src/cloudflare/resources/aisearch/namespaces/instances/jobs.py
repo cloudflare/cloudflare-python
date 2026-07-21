@@ -123,7 +123,7 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobUpdateResponse:
         """
-        Updates the status of an AI Search indexing job.
+        Cancel an in-progress indexing job for an AI Search instance.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -428,7 +428,7 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobUpdateResponse:
         """
-        Updates the status of an AI Search indexing job.
+        Cancel an in-progress indexing job for an AI Search instance.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.

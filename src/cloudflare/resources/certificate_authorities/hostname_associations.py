@@ -19,7 +19,6 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.certificate_authorities import hostname_association_get_params, hostname_association_update_params
-from ...types.certificate_authorities.hostname_association import HostnameAssociation
 from ...types.certificate_authorities.hostname_association_get_response import HostnameAssociationGetResponse
 from ...types.certificate_authorities.hostname_association_update_response import HostnameAssociationUpdateResponse
 
@@ -50,7 +49,7 @@ class HostnameAssociationsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        hostnames: SequenceNotStr[HostnameAssociation] | Omit = omit,
+        hostnames: SequenceNotStr[str] | Omit = omit,
         mtls_certificate_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -173,7 +172,7 @@ class AsyncHostnameAssociationsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        hostnames: SequenceNotStr[HostnameAssociation] | Omit = omit,
+        hostnames: SequenceNotStr[str] | Omit = omit,
         mtls_certificate_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

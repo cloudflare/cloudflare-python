@@ -227,6 +227,19 @@ Methods:
 - <code title="patch /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">edit</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connector_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connector_edit_response.py">ConnectorEditResponse</a></code>
 - <code title="get /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">get</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connector_get_response.py">ConnectorGetResponse</a></code>
 
+### Interrupts
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.connectors import InterruptCreateResponse, InterruptListResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/connectors/{connector_id}/interrupts">client.magic_transit.connectors.interrupts.<a href="./src/cloudflare/resources/magic_transit/connectors/interrupts.py">create</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connectors/interrupt_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connectors/interrupt_create_response.py">InterruptCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/interrupts">client.magic_transit.connectors.interrupts.<a href="./src/cloudflare/resources/magic_transit/connectors/interrupts.py">list</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connectors/interrupt_list_response.py">SyncSinglePage[InterruptListResponse]</a></code>
+
 ### Events
 
 Types:

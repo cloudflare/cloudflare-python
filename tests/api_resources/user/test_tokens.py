@@ -263,6 +263,7 @@ class TestTokens:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         token = client.user.tokens.list(
             direction="desc",
+            include_expired=True,
             page=1,
             per_page=5,
         )
@@ -647,6 +648,7 @@ class TestAsyncTokens:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.list(
             direction="desc",
+            include_expired=True,
             page=1,
             per_page=5,
         )

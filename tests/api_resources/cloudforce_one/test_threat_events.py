@@ -16,6 +16,7 @@ from cloudflare.types.cloudforce_one import (
     ThreatEventListResponse,
     ThreatEventCreateResponse,
     ThreatEventBulkCreateResponse,
+    ThreatEventBulkCreateRelationshipsResponse,
 )
 
 # pyright: reportDeprecated=false
@@ -134,6 +135,7 @@ class TestThreatEvents:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         threat_event = client.cloudforce_one.threat_events.list(
             account_id="account_id",
+            cache="from-graph",
             cursor="eyJ2ZXJzaW9uIjoxLCJwb3NpdGlvbiI6eyJkYXRlIjoiMjAyNC0wMS0xMlQxMDowMDowMFoiLCJ1dWlkIjoiYWJjMTIzIn19",
             dataset_id=["string"],
             force_refresh=True,
@@ -307,6 +309,89 @@ class TestThreatEvents:
                 ],
                 dataset_id="durableObjectName",
             )
+
+    @parametrize
+    def test_method_bulk_create_relationships(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            threat_event = client.cloudforce_one.threat_events.bulk_create_relationships(
+                account_id="account_id",
+                data=[
+                    {
+                        "category": "Domain Resolution",
+                        "date": parse_datetime("2022-04-01T00:00:00Z"),
+                        "event": "An attacker registered the domain domain.com",
+                        "raw": {"data": {"foo": "bar"}},
+                        "tlp": "amber",
+                    }
+                ],
+                dataset_id="durableObjectName",
+            )
+
+        assert_matches_type(ThreatEventBulkCreateRelationshipsResponse, threat_event, path=["response"])
+
+    @parametrize
+    def test_raw_response_bulk_create_relationships(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = client.cloudforce_one.threat_events.with_raw_response.bulk_create_relationships(
+                account_id="account_id",
+                data=[
+                    {
+                        "category": "Domain Resolution",
+                        "date": parse_datetime("2022-04-01T00:00:00Z"),
+                        "event": "An attacker registered the domain domain.com",
+                        "raw": {"data": {"foo": "bar"}},
+                        "tlp": "amber",
+                    }
+                ],
+                dataset_id="durableObjectName",
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        threat_event = response.parse()
+        assert_matches_type(ThreatEventBulkCreateRelationshipsResponse, threat_event, path=["response"])
+
+    @parametrize
+    def test_streaming_response_bulk_create_relationships(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with client.cloudforce_one.threat_events.with_streaming_response.bulk_create_relationships(
+                account_id="account_id",
+                data=[
+                    {
+                        "category": "Domain Resolution",
+                        "date": parse_datetime("2022-04-01T00:00:00Z"),
+                        "event": "An attacker registered the domain domain.com",
+                        "raw": {"data": {"foo": "bar"}},
+                        "tlp": "amber",
+                    }
+                ],
+                dataset_id="durableObjectName",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                threat_event = response.parse()
+                assert_matches_type(ThreatEventBulkCreateRelationshipsResponse, threat_event, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_bulk_create_relationships(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                client.cloudforce_one.threat_events.with_raw_response.bulk_create_relationships(
+                    account_id="",
+                    data=[
+                        {
+                            "category": "Domain Resolution",
+                            "date": parse_datetime("2022-04-01T00:00:00Z"),
+                            "event": "An attacker registered the domain domain.com",
+                            "raw": {"data": {"foo": "bar"}},
+                            "tlp": "amber",
+                        }
+                    ],
+                    dataset_id="durableObjectName",
+                )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
@@ -563,6 +648,7 @@ class TestAsyncThreatEvents:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         threat_event = await async_client.cloudforce_one.threat_events.list(
             account_id="account_id",
+            cache="from-graph",
             cursor="eyJ2ZXJzaW9uIjoxLCJwb3NpdGlvbiI6eyJkYXRlIjoiMjAyNC0wMS0xMlQxMDowMDowMFoiLCJ1dWlkIjoiYWJjMTIzIn19",
             dataset_id=["string"],
             force_refresh=True,
@@ -736,6 +822,89 @@ class TestAsyncThreatEvents:
                 ],
                 dataset_id="durableObjectName",
             )
+
+    @parametrize
+    async def test_method_bulk_create_relationships(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            threat_event = await async_client.cloudforce_one.threat_events.bulk_create_relationships(
+                account_id="account_id",
+                data=[
+                    {
+                        "category": "Domain Resolution",
+                        "date": parse_datetime("2022-04-01T00:00:00Z"),
+                        "event": "An attacker registered the domain domain.com",
+                        "raw": {"data": {"foo": "bar"}},
+                        "tlp": "amber",
+                    }
+                ],
+                dataset_id="durableObjectName",
+            )
+
+        assert_matches_type(ThreatEventBulkCreateRelationshipsResponse, threat_event, path=["response"])
+
+    @parametrize
+    async def test_raw_response_bulk_create_relationships(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.cloudforce_one.threat_events.with_raw_response.bulk_create_relationships(
+                account_id="account_id",
+                data=[
+                    {
+                        "category": "Domain Resolution",
+                        "date": parse_datetime("2022-04-01T00:00:00Z"),
+                        "event": "An attacker registered the domain domain.com",
+                        "raw": {"data": {"foo": "bar"}},
+                        "tlp": "amber",
+                    }
+                ],
+                dataset_id="durableObjectName",
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        threat_event = await response.parse()
+        assert_matches_type(ThreatEventBulkCreateRelationshipsResponse, threat_event, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_bulk_create_relationships(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            async with async_client.cloudforce_one.threat_events.with_streaming_response.bulk_create_relationships(
+                account_id="account_id",
+                data=[
+                    {
+                        "category": "Domain Resolution",
+                        "date": parse_datetime("2022-04-01T00:00:00Z"),
+                        "event": "An attacker registered the domain domain.com",
+                        "raw": {"data": {"foo": "bar"}},
+                        "tlp": "amber",
+                    }
+                ],
+                dataset_id="durableObjectName",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                threat_event = await response.parse()
+                assert_matches_type(ThreatEventBulkCreateRelationshipsResponse, threat_event, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_bulk_create_relationships(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                await async_client.cloudforce_one.threat_events.with_raw_response.bulk_create_relationships(
+                    account_id="",
+                    data=[
+                        {
+                            "category": "Domain Resolution",
+                            "date": parse_datetime("2022-04-01T00:00:00Z"),
+                            "event": "An attacker registered the domain domain.com",
+                            "raw": {"data": {"foo": "bar"}},
+                            "tlp": "amber",
+                        }
+                    ],
+                    dataset_id="durableObjectName",
+                )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize

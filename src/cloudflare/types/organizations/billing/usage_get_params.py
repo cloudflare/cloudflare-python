@@ -20,9 +20,6 @@ class UsageGetParams(TypedDict, total=False):
     billing period. The maximum date range is 31 days.
     """
 
-    metric: str
-    """Filter results by billable metric id (e.g., workers_standard_requests)."""
-
     to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """End date for the usage query (ISO 8601).
 

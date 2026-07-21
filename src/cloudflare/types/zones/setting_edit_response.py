@@ -39,40 +39,40 @@ __all__ = [
     "SettingEditResponse",
     "ZonesCacheRulesAegis",
     "ZonesCacheRulesAegisValue",
-    "ZonesSchemasAlwaysUseHTTPS",
-    "ZonesSchemasAutomaticHTTPSRewrites",
-    "ZonesSchemasBrowserCacheTTL",
-    "ZonesSchemasBrowserCheck",
-    "ZonesSchemasCacheLevel",
+    "ZonesAlwaysUseHTTPS2",
+    "ZonesAutomaticHTTPSRewrites2",
+    "ZonesBrowserCacheTTL2",
+    "ZonesBrowserCheck2",
+    "ZonesCacheLevel2",
     "ZonesChinaNetworkEnabled",
     "ZonesContentConverter",
     "ZonesCNAMEFlattening",
-    "ZonesSchemasEdgeCacheTTL",
-    "ZonesSchemasEmailObfuscation",
-    "ZonesSchemasIPGeolocation",
+    "ZonesEdgeCacheTTL2",
+    "ZonesEmailObfuscation2",
+    "ZonesIPGeolocation2",
     "ZonesMaxUpload",
-    "ZonesSchemasMirage",
-    "ZonesSchemasOpportunisticEncryption",
-    "ZonesSchemasOriginErrorPagePassThru",
+    "ZonesMirage2",
+    "ZonesOpportunisticEncryption2",
+    "ZonesOriginErrorPagePassThru2",
     "ZonesCacheRulesOriginH2MaxStreams",
     "ZonesCacheRulesOriginMaxHTTPVersion",
-    "ZonesSchemasPolish",
+    "ZonesPolish2",
     "ZonesPrivacyPass",
     "ZonesRedirectsForAITraining",
     "ZonesReplaceInsecureJS",
-    "ZonesSchemasResponseBuffering",
-    "ZonesSchemasRocketLoader",
+    "ZonesResponseBuffering2",
+    "ZonesRocketLoader2",
     "ZonesSchemasAutomaticPlatformOptimization",
     "ZonesSearchForAgents",
-    "ZonesSchemasSecurityLevel",
+    "ZonesSecurityLevel2",
     "ZonesSha1Support",
-    "ZonesSchemasSortQueryStringForCache",
-    "ZonesSchemasSSL",
+    "ZonesSortQueryStringForCache2",
+    "ZonesSSL2",
     "ZonesTLS1_2Only",
     "ZonesTransformations",
     "ZonesTransformationsAllowedOrigins",
-    "ZonesSchemasTrueClientIPHeader",
-    "ZonesSchemasWAF",
+    "ZonesTrueClientIPHeader2",
+    "ZonesWAF2",
 ]
 
 
@@ -104,7 +104,7 @@ class ZonesCacheRulesAegis(BaseModel):
     """Value of the zone setting."""
 
 
-class ZonesSchemasAlwaysUseHTTPS(BaseModel):
+class ZonesAlwaysUseHTTPS2(BaseModel):
     """
     Reply to all requests for URLs that use "http" with a 301 redirect to the equivalent "https" URL. If you only want to redirect for a subset of requests, consider creating an "Always use HTTPS" page rule.
     """
@@ -125,7 +125,7 @@ class ZonesSchemasAlwaysUseHTTPS(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasAutomaticHTTPSRewrites(BaseModel):
+class ZonesAutomaticHTTPSRewrites2(BaseModel):
     """Enable the Automatic HTTPS Rewrites feature for this zone."""
 
     id: Literal["automatic_https_rewrites"]
@@ -144,7 +144,7 @@ class ZonesSchemasAutomaticHTTPSRewrites(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasBrowserCacheTTL(BaseModel):
+class ZonesBrowserCacheTTL2(BaseModel):
     """
     Browser Cache TTL (in seconds) specifies how long Cloudflare-cached resources will remain on your visitors' computers. Cloudflare will honor any larger times specified by your server. (https://support.cloudflare.com/hc/en-us/articles/200168276).
     """
@@ -165,7 +165,7 @@ class ZonesSchemasBrowserCacheTTL(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasBrowserCheck(BaseModel):
+class ZonesBrowserCheck2(BaseModel):
     """
     Browser Integrity Check is similar to Bad Behavior and looks for common HTTP headers abused most commonly by spammers and denies access to your page.  It will also challenge visitors that do not have a user agent or a non standard user agent (also commonly used by abuse bots, crawlers or visitors). (https://support.cloudflare.com/hc/en-us/articles/200170086).
     """
@@ -186,7 +186,7 @@ class ZonesSchemasBrowserCheck(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasCacheLevel(BaseModel):
+class ZonesCacheLevel2(BaseModel):
     """Cache Level functions based off the setting level.
 
     The basic setting will cache most static resources (i.e., css, images, and JavaScript). The simplified setting will ignore the query string when delivering a cached resource. The aggressive setting will cache all static resources, including ones with a query string. (https://support.cloudflare.com/hc/en-us/articles/200168256).
@@ -269,7 +269,7 @@ class ZonesCNAMEFlattening(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasEdgeCacheTTL(BaseModel):
+class ZonesEdgeCacheTTL2(BaseModel):
     """
     Time (in seconds) that a resource will be ensured to remain on Cloudflare's cache servers.
     """
@@ -312,7 +312,7 @@ class ZonesSchemasEdgeCacheTTL(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasEmailObfuscation(BaseModel):
+class ZonesEmailObfuscation2(BaseModel):
     """
     Encrypt email adresses on your web page from bots, while keeping them visible to humans. (https://support.cloudflare.com/hc/en-us/articles/200170016).
     """
@@ -333,7 +333,7 @@ class ZonesSchemasEmailObfuscation(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasIPGeolocation(BaseModel):
+class ZonesIPGeolocation2(BaseModel):
     """
     Enable IP Geolocation to have Cloudflare geolocate visitors to your website and pass the country code to you. (https://support.cloudflare.com/hc/en-us/articles/200168236).
     """
@@ -373,7 +373,7 @@ class ZonesMaxUpload(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasMirage(BaseModel):
+class ZonesMirage2(BaseModel):
     """Automatically optimize image loading for website visitors on mobile
     devices.
 
@@ -397,7 +397,7 @@ class ZonesSchemasMirage(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasOpportunisticEncryption(BaseModel):
+class ZonesOpportunisticEncryption2(BaseModel):
     """Enables the Opportunistic Encryption feature for a zone."""
 
     id: Literal["opportunistic_encryption"]
@@ -416,7 +416,7 @@ class ZonesSchemasOpportunisticEncryption(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasOriginErrorPagePassThru(BaseModel):
+class ZonesOriginErrorPagePassThru2(BaseModel):
     """
     Cloudflare will proxy customer error pages on any 502,504 errors on origin server instead of showing a default Cloudflare error page. This does not apply to 522 errors and is limited to Enterprise Zones.
     """
@@ -467,7 +467,7 @@ class ZonesCacheRulesOriginMaxHTTPVersion(BaseModel):
     """Value of the Origin Max HTTP Version Setting."""
 
 
-class ZonesSchemasPolish(BaseModel):
+class ZonesPolish2(BaseModel):
     """Removes metadata and compresses your images for faster page load times.
 
     Basic (Lossless): Reduce the size of PNG, JPEG, and GIF files - no impact on visual quality. Basic + JPEG (Lossy): Further reduce the size of JPEG files for faster image loading. Larger JPEGs are converted to progressive images, loading a lower-resolution image first and ending in a higher-resolution version. Not recommended for hi-res photography sites.
@@ -553,7 +553,7 @@ class ZonesReplaceInsecureJS(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasResponseBuffering(BaseModel):
+class ZonesResponseBuffering2(BaseModel):
     """Enables or disables buffering of responses from the proxied server.
 
     Cloudflare may buffer the whole payload to deliver it at once to the client versus allowing it to be delivered in chunks. By default, the proxied server streams directly and is not buffered by Cloudflare. This is limited to Enterprise Zones.
@@ -575,7 +575,7 @@ class ZonesSchemasResponseBuffering(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasRocketLoader(BaseModel):
+class ZonesRocketLoader2(BaseModel):
     """
     Rocket Loader is a general-purpose asynchronous JavaScript optimisation that prioritises rendering your content while loading your site's Javascript asynchronously. Turning on Rocket Loader will immediately improve a web page's rendering time sometimes measured as Time to First Paint (TTFP), and also the `window.onload` time (assuming there is JavaScript on the page). This can have a positive impact on your Google search ranking. When turned on, Rocket Loader will automatically defer the loading of all Javascript referenced in your HTML, with no configuration required. Refer to [Understanding Rocket Loader](https://support.cloudflare.com/hc/articles/200168056) for more information.
     """
@@ -641,7 +641,7 @@ class ZonesSearchForAgents(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasSecurityLevel(BaseModel):
+class ZonesSecurityLevel2(BaseModel):
     """
     Choose the appropriate security profile for your website, which will automatically adjust each of the security settings. If you choose to customize an individual security setting, the profile will become Custom. (https://support.cloudflare.com/hc/en-us/articles/200170056).
     """
@@ -681,7 +681,7 @@ class ZonesSha1Support(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasSortQueryStringForCache(BaseModel):
+class ZonesSortQueryStringForCache2(BaseModel):
     """
     Cloudflare will treat files with the same query strings as the same file in cache, regardless of the order of the query strings. This is limited to Enterprise Zones.
     """
@@ -702,7 +702,7 @@ class ZonesSchemasSortQueryStringForCache(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasSSL(BaseModel):
+class ZonesSSL2(BaseModel):
     """
     SSL encrypts your visitor's connection and safeguards credit card numbers and other personal data to and from your website. SSL can take up to 5 minutes to fully activate. Requires Cloudflare active on your root domain or www domain. Off: no SSL between the visitor and Cloudflare, and no SSL between Cloudflare and your web server  (all HTTP traffic). Flexible: SSL between the visitor and Cloudflare -- visitor sees HTTPS on your site, but no SSL between Cloudflare and your web server. You don't need to have an SSL cert on your web server, but your vistors will still see the site as being HTTPS enabled. Full:  SSL between the visitor and Cloudflare -- visitor sees HTTPS on your site, and SSL between Cloudflare and your web server. You'll need to have your own SSL cert or self-signed cert at the very least. Full (Strict): SSL between the visitor and Cloudflare -- visitor sees HTTPS on your site, and SSL between Cloudflare and your web server. You'll need to have a valid SSL certificate installed on your web server. This certificate must be signed by a certificate authority, have an expiration date in the future, and respond for the request domain name (hostname). (https://support.cloudflare.com/hc/en-us/articles/200170416).
     """
@@ -790,7 +790,7 @@ class ZonesTransformationsAllowedOrigins(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasTrueClientIPHeader(BaseModel):
+class ZonesTrueClientIPHeader2(BaseModel):
     """
     Allows customer to continue to use True Client IP (Akamai feature) in the headers we send to the origin. This is limited to Enterprise Zones.
     """
@@ -811,7 +811,7 @@ class ZonesSchemasTrueClientIPHeader(BaseModel):
     """last time this setting was modified."""
 
 
-class ZonesSchemasWAF(BaseModel):
+class ZonesWAF2(BaseModel):
     """The WAF examines HTTP requests to your website.
 
     It inspects both GET and POST requests and applies rules to help filter out illegitimate traffic from legitimate website visitors. The Cloudflare WAF inspects website addresses or URLs to detect anything out of the ordinary. If the Cloudflare WAF determines suspicious user behavior, then the WAF will 'challenge' the web visitor with a page that asks them to submit a CAPTCHA successfully  to continue their action. If the challenge is failed, the action will be stopped. What this means is that Cloudflare's WAF will block any traffic identified as illegitimate before it reaches your origin web server. (https://support.cloudflare.com/hc/en-us/articles/200172016).
@@ -838,12 +838,12 @@ SettingEditResponse: TypeAlias = Union[
     AdvancedDDoS,
     ZonesCacheRulesAegis,
     AlwaysOnline,
-    ZonesSchemasAlwaysUseHTTPS,
-    ZonesSchemasAutomaticHTTPSRewrites,
+    ZonesAlwaysUseHTTPS2,
+    ZonesAutomaticHTTPSRewrites2,
     Brotli,
-    ZonesSchemasBrowserCacheTTL,
-    ZonesSchemasBrowserCheck,
-    ZonesSchemasCacheLevel,
+    ZonesBrowserCacheTTL2,
+    ZonesBrowserCheck2,
+    ZonesCacheLevel2,
     ChallengeTTL,
     ZonesChinaNetworkEnabled,
     ZonesContentConverter,
@@ -851,50 +851,50 @@ SettingEditResponse: TypeAlias = Union[
     ZonesCNAMEFlattening,
     DevelopmentMode,
     EarlyHints,
-    ZonesSchemasEdgeCacheTTL,
-    ZonesSchemasEmailObfuscation,
+    ZonesEdgeCacheTTL2,
+    ZonesEmailObfuscation2,
     H2Prioritization,
     HotlinkProtection,
     HTTP2,
     HTTP3,
     ImageResizing,
-    ZonesSchemasIPGeolocation,
+    ZonesIPGeolocation2,
     IPV6,
     ZonesMaxUpload,
     MinTLSVersion,
-    ZonesSchemasMirage,
+    ZonesMirage2,
     NEL,
-    ZonesSchemasOpportunisticEncryption,
+    ZonesOpportunisticEncryption2,
     OpportunisticOnion,
     OrangeToOrange,
-    ZonesSchemasOriginErrorPagePassThru,
+    ZonesOriginErrorPagePassThru2,
     ZonesCacheRulesOriginH2MaxStreams,
     ZonesCacheRulesOriginMaxHTTPVersion,
-    ZonesSchemasPolish,
+    ZonesPolish2,
     PrefetchPreload,
     ZonesPrivacyPass,
     ProxyReadTimeout,
     PseudoIPV4,
     ZonesRedirectsForAITraining,
     ZonesReplaceInsecureJS,
-    ZonesSchemasResponseBuffering,
-    ZonesSchemasRocketLoader,
+    ZonesResponseBuffering2,
+    ZonesRocketLoader2,
     ZonesSchemasAutomaticPlatformOptimization,
     ZonesSearchForAgents,
     SecurityHeaders,
-    ZonesSchemasSecurityLevel,
+    ZonesSecurityLevel2,
     ServerSideExcludes,
     ZonesSha1Support,
-    ZonesSchemasSortQueryStringForCache,
-    ZonesSchemasSSL,
+    ZonesSortQueryStringForCache2,
+    ZonesSSL2,
     SSLRecommender,
     ZonesTLS1_2Only,
     TLS1_3,
     TLSClientAuth,
     ZonesTransformations,
     ZonesTransformationsAllowedOrigins,
-    ZonesSchemasTrueClientIPHeader,
-    ZonesSchemasWAF,
+    ZonesTrueClientIPHeader2,
+    ZonesWAF2,
     WebP,
     Websocket,
 ]

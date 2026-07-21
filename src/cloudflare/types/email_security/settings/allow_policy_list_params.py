@@ -41,9 +41,14 @@ class AllowPolicyListParams(TypedDict, total=False):
     pattern: str
 
     pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
-    """
-    Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
-    creating or updating policies, but may be returned for existing entries.
+    """Type of pattern matching.
+
+    - EMAIL: matches a full email address (e.g. `user@example.com`)
+    - DOMAIN: matches a domain name (e.g. `example.com`)
+    - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+      `1.2.3.0/24`). Only globally reachable addresses are accepted.
+    - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
+      may be returned for existing entries.
     """
 
     per_page: int

@@ -56,7 +56,7 @@ class LatestResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LatestListResponse:
         """
-        Get latest Events
+        Gets latest Magic WAN Connector Telemetry Events
 
         Args:
           account_id: Account identifier
@@ -123,7 +123,7 @@ class AsyncLatestResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LatestListResponse:
         """
-        Get latest Events
+        Gets latest Magic WAN Connector Telemetry Events
 
         Args:
           account_id: Account identifier

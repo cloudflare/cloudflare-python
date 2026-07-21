@@ -76,7 +76,7 @@ class SensitivityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SensitivityGroupCreateResponse]:
         """
-        Creates a new sensitivity group.
+        Creates a sensitivity group, optionally from a template.
 
         Args:
           levels: Levels to create with the group. Mutually exclusive with `template_id`.
@@ -128,7 +128,7 @@ class SensitivityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SensitivityGroupUpdateResponse]:
         """
-        Update the attributes of a single sensitivity group.
+        Updates a sensitivity group and its levels.
 
         Args:
           levels: The desired final state of levels.
@@ -187,7 +187,7 @@ class SensitivityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[SensitivityGroupListResponse]:
         """
-        Retrieve all sensitivity groups in an account
+        Lists sensitivity groups configured for the account.
 
         Args:
           extra_headers: Send extra headers
@@ -222,7 +222,7 @@ class SensitivityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single sensitivity group.
+        Deletes a sensitivity group and its levels.
 
         Args:
           extra_headers: Send extra headers
@@ -268,7 +268,7 @@ class SensitivityGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SensitivityGroupGetResponse]:
         """
-        Retrieve a specific sensitivity group.
+        Gets a sensitivity group and its levels.
 
         Args:
           extra_headers: Send extra headers
@@ -342,7 +342,7 @@ class AsyncSensitivityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SensitivityGroupCreateResponse]:
         """
-        Creates a new sensitivity group.
+        Creates a sensitivity group, optionally from a template.
 
         Args:
           levels: Levels to create with the group. Mutually exclusive with `template_id`.
@@ -394,7 +394,7 @@ class AsyncSensitivityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SensitivityGroupUpdateResponse]:
         """
-        Update the attributes of a single sensitivity group.
+        Updates a sensitivity group and its levels.
 
         Args:
           levels: The desired final state of levels.
@@ -453,7 +453,7 @@ class AsyncSensitivityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SensitivityGroupListResponse, AsyncSinglePage[SensitivityGroupListResponse]]:
         """
-        Retrieve all sensitivity groups in an account
+        Lists sensitivity groups configured for the account.
 
         Args:
           extra_headers: Send extra headers
@@ -488,7 +488,7 @@ class AsyncSensitivityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single sensitivity group.
+        Deletes a sensitivity group and its levels.
 
         Args:
           extra_headers: Send extra headers
@@ -534,7 +534,7 @@ class AsyncSensitivityGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SensitivityGroupGetResponse]:
         """
-        Retrieve a specific sensitivity group.
+        Gets a sensitivity group and its levels.
 
         Args:
           extra_headers: Send extra headers

@@ -6,7 +6,54 @@ from typing_extensions import Literal
 
 from ......_models import BaseModel
 
-__all__ = ["ServerUpdateResponse", "ErrorDetails", "UpdatedPrompt", "UpdatedTool"]
+__all__ = [
+    "ServerUpdateResponse",
+    "AuthConfigSummary",
+    "AuthConfigSummaryConfig",
+    "AuthConfigSummaryRegistrationInfo",
+    "ErrorDetails",
+    "UpdatedPrompt",
+    "UpdatedTool",
+]
+
+
+class AuthConfigSummaryConfig(BaseModel):
+    authorization_endpoint: Optional[str] = None
+
+    issuer: Optional[str] = None
+
+    resource: Optional[str] = None
+
+    revocation_endpoint: Optional[str] = None
+
+    token_endpoint: Optional[str] = None
+
+
+class AuthConfigSummaryRegistrationInfo(BaseModel):
+    client_id: Optional[str] = None
+
+    redirect_uris: Optional[List[str]] = None
+
+    scope: Optional[str] = None
+
+    token_endpoint_auth_method: Optional[str] = None
+
+
+class AuthConfigSummary(BaseModel):
+    """Safe subset of auth_credentials surfaced to the dashboard.
+
+    Includes auth_mode (dcr|manual), has_client_secret, client_secret_version, and the OAuth endpoints + client_id for manual servers. Never includes the secret value.
+    """
+
+    auth_mode: Optional[Literal["dcr", "manual"]] = None
+
+    client_secret_version: Optional[float] = None
+
+    config: Optional[AuthConfigSummaryConfig] = None
+
+    has_client_secret: Optional[bool] = None
+
+    registration_info: Optional[AuthConfigSummaryRegistrationInfo] = None
 
 
 class ErrorDetails(BaseModel):
@@ -60,6 +107,14 @@ class ServerUpdateResponse(BaseModel):
 
     tools: List[Dict[str, object]]
 
+    auth_config_summary: Optional[AuthConfigSummary] = None
+    """Safe subset of auth_credentials surfaced to the dashboard.
+
+    Includes auth_mode (dcr|manual), has_client_secret, client_secret_version, and
+    the OAuth endpoints + client_id for manual servers. Never includes the secret
+    value.
+    """
+
     created_at: Optional[datetime] = None
 
     created_by: Optional[str] = None
@@ -90,7 +145,8 @@ class ServerUpdateResponse(BaseModel):
     secure_web_gateway: Optional[bool] = None
     """Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway"""
 
-    status: Optional[str] = None
+    status: Optional[Literal["waiting", "ready", "stale", "error"]] = None
+    """Current sync state of the server"""
 
     updated_prompts: Optional[List[UpdatedPrompt]] = None
 

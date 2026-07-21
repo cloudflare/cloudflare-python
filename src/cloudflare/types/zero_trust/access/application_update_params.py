@@ -555,7 +555,8 @@ class SelfHostedApplicationOAuthConfigurationDynamicClientRegistration(TypedDict
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -615,12 +616,12 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 class SelfHostedApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -884,12 +885,12 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 class SaaSApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -1426,7 +1427,8 @@ class BrowserSSHApplicationOAuthConfigurationDynamicClientRegistration(TypedDict
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -1486,12 +1488,12 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 class BrowserSSHApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -2028,7 +2030,8 @@ class BrowserVNCApplicationOAuthConfigurationDynamicClientRegistration(TypedDict
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -2088,12 +2091,12 @@ class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 class BrowserVNCApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -2415,12 +2418,12 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 class AppLauncherApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -2580,12 +2583,12 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -2747,12 +2750,12 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 class BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -2923,12 +2926,12 @@ class GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink(TypedDict
 class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -3072,12 +3075,12 @@ class BookmarkApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 class BookmarkApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -3636,7 +3639,8 @@ class BrowserRDPApplicationOAuthConfigurationDynamicClientRegistration(TypedDict
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -3696,12 +3700,12 @@ class BrowserRDPApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 class BrowserRDPApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -4131,7 +4135,8 @@ class McpServerApplicationOAuthConfigurationDynamicClientRegistration(TypedDict,
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -4191,12 +4196,12 @@ class McpServerApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 class McpServerApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """
@@ -4632,7 +4637,8 @@ class McpServerPortalApplicationOAuthConfigurationDynamicClientRegistration(Type
     allowed_uris: SequenceNotStr[str]
     """The URIs that are allowed as redirect URIs for dynamically registered clients.
 
-    Must use the `https` protocol. Paths may end in `/*` to match all sub-paths.
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
     """
 
     enabled: bool
@@ -4692,12 +4698,12 @@ class McpServerPortalApplicationPolicyAccessAppPolicyLink(TypedDict, total=False
 class McpServerPortalApplicationPolicyUnionMember2ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """

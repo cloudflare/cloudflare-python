@@ -279,7 +279,7 @@ class PortalsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortalReadResponse:
         """
-        Read details of an MCP Portal
+        Read the details of a single MCP Portal, including its configured servers.
 
         Args:
           id: portal id
@@ -559,7 +559,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PortalReadResponse:
         """
-        Read details of an MCP Portal
+        Read the details of a single MCP Portal, including its configured servers.
 
         Args:
           id: portal id

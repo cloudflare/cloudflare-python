@@ -4,13 +4,12 @@ from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .certificate_authority import CertificateAuthority
 
 __all__ = ["TotalTLSGetResponse"]
 
 
 class TotalTLSGetResponse(BaseModel):
-    certificate_authority: Optional[CertificateAuthority] = None
+    certificate_authority: Optional[Literal["google", "lets_encrypt", "ssl_com"]] = None
     """The Certificate Authority that Total TLS certificates will be issued through."""
 
     enabled: Optional[bool] = None

@@ -2,5 +2,4 @@
 
 from __future__ import annotations
 
-from .setup_flow_list_params import SetupFlowListParams as SetupFlowListParams
-from .setup_flow_list_response import SetupFlowListResponse as SetupFlowListResponse
+from .auth_method_list_response import AuthMethodListResponse as AuthMethodListResponse

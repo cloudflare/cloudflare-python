@@ -290,7 +290,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Dataset]:
         """
-        Fetch a specific dataset
+        Gets a dataset and its latest upload status.
 
         Args:
           extra_headers: Send extra headers
@@ -568,7 +568,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Dataset]:
         """
-        Fetch a specific dataset
+        Gets a dataset and its latest upload status.
 
         Args:
           extra_headers: Send extra headers

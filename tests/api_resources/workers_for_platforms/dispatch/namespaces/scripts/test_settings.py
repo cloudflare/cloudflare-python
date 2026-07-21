@@ -55,10 +55,20 @@ class TestSettings:
                     "Admin": {
                         "type": "worker",
                         "cache": {"enabled": True},
+                        "renamed_to": "renamed_to",
+                        "state": "created",
+                        "storage": "sqlite",
+                        "transfer_from": "transfer_from",
+                        "transferred_to": "transferred_to",
                     },
                     "default": {
                         "type": "worker",
                         "cache": {"enabled": False},
+                        "renamed_to": "renamed_to",
+                        "state": "created",
+                        "storage": "sqlite",
+                        "transfer_from": "transfer_from",
+                        "transferred_to": "transferred_to",
                     },
                 },
                 "limits": {
@@ -273,10 +283,20 @@ class TestAsyncSettings:
                     "Admin": {
                         "type": "worker",
                         "cache": {"enabled": True},
+                        "renamed_to": "renamed_to",
+                        "state": "created",
+                        "storage": "sqlite",
+                        "transfer_from": "transfer_from",
+                        "transferred_to": "transferred_to",
                     },
                     "default": {
                         "type": "worker",
                         "cache": {"enabled": False},
+                        "renamed_to": "renamed_to",
+                        "state": "created",
+                        "storage": "sqlite",
+                        "transfer_from": "transfer_from",
+                        "transferred_to": "transferred_to",
                     },
                 },
                 "limits": {

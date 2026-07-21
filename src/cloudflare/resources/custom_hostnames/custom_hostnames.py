@@ -84,6 +84,8 @@ class CustomHostnamesResource(SyncAPIResource):
         zone_id: str,
         hostname: str,
         custom_metadata: Dict[str, str] | Omit = omit,
+        custom_origin_server: str | Omit = omit,
+        custom_origin_sni: str | Omit = omit,
         ssl: custom_hostname_create_params.SSL | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -112,6 +114,15 @@ class CustomHostnamesResource(SyncAPIResource):
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
 
+          custom_origin_server: a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME
+              record.
+
+          custom_origin_sni: A hostname that will be sent to your custom origin server as SNI for TLS
+              handshake. This can be a valid subdomain of the zone or custom origin server
+              name or the string ':request_host_header:' which will cause the host header in
+              the request to be used as SNI. Not configurable with default/fallback origin
+              server.
+
           ssl: SSL properties used when creating the custom hostname.
 
           extra_headers: Send extra headers
@@ -130,6 +141,8 @@ class CustomHostnamesResource(SyncAPIResource):
                 {
                     "hostname": hostname,
                     "custom_metadata": custom_metadata,
+                    "custom_origin_server": custom_origin_server,
+                    "custom_origin_sni": custom_origin_sni,
                     "ssl": ssl,
                 },
                 custom_hostname_create_params.CustomHostnameCreateParams,
@@ -489,6 +502,8 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         zone_id: str,
         hostname: str,
         custom_metadata: Dict[str, str] | Omit = omit,
+        custom_origin_server: str | Omit = omit,
+        custom_origin_sni: str | Omit = omit,
         ssl: custom_hostname_create_params.SSL | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -517,6 +532,15 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
 
+          custom_origin_server: a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME
+              record.
+
+          custom_origin_sni: A hostname that will be sent to your custom origin server as SNI for TLS
+              handshake. This can be a valid subdomain of the zone or custom origin server
+              name or the string ':request_host_header:' which will cause the host header in
+              the request to be used as SNI. Not configurable with default/fallback origin
+              server.
+
           ssl: SSL properties used when creating the custom hostname.
 
           extra_headers: Send extra headers
@@ -535,6 +559,8 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
                 {
                     "hostname": hostname,
                     "custom_metadata": custom_metadata,
+                    "custom_origin_server": custom_origin_server,
+                    "custom_origin_sni": custom_origin_sni,
                     "ssl": ssl,
                 },
                 custom_hostname_create_params.CustomHostnameCreateParams,

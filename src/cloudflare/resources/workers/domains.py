@@ -54,7 +54,6 @@ class DomainsResource(SyncAPIResource):
         account_id: str,
         hostname: str,
         service: str,
-        environment: str | Omit = omit,
         zone_id: str | Omit = omit,
         zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -76,8 +75,6 @@ class DomainsResource(SyncAPIResource):
           service: Name of the Worker associated with the domain. Requests to the configured
               hostname will be routed to this Worker.
 
-          environment: Worker environment associated with the domain.
-
           zone_id: ID of the zone containing the domain hostname.
 
           zone_name: Name of the zone containing the domain hostname.
@@ -98,7 +95,6 @@ class DomainsResource(SyncAPIResource):
                 {
                     "hostname": hostname,
                     "service": service,
-                    "environment": environment,
                     "zone_id": zone_id,
                     "zone_name": zone_name,
                 },
@@ -295,7 +291,6 @@ class AsyncDomainsResource(AsyncAPIResource):
         account_id: str,
         hostname: str,
         service: str,
-        environment: str | Omit = omit,
         zone_id: str | Omit = omit,
         zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -317,8 +312,6 @@ class AsyncDomainsResource(AsyncAPIResource):
           service: Name of the Worker associated with the domain. Requests to the configured
               hostname will be routed to this Worker.
 
-          environment: Worker environment associated with the domain.
-
           zone_id: ID of the zone containing the domain hostname.
 
           zone_name: Name of the zone containing the domain hostname.
@@ -339,7 +332,6 @@ class AsyncDomainsResource(AsyncAPIResource):
                 {
                     "hostname": hostname,
                     "service": service,
-                    "environment": environment,
                     "zone_id": zone_id,
                     "zone_name": zone_name,
                 },

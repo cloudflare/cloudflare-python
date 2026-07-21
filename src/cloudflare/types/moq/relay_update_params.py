@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["RelayUpdateParams", "Config", "ConfigLingeringSubscribe", "ConfigUpstreams", "ConfigUpstreamsUpstream"]
+__all__ = ["RelayUpdateParams", "Config", "ConfigUpstreams", "ConfigUpstreamsUpstream"]
 
 
 class RelayUpdateParams(TypedDict, total=False):
@@ -13,23 +13,20 @@ class RelayUpdateParams(TypedDict, total=False):
     """Cloudflare account identifier."""
 
     config: Config
-    """upstreams and lingering_subscribe are mutually exclusive."""
 
     name: str
-
-
-class ConfigLingeringSubscribe(TypedDict, total=False):
-    enabled: bool
-
-    max_timeout_ms: int
-    """Relay-level ceiling on lingering subscribe timeout (ms). Default 30000."""
 
 
 class ConfigUpstreamsUpstream(TypedDict, total=False):
     """A single upstream MOQT server publisher."""
 
-    url: str
-    """Upstream MOQT server publisher URL."""
+    url: Required[str]
+    """Upstream MOQT server publisher URL.
+
+    Must be an absolute URL with a host and a scheme crique can dial: moqt:// (raw
+    QUIC) or https:// (WebTransport). Validated on update (PUT); rejected
+    with 21013.
+    """
 
 
 class ConfigUpstreams(TypedDict, total=False):
@@ -49,10 +46,6 @@ class ConfigUpstreams(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
-    """upstreams and lingering_subscribe are mutually exclusive."""
-
-    lingering_subscribe: ConfigLingeringSubscribe
-
     upstreams: ConfigUpstreams
     """
     Upstreams are external MOQT server publishers that a relay falls back to when it

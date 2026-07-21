@@ -6,6 +6,7 @@ from typing import Union
 from datetime import date
 from typing_extensions import Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["UsageGetParams"]
@@ -23,8 +24,11 @@ class UsageGetParams(TypedDict, total=False):
     billing period. The maximum date range is 31 days.
     """
 
-    metric: str
-    """Filter results by billable metric id (e.g., workers_standard_requests)."""
+    metric_id: SequenceNotStr[str]
+    """Filter results by one or more billable metric ids.
+
+    Repeat the parameter to filter by multiple metrics. Maximum 10 values.
+    """
 
     to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """End date for the usage query (ISO 8601).

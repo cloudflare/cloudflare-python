@@ -14,6 +14,7 @@ __all__ = [
     "CredentialsKeyAPIShieldCredentialsJWTKeyRSA",
     "CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256",
     "CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384",
+    "CredentialsKeyAPIShieldCredentialsJWTKeyOctRequest",
 ]
 
 
@@ -22,6 +23,11 @@ class ConfigurationCreateParams(TypedDict, total=False):
     """Identifier."""
 
     credentials: Required[Credentials]
+    """Request payload for create and PUT credentials operations.
+
+    Provided keys define the complete stored key set. Key identities (`{alg,kid}`)
+    must be unique.
+    """
 
     description: Required[str]
 
@@ -95,12 +101,34 @@ class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384(TypedDict, total=False):
     """Y EC coordinate"""
 
 
+class CredentialsKeyAPIShieldCredentialsJWTKeyOctRequest(TypedDict, total=False):
+    """JSON representation of a symmetric key for create/PUT requests."""
+
+    alg: Required[Literal["HS256", "HS384", "HS512"]]
+    """Algorithm"""
+
+    k: Required[str]
+    """Symmetric key material. Required for create and PUT update requests."""
+
+    kid: Required[str]
+    """Key ID"""
+
+    kty: Required[Literal["oct"]]
+    """Key Type"""
+
+
 CredentialsKey: TypeAlias = Union[
     CredentialsKeyAPIShieldCredentialsJWTKeyRSA,
     CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256,
     CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384,
+    CredentialsKeyAPIShieldCredentialsJWTKeyOctRequest,
 ]
 
 
 class Credentials(TypedDict, total=False):
+    """Request payload for create and PUT credentials operations.
+
+    Provided keys define the complete stored key set. Key identities (`{alg,kid}`) must be unique.
+    """
+
     keys: Required[Iterable[CredentialsKey]]

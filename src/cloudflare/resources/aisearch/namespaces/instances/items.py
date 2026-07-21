@@ -76,6 +76,7 @@ class ItemsResource(SyncAPIResource):
         account_id: str,
         name: str,
         item_id: str | Omit = omit,
+        key: str | Omit = omit,
         metadata_filter: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -98,6 +99,9 @@ class ItemsResource(SyncAPIResource):
         Lowercase alphanumeric, hyphens, and underscores.
 
           item_id: Filter items by their unique ID. Returns at most one item.
+
+          key: Filter items by their exact key (object key / filename). Keys are unique per
+              source, so combine with `source` to disambiguate across data sources.
 
           metadata_filter:
               JSON-encoded metadata filter using Vectorize filter syntax. Examples:
@@ -141,6 +145,7 @@ class ItemsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "item_id": item_id,
+                        "key": key,
                         "metadata_filter": metadata_filter,
                         "page": page,
                         "per_page": per_page,
@@ -596,8 +601,7 @@ class ItemsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemUploadResponse:
         """
-        Uploads a file to a managed AI Search instance via multipart/form-data (max
-        4MB).
+        Uploads a file to a managed AI Search instance via multipart/form-data.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -669,6 +673,7 @@ class AsyncItemsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         item_id: str | Omit = omit,
+        key: str | Omit = omit,
         metadata_filter: str | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -691,6 +696,9 @@ class AsyncItemsResource(AsyncAPIResource):
         Lowercase alphanumeric, hyphens, and underscores.
 
           item_id: Filter items by their unique ID. Returns at most one item.
+
+          key: Filter items by their exact key (object key / filename). Keys are unique per
+              source, so combine with `source` to disambiguate across data sources.
 
           metadata_filter:
               JSON-encoded metadata filter using Vectorize filter syntax. Examples:
@@ -734,6 +742,7 @@ class AsyncItemsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "item_id": item_id,
+                        "key": key,
                         "metadata_filter": metadata_filter,
                         "page": page,
                         "per_page": per_page,
@@ -1189,8 +1198,7 @@ class AsyncItemsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemUploadResponse:
         """
-        Uploads a file to a managed AI Search instance via multipart/form-data (max
-        4MB).
+        Uploads a file to a managed AI Search instance via multipart/form-data.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.

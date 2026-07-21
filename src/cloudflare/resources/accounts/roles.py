@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -45,6 +46,7 @@ class RolesResource(SyncAPIResource):
         """
         return RolesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("Use /accounts/{account_id}/iam/permission_groups instead.")
     def list(
         self,
         *,
@@ -97,6 +99,7 @@ class RolesResource(SyncAPIResource):
             model=Role,
         )
 
+    @typing_extensions.deprecated("Use /accounts/{account_id}/iam/permission_groups/{permission_group_id} instead.")
     def get(
         self,
         role_id: str,
@@ -162,6 +165,7 @@ class AsyncRolesResource(AsyncAPIResource):
         """
         return AsyncRolesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("Use /accounts/{account_id}/iam/permission_groups instead.")
     def list(
         self,
         *,
@@ -214,6 +218,7 @@ class AsyncRolesResource(AsyncAPIResource):
             model=Role,
         )
 
+    @typing_extensions.deprecated("Use /accounts/{account_id}/iam/permission_groups/{permission_group_id} instead.")
     async def get(
         self,
         role_id: str,
@@ -263,11 +268,15 @@ class RolesResourceWithRawResponse:
     def __init__(self, roles: RolesResource) -> None:
         self._roles = roles
 
-        self.list = to_raw_response_wrapper(
-            roles.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                roles.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            roles.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                roles.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -275,11 +284,15 @@ class AsyncRolesResourceWithRawResponse:
     def __init__(self, roles: AsyncRolesResource) -> None:
         self._roles = roles
 
-        self.list = async_to_raw_response_wrapper(
-            roles.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                roles.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            roles.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                roles.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -287,11 +300,15 @@ class RolesResourceWithStreamingResponse:
     def __init__(self, roles: RolesResource) -> None:
         self._roles = roles
 
-        self.list = to_streamed_response_wrapper(
-            roles.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                roles.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            roles.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                roles.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -299,9 +316,13 @@ class AsyncRolesResourceWithStreamingResponse:
     def __init__(self, roles: AsyncRolesResource) -> None:
         self._roles = roles
 
-        self.list = async_to_streamed_response_wrapper(
-            roles.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                roles.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            roles.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                roles.get,  # pyright: ignore[reportDeprecated],
+            )
         )

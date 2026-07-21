@@ -19,7 +19,7 @@ class ItemUploadParams(TypedDict, total=False):
 
 class File(TypedDict, total=False):
     file: Required[FileTypes]
-    """The file to upload (max 4MB). Filename must not exceed 128 characters."""
+    """The file to upload. Filename must not exceed 128 characters."""
 
     metadata: str
     """JSON string of custom metadata key-value pairs."""

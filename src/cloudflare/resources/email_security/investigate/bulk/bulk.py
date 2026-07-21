@@ -105,7 +105,8 @@ class BulkResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkCreateResponse:
         """
-        Create a bulk action job
+        Creates a new bulk action job to move or release messages that match the
+        provided search parameters.
 
         Args:
           account_id: Identifier.
@@ -159,7 +160,7 @@ class BulkResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[BulkListResponse]:
         """
-        List bulk action jobs
+        Returns a paginated list of bulk action jobs for the account.
 
         Args:
           account_id: Identifier.
@@ -260,7 +261,7 @@ class BulkResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkGetResponse:
         """
-        Get bulk action job details
+        Returns the status and details of a specific bulk action job.
 
         Args:
           account_id: Identifier.
@@ -352,7 +353,8 @@ class AsyncBulkResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkCreateResponse:
         """
-        Create a bulk action job
+        Creates a new bulk action job to move or release messages that match the
+        provided search parameters.
 
         Args:
           account_id: Identifier.
@@ -406,7 +408,7 @@ class AsyncBulkResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BulkListResponse, AsyncV4PagePaginationArray[BulkListResponse]]:
         """
-        List bulk action jobs
+        Returns a paginated list of bulk action jobs for the account.
 
         Args:
           account_id: Identifier.
@@ -507,7 +509,7 @@ class AsyncBulkResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkGetResponse:
         """
-        Get bulk action job details
+        Returns the status and details of a specific bulk action job.
 
         Args:
           account_id: Identifier.

@@ -135,199 +135,11 @@ class LoadBalancersResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
-        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
-        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
-        description: str | Omit = omit,
-        location_strategy: LocationStrategyParam | Omit = omit,
-        networks: SequenceNotStr[str] | Omit = omit,
-        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
-        proxied: bool | Omit = omit,
-        random_steering: RandomSteeringParam | Omit = omit,
-        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
-        rules: Iterable[RulesParam] | Omit = omit,
-        session_affinity: SessionAffinity | Omit = omit,
-        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
-        session_affinity_ttl: float | Omit = omit,
-        steering_policy: SteeringPolicy | Omit = omit,
-        ttl: float | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancer:
-        """
-        Create a new load balancer.
-
-        Args:
-          default_pools: A list of pool IDs ordered by their failover priority. Pools defined here are
-              used by default, or when region_pools are not configured for a given region.
-
-          fallback_pool: The pool ID to use when all other pools are detected as unhealthy.
-
-          name: The DNS hostname to associate with your Load Balancer. If this hostname already
-              exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
-              precedence and the DNS record will not be used.
-
-          adaptive_routing: Controls features that modify the routing of requests to pools and origins in
-              response to dynamic conditions, such as during the interval between active
-              health monitoring requests. For example, zero-downtime failover occurs
-              immediately when an origin becomes unavailable due to HTTP 521, 522, or 523
-              response codes. If there is another healthy origin in the same pool, the request
-              is retried once against this alternate origin.
-
-          country_pools: A mapping of country codes to a list of pool IDs (ordered by their failover
-              priority) for the given country. Any country not explicitly defined will fall
-              back to using the corresponding region_pool mapping if it exists else to
-              default_pools.
-
-          description: Object description.
-
-          location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
-              to learn how steering is affected.
-
-          networks: List of networks where Load Balancer or Pool is enabled.
-
-          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
-              (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
-              explicitly defined will fall back to using the corresponding country_pool, then
-              region_pool mapping if it exists else to default_pools.
-
-          proxied: Whether the hostname should be gray clouded (false) or orange clouded (true).
-
-          random_steering: Configures pool weights.
-
-              - `steering_policy="random"`: A random pool is selected with probability
-                proportional to pool weights.
-              - `steering_policy="least_outstanding_requests"`: Use pool weights to scale each
-                pool's outstanding requests.
-              - `steering_policy="least_connections"`: Use pool weights to scale each pool's
-                open connections.
-
-          region_pools: A mapping of region codes to a list of pool IDs (ordered by their failover
-              priority) for the given region. Any regions not explicitly defined will fall
-              back to using default_pools.
-
-          rules: BETA Field Not General Access: A list of rules for this load balancer to
-              execute.
-
-          session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"`. The supported types are: - `"cookie"`: On the first
-              request to a proxied load balancer, a cookie is generated, encoding information
-              of which origin the request will be forwarded to. Subsequent requests, by the
-              same client to the same load balancer, will be sent to the origin server the
-              cookie encodes, for the duration of the cookie and as long as the origin server
-              remains healthy. If the cookie has expired or the origin server is unhealthy,
-              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
-              same as `"cookie"` except the initial origin selection is stable and based on
-              the client's ip address. - `"header"`: On the first request to a proxied load
-              balancer, a session key based on the configured HTTP headers (see
-              `session_affinity_attributes.headers`) is generated, encoding the request
-              headers used for storing in the load balancer session state which origin the
-              request will be forwarded to. Subsequent requests to the load balancer with the
-              same headers will be sent to the same origin server, for the duration of the
-              session and as long as the origin server remains healthy. If the session has
-              been idle for the duration of `session_affinity_ttl` seconds or the origin
-              server is unhealthy, then a new origin server is calculated and used. See
-              `headers` in `session_affinity_attributes` for additional required
-              configuration.
-
-          session_affinity_attributes: Configures attributes for session affinity.
-
-          session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
-              expiry time has been reached, subsequent requests may get sent to a different
-              origin server. The accepted ranges per `session_affinity` policy are: -
-              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
-              explicitly set. The accepted range of values is between [1800, 604800]. -
-              `"header"`: The current default of 1800 seconds will be used unless explicitly
-              set. The accepted range of values is between [30, 3600]. Note: With session
-              affinity by header, sessions only expire after they haven't been used for the
-              number of seconds specified.
-
-          steering_policy: Steering Policy for this load balancer.
-
-              - `"off"`: Use `default_pools`.
-              - `"geo"`: Use `region_pools`/`country_pools`/`pop_pools`. For non-proxied
-                requests, the country for `country_pools` is determined by
-                `location_strategy`.
-              - `"random"`: Select a pool randomly.
-              - `"dynamic_latency"`: Use round trip time to select the closest pool in
-                default_pools (requires pool health checks).
-              - `"proximity"`: Use the pools' latitude and longitude to select the closest
-                pool using the Cloudflare PoP location for proxied requests or the location
-                determined by `location_strategy` for non-proxied requests.
-              - `"least_outstanding_requests"`: Select a pool by taking into consideration
-                `random_steering` weights, as well as each pool's number of outstanding
-                requests. Pools with more pending requests are weighted proportionately less
-                relative to others.
-              - `"least_connections"`: Select a pool by taking into consideration
-                `random_steering` weights, as well as each pool's number of open connections.
-                Pools with more open connections are weighted proportionately less relative to
-                others. Supported for HTTP/1 and HTTP/2 connections.
-              - `""`: Will map to `"geo"` if you use
-                `region_pools`/`country_pools`/`pop_pools` otherwise `"off"`.
-
-          ttl: Time to live (TTL) of the DNS entry for the IP address returned by this load
-              balancer. This only applies to gray-clouded (unproxied) load balancers.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._post(
-            path_template("/zones/{zone_id}/load_balancers", zone_id=zone_id),
-            body=maybe_transform(
-                {
-                    "default_pools": default_pools,
-                    "fallback_pool": fallback_pool,
-                    "name": name,
-                    "adaptive_routing": adaptive_routing,
-                    "country_pools": country_pools,
-                    "description": description,
-                    "location_strategy": location_strategy,
-                    "networks": networks,
-                    "pop_pools": pop_pools,
-                    "proxied": proxied,
-                    "random_steering": random_steering,
-                    "region_pools": region_pools,
-                    "rules": rules,
-                    "session_affinity": session_affinity,
-                    "session_affinity_attributes": session_affinity_attributes,
-                    "session_affinity_ttl": session_affinity_ttl,
-                    "steering_policy": steering_policy,
-                    "ttl": ttl,
-                },
-                load_balancer_create_params.LoadBalancerCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
-            ),
-            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
-        )
-
-    def update(
-        self,
-        load_balancer_id: str,
-        *,
-        zone_id: str,
-        default_pools: SequenceNotStr[DefaultPools],
-        fallback_pool: str,
-        name: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         adaptive_routing: AdaptiveRoutingParam | Omit = omit,
         country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         description: str | Omit = omit,
@@ -352,7 +164,7 @@ class LoadBalancersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
-        Update a configured load balancer.
+        Create a new account or zone-scoped load balancer.
 
         Args:
           default_pools: A list of pool IDs ordered by their failover priority. Pools defined here are
@@ -363,6 +175,10 @@ class LoadBalancersResource(SyncAPIResource):
           name: The DNS hostname to associate with your Load Balancer. If this hostname already
               exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
               precedence and the DNS record will not be used.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           adaptive_routing: Controls features that modify the routing of requests to pools and origins in
               response to dynamic conditions, such as during the interval between active
@@ -475,13 +291,238 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._post(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            body=maybe_transform(
+                {
+                    "default_pools": default_pools,
+                    "fallback_pool": fallback_pool,
+                    "name": name,
+                    "adaptive_routing": adaptive_routing,
+                    "country_pools": country_pools,
+                    "description": description,
+                    "enabled": enabled,
+                    "location_strategy": location_strategy,
+                    "networks": networks,
+                    "pop_pools": pop_pools,
+                    "proxied": proxied,
+                    "random_steering": random_steering,
+                    "region_pools": region_pools,
+                    "rules": rules,
+                    "session_affinity": session_affinity,
+                    "session_affinity_attributes": session_affinity_attributes,
+                    "session_affinity_ttl": session_affinity_ttl,
+                    "steering_policy": steering_policy,
+                    "ttl": ttl,
+                },
+                load_balancer_create_params.LoadBalancerCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
+        )
+
+    def update(
+        self,
+        load_balancer_id: str,
+        *,
+        default_pools: SequenceNotStr[DefaultPools],
+        fallback_pool: str,
+        name: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
+        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        location_strategy: LocationStrategyParam | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
+        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        proxied: bool | Omit = omit,
+        random_steering: RandomSteeringParam | Omit = omit,
+        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        rules: Iterable[RulesParam] | Omit = omit,
+        session_affinity: SessionAffinity | Omit = omit,
+        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
+        session_affinity_ttl: float | Omit = omit,
+        steering_policy: SteeringPolicy | Omit = omit,
+        ttl: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LoadBalancer:
+        """
+        Update a configured account or zone-scoped load balancer.
+
+        Args:
+          default_pools: A list of pool IDs ordered by their failover priority. Pools defined here are
+              used by default, or when region_pools are not configured for a given region.
+
+          fallback_pool: The pool ID to use when all other pools are detected as unhealthy.
+
+          name: The DNS hostname to associate with your Load Balancer. If this hostname already
+              exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
+              precedence and the DNS record will not be used.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          adaptive_routing: Controls features that modify the routing of requests to pools and origins in
+              response to dynamic conditions, such as during the interval between active
+              health monitoring requests. For example, zero-downtime failover occurs
+              immediately when an origin becomes unavailable due to HTTP 521, 522, or 523
+              response codes. If there is another healthy origin in the same pool, the request
+              is retried once against this alternate origin.
+
+          country_pools: A mapping of country codes to a list of pool IDs (ordered by their failover
+              priority) for the given country. Any country not explicitly defined will fall
+              back to using the corresponding region_pool mapping if it exists else to
+              default_pools.
+
+          description: Object description.
+
+          enabled: Whether to enable (the default) this load balancer.
+
+          location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
+              to learn how steering is affected.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
+
+          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
+              (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
+              explicitly defined will fall back to using the corresponding country_pool, then
+              region_pool mapping if it exists else to default_pools.
+
+          proxied: Whether the hostname should be gray clouded (false) or orange clouded (true).
+
+          random_steering: Configures pool weights.
+
+              - `steering_policy="random"`: A random pool is selected with probability
+                proportional to pool weights.
+              - `steering_policy="least_outstanding_requests"`: Use pool weights to scale each
+                pool's outstanding requests.
+              - `steering_policy="least_connections"`: Use pool weights to scale each pool's
+                open connections.
+
+          region_pools: A mapping of region codes to a list of pool IDs (ordered by their failover
+              priority) for the given region. Any regions not explicitly defined will fall
+              back to using default_pools.
+
+          rules: BETA Field Not General Access: A list of rules for this load balancer to
+              execute.
+
+          session_affinity: Specifies the type of session affinity the load balancer should use unless
+              specified as `"none"`. The supported types are: - `"cookie"`: On the first
+              request to a proxied load balancer, a cookie is generated, encoding information
+              of which origin the request will be forwarded to. Subsequent requests, by the
+              same client to the same load balancer, will be sent to the origin server the
+              cookie encodes, for the duration of the cookie and as long as the origin server
+              remains healthy. If the cookie has expired or the origin server is unhealthy,
+              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
+              same as `"cookie"` except the initial origin selection is stable and based on
+              the client's ip address. - `"header"`: On the first request to a proxied load
+              balancer, a session key based on the configured HTTP headers (see
+              `session_affinity_attributes.headers`) is generated, encoding the request
+              headers used for storing in the load balancer session state which origin the
+              request will be forwarded to. Subsequent requests to the load balancer with the
+              same headers will be sent to the same origin server, for the duration of the
+              session and as long as the origin server remains healthy. If the session has
+              been idle for the duration of `session_affinity_ttl` seconds or the origin
+              server is unhealthy, then a new origin server is calculated and used. See
+              `headers` in `session_affinity_attributes` for additional required
+              configuration.
+
+          session_affinity_attributes: Configures attributes for session affinity.
+
+          session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
+              expiry time has been reached, subsequent requests may get sent to a different
+              origin server. The accepted ranges per `session_affinity` policy are: -
+              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
+              explicitly set. The accepted range of values is between [1800, 604800]. -
+              `"header"`: The current default of 1800 seconds will be used unless explicitly
+              set. The accepted range of values is between [30, 3600]. Note: With session
+              affinity by header, sessions only expire after they haven't been used for the
+              number of seconds specified.
+
+          steering_policy: Steering Policy for this load balancer.
+
+              - `"off"`: Use `default_pools`.
+              - `"geo"`: Use `region_pools`/`country_pools`/`pop_pools`. For non-proxied
+                requests, the country for `country_pools` is determined by
+                `location_strategy`.
+              - `"random"`: Select a pool randomly.
+              - `"dynamic_latency"`: Use round trip time to select the closest pool in
+                default_pools (requires pool health checks).
+              - `"proximity"`: Use the pools' latitude and longitude to select the closest
+                pool using the Cloudflare PoP location for proxied requests or the location
+                determined by `location_strategy` for non-proxied requests.
+              - `"least_outstanding_requests"`: Select a pool by taking into consideration
+                `random_steering` weights, as well as each pool's number of outstanding
+                requests. Pools with more pending requests are weighted proportionately less
+                relative to others.
+              - `"least_connections"`: Select a pool by taking into consideration
+                `random_steering` weights, as well as each pool's number of open connections.
+                Pools with more open connections are weighted proportionately less relative to
+                others. Supported for HTTP/1 and HTTP/2 connections.
+              - `""`: Will map to `"geo"` if you use
+                `region_pools`/`country_pools`/`pop_pools` otherwise `"off"`.
+
+          ttl: Time to live (TTL) of the DNS entry for the IP address returned by this load
+              balancer. This only applies to gray-clouded (unproxied) load balancers.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._put(
             path_template(
-                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers/{load_balancer_id}",
+                load_balancer_id=load_balancer_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
             ),
             body=maybe_transform(
                 {
@@ -520,7 +561,8 @@ class LoadBalancersResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -529,9 +571,13 @@ class LoadBalancersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[LoadBalancer]:
         """
-        List configured load balancers.
+        List configured account or zone-scoped load balancers.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -540,10 +586,24 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
-            path_template("/zones/{zone_id}/load_balancers", zone_id=zone_id),
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=SyncSinglePage[LoadBalancer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -555,7 +615,8 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -564,9 +625,13 @@ class LoadBalancersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerDeleteResponse:
         """
-        Delete a configured load balancer.
+        Delete a configured account or zone-scoped load balancer.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -575,13 +640,26 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._delete(
             path_template(
-                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers/{load_balancer_id}",
+                load_balancer_id=load_balancer_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -597,7 +675,8 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         adaptive_routing: AdaptiveRoutingParam | Omit = omit,
         country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         default_pools: SequenceNotStr[DefaultPools] | Omit = omit,
@@ -606,6 +685,7 @@ class LoadBalancersResource(SyncAPIResource):
         fallback_pool: str | Omit = omit,
         location_strategy: LocationStrategyParam | Omit = omit,
         name: str | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
         pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         proxied: bool | Omit = omit,
         random_steering: RandomSteeringParam | Omit = omit,
@@ -624,9 +704,14 @@ class LoadBalancersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
-        Apply changes to an existing load balancer, overwriting the supplied properties.
+        Apply changes to an existing account or zone-scoped load balancer, overwriting
+        the supplied properties.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           adaptive_routing: Controls features that modify the routing of requests to pools and origins in
               response to dynamic conditions, such as during the interval between active
               health monitoring requests. For example, zero-downtime failover occurs
@@ -654,6 +739,8 @@ class LoadBalancersResource(SyncAPIResource):
           name: The DNS hostname to associate with your Load Balancer. If this hostname already
               exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
               precedence and the DNS record will not be used.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
 
           pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -745,13 +832,26 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._patch(
             path_template(
-                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers/{load_balancer_id}",
+                load_balancer_id=load_balancer_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
             ),
             body=maybe_transform(
                 {
@@ -763,6 +863,7 @@ class LoadBalancersResource(SyncAPIResource):
                     "fallback_pool": fallback_pool,
                     "location_strategy": location_strategy,
                     "name": name,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -790,7 +891,8 @@ class LoadBalancersResource(SyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -799,9 +901,13 @@ class LoadBalancersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
-        Fetch a single configured load balancer.
+        Fetch a single configured account or zone-scoped load balancer.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -810,13 +916,26 @@ class LoadBalancersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
             path_template(
-                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers/{load_balancer_id}",
+                load_balancer_id=load_balancer_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -876,199 +995,11 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
         default_pools: SequenceNotStr[DefaultPools],
         fallback_pool: str,
         name: str,
-        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
-        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
-        description: str | Omit = omit,
-        location_strategy: LocationStrategyParam | Omit = omit,
-        networks: SequenceNotStr[str] | Omit = omit,
-        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
-        proxied: bool | Omit = omit,
-        random_steering: RandomSteeringParam | Omit = omit,
-        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
-        rules: Iterable[RulesParam] | Omit = omit,
-        session_affinity: SessionAffinity | Omit = omit,
-        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
-        session_affinity_ttl: float | Omit = omit,
-        steering_policy: SteeringPolicy | Omit = omit,
-        ttl: float | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoadBalancer:
-        """
-        Create a new load balancer.
-
-        Args:
-          default_pools: A list of pool IDs ordered by their failover priority. Pools defined here are
-              used by default, or when region_pools are not configured for a given region.
-
-          fallback_pool: The pool ID to use when all other pools are detected as unhealthy.
-
-          name: The DNS hostname to associate with your Load Balancer. If this hostname already
-              exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
-              precedence and the DNS record will not be used.
-
-          adaptive_routing: Controls features that modify the routing of requests to pools and origins in
-              response to dynamic conditions, such as during the interval between active
-              health monitoring requests. For example, zero-downtime failover occurs
-              immediately when an origin becomes unavailable due to HTTP 521, 522, or 523
-              response codes. If there is another healthy origin in the same pool, the request
-              is retried once against this alternate origin.
-
-          country_pools: A mapping of country codes to a list of pool IDs (ordered by their failover
-              priority) for the given country. Any country not explicitly defined will fall
-              back to using the corresponding region_pool mapping if it exists else to
-              default_pools.
-
-          description: Object description.
-
-          location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
-              to learn how steering is affected.
-
-          networks: List of networks where Load Balancer or Pool is enabled.
-
-          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
-              (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
-              explicitly defined will fall back to using the corresponding country_pool, then
-              region_pool mapping if it exists else to default_pools.
-
-          proxied: Whether the hostname should be gray clouded (false) or orange clouded (true).
-
-          random_steering: Configures pool weights.
-
-              - `steering_policy="random"`: A random pool is selected with probability
-                proportional to pool weights.
-              - `steering_policy="least_outstanding_requests"`: Use pool weights to scale each
-                pool's outstanding requests.
-              - `steering_policy="least_connections"`: Use pool weights to scale each pool's
-                open connections.
-
-          region_pools: A mapping of region codes to a list of pool IDs (ordered by their failover
-              priority) for the given region. Any regions not explicitly defined will fall
-              back to using default_pools.
-
-          rules: BETA Field Not General Access: A list of rules for this load balancer to
-              execute.
-
-          session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"`. The supported types are: - `"cookie"`: On the first
-              request to a proxied load balancer, a cookie is generated, encoding information
-              of which origin the request will be forwarded to. Subsequent requests, by the
-              same client to the same load balancer, will be sent to the origin server the
-              cookie encodes, for the duration of the cookie and as long as the origin server
-              remains healthy. If the cookie has expired or the origin server is unhealthy,
-              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
-              same as `"cookie"` except the initial origin selection is stable and based on
-              the client's ip address. - `"header"`: On the first request to a proxied load
-              balancer, a session key based on the configured HTTP headers (see
-              `session_affinity_attributes.headers`) is generated, encoding the request
-              headers used for storing in the load balancer session state which origin the
-              request will be forwarded to. Subsequent requests to the load balancer with the
-              same headers will be sent to the same origin server, for the duration of the
-              session and as long as the origin server remains healthy. If the session has
-              been idle for the duration of `session_affinity_ttl` seconds or the origin
-              server is unhealthy, then a new origin server is calculated and used. See
-              `headers` in `session_affinity_attributes` for additional required
-              configuration.
-
-          session_affinity_attributes: Configures attributes for session affinity.
-
-          session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
-              expiry time has been reached, subsequent requests may get sent to a different
-              origin server. The accepted ranges per `session_affinity` policy are: -
-              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
-              explicitly set. The accepted range of values is between [1800, 604800]. -
-              `"header"`: The current default of 1800 seconds will be used unless explicitly
-              set. The accepted range of values is between [30, 3600]. Note: With session
-              affinity by header, sessions only expire after they haven't been used for the
-              number of seconds specified.
-
-          steering_policy: Steering Policy for this load balancer.
-
-              - `"off"`: Use `default_pools`.
-              - `"geo"`: Use `region_pools`/`country_pools`/`pop_pools`. For non-proxied
-                requests, the country for `country_pools` is determined by
-                `location_strategy`.
-              - `"random"`: Select a pool randomly.
-              - `"dynamic_latency"`: Use round trip time to select the closest pool in
-                default_pools (requires pool health checks).
-              - `"proximity"`: Use the pools' latitude and longitude to select the closest
-                pool using the Cloudflare PoP location for proxied requests or the location
-                determined by `location_strategy` for non-proxied requests.
-              - `"least_outstanding_requests"`: Select a pool by taking into consideration
-                `random_steering` weights, as well as each pool's number of outstanding
-                requests. Pools with more pending requests are weighted proportionately less
-                relative to others.
-              - `"least_connections"`: Select a pool by taking into consideration
-                `random_steering` weights, as well as each pool's number of open connections.
-                Pools with more open connections are weighted proportionately less relative to
-                others. Supported for HTTP/1 and HTTP/2 connections.
-              - `""`: Will map to `"geo"` if you use
-                `region_pools`/`country_pools`/`pop_pools` otherwise `"off"`.
-
-          ttl: Time to live (TTL) of the DNS entry for the IP address returned by this load
-              balancer. This only applies to gray-clouded (unproxied) load balancers.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._post(
-            path_template("/zones/{zone_id}/load_balancers", zone_id=zone_id),
-            body=await async_maybe_transform(
-                {
-                    "default_pools": default_pools,
-                    "fallback_pool": fallback_pool,
-                    "name": name,
-                    "adaptive_routing": adaptive_routing,
-                    "country_pools": country_pools,
-                    "description": description,
-                    "location_strategy": location_strategy,
-                    "networks": networks,
-                    "pop_pools": pop_pools,
-                    "proxied": proxied,
-                    "random_steering": random_steering,
-                    "region_pools": region_pools,
-                    "rules": rules,
-                    "session_affinity": session_affinity,
-                    "session_affinity_attributes": session_affinity_attributes,
-                    "session_affinity_ttl": session_affinity_ttl,
-                    "steering_policy": steering_policy,
-                    "ttl": ttl,
-                },
-                load_balancer_create_params.LoadBalancerCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
-            ),
-            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
-        )
-
-    async def update(
-        self,
-        load_balancer_id: str,
-        *,
-        zone_id: str,
-        default_pools: SequenceNotStr[DefaultPools],
-        fallback_pool: str,
-        name: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         adaptive_routing: AdaptiveRoutingParam | Omit = omit,
         country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         description: str | Omit = omit,
@@ -1093,7 +1024,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
-        Update a configured load balancer.
+        Create a new account or zone-scoped load balancer.
 
         Args:
           default_pools: A list of pool IDs ordered by their failover priority. Pools defined here are
@@ -1104,6 +1035,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           name: The DNS hostname to associate with your Load Balancer. If this hostname already
               exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
               precedence and the DNS record will not be used.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           adaptive_routing: Controls features that modify the routing of requests to pools and origins in
               response to dynamic conditions, such as during the interval between active
@@ -1216,13 +1151,238 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return await self._post(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "default_pools": default_pools,
+                    "fallback_pool": fallback_pool,
+                    "name": name,
+                    "adaptive_routing": adaptive_routing,
+                    "country_pools": country_pools,
+                    "description": description,
+                    "enabled": enabled,
+                    "location_strategy": location_strategy,
+                    "networks": networks,
+                    "pop_pools": pop_pools,
+                    "proxied": proxied,
+                    "random_steering": random_steering,
+                    "region_pools": region_pools,
+                    "rules": rules,
+                    "session_affinity": session_affinity,
+                    "session_affinity_attributes": session_affinity_attributes,
+                    "session_affinity_ttl": session_affinity_ttl,
+                    "steering_policy": steering_policy,
+                    "ttl": ttl,
+                },
+                load_balancer_create_params.LoadBalancerCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
+            cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
+        )
+
+    async def update(
+        self,
+        load_balancer_id: str,
+        *,
+        default_pools: SequenceNotStr[DefaultPools],
+        fallback_pool: str,
+        name: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        adaptive_routing: AdaptiveRoutingParam | Omit = omit,
+        country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        location_strategy: LocationStrategyParam | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
+        pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        proxied: bool | Omit = omit,
+        random_steering: RandomSteeringParam | Omit = omit,
+        region_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        rules: Iterable[RulesParam] | Omit = omit,
+        session_affinity: SessionAffinity | Omit = omit,
+        session_affinity_attributes: SessionAffinityAttributesParam | Omit = omit,
+        session_affinity_ttl: float | Omit = omit,
+        steering_policy: SteeringPolicy | Omit = omit,
+        ttl: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LoadBalancer:
+        """
+        Update a configured account or zone-scoped load balancer.
+
+        Args:
+          default_pools: A list of pool IDs ordered by their failover priority. Pools defined here are
+              used by default, or when region_pools are not configured for a given region.
+
+          fallback_pool: The pool ID to use when all other pools are detected as unhealthy.
+
+          name: The DNS hostname to associate with your Load Balancer. If this hostname already
+              exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
+              precedence and the DNS record will not be used.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          adaptive_routing: Controls features that modify the routing of requests to pools and origins in
+              response to dynamic conditions, such as during the interval between active
+              health monitoring requests. For example, zero-downtime failover occurs
+              immediately when an origin becomes unavailable due to HTTP 521, 522, or 523
+              response codes. If there is another healthy origin in the same pool, the request
+              is retried once against this alternate origin.
+
+          country_pools: A mapping of country codes to a list of pool IDs (ordered by their failover
+              priority) for the given country. Any country not explicitly defined will fall
+              back to using the corresponding region_pool mapping if it exists else to
+              default_pools.
+
+          description: Object description.
+
+          enabled: Whether to enable (the default) this load balancer.
+
+          location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
+              to learn how steering is affected.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
+
+          pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
+              (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
+              explicitly defined will fall back to using the corresponding country_pool, then
+              region_pool mapping if it exists else to default_pools.
+
+          proxied: Whether the hostname should be gray clouded (false) or orange clouded (true).
+
+          random_steering: Configures pool weights.
+
+              - `steering_policy="random"`: A random pool is selected with probability
+                proportional to pool weights.
+              - `steering_policy="least_outstanding_requests"`: Use pool weights to scale each
+                pool's outstanding requests.
+              - `steering_policy="least_connections"`: Use pool weights to scale each pool's
+                open connections.
+
+          region_pools: A mapping of region codes to a list of pool IDs (ordered by their failover
+              priority) for the given region. Any regions not explicitly defined will fall
+              back to using default_pools.
+
+          rules: BETA Field Not General Access: A list of rules for this load balancer to
+              execute.
+
+          session_affinity: Specifies the type of session affinity the load balancer should use unless
+              specified as `"none"`. The supported types are: - `"cookie"`: On the first
+              request to a proxied load balancer, a cookie is generated, encoding information
+              of which origin the request will be forwarded to. Subsequent requests, by the
+              same client to the same load balancer, will be sent to the origin server the
+              cookie encodes, for the duration of the cookie and as long as the origin server
+              remains healthy. If the cookie has expired or the origin server is unhealthy,
+              then a new origin server is calculated and used. - `"ip_cookie"`: Behaves the
+              same as `"cookie"` except the initial origin selection is stable and based on
+              the client's ip address. - `"header"`: On the first request to a proxied load
+              balancer, a session key based on the configured HTTP headers (see
+              `session_affinity_attributes.headers`) is generated, encoding the request
+              headers used for storing in the load balancer session state which origin the
+              request will be forwarded to. Subsequent requests to the load balancer with the
+              same headers will be sent to the same origin server, for the duration of the
+              session and as long as the origin server remains healthy. If the session has
+              been idle for the duration of `session_affinity_ttl` seconds or the origin
+              server is unhealthy, then a new origin server is calculated and used. See
+              `headers` in `session_affinity_attributes` for additional required
+              configuration.
+
+          session_affinity_attributes: Configures attributes for session affinity.
+
+          session_affinity_ttl: Time, in seconds, until a client's session expires after being created. Once the
+              expiry time has been reached, subsequent requests may get sent to a different
+              origin server. The accepted ranges per `session_affinity` policy are: -
+              `"cookie"` / `"ip_cookie"`: The current default of 23 hours will be used unless
+              explicitly set. The accepted range of values is between [1800, 604800]. -
+              `"header"`: The current default of 1800 seconds will be used unless explicitly
+              set. The accepted range of values is between [30, 3600]. Note: With session
+              affinity by header, sessions only expire after they haven't been used for the
+              number of seconds specified.
+
+          steering_policy: Steering Policy for this load balancer.
+
+              - `"off"`: Use `default_pools`.
+              - `"geo"`: Use `region_pools`/`country_pools`/`pop_pools`. For non-proxied
+                requests, the country for `country_pools` is determined by
+                `location_strategy`.
+              - `"random"`: Select a pool randomly.
+              - `"dynamic_latency"`: Use round trip time to select the closest pool in
+                default_pools (requires pool health checks).
+              - `"proximity"`: Use the pools' latitude and longitude to select the closest
+                pool using the Cloudflare PoP location for proxied requests or the location
+                determined by `location_strategy` for non-proxied requests.
+              - `"least_outstanding_requests"`: Select a pool by taking into consideration
+                `random_steering` weights, as well as each pool's number of outstanding
+                requests. Pools with more pending requests are weighted proportionately less
+                relative to others.
+              - `"least_connections"`: Select a pool by taking into consideration
+                `random_steering` weights, as well as each pool's number of open connections.
+                Pools with more open connections are weighted proportionately less relative to
+                others. Supported for HTTP/1 and HTTP/2 connections.
+              - `""`: Will map to `"geo"` if you use
+                `region_pools`/`country_pools`/`pop_pools` otherwise `"off"`.
+
+          ttl: Time to live (TTL) of the DNS entry for the IP address returned by this load
+              balancer. This only applies to gray-clouded (unproxied) load balancers.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._put(
             path_template(
-                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers/{load_balancer_id}",
+                load_balancer_id=load_balancer_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
             ),
             body=await async_maybe_transform(
                 {
@@ -1261,7 +1421,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1270,9 +1431,13 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LoadBalancer, AsyncSinglePage[LoadBalancer]]:
         """
-        List configured load balancers.
+        List configured account or zone-scoped load balancers.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1281,10 +1446,24 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
-            path_template("/zones/{zone_id}/load_balancers", zone_id=zone_id),
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
             page=AsyncSinglePage[LoadBalancer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1296,7 +1475,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1305,9 +1485,13 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancerDeleteResponse:
         """
-        Delete a configured load balancer.
+        Delete a configured account or zone-scoped load balancer.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1316,13 +1500,26 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._delete(
             path_template(
-                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers/{load_balancer_id}",
+                load_balancer_id=load_balancer_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1338,7 +1535,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         adaptive_routing: AdaptiveRoutingParam | Omit = omit,
         country_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         default_pools: SequenceNotStr[DefaultPools] | Omit = omit,
@@ -1347,6 +1545,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         fallback_pool: str | Omit = omit,
         location_strategy: LocationStrategyParam | Omit = omit,
         name: str | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
         pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         proxied: bool | Omit = omit,
         random_steering: RandomSteeringParam | Omit = omit,
@@ -1365,9 +1564,14 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
-        Apply changes to an existing load balancer, overwriting the supplied properties.
+        Apply changes to an existing account or zone-scoped load balancer, overwriting
+        the supplied properties.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           adaptive_routing: Controls features that modify the routing of requests to pools and origins in
               response to dynamic conditions, such as during the interval between active
               health monitoring requests. For example, zero-downtime failover occurs
@@ -1395,6 +1599,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           name: The DNS hostname to associate with your Load Balancer. If this hostname already
               exists as a DNS record in Cloudflare's DNS, the Load Balancer will take
               precedence and the DNS record will not be used.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
 
           pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -1486,13 +1692,26 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._patch(
             path_template(
-                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers/{load_balancer_id}",
+                load_balancer_id=load_balancer_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
             ),
             body=await async_maybe_transform(
                 {
@@ -1504,6 +1723,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "fallback_pool": fallback_pool,
                     "location_strategy": location_strategy,
                     "name": name,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -1531,7 +1751,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         self,
         load_balancer_id: str,
         *,
-        zone_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1540,9 +1761,13 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LoadBalancer:
         """
-        Fetch a single configured load balancer.
+        Fetch a single configured account or zone-scoped load balancer.
 
         Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1551,13 +1776,26 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
             raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
             path_template(
-                "/zones/{zone_id}/load_balancers/{load_balancer_id}", zone_id=zone_id, load_balancer_id=load_balancer_id
+                "/{account_or_zone}/{account_or_zone_id}/load_balancers/{load_balancer_id}",
+                load_balancer_id=load_balancer_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,

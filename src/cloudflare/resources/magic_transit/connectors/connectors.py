@@ -10,6 +10,14 @@ import httpx
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
+from .interrupts import (
+    InterruptsResource,
+    AsyncInterruptsResource,
+    InterruptsResourceWithRawResponse,
+    AsyncInterruptsResourceWithRawResponse,
+    InterruptsResourceWithStreamingResponse,
+    AsyncInterruptsResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -53,6 +61,10 @@ __all__ = ["ConnectorsResource", "AsyncConnectorsResource"]
 
 
 class ConnectorsResource(SyncAPIResource):
+    @cached_property
+    def interrupts(self) -> InterruptsResource:
+        return InterruptsResource(self._client)
+
     @cached_property
     def events(self) -> EventsResource:
         return EventsResource(self._client)
@@ -105,7 +117,7 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorCreateResponse:
         """
-        Add a connector to your account
+        Creates a Magic WAN Connector.
 
         Args:
           account_id: Account identifier
@@ -178,8 +190,10 @@ class ConnectorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorUpdateResponse:
-        """
-        Replace Connector or Re-provision License Key
+        """Updates properties of a Magic WAN Connector.
+
+        May be used to re-provision a
+        license key.
 
         Args:
           account_id: Account identifier
@@ -246,7 +260,7 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ConnectorListResponse]:
         """
-        List Connectors
+        Lists Magic WAN Connectors.
 
         Args:
           account_id: Account identifier
@@ -289,7 +303,7 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorDeleteResponse:
         """
-        Remove a connector from your account
+        Deletes a Magic WAN Connector.
 
         Args:
           account_id: Account identifier
@@ -347,8 +361,10 @@ class ConnectorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorEditResponse:
-        """
-        Edit Connector to update specific properties or Re-provision License Key
+        """Edits properties of a Magic WAN Connector.
+
+        May be used to re-provision a license
+        key.
 
         Args:
           account_id: Account identifier
@@ -415,7 +431,7 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorGetResponse:
         """
-        Fetch Connector
+        Gets a Magic WAN Connector.
 
         Args:
           account_id: Account identifier
@@ -450,6 +466,10 @@ class ConnectorsResource(SyncAPIResource):
 
 
 class AsyncConnectorsResource(AsyncAPIResource):
+    @cached_property
+    def interrupts(self) -> AsyncInterruptsResource:
+        return AsyncInterruptsResource(self._client)
+
     @cached_property
     def events(self) -> AsyncEventsResource:
         return AsyncEventsResource(self._client)
@@ -502,7 +522,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorCreateResponse:
         """
-        Add a connector to your account
+        Creates a Magic WAN Connector.
 
         Args:
           account_id: Account identifier
@@ -575,8 +595,10 @@ class AsyncConnectorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorUpdateResponse:
-        """
-        Replace Connector or Re-provision License Key
+        """Updates properties of a Magic WAN Connector.
+
+        May be used to re-provision a
+        license key.
 
         Args:
           account_id: Account identifier
@@ -643,7 +665,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ConnectorListResponse, AsyncSinglePage[ConnectorListResponse]]:
         """
-        List Connectors
+        Lists Magic WAN Connectors.
 
         Args:
           account_id: Account identifier
@@ -686,7 +708,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorDeleteResponse:
         """
-        Remove a connector from your account
+        Deletes a Magic WAN Connector.
 
         Args:
           account_id: Account identifier
@@ -744,8 +766,10 @@ class AsyncConnectorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorEditResponse:
-        """
-        Edit Connector to update specific properties or Re-provision License Key
+        """Edits properties of a Magic WAN Connector.
+
+        May be used to re-provision a license
+        key.
 
         Args:
           account_id: Account identifier
@@ -812,7 +836,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorGetResponse:
         """
-        Fetch Connector
+        Gets a Magic WAN Connector.
 
         Args:
           account_id: Account identifier
@@ -870,6 +894,10 @@ class ConnectorsResourceWithRawResponse:
         )
 
     @cached_property
+    def interrupts(self) -> InterruptsResourceWithRawResponse:
+        return InterruptsResourceWithRawResponse(self._connectors.interrupts)
+
+    @cached_property
     def events(self) -> EventsResourceWithRawResponse:
         return EventsResourceWithRawResponse(self._connectors.events)
 
@@ -900,6 +928,10 @@ class AsyncConnectorsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             connectors.get,
         )
+
+    @cached_property
+    def interrupts(self) -> AsyncInterruptsResourceWithRawResponse:
+        return AsyncInterruptsResourceWithRawResponse(self._connectors.interrupts)
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithRawResponse:
@@ -934,6 +966,10 @@ class ConnectorsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def interrupts(self) -> InterruptsResourceWithStreamingResponse:
+        return InterruptsResourceWithStreamingResponse(self._connectors.interrupts)
+
+    @cached_property
     def events(self) -> EventsResourceWithStreamingResponse:
         return EventsResourceWithStreamingResponse(self._connectors.events)
 
@@ -964,6 +1000,10 @@ class AsyncConnectorsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             connectors.get,
         )
+
+    @cached_property
+    def interrupts(self) -> AsyncInterruptsResourceWithStreamingResponse:
+        return AsyncInterruptsResourceWithStreamingResponse(self._connectors.interrupts)
 
     @cached_property
     def events(self) -> AsyncEventsResourceWithStreamingResponse:

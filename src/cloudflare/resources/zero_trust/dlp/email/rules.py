@@ -123,7 +123,7 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleUpdateResponse]:
         """
-        Update email scanner rule
+        Updates a DLP email scanning rule.
 
         Args:
           conditions: Triggered if all conditions match.
@@ -414,7 +414,7 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleUpdateResponse]:
         """
-        Update email scanner rule
+        Updates a DLP email scanning rule.
 
         Args:
           conditions: Triggered if all conditions match.

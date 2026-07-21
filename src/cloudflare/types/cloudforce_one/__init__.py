@@ -23,3 +23,9 @@ from .threat_event_create_response import ThreatEventCreateResponse as ThreatEve
 from .binary_storage_create_response import BinaryStorageCreateResponse as BinaryStorageCreateResponse
 from .threat_event_bulk_create_params import ThreatEventBulkCreateParams as ThreatEventBulkCreateParams
 from .threat_event_bulk_create_response import ThreatEventBulkCreateResponse as ThreatEventBulkCreateResponse
+from .threat_event_bulk_create_relationships_params import (
+    ThreatEventBulkCreateRelationshipsParams as ThreatEventBulkCreateRelationshipsParams,
+)
+from .threat_event_bulk_create_relationships_response import (
+    ThreatEventBulkCreateRelationshipsResponse as ThreatEventBulkCreateRelationshipsResponse,
+)

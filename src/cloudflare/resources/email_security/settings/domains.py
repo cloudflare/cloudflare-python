@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Optional, cast
 from typing_extensions import Literal
 
@@ -18,13 +19,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.settings import domain_edit_params, domain_list_params
 from ....types.email_security.settings.domain_get_response import DomainGetResponse
 from ....types.email_security.settings.domain_edit_response import DomainEditResponse
 from ....types.email_security.settings.domain_list_response import DomainListResponse
 from ....types.email_security.settings.domain_delete_response import DomainDeleteResponse
+from ....types.email_security.settings.domain_bulk_delete_response import DomainBulkDeleteResponse
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
@@ -62,7 +64,7 @@ class DomainsResource(SyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
-        status: Literal["pending", "active", "failed", "timeout"] | Omit = omit,
+        status: Optional[Literal["pending", "active", "failed", "timeout"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -187,6 +189,45 @@ class DomainsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[DomainDeleteResponse]], ResultWrapper[DomainDeleteResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
+    def bulk_delete(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[DomainBulkDeleteResponse]:
+        """Deprecated.
+
+        Use the batch endpoint instead.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/email-security/settings/domains", account_id=account_id),
+            page=SyncSinglePage[DomainBulkDeleteResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=DomainBulkDeleteResponse,
+            method="delete",
+        )
+
     def edit(
         self,
         domain_id: str,
@@ -209,7 +250,7 @@ class DomainsResource(SyncAPIResource):
             ]
         ]
         | Omit = omit,
-        folder: Literal["AllItems", "Inbox"] | Omit = omit,
+        folder: Optional[Literal["AllItems", "Inbox"]] | Omit = omit,
         integration_id: Optional[str] | Omit = omit,
         ip_restrictions: SequenceNotStr[str] | Omit = omit,
         lookback_hops: int | Omit = omit,
@@ -362,7 +403,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
-        status: Literal["pending", "active", "failed", "timeout"] | Omit = omit,
+        status: Optional[Literal["pending", "active", "failed", "timeout"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -487,6 +528,45 @@ class AsyncDomainsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[DomainDeleteResponse]], ResultWrapper[DomainDeleteResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
+    def bulk_delete(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[DomainBulkDeleteResponse, AsyncSinglePage[DomainBulkDeleteResponse]]:
+        """Deprecated.
+
+        Use the batch endpoint instead.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            path_template("/accounts/{account_id}/email-security/settings/domains", account_id=account_id),
+            page=AsyncSinglePage[DomainBulkDeleteResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=DomainBulkDeleteResponse,
+            method="delete",
+        )
+
     async def edit(
         self,
         domain_id: str,
@@ -509,7 +589,7 @@ class AsyncDomainsResource(AsyncAPIResource):
             ]
         ]
         | Omit = omit,
-        folder: Literal["AllItems", "Inbox"] | Omit = omit,
+        folder: Optional[Literal["AllItems", "Inbox"]] | Omit = omit,
         integration_id: Optional[str] | Omit = omit,
         ip_restrictions: SequenceNotStr[str] | Omit = omit,
         lookback_hops: int | Omit = omit,
@@ -639,6 +719,11 @@ class DomainsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             domains.delete,
         )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                domains.bulk_delete,  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.edit = to_raw_response_wrapper(
             domains.edit,
         )
@@ -656,6 +741,11 @@ class AsyncDomainsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             domains.delete,
+        )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                domains.bulk_delete,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.edit = async_to_raw_response_wrapper(
             domains.edit,
@@ -675,6 +765,11 @@ class DomainsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             domains.delete,
         )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                domains.bulk_delete,  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.edit = to_streamed_response_wrapper(
             domains.edit,
         )
@@ -692,6 +787,11 @@ class AsyncDomainsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             domains.delete,
+        )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                domains.bulk_delete,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.edit = async_to_streamed_response_wrapper(
             domains.edit,

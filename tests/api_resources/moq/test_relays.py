@@ -80,14 +80,10 @@ class TestRelays:
             relay_id="a1b2c3d4e5f67890a1b2c3d4e5f67890",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             config={
-                "lingering_subscribe": {
-                    "enabled": True,
-                    "max_timeout_ms": 0,
-                },
                 "upstreams": {
                     "enabled": True,
-                    "upstreams": [{"url": "url"}],
-                },
+                    "upstreams": [{"url": "https://example.com"}],
+                }
             },
             name="name",
         )
@@ -340,14 +336,10 @@ class TestAsyncRelays:
             relay_id="a1b2c3d4e5f67890a1b2c3d4e5f67890",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             config={
-                "lingering_subscribe": {
-                    "enabled": True,
-                    "max_timeout_ms": 0,
-                },
                 "upstreams": {
                     "enabled": True,
-                    "upstreams": [{"url": "url"}],
-                },
+                    "upstreams": [{"url": "https://example.com"}],
+                }
             },
             name="name",
         )

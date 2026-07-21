@@ -75,7 +75,7 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventListResponse:
         """
-        List Events
+        Lists Magic WAN Connector Telemetry Events
 
         Args:
           account_id: Account identifier
@@ -135,7 +135,7 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventGetResponse:
         """
-        Get Event
+        Gets Magic WAN Connector Telemetry Event
 
         Args:
           account_id: Account identifier
@@ -213,7 +213,7 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventListResponse:
         """
-        List Events
+        Lists Magic WAN Connector Telemetry Events
 
         Args:
           account_id: Account identifier
@@ -273,7 +273,7 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventGetResponse:
         """
-        Get Event
+        Gets Magic WAN Connector Telemetry Event
 
         Args:
           account_id: Account identifier

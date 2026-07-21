@@ -60,7 +60,7 @@ class EvaluationTypesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[EvaluationTypeListResponse]:
         """
-        List Evaluators
+        Lists all available evaluator types for scoring AI gateway responses.
 
         Args:
           extra_headers: Send extra headers
@@ -131,7 +131,7 @@ class AsyncEvaluationTypesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EvaluationTypeListResponse, AsyncV4PagePaginationArray[EvaluationTypeListResponse]]:
         """
-        List Evaluators
+        Lists all available evaluator types for scoring AI gateway responses.
 
         Args:
           extra_headers: Send extra headers

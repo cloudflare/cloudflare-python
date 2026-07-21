@@ -24,9 +24,6 @@ class DomainUpdateParams(TypedDict, total=False):
     Requests to the configured hostname will be routed to this Worker.
     """
 
-    environment: str
-    """Worker environment associated with the domain."""
-
     zone_id: str
     """ID of the zone containing the domain hostname."""
 

@@ -6,7 +6,6 @@ Types:
 from cloudflare.types.custom_certificates import (
     CustomCertificate,
     GeoRestrictions,
-    Status,
     CustomCertificateDeleteResponse,
 )
 ```

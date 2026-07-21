@@ -15,6 +15,13 @@ class ItemListParams(TypedDict, total=False):
     item_id: str
     """Filter items by their unique ID. Returns at most one item."""
 
+    key: str
+    """Filter items by their exact key (object key / filename).
+
+    Keys are unique per source, so combine with `source` to disambiguate across data
+    sources.
+    """
+
     metadata_filter: str
     """JSON-encoded metadata filter using Vectorize filter syntax.
 

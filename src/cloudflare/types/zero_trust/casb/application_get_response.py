@@ -18,14 +18,14 @@ __all__ = [
 class AuthMethod(BaseModel):
     """Authentication method available for a vendor."""
 
+    id: str
+    """Auth method identifier."""
+
     display_name: str
     """Human-readable auth method name."""
 
     is_default: bool
     """Whether this is the default auth method."""
-
-    slug: str
-    """Auth method identifier."""
 
     supported_environments: List[str]
     """Environments this auth method supports."""
@@ -72,6 +72,9 @@ class UseCaseFeatureScope(BaseModel):
 class UseCaseFeature(BaseModel):
     """A feature with its additional scopes."""
 
+    id: str
+    """Feature identifier."""
+
     description: str
     """Feature description."""
 
@@ -81,12 +84,12 @@ class UseCaseFeature(BaseModel):
     scopes: List[UseCaseFeatureScope]
     """Additional scopes when feature is enabled."""
 
-    slug: str
-    """Feature identifier."""
-
 
 class UseCase(BaseModel):
     """Full use case with scopes and features for detail endpoint."""
+
+    id: str
+    """Use case identifier."""
 
     base_scopes: List[UseCaseBaseScope]
     """Scopes always required for this use case."""
@@ -100,12 +103,35 @@ class UseCase(BaseModel):
     features: List[UseCaseFeature]
     """Optional features with extra scopes."""
 
-    slug: str
-    """Use case identifier."""
-
 
 class ApplicationGetResponse(BaseModel):
     """Full application detail for onboarding UI."""
+
+    id: Literal[
+        "BITBUCKET",
+        "BOX",
+        "CONFLUENCE",
+        "DROPBOX",
+        "GITHUB",
+        "GOOGLE_WORKSPACE",
+        "JIRA",
+        "MICROSOFT_INTERNAL",
+        "SALESFORCE",
+        "SLACK",
+    ]
+    """Vendor identifier.
+
+    - `BITBUCKET` - BITBUCKET
+    - `BOX` - BOX
+    - `CONFLUENCE` - CONFLUENCE
+    - `DROPBOX` - DROPBOX
+    - `GITHUB` - GITHUB
+    - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
+    - `JIRA` - JIRA
+    - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
+    - `SALESFORCE` - SALESFORCE
+    - `SLACK` - SLACK
+    """
 
     auth_methods: List[AuthMethod]
     """Available authentication methods."""
@@ -127,16 +153,6 @@ class ApplicationGetResponse(BaseModel):
 
     logo: Optional[str] = None
     """Logo path."""
-
-    slug: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"]
-    """Vendor identifier.
-
-    - `GITHUB` - GITHUB
-    - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
-    - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
-    - `SALESFORCE` - SALESFORCE
-    - `SLACK` - SLACK
-    """
 
     use_cases: List[UseCase]
     """Use cases with full scope details."""

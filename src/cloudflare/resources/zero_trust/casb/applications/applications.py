@@ -9,13 +9,13 @@ import httpx
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
-from .setup_flows import (
-    SetupFlowsResource,
-    AsyncSetupFlowsResource,
-    SetupFlowsResourceWithRawResponse,
-    AsyncSetupFlowsResourceWithRawResponse,
-    SetupFlowsResourceWithStreamingResponse,
-    AsyncSetupFlowsResourceWithStreamingResponse,
+from .auth_methods import (
+    AuthMethodsResource,
+    AsyncAuthMethodsResource,
+    AuthMethodsResourceWithRawResponse,
+    AsyncAuthMethodsResourceWithRawResponse,
+    AuthMethodsResourceWithStreamingResponse,
+    AsyncAuthMethodsResourceWithStreamingResponse,
 )
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -34,8 +34,8 @@ __all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
 
 class ApplicationsResource(SyncAPIResource):
     @cached_property
-    def setup_flows(self) -> SetupFlowsResource:
-        return SetupFlowsResource(self._client)
+    def auth_methods(self) -> AuthMethodsResource:
+        return AuthMethodsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ApplicationsResourceWithRawResponse:
@@ -98,7 +98,18 @@ class ApplicationsResource(SyncAPIResource):
 
     def get(
         self,
-        slug: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"],
+        application_id: Literal[
+            "BITBUCKET",
+            "BOX",
+            "CONFLUENCE",
+            "DROPBOX",
+            "GITHUB",
+            "GOOGLE_WORKSPACE",
+            "JIRA",
+            "MICROSOFT_INTERNAL",
+            "SALESFORCE",
+            "SLACK",
+        ],
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -123,10 +134,14 @@ class ApplicationsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not slug:
-            raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
+        if not application_id:
+            raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
         return self._get(
-            path_template("/accounts/{account_id}/one/applications/{slug}", account_id=account_id, slug=slug),
+            path_template(
+                "/accounts/{account_id}/one/applications/{application_id}",
+                account_id=account_id,
+                application_id=application_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -136,8 +151,8 @@ class ApplicationsResource(SyncAPIResource):
 
 class AsyncApplicationsResource(AsyncAPIResource):
     @cached_property
-    def setup_flows(self) -> AsyncSetupFlowsResource:
-        return AsyncSetupFlowsResource(self._client)
+    def auth_methods(self) -> AsyncAuthMethodsResource:
+        return AsyncAuthMethodsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncApplicationsResourceWithRawResponse:
@@ -202,7 +217,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
     async def get(
         self,
-        slug: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"],
+        application_id: Literal[
+            "BITBUCKET",
+            "BOX",
+            "CONFLUENCE",
+            "DROPBOX",
+            "GITHUB",
+            "GOOGLE_WORKSPACE",
+            "JIRA",
+            "MICROSOFT_INTERNAL",
+            "SALESFORCE",
+            "SLACK",
+        ],
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -227,10 +253,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not slug:
-            raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
+        if not application_id:
+            raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
         return await self._get(
-            path_template("/accounts/{account_id}/one/applications/{slug}", account_id=account_id, slug=slug),
+            path_template(
+                "/accounts/{account_id}/one/applications/{application_id}",
+                account_id=account_id,
+                application_id=application_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -250,8 +280,8 @@ class ApplicationsResourceWithRawResponse:
         )
 
     @cached_property
-    def setup_flows(self) -> SetupFlowsResourceWithRawResponse:
-        return SetupFlowsResourceWithRawResponse(self._applications.setup_flows)
+    def auth_methods(self) -> AuthMethodsResourceWithRawResponse:
+        return AuthMethodsResourceWithRawResponse(self._applications.auth_methods)
 
 
 class AsyncApplicationsResourceWithRawResponse:
@@ -266,8 +296,8 @@ class AsyncApplicationsResourceWithRawResponse:
         )
 
     @cached_property
-    def setup_flows(self) -> AsyncSetupFlowsResourceWithRawResponse:
-        return AsyncSetupFlowsResourceWithRawResponse(self._applications.setup_flows)
+    def auth_methods(self) -> AsyncAuthMethodsResourceWithRawResponse:
+        return AsyncAuthMethodsResourceWithRawResponse(self._applications.auth_methods)
 
 
 class ApplicationsResourceWithStreamingResponse:
@@ -282,8 +312,8 @@ class ApplicationsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def setup_flows(self) -> SetupFlowsResourceWithStreamingResponse:
-        return SetupFlowsResourceWithStreamingResponse(self._applications.setup_flows)
+    def auth_methods(self) -> AuthMethodsResourceWithStreamingResponse:
+        return AuthMethodsResourceWithStreamingResponse(self._applications.auth_methods)
 
 
 class AsyncApplicationsResourceWithStreamingResponse:
@@ -298,5 +328,5 @@ class AsyncApplicationsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def setup_flows(self) -> AsyncSetupFlowsResourceWithStreamingResponse:
-        return AsyncSetupFlowsResourceWithStreamingResponse(self._applications.setup_flows)
+    def auth_methods(self) -> AsyncAuthMethodsResourceWithStreamingResponse:
+        return AsyncAuthMethodsResourceWithStreamingResponse(self._applications.auth_methods)

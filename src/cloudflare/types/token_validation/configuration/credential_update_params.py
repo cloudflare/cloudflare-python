@@ -11,6 +11,7 @@ __all__ = [
     "KeyAPIShieldCredentialsJWTKeyRSA",
     "KeyAPIShieldCredentialsJWTKeyEcEs256",
     "KeyAPIShieldCredentialsJWTKeyEcEs384",
+    "KeyAPIShieldCredentialsJWTKeyOctRequest",
 ]
 
 
@@ -84,6 +85,25 @@ class KeyAPIShieldCredentialsJWTKeyEcEs384(TypedDict, total=False):
     """Y EC coordinate"""
 
 
+class KeyAPIShieldCredentialsJWTKeyOctRequest(TypedDict, total=False):
+    """JSON representation of a symmetric key for create/PUT requests."""
+
+    alg: Required[Literal["HS256", "HS384", "HS512"]]
+    """Algorithm"""
+
+    k: Required[str]
+    """Symmetric key material. Required for create and PUT update requests."""
+
+    kid: Required[str]
+    """Key ID"""
+
+    kty: Required[Literal["oct"]]
+    """Key Type"""
+
+
 Key: TypeAlias = Union[
-    KeyAPIShieldCredentialsJWTKeyRSA, KeyAPIShieldCredentialsJWTKeyEcEs256, KeyAPIShieldCredentialsJWTKeyEcEs384
+    KeyAPIShieldCredentialsJWTKeyRSA,
+    KeyAPIShieldCredentialsJWTKeyEcEs256,
+    KeyAPIShieldCredentialsJWTKeyEcEs384,
+    KeyAPIShieldCredentialsJWTKeyOctRequest,
 ]

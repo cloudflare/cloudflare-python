@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .setup_flows import (
-    SetupFlowsResource,
-    AsyncSetupFlowsResource,
-    SetupFlowsResourceWithRawResponse,
-    AsyncSetupFlowsResourceWithRawResponse,
-    SetupFlowsResourceWithStreamingResponse,
-    AsyncSetupFlowsResourceWithStreamingResponse,
-)
 from .applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -16,14 +8,22 @@ from .applications import (
     ApplicationsResourceWithStreamingResponse,
     AsyncApplicationsResourceWithStreamingResponse,
 )
+from .auth_methods import (
+    AuthMethodsResource,
+    AsyncAuthMethodsResource,
+    AuthMethodsResourceWithRawResponse,
+    AsyncAuthMethodsResourceWithRawResponse,
+    AuthMethodsResourceWithStreamingResponse,
+    AsyncAuthMethodsResourceWithStreamingResponse,
+)
 
 __all__ = [
-    "SetupFlowsResource",
-    "AsyncSetupFlowsResource",
-    "SetupFlowsResourceWithRawResponse",
-    "AsyncSetupFlowsResourceWithRawResponse",
-    "SetupFlowsResourceWithStreamingResponse",
-    "AsyncSetupFlowsResourceWithStreamingResponse",
+    "AuthMethodsResource",
+    "AsyncAuthMethodsResource",
+    "AuthMethodsResourceWithRawResponse",
+    "AsyncAuthMethodsResourceWithRawResponse",
+    "AuthMethodsResourceWithStreamingResponse",
+    "AsyncAuthMethodsResourceWithStreamingResponse",
     "ApplicationsResource",
     "AsyncApplicationsResource",
     "ApplicationsResourceWithRawResponse",

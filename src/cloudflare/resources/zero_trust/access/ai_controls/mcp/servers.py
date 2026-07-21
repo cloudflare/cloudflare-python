@@ -60,6 +60,7 @@ class ServersResource(SyncAPIResource):
         hostname: str,
         name: str,
         auth_credentials: str | Omit = omit,
+        client_secret: str | Omit = omit,
         description: Optional[str] | Omit = omit,
         is_shared_oauth_callback_enabled: bool | Omit = omit,
         secure_web_gateway: bool | Omit = omit,
@@ -77,6 +78,10 @@ class ServersResource(SyncAPIResource):
 
         Args:
           id: server id
+
+          client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
+              auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
+              server_oauth_secrets; never returned by read endpoints.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
@@ -105,6 +110,7 @@ class ServersResource(SyncAPIResource):
                     "hostname": hostname,
                     "name": name,
                     "auth_credentials": auth_credentials,
+                    "client_secret": client_secret,
                     "description": description,
                     "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "secure_web_gateway": secure_web_gateway,
@@ -129,6 +135,7 @@ class ServersResource(SyncAPIResource):
         *,
         account_id: str,
         auth_credentials: str | Omit = omit,
+        client_secret: str | Omit = omit,
         description: Optional[str] | Omit = omit,
         is_shared_oauth_callback_enabled: bool | Omit = omit,
         name: str | Omit = omit,
@@ -147,6 +154,10 @@ class ServersResource(SyncAPIResource):
 
         Args:
           id: server id
+
+          client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
+              auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
+              server_oauth_secrets; never returned by read endpoints.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
@@ -173,6 +184,7 @@ class ServersResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "auth_credentials": auth_credentials,
+                    "client_secret": client_secret,
                     "description": description,
                     "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "name": name,
@@ -401,6 +413,7 @@ class AsyncServersResource(AsyncAPIResource):
         hostname: str,
         name: str,
         auth_credentials: str | Omit = omit,
+        client_secret: str | Omit = omit,
         description: Optional[str] | Omit = omit,
         is_shared_oauth_callback_enabled: bool | Omit = omit,
         secure_web_gateway: bool | Omit = omit,
@@ -418,6 +431,10 @@ class AsyncServersResource(AsyncAPIResource):
 
         Args:
           id: server id
+
+          client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
+              auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
+              server_oauth_secrets; never returned by read endpoints.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
@@ -446,6 +463,7 @@ class AsyncServersResource(AsyncAPIResource):
                     "hostname": hostname,
                     "name": name,
                     "auth_credentials": auth_credentials,
+                    "client_secret": client_secret,
                     "description": description,
                     "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "secure_web_gateway": secure_web_gateway,
@@ -470,6 +488,7 @@ class AsyncServersResource(AsyncAPIResource):
         *,
         account_id: str,
         auth_credentials: str | Omit = omit,
+        client_secret: str | Omit = omit,
         description: Optional[str] | Omit = omit,
         is_shared_oauth_callback_enabled: bool | Omit = omit,
         name: str | Omit = omit,
@@ -488,6 +507,10 @@ class AsyncServersResource(AsyncAPIResource):
 
         Args:
           id: server id
+
+          client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
+              auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
+              server_oauth_secrets; never returned by read endpoints.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
@@ -514,6 +537,7 @@ class AsyncServersResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "auth_credentials": auth_credentials,
+                    "client_secret": client_secret,
                     "description": description,
                     "is_shared_oauth_callback_enabled": is_shared_oauth_callback_enabled,
                     "name": name,

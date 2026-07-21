@@ -255,7 +255,9 @@ class DNSResource(SyncAPIResource):
         Retrieves the distribution of DNS queries by the specified dimension.
 
         Args:
-          dimension: Specifies the attribute by which to group the results.
+          dimension: Specifies the attribute by which to group the results. Grouping by
+              `TLD_DNS_MAGNITUDE` does not support sub-daily aggregation intervals; `15m` and
+              `1h` are raised to `1d`.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -268,13 +270,29 @@ class DNSResource(SyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -288,7 +306,8 @@ class DNSResource(SyncAPIResource):
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
               time range. When item count exceeds the limit, extra items appear grouped under
-              an "other" category.
+              an "other" category. Only supported on high-cardinality dimensions; otherwise
+              the request is rejected. Minimum value is 2.
 
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
@@ -308,7 +327,10 @@ class DNSResource(SyncAPIResource):
 
           response_ttl: Filters results by DNS response TTL.
 
-          tld: Filters results by top-level domain.
+          tld: Filters results by top-level domain. Incompatible with the `ipVersion`,
+              `protocol`, `dnssecE2e`, `dnssecAware`, `responseTtl`, and `cacheHit`
+              filters/dimensions; this restriction does not apply to country-code TLDs
+              (2-letter, e.g. `uk`).
 
           extra_headers: Send extra headers
 
@@ -516,6 +538,9 @@ class DNSResource(SyncAPIResource):
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
               Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+              When omitted, the interval is auto-selected from the requested date range; finer
+              intervals are only available for shorter ranges. If the requested interval is
+              too granular for the date range, the request is rejected.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -528,13 +553,29 @@ class DNSResource(SyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -564,7 +605,10 @@ class DNSResource(SyncAPIResource):
 
           response_ttl: Filters results by DNS response TTL.
 
-          tld: Filters results by top-level domain.
+          tld: Filters results by top-level domain. Incompatible with the `ipVersion`,
+              `protocol`, `dnssecE2e`, `dnssecAware`, `responseTtl`, and `cacheHit`
+              filters/dimensions; this restriction does not apply to country-code TLDs
+              (2-letter, e.g. `uk`).
 
           extra_headers: Send extra headers
 
@@ -785,11 +829,16 @@ class DNSResource(SyncAPIResource):
         Retrieves the distribution of DNS queries grouped by dimension over time.
 
         Args:
-          dimension: Specifies the attribute by which to group the results.
+          dimension: Specifies the attribute by which to group the results. Grouping by
+              `TLD_DNS_MAGNITUDE` does not support sub-daily aggregation intervals; `15m` and
+              `1h` are raised to `1d`.
 
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
               Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+              When omitted, the interval is auto-selected from the requested date range; finer
+              intervals are only available for shorter ranges. If the requested interval is
+              too granular for the date range, the request is rejected.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -802,13 +851,29 @@ class DNSResource(SyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -822,7 +887,8 @@ class DNSResource(SyncAPIResource):
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
               time range. When item count exceeds the limit, extra items appear grouped under
-              an "other" category.
+              an "other" category. Only supported on high-cardinality dimensions; otherwise
+              the request is rejected. Minimum value is 2.
 
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
@@ -836,6 +902,9 @@ class DNSResource(SyncAPIResource):
 
           normalization: Normalization method applied to the results. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+              `RANK` is only meaningful with the `TLD_DNS_MAGNITUDE` dimension, where it ranks
+              TLDs by DNS query magnitude at each timestamp; for other dimensions it has no
+              effect.
 
           protocol: Filters results by DNS transport protocol.
 
@@ -845,7 +914,10 @@ class DNSResource(SyncAPIResource):
 
           response_ttl: Filters results by DNS response TTL.
 
-          tld: Filters results by top-level domain.
+          tld: Filters results by top-level domain. Incompatible with the `ipVersion`,
+              `protocol`, `dnssecE2e`, `dnssecAware`, `responseTtl`, and `cacheHit`
+              filters/dimensions; this restriction does not apply to country-code TLDs
+              (2-letter, e.g. `uk`).
 
           extra_headers: Send extra headers
 
@@ -1101,7 +1173,9 @@ class AsyncDNSResource(AsyncAPIResource):
         Retrieves the distribution of DNS queries by the specified dimension.
 
         Args:
-          dimension: Specifies the attribute by which to group the results.
+          dimension: Specifies the attribute by which to group the results. Grouping by
+              `TLD_DNS_MAGNITUDE` does not support sub-daily aggregation intervals; `15m` and
+              `1h` are raised to `1d`.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -1114,13 +1188,29 @@ class AsyncDNSResource(AsyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -1134,7 +1224,8 @@ class AsyncDNSResource(AsyncAPIResource):
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
               time range. When item count exceeds the limit, extra items appear grouped under
-              an "other" category.
+              an "other" category. Only supported on high-cardinality dimensions; otherwise
+              the request is rejected. Minimum value is 2.
 
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
@@ -1154,7 +1245,10 @@ class AsyncDNSResource(AsyncAPIResource):
 
           response_ttl: Filters results by DNS response TTL.
 
-          tld: Filters results by top-level domain.
+          tld: Filters results by top-level domain. Incompatible with the `ipVersion`,
+              `protocol`, `dnssecE2e`, `dnssecAware`, `responseTtl`, and `cacheHit`
+              filters/dimensions; this restriction does not apply to country-code TLDs
+              (2-letter, e.g. `uk`).
 
           extra_headers: Send extra headers
 
@@ -1362,6 +1456,9 @@ class AsyncDNSResource(AsyncAPIResource):
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
               Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+              When omitted, the interval is auto-selected from the requested date range; finer
+              intervals are only available for shorter ranges. If the requested interval is
+              too granular for the date range, the request is rejected.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -1374,13 +1471,29 @@ class AsyncDNSResource(AsyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -1410,7 +1523,10 @@ class AsyncDNSResource(AsyncAPIResource):
 
           response_ttl: Filters results by DNS response TTL.
 
-          tld: Filters results by top-level domain.
+          tld: Filters results by top-level domain. Incompatible with the `ipVersion`,
+              `protocol`, `dnssecE2e`, `dnssecAware`, `responseTtl`, and `cacheHit`
+              filters/dimensions; this restriction does not apply to country-code TLDs
+              (2-letter, e.g. `uk`).
 
           extra_headers: Send extra headers
 
@@ -1631,11 +1747,16 @@ class AsyncDNSResource(AsyncAPIResource):
         Retrieves the distribution of DNS queries grouped by dimension over time.
 
         Args:
-          dimension: Specifies the attribute by which to group the results.
+          dimension: Specifies the attribute by which to group the results. Grouping by
+              `TLD_DNS_MAGNITUDE` does not support sub-daily aggregation intervals; `15m` and
+              `1h` are raised to `1d`.
 
           agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
               Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+              When omitted, the interval is auto-selected from the requested date range; finer
+              intervals are only available for shorter ranges. If the requested interval is
+              too granular for the date range, the request is rejected.
 
           asn: Filters results by Autonomous System. Specify one or more Autonomous System
               Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
@@ -1648,13 +1769,29 @@ class AsyncDNSResource(AsyncAPIResource):
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`. When requesting comparison series, every series must resolve
+              to the same duration as the main series. Each `dateStart`/`dateEnd` is floored
+              to the nearest 15 minutes before evaluation, so windows whose durations match
+              only before alignment may be rejected.
 
-          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
-              this week with the previous week. Use this parameter or set specific start and
-              end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by relative date range ending at the current time, with each
+              value producing a separate series. Use `<n>d` for days (up to `364d`) or `<n>w`
+              for weeks (up to `52w`). Append `control` to request the equivalent previous
+              period for comparison: the comparison window is shifted back by the current
+              window's length rounded up to a whole number of weeks, so it keeps the same
+              weekday alignment and does not overlap the current window (e.g. `7dcontrol`
+              covers days -14 to -7, `10dcontrol` covers days -24 to -14). For example, pass
+              `7d` and `7dcontrol` to compare this week with the previous week. All series
+              must resolve to the same duration as the main series; relative ranges (including
+              `control`) satisfy this automatically. Use this parameter or set specific start
+              and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Start of the date range.
+          date_start: Start of the date range. Alternative to `dateRange`; provide together with
+              `dateEnd`. When requesting comparison series, every series must resolve to the
+              same duration as the main series. Each `dateStart`/`dateEnd` is floored to the
+              nearest 15 minutes before evaluation, so windows whose durations match only
+              before alignment may be rejected.
 
           dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
 
@@ -1668,7 +1805,8 @@ class AsyncDNSResource(AsyncAPIResource):
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
               time range. When item count exceeds the limit, extra items appear grouped under
-              an "other" category.
+              an "other" category. Only supported on high-cardinality dimensions; otherwise
+              the request is rejected. Minimum value is 2.
 
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
@@ -1682,6 +1820,9 @@ class AsyncDNSResource(AsyncAPIResource):
 
           normalization: Normalization method applied to the results. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+              `RANK` is only meaningful with the `TLD_DNS_MAGNITUDE` dimension, where it ranks
+              TLDs by DNS query magnitude at each timestamp; for other dimensions it has no
+              effect.
 
           protocol: Filters results by DNS transport protocol.
 
@@ -1691,7 +1832,10 @@ class AsyncDNSResource(AsyncAPIResource):
 
           response_ttl: Filters results by DNS response TTL.
 
-          tld: Filters results by top-level domain.
+          tld: Filters results by top-level domain. Incompatible with the `ipVersion`,
+              `protocol`, `dnssecE2e`, `dnssecAware`, `responseTtl`, and `cacheHit`
+              filters/dimensions; this restriction does not apply to country-code TLDs
+              (2-letter, e.g. `uk`).
 
           extra_headers: Send extra headers
 

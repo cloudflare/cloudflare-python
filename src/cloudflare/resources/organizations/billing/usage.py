@@ -50,7 +50,6 @@ class UsageResource(SyncAPIResource):
         organization_id: str,
         *,
         from_: Union[str, date] | Omit = omit,
-        metric: str | Omit = omit,
         to: Union[str, date] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -83,8 +82,6 @@ class UsageResource(SyncAPIResource):
               period (when consumption happened), not billing period. The maximum date range
               is 31 days.
 
-          metric: Filter results by billable metric id (e.g., workers_standard_requests).
-
           to: End date for the usage query (ISO 8601). Required if `from` is set. When omitted
               along with `from`, defaults to today. Filters by charge period (when consumption
               happened), not billing period. The maximum date range is 31 days.
@@ -109,7 +106,6 @@ class UsageResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "from_": from_,
-                        "metric": metric,
                         "to": to,
                     },
                     usage_get_params.UsageGetParams,
@@ -145,7 +141,6 @@ class AsyncUsageResource(AsyncAPIResource):
         organization_id: str,
         *,
         from_: Union[str, date] | Omit = omit,
-        metric: str | Omit = omit,
         to: Union[str, date] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -178,8 +173,6 @@ class AsyncUsageResource(AsyncAPIResource):
               period (when consumption happened), not billing period. The maximum date range
               is 31 days.
 
-          metric: Filter results by billable metric id (e.g., workers_standard_requests).
-
           to: End date for the usage query (ISO 8601). Required if `from` is set. When omitted
               along with `from`, defaults to today. Filters by charge period (when consumption
               happened), not billing period. The maximum date range is 31 days.
@@ -204,7 +197,6 @@ class AsyncUsageResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "from_": from_,
-                        "metric": metric,
                         "to": to,
                     },
                     usage_get_params.UsageGetParams,

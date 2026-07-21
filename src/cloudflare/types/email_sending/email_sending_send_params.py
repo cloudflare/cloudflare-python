@@ -61,19 +61,13 @@ class EmailSendingSendParams(TypedDict, total=False):
     """Custom email headers as key-value pairs."""
 
     html: str
-    """HTML body of the email.
-
-    At least one of text or html must be provided (non-empty).
-    """
+    """HTML body of the email. Provide at least one of text or html (non-empty)."""
 
     reply_to: ReplyTo
     """Reply-to address. Either a plain string or an object with address and name."""
 
     text: str
-    """Plain text body of the email.
-
-    At least one of text or html must be provided (non-empty).
-    """
+    """Plain text body of the email. Provide at least one of text or html (non-empty)."""
 
     to: To
     """Recipient(s).
@@ -90,7 +84,7 @@ class FromEmailSendingEmailAddressObject(TypedDict, total=False):
     name: Optional[str]
     """Display name for the email address (e.g., 'John Doe').
 
-    Optional — omit or set to null for no display name.
+    Optional; set to null or leave it unset to send the address on its own.
     """
 
 
@@ -108,7 +102,7 @@ class AttachmentEmailSendingEmailInlineAttachment(TypedDict, total=False):
     """
 
     disposition: Required[Literal["inline"]]
-    """Must be 'inline'. Indicates the attachment is embedded in the email body."""
+    """Must be 'inline'. Embeds the attachment in the email body."""
 
     filename: Required[str]
     """Filename for the attachment."""
@@ -122,7 +116,7 @@ class AttachmentEmailSendingEmailAttachment(TypedDict, total=False):
     """Base64-encoded content of the attachment."""
 
     disposition: Required[Literal["attachment"]]
-    """Must be 'attachment'. Indicates a standard file attachment."""
+    """Must be 'attachment'. Adds a standard file attachment."""
 
     filename: Required[str]
     """Filename for the attachment."""
@@ -141,7 +135,7 @@ class BccEmailSendingEmailAddressObject(TypedDict, total=False):
     name: Optional[str]
     """Display name for the email address (e.g., 'John Doe').
 
-    Optional — omit or set to null for no display name.
+    Optional; set to null or leave it unset to send the address on its own.
     """
 
 
@@ -152,7 +146,7 @@ class BccUnionMember2EmailSendingEmailAddressObject(TypedDict, total=False):
     name: Optional[str]
     """Display name for the email address (e.g., 'John Doe').
 
-    Optional — omit or set to null for no display name.
+    Optional; set to null or leave it unset to send the address on its own.
     """
 
 
@@ -168,7 +162,7 @@ class CcEmailSendingEmailAddressObject(TypedDict, total=False):
     name: Optional[str]
     """Display name for the email address (e.g., 'John Doe').
 
-    Optional — omit or set to null for no display name.
+    Optional; set to null or leave it unset to send the address on its own.
     """
 
 
@@ -179,7 +173,7 @@ class CcUnionMember2EmailSendingEmailAddressObject(TypedDict, total=False):
     name: Optional[str]
     """Display name for the email address (e.g., 'John Doe').
 
-    Optional — omit or set to null for no display name.
+    Optional; set to null or leave it unset to send the address on its own.
     """
 
 
@@ -195,7 +189,7 @@ class ReplyToEmailSendingEmailAddressObject(TypedDict, total=False):
     name: Optional[str]
     """Display name for the email address (e.g., 'John Doe').
 
-    Optional — omit or set to null for no display name.
+    Optional; set to null or leave it unset to send the address on its own.
     """
 
 
@@ -209,7 +203,7 @@ class ToEmailSendingEmailAddressObject(TypedDict, total=False):
     name: Optional[str]
     """Display name for the email address (e.g., 'John Doe').
 
-    Optional — omit or set to null for no display name.
+    Optional; set to null or leave it unset to send the address on its own.
     """
 
 
@@ -220,7 +214,7 @@ class ToUnionMember2EmailSendingEmailAddressObject(TypedDict, total=False):
     name: Optional[str]
     """Display name for the email address (e.g., 'John Doe').
 
-    Optional — omit or set to null for no display name.
+    Optional; set to null or leave it unset to send the address on its own.
     """
 
 

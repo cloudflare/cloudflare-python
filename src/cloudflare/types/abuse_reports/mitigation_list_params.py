@@ -55,6 +55,7 @@ class MitigationListParams(TypedDict, total=False):
         "r2_takedown_object",
         "rate_limit_cache",
         "redirect_video_stream",
+        "zone_fint",
         "registrar_freeze",
         "registrar_parking",
         "stream_block_account",

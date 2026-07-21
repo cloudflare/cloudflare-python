@@ -11,6 +11,9 @@ class TokenListParams(TypedDict, total=False):
     direction: Literal["asc", "desc"]
     """Direction to order results."""
 
+    include_expired: bool
+    """When true, includes recently-expired tokens in the response."""
+
     page: float
     """Page number of paginated results."""
 

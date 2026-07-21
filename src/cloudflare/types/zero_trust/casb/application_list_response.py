@@ -17,11 +17,11 @@ __all__ = [
 class ApplicationListResponseItemAuthMethod(BaseModel):
     """Auth method summary for list endpoint."""
 
+    id: str
+    """Auth method identifier."""
+
     display_name: str
     """Human-readable auth method name."""
-
-    slug: str
-    """Auth method identifier."""
 
 
 class ApplicationListResponseItemPermission(BaseModel):
@@ -46,15 +46,41 @@ class ApplicationListResponseItemPermission(BaseModel):
 class ApplicationListResponseItemUseCase(BaseModel):
     """Lightweight use case for list endpoint."""
 
+    id: str
+    """Use case identifier (e.g. casb, ces)."""
+
     display_name: str
     """Human-readable use case name."""
-
-    slug: str
-    """Use case identifier (e.g. casb, ces)."""
 
 
 class ApplicationListResponseItem(BaseModel):
     """Application item in list response."""
+
+    id: Literal[
+        "BITBUCKET",
+        "BOX",
+        "CONFLUENCE",
+        "DROPBOX",
+        "GITHUB",
+        "GOOGLE_WORKSPACE",
+        "JIRA",
+        "MICROSOFT_INTERNAL",
+        "SALESFORCE",
+        "SLACK",
+    ]
+    """Vendor identifier (e.g. microsoft_internal, google_workspace).
+
+    - `BITBUCKET` - BITBUCKET
+    - `BOX` - BOX
+    - `CONFLUENCE` - CONFLUENCE
+    - `DROPBOX` - DROPBOX
+    - `GITHUB` - GITHUB
+    - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
+    - `JIRA` - JIRA
+    - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
+    - `SALESFORCE` - SALESFORCE
+    - `SLACK` - SLACK
+    """
 
     auth_methods: List[ApplicationListResponseItemAuthMethod]
     """Available auth methods."""
@@ -76,16 +102,6 @@ class ApplicationListResponseItem(BaseModel):
 
     permissions: List[ApplicationListResponseItemPermission]
     """All permissions with severity."""
-
-    slug: Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"]
-    """Vendor identifier (e.g. microsoft_internal, google_workspace).
-
-    - `GITHUB` - GITHUB
-    - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
-    - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
-    - `SALESFORCE` - SALESFORCE
-    - `SLACK` - SLACK
-    """
 
     supported_environments: List[str]
     """Environments this vendor supports (standard, fedramp)."""

@@ -53,6 +53,54 @@ from cloudflare.types import (
 
 # [ACM](src/cloudflare/resources/acm/api.md)
 
+# AnalyticsQuery
+
+Types:
+
+```python
+from cloudflare.types import (
+    AnalyticsQuerySummaryResponse,
+    AnalyticsQueryTimeseriesResponse,
+    AnalyticsQueryTopNResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/analytics/query/{dataset}/summary">client.analytics_query.<a href="./src/cloudflare/resources/analytics_query/analytics_query.py">summary</a>(dataset, \*, account_id, \*\*<a href="src/cloudflare/types/analytics_query_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/analytics_query_summary_response.py">AnalyticsQuerySummaryResponse</a></code>
+- <code title="post /accounts/{account_id}/analytics/query/{dataset}/timeseries">client.analytics_query.<a href="./src/cloudflare/resources/analytics_query/analytics_query.py">timeseries</a>(dataset, \*, account_id, \*\*<a href="src/cloudflare/types/analytics_query_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/analytics_query_timeseries_response.py">AnalyticsQueryTimeseriesResponse</a></code>
+- <code title="post /accounts/{account_id}/analytics/query/{dataset}/top-n">client.analytics_query.<a href="./src/cloudflare/resources/analytics_query/analytics_query.py">top_n</a>(dataset, \*, account_id, \*\*<a href="src/cloudflare/types/analytics_query_top_n_params.py">params</a>) -> <a href="./src/cloudflare/types/analytics_query_top_n_response.py">SyncSinglePage[AnalyticsQueryTopNResponse]</a></code>
+
+## DataSecurity
+
+### ContentFindings
+
+Types:
+
+```python
+from cloudflare.types.analytics_query.data_security import ContentFindingTopNResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/analytics/query/data-security/content-findings/top-n">client.analytics_query.data_security.content_findings.<a href="./src/cloudflare/resources/analytics_query/data_security/content_findings.py">top_n</a>(\*, account_id, \*\*<a href="src/cloudflare/types/analytics_query/data_security/content_finding_top_n_params.py">params</a>) -> <a href="./src/cloudflare/types/analytics_query/data_security/content_finding_top_n_response.py">SyncSinglePage[ContentFindingTopNResponse]</a></code>
+
+### Findings
+
+Types:
+
+```python
+from cloudflare.types.analytics_query.data_security import (
+    FindingSummaryResponse,
+    FindingTimeseriesResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/analytics/query/data-security/findings/summary">client.analytics_query.data_security.findings.<a href="./src/cloudflare/resources/analytics_query/data_security/findings.py">summary</a>(\*, account_id, \*\*<a href="src/cloudflare/types/analytics_query/data_security/finding_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/analytics_query/data_security/finding_summary_response.py">FindingSummaryResponse</a></code>
+- <code title="post /accounts/{account_id}/analytics/query/data-security/findings/timeseries">client.analytics_query.data_security.findings.<a href="./src/cloudflare/resources/analytics_query/data_security/findings.py">timeseries</a>(\*, account_id, \*\*<a href="src/cloudflare/types/analytics_query/data_security/finding_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/analytics_query/data_security/finding_timeseries_response.py">FindingTimeseriesResponse</a></code>
+
 # [Argo](src/cloudflare/resources/argo/api.md)
 
 # [CertificateAuthorities](src/cloudflare/resources/certificate_authorities/api.md)

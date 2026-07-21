@@ -71,9 +71,11 @@ class ASPAResource(SyncAPIResource):
         Args:
           asn: Filter changes involving this ASN (as customer or provider).
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`.
 
-          date_start: Start of the date range (inclusive).
+          date_start: Start of the date range (inclusive). Alternative to `dateRange`; provide
+              together with `dateEnd`.
 
           format: Format in which results will be returned.
 
@@ -193,9 +195,11 @@ class ASPAResource(SyncAPIResource):
         named series. If no RIR or location filter is specified, returns total count.
 
         Args:
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`.
 
-          date_start: Start of the date range (inclusive).
+          date_start: Start of the date range (inclusive). Alternative to `dateRange`; provide
+              together with `dateEnd`.
 
           format: Format in which results will be returned.
 
@@ -282,9 +286,11 @@ class AsyncASPAResource(AsyncAPIResource):
         Args:
           asn: Filter changes involving this ASN (as customer or provider).
 
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`.
 
-          date_start: Start of the date range (inclusive).
+          date_start: Start of the date range (inclusive). Alternative to `dateRange`; provide
+              together with `dateEnd`.
 
           format: Format in which results will be returned.
 
@@ -404,9 +410,11 @@ class AsyncASPAResource(AsyncAPIResource):
         named series. If no RIR or location filter is specified, returns total count.
 
         Args:
-          date_end: End of the date range (inclusive).
+          date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
+              with `dateStart`.
 
-          date_start: Start of the date range (inclusive).
+          date_start: Start of the date range (inclusive). Alternative to `dateRange`; provide
+              together with `dateEnd`.
 
           format: Format in which results will be returned.
 

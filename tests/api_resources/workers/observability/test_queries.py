@@ -53,7 +53,7 @@ class TestQueries:
                 "filters": [
                     {
                         "filter_combination": "and",
-                        "filters": [{}],
+                        "filters": [],
                         "kind": "group",
                     }
                 ],
@@ -214,7 +214,7 @@ class TestAsyncQueries:
                 "filters": [
                     {
                         "filter_combination": "and",
-                        "filters": [{}],
+                        "filters": [],
                         "kind": "group",
                     }
                 ],

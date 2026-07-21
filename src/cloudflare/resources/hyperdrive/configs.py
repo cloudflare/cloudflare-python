@@ -17,9 +17,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.hyperdrive import config_edit_params, config_create_params, config_update_params
+from ...types.hyperdrive import config_edit_params, config_list_params, config_create_params, config_update_params
 from ...types.hyperdrive.hyperdrive import Hyperdrive
 
 __all__ = ["ConfigsResource", "AsyncConfigsResource"]
@@ -192,18 +192,24 @@ class ConfigsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[Hyperdrive]:
+    ) -> SyncV4PagePaginationArray[Hyperdrive]:
         """
         Returns a list of Hyperdrives.
 
         Args:
           account_id: Define configurations using a unique string identifier.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page.
 
           extra_headers: Send extra headers
 
@@ -217,9 +223,19 @@ class ConfigsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/hyperdrive/configs", account_id=account_id),
-            page=SyncSinglePage[Hyperdrive],
+            page=SyncV4PagePaginationArray[Hyperdrive],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    config_list_params.ConfigListParams,
+                ),
             ),
             model=Hyperdrive,
         )
@@ -570,18 +586,24 @@ class AsyncConfigsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Hyperdrive, AsyncSinglePage[Hyperdrive]]:
+    ) -> AsyncPaginator[Hyperdrive, AsyncV4PagePaginationArray[Hyperdrive]]:
         """
         Returns a list of Hyperdrives.
 
         Args:
           account_id: Define configurations using a unique string identifier.
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page.
 
           extra_headers: Send extra headers
 
@@ -595,9 +617,19 @@ class AsyncConfigsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/hyperdrive/configs", account_id=account_id),
-            page=AsyncSinglePage[Hyperdrive],
+            page=AsyncV4PagePaginationArray[Hyperdrive],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    config_list_params.ConfigListParams,
+                ),
             ),
             model=Hyperdrive,
         )

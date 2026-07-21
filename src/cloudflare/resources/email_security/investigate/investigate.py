@@ -199,7 +199,8 @@ class InvestigateResource(SyncAPIResource):
 
           query: Space-delimited search term. Case-insensitive.
 
-          start: The beginning of the search date range. Defaults to `now - 30 days`.
+          start: The beginning of the search date range. Defaults to `now - 30 days`. Must not be
+              in the future.
 
           extra_headers: Send extra headers
 
@@ -408,7 +409,8 @@ class AsyncInvestigateResource(AsyncAPIResource):
 
           query: Space-delimited search term. Case-insensitive.
 
-          start: The beginning of the search date range. Defaults to `now - 30 days`.
+          start: The beginning of the search date range. Defaults to `now - 30 days`. Must not be
+              in the future.
 
           extra_headers: Send extra headers
 

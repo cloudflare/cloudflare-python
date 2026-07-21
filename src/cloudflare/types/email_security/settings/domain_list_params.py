@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from ...._types import SequenceNotStr
@@ -40,5 +41,5 @@ class DomainListParams(TypedDict, total=False):
     search: str
     """Search term for filtering records. Behavior may change."""
 
-    status: Literal["pending", "active", "failed", "timeout"]
+    status: Optional[Literal["pending", "active", "failed", "timeout"]]
     """Filters response to domains with the provided status."""

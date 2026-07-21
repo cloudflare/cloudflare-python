@@ -83,7 +83,7 @@ class NamespacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceCreateResponse:
         """
-        Create a new namespace.
+        Create a namespace for organizing AI Search instances.
 
         Args:
           description: Optional description for the namespace. Max 256 characters.
@@ -130,12 +130,13 @@ class NamespacesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceUpdateResponse:
-        """Update namespace.
+        """Update the description of an existing namespace.
+
+        The default namespace cannot be
+        modified.
 
         Args:
-          description: Optional description for the namespace.
-
-        Max 256 characters.
+          description: Optional description for the namespace. Max 256 characters.
 
           extra_headers: Send extra headers
 
@@ -177,7 +178,7 @@ class NamespacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[NamespaceListResponse]:
         """
-        List namespaces.
+        List namespaces in the account, including their descriptions and creation times.
 
         Args:
           page: Page number (1-indexed).
@@ -229,8 +230,10 @@ class NamespacesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Delete namespace.
+        """Permanently delete a namespace.
+
+        The namespace must be empty (no instances), and
+        the default namespace cannot be deleted.
 
         Args:
           extra_headers: Send extra headers
@@ -354,7 +357,7 @@ class NamespacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceReadResponse:
         """
-        Read namespace.
+        Retrieve a namespace and its description.
 
         Args:
           extra_headers: Send extra headers
@@ -483,7 +486,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceCreateResponse:
         """
-        Create a new namespace.
+        Create a namespace for organizing AI Search instances.
 
         Args:
           description: Optional description for the namespace. Max 256 characters.
@@ -530,12 +533,13 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceUpdateResponse:
-        """Update namespace.
+        """Update the description of an existing namespace.
+
+        The default namespace cannot be
+        modified.
 
         Args:
-          description: Optional description for the namespace.
-
-        Max 256 characters.
+          description: Optional description for the namespace. Max 256 characters.
 
           extra_headers: Send extra headers
 
@@ -579,7 +583,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[NamespaceListResponse, AsyncV4PagePaginationArray[NamespaceListResponse]]:
         """
-        List namespaces.
+        List namespaces in the account, including their descriptions and creation times.
 
         Args:
           page: Page number (1-indexed).
@@ -631,8 +635,10 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Delete namespace.
+        """Permanently delete a namespace.
+
+        The namespace must be empty (no instances), and
+        the default namespace cannot be deleted.
 
         Args:
           extra_headers: Send extra headers
@@ -756,7 +762,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceReadResponse:
         """
-        Read namespace.
+        Retrieve a namespace and its description.
 
         Args:
           extra_headers: Send extra headers

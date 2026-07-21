@@ -30,12 +30,12 @@ class PolicyTestCreateParams(TypedDict, total=False):
 class PolicyUnionMember0ConnectionRulesRDP(TypedDict, total=False):
     """The RDP-specific rules that define clipboard behavior for RDP connections."""
 
-    allowed_clipboard_local_to_remote_formats: List[Literal["text"]]
+    allowed_clipboard_local_to_remote_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from local machine to remote RDP session.
     """
 
-    allowed_clipboard_remote_to_local_formats: List[Literal["text"]]
+    allowed_clipboard_remote_to_local_formats: List[Literal["text", "file"]]
     """
     Clipboard formats allowed when copying from remote RDP session to local machine.
     """

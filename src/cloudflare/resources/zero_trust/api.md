@@ -986,19 +986,19 @@ from cloudflare.types.zero_trust.casb import ApplicationListResponse, Applicatio
 Methods:
 
 - <code title="get /accounts/{account_id}/one/applications">client.zero_trust.casb.applications.<a href="./src/cloudflare/resources/zero_trust/casb/applications/applications.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/application_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/application_list_response.py">ApplicationListResponse</a></code>
-- <code title="get /accounts/{account_id}/one/applications/{slug}">client.zero_trust.casb.applications.<a href="./src/cloudflare/resources/zero_trust/casb/applications/applications.py">get</a>(slug, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/application_get_response.py">ApplicationGetResponse</a></code>
+- <code title="get /accounts/{account_id}/one/applications/{application_id}">client.zero_trust.casb.applications.<a href="./src/cloudflare/resources/zero_trust/casb/applications/applications.py">get</a>(application_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/application_get_response.py">ApplicationGetResponse</a></code>
 
-#### SetupFlows
+#### AuthMethods
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.casb.applications import SetupFlowListResponse
+from cloudflare.types.zero_trust.casb.applications import AuthMethodListResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/one/applications/{slug}/setup-flows">client.zero_trust.casb.applications.setup_flows.<a href="./src/cloudflare/resources/zero_trust/casb/applications/setup_flows.py">list</a>(slug, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/applications/setup_flow_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/applications/setup_flow_list_response.py">SetupFlowListResponse</a></code>
+- <code title="get /accounts/{account_id}/one/applications/{application_id}/auth-methods">client.zero_trust.casb.applications.auth_methods.<a href="./src/cloudflare/resources/zero_trust/casb/applications/auth_methods.py">list</a>(application_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/applications/auth_method_list_response.py">AuthMethodListResponse</a></code>
 
 ### Integrations
 
@@ -1023,6 +1023,165 @@ Methods:
 - <code title="get /accounts/{account_id}/one/integrations/{id}">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">get</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/integration_get_response.py">IntegrationGetResponse</a></code>
 - <code title="post /accounts/{account_id}/one/integrations/{id}/pause">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">pause</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/integration_pause_response.py">IntegrationPauseResponse</a></code>
 - <code title="post /accounts/{account_id}/one/integrations/{id}/resume">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">resume</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/integration_resume_response.py">IntegrationResumeResponse</a></code>
+
+### Posture
+
+#### Findings
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.posture import (
+    FindingListResponse,
+    FindingExportResponse,
+    FindingGetResponse,
+    FindingIgnoreResponse,
+    FindingResetSeverityResponse,
+    FindingTuneSeverityResponse,
+    FindingUnignoreResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/data-security/posture/findings">client.zero_trust.casb.posture.findings.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/findings.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/finding_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_list_response.py">SyncV4PagePaginationArray[FindingListResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/findings/export">client.zero_trust.casb.posture.findings.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/findings.py">export</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/finding_export_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_export_response.py">Optional[FindingExportResponse]</a></code>
+- <code title="get /accounts/{account_id}/data-security/posture/findings/{finding_id}">client.zero_trust.casb.posture.findings.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/findings.py">get</a>(finding_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_get_response.py">Optional[FindingGetResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/findings/ignore">client.zero_trust.casb.posture.findings.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/findings.py">ignore</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/finding_ignore_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_ignore_response.py">Optional[FindingIgnoreResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/findings/{finding_id}/reset_finding_severity">client.zero_trust.casb.posture.findings.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/findings.py">reset_severity</a>(finding_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_reset_severity_response.py">Optional[FindingResetSeverityResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/findings/{finding_id}/tune_finding_severity">client.zero_trust.casb.posture.findings.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/findings.py">tune_severity</a>(finding_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/finding_tune_severity_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_tune_severity_response.py">Optional[FindingTuneSeverityResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/findings/unignore">client.zero_trust.casb.posture.findings.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/findings.py">unignore</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/finding_unignore_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_unignore_response.py">Optional[FindingUnignoreResponse]</a></code>
+
+##### Instances
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.posture.findings import (
+    InstanceListResponse,
+    InstanceArchiveResponse,
+    InstanceExportResponse,
+    InstanceGetResponse,
+    InstanceUnarchiveResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/data-security/posture/findings/{finding_id}/instances">client.zero_trust.casb.posture.findings.instances.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/instances.py">list</a>(finding_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/findings/instance_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/findings/instance_list_response.py">SyncV4PagePaginationArray[InstanceListResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/findings/{finding_id}/instances/archive">client.zero_trust.casb.posture.findings.instances.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/instances.py">archive</a>(finding_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/findings/instance_archive_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/findings/instance_archive_response.py">Optional[InstanceArchiveResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/findings/{storage_namespace_id}/instances/export">client.zero_trust.casb.posture.findings.instances.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/instances.py">export</a>(storage_namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/findings/instance_export_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/findings/instance_export_response.py">Optional[InstanceExportResponse]</a></code>
+- <code title="get /accounts/{account_id}/data-security/posture/findings/{finding_id}/instances/{instance_id}">client.zero_trust.casb.posture.findings.instances.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/instances.py">get</a>(instance_id, \*, account_id, finding_id) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/findings/instance_get_response.py">Optional[InstanceGetResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/findings/{finding_id}/instances/unarchive">client.zero_trust.casb.posture.findings.instances.<a href="./src/cloudflare/resources/zero_trust/casb/posture/findings/instances.py">unarchive</a>(finding_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/findings/instance_unarchive_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/findings/instance_unarchive_response.py">Optional[InstanceUnarchiveResponse]</a></code>
+
+#### Exports
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.posture import ExportListResponse, ExportGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/data-security/posture/exports">client.zero_trust.casb.posture.exports.<a href="./src/cloudflare/resources/zero_trust/casb/posture/exports.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/export_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/export_list_response.py">SyncV4PagePaginationArray[ExportListResponse]</a></code>
+- <code title="get /accounts/{account_id}/data-security/posture/exports/{id}">client.zero_trust.casb.posture.exports.<a href="./src/cloudflare/resources/zero_trust/casb/posture/exports.py">get</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/export_get_response.py">Optional[ExportGetResponse]</a></code>
+
+#### FindingTypes
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.posture import FindingTypeListResponse, FindingTypeGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/data-security/posture/finding_types">client.zero_trust.casb.posture.finding_types.<a href="./src/cloudflare/resources/zero_trust/casb/posture/finding_types/finding_types.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/finding_type_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_type_list_response.py">SyncV4PagePaginationArray[FindingTypeListResponse]</a></code>
+- <code title="get /accounts/{account_id}/data-security/posture/finding_types/{finding_type_id}">client.zero_trust.casb.posture.finding_types.<a href="./src/cloudflare/resources/zero_trust/casb/posture/finding_types/finding_types.py">get</a>(finding_type_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_type_get_response.py">Optional[FindingTypeGetResponse]</a></code>
+
+##### RemediationTypes
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.posture.finding_types import RemediationTypeListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/data-security/posture/finding_types/{finding_type_id}/remediation_types">client.zero_trust.casb.posture.finding_types.remediation_types.<a href="./src/cloudflare/resources/zero_trust/casb/posture/finding_types/remediation_types.py">list</a>(finding_type_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/finding_types/remediation_type_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/finding_types/remediation_type_list_response.py">SyncV4PagePaginationArray[RemediationTypeListResponse]</a></code>
+
+#### Content
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.posture import ContentListResponse, ContentExportResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/data-security/posture/content">client.zero_trust.casb.posture.content.<a href="./src/cloudflare/resources/zero_trust/casb/posture/content.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/content_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/content_list_response.py">SyncV4PagePaginationArray[ContentListResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/content/export">client.zero_trust.casb.posture.content.<a href="./src/cloudflare/resources/zero_trust/casb/posture/content.py">export</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/content_export_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/content_export_response.py">Optional[ContentExportResponse]</a></code>
+
+#### Remediations
+
+##### Jobs
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.posture.remediations import (
+    JobCreateResponse,
+    JobListResponse,
+    JobExportResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/data-security/posture/remediations/jobs">client.zero_trust.casb.posture.remediations.jobs.<a href="./src/cloudflare/resources/zero_trust/casb/posture/remediations/jobs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/remediations/job_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/remediations/job_create_response.py">JobCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/data-security/posture/remediations/jobs">client.zero_trust.casb.posture.remediations.jobs.<a href="./src/cloudflare/resources/zero_trust/casb/posture/remediations/jobs.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/remediations/job_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/remediations/job_list_response.py">SyncV4PagePaginationArray[JobListResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/remediations/jobs/export">client.zero_trust.casb.posture.remediations.jobs.<a href="./src/cloudflare/resources/zero_trust/casb/posture/remediations/jobs.py">export</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/remediations/job_export_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/remediations/job_export_response.py">Optional[JobExportResponse]</a></code>
+
+#### Webhooks
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.posture import (
+    WebhookCreateResponse,
+    WebhookUpdateResponse,
+    WebhookListResponse,
+    WebhookDeleteResponse,
+    WebhookEvaluateResponse,
+    WebhookEvaluateExistingResponse,
+    WebhookGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/data-security/posture/webhooks">client.zero_trust.casb.posture.webhooks.<a href="./src/cloudflare/resources/zero_trust/casb/posture/webhooks/webhooks.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/webhook_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/webhook_create_response.py">Optional[WebhookCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/data-security/posture/webhooks/{webhook_id}">client.zero_trust.casb.posture.webhooks.<a href="./src/cloudflare/resources/zero_trust/casb/posture/webhooks/webhooks.py">update</a>(webhook_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/webhook_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/webhook_update_response.py">Optional[WebhookUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/data-security/posture/webhooks">client.zero_trust.casb.posture.webhooks.<a href="./src/cloudflare/resources/zero_trust/casb/posture/webhooks/webhooks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/webhook_list_response.py">SyncSinglePage[WebhookListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/data-security/posture/webhooks/{webhook_id}">client.zero_trust.casb.posture.webhooks.<a href="./src/cloudflare/resources/zero_trust/casb/posture/webhooks/webhooks.py">delete</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/webhook_delete_response.py">WebhookDeleteResponse</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/webhooks/evaluate">client.zero_trust.casb.posture.webhooks.<a href="./src/cloudflare/resources/zero_trust/casb/posture/webhooks/webhooks.py">evaluate</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/webhook_evaluate_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/webhook_evaluate_response.py">Optional[WebhookEvaluateResponse]</a></code>
+- <code title="post /accounts/{account_id}/data-security/posture/webhooks/{webhook_id}/evaluate">client.zero_trust.casb.posture.webhooks.<a href="./src/cloudflare/resources/zero_trust/casb/posture/webhooks/webhooks.py">evaluate_existing</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/webhook_evaluate_existing_response.py">Optional[WebhookEvaluateExistingResponse]</a></code>
+- <code title="get /accounts/{account_id}/data-security/posture/webhooks/{webhook_id}">client.zero_trust.casb.posture.webhooks.<a href="./src/cloudflare/resources/zero_trust/casb/posture/webhooks/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/webhook_get_response.py">Optional[WebhookGetResponse]</a></code>
+
+##### Jobs
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.posture.webhooks import JobCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/data-security/posture/webhooks/jobs">client.zero_trust.casb.posture.webhooks.jobs.<a href="./src/cloudflare/resources/zero_trust/casb/posture/webhooks/jobs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/posture/webhooks/job_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/posture/webhooks/job_create_response.py">JobCreateResponse</a></code>
 
 ## DEX
 

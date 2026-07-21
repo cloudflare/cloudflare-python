@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
 from .rules_param import RulesParam
@@ -19,7 +19,11 @@ __all__ = ["LoadBalancerEditParams"]
 
 
 class LoadBalancerEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     adaptive_routing: AdaptiveRoutingParam
     """
@@ -67,6 +71,9 @@ class LoadBalancerEditParams(TypedDict, total=False):
     If this hostname already exists as a DNS record in Cloudflare's DNS, the Load
     Balancer will take precedence and the DNS record will not be used.
     """
+
+    networks: SequenceNotStr[str]
+    """List of networks where Load Balancer or Pool is enabled."""
 
     pop_pools: Dict[str, SequenceNotStr[str]]
     """

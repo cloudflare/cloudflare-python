@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -57,3 +57,17 @@ class Widget(BaseModel):
 
     sitekey: str
     """Widget item identifier tag."""
+
+    deployed_via: Optional[Literal["wrangler", "dashboard", "spin", "api", "unknown"]] = None
+    """
+    Origin that created this widget, recorded at creation time and immutable
+    afterward. Server-derived from the create request; not client-settable. Omitted
+    from the response for widgets created before this field existed.
+    """
+
+    last_modified_via: Optional[Literal["wrangler", "dashboard", "spin", "api", "unknown"]] = None
+    """Origin of the most recent mutation (create, update, delete, or secret rotation).
+
+    Server-derived; not client-settable. Omitted for widgets last mutated before
+    this field existed.
+    """

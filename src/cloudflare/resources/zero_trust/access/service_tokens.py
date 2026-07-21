@@ -88,8 +88,9 @@ class ServiceTokensResource(SyncAPIResource):
               `previous_client_secret_expires_at`.
 
           duration: The duration for how long the service token will be valid. Must be in the format
-              `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m, h. The
-              default is 1 year in hours (8760h).
+              `300ms` or `2h45m`, or the special value `forever` for non-expiring tokens.
+              Valid time units are: ns, us (or µs), ms, s, m, h. The default is 1 year in
+              hours (8760h).
 
           previous_client_secret_expires_at: The expiration of the previous `client_secret`. This can be modified at any
               point after a rotation. For example, you may extend it further into the future
@@ -174,8 +175,9 @@ class ServiceTokensResource(SyncAPIResource):
               `previous_client_secret_expires_at`.
 
           duration: The duration for how long the service token will be valid. Must be in the format
-              `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m, h. The
-              default is 1 year in hours (8760h).
+              `300ms` or `2h45m`, or the special value `forever` for non-expiring tokens.
+              Valid time units are: ns, us (or µs), ms, s, m, h. The default is 1 year in
+              hours (8760h).
 
           name: The name of the service token.
 
@@ -593,8 +595,9 @@ class AsyncServiceTokensResource(AsyncAPIResource):
               `previous_client_secret_expires_at`.
 
           duration: The duration for how long the service token will be valid. Must be in the format
-              `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m, h. The
-              default is 1 year in hours (8760h).
+              `300ms` or `2h45m`, or the special value `forever` for non-expiring tokens.
+              Valid time units are: ns, us (or µs), ms, s, m, h. The default is 1 year in
+              hours (8760h).
 
           previous_client_secret_expires_at: The expiration of the previous `client_secret`. This can be modified at any
               point after a rotation. For example, you may extend it further into the future
@@ -679,8 +682,9 @@ class AsyncServiceTokensResource(AsyncAPIResource):
               `previous_client_secret_expires_at`.
 
           duration: The duration for how long the service token will be valid. Must be in the format
-              `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m, h. The
-              default is 1 year in hours (8760h).
+              `300ms` or `2h45m`, or the special value `forever` for non-expiring tokens.
+              Valid time units are: ns, us (or µs), ms, s, m, h. The default is 1 year in
+              hours (8760h).
 
           name: The name of the service token.
 

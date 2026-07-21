@@ -12,10 +12,7 @@ Types:
 
 ```python
 from cloudflare.types.ssl import (
-    Host,
     RequestValidity,
-    Status,
-    ValidationMethod,
     CertificatePackCreateResponse,
     CertificatePackListResponse,
     CertificatePackDeleteResponse,

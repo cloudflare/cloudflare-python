@@ -17,6 +17,13 @@ class DevicePostureRule(BaseModel):
     description: Optional[str] = None
     """The description of the device posture rule."""
 
+    enabled: Optional[bool] = None
+    """Whether the rule is enabled.
+
+    This is a computed, read-only value. It is false for deprecated Kolide posture
+    rules that still use the issue_count input, and true otherwise.
+    """
+
     expiration: Optional[str] = None
     """Sets the expiration time for a posture check result.
 

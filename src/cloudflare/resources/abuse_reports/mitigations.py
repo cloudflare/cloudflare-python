@@ -83,6 +83,7 @@ class MitigationsResource(SyncAPIResource):
             "r2_takedown_object",
             "rate_limit_cache",
             "redirect_video_stream",
+            "zone_fint",
             "registrar_freeze",
             "registrar_parking",
             "stream_block_account",
@@ -165,7 +166,9 @@ class MitigationsResource(SyncAPIResource):
         report_id: str,
         *,
         account_id: str,
-        appeals: Iterable[mitigation_review_params.Appeal],
+        appeals: Iterable[mitigation_review_params.Appeal] | Omit = omit,
+        data: mitigation_review_params.Data | Omit = omit,
+        type: Literal["counter_notice", "content_removed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -178,6 +181,10 @@ class MitigationsResource(SyncAPIResource):
 
         Args:
           appeals: List of mitigations to appeal.
+
+          data: Counter-notice details supporting an appeal.
+
+          type: The type of appeal being submitted.
 
           extra_headers: Send extra headers
 
@@ -198,7 +205,14 @@ class MitigationsResource(SyncAPIResource):
                 report_id=report_id,
             ),
             page=SyncSinglePage[MitigationReviewResponse],
-            body=maybe_transform({"appeals": appeals}, mitigation_review_params.MitigationReviewParams),
+            body=maybe_transform(
+                {
+                    "appeals": appeals,
+                    "data": data,
+                    "type": type,
+                },
+                mitigation_review_params.MitigationReviewParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -264,6 +278,7 @@ class AsyncMitigationsResource(AsyncAPIResource):
             "r2_takedown_object",
             "rate_limit_cache",
             "redirect_video_stream",
+            "zone_fint",
             "registrar_freeze",
             "registrar_parking",
             "stream_block_account",
@@ -346,7 +361,9 @@ class AsyncMitigationsResource(AsyncAPIResource):
         report_id: str,
         *,
         account_id: str,
-        appeals: Iterable[mitigation_review_params.Appeal],
+        appeals: Iterable[mitigation_review_params.Appeal] | Omit = omit,
+        data: mitigation_review_params.Data | Omit = omit,
+        type: Literal["counter_notice", "content_removed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -359,6 +376,10 @@ class AsyncMitigationsResource(AsyncAPIResource):
 
         Args:
           appeals: List of mitigations to appeal.
+
+          data: Counter-notice details supporting an appeal.
+
+          type: The type of appeal being submitted.
 
           extra_headers: Send extra headers
 
@@ -379,7 +400,14 @@ class AsyncMitigationsResource(AsyncAPIResource):
                 report_id=report_id,
             ),
             page=AsyncSinglePage[MitigationReviewResponse],
-            body=maybe_transform({"appeals": appeals}, mitigation_review_params.MitigationReviewParams),
+            body=maybe_transform(
+                {
+                    "appeals": appeals,
+                    "data": data,
+                    "type": type,
+                },
+                mitigation_review_params.MitigationReviewParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

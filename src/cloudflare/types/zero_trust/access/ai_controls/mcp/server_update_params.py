@@ -13,6 +13,14 @@ class ServerUpdateParams(TypedDict, total=False):
 
     auth_credentials: str
 
+    client_secret: str
+    """Pre-registered OAuth client_secret.
+
+    Write-only - accepted on create/update when auth_credentials.auth_mode is
+    'manual'. Stored AES-GCM-encrypted in server_oauth_secrets; never returned by
+    read endpoints.
+    """
+
     description: Optional[str]
 
     is_shared_oauth_callback_enabled: bool

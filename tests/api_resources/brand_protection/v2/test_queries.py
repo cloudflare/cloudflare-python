@@ -31,6 +31,8 @@ class TestQueries:
         query = client.brand_protection.v2.queries.get(
             account_id="x",
             id="id",
+            page=1,
+            per_page=1,
         )
         assert_matches_type(QueryGetResponse, query, path=["response"])
 
@@ -88,6 +90,8 @@ class TestAsyncQueries:
         query = await async_client.brand_protection.v2.queries.get(
             account_id="x",
             id="id",
+            page=1,
+            per_page=1,
         )
         assert_matches_type(QueryGetResponse, query, path=["response"])
 

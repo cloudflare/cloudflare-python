@@ -65,7 +65,7 @@ class DataClassesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataClassCreateResponse]:
         """
-        Creates a new data class
+        Creates a data class for use in DLP profiles.
 
         Args:
           extra_headers: Send extra headers
@@ -118,7 +118,7 @@ class DataClassesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataClassUpdateResponse]:
         """
-        Update the attributes of a single data class
+        Updates the configuration for a data class.
 
         Args:
           extra_headers: Send extra headers
@@ -171,7 +171,7 @@ class DataClassesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DataClassListResponse]:
         """
-        Retrieve all data classes in an account
+        Lists data classes configured for the account.
 
         Args:
           extra_headers: Send extra headers
@@ -206,7 +206,7 @@ class DataClassesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single data class
+        Deletes a data class from the account.
 
         Args:
           extra_headers: Send extra headers
@@ -250,7 +250,7 @@ class DataClassesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataClassGetResponse]:
         """
-        Retrieve a specific data class
+        Gets the configuration for a data class.
 
         Args:
           extra_headers: Send extra headers
@@ -319,7 +319,7 @@ class AsyncDataClassesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataClassCreateResponse]:
         """
-        Creates a new data class
+        Creates a data class for use in DLP profiles.
 
         Args:
           extra_headers: Send extra headers
@@ -372,7 +372,7 @@ class AsyncDataClassesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataClassUpdateResponse]:
         """
-        Update the attributes of a single data class
+        Updates the configuration for a data class.
 
         Args:
           extra_headers: Send extra headers
@@ -425,7 +425,7 @@ class AsyncDataClassesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DataClassListResponse, AsyncSinglePage[DataClassListResponse]]:
         """
-        Retrieve all data classes in an account
+        Lists data classes configured for the account.
 
         Args:
           extra_headers: Send extra headers
@@ -460,7 +460,7 @@ class AsyncDataClassesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a single data class
+        Deletes a data class from the account.
 
         Args:
           extra_headers: Send extra headers
@@ -504,7 +504,7 @@ class AsyncDataClassesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DataClassGetResponse]:
         """
-        Retrieve a specific data class
+        Gets the configuration for a data class.
 
         Args:
           extra_headers: Send extra headers

@@ -93,8 +93,23 @@ class AllowPoliciesResource(SyncAPIResource):
 
           is_trusted_sender: Messages from this sender will bypass all detections and link following
 
-          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
-              creating or updating policies, but may be returned for existing entries.
+          pattern:
+              The pattern value to match against. Format depends on `pattern_type`:
+
+              - EMAIL: a valid email address, e.g. `user@example.com`
+              - DOMAIN: a valid domain name, e.g. `example.com`
+              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
+                loopback, link-local, and unspecified addresses are rejected.
+
+          pattern_type: Type of pattern matching.
+
+              - EMAIL: matches a full email address (e.g. `user@example.com`)
+              - DOMAIN: matches a domain name (e.g. `example.com`)
+              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted.
+              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
+                may be returned for existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -195,8 +210,14 @@ class AllowPoliciesResource(SyncAPIResource):
 
           page: Current page within paginated list of results.
 
-          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
-              creating or updating policies, but may be returned for existing entries.
+          pattern_type: Type of pattern matching.
+
+              - EMAIL: matches a full email address (e.g. `user@example.com`)
+              - DOMAIN: matches a domain name (e.g. `example.com`)
+              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted.
+              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
+                may be returned for existing entries.
 
           per_page: The number of results per page. Maximum value is 1000.
 
@@ -345,8 +366,23 @@ class AllowPoliciesResource(SyncAPIResource):
 
           is_trusted_sender: Messages from this sender will bypass all detections and link following
 
-          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
-              creating or updating policies, but may be returned for existing entries.
+          pattern:
+              The pattern value to match against. Format depends on `pattern_type`:
+
+              - EMAIL: a valid email address, e.g. `user@example.com`
+              - DOMAIN: a valid domain name, e.g. `example.com`
+              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
+                loopback, link-local, and unspecified addresses are rejected.
+
+          pattern_type: Type of pattern matching.
+
+              - EMAIL: matches a full email address (e.g. `user@example.com`)
+              - DOMAIN: matches a domain name (e.g. `example.com`)
+              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted.
+              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
+                may be returned for existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -504,8 +540,23 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
           is_trusted_sender: Messages from this sender will bypass all detections and link following
 
-          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
-              creating or updating policies, but may be returned for existing entries.
+          pattern:
+              The pattern value to match against. Format depends on `pattern_type`:
+
+              - EMAIL: a valid email address, e.g. `user@example.com`
+              - DOMAIN: a valid domain name, e.g. `example.com`
+              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
+                loopback, link-local, and unspecified addresses are rejected.
+
+          pattern_type: Type of pattern matching.
+
+              - EMAIL: matches a full email address (e.g. `user@example.com`)
+              - DOMAIN: matches a domain name (e.g. `example.com`)
+              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted.
+              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
+                may be returned for existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -606,8 +657,14 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
           page: Current page within paginated list of results.
 
-          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
-              creating or updating policies, but may be returned for existing entries.
+          pattern_type: Type of pattern matching.
+
+              - EMAIL: matches a full email address (e.g. `user@example.com`)
+              - DOMAIN: matches a domain name (e.g. `example.com`)
+              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted.
+              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
+                may be returned for existing entries.
 
           per_page: The number of results per page. Maximum value is 1000.
 
@@ -756,8 +813,23 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
           is_trusted_sender: Messages from this sender will bypass all detections and link following
 
-          pattern_type: Type of pattern matching. Note: UNKNOWN is deprecated and cannot be used when
-              creating or updating policies, but may be returned for existing entries.
+          pattern:
+              The pattern value to match against. Format depends on `pattern_type`:
+
+              - EMAIL: a valid email address, e.g. `user@example.com`
+              - DOMAIN: a valid domain name, e.g. `example.com`
+              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
+                loopback, link-local, and unspecified addresses are rejected.
+
+          pattern_type: Type of pattern matching.
+
+              - EMAIL: matches a full email address (e.g. `user@example.com`)
+              - DOMAIN: matches a domain name (e.g. `example.com`)
+              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
+                `1.2.3.0/24`). Only globally reachable addresses are accepted.
+              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
+                may be returned for existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.

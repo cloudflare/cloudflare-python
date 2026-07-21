@@ -273,7 +273,7 @@ class IntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationGetResponse]:
         """
-        Get risk score integration by id.
+        Gets a Zero Trust risk score integration by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -541,7 +541,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationGetResponse]:
         """
-        Get risk score integration by id.
+        Gets a Zero Trust risk score integration by ID.
 
         Args:
           extra_headers: Send extra headers

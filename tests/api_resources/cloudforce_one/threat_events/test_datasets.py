@@ -15,6 +15,7 @@ from cloudflare.types.cloudforce_one.threat_events import (
     DatasetEditResponse,
     DatasetListResponse,
     DatasetCreateResponse,
+    DatasetDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -122,6 +123,58 @@ class TestDatasets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.threat_events.datasets.with_raw_response.list(
                 account_id="",
+            )
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        dataset = client.cloudforce_one.threat_events.datasets.delete(
+            dataset_id="dataset_id",
+            account_id="account_id",
+        )
+        assert_matches_type(DatasetDeleteResponse, dataset, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.cloudforce_one.threat_events.datasets.with_raw_response.delete(
+            dataset_id="dataset_id",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = response.parse()
+        assert_matches_type(DatasetDeleteResponse, dataset, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.cloudforce_one.threat_events.datasets.with_streaming_response.delete(
+            dataset_id="dataset_id",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = response.parse()
+            assert_matches_type(DatasetDeleteResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.datasets.with_raw_response.delete(
+                dataset_id="dataset_id",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
+            client.cloudforce_one.threat_events.datasets.with_raw_response.delete(
+                dataset_id="",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
@@ -407,6 +460,58 @@ class TestAsyncDatasets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.threat_events.datasets.with_raw_response.list(
                 account_id="",
+            )
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        dataset = await async_client.cloudforce_one.threat_events.datasets.delete(
+            dataset_id="dataset_id",
+            account_id="account_id",
+        )
+        assert_matches_type(DatasetDeleteResponse, dataset, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.cloudforce_one.threat_events.datasets.with_raw_response.delete(
+            dataset_id="dataset_id",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        dataset = await response.parse()
+        assert_matches_type(DatasetDeleteResponse, dataset, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.cloudforce_one.threat_events.datasets.with_streaming_response.delete(
+            dataset_id="dataset_id",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            dataset = await response.parse()
+            assert_matches_type(DatasetDeleteResponse, dataset, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.datasets.with_raw_response.delete(
+                dataset_id="dataset_id",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.datasets.with_raw_response.delete(
+                dataset_id="",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")

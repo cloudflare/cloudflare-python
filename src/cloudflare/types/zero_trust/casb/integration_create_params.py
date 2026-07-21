@@ -13,11 +13,29 @@ __all__ = ["IntegrationCreateParams"]
 class IntegrationCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    application: Required[Literal["GITHUB", "GOOGLE_WORKSPACE", "MICROSOFT_INTERNAL", "SALESFORCE", "SLACK"]]
+    application: Required[
+        Literal[
+            "BITBUCKET",
+            "BOX",
+            "CONFLUENCE",
+            "DROPBOX",
+            "GITHUB",
+            "GOOGLE_WORKSPACE",
+            "JIRA",
+            "MICROSOFT_INTERNAL",
+            "SALESFORCE",
+            "SLACK",
+        ]
+    ]
     """Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
+    - `BITBUCKET` - BITBUCKET
+    - `BOX` - BOX
+    - `CONFLUENCE` - CONFLUENCE
+    - `DROPBOX` - DROPBOX
     - `GITHUB` - GITHUB
     - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
+    - `JIRA` - JIRA
     - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
     - `SALESFORCE` - SALESFORCE
     - `SLACK` - SLACK

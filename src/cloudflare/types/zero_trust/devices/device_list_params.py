@@ -6,7 +6,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 from ...._types import SequenceNotStr
 
-__all__ = ["DeviceListParams", "LastSeenUser"]
+__all__ = ["DeviceListParams", "LastSeenRegistration", "LastSeenUser"]
 
 
 class DeviceListParams(TypedDict, total=False):
@@ -33,6 +33,8 @@ class DeviceListParams(TypedDict, total=False):
     Comma-separated list of additional information that should be included in the
     device response. Supported values are: "last_seen_registration.policy".
     """
+
+    last_seen_registration: LastSeenRegistration
 
     last_seen_user: LastSeenUser
 
@@ -61,6 +63,14 @@ class DeviceListParams(TypedDict, total=False):
 
     sort_order: Literal["asc", "desc"]
     """Sort direction."""
+
+
+class LastSeenRegistration(TypedDict, total=False):
+    policy: str
+    """
+    Filter by the ID of the device settings profile assigned to the device
+    registration.
+    """
 
 
 class LastSeenUser(TypedDict, total=False):

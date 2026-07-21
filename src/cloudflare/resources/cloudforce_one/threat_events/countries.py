@@ -52,7 +52,7 @@ class CountriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CountryListResponse:
         """
-        Retrieves countries information for all countries
+        Retrieve country code information for all supported countries.
 
         Args:
           account_id: Account ID.
@@ -108,7 +108,7 @@ class AsyncCountriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CountryListResponse:
         """
-        Retrieves countries information for all countries
+        Retrieve country code information for all supported countries.
 
         Args:
           account_id: Account ID.

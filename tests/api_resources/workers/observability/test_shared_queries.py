@@ -69,7 +69,7 @@ class TestSharedQueries:
                         "filters": [
                             {
                                 "filter_combination": "and",
-                                "filters": [{}],
+                                "filters": [],
                                 "kind": "group",
                             }
                         ],
@@ -265,7 +265,7 @@ class TestAsyncSharedQueries:
                         "filters": [
                             {
                                 "filter_combination": "and",
-                                "filters": [{}],
+                                "filters": [],
                                 "kind": "group",
                             }
                         ],
