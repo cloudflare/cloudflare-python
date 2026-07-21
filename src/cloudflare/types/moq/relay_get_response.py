@@ -12,8 +12,13 @@ __all__ = ["RelayGetResponse", "Config", "ConfigUpstreams", "ConfigUpstreamsUpst
 class ConfigUpstreamsUpstream(BaseModel):
     """A single upstream MOQT server publisher."""
 
-    url: Optional[str] = None
-    """Upstream MOQT server publisher URL."""
+    url: str
+    """Upstream MOQT server publisher URL.
+
+    Must be an absolute URL with a host and a scheme crique can dial: moqt:// (raw
+    QUIC) or https:// (WebTransport). Validated on update (PUT); rejected
+    with 21013.
+    """
 
 
 class ConfigUpstreams(BaseModel):

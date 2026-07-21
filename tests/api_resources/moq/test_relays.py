@@ -82,7 +82,7 @@ class TestRelays:
             config={
                 "upstreams": {
                     "enabled": True,
-                    "upstreams": [{"url": "url"}],
+                    "upstreams": [{"url": "https://example.com"}],
                 }
             },
             name="name",
@@ -338,7 +338,7 @@ class TestAsyncRelays:
             config={
                 "upstreams": {
                     "enabled": True,
-                    "upstreams": [{"url": "url"}],
+                    "upstreams": [{"url": "https://example.com"}],
                 }
             },
             name="name",

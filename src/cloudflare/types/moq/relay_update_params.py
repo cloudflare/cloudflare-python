@@ -20,8 +20,13 @@ class RelayUpdateParams(TypedDict, total=False):
 class ConfigUpstreamsUpstream(TypedDict, total=False):
     """A single upstream MOQT server publisher."""
 
-    url: str
-    """Upstream MOQT server publisher URL."""
+    url: Required[str]
+    """Upstream MOQT server publisher URL.
+
+    Must be an absolute URL with a host and a scheme crique can dial: moqt:// (raw
+    QUIC) or https:// (WebTransport). Validated on update (PUT); rejected
+    with 21013.
+    """
 
 
 class ConfigUpstreams(TypedDict, total=False):
