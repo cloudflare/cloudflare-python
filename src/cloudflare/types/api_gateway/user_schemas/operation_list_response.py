@@ -203,7 +203,7 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo(Ba
     """Schema active on endpoint."""
 
     learned_available: Optional[bool] = None
-    """True if a Cloudflare-provided learned schema is available for this endpoint."""
+    """Deprecated. Always false."""
 
     mitigation_action: Optional[Literal["none", "log", "block"]] = None
     """Action taken on requests failing validation."""
