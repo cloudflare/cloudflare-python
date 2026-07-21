@@ -321,6 +321,7 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        cache: Literal["from-graph"] | Omit = omit,
         cursor: str | Omit = omit,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
@@ -347,6 +348,9 @@ class ThreatEventsResource(SyncAPIResource):
 
         Args:
           account_id: Account ID.
+
+          cache: Cache strategy. 'from-graph' serves results from the graph-node KV cache when
+              all requested UUIDs are cached; falls back to normal path on partial/zero hit.
 
           cursor: Cursor for pagination. When provided, filters are embedded in the cursor so you
               only need to pass cursor and pageSize. Returned in the previous response's
@@ -385,6 +389,7 @@ class ThreatEventsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cache": cache,
                         "cursor": cursor,
                         "dataset_id": dataset_id,
                         "force_refresh": force_refresh,
@@ -790,6 +795,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        cache: Literal["from-graph"] | Omit = omit,
         cursor: str | Omit = omit,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
@@ -816,6 +822,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
         Args:
           account_id: Account ID.
+
+          cache: Cache strategy. 'from-graph' serves results from the graph-node KV cache when
+              all requested UUIDs are cached; falls back to normal path on partial/zero hit.
 
           cursor: Cursor for pagination. When provided, filters are embedded in the cursor so you
               only need to pass cursor and pageSize. Returned in the previous response's
@@ -854,6 +863,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "cache": cache,
                         "cursor": cursor,
                         "dataset_id": dataset_id,
                         "force_refresh": force_refresh,

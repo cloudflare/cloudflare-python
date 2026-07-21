@@ -15,6 +15,13 @@ class TagListParams(TypedDict, total=False):
     account_id: Required[str]
     """Account ID."""
 
+    cache: Literal["from-graph"]
+    """Cache strategy.
+
+    'from-graph' serves results from the graph-node KV cache when all requested
+    UUIDs are cached; falls back to normal path on partial/zero hit.
+    """
+
     category_uuid: Annotated[str, PropertyInfo(alias="categoryUuid")]
 
     filters: Iterable[Filter]

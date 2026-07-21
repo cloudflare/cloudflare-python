@@ -39,8 +39,8 @@ class ByDatasetListParams(TypedDict, total=False):
 
 
 class Search(TypedDict, total=False):
-    field: Required[Literal["value", "indicatorType"]]
-    """The indicator field to search on. Allowed: value, indicatorType."""
+    field: Required[Literal["value", "indicatorType", "uuid"]]
+    """The indicator field to search on. Allowed: value, indicatorType, uuid."""
 
     op: Required[
         Literal["equals", "not", "gt", "gte", "lt", "lte", "like", "contains", "startsWith", "endsWith", "in", "find"]

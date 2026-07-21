@@ -16,6 +16,13 @@ class IndicatorListParams(TypedDict, total=False):
     account_id: Required[str]
     """Account ID."""
 
+    cache: Literal["from-graph"]
+    """Cache strategy.
+
+    'from-graph' serves results from the graph-node KV cache when all requested
+    UUIDs are cached; falls back to normal path on partial/zero hit.
+    """
+
     created_after: Annotated[Union[str, datetime], PropertyInfo(alias="createdAfter", format="iso8601")]
     """Filter indicators created on or after this date.
 
@@ -75,7 +82,7 @@ class IndicatorListParams(TypedDict, total=False):
     search: Iterable[Search]
     """Structured search as a JSON array of {field, op, value} objects.
 
-    Searchable fields: value, indicatorType. Supports operators: equals, not,
+    Searchable fields: value, indicatorType, uuid. Supports operators: equals, not,
     contains, startsWith, endsWith, gt, lt, gte, lte, like, in, find. Use the 'in'
     operator with an array value to bulk-check up to 100 indicators in a single
     request, e.g.
@@ -121,8 +128,8 @@ class IndicatorListParams(TypedDict, total=False):
 
 
 class Search(TypedDict, total=False):
-    field: Required[Literal["value", "indicatorType"]]
-    """The indicator field to search on. Allowed: value, indicatorType."""
+    field: Required[Literal["value", "indicatorType", "uuid"]]
+    """The indicator field to search on. Allowed: value, indicatorType, uuid."""
 
     op: Required[
         Literal["equals", "not", "gt", "gte", "lt", "lte", "like", "contains", "startsWith", "endsWith", "in", "find"]

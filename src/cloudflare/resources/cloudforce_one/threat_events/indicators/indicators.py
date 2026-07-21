@@ -85,6 +85,7 @@ class IndicatorsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        cache: Literal["from-graph"] | Omit = omit,
         created_after: Union[str, datetime] | Omit = omit,
         created_before: Union[str, datetime] | Omit = omit,
         dataset_ids: SequenceNotStr[str] | Omit = omit,
@@ -117,6 +118,9 @@ class IndicatorsResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          cache: Cache strategy. 'from-graph' serves results from the graph-node KV cache when
+              all requested UUIDs are cached; falls back to normal path on partial/zero hit.
+
           created_after: Filter indicators created on or after this date. Must use ISO 8601 format (e.g.,
               '2024-01-15T00:00:00Z').
 
@@ -144,7 +148,7 @@ class IndicatorsResource(SyncAPIResource):
               for none, -1 for all events.
 
           search: Structured search as a JSON array of {field, op, value} objects. Searchable
-              fields: value, indicatorType. Supports operators: equals, not, contains,
+              fields: value, indicatorType, uuid. Supports operators: equals, not, contains,
               startsWith, endsWith, gt, lt, gte, lte, like, in, find. Use the 'in' operator
               with an array value to bulk-check up to 100 indicators in a single request, e.g.
               search=[{"field":"value","op":"in","value":["evil.com","bad.org"]}]. Multiple
@@ -194,6 +198,7 @@ class IndicatorsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cache": cache,
                         "created_after": created_after,
                         "created_before": created_before,
                         "dataset_ids": dataset_ids,
@@ -254,6 +259,7 @@ class AsyncIndicatorsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        cache: Literal["from-graph"] | Omit = omit,
         created_after: Union[str, datetime] | Omit = omit,
         created_before: Union[str, datetime] | Omit = omit,
         dataset_ids: SequenceNotStr[str] | Omit = omit,
@@ -286,6 +292,9 @@ class AsyncIndicatorsResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          cache: Cache strategy. 'from-graph' serves results from the graph-node KV cache when
+              all requested UUIDs are cached; falls back to normal path on partial/zero hit.
+
           created_after: Filter indicators created on or after this date. Must use ISO 8601 format (e.g.,
               '2024-01-15T00:00:00Z').
 
@@ -313,7 +322,7 @@ class AsyncIndicatorsResource(AsyncAPIResource):
               for none, -1 for all events.
 
           search: Structured search as a JSON array of {field, op, value} objects. Searchable
-              fields: value, indicatorType. Supports operators: equals, not, contains,
+              fields: value, indicatorType, uuid. Supports operators: equals, not, contains,
               startsWith, endsWith, gt, lt, gte, lte, like, in, find. Use the 'in' operator
               with an array value to bulk-check up to 100 indicators in a single request, e.g.
               search=[{"field":"value","op":"in","value":["evil.com","bad.org"]}]. Multiple
@@ -363,6 +372,7 @@ class AsyncIndicatorsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "cache": cache,
                         "created_after": created_after,
                         "created_before": created_before,
                         "dataset_ids": dataset_ids,

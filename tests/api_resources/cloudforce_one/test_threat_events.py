@@ -135,6 +135,7 @@ class TestThreatEvents:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         threat_event = client.cloudforce_one.threat_events.list(
             account_id="account_id",
+            cache="from-graph",
             cursor="eyJ2ZXJzaW9uIjoxLCJwb3NpdGlvbiI6eyJkYXRlIjoiMjAyNC0wMS0xMlQxMDowMDowMFoiLCJ1dWlkIjoiYWJjMTIzIn19",
             dataset_id=["string"],
             force_refresh=True,
@@ -647,6 +648,7 @@ class TestAsyncThreatEvents:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         threat_event = await async_client.cloudforce_one.threat_events.list(
             account_id="account_id",
+            cache="from-graph",
             cursor="eyJ2ZXJzaW9uIjoxLCJwb3NpdGlvbiI6eyJkYXRlIjoiMjAyNC0wMS0xMlQxMDowMDowMFoiLCJ1dWlkIjoiYWJjMTIzIn19",
             dataset_id=["string"],
             force_refresh=True,

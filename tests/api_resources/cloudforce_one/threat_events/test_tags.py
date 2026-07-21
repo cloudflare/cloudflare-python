@@ -129,6 +129,7 @@ class TestTags:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         tag = client.cloudforce_one.threat_events.tags.list(
             account_id="account_id",
+            cache="from-graph",
             category_uuid="categoryUuid",
             filters=[
                 {
@@ -433,6 +434,7 @@ class TestAsyncTags:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.cloudforce_one.threat_events.tags.list(
             account_id="account_id",
+            cache="from-graph",
             category_uuid="categoryUuid",
             filters=[
                 {

@@ -195,6 +195,7 @@ class TagsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        cache: Literal["from-graph"] | Omit = omit,
         category_uuid: str | Omit = omit,
         filters: Iterable[tag_list_params.Filter] | Omit = omit,
         page: float | Omit = omit,
@@ -217,6 +218,9 @@ class TagsResource(SyncAPIResource):
 
         Args:
           account_id: Account ID.
+
+          cache: Cache strategy. 'from-graph' serves results from the graph-node KV cache when
+              all requested UUIDs are cached; falls back to normal path on partial/zero hit.
 
           filters: Structured filters as a JSON array of {field, op, value} objects. Searchable
               fields: uuid, value, actorCategory, actorCategoryConfidence, aliasGroupNames,
@@ -260,6 +264,7 @@ class TagsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cache": cache,
                         "category_uuid": category_uuid,
                         "filters": filters,
                         "page": page,
@@ -594,6 +599,7 @@ class AsyncTagsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        cache: Literal["from-graph"] | Omit = omit,
         category_uuid: str | Omit = omit,
         filters: Iterable[tag_list_params.Filter] | Omit = omit,
         page: float | Omit = omit,
@@ -616,6 +622,9 @@ class AsyncTagsResource(AsyncAPIResource):
 
         Args:
           account_id: Account ID.
+
+          cache: Cache strategy. 'from-graph' serves results from the graph-node KV cache when
+              all requested UUIDs are cached; falls back to normal path on partial/zero hit.
 
           filters: Structured filters as a JSON array of {field, op, value} objects. Searchable
               fields: uuid, value, actorCategory, actorCategoryConfidence, aliasGroupNames,
@@ -659,6 +668,7 @@ class AsyncTagsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "cache": cache,
                         "category_uuid": category_uuid,
                         "filters": filters,
                         "page": page,

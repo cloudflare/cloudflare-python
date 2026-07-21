@@ -29,6 +29,7 @@ class TestIndicators:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         indicator = client.cloudforce_one.threat_events.indicators.list(
             account_id="account_id",
+            cache="from-graph",
             created_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_before=parse_datetime("2019-12-27T18:11:19.117Z"),
             dataset_ids=["string"],
@@ -108,6 +109,7 @@ class TestAsyncIndicators:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         indicator = await async_client.cloudforce_one.threat_events.indicators.list(
             account_id="account_id",
+            cache="from-graph",
             created_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_before=parse_datetime("2019-12-27T18:11:19.117Z"),
             dataset_ids=["string"],

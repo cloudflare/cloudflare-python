@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -14,6 +16,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.brand_protection.v2 import query_get_params
 from ....types.brand_protection.v2.query_get_response import QueryGetResponse
@@ -46,6 +49,8 @@ class QueriesResource(SyncAPIResource):
         *,
         account_id: str,
         id: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,6 +62,14 @@ class QueriesResource(SyncAPIResource):
         Get all saved brand protection queries for an account
 
         Args:
+          page: Optional page number for paginated list requests. Defaults to 1 when only
+              per_page is supplied. Omit page and per_page to preserve the legacy full-list
+              response.
+
+          per_page: Optional number of queries per page for paginated list requests. Defaults to 100
+              when only page is supplied. Maximum 100. Omit page and per_page to preserve the
+              legacy full-list response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -67,18 +80,31 @@ class QueriesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            path_template(
-                "/accounts/{account_id}/cloudforce-one/v2/brand-protection/domain/queries", account_id=account_id
+        return cast(
+            QueryGetResponse,
+            self._get(
+                path_template(
+                    "/accounts/{account_id}/cloudforce-one/v2/brand-protection/domain/queries", account_id=account_id
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "id": id,
+                            "page": page,
+                            "per_page": per_page,
+                        },
+                        query_get_params.QueryGetParams,
+                    ),
+                    post_parser=ResultWrapper[QueryGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[QueryGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"id": id}, query_get_params.QueryGetParams),
-            ),
-            cast_to=QueryGetResponse,
         )
 
 
@@ -107,6 +133,8 @@ class AsyncQueriesResource(AsyncAPIResource):
         *,
         account_id: str,
         id: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,6 +146,14 @@ class AsyncQueriesResource(AsyncAPIResource):
         Get all saved brand protection queries for an account
 
         Args:
+          page: Optional page number for paginated list requests. Defaults to 1 when only
+              per_page is supplied. Omit page and per_page to preserve the legacy full-list
+              response.
+
+          per_page: Optional number of queries per page for paginated list requests. Defaults to 100
+              when only page is supplied. Maximum 100. Omit page and per_page to preserve the
+              legacy full-list response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -128,18 +164,31 @@ class AsyncQueriesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            path_template(
-                "/accounts/{account_id}/cloudforce-one/v2/brand-protection/domain/queries", account_id=account_id
+        return cast(
+            QueryGetResponse,
+            await self._get(
+                path_template(
+                    "/accounts/{account_id}/cloudforce-one/v2/brand-protection/domain/queries", account_id=account_id
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "id": id,
+                            "page": page,
+                            "per_page": per_page,
+                        },
+                        query_get_params.QueryGetParams,
+                    ),
+                    post_parser=ResultWrapper[QueryGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[QueryGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"id": id}, query_get_params.QueryGetParams),
-            ),
-            cast_to=QueryGetResponse,
         )
 
 
