@@ -6,7 +6,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 from ...._types import SequenceNotStr
 
-__all__ = ["RegistrationListParams", "Device", "User"]
+__all__ = ["RegistrationListParams", "Device", "Policy", "User"]
 
 
 class RegistrationListParams(TypedDict, total=False):
@@ -32,6 +32,8 @@ class RegistrationListParams(TypedDict, total=False):
 
     per_page: int
     """The maximum number of devices to return in a single response."""
+
+    policy: Policy
 
     search: str
     """Filter by registration details."""
@@ -63,6 +65,11 @@ class RegistrationListParams(TypedDict, total=False):
 class Device(TypedDict, total=False):
     id: str
     """Filter by WARP device ID."""
+
+
+class Policy(TypedDict, total=False):
+    id: str
+    """Filter by the ID of the device settings profile assigned to the registration."""
 
 
 class User(TypedDict, total=False):
