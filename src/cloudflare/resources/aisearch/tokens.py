@@ -64,7 +64,8 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenCreateResponse:
         """
-        Create a new token.
+        Create a stored Cloudflare credential for an AI Search instance to access its
+        data source.
 
         Args:
           extra_headers: Send extra headers
@@ -115,7 +116,8 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenUpdateResponse:
         """
-        Update token.
+        Replace a stored AI Search credential and invalidate cached credentials for
+        instances that use it.
 
         Args:
           extra_headers: Send extra headers
@@ -166,7 +168,7 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[TokenListResponse]:
         """
-        List tokens.
+        List stored AI Search credentials in the account without exposing their secrets.
 
         Args:
           page: Page number (1-indexed).
@@ -217,8 +219,10 @@ class TokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Delete token.
+        """Permanently delete a stored AI Search credential.
+
+        Credentials in use by an
+        instance cannot be deleted.
 
         Args:
           extra_headers: Send extra headers
@@ -258,7 +262,7 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenReadResponse:
         """
-        Read token.
+        Retrieve a stored AI Search credential without exposing its secret.
 
         Args:
           extra_headers: Send extra headers
@@ -322,7 +326,8 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenCreateResponse:
         """
-        Create a new token.
+        Create a stored Cloudflare credential for an AI Search instance to access its
+        data source.
 
         Args:
           extra_headers: Send extra headers
@@ -373,7 +378,8 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenUpdateResponse:
         """
-        Update token.
+        Replace a stored AI Search credential and invalidate cached credentials for
+        instances that use it.
 
         Args:
           extra_headers: Send extra headers
@@ -424,7 +430,7 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TokenListResponse, AsyncV4PagePaginationArray[TokenListResponse]]:
         """
-        List tokens.
+        List stored AI Search credentials in the account without exposing their secrets.
 
         Args:
           page: Page number (1-indexed).
@@ -475,8 +481,10 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Delete token.
+        """Permanently delete a stored AI Search credential.
+
+        Credentials in use by an
+        instance cannot be deleted.
 
         Args:
           extra_headers: Send extra headers
@@ -516,7 +524,7 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenReadResponse:
         """
-        Read token.
+        Retrieve a stored AI Search credential without exposing its secret.
 
         Args:
           extra_headers: Send extra headers
