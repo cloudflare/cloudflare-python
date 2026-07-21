@@ -59,7 +59,13 @@ __all__ = [
     "MetadataBindingWorkersBindingKindVPCNetwork",
     "MetadataCacheOptions",
     "MetadataExports",
-    "MetadataExportsCache",
+    "MetadataExportsWorkersWorkerExport",
+    "MetadataExportsWorkersWorkerExportCache",
+    "MetadataExportsWorkersDurableObjectExport",
+    "MetadataExportsWorkersDurableObjectDeletedExport",
+    "MetadataExportsWorkersDurableObjectRenamedExport",
+    "MetadataExportsWorkersDurableObjectTransferredExport",
+    "MetadataExportsWorkersDurableObjectExpectingTransferExport",
     "MetadataLimits",
     "MetadataMigrations",
     "MetadataMigrationsWorkersMultipleStepMigrations",
@@ -771,81 +777,185 @@ class MetadataCacheOptions(TypedDict, total=False):
     """
 
 
-class MetadataExportsCache(TypedDict, total=False):
+class MetadataExportsWorkersWorkerExportCache(TypedDict, total=False):
     """Cache override for this entrypoint.
 
-    It applies only to
-    `type: worker` entries and overrides the Worker's global
-    `cache_options.enabled` for that entrypoint.
+    Overrides the Worker's
+    global `cache_options.enabled` for this entrypoint only.
     """
 
     enabled: Required[bool]
     """Whether caching is enabled for this entrypoint."""
 
 
-class MetadataExports(TypedDict, total=False):
-    """
-    A single entry in the `exports` map, keyed by export name (a
-    `WorkerEntrypoint` class name, a Durable Object class name, or
-    `default` for the Worker's default export). Worker entrypoint
-    entries set `type: worker` and may carry `cache` configuration
-    for that entrypoint. Durable Object entries set
-    `type: durable-object` and carry additional provisioning fields.
+class MetadataExportsWorkersWorkerExport(TypedDict, total=False):
+    """A named Worker entrypoint export (`type: worker`).
+
+    Worker
+    entrypoints are always live (`state: created`) and carry no
+    storage or lifecycle fields. The optional `cache` block overrides
+    the Worker's global `cache_options.enabled` for this entrypoint.
     """
 
-    type: Required[Literal["worker", "durable-object"]]
-    """The kind of export."""
+    type: Required[Literal["worker"]]
+    """Marks this entry as a Worker entrypoint export."""
 
-    cache: MetadataExportsCache
+    cache: MetadataExportsWorkersWorkerExportCache
     """Cache override for this entrypoint.
 
-    It applies only to `type: worker` entries and overrides the Worker's global
-    `cache_options.enabled` for that entrypoint.
+    Overrides the Worker's global `cache_options.enabled` for this entrypoint only.
     """
 
-    renamed_to: str
-    """Destination class name for a `state: renamed` tombstone.
+    state: Literal["created"]
+    """Live export. May be omitted; defaults to `created`."""
 
-    The target must appear as a live (`created`) entry in the same `exports` map.
-    Write-only: never present in GET responses.
+
+class MetadataExportsWorkersDurableObjectExport(TypedDict, total=False):
+    """A live Durable Object export (`state: created`, the default).
+
+    The
+    platform auto-provisions the namespace on first deploy, matches it
+    on subsequent deploys, and never mutates or deletes it as a side
+    effect of a code-only change. `storage` is required; `renamed_to`,
+    `transferred_to` and `transfer_from` are not allowed on a live
+    entry.
     """
 
-    state: Literal["created", "deleted", "renamed", "transferred", "expecting-transfer"]
-    """Lifecycle state of the export entry.
+    storage: Required[Literal["sqlite", "legacy-kv"]]
+    """Durable Object storage backend.
 
-    Defaults to `created` (a normal, live export) when omitted.
-
-    `deleted`, `renamed`, and `transferred` are tombstones: write-only lifecycle
-    operations that retire, rename, or hand off a provisioned Durable Object
-    namespace. They are applied at upload and are filtered out of GET responses, so
-    a read only ever returns `created` or `expecting-transfer`.
-
-    `expecting-transfer` is a live export whose data is being received from another
-    script via the two-phase transfer flow; it carries `storage` and
-    `transfer_from`.
+    `sqlite` is the recommended (and only) backend for new namespaces. `legacy-kv`
+    is accepted only for a class whose namespace already exists as KV-backed; the
+    `exports` flow never provisions a new `legacy-kv` namespace.
     """
 
-    storage: Literal["sqlite", "legacy-kv"]
-    """Storage backend for a `type: durable-object` export.
+    type: Required[Literal["durable-object"]]
+    """Marks this entry as a Durable Object export."""
 
-    Required for live Durable Object entries (`created` and `expecting-transfer`).
-    `sqlite` selects SQLite-backed storage; `legacy-kv` selects the legacy key-value
-    storage.
+    container: str
+    """
+    Name of the container (declared in the upload's `metadata.containers`) that
+    backs this Durable Object. When set, the namespace is container-enabled. Valid
+    only on live entries.
     """
 
-    transfer_from: str
-    """Source script for a `state: expecting-transfer` entry.
+    state: Literal["created"]
+    """Live export. May be omitted; defaults to `created`."""
 
-    The namespace on this script is materialised from the source script's data via
-    the pending-transfer flow. Present on reads for `expecting-transfer` entries.
+
+class MetadataExportsWorkersDurableObjectDeletedExport(TypedDict, total=False):
+    """
+    A `deleted` tombstone: retires the provisioned namespace for this
+    class and all of its data. The class must be absent from the
+    uploaded code and no other Worker in the account may bind to the
+    namespace, otherwise the deploy is rejected. No other fields are
+    allowed. Deletion is irreversible.
     """
 
-    transferred_to: str
-    """Destination script for a `state: transferred` tombstone.
+    state: Required[Literal["deleted"]]
+    """Tombstone that deletes the namespace."""
 
-    Must reference a script in the same account; cross-dispatch-namespace transfers
-    are rejected. Write-only: never present in GET responses.
+    type: Required[Literal["durable-object"]]
+    """Marks this entry as a Durable Object export."""
+
+
+class MetadataExportsWorkersDurableObjectRenamedExport(TypedDict, total=False):
     """
+    A `renamed` tombstone: rewrites the provisioned namespace's class
+    name from this map key to `renamed_to`. The source class may stay
+    in code during the rollout window (an info notice is emitted).
+    `storage`, `transferred_to` and `transfer_from` are not allowed.
+    """
+
+    renamed_to: Required[str]
+    """The destination class name.
+
+    Must differ from the source class (the map key) and must be declared as a live
+    (`created`) entry in the same `exports` map. Write-only: never present in GET
+    responses.
+    """
+
+    state: Required[Literal["renamed"]]
+    """Tombstone that renames the namespace's class."""
+
+    type: Required[Literal["durable-object"]]
+    """Marks this entry as a Durable Object export."""
+
+
+class MetadataExportsWorkersDurableObjectTransferredExport(TypedDict, total=False):
+    """
+    A `transferred` tombstone (source side of a two-phase transfer):
+    hands ownership of the provisioned namespace to another script in
+    the same account, named by `transferred_to`. The target must have
+    already deployed a matching `expecting-transfer` entry. The source
+    class may stay in code during the rollout window (an info notice
+    is emitted). `storage`, `renamed_to` and `transfer_from` are not
+    allowed.
+    """
+
+    state: Required[Literal["transferred"]]
+    """Tombstone that transfers the namespace to another script."""
+
+    transferred_to: Required[str]
+    """The destination script name.
+
+    Must be in the same account and the same dispatch-namespace context (or both
+    non-dispatch). Cross-dispatch-namespace transfers are rejected. Write-only:
+    never present in GET responses.
+    """
+
+    type: Required[Literal["durable-object"]]
+    """Marks this entry as a Durable Object export."""
+
+
+class MetadataExportsWorkersDurableObjectExpectingTransferExport(TypedDict, total=False):
+    """The target side of a two-phase transfer (`state:
+    expecting-transfer`).
+
+    Declares that this script expects to receive
+    a namespace for this class from the `transfer_from` script. This
+    is a live entry, not a tombstone: bindings resolve through the
+    source's namespace until the source commits with a `transferred`
+    tombstone. `storage` and `transfer_from` are required; `renamed_to`
+    and `transferred_to` are not allowed.
+    """
+
+    state: Required[Literal["expecting-transfer"]]
+    """Target side of a two-phase transfer."""
+
+    storage: Required[Literal["sqlite", "legacy-kv"]]
+    """Durable Object storage backend.
+
+    `sqlite` is the recommended (and only) backend for new namespaces. `legacy-kv`
+    is accepted only for a class whose namespace already exists as KV-backed; the
+    `exports` flow never provisions a new `legacy-kv` namespace.
+    """
+
+    transfer_from: Required[str]
+    """The source script name to receive the namespace from.
+
+    Must be in the same account and dispatch-namespace context. Present on reads for
+    `expecting-transfer` entries.
+    """
+
+    type: Required[Literal["durable-object"]]
+    """Marks this entry as a Durable Object export."""
+
+    container: str
+    """
+    Name of the container (declared in the upload's `metadata.containers`) that
+    backs this Durable Object once the transfer settles. Valid only on live entries.
+    """
+
+
+MetadataExports: TypeAlias = Union[
+    MetadataExportsWorkersWorkerExport,
+    MetadataExportsWorkersDurableObjectExport,
+    MetadataExportsWorkersDurableObjectDeletedExport,
+    MetadataExportsWorkersDurableObjectRenamedExport,
+    MetadataExportsWorkersDurableObjectTransferredExport,
+    MetadataExportsWorkersDurableObjectExpectingTransferExport,
+]
 
 
 class MetadataLimits(TypedDict, total=False):
