@@ -142,7 +142,10 @@ class UsageResource(SyncAPIResource):
         Args:
           account_id: Represents a Cloudflare resource identifier tag.
 
-          from_: Start date for the usage query (ISO 8601).
+          from_: Start date for the usage query (ISO 8601). The provided time range must include
+              the subscription billing cycle anchor day, otherwise no usage data is returned.
+              Subscription anchor days are provided on the response of the
+              /accounts/{account_id}/paygo-usage-info endpoint.
 
           to: End date for the usage query (ISO 8601).
 
@@ -331,7 +334,10 @@ class AsyncUsageResource(AsyncAPIResource):
         Args:
           account_id: Represents a Cloudflare resource identifier tag.
 
-          from_: Start date for the usage query (ISO 8601).
+          from_: Start date for the usage query (ISO 8601). The provided time range must include
+              the subscription billing cycle anchor day, otherwise no usage data is returned.
+              Subscription anchor days are provided on the response of the
+              /accounts/{account_id}/paygo-usage-info endpoint.
 
           to: End date for the usage query (ISO 8601).
 

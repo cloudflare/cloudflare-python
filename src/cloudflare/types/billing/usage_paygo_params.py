@@ -16,7 +16,12 @@ class UsagePaygoParams(TypedDict, total=False):
     """Represents a Cloudflare resource identifier tag."""
 
     from_: Annotated[Union[str, date], PropertyInfo(alias="from", format="iso8601")]
-    """Start date for the usage query (ISO 8601)."""
+    """Start date for the usage query (ISO 8601).
+
+    The provided time range must include the subscription billing cycle anchor day,
+    otherwise no usage data is returned. Subscription anchor days are provided on
+    the response of the /accounts/{account_id}/paygo-usage-info endpoint.
+    """
 
     to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """End date for the usage query (ISO 8601)."""
