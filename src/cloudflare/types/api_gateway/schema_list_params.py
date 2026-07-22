@@ -24,3 +24,6 @@ class SchemaListParams(TypedDict, total=False):
 
     host: SequenceNotStr[str]
     """Receive schema only for the given host(s)."""
+
+    include_schema_kind: List[Literal["learned"]]
+    """Schema kinds to include in exported OpenAPI schemas."""
