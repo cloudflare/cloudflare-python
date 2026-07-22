@@ -18,7 +18,6 @@ __all__ = [
     "CNAMERecord",
     "CNAMERecordSettings",
     "MXRecord",
-    "MXRecordData",
     "MXRecordSettings",
     "NSRecord",
     "NSRecordSettings",
@@ -315,9 +314,6 @@ class MXRecord(TypedDict, total=False):
     content: str
     """A valid mail server hostname."""
 
-    data: MXRecordData
-    """Components of a MX record."""
-
     priority: float
     """
     Required for MX and URI records; ignored for other record types (but may still
@@ -336,20 +332,6 @@ class MXRecord(TypedDict, total=False):
 
     tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-
-class MXRecordData(TypedDict, total=False):
-    """Components of a MX record."""
-
-    priority: float
-    """
-    Required for MX and URI records; ignored for other record types (but may still
-    be returned by the API). Records with lower priorities are preferred. This field
-    is to be deprecated in favor of the priority field within the data map.
-    """
-
-    target: str
-    """A valid mail server hostname, or "." for a NULL MX record."""
 
 
 class MXRecordSettings(TypedDict, total=False):
@@ -1705,13 +1687,6 @@ class URIRecord(TypedDict, total=False):
 
 class URIRecordData(TypedDict, total=False):
     """Components of a URI record."""
-
-    priority: float
-    """
-    Required for MX and URI records; ignored for other record types (but may still
-    be returned by the API). Records with lower priorities are preferred. This field
-    is to be deprecated in favor of the priority field within the data map.
-    """
 
     target: str
     """The record content."""
