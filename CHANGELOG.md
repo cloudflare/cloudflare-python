@@ -1,5 +1,225 @@
 # Changelog
 
+## 5.6.0 (2026-07-22)
+
+Full Changelog: [v5.5.0...v5.6.0](https://github.com/cloudflare/cloudflare-python/compare/v5.5.0...v5.6.0)
+
+### Breaking Changes
+
+* **accounts:** The `create()` and `get()` methods have been removed from `client.accounts.subscriptions`. The `SubscriptionCreateParams` type is no longer available.
+* **acm:** The `CertificateAuthority` type has been removed from `cloudflare.types.acm`.
+* **certificate_authorities:** The `HostnameAssociation` type has been removed from `cloudflare.types.certificate_authorities`.
+* **cloudforce_one:** The `indicator_types` sub-resource has been removed from `client.cloudforce_one.threat_events`. Use the new `client.cloudforce_one.threat_events.indicators.types` resource instead.
+* **hyperdrive:** The pagination type for `client.hyperdrive.configs.list()` changed from `SyncSinglePage` to `SyncV4PagePaginationArray`. Code that relied on single-page iteration semantics may need adjustment.
+* **load_balancers:** All methods on `client.load_balancers` now use a polymorphic `/{account_or_zone}/{account_or_zone_id}/load_balancers` endpoint pattern instead of the previous `/zones/{zone_id}/load_balancers`. Method signatures now accept either `account_id` or `zone_id`.
+* **moq:** The `rotate()` method and `TokenRotateResponse` type have been removed from `client.moq.relays.tokens`. Use the new `create()`, `list()`, and `delete()` methods instead.
+* **mtls_certificates:** The `MTLSCertificate` type has been replaced with `MTLSCertificateGetResponse`, `MTLSCertificateListResponse`, and `MTLSCertificateDeleteResponse`. The return types of `list()`, `delete()`, and `get()` have changed accordingly.
+* **custom_certificates:** The `Status` type has been removed from `cloudflare.types.custom_certificates`.
+* **ssl:** The `Host`, `Status`, and `ValidationMethod` types have been removed from `cloudflare.types.ssl`. The `hosts` parameter on `client.ssl.certificate_packs.create()` changed from `SequenceNotStr[Host]` to `SequenceNotStr[str]`.
+* **zero_trust:** The `setup_flows` sub-resource has been removed from `client.zero_trust.casb.applications`. The `get()` method endpoint changed from `/accounts/{account_id}/one/applications/{slug}` to `/accounts/{account_id}/one/applications/{application_id}`.
+
+### Features
+
+* **analytics_query:** add analytics_query resource with `summary()`, `timeseries()`, and `top_n()` methods, plus `data_security.content_findings` and `data_security.findings` sub-resources ([7245164](https://github.com/cloudflare/cloudflare-python/commit/72451646f))
+* **ai_audit:** add `client.ai_audit.robots` resource with `bulk_get()` and `get()` methods ([7245164](https://github.com/cloudflare/cloudflare-python/commit/72451646f))
+* **cloudforce_one:** add extensive threat_events sub-resources: `aggregate`, `graphql`, `graph`, `queries`, `relationships`, `indicators` (with `aggregate`, `types`, `by_dataset`), `tags` (with `categories`, `indicators`), `target_industries`, `categories`, and `datasets` ([7245164](https://github.com/cloudflare/cloudflare-python/commit/72451646f))
+* **magic_transit:** add `client.magic_transit.connectors.interrupts` resource with `create()` and `list()` methods ([7245164](https://github.com/cloudflare/cloudflare-python/commit/72451646f))
+* **moq:** add `create()`, `list()`, and `delete()` methods to `client.moq.relays.tokens` ([7245164](https://github.com/cloudflare/cloudflare-python/commit/72451646f))
+* **registrar_sandbox:** add registrar_sandbox resource with `check()`, `search()`, and sub-resources for `registrations`, `registration_status`, and `update_status` ([7245164](https://github.com/cloudflare/cloudflare-python/commit/72451646f))
+* **zero_trust:** add `client.zero_trust.casb.applications.auth_methods` resource with `list()` method ([7245164](https://github.com/cloudflare/cloudflare-python/commit/72451646f))
+* **zero_trust:** add comprehensive CASB posture management: `client.zero_trust.casb.posture` with sub-resources for `findings` (list, export, ignore, unignore, tune/reset severity), `finding_types`, `content`, `exports`, `remediations`, and `webhooks` ([7245164](https://github.com/cloudflare/cloudflare-python/commit/72451646f))
+
+#### New Resources
+
+**AIAudit Robots** (`client.ai_audit.robots`)
+
+- `bulk_get(*, zone_id, **params) -> Optional[RobotBulkGetResponse]`
+- `get(*, zone_id, **params) -> Optional[RobotGetResponse]`
+
+New types:
+```python
+from cloudflare.types.ai_audit import RobotBulkGetResponse, RobotGetResponse
+```
+
+**MagicTransit Connector Interrupts** (`client.magic_transit.connectors.interrupts`)
+
+- `create(connector_id, *, account_id, **params) -> InterruptCreateResponse`
+- `list(connector_id, *, account_id) -> SyncSinglePage[InterruptListResponse]`
+
+New types:
+```python
+from cloudflare.types.magic_transit.connectors import (
+    InterruptCreateResponse,
+    InterruptListResponse,
+)
+```
+
+**CASB Application Auth Methods** (`client.zero_trust.casb.applications.auth_methods`)
+
+- `list(application_id, *, account_id) -> AuthMethodListResponse`
+
+New types:
+```python
+from cloudflare.types.zero_trust.casb.applications import AuthMethodListResponse
+```
+
+**MoQ Relay Tokens** (`client.moq.relays.tokens`)
+
+- `create(relay_id, *, account_id, **params) -> Optional[TokenCreateResponse]`
+- `list(relay_id, *, account_id) -> Optional[TokenListResponse]`
+- `delete(jti, *, account_id, relay_id) -> TokenDeleteResponse`
+
+New types:
+```python
+from cloudflare.types.moq.relays import (
+    TokenCreateResponse,
+    TokenListResponse,
+    TokenDeleteResponse,
+)
+```
+
+**CloudforceOne ThreatEvents Sub-Resources** (`client.cloudforce_one.threat_events`)
+
+The following sub-resources were added under `client.cloudforce_one.threat_events`:
+
+- `aggregate`
+- `graphql`
+- `graph`
+- `queries`
+- `relationships`
+- `indicators` (with `aggregate`, `types`, `by_dataset` sub-resources)
+- `tags` (with `categories`, `indicators` sub-resources)
+- `target_industries`
+- `categories`
+- `datasets`
+
+**AnalyticsQuery** (`client.analytics_query`)
+
+Query analytics data across datasets with summary, timeseries, and top-N aggregations.
+
+- `summary(dataset, *, account_id, **params) -> AnalyticsQuerySummaryResponse`
+- `timeseries(dataset, *, account_id, **params) -> AnalyticsQueryTimeseriesResponse`
+- `top_n(dataset, *, account_id, **params) -> SyncSinglePage[AnalyticsQueryTopNResponse]`
+
+New types:
+```python
+from cloudflare.types import (
+    AnalyticsQuerySummaryResponse,
+    AnalyticsQueryTimeseriesResponse,
+    AnalyticsQueryTopNResponse,
+)
+```
+
+**DataSecurity ContentFindings** (`client.analytics_query.data_security.content_findings`)
+
+- `top_n(*, account_id, **params) -> SyncSinglePage[ContentFindingTopNResponse]`
+
+**DataSecurity Findings** (`client.analytics_query.data_security.findings`)
+
+- `summary(*, account_id, **params) -> FindingSummaryResponse`
+- `timeseries(*, account_id, **params) -> FindingTimeseriesResponse`
+
+**RegistrarSandbox** (`client.registrar_sandbox`)
+
+Sandbox environment for domain registration operations.
+
+- `check(*, account_id, **params) -> RegistrarSandboxCheckResponse`
+- `search(*, account_id, **params) -> RegistrarSandboxSearchResponse`
+
+**Registrations** (`client.registrar_sandbox.registrations`)
+
+- `create(*, account_id, **params) -> RegistrationCreateResponse`
+- `list(*, account_id, **params) -> SyncCursorPagination[RegistrationListResponse]`
+- `edit(domain_id, *, account_id, **params) -> RegistrationEditResponse`
+- `get(domain_id, *, account_id) -> RegistrationGetResponse`
+
+**RegistrationStatus** (`client.registrar_sandbox.registration_status`)
+
+- `get(domain_name, *, account_id) -> RegistrationStatusGetResponse`
+
+New types:
+```python
+from cloudflare.types.registrar_sandbox import RegistrationStatusGetResponse
+```
+
+**UpdateStatus** (`client.registrar_sandbox.update_status`)
+
+- `get(domain_name, *, account_id) -> UpdateStatusGetResponse`
+
+New types:
+```python
+from cloudflare.types.registrar_sandbox import UpdateStatusGetResponse
+```
+
+**CASB Posture** (`client.zero_trust.casb.posture`)
+
+Full CASB posture management with findings, remediation, and webhook support.
+
+- `posture.findings.list(*, account_id, **params) -> SyncV4PagePaginationArray[FindingListResponse]`
+- `posture.findings.export(*, account_id, **params) -> Optional[FindingExportResponse]`
+- `posture.findings.get(finding_id, *, account_id) -> Optional[FindingGetResponse]`
+- `posture.findings.ignore(*, account_id, **params) -> Optional[FindingIgnoreResponse]`
+- `posture.findings.unignore(*, account_id, **params) -> Optional[FindingUnignoreResponse]`
+- `posture.findings.tune_severity(finding_id, *, account_id, **params) -> Optional[FindingTuneSeverityResponse]`
+- `posture.findings.reset_severity(finding_id, *, account_id) -> Optional[FindingResetSeverityResponse]`
+- `posture.findings.instances.list(*, account_id, **params) -> SyncV4PagePaginationArray[InstanceListResponse]`
+- `posture.webhooks.create(*, account_id, **params) -> WebhookCreateResponse`
+- `posture.webhooks.list(*, account_id) -> SyncSinglePage[WebhookListResponse]`
+- `posture.remediations.jobs.create(*, account_id, **params) -> JobCreateResponse`
+- `posture.remediations.jobs.list(*, account_id, **params) -> SyncV4PagePaginationArray[JobListResponse]`
+
+New types:
+```python
+from cloudflare.types.zero_trust.casb.posture import (
+    FindingListResponse,
+    FindingExportResponse,
+    FindingGetResponse,
+    FindingIgnoreResponse,
+    FindingUnignoreResponse,
+    FindingTuneSeverityResponse,
+    FindingResetSeverityResponse,
+)
+```
+
+**FindingTypes** (`client.zero_trust.casb.posture.finding_types`)
+
+- `list(*, account_id, **params) -> SyncV4PagePaginationArray[FindingTypeListResponse]`
+- `get(finding_type_id, *, account_id) -> Optional[FindingTypeGetResponse]`
+
+New types:
+```python
+from cloudflare.types.zero_trust.casb.posture import (
+    FindingTypeListResponse,
+    FindingTypeGetResponse,
+)
+```
+
+**Content** (`client.zero_trust.casb.posture.content`)
+
+- `list(*, account_id, **params) -> SyncV4PagePaginationArray[ContentListResponse]`
+- `export(*, account_id, **params) -> Optional[ContentExportResponse]`
+
+New types:
+```python
+from cloudflare.types.zero_trust.casb.posture import (
+    ContentListResponse,
+    ContentExportResponse,
+)
+```
+
+**Exports** (`client.zero_trust.casb.posture.exports`)
+
+- `list(*, account_id, **params) -> SyncV4PagePaginationArray[ExportListResponse]`
+- `get(id, *, account_id) -> Optional[ExportGetResponse]`
+
+New types:
+```python
+from cloudflare.types.zero_trust.casb.posture import (
+    ExportListResponse,
+    ExportGetResponse,
+)
+```
+
 ## 5.5.0 (2026-07-10)
 
 Full Changelog: [v5.4.0...v5.5.0](https://github.com/cloudflare/cloudflare-python/compare/v5.4.0...v5.5.0)
