@@ -18,18 +18,16 @@ class TestAccessibilityTree:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create_overload_1(self, client: Cloudflare) -> None:
+    def test_method_create(self, client: Cloudflare) -> None:
         accessibility_tree = client.browser_rendering.accessibility_tree.create(
             account_id="account_id",
-            html="<h1>Hello World!</h1>",
         )
         assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         accessibility_tree = client.browser_rendering.accessibility_tree.create(
             account_id="account_id",
-            html="<h1>Hello World!</h1>",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -78,12 +76,14 @@ class TestAccessibilityTree:
                 "timeout": 60000,
                 "wait_until": "load",
             },
+            html="<h1>Hello World!</h1>",
             interesting_only=True,
             reject_request_pattern=["string"],
             reject_resource_types=["document"],
             root="root",
             set_extra_http_headers={"foo": "string"},
             set_java_script_enabled=True,
+            url="https://www.example.com/",
             user_agent="userAgent",
             viewport={
                 "height": 0,
@@ -104,10 +104,9 @@ class TestAccessibilityTree:
         assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
+    def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.browser_rendering.accessibility_tree.with_raw_response.create(
             account_id="account_id",
-            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -116,10 +115,9 @@ class TestAccessibilityTree:
         assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.browser_rendering.accessibility_tree.with_streaming_response.create(
             account_id="account_id",
-            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -130,131 +128,10 @@ class TestAccessibilityTree:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
+    def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.browser_rendering.accessibility_tree.with_raw_response.create(
                 account_id="",
-                html="<h1>Hello World!</h1>",
-            )
-
-    @parametrize
-    def test_method_create_overload_2(self, client: Cloudflare) -> None:
-        accessibility_tree = client.browser_rendering.accessibility_tree.create(
-            account_id="account_id",
-            url="https://example.com/",
-        )
-        assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
-        accessibility_tree = client.browser_rendering.accessibility_tree.create(
-            account_id="account_id",
-            url="https://example.com/",
-            cache_ttl=0,
-            action_timeout=120000,
-            add_script_tag=[
-                {
-                    "id": "id",
-                    "content": "content",
-                    "type": "type",
-                    "url": "https://example.com",
-                }
-            ],
-            add_style_tag=[
-                {
-                    "content": "content",
-                    "url": "https://example.com",
-                }
-            ],
-            allow_request_pattern=["string"],
-            allow_resource_types=["document"],
-            authenticate={
-                "password": "x",
-                "username": "x",
-            },
-            best_attempt=True,
-            cookies=[
-                {
-                    "name": "name",
-                    "value": "value",
-                    "domain": "domain",
-                    "expires": 0,
-                    "http_only": True,
-                    "partition_key": "partitionKey",
-                    "path": "path",
-                    "priority": "Low",
-                    "same_party": True,
-                    "same_site": "Strict",
-                    "secure": True,
-                    "source_port": 0,
-                    "source_scheme": "Unset",
-                    "url": "url",
-                }
-            ],
-            emulate_media_type="emulateMediaType",
-            goto_options={
-                "referer": "referer",
-                "referrer_policy": "referrerPolicy",
-                "timeout": 60000,
-                "wait_until": "load",
-            },
-            interesting_only=True,
-            reject_request_pattern=["string"],
-            reject_resource_types=["document"],
-            root="root",
-            set_extra_http_headers={"foo": "string"},
-            set_java_script_enabled=True,
-            user_agent="userAgent",
-            viewport={
-                "height": 0,
-                "width": 0,
-                "device_scale_factor": 0,
-                "has_touch": True,
-                "is_landscape": True,
-                "is_mobile": True,
-            },
-            wait_for_selector={
-                "selector": "selector",
-                "hidden": True,
-                "timeout": 120000,
-                "visible": True,
-            },
-            wait_for_timeout=120000,
-        )
-        assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
-
-    @parametrize
-    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
-        response = client.browser_rendering.accessibility_tree.with_raw_response.create(
-            account_id="account_id",
-            url="https://example.com/",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        accessibility_tree = response.parse()
-        assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
-        with client.browser_rendering.accessibility_tree.with_streaming_response.create(
-            account_id="account_id",
-            url="https://example.com/",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            accessibility_tree = response.parse()
-            assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.browser_rendering.accessibility_tree.with_raw_response.create(
-                account_id="",
-                url="https://example.com/",
             )
 
 
@@ -264,18 +141,16 @@ class TestAsyncAccessibilityTree:
     )
 
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         accessibility_tree = await async_client.browser_rendering.accessibility_tree.create(
             account_id="account_id",
-            html="<h1>Hello World!</h1>",
         )
         assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         accessibility_tree = await async_client.browser_rendering.accessibility_tree.create(
             account_id="account_id",
-            html="<h1>Hello World!</h1>",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -324,12 +199,14 @@ class TestAsyncAccessibilityTree:
                 "timeout": 60000,
                 "wait_until": "load",
             },
+            html="<h1>Hello World!</h1>",
             interesting_only=True,
             reject_request_pattern=["string"],
             reject_resource_types=["document"],
             root="root",
             set_extra_http_headers={"foo": "string"},
             set_java_script_enabled=True,
+            url="https://www.example.com/",
             user_agent="userAgent",
             viewport={
                 "height": 0,
@@ -350,10 +227,9 @@ class TestAsyncAccessibilityTree:
         assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.browser_rendering.accessibility_tree.with_raw_response.create(
             account_id="account_id",
-            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -362,10 +238,9 @@ class TestAsyncAccessibilityTree:
         assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.browser_rendering.accessibility_tree.with_streaming_response.create(
             account_id="account_id",
-            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -376,129 +251,8 @@ class TestAsyncAccessibilityTree:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.browser_rendering.accessibility_tree.with_raw_response.create(
                 account_id="",
-                html="<h1>Hello World!</h1>",
-            )
-
-    @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        accessibility_tree = await async_client.browser_rendering.accessibility_tree.create(
-            account_id="account_id",
-            url="https://example.com/",
-        )
-        assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
-        accessibility_tree = await async_client.browser_rendering.accessibility_tree.create(
-            account_id="account_id",
-            url="https://example.com/",
-            cache_ttl=0,
-            action_timeout=120000,
-            add_script_tag=[
-                {
-                    "id": "id",
-                    "content": "content",
-                    "type": "type",
-                    "url": "https://example.com",
-                }
-            ],
-            add_style_tag=[
-                {
-                    "content": "content",
-                    "url": "https://example.com",
-                }
-            ],
-            allow_request_pattern=["string"],
-            allow_resource_types=["document"],
-            authenticate={
-                "password": "x",
-                "username": "x",
-            },
-            best_attempt=True,
-            cookies=[
-                {
-                    "name": "name",
-                    "value": "value",
-                    "domain": "domain",
-                    "expires": 0,
-                    "http_only": True,
-                    "partition_key": "partitionKey",
-                    "path": "path",
-                    "priority": "Low",
-                    "same_party": True,
-                    "same_site": "Strict",
-                    "secure": True,
-                    "source_port": 0,
-                    "source_scheme": "Unset",
-                    "url": "url",
-                }
-            ],
-            emulate_media_type="emulateMediaType",
-            goto_options={
-                "referer": "referer",
-                "referrer_policy": "referrerPolicy",
-                "timeout": 60000,
-                "wait_until": "load",
-            },
-            interesting_only=True,
-            reject_request_pattern=["string"],
-            reject_resource_types=["document"],
-            root="root",
-            set_extra_http_headers={"foo": "string"},
-            set_java_script_enabled=True,
-            user_agent="userAgent",
-            viewport={
-                "height": 0,
-                "width": 0,
-                "device_scale_factor": 0,
-                "has_touch": True,
-                "is_landscape": True,
-                "is_mobile": True,
-            },
-            wait_for_selector={
-                "selector": "selector",
-                "hidden": True,
-                "timeout": 120000,
-                "visible": True,
-            },
-            wait_for_timeout=120000,
-        )
-        assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
-
-    @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.browser_rendering.accessibility_tree.with_raw_response.create(
-            account_id="account_id",
-            url="https://example.com/",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        accessibility_tree = await response.parse()
-        assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.browser_rendering.accessibility_tree.with_streaming_response.create(
-            account_id="account_id",
-            url="https://example.com/",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            accessibility_tree = await response.parse()
-            assert_matches_type(AccessibilityTreeCreateResponse, accessibility_tree, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.browser_rendering.accessibility_tree.with_raw_response.create(
-                account_id="",
-                url="https://example.com/",
             )
