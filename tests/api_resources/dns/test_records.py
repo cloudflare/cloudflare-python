@@ -275,10 +275,6 @@ class TestRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
-            data={
-                "priority": 10,
-                "target": "mx.example.com",
-            },
             priority=10,
             proxied=True,
             settings={
@@ -1604,7 +1600,6 @@ class TestRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             data={
-                "priority": 10,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
@@ -1952,10 +1947,6 @@ class TestRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
-            data={
-                "priority": 10,
-                "target": "mx.example.com",
-            },
             priority=10,
             proxied=True,
             settings={
@@ -3519,7 +3510,6 @@ class TestRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             data={
-                "priority": 10,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
@@ -4119,10 +4109,6 @@ class TestRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
-            data={
-                "priority": 10,
-                "target": "mx.example.com",
-            },
             priority=10,
             proxied=True,
             settings={
@@ -5686,7 +5672,6 @@ class TestRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             data={
-                "priority": 10,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
@@ -6358,10 +6343,6 @@ class TestAsyncRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
-            data={
-                "priority": 10,
-                "target": "mx.example.com",
-            },
             priority=10,
             proxied=True,
             settings={
@@ -7687,7 +7668,6 @@ class TestAsyncRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             data={
-                "priority": 10,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
@@ -8035,10 +8015,6 @@ class TestAsyncRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
-            data={
-                "priority": 10,
-                "target": "mx.example.com",
-            },
             priority=10,
             proxied=True,
             settings={
@@ -9602,7 +9578,6 @@ class TestAsyncRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             data={
-                "priority": 10,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
@@ -10202,10 +10177,6 @@ class TestAsyncRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             content="mx.example.com",
-            data={
-                "priority": 10,
-                "target": "mx.example.com",
-            },
             priority=10,
             proxied=True,
             settings={
@@ -11769,7 +11740,6 @@ class TestAsyncRecords:
             include_shadow_metadata=True,
             comment="Domain verification record",
             data={
-                "priority": 10,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },

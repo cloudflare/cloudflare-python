@@ -40,9 +40,9 @@ class FlagUpdateParams(TypedDict, total=False):
     """App identifier."""
 
     default_variation: Required[str]
-    """Variation served when no rule matches or the flag is disabled.
-
-    Must be a key in `variations`.
+    """
+    Variation the API serves when the flag is off, or when it's on but no rule
+    matches the context. Must be a key in `variations`.
     """
 
     enabled: Required[bool]
@@ -63,8 +63,8 @@ class FlagUpdateParams(TypedDict, total=False):
     variations: Required[Dict[str, Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]]
     """Map of variation name to value.
 
-    All values must be the same type (boolean, string, number, or JSON
-    object/array). Each serialized value must be 10KB or smaller.
+    All values share the same type (boolean, string, number, or JSON object/array),
+    and each serialized value stays within 10KB.
     """
 
     description: Optional[str]
@@ -72,7 +72,8 @@ class FlagUpdateParams(TypedDict, total=False):
     type: Literal["boolean", "string", "number", "json"]
     """Value type of the flag's variations.
 
-    Inferred from the variation values on write, so it may be omitted in requests.
+    The API infers this from the variation values on write, so you can omit it in
+    requests.
     """
 
 
@@ -95,12 +96,7 @@ class RuleConditionUnionMember0(TypedDict, total=False):
         ]
     ]
 
-    value: Required[object]
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
 class RuleConditionUnionMember1ClauseUnionMember0(TypedDict, total=False):
@@ -122,12 +118,7 @@ class RuleConditionUnionMember1ClauseUnionMember0(TypedDict, total=False):
         ]
     ]
 
-    value: Required[object]
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
 class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0(TypedDict, total=False):
@@ -149,12 +140,7 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0(TypedDict, t
         ]
     ]
 
-    value: Required[object]
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
 class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(TypedDict, total=False):
@@ -176,12 +162,7 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
         ]
     ]
 
-    value: Required[object]
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
 class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
@@ -205,12 +186,7 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
         ]
     ]
 
-    value: Required[object]
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
 class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
@@ -234,12 +210,7 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
         ]
     ]
 
-    value: Required[object]
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
 class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1(
@@ -342,12 +313,12 @@ class Rule(TypedDict, total=False):
     """
 
     priority: Required[int]
-    """Evaluation order; lower numbers are evaluated first.
+    """Evaluation order: the API evaluates rules with lower numbers first.
 
     Must be unique across the flag's rules.
     """
 
     serve_variation: Required[str]
-    """Variation served when this rule matches. Must be a key in `variations`."""
+    """Variation the API serves when this rule matches. Must be a key in `variations`."""
 
     rollout: RuleRollout

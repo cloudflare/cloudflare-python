@@ -20,7 +20,7 @@ class TestAuthMethods:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         auth_method = client.zero_trust.casb.applications.auth_methods.list(
-            application_id="BITBUCKET",
+            application_id="ANTHROPIC",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AuthMethodListResponse, auth_method, path=["response"])
@@ -28,7 +28,7 @@ class TestAuthMethods:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.casb.applications.auth_methods.with_raw_response.list(
-            application_id="BITBUCKET",
+            application_id="ANTHROPIC",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -40,7 +40,7 @@ class TestAuthMethods:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.casb.applications.auth_methods.with_streaming_response.list(
-            application_id="BITBUCKET",
+            application_id="ANTHROPIC",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -55,7 +55,7 @@ class TestAuthMethods:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.casb.applications.auth_methods.with_raw_response.list(
-                application_id="BITBUCKET",
+                application_id="ANTHROPIC",
                 account_id="",
             )
 
@@ -68,7 +68,7 @@ class TestAsyncAuthMethods:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         auth_method = await async_client.zero_trust.casb.applications.auth_methods.list(
-            application_id="BITBUCKET",
+            application_id="ANTHROPIC",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AuthMethodListResponse, auth_method, path=["response"])
@@ -76,7 +76,7 @@ class TestAsyncAuthMethods:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.casb.applications.auth_methods.with_raw_response.list(
-            application_id="BITBUCKET",
+            application_id="ANTHROPIC",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -88,7 +88,7 @@ class TestAsyncAuthMethods:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.casb.applications.auth_methods.with_streaming_response.list(
-            application_id="BITBUCKET",
+            application_id="ANTHROPIC",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -103,6 +103,6 @@ class TestAsyncAuthMethods:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.casb.applications.auth_methods.with_raw_response.list(
-                application_id="BITBUCKET",
+                application_id="ANTHROPIC",
                 account_id="",
             )

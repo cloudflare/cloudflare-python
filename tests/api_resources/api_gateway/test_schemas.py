@@ -30,6 +30,7 @@ class TestSchemas:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             feature=["thresholds"],
             host=["www.example.com"],
+            include_schema_kind=["learned"],
         )
         assert_matches_type(SchemaListResponse, schema, path=["response"])
 
@@ -83,6 +84,7 @@ class TestAsyncSchemas:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             feature=["thresholds"],
             host=["www.example.com"],
+            include_schema_kind=["learned"],
         )
         assert_matches_type(SchemaListResponse, schema, path=["response"])
 

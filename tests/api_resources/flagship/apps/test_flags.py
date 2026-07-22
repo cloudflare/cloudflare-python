@@ -38,7 +38,7 @@ class TestFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -63,7 +63,7 @@ class TestFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -94,7 +94,7 @@ class TestFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -123,7 +123,7 @@ class TestFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -155,7 +155,7 @@ class TestFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,
@@ -178,7 +178,7 @@ class TestFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,
@@ -203,7 +203,7 @@ class TestFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -229,7 +229,7 @@ class TestFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -261,7 +261,7 @@ class TestFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -291,7 +291,7 @@ class TestFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -324,7 +324,7 @@ class TestFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,
@@ -348,7 +348,7 @@ class TestFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,
@@ -372,7 +372,7 @@ class TestFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,
@@ -580,7 +580,7 @@ class TestAsyncFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -605,7 +605,7 @@ class TestAsyncFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -636,7 +636,7 @@ class TestAsyncFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -665,7 +665,7 @@ class TestAsyncFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -697,7 +697,7 @@ class TestAsyncFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,
@@ -720,7 +720,7 @@ class TestAsyncFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,
@@ -745,7 +745,7 @@ class TestAsyncFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -771,7 +771,7 @@ class TestAsyncFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -803,7 +803,7 @@ class TestAsyncFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -833,7 +833,7 @@ class TestAsyncFlags:
                         {
                             "attribute": "x",
                             "operator": "equals",
-                            "value": {},
+                            "value": "string",
                         }
                     ],
                     "priority": 1,
@@ -866,7 +866,7 @@ class TestAsyncFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,
@@ -890,7 +890,7 @@ class TestAsyncFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,
@@ -914,7 +914,7 @@ class TestAsyncFlags:
                             {
                                 "attribute": "x",
                                 "operator": "equals",
-                                "value": {},
+                                "value": "string",
                             }
                         ],
                         "priority": 1,

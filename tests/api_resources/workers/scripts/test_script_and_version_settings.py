@@ -57,20 +57,23 @@ class TestScriptAndVersionSettings:
                     "Admin": {
                         "type": "worker",
                         "cache": {"enabled": True},
-                        "renamed_to": "renamed_to",
                         "state": "created",
+                    },
+                    "Counter": {
                         "storage": "sqlite",
-                        "transfer_from": "transfer_from",
-                        "transferred_to": "transferred_to",
+                        "type": "durable-object",
+                        "container": "my-container",
+                        "state": "created",
+                    },
+                    "OldCounter": {
+                        "renamed_to": "Counter",
+                        "state": "renamed",
+                        "type": "durable-object",
                     },
                     "default": {
                         "type": "worker",
                         "cache": {"enabled": False},
-                        "renamed_to": "renamed_to",
                         "state": "created",
-                        "storage": "sqlite",
-                        "transfer_from": "transfer_from",
-                        "transferred_to": "transferred_to",
                     },
                 },
                 "limits": {
@@ -264,20 +267,23 @@ class TestAsyncScriptAndVersionSettings:
                     "Admin": {
                         "type": "worker",
                         "cache": {"enabled": True},
-                        "renamed_to": "renamed_to",
                         "state": "created",
+                    },
+                    "Counter": {
                         "storage": "sqlite",
-                        "transfer_from": "transfer_from",
-                        "transferred_to": "transferred_to",
+                        "type": "durable-object",
+                        "container": "my-container",
+                        "state": "created",
+                    },
+                    "OldCounter": {
+                        "renamed_to": "Counter",
+                        "state": "renamed",
+                        "type": "durable-object",
                     },
                     "default": {
                         "type": "worker",
                         "cache": {"enabled": False},
-                        "renamed_to": "renamed_to",
                         "state": "created",
-                        "storage": "sqlite",
-                        "transfer_from": "transfer_from",
-                        "transferred_to": "transferred_to",
                     },
                 },
                 "limits": {

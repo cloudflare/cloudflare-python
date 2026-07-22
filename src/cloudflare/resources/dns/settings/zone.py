@@ -75,7 +75,7 @@ class ZoneResource(SyncAPIResource):
           flatten_all_cnames: Whether to flatten all CNAME records in the zone. Note that, due to DNS
               limitations, a CNAME record at the zone apex will always be flattened.
 
-          foundation_dns: Whether to enable Foundation DNS Advanced Nameservers on the zone.
+          foundation_dns: Deprecated. Use nameservers.type to configure Advanced Nameservers.
 
           internal_dns: Settings for this internal zone.
 
@@ -219,7 +219,7 @@ class AsyncZoneResource(AsyncAPIResource):
           flatten_all_cnames: Whether to flatten all CNAME records in the zone. Note that, due to DNS
               limitations, a CNAME record at the zone apex will always be flattened.
 
-          foundation_dns: Whether to enable Foundation DNS Advanced Nameservers on the zone.
+          foundation_dns: Deprecated. Use nameservers.type to configure Advanced Nameservers.
 
           internal_dns: Settings for this internal zone.
 

@@ -3,112 +3,102 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = [
     "ScrapeCreateParams",
-    "Variant0",
-    "Variant0Element",
-    "Variant0AddScriptTag",
-    "Variant0AddStyleTag",
-    "Variant0Authenticate",
-    "Variant0Cookie",
-    "Variant0GotoOptions",
-    "Variant0Viewport",
-    "Variant0WaitForSelector",
-    "Variant1",
-    "Variant1Element",
-    "Variant1AddScriptTag",
-    "Variant1AddStyleTag",
-    "Variant1Authenticate",
-    "Variant1Cookie",
-    "Variant1GotoOptions",
-    "Variant1Viewport",
-    "Variant1WaitForSelector",
+    "Element",
+    "AddScriptTag",
+    "AddStyleTag",
+    "Authenticate",
+    "Cookie",
+    "GotoOptions",
+    "Viewport",
+    "WaitForSelector",
 ]
 
 
-class Variant0(TypedDict, total=False):
+class ScrapeCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account ID."""
 
-    elements: Required[Iterable[Variant0Element]]
+    elements: Required[Iterable[Element]]
 
-    html: Required[str]
+    cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
+    """Cache TTL default is 5s. Set to 0 to disable."""
+
+    action_timeout: Annotated[float, PropertyInfo(alias="actionTimeout")]
+    """
+    The maximum duration allowed for the browser action to complete after the page
+    has loaded (such as taking screenshots, extracting content, or generating PDFs).
+    If this time limit is exceeded, the action stops and returns a timeout error.
+    """
+
+    add_script_tag: Annotated[Iterable[AddScriptTag], PropertyInfo(alias="addScriptTag")]
+    """Adds a `<script>` tag into the page with the desired URL or content."""
+
+    add_style_tag: Annotated[Iterable[AddStyleTag], PropertyInfo(alias="addStyleTag")]
+    """
+    Adds a `<link rel="stylesheet">` tag into the page with the desired URL or a
+    `<style type="text/css">` tag with the content.
+    """
+
+    allow_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowRequestPattern")]
+    """Only allow requests that match the provided regex patterns, eg. '/^.\\**\\..(css)'."""
+
+    allow_resource_types: Annotated[
+        List[
+            Literal[
+                "document",
+                "stylesheet",
+                "image",
+                "media",
+                "font",
+                "script",
+                "texttrack",
+                "xhr",
+                "fetch",
+                "prefetch",
+                "eventsource",
+                "websocket",
+                "manifest",
+                "signedexchange",
+                "ping",
+                "cspviolationreport",
+                "preflight",
+                "other",
+            ]
+        ],
+        PropertyInfo(alias="allowResourceTypes"),
+    ]
+    """Only allow requests that match the provided resource types, eg.
+
+    'image' or 'script'.
+    """
+
+    authenticate: Authenticate
+    """Provide credentials for HTTP authentication."""
+
+    best_attempt: Annotated[bool, PropertyInfo(alias="bestAttempt")]
+    """Attempt to proceed when 'awaited' events fail or timeout."""
+
+    cookies: Iterable[Cookie]
+    """Check [options](https://pptr.dev/api/puppeteer.page.setcookie)."""
+
+    emulate_media_type: Annotated[str, PropertyInfo(alias="emulateMediaType")]
+
+    goto_options: Annotated[GotoOptions, PropertyInfo(alias="gotoOptions")]
+    """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""
+
+    html: str
     """Set the content of the page, eg: `<h1>Hello World!!</h1>`.
 
     Either `html` or `url` must be set.
     """
 
-    cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
-    """Cache TTL default is 5s. Set to 0 to disable."""
-
-    action_timeout: Annotated[float, PropertyInfo(alias="actionTimeout")]
-    """
-    The maximum duration allowed for the browser action to complete after the page
-    has loaded (such as taking screenshots, extracting content, or generating PDFs).
-    If this time limit is exceeded, the action stops and returns a timeout error.
-    """
-
-    add_script_tag: Annotated[Iterable[Variant0AddScriptTag], PropertyInfo(alias="addScriptTag")]
-    """Adds a `<script>` tag into the page with the desired URL or content."""
-
-    add_style_tag: Annotated[Iterable[Variant0AddStyleTag], PropertyInfo(alias="addStyleTag")]
-    """
-    Adds a `<link rel="stylesheet">` tag into the page with the desired URL or a
-    `<style type="text/css">` tag with the content.
-    """
-
-    allow_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowRequestPattern")]
-    """Only allow requests that match the provided regex patterns, eg. '/^.\\**\\..(css)'."""
-
-    allow_resource_types: Annotated[
-        List[
-            Literal[
-                "document",
-                "stylesheet",
-                "image",
-                "media",
-                "font",
-                "script",
-                "texttrack",
-                "xhr",
-                "fetch",
-                "prefetch",
-                "eventsource",
-                "websocket",
-                "manifest",
-                "signedexchange",
-                "ping",
-                "cspviolationreport",
-                "preflight",
-                "other",
-            ]
-        ],
-        PropertyInfo(alias="allowResourceTypes"),
-    ]
-    """Only allow requests that match the provided resource types, eg.
-
-    'image' or 'script'.
-    """
-
-    authenticate: Variant0Authenticate
-    """Provide credentials for HTTP authentication."""
-
-    best_attempt: Annotated[bool, PropertyInfo(alias="bestAttempt")]
-    """Attempt to proceed when 'awaited' events fail or timeout."""
-
-    cookies: Iterable[Variant0Cookie]
-    """Check [options](https://pptr.dev/api/puppeteer.page.setcookie)."""
-
-    emulate_media_type: Annotated[str, PropertyInfo(alias="emulateMediaType")]
-
-    goto_options: Annotated[Variant0GotoOptions, PropertyInfo(alias="gotoOptions")]
-    """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""
-
     reject_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="rejectRequestPattern")]
     """Block undesired requests that match the provided regex patterns, eg.
 
@@ -149,250 +139,15 @@ class Variant0(TypedDict, total=False):
 
     set_java_script_enabled: Annotated[bool, PropertyInfo(alias="setJavaScriptEnabled")]
 
-    user_agent: Annotated[str, PropertyInfo(alias="userAgent")]
-
-    viewport: Variant0Viewport
-    """Check [options](https://pptr.dev/api/puppeteer.page.setviewport)."""
-
-    wait_for_selector: Annotated[Variant0WaitForSelector, PropertyInfo(alias="waitForSelector")]
-    """Wait for the selector to appear in page.
-
-    Check [options](https://pptr.dev/api/puppeteer.page.waitforselector).
-    """
-
-    wait_for_timeout: Annotated[float, PropertyInfo(alias="waitForTimeout")]
-    """Waits for a specified timeout before continuing."""
-
-
-class Variant0Element(TypedDict, total=False):
-    selector: Required[str]
-
-
-class Variant0AddScriptTag(TypedDict, total=False):
-    id: str
-
-    content: str
-
-    type: str
-
     url: str
-
-
-class Variant0AddStyleTag(TypedDict, total=False):
-    content: str
-
-    url: str
-
-
-class Variant0Authenticate(TypedDict, total=False):
-    """Provide credentials for HTTP authentication."""
-
-    password: Required[str]
-
-    username: Required[str]
-
-
-class Variant0Cookie(TypedDict, total=False):
-    name: Required[str]
-    """Cookie name."""
-
-    value: Required[str]
-
-    domain: str
-
-    expires: float
-
-    http_only: Annotated[bool, PropertyInfo(alias="httpOnly")]
-
-    partition_key: Annotated[str, PropertyInfo(alias="partitionKey")]
-
-    path: str
-
-    priority: Literal["Low", "Medium", "High"]
-
-    same_party: Annotated[bool, PropertyInfo(alias="sameParty")]
-
-    same_site: Annotated[Literal["Strict", "Lax", "None"], PropertyInfo(alias="sameSite")]
-
-    secure: bool
-
-    source_port: Annotated[float, PropertyInfo(alias="sourcePort")]
-
-    source_scheme: Annotated[Literal["Unset", "NonSecure", "Secure"], PropertyInfo(alias="sourceScheme")]
-
-    url: str
-
-
-class Variant0GotoOptions(TypedDict, total=False):
-    """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""
-
-    referer: str
-
-    referrer_policy: Annotated[str, PropertyInfo(alias="referrerPolicy")]
-
-    timeout: float
-
-    wait_until: Annotated[
-        Union[
-            Literal["load", "domcontentloaded", "networkidle0", "networkidle2"],
-            List[Literal["load", "domcontentloaded", "networkidle0", "networkidle2"]],
-        ],
-        PropertyInfo(alias="waitUntil"),
-    ]
-
-
-class Variant0Viewport(TypedDict, total=False):
-    """Check [options](https://pptr.dev/api/puppeteer.page.setviewport)."""
-
-    height: Required[float]
-
-    width: Required[float]
-
-    device_scale_factor: Annotated[float, PropertyInfo(alias="deviceScaleFactor")]
-
-    has_touch: Annotated[bool, PropertyInfo(alias="hasTouch")]
-
-    is_landscape: Annotated[bool, PropertyInfo(alias="isLandscape")]
-
-    is_mobile: Annotated[bool, PropertyInfo(alias="isMobile")]
-
-
-class Variant0WaitForSelector(TypedDict, total=False):
-    """Wait for the selector to appear in page.
-
-    Check [options](https://pptr.dev/api/puppeteer.page.waitforselector).
-    """
-
-    selector: Required[str]
-
-    hidden: Literal[True]
-
-    timeout: float
-
-    visible: Literal[True]
-
-
-class Variant1(TypedDict, total=False):
-    account_id: Required[str]
-    """Account ID."""
-
-    elements: Required[Iterable[Variant1Element]]
-
-    url: Required[str]
     """URL to navigate to, eg. `https://example.com`."""
 
-    cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
-    """Cache TTL default is 5s. Set to 0 to disable."""
-
-    action_timeout: Annotated[float, PropertyInfo(alias="actionTimeout")]
-    """
-    The maximum duration allowed for the browser action to complete after the page
-    has loaded (such as taking screenshots, extracting content, or generating PDFs).
-    If this time limit is exceeded, the action stops and returns a timeout error.
-    """
-
-    add_script_tag: Annotated[Iterable[Variant1AddScriptTag], PropertyInfo(alias="addScriptTag")]
-    """Adds a `<script>` tag into the page with the desired URL or content."""
-
-    add_style_tag: Annotated[Iterable[Variant1AddStyleTag], PropertyInfo(alias="addStyleTag")]
-    """
-    Adds a `<link rel="stylesheet">` tag into the page with the desired URL or a
-    `<style type="text/css">` tag with the content.
-    """
-
-    allow_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowRequestPattern")]
-    """Only allow requests that match the provided regex patterns, eg. '/^.\\**\\..(css)'."""
-
-    allow_resource_types: Annotated[
-        List[
-            Literal[
-                "document",
-                "stylesheet",
-                "image",
-                "media",
-                "font",
-                "script",
-                "texttrack",
-                "xhr",
-                "fetch",
-                "prefetch",
-                "eventsource",
-                "websocket",
-                "manifest",
-                "signedexchange",
-                "ping",
-                "cspviolationreport",
-                "preflight",
-                "other",
-            ]
-        ],
-        PropertyInfo(alias="allowResourceTypes"),
-    ]
-    """Only allow requests that match the provided resource types, eg.
-
-    'image' or 'script'.
-    """
-
-    authenticate: Variant1Authenticate
-    """Provide credentials for HTTP authentication."""
-
-    best_attempt: Annotated[bool, PropertyInfo(alias="bestAttempt")]
-    """Attempt to proceed when 'awaited' events fail or timeout."""
-
-    cookies: Iterable[Variant1Cookie]
-    """Check [options](https://pptr.dev/api/puppeteer.page.setcookie)."""
-
-    emulate_media_type: Annotated[str, PropertyInfo(alias="emulateMediaType")]
-
-    goto_options: Annotated[Variant1GotoOptions, PropertyInfo(alias="gotoOptions")]
-    """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""
-
-    reject_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="rejectRequestPattern")]
-    """Block undesired requests that match the provided regex patterns, eg.
-
-    '/^.\\**\\..(css)'.
-    """
-
-    reject_resource_types: Annotated[
-        List[
-            Literal[
-                "document",
-                "stylesheet",
-                "image",
-                "media",
-                "font",
-                "script",
-                "texttrack",
-                "xhr",
-                "fetch",
-                "prefetch",
-                "eventsource",
-                "websocket",
-                "manifest",
-                "signedexchange",
-                "ping",
-                "cspviolationreport",
-                "preflight",
-                "other",
-            ]
-        ],
-        PropertyInfo(alias="rejectResourceTypes"),
-    ]
-    """Block undesired requests that match the provided resource types, eg.
-
-    'image' or 'script'.
-    """
-
-    set_extra_http_headers: Annotated[Dict[str, str], PropertyInfo(alias="setExtraHTTPHeaders")]
-
-    set_java_script_enabled: Annotated[bool, PropertyInfo(alias="setJavaScriptEnabled")]
-
     user_agent: Annotated[str, PropertyInfo(alias="userAgent")]
 
-    viewport: Variant1Viewport
+    viewport: Viewport
     """Check [options](https://pptr.dev/api/puppeteer.page.setviewport)."""
 
-    wait_for_selector: Annotated[Variant1WaitForSelector, PropertyInfo(alias="waitForSelector")]
+    wait_for_selector: Annotated[WaitForSelector, PropertyInfo(alias="waitForSelector")]
     """Wait for the selector to appear in page.
 
     Check [options](https://pptr.dev/api/puppeteer.page.waitforselector).
@@ -402,11 +157,11 @@ class Variant1(TypedDict, total=False):
     """Waits for a specified timeout before continuing."""
 
 
-class Variant1Element(TypedDict, total=False):
+class Element(TypedDict, total=False):
     selector: Required[str]
 
 
-class Variant1AddScriptTag(TypedDict, total=False):
+class AddScriptTag(TypedDict, total=False):
     id: str
 
     content: str
@@ -416,13 +171,13 @@ class Variant1AddScriptTag(TypedDict, total=False):
     url: str
 
 
-class Variant1AddStyleTag(TypedDict, total=False):
+class AddStyleTag(TypedDict, total=False):
     content: str
 
     url: str
 
 
-class Variant1Authenticate(TypedDict, total=False):
+class Authenticate(TypedDict, total=False):
     """Provide credentials for HTTP authentication."""
 
     password: Required[str]
@@ -430,7 +185,7 @@ class Variant1Authenticate(TypedDict, total=False):
     username: Required[str]
 
 
-class Variant1Cookie(TypedDict, total=False):
+class Cookie(TypedDict, total=False):
     name: Required[str]
     """Cookie name."""
 
@@ -461,7 +216,7 @@ class Variant1Cookie(TypedDict, total=False):
     url: str
 
 
-class Variant1GotoOptions(TypedDict, total=False):
+class GotoOptions(TypedDict, total=False):
     """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""
 
     referer: str
@@ -479,7 +234,7 @@ class Variant1GotoOptions(TypedDict, total=False):
     ]
 
 
-class Variant1Viewport(TypedDict, total=False):
+class Viewport(TypedDict, total=False):
     """Check [options](https://pptr.dev/api/puppeteer.page.setviewport)."""
 
     height: Required[float]
@@ -495,7 +250,7 @@ class Variant1Viewport(TypedDict, total=False):
     is_mobile: Annotated[bool, PropertyInfo(alias="isMobile")]
 
 
-class Variant1WaitForSelector(TypedDict, total=False):
+class WaitForSelector(TypedDict, total=False):
     """Wait for the selector to appear in page.
 
     Check [options](https://pptr.dev/api/puppeteer.page.waitforselector).
@@ -508,6 +263,3 @@ class Variant1WaitForSelector(TypedDict, total=False):
     timeout: float
 
     visible: Literal[True]
-
-
-ScrapeCreateParams: TypeAlias = Union[Variant0, Variant1]

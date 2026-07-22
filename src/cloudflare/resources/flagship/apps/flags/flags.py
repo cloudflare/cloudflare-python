@@ -91,8 +91,8 @@ class FlagsResource(SyncAPIResource):
 
           app_id: App identifier.
 
-          default_variation: Variation served when no rule matches or the flag is disabled. Must be a key in
-              `variations`.
+          default_variation: Variation the API serves when the flag is off, or when it's on but no rule
+              matches the context. Must be a key in `variations`.
 
           enabled: When false, the flag bypasses all rules and always serves `default_variation`.
 
@@ -102,12 +102,11 @@ class FlagsResource(SyncAPIResource):
           rules: Targeting rules evaluated in ascending `priority`; the first matching rule wins.
               An empty array means the flag always serves `default_variation`.
 
-          variations: Map of variation name to value. All values must be the same type (boolean,
-              string, number, or JSON object/array). Each serialized value must be 10KB or
-              smaller.
+          variations: Map of variation name to value. All values share the same type (boolean, string,
+              number, or JSON object/array), and each serialized value stays within 10KB.
 
-          type: Value type of the flag's variations. Inferred from the variation values on
-              write, so it may be omitted in requests.
+          type: Value type of the flag's variations. The API infers this from the variation
+              values on write, so you can omit it in requests.
 
           extra_headers: Send extra headers
 
@@ -177,8 +176,8 @@ class FlagsResource(SyncAPIResource):
 
           flag_key: Flag key (slug).
 
-          default_variation: Variation served when no rule matches or the flag is disabled. Must be a key in
-              `variations`.
+          default_variation: Variation the API serves when the flag is off, or when it's on but no rule
+              matches the context. Must be a key in `variations`.
 
           enabled: When false, the flag bypasses all rules and always serves `default_variation`.
 
@@ -188,12 +187,11 @@ class FlagsResource(SyncAPIResource):
           rules: Targeting rules evaluated in ascending `priority`; the first matching rule wins.
               An empty array means the flag always serves `default_variation`.
 
-          variations: Map of variation name to value. All values must be the same type (boolean,
-              string, number, or JSON object/array). Each serialized value must be 10KB or
-              smaller.
+          variations: Map of variation name to value. All values share the same type (boolean, string,
+              number, or JSON object/array), and each serialized value stays within 10KB.
 
-          type: Value type of the flag's variations. Inferred from the variation values on
-              write, so it may be omitted in requests.
+          type: Value type of the flag's variations. The API infers this from the variation
+              values on write, so you can omit it in requests.
 
           extra_headers: Send extra headers
 
@@ -310,7 +308,7 @@ class FlagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FlagDeleteResponse:
-        """Permanently deletes a flag.
+        """Deletes a flag permanently.
 
         Subsequent evaluations fall back to the
         caller-supplied default. Cannot be undone.
@@ -461,8 +459,8 @@ class AsyncFlagsResource(AsyncAPIResource):
 
           app_id: App identifier.
 
-          default_variation: Variation served when no rule matches or the flag is disabled. Must be a key in
-              `variations`.
+          default_variation: Variation the API serves when the flag is off, or when it's on but no rule
+              matches the context. Must be a key in `variations`.
 
           enabled: When false, the flag bypasses all rules and always serves `default_variation`.
 
@@ -472,12 +470,11 @@ class AsyncFlagsResource(AsyncAPIResource):
           rules: Targeting rules evaluated in ascending `priority`; the first matching rule wins.
               An empty array means the flag always serves `default_variation`.
 
-          variations: Map of variation name to value. All values must be the same type (boolean,
-              string, number, or JSON object/array). Each serialized value must be 10KB or
-              smaller.
+          variations: Map of variation name to value. All values share the same type (boolean, string,
+              number, or JSON object/array), and each serialized value stays within 10KB.
 
-          type: Value type of the flag's variations. Inferred from the variation values on
-              write, so it may be omitted in requests.
+          type: Value type of the flag's variations. The API infers this from the variation
+              values on write, so you can omit it in requests.
 
           extra_headers: Send extra headers
 
@@ -547,8 +544,8 @@ class AsyncFlagsResource(AsyncAPIResource):
 
           flag_key: Flag key (slug).
 
-          default_variation: Variation served when no rule matches or the flag is disabled. Must be a key in
-              `variations`.
+          default_variation: Variation the API serves when the flag is off, or when it's on but no rule
+              matches the context. Must be a key in `variations`.
 
           enabled: When false, the flag bypasses all rules and always serves `default_variation`.
 
@@ -558,12 +555,11 @@ class AsyncFlagsResource(AsyncAPIResource):
           rules: Targeting rules evaluated in ascending `priority`; the first matching rule wins.
               An empty array means the flag always serves `default_variation`.
 
-          variations: Map of variation name to value. All values must be the same type (boolean,
-              string, number, or JSON object/array). Each serialized value must be 10KB or
-              smaller.
+          variations: Map of variation name to value. All values share the same type (boolean, string,
+              number, or JSON object/array), and each serialized value stays within 10KB.
 
-          type: Value type of the flag's variations. Inferred from the variation values on
-              write, so it may be omitted in requests.
+          type: Value type of the flag's variations. The API infers this from the variation
+              values on write, so you can omit it in requests.
 
           extra_headers: Send extra headers
 
@@ -680,7 +676,7 @@ class AsyncFlagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FlagDeleteResponse:
-        """Permanently deletes a flag.
+        """Deletes a flag permanently.
 
         Subsequent evaluations fall back to the
         caller-supplied default. Cannot be undone.

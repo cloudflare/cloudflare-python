@@ -51,6 +51,7 @@ class SchemasResource(SyncAPIResource):
         zone_id: str,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
+        include_schema_kind: List[Literal["learned"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,6 +70,8 @@ class SchemasResource(SyncAPIResource):
               for more details on the specific meaning.
 
           host: Receive schema only for the given host(s).
+
+          include_schema_kind: Schema kinds to include in exported OpenAPI schemas.
 
           extra_headers: Send extra headers
 
@@ -91,6 +94,7 @@ class SchemasResource(SyncAPIResource):
                     {
                         "feature": feature,
                         "host": host,
+                        "include_schema_kind": include_schema_kind,
                     },
                     schema_list_params.SchemaListParams,
                 ),
@@ -126,6 +130,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         zone_id: str,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
+        include_schema_kind: List[Literal["learned"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -144,6 +149,8 @@ class AsyncSchemasResource(AsyncAPIResource):
               for more details on the specific meaning.
 
           host: Receive schema only for the given host(s).
+
+          include_schema_kind: Schema kinds to include in exported OpenAPI schemas.
 
           extra_headers: Send extra headers
 
@@ -166,6 +173,7 @@ class AsyncSchemasResource(AsyncAPIResource):
                     {
                         "feature": feature,
                         "host": host,
+                        "include_schema_kind": include_schema_kind,
                     },
                     schema_list_params.SchemaListParams,
                 ),

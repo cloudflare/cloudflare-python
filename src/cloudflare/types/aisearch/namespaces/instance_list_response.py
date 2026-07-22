@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -35,27 +35,37 @@ class CustomMetadata(BaseModel):
 
 
 class IndexMethod(BaseModel):
-    """Controls which storage backends are used during indexing.
-
-    Defaults to vector-only.
-    """
-
     keyword: bool
-    """Enable keyword (BM25) storage backend."""
 
     vector: bool
-    """Enable vector (embedding) storage backend."""
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
 
 
 class IndexingOptions(BaseModel):
     keyword_tokenizer: Optional[Literal["porter", "trigram"]] = None
-    """Tokenizer used for keyword search indexing.
 
-    porter provides word-level tokenization with Porter stemming (good for natural
-    language queries). trigram enables character-level substring matching (good for
-    partial matches, code, identifiers). Changing this triggers a full re-index.
-    Defaults to porter.
-    """
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
 
 
 class Metadata(BaseModel):
@@ -63,17 +73,51 @@ class Metadata(BaseModel):
 
     worker_domain: Optional[str] = None
 
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
+
 
 class PublicEndpointParamsChatCompletionsEndpoint(BaseModel):
     disabled: Optional[bool] = None
-    """Disable chat completions endpoint for this public endpoint"""
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
 
 
 class PublicEndpointParamsMcp(BaseModel):
     description: Optional[str] = None
 
     disabled: Optional[bool] = None
-    """Disable MCP endpoint for this public endpoint"""
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
 
 
 class PublicEndpointParamsRateLimit(BaseModel):
@@ -83,10 +127,33 @@ class PublicEndpointParamsRateLimit(BaseModel):
 
     technique: Optional[Literal["fixed", "sliding"]] = None
 
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
+
 
 class PublicEndpointParamsSearchEndpoint(BaseModel):
     disabled: Optional[bool] = None
-    """Disable search endpoint for this public endpoint"""
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
 
 
 class PublicEndpointParams(BaseModel):
@@ -95,21 +162,8 @@ class PublicEndpointParams(BaseModel):
     chat_completions_endpoint: Optional[PublicEndpointParamsChatCompletionsEndpoint] = None
 
     custom_domains: Optional[List[str]] = None
-    """Custom domain hostnames that alias this public endpoint.
-
-    GET and create responses return the current set; on update (PUT) this field is
-    only echoed back when supplied in the request body, otherwise it is null (omit
-    it to leave domains unchanged).
-    """
 
     default_domain_enabled: Optional[bool] = None
-    """
-    When false, the instance is reachable only via a registered custom domain and
-    the default <public_endpoint_id>.search.ai.cloudflare.com host returns 404.
-    Requires at least one custom domain. Defaults to true. public_endpoint_params is
-    replaced wholesale on update, so resend default_domain_enabled on every update
-    to keep the default host off — omitting it resets to true.
-    """
 
     enabled: Optional[bool] = None
 
@@ -119,87 +173,97 @@ class PublicEndpointParams(BaseModel):
 
     search_endpoint: Optional[PublicEndpointParamsSearchEndpoint] = None
 
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
+
 
 class RetrievalOptionsBoostBy(BaseModel):
     field: str
-    """Metadata field name to boost by.
 
-    Use 'timestamp' for document freshness, or any custom_metadata field. Numeric
-    and datetime fields support all four directions (asc, desc, exists, not_exists);
-    text/boolean fields only support exists/not_exists.
-    """
+    data_type: Optional[Literal["number", "datetime", "text", "boolean"]] = FieldInfo(alias="dataType", default=None)
 
     direction: Optional[Literal["asc", "desc", "exists", "not_exists"]] = None
-    """Boost direction.
 
-    'desc' = higher values rank higher (e.g. newer timestamps). 'asc' = lower values
-    rank higher. 'exists' = boost chunks that have the field. 'not_exists' = boost
-    chunks that lack the field. Optional — defaults to 'asc' for numeric/datetime
-    fields, 'exists' for text/boolean fields.
-    """
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
 
 
 class RetrievalOptions(BaseModel):
     boost_by: Optional[List[RetrievalOptionsBoostBy]] = None
-    """Metadata fields to boost search results by.
-
-    Each entry specifies a metadata field and an optional direction. Direction
-    defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean
-    fields. Fields must match 'timestamp' or a defined custom_metadata field.
-    """
 
     keyword_match_mode: Optional[Literal["and", "or"]] = None
-    """Controls which documents are candidates for BM25 scoring.
 
-    'and' restricts candidates to documents containing all query terms; 'or'
-    includes any document containing at least one term, ranked by BM25 relevance.
-    When omitted on an update, the existing stored value is preserved; when never
-    set, search falls back to 'and'.
-    """
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
 
 
 class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
     path: str
-    """Glob pattern to match against the page URL path.
-
-    Uses standard glob syntax: \\** matches within a segment, \\**\\** crosses
-    directories.
-    """
 
     selector: str
-    """CSS selector to extract content from pages matching the path pattern.
 
-    Must not contain disallowed characters (;, `, $, {, }, \\)). Must target a single
-    element; if multiple elements match, the selector is ignored and the full page
-    is used.
-    """
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
 
 
 class SourceParamsWebCrawlerParseOptions(BaseModel):
     content_selector: Optional[List[SourceParamsWebCrawlerParseOptionsContentSelector]] = None
-    """
-    List of path-to-selector mappings for extracting specific content from crawled
-    pages. Each entry pairs a URL glob pattern with a CSS selector. The first
-    matching path wins. Only the matched HTML fragment is stored and indexed. Omit
-    the field to disable content selection — empty arrays are rejected.
-    """
 
     include_headers: Optional[Dict[str, str]] = None
-    """Up to 5 custom HTTP headers sent with each crawl request.
-
-    Names must be RFC-7230 token characters (no spaces, colons, or control
-    characters); values must be HTAB + printable ASCII (no CR/LF).
-    """
 
     include_images: Optional[bool] = None
 
     specific_sitemaps: Optional[List[str]] = None
-    """List of specific sitemap URLs to use for crawling.
-
-    Only valid when parse_type is 'sitemap'.
-    """
 
     use_browser_rendering: Optional[bool] = None
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
 
 
 class SourceParamsWebCrawler(BaseModel):
@@ -207,22 +271,23 @@ class SourceParamsWebCrawler(BaseModel):
 
     parse_type: Optional[Literal["sitemap", "crawl"]] = None
 
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
+
 
 class SourceParams(BaseModel):
     exclude_items: Optional[List[str]] = None
-    """List of path patterns to exclude.
-
-    Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
-    path segments (e.g., /admin/** matches /admin/users and
-    /admin/settings/advanced)
-    """
 
     include_items: Optional[List[str]] = None
-    """List of path patterns to include.
-
-    Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
-    path segments (e.g., /blog/** matches /blog/post and /blog/2024/post)
-    """
 
     prefix: Optional[str] = None
 
@@ -230,162 +295,85 @@ class SourceParams(BaseModel):
 
     web_crawler: Optional[SourceParamsWebCrawler] = None
 
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
+
 
 class InstanceListResponse(BaseModel):
     id: str
-    """AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores."""
-
-    created_at: datetime
-
-    modified_at: datetime
 
     ai_gateway_id: Optional[str] = None
 
-    aisearch_model: Optional[
-        Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "@cf/google/gemma-4-26b-a4b-it",
-            "@cf/moonshotai/kimi-k2.5",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-    ] = FieldInfo(alias="ai_search_model", default=None)
+    aisearch_model: Optional[str] = FieldInfo(alias="ai_search_model", default=None)
 
-    cache: Optional[bool] = None
+    cache: bool
 
     cache_threshold: Optional[Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]] = None
 
-    cache_ttl: Optional[Literal[600, 1800, 3600, 7200, 21600, 43200, 86400, 172800, 259200, 518400]] = None
-    """Cache entry TTL in seconds.
+    cache_ttl: Literal[600, 1800, 3600, 7200, 21600, 43200, 86400, 172800, 259200, 518400]
 
-    Allowed values: 600 (10min), 1800 (30min), 3600 (1h), 7200 (2h), 21600 (6h),
-    43200 (12h), 86400 (24h), 172800 (48h), 259200 (72h), 518400 (6d).
-    """
+    chunk: bool
 
-    chunk_overlap: Optional[int] = None
+    chunk_overlap: Optional[float] = None
 
-    chunk_size: Optional[int] = None
+    chunk_size: Optional[float] = None
+
+    created_at: datetime
 
     created_by: Optional[str] = None
 
     custom_metadata: Optional[List[CustomMetadata]] = None
 
-    embedding_model: Optional[
-        Literal[
-            "@cf/qwen/qwen3-embedding-0.6b",
-            "@cf/qwen/qwen3-vl-embedding-2b",
-            "@cf/baai/bge-m3",
-            "@cf/baai/bge-large-en-v1.5",
-            "@cf/google/embeddinggemma-300m",
-            "google-ai-studio/gemini-embedding-001",
-            "google-ai-studio/gemini-embedding-2-preview",
-            "google-ai-studio/gemini-embedding-2",
-            "openai/text-embedding-3-small",
-            "openai/text-embedding-3-large",
-            "",
-        ]
-    ] = None
+    embedding_model: Optional[str] = None
 
-    enable: Optional[bool] = None
+    enable: bool
 
-    engine_version: Optional[float] = None
+    engine_version: float
 
-    fusion_method: Optional[Literal["max", "rrf"]] = None
+    fusion_method: Literal["max", "rrf"]
 
-    hybrid_search_enabled: Optional[bool] = None
-    """Deprecated — use index_method instead."""
+    hybrid_search_enabled: bool
 
-    index_method: Optional[IndexMethod] = None
-    """Controls which storage backends are used during indexing.
-
-    Defaults to vector-only.
-    """
+    index_method: IndexMethod
 
     indexing_options: Optional[IndexingOptions] = None
 
     last_activity: Optional[datetime] = None
 
-    max_num_results: Optional[int] = None
+    max_num_results: Optional[float] = None
 
     metadata: Optional[Metadata] = None
 
+    modified_at: datetime
+
     modified_by: Optional[str] = None
 
-    namespace: Optional[str] = None
+    namespace: str
 
-    paused: Optional[bool] = None
+    paused: bool
 
     public_endpoint_id: Optional[str] = None
 
     public_endpoint_params: Optional[PublicEndpointParams] = None
 
-    reranking: Optional[bool] = None
+    reranking: bool
 
-    reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] = None
+    reranking_model: Optional[str] = None
 
     retrieval_options: Optional[RetrievalOptions] = None
 
-    rewrite_model: Optional[
-        Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "@cf/google/gemma-4-26b-a4b-it",
-            "@cf/moonshotai/kimi-k2.5",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-    ] = None
+    rewrite_model: Optional[str] = None
 
-    rewrite_query: Optional[bool] = None
+    rewrite_query: bool
 
     score_threshold: Optional[float] = None
 
@@ -393,14 +381,19 @@ class InstanceListResponse(BaseModel):
 
     source_params: Optional[SourceParams] = None
 
-    status: Optional[str] = None
+    status: str
 
-    sync_interval: Optional[Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400]] = None
-    """Interval between automatic syncs, in seconds.
+    summarization: bool
 
-    Allowed values: 900 (15min), 1800 (30min), 3600 (1h), 7200 (2h), 14400 (4h),
-    21600 (6h), 43200 (12h), 86400 (24h).
-    """
+    summarization_model: Optional[str] = None
+
+    sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400]
+
+    system_prompt_aisearch: Optional[str] = FieldInfo(alias="system_prompt_ai_search", default=None)
+
+    system_prompt_index_summarization: Optional[str] = None
+
+    system_prompt_rewrite_query: Optional[str] = None
 
     token_id: Optional[str] = None
 
