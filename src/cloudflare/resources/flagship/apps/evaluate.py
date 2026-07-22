@@ -58,9 +58,8 @@ class EvaluateResource(SyncAPIResource):
         """Evaluates a flag against the provided context.
 
         Pass context attributes as query
-        parameters; boolean and numeric strings are coerced automatically. For
-        low-latency in-Worker evaluation, prefer the Flagship binding over this
-        endpoint.
+        parameters; values are forwarded as strings. For low-latency in-Worker
+        evaluation, prefer the Flagship binding over this endpoint.
 
         Args:
           account_id: Cloudflare account ID.
@@ -142,9 +141,8 @@ class AsyncEvaluateResource(AsyncAPIResource):
         """Evaluates a flag against the provided context.
 
         Pass context attributes as query
-        parameters; boolean and numeric strings are coerced automatically. For
-        low-latency in-Worker evaluation, prefer the Flagship binding over this
-        endpoint.
+        parameters; values are forwarded as strings. For low-latency in-Worker
+        evaluation, prefer the Flagship binding over this endpoint.
 
         Args:
           account_id: Cloudflare account ID.

@@ -96,12 +96,7 @@ class UnionMember0AfterRuleConditionUnionMember0(BaseModel):
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember0(BaseModel):
@@ -121,12 +116,7 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember0(BaseModel):
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0(BaseModel):
@@ -146,12 +136,7 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(BaseModel):
@@ -171,12 +156,7 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
@@ -198,12 +178,7 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
@@ -225,12 +200,7 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1(
@@ -336,22 +306,22 @@ class UnionMember0AfterRule(BaseModel):
     """
 
     priority: int
-    """Evaluation order; lower numbers are evaluated first.
+    """Evaluation order: the API evaluates rules with lower numbers first.
 
     Must be unique across the flag's rules.
     """
 
     serve_variation: str
-    """Variation served when this rule matches. Must be a key in `variations`."""
+    """Variation the API serves when this rule matches. Must be a key in `variations`."""
 
     rollout: Optional[UnionMember0AfterRuleRollout] = None
 
 
 class UnionMember0After(BaseModel):
     default_variation: str
-    """Variation served when no rule matches or the flag is disabled.
-
-    Must be a key in `variations`.
+    """
+    Variation the API serves when the flag is off, or when it's on but no rule
+    matches the context. Must be a key in `variations`.
     """
 
     enabled: bool
@@ -372,8 +342,8 @@ class UnionMember0After(BaseModel):
     variations: Dict[str, Union[Optional[str], float, bool, Dict[str, object], List[object]]]
     """Map of variation name to value.
 
-    All values must be the same type (boolean, string, number, or JSON
-    object/array). Each serialized value must be 10KB or smaller.
+    All values share the same type (boolean, string, number, or JSON object/array),
+    and each serialized value stays within 10KB.
     """
 
     description: Optional[str] = None
@@ -381,7 +351,8 @@ class UnionMember0After(BaseModel):
     type: Optional[Literal["boolean", "string", "number", "json"]] = None
     """Value type of the flag's variations.
 
-    Inferred from the variation values on write, so it may be omitted in requests.
+    The API infers this from the variation values on write, so you can omit it in
+    requests.
     """
 
     updated_at: Optional[str] = None
@@ -414,12 +385,7 @@ class UnionMember1AfterRuleConditionUnionMember0(BaseModel):
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember0(BaseModel):
@@ -439,12 +405,7 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember0(BaseModel):
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0(BaseModel):
@@ -464,12 +425,7 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(BaseModel):
@@ -489,12 +445,7 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
@@ -516,12 +467,7 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
@@ -543,12 +489,7 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1(
@@ -654,22 +595,22 @@ class UnionMember1AfterRule(BaseModel):
     """
 
     priority: int
-    """Evaluation order; lower numbers are evaluated first.
+    """Evaluation order: the API evaluates rules with lower numbers first.
 
     Must be unique across the flag's rules.
     """
 
     serve_variation: str
-    """Variation served when this rule matches. Must be a key in `variations`."""
+    """Variation the API serves when this rule matches. Must be a key in `variations`."""
 
     rollout: Optional[UnionMember1AfterRuleRollout] = None
 
 
 class UnionMember1After(BaseModel):
     default_variation: str
-    """Variation served when no rule matches or the flag is disabled.
-
-    Must be a key in `variations`.
+    """
+    Variation the API serves when the flag is off, or when it's on but no rule
+    matches the context. Must be a key in `variations`.
     """
 
     enabled: bool
@@ -690,8 +631,8 @@ class UnionMember1After(BaseModel):
     variations: Dict[str, Union[Optional[str], float, bool, Dict[str, object], List[object]]]
     """Map of variation name to value.
 
-    All values must be the same type (boolean, string, number, or JSON
-    object/array). Each serialized value must be 10KB or smaller.
+    All values share the same type (boolean, string, number, or JSON object/array),
+    and each serialized value stays within 10KB.
     """
 
     description: Optional[str] = None
@@ -699,7 +640,8 @@ class UnionMember1After(BaseModel):
     type: Optional[Literal["boolean", "string", "number", "json"]] = None
     """Value type of the flag's variations.
 
-    Inferred from the variation values on write, so it may be omitted in requests.
+    The API infers this from the variation values on write, so you can omit it in
+    requests.
     """
 
     updated_at: Optional[str] = None
@@ -732,12 +674,7 @@ class UnionMember2AfterRuleConditionUnionMember0(BaseModel):
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember0(BaseModel):
@@ -757,12 +694,7 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember0(BaseModel):
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0(BaseModel):
@@ -782,12 +714,7 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(BaseModel):
@@ -807,12 +734,7 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
@@ -834,12 +756,7 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
@@ -861,12 +778,7 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "not_in",
     ]
 
-    value: object
-    """Value to compare against the context attribute.
-
-    Must be an array for `in` and `not_in`; numeric and ISO-8601 datetime strings
-    are accepted by the ordering operators.
-    """
+    value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
 
 
 class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1(
@@ -972,22 +884,22 @@ class UnionMember2AfterRule(BaseModel):
     """
 
     priority: int
-    """Evaluation order; lower numbers are evaluated first.
+    """Evaluation order: the API evaluates rules with lower numbers first.
 
     Must be unique across the flag's rules.
     """
 
     serve_variation: str
-    """Variation served when this rule matches. Must be a key in `variations`."""
+    """Variation the API serves when this rule matches. Must be a key in `variations`."""
 
     rollout: Optional[UnionMember2AfterRuleRollout] = None
 
 
 class UnionMember2After(BaseModel):
     default_variation: str
-    """Variation served when no rule matches or the flag is disabled.
-
-    Must be a key in `variations`.
+    """
+    Variation the API serves when the flag is off, or when it's on but no rule
+    matches the context. Must be a key in `variations`.
     """
 
     enabled: bool
@@ -1008,8 +920,8 @@ class UnionMember2After(BaseModel):
     variations: Dict[str, Union[Optional[str], float, bool, Dict[str, object], List[object]]]
     """Map of variation name to value.
 
-    All values must be the same type (boolean, string, number, or JSON
-    object/array). Each serialized value must be 10KB or smaller.
+    All values share the same type (boolean, string, number, or JSON object/array),
+    and each serialized value stays within 10KB.
     """
 
     description: Optional[str] = None
@@ -1017,7 +929,8 @@ class UnionMember2After(BaseModel):
     type: Optional[Literal["boolean", "string", "number", "json"]] = None
     """Value type of the flag's variations.
 
-    Inferred from the variation values on write, so it may be omitted in requests.
+    The API infers this from the variation values on write, so you can omit it in
+    requests.
     """
 
     updated_at: Optional[str] = None

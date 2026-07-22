@@ -15,7 +15,4 @@ class AppListResponse(BaseModel):
     updated_at: str
 
     updated_by: str
-    """
-    Email of the actor who last modified the app, or `edge-gateway` for
-    gateway-authenticated changes.
-    """
+    """Email of the actor who last modified the app, or `unknown` when unavailable."""
