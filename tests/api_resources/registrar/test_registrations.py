@@ -25,7 +25,7 @@ class TestRegistrations:
     def test_method_create(self, client: Cloudflare) -> None:
         registration = client.registrar.registrations.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain_name="my-new-startup.com",
+            domain_name="my-brand-example.io",
         )
         assert_matches_type(WorkflowStatus, registration, path=["response"])
 
@@ -33,11 +33,48 @@ class TestRegistrations:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         registration = client.registrar.registrations.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain_name="my-new-startup.com",
+            domain_name="my-brand-example.io",
+            acknowledgements={"fees": "bar"},
             auto_renew=False,
+            contact_extensions={
+                "application_purpose": "bar",
+                "nexus_category": "bar",
+            },
             contacts={
+                "administrator": {
+                    "email": "katherine@example.io",
+                    "phone": "+1.5555550102",
+                    "postal_info": {
+                        "address": {
+                            "city": "San Francisco",
+                            "country_code": "US",
+                            "postal_code": "94103",
+                            "state": "CA",
+                            "street": "789 Mission St",
+                        },
+                        "name": "Katherine Johnson",
+                        "organization": "Example Admin Inc",
+                    },
+                    "fax": "+1.5555555555",
+                },
+                "billing": {
+                    "email": "dorothy@example.io",
+                    "phone": "+1.5555550103",
+                    "postal_info": {
+                        "address": {
+                            "city": "San Francisco",
+                            "country_code": "US",
+                            "postal_code": "94105",
+                            "state": "CA",
+                            "street": "101 Howard St",
+                        },
+                        "name": "Dorothy Vaughan",
+                        "organization": "Example Billing Inc",
+                    },
+                    "fax": "+1.5555555555",
+                },
                 "registrant": {
-                    "email": "ada@example.com",
+                    "email": "ada@example.io",
                     "phone": "+1.5555555555",
                     "postal_info": {
                         "address": {
@@ -51,7 +88,23 @@ class TestRegistrations:
                         "organization": "Example Inc",
                     },
                     "fax": "+1.5555555555",
-                }
+                },
+                "technical": {
+                    "email": "grace@example.io",
+                    "phone": "+1.5555550101",
+                    "postal_info": {
+                        "address": {
+                            "city": "San Francisco",
+                            "country_code": "US",
+                            "postal_code": "94105",
+                            "state": "CA",
+                            "street": "456 Market St",
+                        },
+                        "name": "Grace Hopper",
+                        "organization": "Example Technical Inc",
+                    },
+                    "fax": "+1.5555555555",
+                },
             },
             privacy_mode="redaction",
             years=1,
@@ -63,7 +116,7 @@ class TestRegistrations:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.registrar.registrations.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain_name="my-new-startup.com",
+            domain_name="my-brand-example.io",
         )
 
         assert response.is_closed is True
@@ -75,7 +128,7 @@ class TestRegistrations:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.registrar.registrations.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain_name="my-new-startup.com",
+            domain_name="my-brand-example.io",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -90,7 +143,7 @@ class TestRegistrations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.registrar.registrations.with_raw_response.create(
                 account_id="",
-                domain_name="my-new-startup.com",
+                domain_name="my-brand-example.io",
             )
 
     @parametrize
@@ -263,7 +316,7 @@ class TestAsyncRegistrations:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         registration = await async_client.registrar.registrations.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain_name="my-new-startup.com",
+            domain_name="my-brand-example.io",
         )
         assert_matches_type(WorkflowStatus, registration, path=["response"])
 
@@ -271,11 +324,48 @@ class TestAsyncRegistrations:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         registration = await async_client.registrar.registrations.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain_name="my-new-startup.com",
+            domain_name="my-brand-example.io",
+            acknowledgements={"fees": "bar"},
             auto_renew=False,
+            contact_extensions={
+                "application_purpose": "bar",
+                "nexus_category": "bar",
+            },
             contacts={
+                "administrator": {
+                    "email": "katherine@example.io",
+                    "phone": "+1.5555550102",
+                    "postal_info": {
+                        "address": {
+                            "city": "San Francisco",
+                            "country_code": "US",
+                            "postal_code": "94103",
+                            "state": "CA",
+                            "street": "789 Mission St",
+                        },
+                        "name": "Katherine Johnson",
+                        "organization": "Example Admin Inc",
+                    },
+                    "fax": "+1.5555555555",
+                },
+                "billing": {
+                    "email": "dorothy@example.io",
+                    "phone": "+1.5555550103",
+                    "postal_info": {
+                        "address": {
+                            "city": "San Francisco",
+                            "country_code": "US",
+                            "postal_code": "94105",
+                            "state": "CA",
+                            "street": "101 Howard St",
+                        },
+                        "name": "Dorothy Vaughan",
+                        "organization": "Example Billing Inc",
+                    },
+                    "fax": "+1.5555555555",
+                },
                 "registrant": {
-                    "email": "ada@example.com",
+                    "email": "ada@example.io",
                     "phone": "+1.5555555555",
                     "postal_info": {
                         "address": {
@@ -289,7 +379,23 @@ class TestAsyncRegistrations:
                         "organization": "Example Inc",
                     },
                     "fax": "+1.5555555555",
-                }
+                },
+                "technical": {
+                    "email": "grace@example.io",
+                    "phone": "+1.5555550101",
+                    "postal_info": {
+                        "address": {
+                            "city": "San Francisco",
+                            "country_code": "US",
+                            "postal_code": "94105",
+                            "state": "CA",
+                            "street": "456 Market St",
+                        },
+                        "name": "Grace Hopper",
+                        "organization": "Example Technical Inc",
+                    },
+                    "fax": "+1.5555555555",
+                },
             },
             privacy_mode="redaction",
             years=1,
@@ -301,7 +407,7 @@ class TestAsyncRegistrations:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.registrar.registrations.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain_name="my-new-startup.com",
+            domain_name="my-brand-example.io",
         )
 
         assert response.is_closed is True
@@ -313,7 +419,7 @@ class TestAsyncRegistrations:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.registrar.registrations.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain_name="my-new-startup.com",
+            domain_name="my-brand-example.io",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -328,7 +434,7 @@ class TestAsyncRegistrations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.registrar.registrations.with_raw_response.create(
                 account_id="",
-                domain_name="my-new-startup.com",
+                domain_name="my-brand-example.io",
             )
 
     @parametrize

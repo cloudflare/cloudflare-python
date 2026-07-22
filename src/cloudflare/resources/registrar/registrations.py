@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Dict, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -52,7 +52,9 @@ class RegistrationsResource(SyncAPIResource):
         *,
         account_id: str,
         domain_name: str,
+        acknowledgements: Dict[str, object] | Omit = omit,
         auto_renew: bool | Omit = omit,
+        contact_extensions: Dict[str, object] | Omit = omit,
         contacts: registration_create_params.Contacts | Omit = omit,
         privacy_mode: Literal["redaction"] | Omit = omit,
         years: int | Omit = omit,
@@ -127,13 +129,35 @@ class RegistrationsResource(SyncAPIResource):
               domain cannot be registered twice, making it a natural idempotency key for
               registration requests.
 
+          acknowledgements: User acknowledgements required by a specific extension or premium registration
+              flow. The expected keys are described by the extension registration schema
+              returned by the extension discovery endpoint.
+
           auto_renew: Enable or disable automatic renewal. Defaults to `false` if omitted. Setting
               this field to `true` is an explicit opt-in authorizing Cloudflare to charge the
               account's default payment method up to 30 days before domain expiry to renew the
               domain automatically. Renewal pricing may change over time based on registry
               pricing.
 
+          contact_extensions: Registry-specific contact extension values for the registrant. The required keys
+              and allowed values vary by extension and are described by
+              `GET /accounts/{account_id}/registrar/extensions/{extension}` in the
+              `registration_schema.properties.contact_extensions` object.
+
+              Examples include `.us` nexus fields, `.uk` registrant type fields, and `.ca`
+              legal type fields. Omit this object for extensions whose registration schema
+              does not include `contact_extensions`.
+
           contacts: Contact data for the registration request.
+
+              The per-extension schema returned by
+              `GET /accounts/{account_id}/registrar/extensions/{extension}` is the
+              authoritative contract for which contact roles are accepted. Every currently
+              supported extension requires only `contacts.registrant` from API callers.
+              Additional roles such as `technical`, `administrator`, and `billing` may be
+              provided when the extension schema includes them. If a registry requires one of
+              those roles and the caller omits it, Cloudflare may derive that contact from
+              `contacts.registrant`.
 
               If the `contacts` object is omitted entirely from the request, or if
               `contacts.registrant` is not provided, the system will use the account's default
@@ -177,7 +201,9 @@ class RegistrationsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "domain_name": domain_name,
+                    "acknowledgements": acknowledgements,
                     "auto_renew": auto_renew,
+                    "contact_extensions": contact_extensions,
                     "contacts": contacts,
                     "privacy_mode": privacy_mode,
                     "years": years,
@@ -418,7 +444,9 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         *,
         account_id: str,
         domain_name: str,
+        acknowledgements: Dict[str, object] | Omit = omit,
         auto_renew: bool | Omit = omit,
+        contact_extensions: Dict[str, object] | Omit = omit,
         contacts: registration_create_params.Contacts | Omit = omit,
         privacy_mode: Literal["redaction"] | Omit = omit,
         years: int | Omit = omit,
@@ -493,13 +521,35 @@ class AsyncRegistrationsResource(AsyncAPIResource):
               domain cannot be registered twice, making it a natural idempotency key for
               registration requests.
 
+          acknowledgements: User acknowledgements required by a specific extension or premium registration
+              flow. The expected keys are described by the extension registration schema
+              returned by the extension discovery endpoint.
+
           auto_renew: Enable or disable automatic renewal. Defaults to `false` if omitted. Setting
               this field to `true` is an explicit opt-in authorizing Cloudflare to charge the
               account's default payment method up to 30 days before domain expiry to renew the
               domain automatically. Renewal pricing may change over time based on registry
               pricing.
 
+          contact_extensions: Registry-specific contact extension values for the registrant. The required keys
+              and allowed values vary by extension and are described by
+              `GET /accounts/{account_id}/registrar/extensions/{extension}` in the
+              `registration_schema.properties.contact_extensions` object.
+
+              Examples include `.us` nexus fields, `.uk` registrant type fields, and `.ca`
+              legal type fields. Omit this object for extensions whose registration schema
+              does not include `contact_extensions`.
+
           contacts: Contact data for the registration request.
+
+              The per-extension schema returned by
+              `GET /accounts/{account_id}/registrar/extensions/{extension}` is the
+              authoritative contract for which contact roles are accepted. Every currently
+              supported extension requires only `contacts.registrant` from API callers.
+              Additional roles such as `technical`, `administrator`, and `billing` may be
+              provided when the extension schema includes them. If a registry requires one of
+              those roles and the caller omits it, Cloudflare may derive that contact from
+              `contacts.registrant`.
 
               If the `contacts` object is omitted entirely from the request, or if
               `contacts.registrant` is not provided, the system will use the account's default
@@ -543,7 +593,9 @@ class AsyncRegistrationsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "domain_name": domain_name,
+                    "acknowledgements": acknowledgements,
                     "auto_renew": auto_renew,
+                    "contact_extensions": contact_extensions,
                     "contacts": contacts,
                     "privacy_mode": privacy_mode,
                     "years": years,
