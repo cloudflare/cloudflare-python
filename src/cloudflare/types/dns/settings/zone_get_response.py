@@ -20,7 +20,7 @@ class Nameservers(BaseModel):
     Settings determining the nameservers through which the zone should be available.
     """
 
-    type: Literal["cloudflare.standard", "custom.account", "custom.tenant", "custom.zone"]
+    type: Literal["cloudflare.standard", "cloudflare.advanced", "custom.account", "custom.tenant", "custom.zone"]
     """Nameserver type"""
 
     ns_set: Optional[int] = None
@@ -76,7 +76,7 @@ class ZoneGetResponse(BaseModel):
     """
 
     foundation_dns: bool
-    """Whether to enable Foundation DNS Advanced Nameservers on the zone."""
+    """Deprecated. Use nameservers.type to configure Advanced Nameservers."""
 
     internal_dns: InternalDNS
     """Settings for this internal zone."""

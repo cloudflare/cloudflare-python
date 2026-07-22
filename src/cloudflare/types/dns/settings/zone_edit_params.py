@@ -20,7 +20,7 @@ class ZoneEditParams(TypedDict, total=False):
     """
 
     foundation_dns: bool
-    """Whether to enable Foundation DNS Advanced Nameservers on the zone."""
+    """Deprecated. Use nameservers.type to configure Advanced Nameservers."""
 
     internal_dns: InternalDNS
     """Settings for this internal zone."""
@@ -68,7 +68,7 @@ class Nameservers(TypedDict, total=False):
     ns_set: int
     """Configured nameserver set to be used for this zone"""
 
-    type: Literal["cloudflare.standard", "custom.account", "custom.tenant", "custom.zone"]
+    type: Literal["cloudflare.standard", "cloudflare.advanced", "custom.account", "custom.tenant", "custom.zone"]
     """Nameserver type"""
 
 

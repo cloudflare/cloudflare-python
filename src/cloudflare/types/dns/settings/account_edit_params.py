@@ -36,7 +36,9 @@ class ZoneDefaultsNameservers(TypedDict, total=False):
     Settings determining the nameservers through which the zone should be available.
     """
 
-    type: Literal["cloudflare.standard", "cloudflare.standard.random", "custom.account", "custom.tenant"]
+    type: Literal[
+        "cloudflare.standard", "cloudflare.advanced", "cloudflare.standard.random", "custom.account", "custom.tenant"
+    ]
     """Nameserver type"""
 
 
@@ -89,7 +91,7 @@ class ZoneDefaults(TypedDict, total=False):
     """
 
     foundation_dns: bool
-    """Whether to enable Foundation DNS Advanced Nameservers on the zone."""
+    """Deprecated. Use nameservers.type to configure Advanced Nameservers."""
 
     internal_dns: ZoneDefaultsInternalDNS
     """Settings for this internal zone."""
