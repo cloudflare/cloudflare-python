@@ -57,27 +57,33 @@ class ApplicationListResponseItem(BaseModel):
     """Application item in list response."""
 
     id: Literal[
+        "ANTHROPIC",
         "BITBUCKET",
         "BOX",
         "CONFLUENCE",
         "DROPBOX",
         "GITHUB",
+        "GOOGLE_CLOUD_PLATFORM",
         "GOOGLE_WORKSPACE",
         "JIRA",
         "MICROSOFT_INTERNAL",
+        "OPENAI",
         "SALESFORCE",
         "SLACK",
     ]
     """Vendor identifier (e.g. microsoft_internal, google_workspace).
 
+    - `ANTHROPIC` - ANTHROPIC
     - `BITBUCKET` - BITBUCKET
     - `BOX` - BOX
     - `CONFLUENCE` - CONFLUENCE
     - `DROPBOX` - DROPBOX
     - `GITHUB` - GITHUB
+    - `GOOGLE_CLOUD_PLATFORM` - GOOGLE_CLOUD_PLATFORM
     - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
     - `JIRA` - JIRA
     - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
+    - `OPENAI` - OPENAI
     - `SALESFORCE` - SALESFORCE
     - `SLACK` - SLACK
     """
