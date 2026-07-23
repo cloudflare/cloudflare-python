@@ -59,3 +59,16 @@ from cloudflare.types.registrar_sandbox import UpdateStatusGetResponse
 Methods:
 
 - <code title="get /accounts/{account_id}/registrar-sandbox/registrations/{domain_name}/update-status">client.registrar_sandbox.update_status.<a href="./src/cloudflare/resources/registrar_sandbox/update_status.py">get</a>(domain_name, \*, account_id) -> <a href="./src/cloudflare/types/registrar_sandbox/update_status_get_response.py">UpdateStatusGetResponse</a></code>
+
+## Extensions
+
+Types:
+
+```python
+from cloudflare.types.registrar_sandbox import ExtensionListResponse, ExtensionGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/registrar-sandbox/extensions">client.registrar_sandbox.extensions.<a href="./src/cloudflare/resources/registrar_sandbox/extensions.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/registrar_sandbox/extension_list_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar_sandbox/extension_list_response.py">SyncCursorPagination[ExtensionListResponse]</a></code>
+- <code title="get /accounts/{account_id}/registrar-sandbox/extensions/{extension}">client.registrar_sandbox.extensions.<a href="./src/cloudflare/resources/registrar_sandbox/extensions.py">get</a>(extension, \*, account_id) -> <a href="./src/cloudflare/types/registrar_sandbox/extension_get_response.py">ExtensionGetResponse</a></code>

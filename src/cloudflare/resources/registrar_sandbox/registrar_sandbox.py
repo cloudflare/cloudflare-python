@@ -9,6 +9,14 @@ import httpx
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
+from .extensions import (
+    ExtensionsResource,
+    AsyncExtensionsResource,
+    ExtensionsResourceWithRawResponse,
+    AsyncExtensionsResourceWithRawResponse,
+    ExtensionsResourceWithStreamingResponse,
+    AsyncExtensionsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -112,19 +120,21 @@ class RegistrarSandboxResource(SyncAPIResource):
       should still handle this response for consistency with the production
       Registrar API. Surface the premium pricing to the user, but do not proceed
       to `POST /registrations` for that domain.
-    5. **Register** — call `POST /registrations` with the chosen domain name for
+    5. **Observe the registration schema** — call `GET /extensions/:extension_name`
+      to discover the required values for registering this extension.
+    6. **Register** — call `POST /registrations` with the chosen domain name for
       supported non-premium registrations.
-    6. **Confirm completion** — if the response is `201 Created`, registration
+    7. **Confirm completion** — if the response is `201 Created`, registration
       completed within the default timeout and no polling is needed.
-    7. **Poll when needed** — if the response is `202 Accepted`, poll
+    8. **Poll when needed** — if the response is `202 Accepted`, poll
       `links.self` from the workflow response.
-    8. **Stop for user action** — if `state: action_required`, stop polling and
+    9. **Stop for user action** — if `state: action_required`, stop polling and
       surface `context.action` to the user.
       The workflow will not resolve on its own.
-    9. **Continue when blocked** — if `state: blocked`, continue polling and
+    10. **Continue when blocked** — if `state: blocked`, continue polling and
       inform the user that a third party, such as the extension registry or losing
       registrar, is delaying progress.
-    10. **Review failures before retrying** — if `state: failed`, review
+    11. **Review failures before retrying** — if `state: failed`, review
       `error.code` and `error.message`, then decide whether user action or a new
       Check call is needed.
 
@@ -166,6 +176,10 @@ class RegistrarSandboxResource(SyncAPIResource):
     @cached_property
     def update_status(self) -> UpdateStatusResource:
         return UpdateStatusResource(self._client)
+
+    @cached_property
+    def extensions(self) -> ExtensionsResource:
+        return ExtensionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RegistrarSandboxResourceWithRawResponse:
@@ -440,19 +454,21 @@ class AsyncRegistrarSandboxResource(AsyncAPIResource):
       should still handle this response for consistency with the production
       Registrar API. Surface the premium pricing to the user, but do not proceed
       to `POST /registrations` for that domain.
-    5. **Register** — call `POST /registrations` with the chosen domain name for
+    5. **Observe the registration schema** — call `GET /extensions/:extension_name`
+      to discover the required values for registering this extension.
+    6. **Register** — call `POST /registrations` with the chosen domain name for
       supported non-premium registrations.
-    6. **Confirm completion** — if the response is `201 Created`, registration
+    7. **Confirm completion** — if the response is `201 Created`, registration
       completed within the default timeout and no polling is needed.
-    7. **Poll when needed** — if the response is `202 Accepted`, poll
+    8. **Poll when needed** — if the response is `202 Accepted`, poll
       `links.self` from the workflow response.
-    8. **Stop for user action** — if `state: action_required`, stop polling and
+    9. **Stop for user action** — if `state: action_required`, stop polling and
       surface `context.action` to the user.
       The workflow will not resolve on its own.
-    9. **Continue when blocked** — if `state: blocked`, continue polling and
+    10. **Continue when blocked** — if `state: blocked`, continue polling and
       inform the user that a third party, such as the extension registry or losing
       registrar, is delaying progress.
-    10. **Review failures before retrying** — if `state: failed`, review
+    11. **Review failures before retrying** — if `state: failed`, review
       `error.code` and `error.message`, then decide whether user action or a new
       Check call is needed.
 
@@ -494,6 +510,10 @@ class AsyncRegistrarSandboxResource(AsyncAPIResource):
     @cached_property
     def update_status(self) -> AsyncUpdateStatusResource:
         return AsyncUpdateStatusResource(self._client)
+
+    @cached_property
+    def extensions(self) -> AsyncExtensionsResource:
+        return AsyncExtensionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRegistrarSandboxResourceWithRawResponse:
@@ -730,6 +750,10 @@ class RegistrarSandboxResourceWithRawResponse:
     def update_status(self) -> UpdateStatusResourceWithRawResponse:
         return UpdateStatusResourceWithRawResponse(self._registrar_sandbox.update_status)
 
+    @cached_property
+    def extensions(self) -> ExtensionsResourceWithRawResponse:
+        return ExtensionsResourceWithRawResponse(self._registrar_sandbox.extensions)
+
 
 class AsyncRegistrarSandboxResourceWithRawResponse:
     def __init__(self, registrar_sandbox: AsyncRegistrarSandboxResource) -> None:
@@ -753,6 +777,10 @@ class AsyncRegistrarSandboxResourceWithRawResponse:
     @cached_property
     def update_status(self) -> AsyncUpdateStatusResourceWithRawResponse:
         return AsyncUpdateStatusResourceWithRawResponse(self._registrar_sandbox.update_status)
+
+    @cached_property
+    def extensions(self) -> AsyncExtensionsResourceWithRawResponse:
+        return AsyncExtensionsResourceWithRawResponse(self._registrar_sandbox.extensions)
 
 
 class RegistrarSandboxResourceWithStreamingResponse:
@@ -778,6 +806,10 @@ class RegistrarSandboxResourceWithStreamingResponse:
     def update_status(self) -> UpdateStatusResourceWithStreamingResponse:
         return UpdateStatusResourceWithStreamingResponse(self._registrar_sandbox.update_status)
 
+    @cached_property
+    def extensions(self) -> ExtensionsResourceWithStreamingResponse:
+        return ExtensionsResourceWithStreamingResponse(self._registrar_sandbox.extensions)
+
 
 class AsyncRegistrarSandboxResourceWithStreamingResponse:
     def __init__(self, registrar_sandbox: AsyncRegistrarSandboxResource) -> None:
@@ -801,3 +833,7 @@ class AsyncRegistrarSandboxResourceWithStreamingResponse:
     @cached_property
     def update_status(self) -> AsyncUpdateStatusResourceWithStreamingResponse:
         return AsyncUpdateStatusResourceWithStreamingResponse(self._registrar_sandbox.update_status)
+
+    @cached_property
+    def extensions(self) -> AsyncExtensionsResourceWithStreamingResponse:
+        return AsyncExtensionsResourceWithStreamingResponse(self._registrar_sandbox.extensions)

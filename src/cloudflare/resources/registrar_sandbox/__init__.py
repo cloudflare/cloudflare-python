@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .extensions import (
+    ExtensionsResource,
+    AsyncExtensionsResource,
+    ExtensionsResourceWithRawResponse,
+    AsyncExtensionsResourceWithRawResponse,
+    ExtensionsResourceWithStreamingResponse,
+    AsyncExtensionsResourceWithStreamingResponse,
+)
 from .registrations import (
     RegistrationsResource,
     AsyncRegistrationsResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncUpdateStatusResourceWithRawResponse",
     "UpdateStatusResourceWithStreamingResponse",
     "AsyncUpdateStatusResourceWithStreamingResponse",
+    "ExtensionsResource",
+    "AsyncExtensionsResource",
+    "ExtensionsResourceWithRawResponse",
+    "AsyncExtensionsResourceWithRawResponse",
+    "ExtensionsResourceWithStreamingResponse",
+    "AsyncExtensionsResourceWithStreamingResponse",
     "RegistrarSandboxResource",
     "AsyncRegistrarSandboxResource",
     "RegistrarSandboxResourceWithRawResponse",
