@@ -46,8 +46,8 @@ class ResourceGroupUpdateResponse(BaseModel):
     id: str
     """Identifier of the resource group."""
 
-    scope: List[Scope]
-    """The scope associated to the resource group"""
+    scope: Scope
+    """A scope is a combination of scope objects which provides additional context."""
 
     meta: Optional[Meta] = None
     """Attributes associated to the resource group."""
