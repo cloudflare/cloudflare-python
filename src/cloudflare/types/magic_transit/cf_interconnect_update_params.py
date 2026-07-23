@@ -30,10 +30,13 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     health_check: HealthCheckParam
 
     interface_address: str
-    """
-    A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
-    of the tunnel. Select the subnet from the following private IP space:
-    10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+    """The IPv4 interface address for the interconnect.
+
+    For MPLS Interconnects, use a /30 or /31 prefix. For GRE Interconnects, a /29,
+    /30, or /31 prefix may be used. A /29 prefix is only allowed for v1.5
+    interconnects, and the address must be the .3 host of the subnet (the fourth
+    address overall; the network address is not usable). Select the subnet from RFC
+    1918 or the approved link-local ranges.
     """
 
     interface_address6: str
