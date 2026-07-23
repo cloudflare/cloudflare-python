@@ -83,7 +83,7 @@ class RulesResource(SyncAPIResource):
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
         email (like forwarding it to a specific destination address). Forward actions
-        require all destination addresses to be verified.
+        require exactly one verified destination address.
 
         Args:
           zone_id: Identifier.
@@ -161,7 +161,7 @@ class RulesResource(SyncAPIResource):
         """Update actions and matches, or enable/disable specific routing rules.
 
         Forward
-        actions require all destination addresses to be verified.
+        actions require exactly one verified destination address.
 
         Args:
           zone_id: Identifier.
@@ -441,7 +441,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
         email (like forwarding it to a specific destination address). Forward actions
-        require all destination addresses to be verified.
+        require exactly one verified destination address.
 
         Args:
           zone_id: Identifier.
@@ -519,7 +519,7 @@ class AsyncRulesResource(AsyncAPIResource):
         """Update actions and matches, or enable/disable specific routing rules.
 
         Forward
-        actions require all destination addresses to be verified.
+        actions require exactly one verified destination address.
 
         Args:
           zone_id: Identifier.
