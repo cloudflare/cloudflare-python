@@ -158,3 +158,10 @@ class Hyperdrive(BaseModel):
     specified, defaults to 20 for free tier and 60 for paid tier. Contact Cloudflare
     if you need a higher limit.
     """
+
+    restarted_on: Optional[datetime] = None
+    """
+    Defines the last time the Hyperdrive connection pool was explicitly restarted
+    via the restart endpoint. Omitted if the pool has never been explicitly
+    restarted.
+    """
