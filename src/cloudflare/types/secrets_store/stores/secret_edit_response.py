@@ -14,21 +14,21 @@ class SecretEditResponse(BaseModel):
     """Secret identifier tag."""
 
     created: datetime
-    """Whenthe secret was created."""
+    """When the secret was created."""
 
     modified: datetime
     """When the secret was modified."""
 
     name: str
-    """The name of the secret"""
+    """The name of the secret."""
 
     status: Literal["pending", "active", "deleted"]
 
     store_id: str
-    """Store Identifier"""
+    """Store Identifier."""
 
     comment: Optional[str] = None
-    """Freeform text describing the secret"""
+    """Freeform text describing the secret."""
 
-    scopes: Optional[List[str]] = None
+    scopes: Optional[List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]]] = None
     """The list of services that can use this secret."""

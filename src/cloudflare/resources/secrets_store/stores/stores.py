@@ -73,12 +73,10 @@ class StoresResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[StoreCreateResponse]:
         """
-        Creates a store in the account
+        Creates a store in the account.
 
         Args:
-          account_id: Account Identifier
-
-          name: The name of the store
+          name: The name of the store.
 
           extra_headers: Send extra headers
 
@@ -108,7 +106,7 @@ class StoresResource(SyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
-        order: Literal["name", "comment", "created", "modified", "status"] | Omit = omit,
+        order: Literal["name", "created", "modified"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -119,18 +117,16 @@ class StoresResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[StoreListResponse]:
         """
-        Lists all the stores in an account
+        Lists all the stores in an account.
 
         Args:
-          account_id: Account Identifier
+          direction: Direction to sort objects.
 
-          direction: Direction to sort objects
+          order: Order stores by values in the given field.
 
-          order: Order secrets by values in the given field
+          page: Page number.
 
-          page: Page number
-
-          per_page: Number of objects to return per page
+          per_page: Number of objects to return per page.
 
           extra_headers: Send extra headers
 
@@ -184,10 +180,6 @@ class StoresResource(SyncAPIResource):
         always deleted regardless of the force parameter.
 
         Args:
-          account_id: Account Identifier
-
-          store_id: Store Identifier
-
           force: When true, cascade-deletes all secrets in the store before deleting the store
               itself. Required when deleting a non-empty store. Without this parameter,
               attempting to delete a non-empty store returns 409.
@@ -232,13 +224,9 @@ class StoresResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[StoreGetResponse]:
         """
-        Returns details of a single store
+        Returns details of a single store.
 
         Args:
-          account_id: Account Identifier
-
-          store_id: Store Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -303,12 +291,10 @@ class AsyncStoresResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[StoreCreateResponse]:
         """
-        Creates a store in the account
+        Creates a store in the account.
 
         Args:
-          account_id: Account Identifier
-
-          name: The name of the store
+          name: The name of the store.
 
           extra_headers: Send extra headers
 
@@ -338,7 +324,7 @@ class AsyncStoresResource(AsyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
-        order: Literal["name", "comment", "created", "modified", "status"] | Omit = omit,
+        order: Literal["name", "created", "modified"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -349,18 +335,16 @@ class AsyncStoresResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[StoreListResponse, AsyncV4PagePaginationArray[StoreListResponse]]:
         """
-        Lists all the stores in an account
+        Lists all the stores in an account.
 
         Args:
-          account_id: Account Identifier
+          direction: Direction to sort objects.
 
-          direction: Direction to sort objects
+          order: Order stores by values in the given field.
 
-          order: Order secrets by values in the given field
+          page: Page number.
 
-          page: Page number
-
-          per_page: Number of objects to return per page
+          per_page: Number of objects to return per page.
 
           extra_headers: Send extra headers
 
@@ -414,10 +398,6 @@ class AsyncStoresResource(AsyncAPIResource):
         always deleted regardless of the force parameter.
 
         Args:
-          account_id: Account Identifier
-
-          store_id: Store Identifier
-
           force: When true, cascade-deletes all secrets in the store before deleting the store
               itself. Required when deleting a non-empty store. Without this parameter,
               attempting to delete a non-empty store returns 409.
@@ -462,13 +442,9 @@ class AsyncStoresResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[StoreGetResponse]:
         """
-        Returns details of a single store
+        Returns details of a single store.
 
         Args:
-          account_id: Account Identifier
-
-          store_id: Store Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

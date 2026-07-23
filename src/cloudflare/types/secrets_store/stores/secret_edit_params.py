@@ -2,29 +2,26 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
-
-from ...._types import SequenceNotStr
+from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SecretEditParams"]
 
 
 class SecretEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
 
     store_id: Required[str]
-    """Store Identifier"""
 
     comment: str
-    """Freeform text describing the secret"""
+    """Freeform text describing the secret."""
 
-    scopes: SequenceNotStr[str]
+    scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]]
     """The list of services that can use this secret."""
 
     value: str
     """The value of the secret.
 
-    Maximum 64 KiB (65,536 bytes). Note that this is 'write only' - no API response
-    will provide this value, it is only used to create/modify secrets.
+    Maximum 64 KiB (65,536 bytes). Note that this is 'write only' - the API never
+    returns this value; it exists only to create or modify secrets.
     """

@@ -9,16 +9,15 @@ __all__ = ["StoreListParams"]
 
 class StoreListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
 
     direction: Literal["asc", "desc"]
-    """Direction to sort objects"""
+    """Direction to sort objects."""
 
-    order: Literal["name", "comment", "created", "modified", "status"]
-    """Order secrets by values in the given field"""
+    order: Literal["name", "created", "modified"]
+    """Order stores by values in the given field."""
 
     page: int
-    """Page number"""
+    """Page number."""
 
     per_page: int
-    """Number of objects to return per page"""
+    """Number of objects to return per page."""
