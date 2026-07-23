@@ -3695,7 +3695,7 @@ class TestApplications:
             exact=True,
             name="name",
             page=0,
-            per_page=0,
+            per_page=1000,
             search="search",
             target_attributes="target_attributes",
         )
@@ -7618,7 +7618,7 @@ class TestAsyncApplications:
             exact=True,
             name="name",
             page=0,
-            per_page=0,
+            per_page=1000,
             search="search",
             target_attributes="target_attributes",
         )

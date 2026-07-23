@@ -146,7 +146,7 @@ class TestUsers:
             email="email",
             name="name",
             page=0,
-            per_page=0,
+            per_page=1000,
             search="search",
         )
         assert_matches_type(SyncV4PagePaginationArray[UserListResponse], user, path=["response"])
@@ -407,7 +407,7 @@ class TestAsyncUsers:
             email="email",
             name="name",
             page=0,
-            per_page=0,
+            per_page=1000,
             search="search",
         )
         assert_matches_type(AsyncV4PagePaginationArray[UserListResponse], user, path=["response"])

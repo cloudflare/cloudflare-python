@@ -173,7 +173,7 @@ class TestServiceTokens:
             account_id="account_id",
             name="name",
             page=0,
-            per_page=0,
+            per_page=1000,
             search="search",
         )
         assert_matches_type(SyncV4PagePaginationArray[ServiceToken], service_token, path=["response"])
@@ -612,7 +612,7 @@ class TestAsyncServiceTokens:
             account_id="account_id",
             name="name",
             page=0,
-            per_page=0,
+            per_page=1000,
             search="search",
         )
         assert_matches_type(AsyncV4PagePaginationArray[ServiceToken], service_token, path=["response"])

@@ -35,7 +35,7 @@ class TestGroups:
             idp_resource_id=["all_employees"],
             name="ALL_EMPLOYEES",
             page=0,
-            per_page=0,
+            per_page=100,
         )
         assert_matches_type(SyncV4PagePaginationArray[ZeroTrustGroup], group, path=["response"])
 
@@ -102,7 +102,7 @@ class TestAsyncGroups:
             idp_resource_id=["all_employees"],
             name="ALL_EMPLOYEES",
             page=0,
-            per_page=0,
+            per_page=100,
         )
         assert_matches_type(AsyncV4PagePaginationArray[ZeroTrustGroup], group, path=["response"])
 
