@@ -49,7 +49,6 @@ class ScrapeResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        elements: Iterable[scrape_create_params.Element],
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[scrape_create_params.AddScriptTag] | Omit = omit,
@@ -81,6 +80,7 @@ class ScrapeResource(SyncAPIResource):
         authenticate: scrape_create_params.Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
         cookies: Iterable[scrape_create_params.Cookie] | Omit = omit,
+        elements: Iterable[scrape_create_params.Element] | Omit = omit,
         emulate_media_type: str | Omit = omit,
         goto_options: scrape_create_params.GotoOptions | Omit = omit,
         html: str | Omit = omit,
@@ -184,7 +184,6 @@ class ScrapeResource(SyncAPIResource):
             path_template("/accounts/{account_id}/browser-rendering/scrape", account_id=account_id),
             body=maybe_transform(
                 {
-                    "elements": elements,
                     "action_timeout": action_timeout,
                     "add_script_tag": add_script_tag,
                     "add_style_tag": add_style_tag,
@@ -193,6 +192,7 @@ class ScrapeResource(SyncAPIResource):
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
                     "cookies": cookies,
+                    "elements": elements,
                     "emulate_media_type": emulate_media_type,
                     "goto_options": goto_options,
                     "html": html,
@@ -244,7 +244,6 @@ class AsyncScrapeResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        elements: Iterable[scrape_create_params.Element],
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[scrape_create_params.AddScriptTag] | Omit = omit,
@@ -276,6 +275,7 @@ class AsyncScrapeResource(AsyncAPIResource):
         authenticate: scrape_create_params.Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
         cookies: Iterable[scrape_create_params.Cookie] | Omit = omit,
+        elements: Iterable[scrape_create_params.Element] | Omit = omit,
         emulate_media_type: str | Omit = omit,
         goto_options: scrape_create_params.GotoOptions | Omit = omit,
         html: str | Omit = omit,
@@ -379,7 +379,6 @@ class AsyncScrapeResource(AsyncAPIResource):
             path_template("/accounts/{account_id}/browser-rendering/scrape", account_id=account_id),
             body=await async_maybe_transform(
                 {
-                    "elements": elements,
                     "action_timeout": action_timeout,
                     "add_script_tag": add_script_tag,
                     "add_style_tag": add_style_tag,
@@ -388,6 +387,7 @@ class AsyncScrapeResource(AsyncAPIResource):
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
                     "cookies": cookies,
+                    "elements": elements,
                     "emulate_media_type": emulate_media_type,
                     "goto_options": goto_options,
                     "html": html,
