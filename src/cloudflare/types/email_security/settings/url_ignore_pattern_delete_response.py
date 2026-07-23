@@ -7,4 +7,4 @@ __all__ = ["URLIgnorePatternDeleteResponse"]
 
 class URLIgnorePatternDeleteResponse(BaseModel):
     id: str
-    """URL ignore pattern identifier"""
+    """URL ignore pattern identifier."""

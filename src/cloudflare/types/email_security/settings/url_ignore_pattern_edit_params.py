@@ -16,4 +16,4 @@ class URLIgnorePatternEditParams(TypedDict, total=False):
     """Optional note describing the reason for the ignore pattern."""
 
     pattern: str
-    """Regular expression matching URLs that should not be rewritten."""
+    """Regular expression identifying URLs to exempt from rewriting."""

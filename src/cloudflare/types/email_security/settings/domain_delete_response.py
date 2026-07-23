@@ -7,4 +7,4 @@ __all__ = ["DomainDeleteResponse"]
 
 class DomainDeleteResponse(BaseModel):
     id: str
-    """Domain identifier"""
+    """Domain identifier."""

@@ -10,10 +10,10 @@ __all__ = ["BlockSenderGetResponse"]
 
 
 class BlockSenderGetResponse(BaseModel):
-    """A blocked sender pattern"""
+    """A blocked sender pattern."""
 
     id: Optional[str] = None
-    """Blocked sender pattern identifier"""
+    """Blocked sender pattern identifier."""
 
     comments: Optional[str] = None
 
@@ -27,13 +27,13 @@ class BlockSenderGetResponse(BaseModel):
     modified_at: Optional[datetime] = None
 
     pattern: Optional[str] = None
-    """The pattern value to match against. Format depends on `pattern_type`:
+    """The pattern value to match.
 
-    - EMAIL: a valid email address, e.g. `user@example.com`
-    - DOMAIN: a valid domain name, e.g. `example.com`
-    - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-      `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-      loopback, link-local, and unspecified addresses are rejected.
+    The format depends on `pattern_type`: a valid email address for EMAIL (e.g.
+    `user@example.com`), a valid domain name for DOMAIN (e.g. `example.com`), or a
+    plain IPv4 address or IPv4 CIDR block for IP (e.g. `1.2.3.4` or `1.2.3.0/24`);
+    the API accepts only globally reachable IP addresses and rejects private,
+    loopback, link-local, and unspecified addresses.
     """
 
     pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]] = None
@@ -42,7 +42,7 @@ class BlockSenderGetResponse(BaseModel):
     - EMAIL: matches a full email address (e.g. `user@example.com`)
     - DOMAIN: matches a domain name (e.g. `example.com`)
     - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-      `1.2.3.0/24`). Only globally reachable addresses are accepted.
-    - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-      may be returned for existing entries.
+      `1.2.3.0/24`). The API accepts only globally reachable addresses.
+    - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+      but it may appear on existing entries.
     """

@@ -213,7 +213,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          impersonation_registry_id: Impersonation registry entry identifier
+          impersonation_registry_id: Impersonation registry entry identifier.
 
           extra_headers: Send extra headers
 
@@ -276,7 +276,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          impersonation_registry_id: Impersonation registry entry identifier
+          impersonation_registry_id: Impersonation registry entry identifier.
 
           extra_headers: Send extra headers
 
@@ -343,7 +343,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          impersonation_registry_id: Impersonation registry entry identifier
+          impersonation_registry_id: Impersonation registry entry identifier.
 
           extra_headers: Send extra headers
 
@@ -559,7 +559,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          impersonation_registry_id: Impersonation registry entry identifier
+          impersonation_registry_id: Impersonation registry entry identifier.
 
           extra_headers: Send extra headers
 
@@ -622,7 +622,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          impersonation_registry_id: Impersonation registry entry identifier
+          impersonation_registry_id: Impersonation registry entry identifier.
 
           extra_headers: Send extra headers
 
@@ -689,7 +689,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          impersonation_registry_id: Impersonation registry entry identifier
+          impersonation_registry_id: Impersonation registry entry identifier.
 
           extra_headers: Send extra headers
 

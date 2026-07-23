@@ -13,7 +13,7 @@ class URLIgnorePatternCreateParams(TypedDict, total=False):
     """Identifier."""
 
     pattern: Required[str]
-    """Regular expression matching URLs that should not be rewritten."""
+    """Regular expression identifying URLs to exempt from rewriting."""
 
     comments: Optional[str]
     """Optional note describing the reason for the ignore pattern."""

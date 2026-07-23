@@ -85,31 +85,27 @@ class AllowPoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note - This will not exempt messages with Malicious or Suspicious
-              dispositions.
+          is_acceptable_sender: Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
+              Malicious and Suspicious dispositions still apply.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections
+          is_exempt_recipient: Bypasses all detections for messages to this recipient.
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following
+          is_trusted_sender: Bypasses all detections and link following for messages from this sender.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 address or IPv4 CIDR block for IP (e.g.
+              `1.2.3.4` or `1.2.3.0/24`); the API accepts only globally reachable IP addresses
+              and rejects private, loopback, link-local, and unspecified addresses.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
               - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+                `1.2.3.0/24`). The API accepts only globally reachable addresses.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -215,9 +211,9 @@ class AllowPoliciesResource(SyncAPIResource):
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
               - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+                `1.2.3.0/24`). The API accepts only globally reachable addresses.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           per_page: The number of results per page. Maximum value is 1000.
 
@@ -283,7 +279,7 @@ class AllowPoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
           extra_headers: Send extra headers
 
@@ -344,13 +340,12 @@ class AllowPoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
-          is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note - This will not exempt messages with Malicious or Suspicious
-              dispositions.
+          is_acceptable_sender: Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
+              Malicious and Suspicious dispositions still apply.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections
+          is_exempt_recipient: Bypasses all detections for messages to this recipient.
 
           is_recipient:
               Deprecated as of July 1, 2025. Use `is_exempt_recipient` instead. End of life:
@@ -364,25 +359,22 @@ class AllowPoliciesResource(SyncAPIResource):
               Deprecated as of July 1, 2025. Use `is_acceptable_sender` instead. End of life:
               July 1, 2026.
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following
+          is_trusted_sender: Bypasses all detections and link following for messages from this sender.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 address or IPv4 CIDR block for IP (e.g.
+              `1.2.3.4` or `1.2.3.0/24`); the API accepts only globally reachable IP addresses
+              and rejects private, loopback, link-local, and unspecified addresses.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
               - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+                `1.2.3.0/24`). The API accepts only globally reachable addresses.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -450,7 +442,7 @@ class AllowPoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
           extra_headers: Send extra headers
 
@@ -532,31 +524,27 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note - This will not exempt messages with Malicious or Suspicious
-              dispositions.
+          is_acceptable_sender: Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
+              Malicious and Suspicious dispositions still apply.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections
+          is_exempt_recipient: Bypasses all detections for messages to this recipient.
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following
+          is_trusted_sender: Bypasses all detections and link following for messages from this sender.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 address or IPv4 CIDR block for IP (e.g.
+              `1.2.3.4` or `1.2.3.0/24`); the API accepts only globally reachable IP addresses
+              and rejects private, loopback, link-local, and unspecified addresses.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
               - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+                `1.2.3.0/24`). The API accepts only globally reachable addresses.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -662,9 +650,9 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
               - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+                `1.2.3.0/24`). The API accepts only globally reachable addresses.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           per_page: The number of results per page. Maximum value is 1000.
 
@@ -730,7 +718,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
           extra_headers: Send extra headers
 
@@ -791,13 +779,12 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
-          is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note - This will not exempt messages with Malicious or Suspicious
-              dispositions.
+          is_acceptable_sender: Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
+              Malicious and Suspicious dispositions still apply.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections
+          is_exempt_recipient: Bypasses all detections for messages to this recipient.
 
           is_recipient:
               Deprecated as of July 1, 2025. Use `is_exempt_recipient` instead. End of life:
@@ -811,25 +798,22 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
               Deprecated as of July 1, 2025. Use `is_acceptable_sender` instead. End of life:
               July 1, 2026.
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following
+          is_trusted_sender: Bypasses all detections and link following for messages from this sender.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 address or IPv4 CIDR block for IP (e.g.
+              `1.2.3.4` or `1.2.3.0/24`); the API accepts only globally reachable IP addresses
+              and rejects private, loopback, link-local, and unspecified addresses.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
               - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+                `1.2.3.0/24`). The API accepts only globally reachable addresses.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -897,7 +881,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
           extra_headers: Send extra headers
 

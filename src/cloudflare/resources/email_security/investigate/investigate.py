@@ -265,7 +265,7 @@ class InvestigateResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           submission: When true, search the submissions datastore only. When false or omitted, search
               the regular datastore only.
@@ -473,7 +473,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           submission: When true, search the submissions datastore only. When false or omitted, search
               the regular datastore only.

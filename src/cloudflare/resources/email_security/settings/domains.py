@@ -159,7 +159,7 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -201,9 +201,10 @@ class DomainsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DomainBulkDeleteResponse]:
-        """Deprecated.
+        """Removes protection from multiple email domains.
 
-        Use the batch endpoint instead.
+        Deprecated; use the batch
+        endpoint instead.
 
         Args:
           account_id: Identifier.
@@ -234,7 +235,6 @@ class DomainsResource(SyncAPIResource):
         *,
         account_id: str,
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | Omit = omit,
-        domain: str | Omit = omit,
         drop_dispositions: List[
             Literal[
                 "MALICIOUS",
@@ -274,7 +274,7 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -297,7 +297,6 @@ class DomainsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "allowed_delivery_modes": allowed_delivery_modes,
-                    "domain": domain,
                     "drop_dispositions": drop_dispositions,
                     "folder": folder,
                     "integration_id": integration_id,
@@ -339,7 +338,7 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -498,7 +497,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -540,9 +539,10 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DomainBulkDeleteResponse, AsyncSinglePage[DomainBulkDeleteResponse]]:
-        """Deprecated.
+        """Removes protection from multiple email domains.
 
-        Use the batch endpoint instead.
+        Deprecated; use the batch
+        endpoint instead.
 
         Args:
           account_id: Identifier.
@@ -573,7 +573,6 @@ class AsyncDomainsResource(AsyncAPIResource):
         *,
         account_id: str,
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | Omit = omit,
-        domain: str | Omit = omit,
         drop_dispositions: List[
             Literal[
                 "MALICIOUS",
@@ -613,7 +612,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -636,7 +635,6 @@ class AsyncDomainsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "allowed_delivery_modes": allowed_delivery_modes,
-                    "domain": domain,
                     "drop_dispositions": drop_dispositions,
                     "folder": folder,
                     "integration_id": integration_id,
@@ -678,7 +676,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 

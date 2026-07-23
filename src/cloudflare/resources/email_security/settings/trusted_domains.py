@@ -216,7 +216,7 @@ class TrustedDomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          trusted_domain_id: Trusted domain identifier
+          trusted_domain_id: Trusted domain identifier.
 
           extra_headers: Send extra headers
 
@@ -271,7 +271,7 @@ class TrustedDomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          trusted_domain_id: Trusted domain identifier
+          trusted_domain_id: Trusted domain identifier.
 
           is_recent: Select to prevent recently registered domains from triggering a Suspicious or
               Malicious disposition.
@@ -336,7 +336,7 @@ class TrustedDomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          trusted_domain_id: Trusted domain identifier
+          trusted_domain_id: Trusted domain identifier.
 
           extra_headers: Send extra headers
 
@@ -549,7 +549,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          trusted_domain_id: Trusted domain identifier
+          trusted_domain_id: Trusted domain identifier.
 
           extra_headers: Send extra headers
 
@@ -604,7 +604,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          trusted_domain_id: Trusted domain identifier
+          trusted_domain_id: Trusted domain identifier.
 
           is_recent: Select to prevent recently registered domains from triggering a Suspicious or
               Malicious disposition.
@@ -669,7 +669,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          trusted_domain_id: Trusted domain identifier
+          trusted_domain_id: Trusted domain identifier.
 
           extra_headers: Send extra headers
 

@@ -10,10 +10,10 @@ __all__ = ["ImpersonationRegistryListResponse"]
 
 
 class ImpersonationRegistryListResponse(BaseModel):
-    """An impersonation registry entry"""
+    """An impersonation registry entry."""
 
     id: Optional[str] = None
-    """Impersonation registry entry identifier"""
+    """Impersonation registry entry identifier."""
 
     comments: Optional[str] = None
 

@@ -74,7 +74,7 @@ class URLIgnorePatternsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern: Regular expression matching URLs that should not be rewritten.
+          pattern: Regular expression identifying URLs to exempt from rewriting.
 
           comments: Optional note describing the reason for the ignore pattern.
 
@@ -181,7 +181,7 @@ class URLIgnorePatternsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: URL ignore pattern identifier
+          pattern_id: URL ignore pattern identifier.
 
           extra_headers: Send extra headers
 
@@ -233,11 +233,11 @@ class URLIgnorePatternsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: URL ignore pattern identifier
+          pattern_id: URL ignore pattern identifier.
 
           comments: Optional note describing the reason for the ignore pattern.
 
-          pattern: Regular expression matching URLs that should not be rewritten.
+          pattern: Regular expression identifying URLs to exempt from rewriting.
 
           extra_headers: Send extra headers
 
@@ -292,7 +292,7 @@ class URLIgnorePatternsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: URL ignore pattern identifier
+          pattern_id: URL ignore pattern identifier.
 
           extra_headers: Send extra headers
 
@@ -364,7 +364,7 @@ class AsyncURLIgnorePatternsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern: Regular expression matching URLs that should not be rewritten.
+          pattern: Regular expression identifying URLs to exempt from rewriting.
 
           comments: Optional note describing the reason for the ignore pattern.
 
@@ -471,7 +471,7 @@ class AsyncURLIgnorePatternsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: URL ignore pattern identifier
+          pattern_id: URL ignore pattern identifier.
 
           extra_headers: Send extra headers
 
@@ -523,11 +523,11 @@ class AsyncURLIgnorePatternsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: URL ignore pattern identifier
+          pattern_id: URL ignore pattern identifier.
 
           comments: Optional note describing the reason for the ignore pattern.
 
-          pattern: Regular expression matching URLs that should not be rewritten.
+          pattern: Regular expression identifying URLs to exempt from rewriting.
 
           extra_headers: Send extra headers
 
@@ -582,7 +582,7 @@ class AsyncURLIgnorePatternsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: URL ignore pattern identifier
+          pattern_id: URL ignore pattern identifier.
 
           extra_headers: Send extra headers
 

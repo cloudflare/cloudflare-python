@@ -21,7 +21,7 @@ class Fields(BaseModel):
     postfix_id: Optional[str] = None
 
     ts: Optional[datetime] = None
-    """Deprecated, use `occurred_at` instead"""
+    """Deprecated, use `occurred_at` instead."""
 
 
 class Tag(BaseModel):
@@ -50,6 +50,6 @@ class ReportListResponse(BaseModel):
     tags: Optional[List[Tag]] = None
 
     ts: Optional[datetime] = None
-    """Deprecated, use `created_at` instead"""
+    """Deprecated, use `created_at` instead."""
 
     updated_at: Optional[datetime] = None

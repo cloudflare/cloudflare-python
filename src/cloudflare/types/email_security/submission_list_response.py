@@ -30,7 +30,7 @@ class SubmissionListResponse(BaseModel):
     original_edf_hash: Optional[str] = None
 
     original_postfix_id: Optional[str] = None
-    """The postfix ID of the original message that was submitted"""
+    """The postfix ID of the original message that was submitted."""
 
     outcome: Optional[str] = None
 
@@ -41,11 +41,11 @@ class SubmissionListResponse(BaseModel):
     requested_disposition: Optional[Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]] = None
 
     requested_ts: Optional[str] = None
-    """Deprecated, use `requested_at` instead"""
+    """Deprecated, use `requested_at` instead."""
 
     status: Optional[str] = None
 
     subject: Optional[str] = None
 
     type: Optional[Literal["Team", "User"]] = None
-    """Whether the submission was created by a team member or an end user."""
+    """Indicates whether a team member or an end user created the submission."""

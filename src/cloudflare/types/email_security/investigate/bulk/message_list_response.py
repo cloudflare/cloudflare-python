@@ -64,6 +64,6 @@ class MessageListResponse(BaseModel):
     processed_at: Optional[datetime] = None
 
     retry_after: Optional[datetime] = None
-    """When to retry the action if it failed"""
+    """When to retry the action if it failed."""
 
     status_message: Optional[str] = None

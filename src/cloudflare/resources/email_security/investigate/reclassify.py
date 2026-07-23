@@ -68,7 +68,7 @@ class ReclassifyResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           eml_content: Base64 encoded content of the EML file.
 
@@ -153,7 +153,7 @@ class AsyncReclassifyResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           eml_content: Base64 encoded content of the EML file.
 

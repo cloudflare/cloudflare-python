@@ -20,4 +20,4 @@ class SendingDomainRestrictionEditParams(TypedDict, total=False):
     """Domain that requires TLS enforcement."""
 
     exclude: SequenceNotStr[str]
-    """Excluded subdomains that are exempt from TLS requirements."""
+    """Subdomains to exempt from TLS requirements."""

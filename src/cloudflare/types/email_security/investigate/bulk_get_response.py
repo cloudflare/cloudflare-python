@@ -57,7 +57,7 @@ class SearchParams(BaseModel):
     domain: Optional[str] = None
 
     end: Optional[datetime] = None
-    """End of search date range"""
+    """End of search date range."""
 
     exact_subject: Optional[str] = None
 
@@ -89,7 +89,7 @@ class SearchParams(BaseModel):
     sender: Optional[str] = None
 
     start: Optional[datetime] = None
-    """Beginning of search date range"""
+    """Beginning of search date range."""
 
     subject: Optional[str] = None
 
