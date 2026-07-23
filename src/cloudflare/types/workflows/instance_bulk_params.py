@@ -27,4 +27,5 @@ class Body(TypedDict, total=False):
 
     instance_retention: BodyInstanceRetention
 
-    params: object
+    params: str
+    """JSON-encoded event payload passed into the new instance."""

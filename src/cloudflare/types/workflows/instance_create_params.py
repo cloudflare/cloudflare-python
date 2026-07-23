@@ -15,7 +15,8 @@ class InstanceCreateParams(TypedDict, total=False):
 
     instance_retention: InstanceRetention
 
-    params: object
+    params: str
+    """JSON-encoded event payload passed into the new instance."""
 
 
 class InstanceRetention(TypedDict, total=False):
