@@ -34,7 +34,10 @@ class Source(BaseModel):
     bucket_url: Optional[str] = FieldInfo(alias="bucketUrl", default=None)
     """S3-compatible URL (Generic S3-compatible providers only)."""
 
-    provider: Optional[Literal["aws", "gcs", "s3"]] = None
+    container: Optional[str] = None
+    """Name of the Azure Blob Storage container (Azure only)."""
+
+    provider: Optional[Literal["aws", "gcs", "s3", "azure"]] = None
 
     region: Optional[str] = None
     """Region where the bucket resides (AWS only)."""
