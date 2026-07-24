@@ -37,6 +37,7 @@ __all__ = [
     "CompareSeries",
     "CompareSeriesData",
     "CompareSeriesDataGroup",
+    "Distribution",
     "Events",
     "EventsEvent",
     "EventsEventMetadata",
@@ -401,32 +402,59 @@ class Statistics(BaseModel):
 
 
 class Agent(BaseModel):
-    agent_class: str = FieldInfo(alias="agentClass")
-    """Class name of the Durable Object agent."""
+    id: str
+    """Pagination cursor derived from the first agent invocation in the run."""
 
-    event_type_counts: Dict[str, float] = FieldInfo(alias="eventTypeCounts")
-    """Breakdown of event counts by event type."""
+    errors: List[str]
+    """Distinct errors reported by spans in the run."""
 
-    first_event_ms: float = FieldInfo(alias="firstEventMs")
+    models: List[str]
+    """Distinct models reported by chat spans across the run's trace."""
+
+    providers: List[str]
+    """Distinct GenAI providers reported by chat spans in the run."""
+
+    services: List[str]
+    """Worker services represented in the run's trace."""
+
+    spans: float
+    """Number of spans in the run's trace."""
+
+    status: Literal["completed", "error"]
+    """Observed run status."""
+
+    trace_duration_ms: float = FieldInfo(alias="traceDurationMs")
+    """Total trace duration in milliseconds."""
+
+    trace_end_ms: float = FieldInfo(alias="traceEndMs")
+    """End of the run's trace as a Unix epoch in milliseconds."""
+
+    trace_id: str = FieldInfo(alias="traceId")
+    """Trace identifier for this agent run."""
+
+    trace_start_ms: float = FieldInfo(alias="traceStartMs")
+    """Start of the run's trace as a Unix epoch in milliseconds."""
+
+    agent_id: Optional[str] = FieldInfo(alias="agentId", default=None)
+    """ID from the earliest agent invocation that provides one."""
+
+    agent_name: Optional[str] = FieldInfo(alias="agentName", default=None)
+    """Name from the earliest agent invocation that provides one."""
+
+    conversation_id: Optional[str] = FieldInfo(alias="conversationId", default=None)
+    """Conversation ID from the earliest invocation that provides one."""
+
+    input_tokens: Optional[float] = FieldInfo(alias="inputTokens", default=None)
     """
-    Timestamp of the earliest event from this agent in the queried window (Unix
-    epoch ms).
+    Input tokens summed across chat spans in the run's trace; informational, not
+    billing data.
     """
 
-    has_errors: bool = FieldInfo(alias="hasErrors")
-    """Whether the agent emitted any error events in the queried window."""
-
-    last_event_ms: float = FieldInfo(alias="lastEventMs")
-    """Timestamp of the most recent event from this agent (Unix epoch ms)."""
-
-    namespace: str
-    """Durable Object namespace the agent belongs to."""
-
-    service: str
-    """Worker service name that hosts this agent."""
-
-    total_events: float = FieldInfo(alias="totalEvents")
-    """Total number of events emitted by this agent in the queried window."""
+    output_tokens: Optional[float] = FieldInfo(alias="outputTokens", default=None)
+    """
+    Output tokens summed across chat spans in the run's trace; informational, not
+    billing data.
+    """
 
 
 class CalculationAggregateGroup(BaseModel):
@@ -541,6 +569,38 @@ class Compare(BaseModel):
     alias: Optional[str] = None
 
 
+class Distribution(BaseModel):
+    """Bucketed 2D histogram of a numeric field over time.
+
+    Present when chartType is 'distribution'.
+    """
+
+    bins: List[str]
+    """Time-bucket labels (ISO-8601 strings), one per matrix column."""
+
+    bucket_boundaries: List[float] = FieldInfo(alias="bucketBoundaries")
+    """Raw bucket edges in the value's native unit, length buckets.length + 1.
+
+    Used for the colour scale and percentile mapping.
+    """
+
+    bucket_mode: Literal["log", "linear"] = FieldInfo(alias="bucketMode")
+    """Bucketing scheme used to derive the boundaries.
+
+    'log' produces geometric edges; 'linear' produces fixed-width edges.
+    """
+
+    buckets: List[str]
+    """Value-range labels, one per matrix row (e.g. '50–100ms')."""
+
+    matrix: List[List[float]]
+    """Sampling-corrected counts.
+
+    matrix[bucketIdx][binIdx] is the estimated number of events in value-bucket
+    'bucketIdx' during time-bin 'binIdx'.
+    """
+
+
 class EventsEventMetadata(BaseModel):
     """Structured metadata extracted from the event.
 
@@ -596,6 +656,12 @@ class EventsEventMetadata(BaseModel):
 
     provider: Optional[str] = None
     """Infrastructure provider identifier."""
+
+    rayid: Optional[str] = FieldInfo(alias="rayId", default=None)
+    """
+    Cloudflare Ray ID from the `cf-ray` header of the request that triggered the
+    invocation.
+    """
 
     region: Optional[str] = None
     """Cloudflare data center / region that handled the request."""
@@ -937,6 +1003,12 @@ class InvocationMetadata(BaseModel):
     provider: Optional[str] = None
     """Infrastructure provider identifier."""
 
+    rayid: Optional[str] = FieldInfo(alias="rayId", default=None)
+    """
+    Cloudflare Ray ID from the `cf-ray` header of the request that triggered the
+    invocation.
+    """
+
     region: Optional[str] = None
     """Cloudflare data center / region that handled the request."""
 
@@ -1204,10 +1276,10 @@ class SharedQueryGetResponse(BaseModel):
     """
 
     agents: Optional[List[Agent]] = None
-    """Durable Object agent summaries.
+    """Agent run summaries.
 
-    Present when the query view is 'agents'. Each entry represents an agent with its
-    event counts and status.
+    Present when the query view is 'agents'. Each entry represents one trace
+    containing at least one agent invocation.
     """
 
     calculations: Optional[List[Calculation]] = None
@@ -1221,6 +1293,12 @@ class SharedQueryGetResponse(BaseModel):
     """Comparison calculation results from the previous time period.
 
     Present when the compare option is enabled. Same structure as calculations.
+    """
+
+    distribution: Optional[Distribution] = None
+    """Bucketed 2D histogram of a numeric field over time.
+
+    Present when chartType is 'distribution'.
     """
 
     events: Optional[Events] = None
