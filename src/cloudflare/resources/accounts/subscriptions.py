@@ -18,8 +18,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.accounts import subscription_update_params
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.accounts import subscription_create_params, subscription_update_params
 from ...types.shared.subscription import Subscription
 from ...types.shared_params.rate_plan import RatePlan
 from ...types.accounts.subscription_delete_response import SubscriptionDeleteResponse
@@ -46,6 +47,75 @@ class SubscriptionsResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return SubscriptionsResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Subscription:
+        """
+        Creates an account or zone subscription.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          frequency: How often the subscription is renewed automatically.
+
+          rate_plan: The rate plan applied to the subscription.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._post(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/subscriptions",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            body=maybe_transform(
+                {
+                    "frequency": frequency,
+                    "rate_plan": rate_plan,
+                },
+                subscription_create_params.SubscriptionCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Subscription]._unwrapper,
+            ),
+            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
+        )
 
     def update(
         self,
@@ -160,6 +230,59 @@ class SubscriptionsResource(SyncAPIResource):
             cast_to=cast(Type[SubscriptionDeleteResponse], ResultWrapper[SubscriptionDeleteResponse]),
         )
 
+    def get(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[Subscription]:
+        """
+        Lists all of an account or zone's subscriptions.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/subscriptions",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            page=SyncSinglePage[Subscription],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=Subscription,
+        )
+
 
 class AsyncSubscriptionsResource(AsyncAPIResource):
     @cached_property
@@ -180,6 +303,75 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return AsyncSubscriptionsResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Subscription:
+        """
+        Creates an account or zone subscription.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          frequency: How often the subscription is renewed automatically.
+
+          rate_plan: The rate plan applied to the subscription.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return await self._post(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/subscriptions",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "frequency": frequency,
+                    "rate_plan": rate_plan,
+                },
+                subscription_create_params.SubscriptionCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Subscription]._unwrapper,
+            ),
+            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
+        )
 
     async def update(
         self,
@@ -294,16 +486,75 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=cast(Type[SubscriptionDeleteResponse], ResultWrapper[SubscriptionDeleteResponse]),
         )
 
+    def get(
+        self,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[Subscription, AsyncSinglePage[Subscription]]:
+        """
+        Lists all of an account or zone's subscriptions.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/subscriptions",
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            page=AsyncSinglePage[Subscription],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=Subscription,
+        )
+
 
 class SubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
+        self.create = to_raw_response_wrapper(
+            subscriptions.create,
+        )
         self.update = to_raw_response_wrapper(
             subscriptions.update,
         )
         self.delete = to_raw_response_wrapper(
             subscriptions.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            subscriptions.get,
         )
 
 
@@ -311,11 +562,17 @@ class AsyncSubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
+        self.create = async_to_raw_response_wrapper(
+            subscriptions.create,
+        )
         self.update = async_to_raw_response_wrapper(
             subscriptions.update,
         )
         self.delete = async_to_raw_response_wrapper(
             subscriptions.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            subscriptions.get,
         )
 
 
@@ -323,11 +580,17 @@ class SubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
+        self.create = to_streamed_response_wrapper(
+            subscriptions.create,
+        )
         self.update = to_streamed_response_wrapper(
             subscriptions.update,
         )
         self.delete = to_streamed_response_wrapper(
             subscriptions.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            subscriptions.get,
         )
 
 
@@ -335,9 +598,15 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
+        self.create = async_to_streamed_response_wrapper(
+            subscriptions.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             subscriptions.update,
         )
         self.delete = async_to_streamed_response_wrapper(
             subscriptions.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            subscriptions.get,
         )
