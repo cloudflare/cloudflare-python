@@ -158,6 +158,13 @@ class UsageGetResponseItem(BaseModel):
     Cloudflare extension; replaces FOCUS SkuId.
     """
 
+    x_product_category_name: Optional[str] = FieldInfo(alias="x_ProductCategoryName", default=None)
+    """The product category the charge belongs to (e.g., "Developer", "Cloudflare
+    One").
+
+    Cloudflare extension; replaces FOCUS ServiceCategory.
+    """
+
     x_product_family_name: Optional[str] = FieldInfo(alias="x_ProductFamilyName", default=None)
     """The product family the charge belongs to (e.g., "R2", "Workers").
 
