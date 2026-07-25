@@ -23,6 +23,14 @@ from .values import (
     ValuesResourceWithStreamingResponse,
     AsyncValuesResourceWithStreamingResponse,
 )
+from .summary import (
+    SummaryResource,
+    AsyncSummaryResource,
+    SummaryResourceWithRawResponse,
+    AsyncSummaryResourceWithRawResponse,
+    SummaryResourceWithStreamingResponse,
+    AsyncSummaryResourceWithStreamingResponse,
+)
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
@@ -75,6 +83,10 @@ class ResourceTaggingResource(SyncAPIResource):
         return ValuesResource(self._client)
 
     @cached_property
+    def summary(self) -> SummaryResource:
+        return SummaryResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> ResourceTaggingResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -97,7 +109,9 @@ class ResourceTaggingResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        id: SequenceNotStr[str] | Omit = omit,
         cursor: str | Omit = omit,
+        name: str | Omit = omit,
         tag: SequenceNotStr[str] | Omit = omit,
         type: List[
             Literal[
@@ -105,6 +119,7 @@ class ResourceTaggingResource(SyncAPIResource):
                 "access_application_policy",
                 "access_group",
                 "account",
+                "account_ruleset",
                 "ai_gateway",
                 "alerting_policy",
                 "alerting_webhook",
@@ -117,17 +132,26 @@ class ResourceTaggingResource(SyncAPIResource):
                 "durable_object_namespace",
                 "gateway_list",
                 "gateway_rule",
+                "healthcheck",
                 "image",
+                "infrastructure_target",
                 "kv_namespace",
+                "load_balancer",
+                "load_balancer_monitor",
+                "load_balancer_pool",
                 "managed_client_certificate",
+                "pages_project",
                 "queue",
                 "r2_bucket",
                 "resource_share",
                 "stream_live_input",
                 "stream_video",
+                "vectorize_index",
                 "worker",
+                "worker_route",
                 "worker_version",
                 "zone",
+                "zone_ruleset",
             ]
         ]
         | Omit = omit,
@@ -144,7 +168,14 @@ class ResourceTaggingResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          id: Filter by resource ID. Can be repeated up to 50 times to filter by multiple IDs.
+              Example: ?id=abc&id=def
+
           cursor: Cursor for pagination.
+
+          name:
+              Filter by resource name. Performs a case-insensitive substring match. Example:
+              ?name=my-zone
 
           tag: Filter resources by tag criteria. This parameter can be repeated multiple times,
               with AND logic between parameters.
@@ -187,7 +218,9 @@ class ResourceTaggingResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "cursor": cursor,
+                        "name": name,
                         "tag": tag,
                         "type": type,
                     },
@@ -218,6 +251,10 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
         return AsyncValuesResource(self._client)
 
     @cached_property
+    def summary(self) -> AsyncSummaryResource:
+        return AsyncSummaryResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncResourceTaggingResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -240,7 +277,9 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        id: SequenceNotStr[str] | Omit = omit,
         cursor: str | Omit = omit,
+        name: str | Omit = omit,
         tag: SequenceNotStr[str] | Omit = omit,
         type: List[
             Literal[
@@ -248,6 +287,7 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
                 "access_application_policy",
                 "access_group",
                 "account",
+                "account_ruleset",
                 "ai_gateway",
                 "alerting_policy",
                 "alerting_webhook",
@@ -260,17 +300,26 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
                 "durable_object_namespace",
                 "gateway_list",
                 "gateway_rule",
+                "healthcheck",
                 "image",
+                "infrastructure_target",
                 "kv_namespace",
+                "load_balancer",
+                "load_balancer_monitor",
+                "load_balancer_pool",
                 "managed_client_certificate",
+                "pages_project",
                 "queue",
                 "r2_bucket",
                 "resource_share",
                 "stream_live_input",
                 "stream_video",
+                "vectorize_index",
                 "worker",
+                "worker_route",
                 "worker_version",
                 "zone",
+                "zone_ruleset",
             ]
         ]
         | Omit = omit,
@@ -287,7 +336,14 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          id: Filter by resource ID. Can be repeated up to 50 times to filter by multiple IDs.
+              Example: ?id=abc&id=def
+
           cursor: Cursor for pagination.
+
+          name:
+              Filter by resource name. Performs a case-insensitive substring match. Example:
+              ?name=my-zone
 
           tag: Filter resources by tag criteria. This parameter can be repeated multiple times,
               with AND logic between parameters.
@@ -330,7 +386,9 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "cursor": cursor,
+                        "name": name,
                         "tag": tag,
                         "type": type,
                     },
@@ -367,6 +425,10 @@ class ResourceTaggingResourceWithRawResponse:
     def values(self) -> ValuesResourceWithRawResponse:
         return ValuesResourceWithRawResponse(self._resource_tagging.values)
 
+    @cached_property
+    def summary(self) -> SummaryResourceWithRawResponse:
+        return SummaryResourceWithRawResponse(self._resource_tagging.summary)
+
 
 class AsyncResourceTaggingResourceWithRawResponse:
     def __init__(self, resource_tagging: AsyncResourceTaggingResource) -> None:
@@ -391,6 +453,10 @@ class AsyncResourceTaggingResourceWithRawResponse:
     @cached_property
     def values(self) -> AsyncValuesResourceWithRawResponse:
         return AsyncValuesResourceWithRawResponse(self._resource_tagging.values)
+
+    @cached_property
+    def summary(self) -> AsyncSummaryResourceWithRawResponse:
+        return AsyncSummaryResourceWithRawResponse(self._resource_tagging.summary)
 
 
 class ResourceTaggingResourceWithStreamingResponse:
@@ -417,6 +483,10 @@ class ResourceTaggingResourceWithStreamingResponse:
     def values(self) -> ValuesResourceWithStreamingResponse:
         return ValuesResourceWithStreamingResponse(self._resource_tagging.values)
 
+    @cached_property
+    def summary(self) -> SummaryResourceWithStreamingResponse:
+        return SummaryResourceWithStreamingResponse(self._resource_tagging.summary)
+
 
 class AsyncResourceTaggingResourceWithStreamingResponse:
     def __init__(self, resource_tagging: AsyncResourceTaggingResource) -> None:
@@ -441,3 +511,7 @@ class AsyncResourceTaggingResourceWithStreamingResponse:
     @cached_property
     def values(self) -> AsyncValuesResourceWithStreamingResponse:
         return AsyncValuesResourceWithStreamingResponse(self._resource_tagging.values)
+
+    @cached_property
+    def summary(self) -> AsyncSummaryResourceWithStreamingResponse:
+        return AsyncSummaryResourceWithStreamingResponse(self._resource_tagging.summary)

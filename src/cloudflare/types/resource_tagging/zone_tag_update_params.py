@@ -27,14 +27,21 @@ class ResourceTaggingSetTagsRequestZoneLevelBase(TypedDict, total=False):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
         ]
     ]
     """Enum for base zone-level resource types (those with no extra required fields)."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     if_match: Annotated[str, PropertyInfo(alias="If-Match")]
 
@@ -55,15 +62,22 @@ class ResourceTaggingSetTagsRequestZoneLevelAccessApplicationPolicy(TypedDict, t
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
             "access_application_policy",
         ]
     ]
     """Enum for base zone-level resource types (those with no extra required fields)."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     if_match: Annotated[str, PropertyInfo(alias="If-Match")]
 

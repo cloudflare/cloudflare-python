@@ -61,3 +61,15 @@ from cloudflare.types.resource_tagging import ValueListResponse
 Methods:
 
 - <code title="get /accounts/{account_id}/tags/values/{tag_key}">client.resource_tagging.values.<a href="./src/cloudflare/resources/resource_tagging/values.py">list</a>(tag_key, \*, account_id, \*\*<a href="src/cloudflare/types/resource_tagging/value_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_tagging/value_list_response.py">SyncCursorPaginationAfter[ValueListResponse]</a></code>
+
+## Summary
+
+Types:
+
+```python
+from cloudflare.types.resource_tagging import SummaryGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/tags/summary">client.resource_tagging.summary.<a href="./src/cloudflare/resources/resource_tagging/summary.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/resource_tagging/summary_get_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_tagging/summary_get_response.py">Optional[SummaryGetResponse]</a></code>

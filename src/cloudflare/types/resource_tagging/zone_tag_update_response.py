@@ -12,6 +12,7 @@ __all__ = [
     "ResourceTaggingTaggedResourceObjectAccessApplicationPolicy",
     "ResourceTaggingTaggedResourceObjectAccessGroup",
     "ResourceTaggingTaggedResourceObjectAccount",
+    "ResourceTaggingTaggedResourceObjectAccountRuleset",
     "ResourceTaggingTaggedResourceObjectAIGateway",
     "ResourceTaggingTaggedResourceObjectAlertingPolicy",
     "ResourceTaggingTaggedResourceObjectAlertingWebhook",
@@ -24,17 +25,26 @@ __all__ = [
     "ResourceTaggingTaggedResourceObjectDurableObjectNamespace",
     "ResourceTaggingTaggedResourceObjectGatewayList",
     "ResourceTaggingTaggedResourceObjectGatewayRule",
+    "ResourceTaggingTaggedResourceObjectHealthcheck",
     "ResourceTaggingTaggedResourceObjectImage",
+    "ResourceTaggingTaggedResourceObjectInfrastructureTarget",
     "ResourceTaggingTaggedResourceObjectKVNamespace",
+    "ResourceTaggingTaggedResourceObjectLoadBalancer",
+    "ResourceTaggingTaggedResourceObjectLoadBalancerMonitor",
+    "ResourceTaggingTaggedResourceObjectLoadBalancerPool",
     "ResourceTaggingTaggedResourceObjectManagedClientCertificate",
+    "ResourceTaggingTaggedResourceObjectPagesProject",
     "ResourceTaggingTaggedResourceObjectQueue",
     "ResourceTaggingTaggedResourceObjectR2Bucket",
     "ResourceTaggingTaggedResourceObjectResourceShare",
     "ResourceTaggingTaggedResourceObjectStreamLiveInput",
     "ResourceTaggingTaggedResourceObjectStreamVideo",
+    "ResourceTaggingTaggedResourceObjectVectorizeIndex",
     "ResourceTaggingTaggedResourceObjectWorker",
+    "ResourceTaggingTaggedResourceObjectWorkerRoute",
     "ResourceTaggingTaggedResourceObjectWorkerVersion",
     "ResourceTaggingTaggedResourceObjectZone",
+    "ResourceTaggingTaggedResourceObjectZoneRuleset",
 ]
 
 
@@ -57,7 +67,10 @@ class ResourceTaggingTaggedResourceObjectAccessApplication(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["access_application"]
 
@@ -84,7 +97,10 @@ class ResourceTaggingTaggedResourceObjectAccessApplicationPolicy(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["access_application_policy"]
 
@@ -111,7 +127,10 @@ class ResourceTaggingTaggedResourceObjectAccessGroup(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["access_group"]
 
@@ -135,9 +154,39 @@ class ResourceTaggingTaggedResourceObjectAccount(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["account"]
+
+
+class ResourceTaggingTaggedResourceObjectAccountRuleset(BaseModel):
+    """Response for account_ruleset resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["account_ruleset"]
 
 
 class ResourceTaggingTaggedResourceObjectAIGateway(BaseModel):
@@ -159,7 +208,10 @@ class ResourceTaggingTaggedResourceObjectAIGateway(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["ai_gateway"]
 
@@ -183,7 +235,10 @@ class ResourceTaggingTaggedResourceObjectAlertingPolicy(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["alerting_policy"]
 
@@ -207,7 +262,10 @@ class ResourceTaggingTaggedResourceObjectAlertingWebhook(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["alerting_webhook"]
 
@@ -231,7 +289,10 @@ class ResourceTaggingTaggedResourceObjectAPIGatewayOperation(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["api_gateway_operation"]
 
@@ -258,7 +319,10 @@ class ResourceTaggingTaggedResourceObjectCloudflaredTunnel(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["cloudflared_tunnel"]
 
@@ -282,7 +346,10 @@ class ResourceTaggingTaggedResourceObjectCustomCertificate(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["custom_certificate"]
 
@@ -309,7 +376,10 @@ class ResourceTaggingTaggedResourceObjectCustomHostname(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["custom_hostname"]
 
@@ -336,7 +406,10 @@ class ResourceTaggingTaggedResourceObjectD1Database(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["d1_database"]
 
@@ -360,7 +433,10 @@ class ResourceTaggingTaggedResourceObjectDNSRecord(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["dns_record"]
 
@@ -387,7 +463,10 @@ class ResourceTaggingTaggedResourceObjectDurableObjectNamespace(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["durable_object_namespace"]
 
@@ -411,7 +490,10 @@ class ResourceTaggingTaggedResourceObjectGatewayList(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["gateway_list"]
 
@@ -435,9 +517,42 @@ class ResourceTaggingTaggedResourceObjectGatewayRule(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["gateway_rule"]
+
+
+class ResourceTaggingTaggedResourceObjectHealthcheck(BaseModel):
+    """Response for healthcheck resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["healthcheck"]
+
+    zone_id: str
+    """Zone ID is required only for zone-level resources"""
 
 
 class ResourceTaggingTaggedResourceObjectImage(BaseModel):
@@ -459,9 +574,39 @@ class ResourceTaggingTaggedResourceObjectImage(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["image"]
+
+
+class ResourceTaggingTaggedResourceObjectInfrastructureTarget(BaseModel):
+    """Response for infrastructure_target resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["infrastructure_target"]
 
 
 class ResourceTaggingTaggedResourceObjectKVNamespace(BaseModel):
@@ -483,9 +628,96 @@ class ResourceTaggingTaggedResourceObjectKVNamespace(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["kv_namespace"]
+
+
+class ResourceTaggingTaggedResourceObjectLoadBalancer(BaseModel):
+    """Response for load_balancer resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["load_balancer"]
+
+    zone_id: str
+    """Zone ID is required only for zone-level resources"""
+
+
+class ResourceTaggingTaggedResourceObjectLoadBalancerMonitor(BaseModel):
+    """Response for load_balancer_monitor resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["load_balancer_monitor"]
+
+
+class ResourceTaggingTaggedResourceObjectLoadBalancerPool(BaseModel):
+    """Response for load_balancer_pool resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["load_balancer_pool"]
 
 
 class ResourceTaggingTaggedResourceObjectManagedClientCertificate(BaseModel):
@@ -507,12 +739,42 @@ class ResourceTaggingTaggedResourceObjectManagedClientCertificate(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["managed_client_certificate"]
 
     zone_id: str
     """Zone ID is required only for zone-level resources"""
+
+
+class ResourceTaggingTaggedResourceObjectPagesProject(BaseModel):
+    """Response for pages_project resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["pages_project"]
 
 
 class ResourceTaggingTaggedResourceObjectQueue(BaseModel):
@@ -534,7 +796,10 @@ class ResourceTaggingTaggedResourceObjectQueue(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["queue"]
 
@@ -558,7 +823,10 @@ class ResourceTaggingTaggedResourceObjectR2Bucket(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["r2_bucket"]
 
@@ -582,7 +850,10 @@ class ResourceTaggingTaggedResourceObjectResourceShare(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["resource_share"]
 
@@ -606,7 +877,10 @@ class ResourceTaggingTaggedResourceObjectStreamLiveInput(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["stream_live_input"]
 
@@ -630,9 +904,39 @@ class ResourceTaggingTaggedResourceObjectStreamVideo(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["stream_video"]
+
+
+class ResourceTaggingTaggedResourceObjectVectorizeIndex(BaseModel):
+    """Response for vectorize_index resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["vectorize_index"]
 
 
 class ResourceTaggingTaggedResourceObjectWorker(BaseModel):
@@ -654,9 +958,42 @@ class ResourceTaggingTaggedResourceObjectWorker(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["worker"]
+
+
+class ResourceTaggingTaggedResourceObjectWorkerRoute(BaseModel):
+    """Response for worker_route resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["worker_route"]
+
+    zone_id: str
+    """Zone ID is required only for zone-level resources"""
 
 
 class ResourceTaggingTaggedResourceObjectWorkerVersion(BaseModel):
@@ -678,7 +1015,10 @@ class ResourceTaggingTaggedResourceObjectWorkerVersion(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["worker_version"]
 
@@ -705,9 +1045,42 @@ class ResourceTaggingTaggedResourceObjectZone(BaseModel):
     """Human-readable name of the resource."""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
 
     type: Literal["zone"]
+
+    zone_id: str
+    """Zone ID is required only for zone-level resources"""
+
+
+class ResourceTaggingTaggedResourceObjectZoneRuleset(BaseModel):
+    """Response for zone_ruleset resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Values may be empty strings for key-only tags.
+    """
+
+    type: Literal["zone_ruleset"]
 
     zone_id: str
     """Zone ID is required only for zone-level resources"""
@@ -719,6 +1092,7 @@ ZoneTagUpdateResponse: TypeAlias = Annotated[
         ResourceTaggingTaggedResourceObjectAccessApplicationPolicy,
         ResourceTaggingTaggedResourceObjectAccessGroup,
         ResourceTaggingTaggedResourceObjectAccount,
+        ResourceTaggingTaggedResourceObjectAccountRuleset,
         ResourceTaggingTaggedResourceObjectAIGateway,
         ResourceTaggingTaggedResourceObjectAlertingPolicy,
         ResourceTaggingTaggedResourceObjectAlertingWebhook,
@@ -731,17 +1105,26 @@ ZoneTagUpdateResponse: TypeAlias = Annotated[
         ResourceTaggingTaggedResourceObjectDurableObjectNamespace,
         ResourceTaggingTaggedResourceObjectGatewayList,
         ResourceTaggingTaggedResourceObjectGatewayRule,
+        ResourceTaggingTaggedResourceObjectHealthcheck,
         ResourceTaggingTaggedResourceObjectImage,
+        ResourceTaggingTaggedResourceObjectInfrastructureTarget,
         ResourceTaggingTaggedResourceObjectKVNamespace,
+        ResourceTaggingTaggedResourceObjectLoadBalancer,
+        ResourceTaggingTaggedResourceObjectLoadBalancerMonitor,
+        ResourceTaggingTaggedResourceObjectLoadBalancerPool,
         ResourceTaggingTaggedResourceObjectManagedClientCertificate,
+        ResourceTaggingTaggedResourceObjectPagesProject,
         ResourceTaggingTaggedResourceObjectQueue,
         ResourceTaggingTaggedResourceObjectR2Bucket,
         ResourceTaggingTaggedResourceObjectResourceShare,
         ResourceTaggingTaggedResourceObjectStreamLiveInput,
         ResourceTaggingTaggedResourceObjectStreamVideo,
+        ResourceTaggingTaggedResourceObjectVectorizeIndex,
         ResourceTaggingTaggedResourceObjectWorker,
+        ResourceTaggingTaggedResourceObjectWorkerRoute,
         ResourceTaggingTaggedResourceObjectWorkerVersion,
         ResourceTaggingTaggedResourceObjectZone,
+        ResourceTaggingTaggedResourceObjectZoneRuleset,
     ],
     PropertyInfo(discriminator="type"),
 ]
