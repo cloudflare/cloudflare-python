@@ -269,7 +269,7 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
 class SourceParamsWebCrawler(BaseModel):
     parse_options: Optional[SourceParamsWebCrawlerParseOptions] = None
 
-    parse_type: Optional[Literal["sitemap", "crawl"]] = None
+    parse_type: Optional[Literal["sitemap", "discover"]] = None
 
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a

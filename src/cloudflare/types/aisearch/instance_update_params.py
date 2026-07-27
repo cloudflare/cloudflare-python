@@ -403,7 +403,7 @@ class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
 class SourceParamsWebCrawler(TypedDict, total=False):
     parse_options: SourceParamsWebCrawlerParseOptions
 
-    parse_type: Literal["sitemap", "crawl"]
+    parse_type: Literal["sitemap", "discover"]
 
 
 class SourceParams(TypedDict, total=False):

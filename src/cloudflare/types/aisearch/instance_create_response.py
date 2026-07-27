@@ -205,7 +205,7 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
 class SourceParamsWebCrawler(BaseModel):
     parse_options: Optional[SourceParamsWebCrawlerParseOptions] = None
 
-    parse_type: Optional[Literal["sitemap", "crawl"]] = None
+    parse_type: Optional[Literal["sitemap", "discover"]] = None
 
 
 class SourceParams(BaseModel):
