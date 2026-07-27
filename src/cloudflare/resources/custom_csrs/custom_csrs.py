@@ -157,6 +157,8 @@ class CustomCsrsResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["name", "account_tag", "created_at"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -173,6 +175,10 @@ class CustomCsrsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          direction: The direction to sort by.
+
+          order: The field to sort the returned custom CSRs by.
 
           page: Page number of paginated results.
 
@@ -212,6 +218,8 @@ class CustomCsrsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "direction": direction,
+                        "order": order,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -475,6 +483,8 @@ class AsyncCustomCsrsResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["name", "account_tag", "created_at"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -491,6 +501,10 @@ class AsyncCustomCsrsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          direction: The direction to sort by.
+
+          order: The field to sort the returned custom CSRs by.
 
           page: Page number of paginated results.
 
@@ -530,6 +544,8 @@ class AsyncCustomCsrsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "direction": direction,
+                        "order": order,
                         "page": page,
                         "per_page": per_page,
                     },
