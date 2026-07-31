@@ -2,3 +2,6 @@
 
 __title__ = "cloudflare"
 __version__ = "5.6.0"  # x-release-please-version
+
+# Set by codegen; empty string omits the header.
+__api_version__ = ""
