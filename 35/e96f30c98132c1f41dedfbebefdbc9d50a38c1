@@ -1,0 +1,37 @@
+tests/test_client.py
+  s_f94aacad13a913::t_93f823984dc5c7 465-488
+  s_f94aacad13a913::t_9f47ff07bee686 1629-1639
+  s_f94aacad13a913::t_1ce8c14c420ca9 1628
+  s_f94aacad13a913::t_c894427f02cf62 1605-1627
+  s_f94aacad13a913::t_f78e93a3b6c29c 489-499
+src/cloudflare/_base_client.py
+  s_f94aacad13a913::t_e880494df8f838 465-466
+src/cloudflare/_version.py
+  s_f94aacad13a913::t_e880494df8f838 5-7
+src/cloudflare/_client.py
+  s_f94aacad13a913::t_3ca10247815622 415-417
+  s_f94aacad13a913::t_aa40b268c8b786 414,1601
+  s_f94aacad13a913::t_85579a9bb7f916 40
+  s_f94aacad13a913::t_23bee9697e5bbf 413
+  s_f94aacad13a913::t_c70810d2dc17e7 1602-1604
+  s_f94aacad13a913::t_6d79ae10c008e7 1600
+  s_f94aacad13a913::t_9f4eca27d0f9d7 6
+  s_f94aacad13a913::t_8c8547fee368d8 39
+  s_f94aacad13a913::t_e880494df8f838 30,412,1599
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "35e96f30c98132c1f41dedfbebefdbc9d50a38c1",
+  "prompts": {},
+  "sessions": {
+    "s_f94aacad13a913": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_06ebb99a7ffevAE92M56IYSF4c",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": null
+    }
+  }
+}
