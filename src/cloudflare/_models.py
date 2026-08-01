@@ -335,6 +335,8 @@ class BaseModel(pydantic.BaseModel):
                 raise ValueError("fallback is only supported in Pydantic v2")
             if exclude_computed_fields != False:
                 raise ValueError("exclude_computed_fields is only supported in Pydantic v2")
+            if polymorphic_serialization is not None:
+                raise ValueError("polymorphic_serialization is only supported in Pydantic v2")
             dumped = super().dict(  # pyright: ignore[reportDeprecated]
                 include=include,
                 exclude=exclude,
@@ -398,6 +400,8 @@ class BaseModel(pydantic.BaseModel):
                 raise ValueError("ensure_ascii is only supported in Pydantic v2")
             if exclude_computed_fields != False:
                 raise ValueError("exclude_computed_fields is only supported in Pydantic v2")
+            if polymorphic_serialization is not None:
+                raise ValueError("polymorphic_serialization is only supported in Pydantic v2")
             return super().json(  # type: ignore[reportDeprecated]
                 indent=indent,
                 include=include,
