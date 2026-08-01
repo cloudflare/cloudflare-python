@@ -537,6 +537,21 @@ def test_to_dict() -> None:
             m.to_dict(warnings=False)
 
 
+def test_polymorphic_serialization_is_rejected_on_pydantic_v1() -> None:
+    class Model(BaseModel):
+        foo: int = 1
+
+    m = Model()
+    if PYDANTIC_V1:
+        with pytest.raises(ValueError, match="polymorphic_serialization is only supported in Pydantic v2"):
+            m.model_dump(polymorphic_serialization=True)
+        with pytest.raises(ValueError, match="polymorphic_serialization is only supported in Pydantic v2"):
+            m.model_dump_json(polymorphic_serialization=True)
+
+    # the default must keep working on both major versions
+    assert m.model_dump() == {"foo": 1}
+
+
 def test_forwards_compat_model_dump_method() -> None:
     class Model(BaseModel):
         foo: Optional[str] = Field(alias="FOO", default=None)
