@@ -105,38 +105,46 @@ class UseCase(BaseModel):
 
 
 class ApplicationGetResponse(BaseModel):
-    """Full application detail for onboarding UI."""
+    """The requested item."""
 
     id: Literal[
         "ANTHROPIC",
+        "AWS",
         "BITBUCKET",
         "BOX",
         "CONFLUENCE",
         "DROPBOX",
         "GITHUB",
+        "GITLAB",
         "GOOGLE_CLOUD_PLATFORM",
         "GOOGLE_WORKSPACE",
         "JIRA",
         "MICROSOFT_INTERNAL",
         "OPENAI",
         "SALESFORCE",
+        "SERVICENOW",
         "SLACK",
+        "ZOOM",
     ]
     """Vendor identifier.
 
     - `ANTHROPIC` - ANTHROPIC
+    - `AWS` - AWS
     - `BITBUCKET` - BITBUCKET
     - `BOX` - BOX
     - `CONFLUENCE` - CONFLUENCE
     - `DROPBOX` - DROPBOX
     - `GITHUB` - GITHUB
+    - `GITLAB` - GITLAB
     - `GOOGLE_CLOUD_PLATFORM` - GOOGLE_CLOUD_PLATFORM
     - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
     - `JIRA` - JIRA
     - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
     - `OPENAI` - OPENAI
     - `SALESFORCE` - SALESFORCE
+    - `SERVICENOW` - SERVICENOW
     - `SLACK` - SLACK
+    - `ZOOM` - ZOOM
     """
 
     auth_methods: List[AuthMethod]

@@ -34,6 +34,7 @@ class TestFindingTypes:
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
             page=0,
             per_page=0,
+            vendors=["GOOGLE_WORKSPACE"],
         )
         assert_matches_type(SyncV4PagePaginationArray[FindingTypeListResponse], finding_type, path=["response"])
 
@@ -135,6 +136,7 @@ class TestAsyncFindingTypes:
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
             page=0,
             per_page=0,
+            vendors=["GOOGLE_WORKSPACE"],
         )
         assert_matches_type(AsyncV4PagePaginationArray[FindingTypeListResponse], finding_type, path=["response"])
 

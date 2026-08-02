@@ -85,7 +85,8 @@ class ZoneTagsResource(SyncAPIResource):
 
           resource_type: Enum for base zone-level resource types (those with no extra required fields).
 
-          tags: Contains key-value pairs of tags. Values may be empty strings for key-only tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -140,7 +141,8 @@ class ZoneTagsResource(SyncAPIResource):
 
           resource_type: Enum for base zone-level resource types (those with no extra required fields).
 
-          tags: Contains key-value pairs of tags. Values may be empty strings for key-only tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -397,7 +399,8 @@ class AsyncZoneTagsResource(AsyncAPIResource):
 
           resource_type: Enum for base zone-level resource types (those with no extra required fields).
 
-          tags: Contains key-value pairs of tags. Values may be empty strings for key-only tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -452,7 +455,8 @@ class AsyncZoneTagsResource(AsyncAPIResource):
 
           resource_type: Enum for base zone-level resource types (those with no extra required fields).
 
-          tags: Contains key-value pairs of tags. Values may be empty strings for key-only tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 

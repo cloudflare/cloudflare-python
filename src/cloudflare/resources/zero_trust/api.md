@@ -980,25 +980,19 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.casb import ApplicationListResponse, ApplicationGetResponse
+from cloudflare.types.zero_trust.casb import ApplicationGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/one/applications">client.zero_trust.casb.applications.<a href="./src/cloudflare/resources/zero_trust/casb/applications/applications.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/application_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/application_list_response.py">ApplicationListResponse</a></code>
+- <code title="get /accounts/{account_id}/one/applications">client.zero_trust.casb.applications.<a href="./src/cloudflare/resources/zero_trust/casb/applications/applications.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/application_list_params.py">params</a>) -> object</code>
 - <code title="get /accounts/{account_id}/one/applications/{application_id}">client.zero_trust.casb.applications.<a href="./src/cloudflare/resources/zero_trust/casb/applications/applications.py">get</a>(application_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/application_get_response.py">ApplicationGetResponse</a></code>
 
 #### AuthMethods
 
-Types:
-
-```python
-from cloudflare.types.zero_trust.casb.applications import AuthMethodListResponse
-```
-
 Methods:
 
-- <code title="get /accounts/{account_id}/one/applications/{application_id}/auth-methods">client.zero_trust.casb.applications.auth_methods.<a href="./src/cloudflare/resources/zero_trust/casb/applications/auth_methods.py">list</a>(application_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/applications/auth_method_list_response.py">AuthMethodListResponse</a></code>
+- <code title="get /accounts/{account_id}/one/applications/{application_id}/auth-methods">client.zero_trust.casb.applications.auth_methods.<a href="./src/cloudflare/resources/zero_trust/casb/applications/auth_methods.py">list</a>(application_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/applications/auth_method_list_params.py">params</a>) -> object</code>
 
 ### Integrations
 

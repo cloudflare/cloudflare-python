@@ -103,7 +103,8 @@ class AccountTagsResource(SyncAPIResource):
 
           worker_id: Worker ID is required only for worker_version resources
 
-          tags: Contains key-value pairs of tags. Values may be empty strings for key-only tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -168,7 +169,8 @@ class AccountTagsResource(SyncAPIResource):
           resource_type: Enum for base account-level resource types (those with no extra required
               fields).
 
-          tags: Contains key-value pairs of tags. Values may be empty strings for key-only tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -486,7 +488,8 @@ class AsyncAccountTagsResource(AsyncAPIResource):
 
           worker_id: Worker ID is required only for worker_version resources
 
-          tags: Contains key-value pairs of tags. Values may be empty strings for key-only tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -551,7 +554,8 @@ class AsyncAccountTagsResource(AsyncAPIResource):
           resource_type: Enum for base account-level resource types (those with no extra required
               fields).
 
-          tags: Contains key-value pairs of tags. Values may be empty strings for key-only tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 

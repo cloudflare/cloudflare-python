@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from ..approval_group_param import ApprovalGroupParam
@@ -57,7 +57,7 @@ class PolicyUpdateParams(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),

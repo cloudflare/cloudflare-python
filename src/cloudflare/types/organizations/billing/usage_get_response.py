@@ -165,6 +165,12 @@ class UsageGetResponseItem(BaseModel):
     Cloudflare extension; replaces FOCUS ServiceCategory.
     """
 
+    x_product_family_id: Optional[str] = FieldInfo(alias="x_ProductFamilyId", default=None)
+    """The unique identifier for the product family in the Cloudflare catalog.
+
+    Cloudflare extension; replaces FOCUS ServiceId.
+    """
+
     x_product_family_name: Optional[str] = FieldInfo(alias="x_ProductFamilyName", default=None)
     """The product family the charge belongs to (e.g., "R2", "Workers").
 

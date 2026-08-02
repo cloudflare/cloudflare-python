@@ -69,7 +69,8 @@ class ResourceTaggingTaggedResourceObjectAccessApplication(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["access_application"]
@@ -99,7 +100,8 @@ class ResourceTaggingTaggedResourceObjectAccessApplicationPolicy(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["access_application_policy"]
@@ -129,7 +131,8 @@ class ResourceTaggingTaggedResourceObjectAccessGroup(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["access_group"]
@@ -156,7 +159,8 @@ class ResourceTaggingTaggedResourceObjectAccount(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["account"]
@@ -183,7 +187,8 @@ class ResourceTaggingTaggedResourceObjectAccountRuleset(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["account_ruleset"]
@@ -210,7 +215,8 @@ class ResourceTaggingTaggedResourceObjectAIGateway(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["ai_gateway"]
@@ -237,7 +243,8 @@ class ResourceTaggingTaggedResourceObjectAlertingPolicy(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["alerting_policy"]
@@ -264,7 +271,8 @@ class ResourceTaggingTaggedResourceObjectAlertingWebhook(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["alerting_webhook"]
@@ -291,7 +299,8 @@ class ResourceTaggingTaggedResourceObjectAPIGatewayOperation(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["api_gateway_operation"]
@@ -321,7 +330,8 @@ class ResourceTaggingTaggedResourceObjectCloudflaredTunnel(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["cloudflared_tunnel"]
@@ -348,7 +358,8 @@ class ResourceTaggingTaggedResourceObjectCustomCertificate(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["custom_certificate"]
@@ -378,7 +389,8 @@ class ResourceTaggingTaggedResourceObjectCustomHostname(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["custom_hostname"]
@@ -408,7 +420,8 @@ class ResourceTaggingTaggedResourceObjectD1Database(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["d1_database"]
@@ -435,7 +448,8 @@ class ResourceTaggingTaggedResourceObjectDNSRecord(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["dns_record"]
@@ -465,7 +479,8 @@ class ResourceTaggingTaggedResourceObjectDurableObjectNamespace(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["durable_object_namespace"]
@@ -492,7 +507,8 @@ class ResourceTaggingTaggedResourceObjectGatewayList(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["gateway_list"]
@@ -519,7 +535,8 @@ class ResourceTaggingTaggedResourceObjectGatewayRule(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["gateway_rule"]
@@ -546,7 +563,8 @@ class ResourceTaggingTaggedResourceObjectHealthcheck(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["healthcheck"]
@@ -576,7 +594,8 @@ class ResourceTaggingTaggedResourceObjectImage(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["image"]
@@ -603,7 +622,8 @@ class ResourceTaggingTaggedResourceObjectInfrastructureTarget(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["infrastructure_target"]
@@ -630,7 +650,8 @@ class ResourceTaggingTaggedResourceObjectKVNamespace(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["kv_namespace"]
@@ -657,7 +678,8 @@ class ResourceTaggingTaggedResourceObjectLoadBalancer(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["load_balancer"]
@@ -687,7 +709,8 @@ class ResourceTaggingTaggedResourceObjectLoadBalancerMonitor(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["load_balancer_monitor"]
@@ -714,7 +737,8 @@ class ResourceTaggingTaggedResourceObjectLoadBalancerPool(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["load_balancer_pool"]
@@ -741,7 +765,8 @@ class ResourceTaggingTaggedResourceObjectManagedClientCertificate(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["managed_client_certificate"]
@@ -771,7 +796,8 @@ class ResourceTaggingTaggedResourceObjectPagesProject(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["pages_project"]
@@ -798,7 +824,8 @@ class ResourceTaggingTaggedResourceObjectQueue(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["queue"]
@@ -825,7 +852,8 @@ class ResourceTaggingTaggedResourceObjectR2Bucket(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["r2_bucket"]
@@ -852,7 +880,8 @@ class ResourceTaggingTaggedResourceObjectResourceShare(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["resource_share"]
@@ -879,7 +908,8 @@ class ResourceTaggingTaggedResourceObjectStreamLiveInput(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["stream_live_input"]
@@ -906,7 +936,8 @@ class ResourceTaggingTaggedResourceObjectStreamVideo(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["stream_video"]
@@ -933,7 +964,8 @@ class ResourceTaggingTaggedResourceObjectVectorizeIndex(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["vectorize_index"]
@@ -960,7 +992,8 @@ class ResourceTaggingTaggedResourceObjectWorker(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["worker"]
@@ -987,7 +1020,8 @@ class ResourceTaggingTaggedResourceObjectWorkerRoute(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["worker_route"]
@@ -1017,7 +1051,8 @@ class ResourceTaggingTaggedResourceObjectWorkerVersion(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["worker_version"]
@@ -1047,7 +1082,8 @@ class ResourceTaggingTaggedResourceObjectZone(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["zone"]
@@ -1077,7 +1113,8 @@ class ResourceTaggingTaggedResourceObjectZoneRuleset(BaseModel):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     type: Literal["zone_ruleset"]

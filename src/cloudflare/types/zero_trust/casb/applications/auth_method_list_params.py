@@ -4,14 +4,11 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["ApplicationListParams"]
+__all__ = ["AuthMethodListParams"]
 
 
-class ApplicationListParams(TypedDict, total=False):
+class AuthMethodListParams(TypedDict, total=False):
     account_id: Required[str]
-
-    environment: str
-    """Filter by supported environment (standard, fedramp)."""
 
     page: int
     """A page number within the paginated result set."""

@@ -6,8 +6,8 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import Body, Query, Headers, NotGiven, not_given
-from ....._utils import path_template
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -17,7 +17,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.zero_trust.casb.applications.auth_method_list_response import AuthMethodListResponse
+from .....types.zero_trust.casb.applications import auth_method_list_params
 
 __all__ = ["AuthMethodsResource", "AsyncAuthMethodsResource"]
 
@@ -46,34 +46,44 @@ class AuthMethodsResource(SyncAPIResource):
         self,
         application_id: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
+            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ],
         *,
         account_id: str,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthMethodListResponse:
+    ) -> object:
         """
         Returns available auth methods for the specified vendor, including credential
         schema, instructions, and example payloads. Use this to understand what
         credentials are required before calling POST /v2/integrations.
 
         Args:
+          page: A page number within the paginated result set.
+
+          page_size: Number of results to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -93,9 +103,19 @@ class AuthMethodsResource(SyncAPIResource):
                 application_id=application_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "page_size": page_size,
+                    },
+                    auth_method_list_params.AuthMethodListParams,
+                ),
             ),
-            cast_to=AuthMethodListResponse,
+            cast_to=object,
         )
 
 
@@ -123,34 +143,44 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
         self,
         application_id: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
+            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ],
         *,
         account_id: str,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthMethodListResponse:
+    ) -> object:
         """
         Returns available auth methods for the specified vendor, including credential
         schema, instructions, and example payloads. Use this to understand what
         credentials are required before calling POST /v2/integrations.
 
         Args:
+          page: A page number within the paginated result set.
+
+          page_size: Number of results to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -170,9 +200,19 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
                 application_id=application_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page": page,
+                        "page_size": page_size,
+                    },
+                    auth_method_list_params.AuthMethodListParams,
+                ),
             ),
-            cast_to=AuthMethodListResponse,
+            cast_to=object,
         )
 
 

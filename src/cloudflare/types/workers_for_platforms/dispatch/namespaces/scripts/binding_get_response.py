@@ -13,6 +13,7 @@ __all__ = [
     "WorkersBindingKindAI",
     "WorkersBindingKindAISearch",
     "WorkersBindingKindAISearchNamespace",
+    "WorkersBindingKindMessaging",
     "WorkersBindingKindAnalyticsEngine",
     "WorkersBindingKindAssets",
     "WorkersBindingKindBrowser",
@@ -96,6 +97,17 @@ class WorkersBindingKindAISearchNamespace(BaseModel):
     """
 
     type: Literal["ai_search_namespace"]
+    """The kind of resource that the binding provides."""
+
+
+class WorkersBindingKindMessaging(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    namespace: str
+    """The Messaging namespace to bind to."""
+
+    type: Literal["messaging"]
     """The kind of resource that the binding provides."""
 
 
@@ -585,6 +597,7 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindAI,
         WorkersBindingKindAISearch,
         WorkersBindingKindAISearchNamespace,
+        WorkersBindingKindMessaging,
         WorkersBindingKindAnalyticsEngine,
         WorkersBindingKindAssets,
         WorkersBindingKindBrowser,

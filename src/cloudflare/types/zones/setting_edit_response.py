@@ -73,6 +73,8 @@ __all__ = [
     "ZonesTransformationsAllowedOrigins",
     "ZonesTrueClientIPHeader2",
     "ZonesWAF2",
+    "ZonesWebmcpEnabled",
+    "ZonesWebmcpPacks",
 ]
 
 
@@ -833,6 +835,56 @@ class ZonesWAF2(BaseModel):
     """last time this setting was modified."""
 
 
+class ZonesWebmcpEnabled(BaseModel):
+    """
+    When enabled, Cloudflare injects the WebMCP bridge (bridge.js) into HTML
+    responses for this zone, exposing DOM and Content Credentials tools to an
+    in-browser AI agent via navigator.modelContext. No origin-side code
+    changes are required. This setting is currently in beta and its behavior
+    may change.
+    """
+
+    id: Literal["webmcp_enabled"]
+    """ID of the zone setting."""
+
+    value: Literal["off", "on"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
+class ZonesWebmcpPacks(BaseModel):
+    """
+    Optional per-zone override of which bundled WebMCP tool packs the
+    injected bridge.js activates. Only takes effect when webmcp_enabled is
+    on. Leave empty to use the bridge's default pack set. Unknown pack names
+    are ignored by the bridge. This setting is currently in beta and its
+    behavior may change.
+    """
+
+    id: Literal["webmcp_packs"]
+    """ID of the zone setting."""
+
+    value: str
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
 SettingEditResponse: TypeAlias = Union[
     ZeroRTT,
     AdvancedDDoS,
@@ -895,6 +947,8 @@ SettingEditResponse: TypeAlias = Union[
     ZonesTransformationsAllowedOrigins,
     ZonesTrueClientIPHeader2,
     ZonesWAF2,
+    ZonesWebmcpEnabled,
+    ZonesWebmcpPacks,
     WebP,
     Websocket,
 ]

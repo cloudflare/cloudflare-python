@@ -129,8 +129,13 @@ class ConfigsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
-        """
-        Updates and returns the specified Hyperdrive configuration.
+        """Replaces and returns the specified Hyperdrive configuration.
+
+        The request must
+        include the name and complete origin connection details. Omitted caching
+        settings are reset to their defaults, while omitted mTLS settings and origin
+        connection limits are preserved. Use the update operation to modify only
+        selected fields.
 
         Args:
           account_id: Define configurations using a unique string identifier.
@@ -305,10 +310,10 @@ class ConfigsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
-        """Patches and returns the specified Hyperdrive configuration.
+        """Updates and returns the specified fields of the Hyperdrive configuration.
 
-        Custom caching
-        settings are not kept if caching is disabled.
+        Custom
+        caching settings are not kept if caching is disabled.
 
         Args:
           account_id: Define configurations using a unique string identifier.
@@ -523,8 +528,13 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
-        """
-        Updates and returns the specified Hyperdrive configuration.
+        """Replaces and returns the specified Hyperdrive configuration.
+
+        The request must
+        include the name and complete origin connection details. Omitted caching
+        settings are reset to their defaults, while omitted mTLS settings and origin
+        connection limits are preserved. Use the update operation to modify only
+        selected fields.
 
         Args:
           account_id: Define configurations using a unique string identifier.
@@ -699,10 +709,10 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Hyperdrive:
-        """Patches and returns the specified Hyperdrive configuration.
+        """Updates and returns the specified fields of the Hyperdrive configuration.
 
-        Custom caching
-        settings are not kept if caching is disabled.
+        Custom
+        caching settings are not kept if caching is disabled.
 
         Args:
           account_id: Define configurations using a unique string identifier.

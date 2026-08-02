@@ -38,4 +38,7 @@ class RelayListParams(TypedDict, total=False):
     """
 
     per_page: int
-    """Maximum number of relays to return per page."""
+    """Maximum number of relays to return per page.
+
+    Values above the maximum are clamped to it rather than rejected.
+    """

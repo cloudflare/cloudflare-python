@@ -177,7 +177,8 @@ class AIGatewayResource(SyncAPIResource):
         retry_backoff: Optional[Literal["constant", "linear", "exponential"]] | Omit = omit,
         retry_delay: Optional[int] | Omit = omit,
         retry_max_attempts: Optional[int] | Omit = omit,
-        workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
+        store_id: Optional[str] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -199,7 +200,9 @@ class AIGatewayResource(SyncAPIResource):
           retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
-              Only 'postpaid' is currently supported.
+              'postpaid' bills the account directly through Workers AI; 'unified' deducts
+              credits via AI Gateway using neuron-based pricing and delegates billing to AI
+              Gateway.
 
           extra_headers: Send extra headers
 
@@ -230,6 +233,7 @@ class AIGatewayResource(SyncAPIResource):
                     "retry_backoff": retry_backoff,
                     "retry_delay": retry_delay,
                     "retry_max_attempts": retry_max_attempts,
+                    "store_id": store_id,
                     "workers_ai_billing_mode": workers_ai_billing_mode,
                     "zdr": zdr,
                 },
@@ -270,7 +274,7 @@ class AIGatewayResource(SyncAPIResource):
         spend_limits: Optional[ai_gateway_update_params.SpendLimits] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
-        workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -292,7 +296,9 @@ class AIGatewayResource(SyncAPIResource):
           retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
-              Only 'postpaid' is currently supported.
+              'postpaid' bills the account directly through Workers AI; 'unified' deducts
+              credits via AI Gateway using neuron-based pricing and delegates billing to AI
+              Gateway.
 
           extra_headers: Send extra headers
 
@@ -555,7 +561,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         retry_backoff: Optional[Literal["constant", "linear", "exponential"]] | Omit = omit,
         retry_delay: Optional[int] | Omit = omit,
         retry_max_attempts: Optional[int] | Omit = omit,
-        workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
+        store_id: Optional[str] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -577,7 +584,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
           retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
-              Only 'postpaid' is currently supported.
+              'postpaid' bills the account directly through Workers AI; 'unified' deducts
+              credits via AI Gateway using neuron-based pricing and delegates billing to AI
+              Gateway.
 
           extra_headers: Send extra headers
 
@@ -608,6 +617,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "retry_backoff": retry_backoff,
                     "retry_delay": retry_delay,
                     "retry_max_attempts": retry_max_attempts,
+                    "store_id": store_id,
                     "workers_ai_billing_mode": workers_ai_billing_mode,
                     "zdr": zdr,
                 },
@@ -648,7 +658,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         spend_limits: Optional[ai_gateway_update_params.SpendLimits] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
-        workers_ai_billing_mode: Literal["postpaid"] | Omit = omit,
+        workers_ai_billing_mode: Literal["postpaid", "unified"] | Omit = omit,
         zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -670,7 +680,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
           retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
-              Only 'postpaid' is currently supported.
+              'postpaid' bills the account directly through Workers AI; 'unified' deducts
+              credits via AI Gateway using neuron-based pricing and delegates billing to AI
+              Gateway.
 
           extra_headers: Send extra headers
 

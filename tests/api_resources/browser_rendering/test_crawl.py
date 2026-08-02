@@ -94,7 +94,7 @@ class TestCrawl:
                 "prompt": "prompt",
                 "response_format": {
                     "type": "type",
-                    "json_schema": {"foo": "string"},
+                    "json_schema": {"foo": "bar"},
                 },
             },
             limit=1,
@@ -193,7 +193,7 @@ class TestCrawl:
                 "prompt": "prompt",
                 "response_format": {
                     "type": "type",
-                    "json_schema": {"foo": "string"},
+                    "json_schema": {"foo": "bar"},
                 },
             },
             limit=1,
@@ -434,7 +434,7 @@ class TestAsyncCrawl:
                 "prompt": "prompt",
                 "response_format": {
                     "type": "type",
-                    "json_schema": {"foo": "string"},
+                    "json_schema": {"foo": "bar"},
                 },
             },
             limit=1,
@@ -533,7 +533,7 @@ class TestAsyncCrawl:
                 "prompt": "prompt",
                 "response_format": {
                     "type": "type",
-                    "json_schema": {"foo": "string"},
+                    "json_schema": {"foo": "bar"},
                 },
             },
             limit=1,

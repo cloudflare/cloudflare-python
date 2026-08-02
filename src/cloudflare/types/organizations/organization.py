@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 from .organization_profile import OrganizationProfile
 
-__all__ = ["Organization", "Meta", "MetaFlags", "Parent"]
+__all__ = ["Organization", "Meta", "MetaTenantFlags", "Parent"]
 
 
-class MetaFlags(BaseModel):
+class MetaTenantFlags(BaseModel):
     """Enable features for Organizations."""
 
     account_creation: str
@@ -22,13 +22,14 @@ class MetaFlags(BaseModel):
 
     account_mobility: str
 
+    enterprise_capability: str
+
+    member_management: str
+
     sub_org_creation: str
 
 
 class Meta(BaseModel):
-    flags: Optional[MetaFlags] = None
-    """Enable features for Organizations."""
-
     hierarchy_tags: Optional[List[str]] = None
     """
     Ordered chain of organization tags from the root organization down to (and
@@ -39,6 +40,9 @@ class Meta(BaseModel):
     """
 
     managed_by: Optional[str] = None
+
+    tenant_flags: Optional[MetaTenantFlags] = None
+    """Enable features for Organizations."""
 
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a

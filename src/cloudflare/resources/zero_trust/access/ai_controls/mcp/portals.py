@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -57,6 +58,7 @@ class PortalsResource(SyncAPIResource):
         hostname: str,
         name: str,
         allow_code_mode: bool | Omit = omit,
+        code_mode: Literal["off", "opt_in", "default_on", "enforced"] | Omit = omit,
         description: str | Omit = omit,
         secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_create_params.Server] | Omit = omit,
@@ -73,7 +75,14 @@ class PortalsResource(SyncAPIResource):
         Args:
           id: portal id
 
-          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
+          allow_code_mode: Deprecated: use `code_mode` instead. Legacy on/off toggle for Dynamic Workers
+              (codemode). `true` maps to any non-off `code_mode`; `false` maps to
+              `code_mode: off`.
+
+          code_mode: Controls Dynamic Workers (codemode) availability for this portal. `off` disables
+              codemode. `opt_in` makes it available but clients must opt in per session.
+              `default_on` enables it by default with a client override. `enforced` requires
+              codemode for every session with no override.
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -95,6 +104,7 @@ class PortalsResource(SyncAPIResource):
                     "hostname": hostname,
                     "name": name,
                     "allow_code_mode": allow_code_mode,
+                    "code_mode": code_mode,
                     "description": description,
                     "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
@@ -117,6 +127,7 @@ class PortalsResource(SyncAPIResource):
         *,
         account_id: str,
         allow_code_mode: bool | Omit = omit,
+        code_mode: Literal["off", "opt_in", "default_on", "enforced"] | Omit = omit,
         description: str | Omit = omit,
         hostname: str | Omit = omit,
         name: str | Omit = omit,
@@ -135,7 +146,14 @@ class PortalsResource(SyncAPIResource):
         Args:
           id: portal id
 
-          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
+          allow_code_mode: Deprecated: use `code_mode` instead. Legacy on/off toggle for Dynamic Workers
+              (codemode). `true` maps to any non-off `code_mode`; `false` maps to
+              `code_mode: off`.
+
+          code_mode: Controls Dynamic Workers (codemode) availability for this portal. `off` disables
+              codemode. `opt_in` makes it available but clients must opt in per session.
+              `default_on` enables it by default with a client override. `enforced` requires
+              codemode for every session with no override.
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -156,6 +174,7 @@ class PortalsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "allow_code_mode": allow_code_mode,
+                    "code_mode": code_mode,
                     "description": description,
                     "hostname": hostname,
                     "name": name,
@@ -337,6 +356,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         hostname: str,
         name: str,
         allow_code_mode: bool | Omit = omit,
+        code_mode: Literal["off", "opt_in", "default_on", "enforced"] | Omit = omit,
         description: str | Omit = omit,
         secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_create_params.Server] | Omit = omit,
@@ -353,7 +373,14 @@ class AsyncPortalsResource(AsyncAPIResource):
         Args:
           id: portal id
 
-          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
+          allow_code_mode: Deprecated: use `code_mode` instead. Legacy on/off toggle for Dynamic Workers
+              (codemode). `true` maps to any non-off `code_mode`; `false` maps to
+              `code_mode: off`.
+
+          code_mode: Controls Dynamic Workers (codemode) availability for this portal. `off` disables
+              codemode. `opt_in` makes it available but clients must opt in per session.
+              `default_on` enables it by default with a client override. `enforced` requires
+              codemode for every session with no override.
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -375,6 +402,7 @@ class AsyncPortalsResource(AsyncAPIResource):
                     "hostname": hostname,
                     "name": name,
                     "allow_code_mode": allow_code_mode,
+                    "code_mode": code_mode,
                     "description": description,
                     "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
@@ -397,6 +425,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         *,
         account_id: str,
         allow_code_mode: bool | Omit = omit,
+        code_mode: Literal["off", "opt_in", "default_on", "enforced"] | Omit = omit,
         description: str | Omit = omit,
         hostname: str | Omit = omit,
         name: str | Omit = omit,
@@ -415,7 +444,14 @@ class AsyncPortalsResource(AsyncAPIResource):
         Args:
           id: portal id
 
-          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
+          allow_code_mode: Deprecated: use `code_mode` instead. Legacy on/off toggle for Dynamic Workers
+              (codemode). `true` maps to any non-off `code_mode`; `false` maps to
+              `code_mode: off`.
+
+          code_mode: Controls Dynamic Workers (codemode) availability for this portal. `off` disables
+              codemode. `opt_in` makes it available but clients must opt in per session.
+              `default_on` enables it by default with a client override. `enforced` requires
+              codemode for every session with no override.
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -436,6 +472,7 @@ class AsyncPortalsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "allow_code_mode": allow_code_mode,
+                    "code_mode": code_mode,
                     "description": description,
                     "hostname": hostname,
                     "name": name,

@@ -65,6 +65,7 @@ class DatasetsResource(SyncAPIResource):
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
         fields: Iterable[dataset_create_params.Field] | Omit = omit,
+        filter: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -93,6 +94,11 @@ class DatasetsResource(SyncAPIResource):
 
           fields: Controls which fields the API ingests. Defaults to all available fields when
               absent.
+
+          filter: Optional Logpush filter predicate to restrict which events are ingested. If
+              provided, replaces the dataset's default filter entirely. See
+              [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
+              syntax and examples.
 
           extra_headers: Send extra headers
 
@@ -124,6 +130,7 @@ class DatasetsResource(SyncAPIResource):
                 {
                     "dataset": dataset,
                     "fields": fields,
+                    "filter": filter,
                 },
                 dataset_create_params.DatasetCreateParams,
             ),
@@ -144,6 +151,7 @@ class DatasetsResource(SyncAPIResource):
         enabled: bool,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        deletion_protection: bool | Omit = omit,
         fields: Iterable[dataset_update_params.Field] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -162,6 +170,8 @@ class DatasetsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          deletion_protection: Set to `false` to allow deletion of this dataset.
 
           fields: Controls which fields the API ingests after the update. Defaults to all
               available fields when absent.
@@ -198,6 +208,7 @@ class DatasetsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "enabled": enabled,
+                    "deletion_protection": deletion_protection,
                     "fields": fields,
                 },
                 dataset_update_params.DatasetUpdateParams,
@@ -368,6 +379,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
         fields: Iterable[dataset_create_params.Field] | Omit = omit,
+        filter: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -396,6 +408,11 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
           fields: Controls which fields the API ingests. Defaults to all available fields when
               absent.
+
+          filter: Optional Logpush filter predicate to restrict which events are ingested. If
+              provided, replaces the dataset's default filter entirely. See
+              [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
+              syntax and examples.
 
           extra_headers: Send extra headers
 
@@ -427,6 +444,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 {
                     "dataset": dataset,
                     "fields": fields,
+                    "filter": filter,
                 },
                 dataset_create_params.DatasetCreateParams,
             ),
@@ -447,6 +465,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         enabled: bool,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        deletion_protection: bool | Omit = omit,
         fields: Iterable[dataset_update_params.Field] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -465,6 +484,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          deletion_protection: Set to `false` to allow deletion of this dataset.
 
           fields: Controls which fields the API ingests after the update. Defaults to all
               available fields when absent.
@@ -501,6 +522,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "enabled": enabled,
+                    "deletion_protection": deletion_protection,
                     "fields": fields,
                 },
                 dataset_update_params.DatasetUpdateParams,

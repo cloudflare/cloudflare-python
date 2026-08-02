@@ -204,7 +204,8 @@ class RelaysResource(SyncAPIResource):
               timestamp (typically the `created` value of the first item on the current page,
               to fetch the previous page).
 
-          per_page: Maximum number of relays to return per page.
+          per_page: Maximum number of relays to return per page. Values above the maximum are
+              clamped to it rather than rejected.
 
           extra_headers: Send extra headers
 
@@ -494,7 +495,8 @@ class AsyncRelaysResource(AsyncAPIResource):
               timestamp (typically the `created` value of the first item on the current page,
               to fetch the previous page).
 
-          per_page: Maximum number of relays to return per page.
+          per_page: Maximum number of relays to return per page. Values above the maximum are
+              clamped to it rather than rejected.
 
           extra_headers: Send extra headers
 

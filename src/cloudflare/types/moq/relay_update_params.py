@@ -23,8 +23,8 @@ class ConfigUpstreamsUpstream(TypedDict, total=False):
     url: Required[str]
     """Upstream MOQT server publisher URL.
 
-    Must be an absolute URL with a host and a scheme crique can dial: moqt:// (raw
-    QUIC) or https:// (WebTransport). Validated on update (PUT); rejected
+    Must be an absolute URL with a host and a scheme the relay can dial: moqt://
+    (raw QUIC) or https:// (WebTransport). Validated on update (PUT); rejected
     with 21013.
     """
 

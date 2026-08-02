@@ -19,10 +19,8 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.billing import usage_get_params, usage_paygo_params
+from ...types.billing import usage_get_params
 from ...types.billing.usage_get_response import UsageGetResponse
-from ...types.billing.usage_paygo_response import UsagePaygoResponse
-from ...types.billing.usage_paygo_info_response import UsagePaygoInfoResponse
 
 __all__ = ["UsageResource", "AsyncUsageResource"]
 
@@ -121,103 +119,6 @@ class UsageResource(SyncAPIResource):
             cast_to=cast(Type[UsageGetResponse], ResultWrapper[UsageGetResponse]),
         )
 
-    def paygo(
-        self,
-        *,
-        account_id: str,
-        from_: Union[str, date] | Omit = omit,
-        to: Union[str, date] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsagePaygoResponse:
-        """Returns billable usage data for PayGo (self-serve) accounts.
-
-        When no query
-        parameters are provided, returns usage for the current billing period.
-
-        Args:
-          account_id: Represents a Cloudflare resource identifier tag.
-
-          from_: Start date for the usage query (ISO 8601). The provided time range must include
-              the subscription billing cycle anchor day, otherwise no usage data is returned.
-              Subscription anchor days are provided on the response of the
-              /accounts/{account_id}/paygo-usage-info endpoint.
-
-          to: End date for the usage query (ISO 8601).
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            path_template("/accounts/{account_id}/paygo-usage", account_id=account_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "from_": from_,
-                        "to": to,
-                    },
-                    usage_paygo_params.UsagePaygoParams,
-                ),
-                post_parser=ResultWrapper[UsagePaygoResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[UsagePaygoResponse], ResultWrapper[UsagePaygoResponse]),
-        )
-
-    def paygo_info(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsagePaygoInfoResponse:
-        """
-        Returns high-level usage information for the account, including coverage, and
-        subscription metadata.
-
-        Args:
-          account_id: Represents a Cloudflare resource identifier tag.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            path_template("/accounts/{account_id}/paygo-usage-info", account_id=account_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[UsagePaygoInfoResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[UsagePaygoInfoResponse], ResultWrapper[UsagePaygoInfoResponse]),
-        )
-
 
 class AsyncUsageResource(AsyncAPIResource):
     @cached_property
@@ -313,103 +214,6 @@ class AsyncUsageResource(AsyncAPIResource):
             cast_to=cast(Type[UsageGetResponse], ResultWrapper[UsageGetResponse]),
         )
 
-    async def paygo(
-        self,
-        *,
-        account_id: str,
-        from_: Union[str, date] | Omit = omit,
-        to: Union[str, date] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsagePaygoResponse:
-        """Returns billable usage data for PayGo (self-serve) accounts.
-
-        When no query
-        parameters are provided, returns usage for the current billing period.
-
-        Args:
-          account_id: Represents a Cloudflare resource identifier tag.
-
-          from_: Start date for the usage query (ISO 8601). The provided time range must include
-              the subscription billing cycle anchor day, otherwise no usage data is returned.
-              Subscription anchor days are provided on the response of the
-              /accounts/{account_id}/paygo-usage-info endpoint.
-
-          to: End date for the usage query (ISO 8601).
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            path_template("/accounts/{account_id}/paygo-usage", account_id=account_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "from_": from_,
-                        "to": to,
-                    },
-                    usage_paygo_params.UsagePaygoParams,
-                ),
-                post_parser=ResultWrapper[UsagePaygoResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[UsagePaygoResponse], ResultWrapper[UsagePaygoResponse]),
-        )
-
-    async def paygo_info(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UsagePaygoInfoResponse:
-        """
-        Returns high-level usage information for the account, including coverage, and
-        subscription metadata.
-
-        Args:
-          account_id: Represents a Cloudflare resource identifier tag.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            path_template("/accounts/{account_id}/paygo-usage-info", account_id=account_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[UsagePaygoInfoResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[UsagePaygoInfoResponse], ResultWrapper[UsagePaygoInfoResponse]),
-        )
-
 
 class UsageResourceWithRawResponse:
     def __init__(self, usage: UsageResource) -> None:
@@ -417,12 +221,6 @@ class UsageResourceWithRawResponse:
 
         self.get = to_raw_response_wrapper(
             usage.get,
-        )
-        self.paygo = to_raw_response_wrapper(
-            usage.paygo,
-        )
-        self.paygo_info = to_raw_response_wrapper(
-            usage.paygo_info,
         )
 
 
@@ -433,12 +231,6 @@ class AsyncUsageResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             usage.get,
         )
-        self.paygo = async_to_raw_response_wrapper(
-            usage.paygo,
-        )
-        self.paygo_info = async_to_raw_response_wrapper(
-            usage.paygo_info,
-        )
 
 
 class UsageResourceWithStreamingResponse:
@@ -448,12 +240,6 @@ class UsageResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             usage.get,
         )
-        self.paygo = to_streamed_response_wrapper(
-            usage.paygo,
-        )
-        self.paygo_info = to_streamed_response_wrapper(
-            usage.paygo_info,
-        )
 
 
 class AsyncUsageResourceWithStreamingResponse:
@@ -462,10 +248,4 @@ class AsyncUsageResourceWithStreamingResponse:
 
         self.get = async_to_streamed_response_wrapper(
             usage.get,
-        )
-        self.paygo = async_to_streamed_response_wrapper(
-            usage.paygo,
-        )
-        self.paygo_info = async_to_streamed_response_wrapper(
-            usage.paygo_info,
         )

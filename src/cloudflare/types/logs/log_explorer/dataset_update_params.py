@@ -18,6 +18,9 @@ class DatasetUpdateParams(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    deletion_protection: bool
+    """Set to `false` to allow deletion of this dataset."""
+
     fields: Iterable[Field]
     """Controls which fields the API ingests after the update.
 

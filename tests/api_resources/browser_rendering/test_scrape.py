@@ -21,6 +21,7 @@ class TestScrape:
     def test_method_create(self, client: Cloudflare) -> None:
         scrape = client.browser_rendering.scrape.create(
             account_id="account_id",
+            elements=[{"selector": "h1"}],
         )
         assert_matches_type(ScrapeCreateResponse, scrape, path=["response"])
 
@@ -28,6 +29,7 @@ class TestScrape:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         scrape = client.browser_rendering.scrape.create(
             account_id="account_id",
+            elements=[{"selector": "h1"}],
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -69,7 +71,6 @@ class TestScrape:
                     "url": "url",
                 }
             ],
-            elements=[{"selector": "h1"}],
             emulate_media_type="emulateMediaType",
             goto_options={
                 "referer": "referer",
@@ -106,6 +107,7 @@ class TestScrape:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.browser_rendering.scrape.with_raw_response.create(
             account_id="account_id",
+            elements=[{"selector": "h1"}],
         )
 
         assert response.is_closed is True
@@ -117,6 +119,7 @@ class TestScrape:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.browser_rendering.scrape.with_streaming_response.create(
             account_id="account_id",
+            elements=[{"selector": "h1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -131,6 +134,7 @@ class TestScrape:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.browser_rendering.scrape.with_raw_response.create(
                 account_id="",
+                elements=[{"selector": "h1"}],
             )
 
 
@@ -143,6 +147,7 @@ class TestAsyncScrape:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         scrape = await async_client.browser_rendering.scrape.create(
             account_id="account_id",
+            elements=[{"selector": "h1"}],
         )
         assert_matches_type(ScrapeCreateResponse, scrape, path=["response"])
 
@@ -150,6 +155,7 @@ class TestAsyncScrape:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         scrape = await async_client.browser_rendering.scrape.create(
             account_id="account_id",
+            elements=[{"selector": "h1"}],
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -191,7 +197,6 @@ class TestAsyncScrape:
                     "url": "url",
                 }
             ],
-            elements=[{"selector": "h1"}],
             emulate_media_type="emulateMediaType",
             goto_options={
                 "referer": "referer",
@@ -228,6 +233,7 @@ class TestAsyncScrape:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.browser_rendering.scrape.with_raw_response.create(
             account_id="account_id",
+            elements=[{"selector": "h1"}],
         )
 
         assert response.is_closed is True
@@ -239,6 +245,7 @@ class TestAsyncScrape:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.browser_rendering.scrape.with_streaming_response.create(
             account_id="account_id",
+            elements=[{"selector": "h1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -253,4 +260,5 @@ class TestAsyncScrape:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.browser_rendering.scrape.with_raw_response.create(
                 account_id="",
+                elements=[{"selector": "h1"}],
             )

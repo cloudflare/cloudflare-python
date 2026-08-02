@@ -56,6 +56,7 @@ class TestAIGateway:
             retry_backoff="constant",
             retry_delay=0,
             retry_max_attempts=1,
+            store_id="store_id",
             workers_ai_billing_mode="postpaid",
             zdr=True,
         )
@@ -463,6 +464,7 @@ class TestAsyncAIGateway:
             retry_backoff="constant",
             retry_delay=0,
             retry_max_attempts=1,
+            store_id="store_id",
             workers_ai_billing_mode="postpaid",
             zdr=True,
         )

@@ -34,6 +34,7 @@ class TestMatches:
         match = client.brand_protection.matches.download(
             account_id="x",
             id="id",
+            include_dismissed=True,
             include_domain_id=True,
             limit=0,
             offset=0,
@@ -88,6 +89,7 @@ class TestMatches:
         match = client.brand_protection.matches.get(
             account_id="x",
             id="id",
+            include_dismissed=True,
             include_domain_id=True,
             limit=0,
             offset=0,
@@ -148,6 +150,7 @@ class TestAsyncMatches:
         match = await async_client.brand_protection.matches.download(
             account_id="x",
             id="id",
+            include_dismissed=True,
             include_domain_id=True,
             limit=0,
             offset=0,
@@ -202,6 +205,7 @@ class TestAsyncMatches:
         match = await async_client.brand_protection.matches.get(
             account_id="x",
             id="id",
+            include_dismissed=True,
             include_domain_id=True,
             limit=0,
             offset=0,

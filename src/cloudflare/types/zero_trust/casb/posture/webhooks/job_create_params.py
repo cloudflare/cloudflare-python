@@ -13,7 +13,7 @@ class JobCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     finding_instance_ids: Required[SequenceNotStr[str]]
-    """Array of finding instance IDs to send to the webhooks"""
+    """Array of finding instance IDs to send to the webhooks."""
 
     webhook_ids: Required[SequenceNotStr[str]]
-    """Array of webhook IDs to trigger jobs for"""
+    """Array of webhook IDs to trigger jobs for."""

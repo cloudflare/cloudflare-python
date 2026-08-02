@@ -16,35 +16,43 @@ class IntegrationCreateParams(TypedDict, total=False):
     application: Required[
         Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
+            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ]
     ]
     """Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
     - `ANTHROPIC` - ANTHROPIC
+    - `AWS` - AWS
     - `BITBUCKET` - BITBUCKET
     - `BOX` - BOX
     - `CONFLUENCE` - CONFLUENCE
     - `DROPBOX` - DROPBOX
     - `GITHUB` - GITHUB
+    - `GITLAB` - GITLAB
     - `GOOGLE_CLOUD_PLATFORM` - GOOGLE_CLOUD_PLATFORM
     - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
     - `JIRA` - JIRA
     - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
     - `OPENAI` - OPENAI
     - `SALESFORCE` - SALESFORCE
+    - `SERVICENOW` - SERVICENOW
     - `SLACK` - SLACK
+    - `ZOOM` - ZOOM
     """
 
     credentials: Required[Dict[str, object]]

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -17,6 +17,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.zero_trust.casb import integration_list_params, integration_create_params, integration_update_params
 from ....types.zero_trust.casb.integration_get_response import IntegrationGetResponse
@@ -54,18 +55,22 @@ class IntegrationsResource(SyncAPIResource):
         account_id: str,
         application: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
+            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ],
         credentials: Dict[str, object],
         name: str,
@@ -91,18 +96,22 @@ class IntegrationsResource(SyncAPIResource):
           application: Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
               - `ANTHROPIC` - ANTHROPIC
+              - `AWS` - AWS
               - `BITBUCKET` - BITBUCKET
               - `BOX` - BOX
               - `CONFLUENCE` - CONFLUENCE
               - `DROPBOX` - DROPBOX
               - `GITHUB` - GITHUB
+              - `GITLAB` - GITLAB
               - `GOOGLE_CLOUD_PLATFORM` - GOOGLE_CLOUD_PLATFORM
               - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
               - `JIRA` - JIRA
               - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
               - `OPENAI` - OPENAI
               - `SALESFORCE` - SALESFORCE
+              - `SERVICENOW` - SERVICENOW
               - `SLACK` - SLACK
+              - `ZOOM` - ZOOM
 
           credentials: Credentials for the integration.
 
@@ -142,9 +151,13 @@ class IntegrationsResource(SyncAPIResource):
                 integration_create_params.IntegrationCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationCreateResponse]._unwrapper,
             ),
-            cast_to=IntegrationCreateResponse,
+            cast_to=cast(Type[IntegrationCreateResponse], ResultWrapper[IntegrationCreateResponse]),
         )
 
     def update(
@@ -205,9 +218,13 @@ class IntegrationsResource(SyncAPIResource):
                 integration_update_params.IntegrationUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationUpdateResponse]._unwrapper,
             ),
-            cast_to=IntegrationUpdateResponse,
+            cast_to=cast(Type[IntegrationUpdateResponse], ResultWrapper[IntegrationUpdateResponse]),
         )
 
     def list(
@@ -356,9 +373,13 @@ class IntegrationsResource(SyncAPIResource):
         return self._get(
             path_template("/accounts/{account_id}/one/integrations/{id}", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationGetResponse]._unwrapper,
             ),
-            cast_to=IntegrationGetResponse,
+            cast_to=cast(Type[IntegrationGetResponse], ResultWrapper[IntegrationGetResponse]),
         )
 
     def pause(
@@ -392,9 +413,13 @@ class IntegrationsResource(SyncAPIResource):
         return self._post(
             path_template("/accounts/{account_id}/one/integrations/{id}/pause", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationPauseResponse]._unwrapper,
             ),
-            cast_to=IntegrationPauseResponse,
+            cast_to=cast(Type[IntegrationPauseResponse], ResultWrapper[IntegrationPauseResponse]),
         )
 
     def resume(
@@ -428,9 +453,13 @@ class IntegrationsResource(SyncAPIResource):
         return self._post(
             path_template("/accounts/{account_id}/one/integrations/{id}/resume", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationResumeResponse]._unwrapper,
             ),
-            cast_to=IntegrationResumeResponse,
+            cast_to=cast(Type[IntegrationResumeResponse], ResultWrapper[IntegrationResumeResponse]),
         )
 
 
@@ -460,18 +489,22 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         account_id: str,
         application: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
+            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ],
         credentials: Dict[str, object],
         name: str,
@@ -497,18 +530,22 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           application: Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
               - `ANTHROPIC` - ANTHROPIC
+              - `AWS` - AWS
               - `BITBUCKET` - BITBUCKET
               - `BOX` - BOX
               - `CONFLUENCE` - CONFLUENCE
               - `DROPBOX` - DROPBOX
               - `GITHUB` - GITHUB
+              - `GITLAB` - GITLAB
               - `GOOGLE_CLOUD_PLATFORM` - GOOGLE_CLOUD_PLATFORM
               - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
               - `JIRA` - JIRA
               - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
               - `OPENAI` - OPENAI
               - `SALESFORCE` - SALESFORCE
+              - `SERVICENOW` - SERVICENOW
               - `SLACK` - SLACK
+              - `ZOOM` - ZOOM
 
           credentials: Credentials for the integration.
 
@@ -548,9 +585,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                 integration_create_params.IntegrationCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationCreateResponse]._unwrapper,
             ),
-            cast_to=IntegrationCreateResponse,
+            cast_to=cast(Type[IntegrationCreateResponse], ResultWrapper[IntegrationCreateResponse]),
         )
 
     async def update(
@@ -611,9 +652,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                 integration_update_params.IntegrationUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationUpdateResponse]._unwrapper,
             ),
-            cast_to=IntegrationUpdateResponse,
+            cast_to=cast(Type[IntegrationUpdateResponse], ResultWrapper[IntegrationUpdateResponse]),
         )
 
     async def list(
@@ -762,9 +807,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         return await self._get(
             path_template("/accounts/{account_id}/one/integrations/{id}", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationGetResponse]._unwrapper,
             ),
-            cast_to=IntegrationGetResponse,
+            cast_to=cast(Type[IntegrationGetResponse], ResultWrapper[IntegrationGetResponse]),
         )
 
     async def pause(
@@ -798,9 +847,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         return await self._post(
             path_template("/accounts/{account_id}/one/integrations/{id}/pause", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationPauseResponse]._unwrapper,
             ),
-            cast_to=IntegrationPauseResponse,
+            cast_to=cast(Type[IntegrationPauseResponse], ResultWrapper[IntegrationPauseResponse]),
         )
 
     async def resume(
@@ -834,9 +887,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         return await self._post(
             path_template("/accounts/{account_id}/one/integrations/{id}/resume", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationResumeResponse]._unwrapper,
             ),
-            cast_to=IntegrationResumeResponse,
+            cast_to=cast(Type[IntegrationResumeResponse], ResultWrapper[IntegrationResumeResponse]),
         )
 
 

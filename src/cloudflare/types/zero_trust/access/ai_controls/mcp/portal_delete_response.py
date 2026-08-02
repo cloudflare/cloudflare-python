@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ......_models import BaseModel
 
@@ -17,7 +18,19 @@ class PortalDeleteResponse(BaseModel):
     name: str
 
     allow_code_mode: Optional[bool] = None
-    """Allow remote code execution in Dynamic Workers (beta)"""
+    """Deprecated: use `code_mode` instead.
+
+    Legacy on/off toggle for Dynamic Workers (codemode). `true` maps to any non-off
+    `code_mode`; `false` maps to `code_mode: off`.
+    """
+
+    code_mode: Optional[Literal["off", "opt_in", "default_on", "enforced"]] = None
+    """Controls Dynamic Workers (codemode) availability for this portal.
+
+    `off` disables codemode. `opt_in` makes it available but clients must opt in per
+    session. `default_on` enables it by default with a client override. `enforced`
+    requires codemode for every session with no override.
+    """
 
     created_at: Optional[datetime] = None
 

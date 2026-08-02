@@ -42,6 +42,7 @@ class TestDatasets:
                     "name": "name",
                 }
             ],
+            filter="filter",
         )
         assert_matches_type(Optional[Dataset], dataset, path=["response"])
 
@@ -105,6 +106,7 @@ class TestDatasets:
             dataset_id="dataset_id",
             enabled=True,
             account_id="account_id",
+            deletion_protection=True,
             fields=[
                 {
                     "enabled": True,
@@ -318,6 +320,7 @@ class TestAsyncDatasets:
                     "name": "name",
                 }
             ],
+            filter="filter",
         )
         assert_matches_type(Optional[Dataset], dataset, path=["response"])
 
@@ -381,6 +384,7 @@ class TestAsyncDatasets:
             dataset_id="dataset_id",
             enabled=True,
             account_id="account_id",
+            deletion_protection=True,
             fields=[
                 {
                     "enabled": True,

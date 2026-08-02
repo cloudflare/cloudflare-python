@@ -62,7 +62,8 @@ class ResourceTaggingSetTagsRequestAccountLevelWorkerVersion(TypedDict, total=Fa
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     if_match: Annotated[str, PropertyInfo(alias="If-Match")]
@@ -112,7 +113,8 @@ class ResourceTaggingSetTagsRequestAccountLevelBase(TypedDict, total=False):
     tags: Dict[str, str]
     """Contains key-value pairs of tags.
 
-    Values may be empty strings for key-only tags.
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
     """
 
     if_match: Annotated[str, PropertyInfo(alias="If-Match")]

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -24,10 +25,10 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.zero_trust.casb import application_list_params
 from .....types.zero_trust.casb.application_get_response import ApplicationGetResponse
-from .....types.zero_trust.casb.application_list_response import ApplicationListResponse
 
 __all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
 
@@ -61,18 +62,24 @@ class ApplicationsResource(SyncAPIResource):
         *,
         account_id: str,
         environment: str | Omit = omit,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ApplicationListResponse:
+    ) -> object:
         """
         Returns a list of available applications with use cases and permissions.
 
         Args:
           environment: Filter by supported environment (standard, fedramp).
+
+          page: A page number within the paginated result set.
+
+          page_size: Number of results to return per page.
 
           extra_headers: Send extra headers
 
@@ -91,27 +98,38 @@ class ApplicationsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, application_list_params.ApplicationListParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "page": page,
+                        "page_size": page_size,
+                    },
+                    application_list_params.ApplicationListParams,
+                ),
             ),
-            cast_to=ApplicationListResponse,
+            cast_to=object,
         )
 
     def get(
         self,
         application_id: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
+            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ],
         *,
         account_id: str,
@@ -146,9 +164,13 @@ class ApplicationsResource(SyncAPIResource):
                 application_id=application_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ApplicationGetResponse]._unwrapper,
             ),
-            cast_to=ApplicationGetResponse,
+            cast_to=cast(Type[ApplicationGetResponse], ResultWrapper[ApplicationGetResponse]),
         )
 
 
@@ -181,18 +203,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         account_id: str,
         environment: str | Omit = omit,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ApplicationListResponse:
+    ) -> object:
         """
         Returns a list of available applications with use cases and permissions.
 
         Args:
           environment: Filter by supported environment (standard, fedramp).
+
+          page: A page number within the paginated result set.
+
+          page_size: Number of results to return per page.
 
           extra_headers: Send extra headers
 
@@ -212,28 +240,37 @@ class AsyncApplicationsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, application_list_params.ApplicationListParams
+                    {
+                        "environment": environment,
+                        "page": page,
+                        "page_size": page_size,
+                    },
+                    application_list_params.ApplicationListParams,
                 ),
             ),
-            cast_to=ApplicationListResponse,
+            cast_to=object,
         )
 
     async def get(
         self,
         application_id: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
+            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ],
         *,
         account_id: str,
@@ -268,9 +305,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
                 application_id=application_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ApplicationGetResponse]._unwrapper,
             ),
-            cast_to=ApplicationGetResponse,
+            cast_to=cast(Type[ApplicationGetResponse], ResultWrapper[ApplicationGetResponse]),
         )
 
 

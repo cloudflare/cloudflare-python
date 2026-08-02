@@ -10,11 +10,11 @@ from ..._utils import PropertyInfo
 
 __all__ = [
     "ScrapeCreateParams",
+    "Element",
     "AddScriptTag",
     "AddStyleTag",
     "Authenticate",
     "Cookie",
-    "Element",
     "GotoOptions",
     "Viewport",
     "WaitForSelector",
@@ -24,6 +24,8 @@ __all__ = [
 class ScrapeCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account ID."""
+
+    elements: Required[Iterable[Element]]
 
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
     """Cache TTL default is 5s. Set to 0 to disable."""
@@ -85,8 +87,6 @@ class ScrapeCreateParams(TypedDict, total=False):
 
     cookies: Iterable[Cookie]
     """Check [options](https://pptr.dev/api/puppeteer.page.setcookie)."""
-
-    elements: Iterable[Element]
 
     emulate_media_type: Annotated[str, PropertyInfo(alias="emulateMediaType")]
 
@@ -157,6 +157,10 @@ class ScrapeCreateParams(TypedDict, total=False):
     """Waits for a specified timeout before continuing."""
 
 
+class Element(TypedDict, total=False):
+    selector: Required[str]
+
+
 class AddScriptTag(TypedDict, total=False):
     id: str
 
@@ -210,10 +214,6 @@ class Cookie(TypedDict, total=False):
     source_scheme: Annotated[Literal["Unset", "NonSecure", "Secure"], PropertyInfo(alias="sourceScheme")]
 
     url: str
-
-
-class Element(TypedDict, total=False):
-    selector: Required[str]
 
 
 class GotoOptions(TypedDict, total=False):

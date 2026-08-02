@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["PortalCreateParams", "Server", "ServerUpdatedPrompt", "ServerUpdatedTool"]
 
@@ -19,7 +19,19 @@ class PortalCreateParams(TypedDict, total=False):
     name: Required[str]
 
     allow_code_mode: bool
-    """Allow remote code execution in Dynamic Workers (beta)"""
+    """Deprecated: use `code_mode` instead.
+
+    Legacy on/off toggle for Dynamic Workers (codemode). `true` maps to any non-off
+    `code_mode`; `false` maps to `code_mode: off`.
+    """
+
+    code_mode: Literal["off", "opt_in", "default_on", "enforced"]
+    """Controls Dynamic Workers (codemode) availability for this portal.
+
+    `off` disables codemode. `opt_in` makes it available but clients must opt in per
+    session. `default_on` enables it by default with a client override. `enforced`
+    requires codemode for every session with no override.
+    """
 
     description: str
 

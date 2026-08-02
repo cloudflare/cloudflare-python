@@ -17,7 +17,7 @@ class AuthorizationLink(BaseModel):
 
 
 class IntegrationCreateResponse(BaseModel):
-    """Serializer for v2 integration detail response with use cases."""
+    """The requested item."""
 
     id: str
     """Integration ID."""
