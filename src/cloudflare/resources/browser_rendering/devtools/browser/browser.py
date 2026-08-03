@@ -77,6 +77,7 @@ class BrowserResource(SyncAPIResource):
         live_view_url_expires_in_ms: float | Omit = omit,
         recording: bool | Omit = omit,
         targets: bool | Omit = omit,
+        guardrails: browser_create_params.Guardrails | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,8 +85,10 @@ class BrowserResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrowserCreateResponse:
-        """
-        Acquires a browser and returns its session ID and websocket URL.
+        """Acquires a browser and returns its session ID and websocket URL.
+
+        Optionally
+        accepts a JSON body with session guardrails to restrict outbound HTTP/S traffic.
 
         Args:
           account_id: Account ID.
@@ -111,6 +114,7 @@ class BrowserResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             path_template("/accounts/{account_id}/browser-rendering/devtools/browser", account_id=account_id),
+            body=maybe_transform({"guardrails": guardrails}, browser_create_params.BrowserCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -418,6 +422,7 @@ class AsyncBrowserResource(AsyncAPIResource):
         live_view_url_expires_in_ms: float | Omit = omit,
         recording: bool | Omit = omit,
         targets: bool | Omit = omit,
+        guardrails: browser_create_params.Guardrails | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -425,8 +430,10 @@ class AsyncBrowserResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrowserCreateResponse:
-        """
-        Acquires a browser and returns its session ID and websocket URL.
+        """Acquires a browser and returns its session ID and websocket URL.
+
+        Optionally
+        accepts a JSON body with session guardrails to restrict outbound HTTP/S traffic.
 
         Args:
           account_id: Account ID.
@@ -452,6 +459,7 @@ class AsyncBrowserResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             path_template("/accounts/{account_id}/browser-rendering/devtools/browser", account_id=account_id),
+            body=await async_maybe_transform({"guardrails": guardrails}, browser_create_params.BrowserCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

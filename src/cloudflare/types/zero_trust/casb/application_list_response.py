@@ -5,18 +5,11 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = [
-    "ApplicationGetResponse",
-    "AuthMethod",
-    "UseCase",
-    "UseCaseBaseScope",
-    "UseCaseFeature",
-    "UseCaseFeatureScope",
-]
+__all__ = ["ApplicationListResponse", "AuthMethod", "Permission", "UseCase"]
 
 
 class AuthMethod(BaseModel):
-    """Authentication method available for a vendor."""
+    """Auth method summary for list endpoint."""
 
     id: str
     """Auth method identifier."""
@@ -24,14 +17,8 @@ class AuthMethod(BaseModel):
     display_name: str
     """Human-readable auth method name."""
 
-    is_default: bool
-    """Whether this is the default auth method."""
 
-    supported_environments: List[str]
-    """Environments this auth method supports."""
-
-
-class UseCaseBaseScope(BaseModel):
+class Permission(BaseModel):
     """Permission/scope with severity for display."""
 
     display_name: str
@@ -48,64 +35,20 @@ class UseCaseBaseScope(BaseModel):
     - `high` - high
     - `critical` - critical
     """
-
-
-class UseCaseFeatureScope(BaseModel):
-    """Permission/scope with severity for display."""
-
-    display_name: str
-    """Human-readable permission name."""
-
-    scope: str
-    """Vendor-native scope identifier."""
-
-    severity: Literal["low", "medium", "high", "critical"]
-    """Permission sensitivity level.
-
-    - `low` - low
-    - `medium` - medium
-    - `high` - high
-    - `critical` - critical
-    """
-
-
-class UseCaseFeature(BaseModel):
-    """A feature with its additional scopes."""
-
-    id: str
-    """Feature identifier."""
-
-    description: str
-    """Feature description."""
-
-    display_name: str
-    """Human-readable feature name."""
-
-    scopes: List[UseCaseFeatureScope]
-    """Additional scopes when feature is enabled."""
 
 
 class UseCase(BaseModel):
-    """Full use case with scopes and features for detail endpoint."""
+    """Lightweight use case for list endpoint."""
 
     id: str
-    """Use case identifier."""
-
-    base_scopes: List[UseCaseBaseScope]
-    """Scopes always required for this use case."""
-
-    description: str
-    """Use case description."""
+    """Use case identifier (e.g. casb, ces)."""
 
     display_name: str
     """Human-readable use case name."""
 
-    features: List[UseCaseFeature]
-    """Optional features with extra scopes."""
 
-
-class ApplicationGetResponse(BaseModel):
-    """The requested item."""
+class ApplicationListResponse(BaseModel):
+    """Application item in list response."""
 
     id: Literal[
         "ANTHROPIC",
@@ -124,7 +67,7 @@ class ApplicationGetResponse(BaseModel):
         "SERVICENOW",
         "SLACK",
     ]
-    """Vendor identifier.
+    """Vendor identifier (e.g. microsoft_internal, google_workspace).
 
     - `ANTHROPIC` - ANTHROPIC
     - `AWS` - AWS
@@ -144,13 +87,13 @@ class ApplicationGetResponse(BaseModel):
     """
 
     auth_methods: List[AuthMethod]
-    """Available authentication methods."""
+    """Available auth methods."""
 
     category: str
-    """Vendor category."""
+    """Vendor category (e.g. Productivity, AI)."""
 
     description: str
-    """Brief description."""
+    """Brief description of the integration."""
 
     display_name: str
     """Human-readable vendor name."""
@@ -158,11 +101,14 @@ class ApplicationGetResponse(BaseModel):
     dlp_enabled: bool
     """Whether DLP scanning is supported."""
 
-    instructions: Optional[str] = None
-    """Setup instructions for the user."""
-
     logo: Optional[str] = None
     """Logo path."""
 
+    permissions: List[Permission]
+    """All permissions with severity."""
+
+    supported_environments: List[str]
+    """Environments this vendor supports (standard, fedramp)."""
+
     use_cases: List[UseCase]
-    """Use cases with full scope details."""
+    """Supported use cases."""

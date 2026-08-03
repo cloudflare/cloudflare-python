@@ -22,7 +22,6 @@ class IntegrationCreateParams(TypedDict, total=False):
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
-            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
@@ -31,7 +30,6 @@ class IntegrationCreateParams(TypedDict, total=False):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
-            "ZOOM",
         ]
     ]
     """Vendor/application slug (e.g., GOOGLE_WORKSPACE).
@@ -43,7 +41,6 @@ class IntegrationCreateParams(TypedDict, total=False):
     - `CONFLUENCE` - CONFLUENCE
     - `DROPBOX` - DROPBOX
     - `GITHUB` - GITHUB
-    - `GITLAB` - GITLAB
     - `GOOGLE_CLOUD_PLATFORM` - GOOGLE_CLOUD_PLATFORM
     - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
     - `JIRA` - JIRA
@@ -52,7 +49,6 @@ class IntegrationCreateParams(TypedDict, total=False):
     - `SALESFORCE` - SALESFORCE
     - `SERVICENOW` - SERVICENOW
     - `SLACK` - SLACK
-    - `ZOOM` - ZOOM
     """
 
     credentials: Required[Dict[str, object]]

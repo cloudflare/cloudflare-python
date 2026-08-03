@@ -980,19 +980,25 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.casb import ApplicationGetResponse
+from cloudflare.types.zero_trust.casb import ApplicationListResponse, ApplicationGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/one/applications">client.zero_trust.casb.applications.<a href="./src/cloudflare/resources/zero_trust/casb/applications/applications.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/application_list_params.py">params</a>) -> object</code>
+- <code title="get /accounts/{account_id}/one/applications">client.zero_trust.casb.applications.<a href="./src/cloudflare/resources/zero_trust/casb/applications/applications.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/application_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/application_list_response.py">SyncSinglePage[ApplicationListResponse]</a></code>
 - <code title="get /accounts/{account_id}/one/applications/{application_id}">client.zero_trust.casb.applications.<a href="./src/cloudflare/resources/zero_trust/casb/applications/applications.py">get</a>(application_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/application_get_response.py">ApplicationGetResponse</a></code>
 
 #### AuthMethods
 
+Types:
+
+```python
+from cloudflare.types.zero_trust.casb.applications import AuthMethodListResponse
+```
+
 Methods:
 
-- <code title="get /accounts/{account_id}/one/applications/{application_id}/auth-methods">client.zero_trust.casb.applications.auth_methods.<a href="./src/cloudflare/resources/zero_trust/casb/applications/auth_methods.py">list</a>(application_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/applications/auth_method_list_params.py">params</a>) -> object</code>
+- <code title="get /accounts/{account_id}/one/applications/{application_id}/auth-methods">client.zero_trust.casb.applications.auth_methods.<a href="./src/cloudflare/resources/zero_trust/casb/applications/auth_methods.py">list</a>(application_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/applications/auth_method_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/applications/auth_method_list_response.py">SyncSinglePage[AuthMethodListResponse]</a></code>
 
 ### Integrations
 
@@ -1002,6 +1008,7 @@ Types:
 from cloudflare.types.zero_trust.casb import (
     IntegrationCreateResponse,
     IntegrationUpdateResponse,
+    IntegrationListResponse,
     IntegrationGetResponse,
     IntegrationPauseResponse,
     IntegrationResumeResponse,
@@ -1012,7 +1019,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/one/integrations">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/integration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/integration_create_response.py">IntegrationCreateResponse</a></code>
 - <code title="patch /accounts/{account_id}/one/integrations/{id}">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">update</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/integration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/integration_update_response.py">IntegrationUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/one/integrations">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/integration_list_params.py">params</a>) -> object</code>
+- <code title="get /accounts/{account_id}/one/integrations">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/casb/integration_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/casb/integration_list_response.py">SyncSinglePage[IntegrationListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/one/integrations/{id}">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">delete</a>(id, \*, account_id) -> None</code>
 - <code title="get /accounts/{account_id}/one/integrations/{id}">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">get</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/integration_get_response.py">IntegrationGetResponse</a></code>
 - <code title="post /accounts/{account_id}/one/integrations/{id}/pause">client.zero_trust.casb.integrations.<a href="./src/cloudflare/resources/zero_trust/casb/integrations.py">pause</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/casb/integration_pause_response.py">IntegrationPauseResponse</a></code>

@@ -46,15 +46,17 @@ class EmailSendingSendParams(TypedDict, total=False):
     """File attachments and inline images."""
 
     bcc: Bcc
-    """BCC recipient(s).
+    """Recipient(s).
 
-    A single email string, a named address object, or an array of either.
+    Optional if cc or bcc is provided. A single email string, a named address
+    object, or an array of either.
     """
 
     cc: Cc
-    """CC recipient(s).
+    """Recipient(s).
 
-    A single email string, a named address object, or an array of either.
+    Optional if cc or bcc is provided. A single email string, a named address
+    object, or an array of either.
     """
 
     headers: Dict[str, str]
@@ -102,7 +104,7 @@ class AttachmentEmailSendingEmailInlineAttachment(TypedDict, total=False):
     """
 
     disposition: Required[Literal["inline"]]
-    """Must be 'inline'. Embeds the attachment in the email body."""
+    """Use 'inline' to embed the attachment in the email body."""
 
     filename: Required[str]
     """Filename for the attachment."""
@@ -116,7 +118,7 @@ class AttachmentEmailSendingEmailAttachment(TypedDict, total=False):
     """Base64-encoded content of the attachment."""
 
     disposition: Required[Literal["attachment"]]
-    """Must be 'attachment'. Adds a standard file attachment."""
+    """Use 'attachment' for a standard file attachment."""
 
     filename: Required[str]
     """Filename for the attachment."""

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -16,8 +16,10 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.casb.applications import auth_method_list_params
+from .....types.zero_trust.casb.applications.auth_method_list_response import AuthMethodListResponse
 
 __all__ = ["AuthMethodsResource", "AsyncAuthMethodsResource"]
 
@@ -52,7 +54,6 @@ class AuthMethodsResource(SyncAPIResource):
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
-            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
@@ -61,7 +62,6 @@ class AuthMethodsResource(SyncAPIResource):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
-            "ZOOM",
         ],
         *,
         account_id: str,
@@ -73,7 +73,7 @@ class AuthMethodsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> SyncSinglePage[AuthMethodListResponse]:
         """
         Returns available auth methods for the specified vendor, including credential
         schema, instructions, and example payloads. Use this to understand what
@@ -96,12 +96,13 @@ class AuthMethodsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not application_id:
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/accounts/{account_id}/one/applications/{application_id}/auth-methods",
                 account_id=account_id,
                 application_id=application_id,
             ),
+            page=SyncSinglePage[AuthMethodListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -115,7 +116,7 @@ class AuthMethodsResource(SyncAPIResource):
                     auth_method_list_params.AuthMethodListParams,
                 ),
             ),
-            cast_to=object,
+            model=AuthMethodListResponse,
         )
 
 
@@ -139,7 +140,7 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
         """
         return AsyncAuthMethodsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         application_id: Literal[
             "ANTHROPIC",
@@ -149,7 +150,6 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
-            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
@@ -158,7 +158,6 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
-            "ZOOM",
         ],
         *,
         account_id: str,
@@ -170,7 +169,7 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AsyncPaginator[AuthMethodListResponse, AsyncSinglePage[AuthMethodListResponse]]:
         """
         Returns available auth methods for the specified vendor, including credential
         schema, instructions, and example payloads. Use this to understand what
@@ -193,18 +192,19 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not application_id:
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/accounts/{account_id}/one/applications/{application_id}/auth-methods",
                 account_id=account_id,
                 application_id=application_id,
             ),
+            page=AsyncSinglePage[AuthMethodListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page": page,
                         "page_size": page_size,
@@ -212,7 +212,7 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
                     auth_method_list_params.AuthMethodListParams,
                 ),
             ),
-            cast_to=object,
+            model=AuthMethodListResponse,
         )
 
 

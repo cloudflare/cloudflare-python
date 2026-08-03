@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from .auth_methods import (
     AuthMethodsResource,
@@ -26,9 +26,11 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.casb import application_list_params
 from .....types.zero_trust.casb.application_get_response import ApplicationGetResponse
+from .....types.zero_trust.casb.application_list_response import ApplicationListResponse
 
 __all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
 
@@ -70,7 +72,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> SyncSinglePage[ApplicationListResponse]:
         """
         Returns a list of available applications with use cases and permissions.
 
@@ -91,8 +93,9 @@ class ApplicationsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/one/applications", account_id=account_id),
+            page=SyncSinglePage[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -107,7 +110,7 @@ class ApplicationsResource(SyncAPIResource):
                     application_list_params.ApplicationListParams,
                 ),
             ),
-            cast_to=object,
+            model=ApplicationListResponse,
         )
 
     def get(
@@ -120,7 +123,6 @@ class ApplicationsResource(SyncAPIResource):
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
-            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
@@ -129,7 +131,6 @@ class ApplicationsResource(SyncAPIResource):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
-            "ZOOM",
         ],
         *,
         account_id: str,
@@ -198,7 +199,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         return AsyncApplicationsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -211,7 +212,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AsyncPaginator[ApplicationListResponse, AsyncSinglePage[ApplicationListResponse]]:
         """
         Returns a list of available applications with use cases and permissions.
 
@@ -232,14 +233,15 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/one/applications", account_id=account_id),
+            page=AsyncSinglePage[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "environment": environment,
                         "page": page,
@@ -248,7 +250,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     application_list_params.ApplicationListParams,
                 ),
             ),
-            cast_to=object,
+            model=ApplicationListResponse,
         )
 
     async def get(
@@ -261,7 +263,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
-            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
@@ -270,7 +271,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
-            "ZOOM",
         ],
         *,
         account_id: str,

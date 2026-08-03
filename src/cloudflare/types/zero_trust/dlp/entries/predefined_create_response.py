@@ -54,6 +54,12 @@ class PredefinedCreateResponse(BaseModel):
 
     name: str
 
+    deprecated: Optional[bool] = None
+    """Whether this entry is deprecated for new use.
+
+    This is computed from the static catalog and emitted only when true.
+    """
+
     profile_id: Optional[str] = None
 
     variant: Optional[Variant] = None

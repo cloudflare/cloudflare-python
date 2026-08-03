@@ -18,9 +18,11 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.casb import integration_list_params, integration_create_params, integration_update_params
 from ....types.zero_trust.casb.integration_get_response import IntegrationGetResponse
+from ....types.zero_trust.casb.integration_list_response import IntegrationListResponse
 from ....types.zero_trust.casb.integration_pause_response import IntegrationPauseResponse
 from ....types.zero_trust.casb.integration_create_response import IntegrationCreateResponse
 from ....types.zero_trust.casb.integration_resume_response import IntegrationResumeResponse
@@ -61,7 +63,6 @@ class IntegrationsResource(SyncAPIResource):
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
-            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
@@ -70,7 +71,6 @@ class IntegrationsResource(SyncAPIResource):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
-            "ZOOM",
         ],
         credentials: Dict[str, object],
         name: str,
@@ -102,7 +102,6 @@ class IntegrationsResource(SyncAPIResource):
               - `CONFLUENCE` - CONFLUENCE
               - `DROPBOX` - DROPBOX
               - `GITHUB` - GITHUB
-              - `GITLAB` - GITLAB
               - `GOOGLE_CLOUD_PLATFORM` - GOOGLE_CLOUD_PLATFORM
               - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
               - `JIRA` - JIRA
@@ -111,7 +110,6 @@ class IntegrationsResource(SyncAPIResource):
               - `SALESFORCE` - SALESFORCE
               - `SERVICENOW` - SERVICENOW
               - `SLACK` - SLACK
-              - `ZOOM` - ZOOM
 
           credentials: Credentials for the integration.
 
@@ -246,7 +244,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> SyncSinglePage[IntegrationListResponse]:
         """
         Returns a paginated list of integrations for the account.
 
@@ -280,8 +278,9 @@ class IntegrationsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/one/integrations", account_id=account_id),
+            page=SyncSinglePage[IntegrationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -302,7 +301,7 @@ class IntegrationsResource(SyncAPIResource):
                     integration_list_params.IntegrationListParams,
                 ),
             ),
-            cast_to=object,
+            model=IntegrationListResponse,
         )
 
     def delete(
@@ -495,7 +494,6 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             "CONFLUENCE",
             "DROPBOX",
             "GITHUB",
-            "GITLAB",
             "GOOGLE_CLOUD_PLATFORM",
             "GOOGLE_WORKSPACE",
             "JIRA",
@@ -504,7 +502,6 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
-            "ZOOM",
         ],
         credentials: Dict[str, object],
         name: str,
@@ -536,7 +533,6 @@ class AsyncIntegrationsResource(AsyncAPIResource):
               - `CONFLUENCE` - CONFLUENCE
               - `DROPBOX` - DROPBOX
               - `GITHUB` - GITHUB
-              - `GITLAB` - GITLAB
               - `GOOGLE_CLOUD_PLATFORM` - GOOGLE_CLOUD_PLATFORM
               - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
               - `JIRA` - JIRA
@@ -545,7 +541,6 @@ class AsyncIntegrationsResource(AsyncAPIResource):
               - `SALESFORCE` - SALESFORCE
               - `SERVICENOW` - SERVICENOW
               - `SLACK` - SLACK
-              - `ZOOM` - ZOOM
 
           credentials: Credentials for the integration.
 
@@ -661,7 +656,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             cast_to=cast(Type[IntegrationUpdateResponse], ResultWrapper[IntegrationUpdateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -680,7 +675,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AsyncPaginator[IntegrationListResponse, AsyncSinglePage[IntegrationListResponse]]:
         """
         Returns a paginated list of integrations for the account.
 
@@ -714,14 +709,15 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/one/integrations", account_id=account_id),
+            page=AsyncSinglePage[IntegrationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "application": application,
                         "direction": direction,
@@ -736,7 +732,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                     integration_list_params.IntegrationListParams,
                 ),
             ),
-            cast_to=object,
+            model=IntegrationListResponse,
         )
 
     async def delete(

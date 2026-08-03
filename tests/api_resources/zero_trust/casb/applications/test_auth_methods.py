@@ -9,6 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.casb.applications import AuthMethodListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +24,7 @@ class TestAuthMethods:
             application_id="ANTHROPIC",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, auth_method, path=["response"])
+        assert_matches_type(SyncSinglePage[AuthMethodListResponse], auth_method, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -32,7 +34,7 @@ class TestAuthMethods:
             page=0,
             page_size=0,
         )
-        assert_matches_type(object, auth_method, path=["response"])
+        assert_matches_type(SyncSinglePage[AuthMethodListResponse], auth_method, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -44,7 +46,7 @@ class TestAuthMethods:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth_method = response.parse()
-        assert_matches_type(object, auth_method, path=["response"])
+        assert_matches_type(SyncSinglePage[AuthMethodListResponse], auth_method, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -56,7 +58,7 @@ class TestAuthMethods:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth_method = response.parse()
-            assert_matches_type(object, auth_method, path=["response"])
+            assert_matches_type(SyncSinglePage[AuthMethodListResponse], auth_method, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -80,7 +82,7 @@ class TestAsyncAuthMethods:
             application_id="ANTHROPIC",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, auth_method, path=["response"])
+        assert_matches_type(AsyncSinglePage[AuthMethodListResponse], auth_method, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -90,7 +92,7 @@ class TestAsyncAuthMethods:
             page=0,
             page_size=0,
         )
-        assert_matches_type(object, auth_method, path=["response"])
+        assert_matches_type(AsyncSinglePage[AuthMethodListResponse], auth_method, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -102,7 +104,7 @@ class TestAsyncAuthMethods:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth_method = await response.parse()
-        assert_matches_type(object, auth_method, path=["response"])
+        assert_matches_type(AsyncSinglePage[AuthMethodListResponse], auth_method, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -114,7 +116,7 @@ class TestAsyncAuthMethods:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth_method = await response.parse()
-            assert_matches_type(object, auth_method, path=["response"])
+            assert_matches_type(AsyncSinglePage[AuthMethodListResponse], auth_method, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

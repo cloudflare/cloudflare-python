@@ -93,11 +93,11 @@ class EmailSendingResource(SyncAPIResource):
 
           attachments: File attachments and inline images.
 
-          bcc: BCC recipient(s). A single email string, a named address object, or an array of
-              either.
+          bcc: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
-          cc: CC recipient(s). A single email string, a named address object, or an array of
-              either.
+          cc: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
           headers: Custom email headers as key-value pairs.
 
@@ -269,11 +269,11 @@ class AsyncEmailSendingResource(AsyncAPIResource):
 
           attachments: File attachments and inline images.
 
-          bcc: BCC recipient(s). A single email string, a named address object, or an array of
-              either.
+          bcc: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
-          cc: CC recipient(s). A single email string, a named address object, or an array of
-              either.
+          cc: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
           headers: Custom email headers as key-value pairs.
 

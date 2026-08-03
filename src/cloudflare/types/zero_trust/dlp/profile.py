@@ -164,6 +164,12 @@ class CustomProfileEntryPredefinedEntry(BaseModel):
 
     type: Literal["predefined"]
 
+    deprecated: Optional[bool] = None
+    """Whether this entry is deprecated for new use.
+
+    This is computed from the static catalog and emitted only when true.
+    """
+
     profile_id: Optional[str] = None
 
     variant: Optional[CustomProfileEntryPredefinedEntryVariant] = None
@@ -354,6 +360,12 @@ class CustomProfileSharedEntryPredefinedEntry(BaseModel):
     name: str
 
     type: Literal["predefined"]
+
+    deprecated: Optional[bool] = None
+    """Whether this entry is deprecated for new use.
+
+    This is computed from the static catalog and emitted only when true.
+    """
 
     profile_id: Optional[str] = None
 
@@ -582,6 +594,12 @@ class PredefinedProfileEntryPredefinedEntry(BaseModel):
 
     type: Literal["predefined"]
 
+    deprecated: Optional[bool] = None
+    """Whether this entry is deprecated for new use.
+
+    This is computed from the static catalog and emitted only when true.
+    """
+
     profile_id: Optional[str] = None
 
     variant: Optional[PredefinedProfileEntryPredefinedEntryVariant] = None
@@ -791,6 +809,12 @@ class IntegrationProfileEntryPredefinedEntry(BaseModel):
 
     type: Literal["predefined"]
 
+    deprecated: Optional[bool] = None
+    """Whether this entry is deprecated for new use.
+
+    This is computed from the static catalog and emitted only when true.
+    """
+
     profile_id: Optional[str] = None
 
     variant: Optional[IntegrationProfileEntryPredefinedEntryVariant] = None
@@ -971,6 +995,12 @@ class IntegrationProfileSharedEntryPredefinedEntry(BaseModel):
     name: str
 
     type: Literal["predefined"]
+
+    deprecated: Optional[bool] = None
+    """Whether this entry is deprecated for new use.
+
+    This is computed from the static catalog and emitted only when true.
+    """
 
     profile_id: Optional[str] = None
 
