@@ -243,6 +243,8 @@ Methods:
 
 # [Fraud](src/cloudflare/resources/fraud/api.md)
 
+# [Precursor](src/cloudflare/resources/precursor/api.md)
+
 # [OriginPostQuantumEncryption](src/cloudflare/resources/origin_post_quantum_encryption/api.md)
 
 # [OriginTLSComplianceModes](src/cloudflare/resources/origin_tls_compliance_modes/api.md)

@@ -82,6 +82,7 @@ if TYPE_CHECKING:
         spectrum,
         hostnames,
         pipelines,
+        precursor,
         registrar,
         turnstile,
         vectorize,
@@ -203,6 +204,7 @@ if TYPE_CHECKING:
     from .resources.spectrum.spectrum import SpectrumResource, AsyncSpectrumResource
     from .resources.hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
     from .resources.pipelines.pipelines import PipelinesResource, AsyncPipelinesResource
+    from .resources.precursor.precursor import PrecursorResource, AsyncPrecursorResource
     from .resources.registrar.registrar import RegistrarResource, AsyncRegistrarResource
     from .resources.turnstile.turnstile import TurnstileResource, AsyncTurnstileResource
     from .resources.vectorize.vectorize import VectorizeResource, AsyncVectorizeResource
@@ -1127,6 +1129,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.fraud import FraudResource
 
         return FraudResource(self)
+
+    @cached_property
+    def precursor(self) -> PrecursorResource:
+        from .resources.precursor import PrecursorResource
+
+        return PrecursorResource(self)
 
     @cached_property
     def origin_post_quantum_encryption(self) -> OriginPostQuantumEncryptionResource:
@@ -2297,6 +2305,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncFraudResource(self)
 
     @cached_property
+    def precursor(self) -> AsyncPrecursorResource:
+        from .resources.precursor import AsyncPrecursorResource
+
+        return AsyncPrecursorResource(self)
+
+    @cached_property
     def origin_post_quantum_encryption(self) -> AsyncOriginPostQuantumEncryptionResource:
         from .resources.origin_post_quantum_encryption import AsyncOriginPostQuantumEncryptionResource
 
@@ -3389,6 +3403,12 @@ class CloudflareWithRawResponse:
         return FraudResourceWithRawResponse(self._client.fraud)
 
     @cached_property
+    def precursor(self) -> precursor.PrecursorResourceWithRawResponse:
+        from .resources.precursor import PrecursorResourceWithRawResponse
+
+        return PrecursorResourceWithRawResponse(self._client.precursor)
+
+    @cached_property
     def origin_post_quantum_encryption(
         self,
     ) -> origin_post_quantum_encryption.OriginPostQuantumEncryptionResourceWithRawResponse:
@@ -4322,6 +4342,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncFraudResourceWithRawResponse(self._client.fraud)
 
     @cached_property
+    def precursor(self) -> precursor.AsyncPrecursorResourceWithRawResponse:
+        from .resources.precursor import AsyncPrecursorResourceWithRawResponse
+
+        return AsyncPrecursorResourceWithRawResponse(self._client.precursor)
+
+    @cached_property
     def origin_post_quantum_encryption(
         self,
     ) -> origin_post_quantum_encryption.AsyncOriginPostQuantumEncryptionResourceWithRawResponse:
@@ -5253,6 +5279,12 @@ class CloudflareWithStreamedResponse:
         from .resources.fraud import FraudResourceWithStreamingResponse
 
         return FraudResourceWithStreamingResponse(self._client.fraud)
+
+    @cached_property
+    def precursor(self) -> precursor.PrecursorResourceWithStreamingResponse:
+        from .resources.precursor import PrecursorResourceWithStreamingResponse
+
+        return PrecursorResourceWithStreamingResponse(self._client.precursor)
 
     @cached_property
     def origin_post_quantum_encryption(
@@ -6190,6 +6222,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.fraud import AsyncFraudResourceWithStreamingResponse
 
         return AsyncFraudResourceWithStreamingResponse(self._client.fraud)
+
+    @cached_property
+    def precursor(self) -> precursor.AsyncPrecursorResourceWithStreamingResponse:
+        from .resources.precursor import AsyncPrecursorResourceWithStreamingResponse
+
+        return AsyncPrecursorResourceWithStreamingResponse(self._client.precursor)
 
     @cached_property
     def origin_post_quantum_encryption(

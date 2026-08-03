@@ -34,6 +34,14 @@ from .cloudflare_source import (
     CloudflareSourceResourceWithStreamingResponse,
     AsyncCloudflareSourceResourceWithStreamingResponse,
 )
+from .initial_resolved_ip import (
+    InitialResolvedIPResource,
+    AsyncInitialResolvedIPResource,
+    InitialResolvedIPResourceWithRawResponse,
+    AsyncInitialResolvedIPResourceWithRawResponse,
+    InitialResolvedIPResourceWithStreamingResponse,
+    AsyncInitialResolvedIPResourceWithStreamingResponse,
+)
 from .....types.zero_trust.networks import subnet_list_params
 from .....types.zero_trust.networks.subnets.subnet import Subnet
 
@@ -48,6 +56,10 @@ class SubnetsResource(SyncAPIResource):
     @cached_property
     def cloudflare_source(self) -> CloudflareSourceResource:
         return CloudflareSourceResource(self._client)
+
+    @cached_property
+    def initial_resolved_ip(self) -> InitialResolvedIPResource:
+        return InitialResolvedIPResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> SubnetsResourceWithRawResponse:
@@ -169,6 +181,10 @@ class AsyncSubnetsResource(AsyncAPIResource):
     @cached_property
     def cloudflare_source(self) -> AsyncCloudflareSourceResource:
         return AsyncCloudflareSourceResource(self._client)
+
+    @cached_property
+    def initial_resolved_ip(self) -> AsyncInitialResolvedIPResource:
+        return AsyncInitialResolvedIPResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncSubnetsResourceWithRawResponse:
@@ -298,6 +314,10 @@ class SubnetsResourceWithRawResponse:
     def cloudflare_source(self) -> CloudflareSourceResourceWithRawResponse:
         return CloudflareSourceResourceWithRawResponse(self._subnets.cloudflare_source)
 
+    @cached_property
+    def initial_resolved_ip(self) -> InitialResolvedIPResourceWithRawResponse:
+        return InitialResolvedIPResourceWithRawResponse(self._subnets.initial_resolved_ip)
+
 
 class AsyncSubnetsResourceWithRawResponse:
     def __init__(self, subnets: AsyncSubnetsResource) -> None:
@@ -314,6 +334,10 @@ class AsyncSubnetsResourceWithRawResponse:
     @cached_property
     def cloudflare_source(self) -> AsyncCloudflareSourceResourceWithRawResponse:
         return AsyncCloudflareSourceResourceWithRawResponse(self._subnets.cloudflare_source)
+
+    @cached_property
+    def initial_resolved_ip(self) -> AsyncInitialResolvedIPResourceWithRawResponse:
+        return AsyncInitialResolvedIPResourceWithRawResponse(self._subnets.initial_resolved_ip)
 
 
 class SubnetsResourceWithStreamingResponse:
@@ -332,6 +356,10 @@ class SubnetsResourceWithStreamingResponse:
     def cloudflare_source(self) -> CloudflareSourceResourceWithStreamingResponse:
         return CloudflareSourceResourceWithStreamingResponse(self._subnets.cloudflare_source)
 
+    @cached_property
+    def initial_resolved_ip(self) -> InitialResolvedIPResourceWithStreamingResponse:
+        return InitialResolvedIPResourceWithStreamingResponse(self._subnets.initial_resolved_ip)
+
 
 class AsyncSubnetsResourceWithStreamingResponse:
     def __init__(self, subnets: AsyncSubnetsResource) -> None:
@@ -348,3 +376,7 @@ class AsyncSubnetsResourceWithStreamingResponse:
     @cached_property
     def cloudflare_source(self) -> AsyncCloudflareSourceResourceWithStreamingResponse:
         return AsyncCloudflareSourceResourceWithStreamingResponse(self._subnets.cloudflare_source)
+
+    @cached_property
+    def initial_resolved_ip(self) -> AsyncInitialResolvedIPResourceWithStreamingResponse:
+        return AsyncInitialResolvedIPResourceWithStreamingResponse(self._subnets.initial_resolved_ip)

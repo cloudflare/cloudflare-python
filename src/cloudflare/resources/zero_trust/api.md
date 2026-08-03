@@ -2296,6 +2296,13 @@ Methods:
 
 - <code title="patch /accounts/{account_id}/zerotrust/subnets/cloudflare_source/{address_family}">client.zero_trust.networks.subnets.cloudflare_source.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/cloudflare_source.py">update</a>(address_family, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/cloudflare_source_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/subnet.py">Subnet</a></code>
 
+#### InitialResolvedIP
+
+Methods:
+
+- <code title="put /accounts/{account_id}/zerotrust/subnets/initial_resolved_ip/{address_family}">client.zero_trust.networks.subnets.initial_resolved_ip.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/initial_resolved_ip.py">update</a>(address_family, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/initial_resolved_ip_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/subnet.py">Subnet</a></code>
+- <code title="get /accounts/{account_id}/zerotrust/subnets/initial_resolved_ip/{address_family}">client.zero_trust.networks.subnets.initial_resolved_ip.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/initial_resolved_ip.py">get</a>(address_family, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/subnet.py">Subnet</a></code>
+
 ### HostnameRoutes
 
 Types:
