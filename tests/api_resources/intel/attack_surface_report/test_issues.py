@@ -14,7 +14,6 @@ from cloudflare.types.intel.attack_surface_report import (
     IssueListResponse,
     IssueTypeResponse,
     IssueClassResponse,
-    IssueDismissResponse,
     IssueSeverityResponse,
 )
 
@@ -152,70 +151,6 @@ class TestIssues:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
                 client.intel.attack_surface_report.issues.with_raw_response.class_(
                     account_id="",
-                )
-
-    @parametrize
-    def test_method_dismiss(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            issue = client.intel.attack_surface_report.issues.dismiss(
-                issue_id="issue_id",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
-
-    @parametrize
-    def test_method_dismiss_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            issue = client.intel.attack_surface_report.issues.dismiss(
-                issue_id="issue_id",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dismiss=True,
-            )
-
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
-
-    @parametrize
-    def test_raw_response_dismiss(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                issue_id="issue_id",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        issue = response.parse()
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
-
-    @parametrize
-    def test_streaming_response_dismiss(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.intel.attack_surface_report.issues.with_streaming_response.dismiss(
-                issue_id="issue_id",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-                issue = response.parse()
-                assert_matches_type(IssueDismissResponse, issue, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_dismiss(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-                client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                    issue_id="issue_id",
-                    account_id="",
-                )
-
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `issue_id` but received ''"):
-                client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                    issue_id="",
-                    account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
     @parametrize
@@ -476,70 +411,6 @@ class TestAsyncIssues:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
                 await async_client.intel.attack_surface_report.issues.with_raw_response.class_(
                     account_id="",
-                )
-
-    @parametrize
-    async def test_method_dismiss(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            issue = await async_client.intel.attack_surface_report.issues.dismiss(
-                issue_id="issue_id",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
-
-    @parametrize
-    async def test_method_dismiss_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            issue = await async_client.intel.attack_surface_report.issues.dismiss(
-                issue_id="issue_id",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dismiss=True,
-            )
-
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
-
-    @parametrize
-    async def test_raw_response_dismiss(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                issue_id="issue_id",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        issue = await response.parse()
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_dismiss(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.intel.attack_surface_report.issues.with_streaming_response.dismiss(
-                issue_id="issue_id",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            ) as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-                issue = await response.parse()
-                assert_matches_type(IssueDismissResponse, issue, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_dismiss(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-                await async_client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                    issue_id="issue_id",
-                    account_id="",
-                )
-
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `issue_id` but received ''"):
-                await async_client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                    issue_id="",
-                    account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
     @parametrize
