@@ -262,6 +262,12 @@ class Tunnel(BaseModel):
     tunnel_id: str
     """Tunnel identifier"""
 
+    jitter_ms: Optional[float] = None
+    """Tunnel round-trip latency variation in milliseconds"""
+
+    latency_ms: Optional[float] = None
+    """50th percentile tunnel round-trip latency in milliseconds"""
+
     natd_result: Optional[str] = None
     """Public socket address returned by the NAT detector"""
 
