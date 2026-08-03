@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .dnssec import (
-    DNSSECResource,
-    AsyncDNSSECResource,
-    DNSSECResourceWithRawResponse,
-    AsyncDNSSECResourceWithRawResponse,
-    DNSSECResourceWithStreamingResponse,
-    AsyncDNSSECResourceWithStreamingResponse,
-)
 from .records import (
     RecordsResource,
     AsyncRecordsResource,
@@ -27,6 +19,14 @@ from .usage.usage import (
     AsyncUsageResourceWithRawResponse,
     UsageResourceWithStreamingResponse,
     AsyncUsageResourceWithStreamingResponse,
+)
+from .dnssec.dnssec import (
+    DNSSECResource,
+    AsyncDNSSECResource,
+    DNSSECResourceWithRawResponse,
+    AsyncDNSSECResourceWithRawResponse,
+    DNSSECResourceWithStreamingResponse,
+    AsyncDNSSECResourceWithStreamingResponse,
 )
 from .settings.settings import (
     SettingsResource,

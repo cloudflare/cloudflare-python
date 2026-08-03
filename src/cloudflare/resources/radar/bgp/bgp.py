@@ -8,14 +8,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .routes import (
-    RoutesResource,
-    AsyncRoutesResource,
-    RoutesResourceWithRawResponse,
-    AsyncRoutesResourceWithRawResponse,
-    RoutesResourceWithStreamingResponse,
-    AsyncRoutesResourceWithStreamingResponse,
-)
 from .ips.ips import (
     IPsResource,
     AsyncIPsResource,
@@ -59,6 +51,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from .routes.routes import (
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
+)
 from ....types.radar import bgp_timeseries_params
 from ...._base_client import make_request_options
 from .hijacks.hijacks import (

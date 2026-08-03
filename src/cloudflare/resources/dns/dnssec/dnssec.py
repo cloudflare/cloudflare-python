@@ -7,26 +7,38 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .zsk import (
+    ZskResource,
+    AsyncZskResource,
+    ZskResourceWithRawResponse,
+    AsyncZskResourceWithRawResponse,
+    ZskResourceWithStreamingResponse,
+    AsyncZskResourceWithStreamingResponse,
+)
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...types.dns import dnssec_edit_params
-from ..._base_client import make_request_options
-from ...types.dns.dnssec import DNSSEC
-from ...types.dns.dnssec_delete_response import DNSSECDeleteResponse
+from ...._wrappers import ResultWrapper
+from ....types.dns import dnssec_edit_params
+from ...._base_client import make_request_options
+from ....types.dns.dnssec.dnssec import DNSSEC
+from ....types.dns.dnssec_delete_response import DNSSECDeleteResponse
 
 __all__ = ["DNSSECResource", "AsyncDNSSECResource"]
 
 
 class DNSSECResource(SyncAPIResource):
+    @cached_property
+    def zsk(self) -> ZskResource:
+        return ZskResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> DNSSECResourceWithRawResponse:
         """
@@ -207,6 +219,10 @@ class DNSSECResource(SyncAPIResource):
 
 
 class AsyncDNSSECResource(AsyncAPIResource):
+    @cached_property
+    def zsk(self) -> AsyncZskResource:
+        return AsyncZskResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncDNSSECResourceWithRawResponse:
         """
@@ -400,6 +416,10 @@ class DNSSECResourceWithRawResponse:
             dnssec.get,
         )
 
+    @cached_property
+    def zsk(self) -> ZskResourceWithRawResponse:
+        return ZskResourceWithRawResponse(self._dnssec.zsk)
+
 
 class AsyncDNSSECResourceWithRawResponse:
     def __init__(self, dnssec: AsyncDNSSECResource) -> None:
@@ -414,6 +434,10 @@ class AsyncDNSSECResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             dnssec.get,
         )
+
+    @cached_property
+    def zsk(self) -> AsyncZskResourceWithRawResponse:
+        return AsyncZskResourceWithRawResponse(self._dnssec.zsk)
 
 
 class DNSSECResourceWithStreamingResponse:
@@ -430,6 +454,10 @@ class DNSSECResourceWithStreamingResponse:
             dnssec.get,
         )
 
+    @cached_property
+    def zsk(self) -> ZskResourceWithStreamingResponse:
+        return ZskResourceWithStreamingResponse(self._dnssec.zsk)
+
 
 class AsyncDNSSECResourceWithStreamingResponse:
     def __init__(self, dnssec: AsyncDNSSECResource) -> None:
@@ -444,3 +472,7 @@ class AsyncDNSSECResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             dnssec.get,
         )
+
+    @cached_property
+    def zsk(self) -> AsyncZskResourceWithStreamingResponse:
+        return AsyncZskResourceWithStreamingResponse(self._dnssec.zsk)

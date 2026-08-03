@@ -7,35 +7,59 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from .paths import (
+    PathsResource,
+    AsyncPathsResource,
+    PathsResourceWithRawResponse,
+    AsyncPathsResourceWithRawResponse,
+    PathsResourceWithStreamingResponse,
+    AsyncPathsResourceWithStreamingResponse,
+)
+from .upstreams import (
+    UpstreamsResource,
+    AsyncUpstreamsResource,
+    UpstreamsResourceWithRawResponse,
+    AsyncUpstreamsResourceWithRawResponse,
+    UpstreamsResourceWithStreamingResponse,
+    AsyncUpstreamsResourceWithStreamingResponse,
+)
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.radar.bgp import (
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.radar.bgp import (
     route_ases_params,
     route_moas_params,
     route_stats_params,
     route_pfx2as_params,
     route_realtime_params,
 )
-from ....types.radar.bgp.route_ases_response import RouteAsesResponse
-from ....types.radar.bgp.route_moas_response import RouteMoasResponse
-from ....types.radar.bgp.route_stats_response import RouteStatsResponse
-from ....types.radar.bgp.route_pfx2as_response import RoutePfx2asResponse
-from ....types.radar.bgp.route_realtime_response import RouteRealtimeResponse
+from .....types.radar.bgp.route_ases_response import RouteAsesResponse
+from .....types.radar.bgp.route_moas_response import RouteMoasResponse
+from .....types.radar.bgp.route_stats_response import RouteStatsResponse
+from .....types.radar.bgp.route_pfx2as_response import RoutePfx2asResponse
+from .....types.radar.bgp.route_realtime_response import RouteRealtimeResponse
 
 __all__ = ["RoutesResource", "AsyncRoutesResource"]
 
 
 class RoutesResource(SyncAPIResource):
+    @cached_property
+    def upstreams(self) -> UpstreamsResource:
+        return UpstreamsResource(self._client)
+
+    @cached_property
+    def paths(self) -> PathsResource:
+        return PathsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> RoutesResourceWithRawResponse:
         """
@@ -325,6 +349,14 @@ class RoutesResource(SyncAPIResource):
 
 
 class AsyncRoutesResource(AsyncAPIResource):
+    @cached_property
+    def upstreams(self) -> AsyncUpstreamsResource:
+        return AsyncUpstreamsResource(self._client)
+
+    @cached_property
+    def paths(self) -> AsyncPathsResource:
+        return AsyncPathsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncRoutesResourceWithRawResponse:
         """
@@ -633,6 +665,14 @@ class RoutesResourceWithRawResponse:
             routes.stats,
         )
 
+    @cached_property
+    def upstreams(self) -> UpstreamsResourceWithRawResponse:
+        return UpstreamsResourceWithRawResponse(self._routes.upstreams)
+
+    @cached_property
+    def paths(self) -> PathsResourceWithRawResponse:
+        return PathsResourceWithRawResponse(self._routes.paths)
+
 
 class AsyncRoutesResourceWithRawResponse:
     def __init__(self, routes: AsyncRoutesResource) -> None:
@@ -653,6 +693,14 @@ class AsyncRoutesResourceWithRawResponse:
         self.stats = async_to_raw_response_wrapper(
             routes.stats,
         )
+
+    @cached_property
+    def upstreams(self) -> AsyncUpstreamsResourceWithRawResponse:
+        return AsyncUpstreamsResourceWithRawResponse(self._routes.upstreams)
+
+    @cached_property
+    def paths(self) -> AsyncPathsResourceWithRawResponse:
+        return AsyncPathsResourceWithRawResponse(self._routes.paths)
 
 
 class RoutesResourceWithStreamingResponse:
@@ -675,6 +723,14 @@ class RoutesResourceWithStreamingResponse:
             routes.stats,
         )
 
+    @cached_property
+    def upstreams(self) -> UpstreamsResourceWithStreamingResponse:
+        return UpstreamsResourceWithStreamingResponse(self._routes.upstreams)
+
+    @cached_property
+    def paths(self) -> PathsResourceWithStreamingResponse:
+        return PathsResourceWithStreamingResponse(self._routes.paths)
+
 
 class AsyncRoutesResourceWithStreamingResponse:
     def __init__(self, routes: AsyncRoutesResource) -> None:
@@ -695,3 +751,11 @@ class AsyncRoutesResourceWithStreamingResponse:
         self.stats = async_to_streamed_response_wrapper(
             routes.stats,
         )
+
+    @cached_property
+    def upstreams(self) -> AsyncUpstreamsResourceWithStreamingResponse:
+        return AsyncUpstreamsResourceWithStreamingResponse(self._routes.upstreams)
+
+    @cached_property
+    def paths(self) -> AsyncPathsResourceWithStreamingResponse:
+        return AsyncPathsResourceWithStreamingResponse(self._routes.paths)

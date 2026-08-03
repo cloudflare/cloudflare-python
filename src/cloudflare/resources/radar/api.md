@@ -289,11 +289,35 @@ from cloudflare.types.radar.bgp import (
 
 Methods:
 
-- <code title="get /radar/bgp/routes/ases">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">ases</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_ases_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_ases_response.py">RouteAsesResponse</a></code>
-- <code title="get /radar/bgp/routes/moas">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">moas</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_moas_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_moas_response.py">RouteMoasResponse</a></code>
-- <code title="get /radar/bgp/routes/pfx2as">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">pfx2as</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_pfx2as_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_pfx2as_response.py">RoutePfx2asResponse</a></code>
-- <code title="get /radar/bgp/routes/realtime">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">realtime</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_realtime_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_realtime_response.py">RouteRealtimeResponse</a></code>
-- <code title="get /radar/bgp/routes/stats">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">stats</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_stats_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_stats_response.py">RouteStatsResponse</a></code>
+- <code title="get /radar/bgp/routes/ases">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes/routes.py">ases</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_ases_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_ases_response.py">RouteAsesResponse</a></code>
+- <code title="get /radar/bgp/routes/moas">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes/routes.py">moas</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_moas_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_moas_response.py">RouteMoasResponse</a></code>
+- <code title="get /radar/bgp/routes/pfx2as">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes/routes.py">pfx2as</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_pfx2as_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_pfx2as_response.py">RoutePfx2asResponse</a></code>
+- <code title="get /radar/bgp/routes/realtime">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes/routes.py">realtime</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_realtime_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_realtime_response.py">RouteRealtimeResponse</a></code>
+- <code title="get /radar/bgp/routes/stats">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes/routes.py">stats</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_stats_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_stats_response.py">RouteStatsResponse</a></code>
+
+#### Upstreams
+
+Types:
+
+```python
+from cloudflare.types.radar.bgp.routes import UpstreamTimeseriesResponse
+```
+
+Methods:
+
+- <code title="get /radar/bgp/routes/upstreams/{asn}/timeseries">client.radar.bgp.routes.upstreams.<a href="./src/cloudflare/resources/radar/bgp/routes/upstreams.py">timeseries</a>(asn, \*\*<a href="src/cloudflare/types/radar/bgp/routes/upstream_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/routes/upstream_timeseries_response.py">UpstreamTimeseriesResponse</a></code>
+
+#### Paths
+
+Types:
+
+```python
+from cloudflare.types.radar.bgp.routes import PathListResponse
+```
+
+Methods:
+
+- <code title="get /radar/bgp/routes/paths/{asn}">client.radar.bgp.routes.paths.<a href="./src/cloudflare/resources/radar/bgp/routes/paths.py">list</a>(asn, \*\*<a href="src/cloudflare/types/radar/bgp/routes/path_list_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/routes/path_list_response.py">PathListResponse</a></code>
 
 ### IPs
 

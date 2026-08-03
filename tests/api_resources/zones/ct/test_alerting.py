@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.ct import AlertingGetResponse, AlertingEditResponse
+from cloudflare.types.zones.ct import CTAlertingSubscription
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestAlerting:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
         )
-        assert_matches_type(Optional[AlertingEditResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -32,7 +32,7 @@ class TestAlerting:
             enabled=True,
             emails=["security@example.com", "admin@example.com"],
         )
-        assert_matches_type(Optional[AlertingEditResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestAlerting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         alerting = response.parse()
-        assert_matches_type(Optional[AlertingEditResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -56,7 +56,7 @@ class TestAlerting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             alerting = response.parse()
-            assert_matches_type(Optional[AlertingEditResponse], alerting, path=["response"])
+            assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -73,7 +73,7 @@ class TestAlerting:
         alerting = client.zones.ct.alerting.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AlertingGetResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -84,7 +84,7 @@ class TestAlerting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         alerting = response.parse()
-        assert_matches_type(Optional[AlertingGetResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -95,7 +95,7 @@ class TestAlerting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             alerting = response.parse()
-            assert_matches_type(Optional[AlertingGetResponse], alerting, path=["response"])
+            assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -118,7 +118,7 @@ class TestAsyncAlerting:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
         )
-        assert_matches_type(Optional[AlertingEditResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -127,7 +127,7 @@ class TestAsyncAlerting:
             enabled=True,
             emails=["security@example.com", "admin@example.com"],
         )
-        assert_matches_type(Optional[AlertingEditResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -139,7 +139,7 @@ class TestAsyncAlerting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         alerting = await response.parse()
-        assert_matches_type(Optional[AlertingEditResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -151,7 +151,7 @@ class TestAsyncAlerting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             alerting = await response.parse()
-            assert_matches_type(Optional[AlertingEditResponse], alerting, path=["response"])
+            assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,7 +168,7 @@ class TestAsyncAlerting:
         alerting = await async_client.zones.ct.alerting.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AlertingGetResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -179,7 +179,7 @@ class TestAsyncAlerting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         alerting = await response.parse()
-        assert_matches_type(Optional[AlertingGetResponse], alerting, path=["response"])
+        assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -190,7 +190,7 @@ class TestAsyncAlerting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             alerting = await response.parse()
-            assert_matches_type(Optional[AlertingGetResponse], alerting, path=["response"])
+            assert_matches_type(Optional[CTAlertingSubscription], alerting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
