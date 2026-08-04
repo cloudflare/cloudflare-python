@@ -37,6 +37,7 @@ from .deployments.deployments import (
     DeploymentsResourceWithStreamingResponse,
     AsyncDeploymentsResourceWithStreamingResponse,
 )
+from ....types.pages.project_get_upload_token_response import ProjectGetUploadTokenResponse
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -348,6 +349,54 @@ class ProjectsResource(SyncAPIResource):
                 post_parser=ResultWrapper[Project]._unwrapper,
             ),
             cast_to=cast(Type[Project], ResultWrapper[Project]),
+        )
+
+    def get_upload_token(
+        self,
+        project_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectGetUploadTokenResponse:
+        """
+        Get a short-lived JWT for Pages Direct Upload asset operations.
+
+        Args:
+          account_id: Identifier.
+
+          project_name: Name of the project.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not project_name:
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/upload-token",
+                account_id=account_id,
+                project_name=project_name,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ProjectGetUploadTokenResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ProjectGetUploadTokenResponse], ResultWrapper[ProjectGetUploadTokenResponse]),
         )
 
     def purge_build_cache(
@@ -708,6 +757,54 @@ class AsyncProjectsResource(AsyncAPIResource):
             cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
+    async def get_upload_token(
+        self,
+        project_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectGetUploadTokenResponse:
+        """
+        Get a short-lived JWT for Pages Direct Upload asset operations.
+
+        Args:
+          account_id: Identifier.
+
+          project_name: Name of the project.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not project_name:
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/pages/projects/{project_name}/upload-token",
+                account_id=account_id,
+                project_name=project_name,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ProjectGetUploadTokenResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ProjectGetUploadTokenResponse], ResultWrapper[ProjectGetUploadTokenResponse]),
+        )
+
     async def purge_build_cache(
         self,
         project_name: str,
@@ -776,6 +873,9 @@ class ProjectsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             projects.get,
         )
+        self.get_upload_token = to_raw_response_wrapper(
+            projects.get_upload_token,
+        )
         self.purge_build_cache = to_raw_response_wrapper(
             projects.purge_build_cache,
         )
@@ -807,6 +907,9 @@ class AsyncProjectsResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             projects.get,
+        )
+        self.get_upload_token = async_to_raw_response_wrapper(
+            projects.get_upload_token,
         )
         self.purge_build_cache = async_to_raw_response_wrapper(
             projects.purge_build_cache,
@@ -840,6 +943,9 @@ class ProjectsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             projects.get,
         )
+        self.get_upload_token = to_streamed_response_wrapper(
+            projects.get_upload_token,
+        )
         self.purge_build_cache = to_streamed_response_wrapper(
             projects.purge_build_cache,
         )
@@ -871,6 +977,9 @@ class AsyncProjectsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             projects.get,
+        )
+        self.get_upload_token = async_to_streamed_response_wrapper(
+            projects.get_upload_token,
         )
         self.purge_build_cache = async_to_streamed_response_wrapper(
             projects.purge_build_cache,
