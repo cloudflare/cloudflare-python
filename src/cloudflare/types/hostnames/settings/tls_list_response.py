@@ -6,10 +6,10 @@ from datetime import datetime
 from ...._models import BaseModel
 from .setting_value import SettingValue
 
-__all__ = ["TLSGetResponse"]
+__all__ = ["TLSListResponse"]
 
 
-class TLSGetResponse(BaseModel):
+class TLSListResponse(BaseModel):
     created_at: Optional[datetime] = None
     """This is the time the tls setting was originally created for this hostname."""
 
