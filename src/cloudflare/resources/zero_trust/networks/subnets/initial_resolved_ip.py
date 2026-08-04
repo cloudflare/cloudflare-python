@@ -61,9 +61,9 @@ class InitialResolvedIPResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subnet:
         """
-        Updates the CIDR for the account's default gateway ephemeral subnet of the given
-        address family. The new CIDR must not conflict with existing private routes in
-        the account.
+        Updates the CIDR for the account's default Initial Resolved IP Subnet of the
+        given address family. The new CIDR must not conflict with existing private
+        routes in the account.
 
         Args:
           account_id: Cloudflare account ID
@@ -125,7 +125,7 @@ class InitialResolvedIPResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subnet:
         """
-        Returns the account's default gateway ephemeral subnet for the given address
+        Returns the account's default Initial Resolved IP Subnet for the given address
         family.
 
         Args:
@@ -198,9 +198,9 @@ class AsyncInitialResolvedIPResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subnet:
         """
-        Updates the CIDR for the account's default gateway ephemeral subnet of the given
-        address family. The new CIDR must not conflict with existing private routes in
-        the account.
+        Updates the CIDR for the account's default Initial Resolved IP Subnet of the
+        given address family. The new CIDR must not conflict with existing private
+        routes in the account.
 
         Args:
           account_id: Cloudflare account ID
@@ -262,7 +262,7 @@ class AsyncInitialResolvedIPResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subnet:
         """
-        Returns the account's default gateway ephemeral subnet for the given address
+        Returns the account's default Initial Resolved IP Subnet for the given address
         family.
 
         Args:
