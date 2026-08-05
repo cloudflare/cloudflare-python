@@ -56,7 +56,7 @@ class SinkholesResource(SyncAPIResource):
         Lists sinkholes owned by the account for redirecting malicious traffic.
 
         Args:
-          account_id: An identifier for the resource.
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -113,7 +113,7 @@ class AsyncSinkholesResource(AsyncAPIResource):
         Lists sinkholes owned by the account for redirecting malicious traffic.
 
         Args:
-          account_id: An identifier for the resource.
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
