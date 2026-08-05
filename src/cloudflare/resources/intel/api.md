@@ -172,7 +172,26 @@ from cloudflare.types.intel import Sinkhole
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/sinkholes">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/intel/sinkhole.py">SyncSinglePage[Sinkhole]</a></code>
+- <code title="post /accounts/{account_id}/intel/sinkholes">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/sinkhole_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/sinkhole.py">Optional[Sinkhole]</a></code>
+- <code title="put /accounts/{account_id}/intel/sinkholes/{sinkhole_id}">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">update</a>(sinkhole_id, \*, account_id, \*\*<a href="src/cloudflare/types/intel/sinkhole_update_params.py">params</a>) -> object</code>
+- <code title="get /accounts/{account_id}/intel/sinkholes">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/intel/sinkhole.py">SyncSinglePage[Sinkhole]</a></code>
+- <code title="delete /accounts/{account_id}/intel/sinkholes/{sinkhole_id}">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">delete</a>(sinkhole_id, \*, account_id) -> object</code>
+- <code title="get /accounts/{account_id}/intel/sinkholes/{sinkhole_id}">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">get</a>(sinkhole_id, \*, account_id) -> <a href="./src/cloudflare/types/intel/sinkhole.py">Optional[Sinkhole]</a></code>
+
+### Ingresses
+
+Types:
+
+```python
+from cloudflare.types.intel.sinkholes import IngressCreateResponse, IngressGetResponse
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/intel/sinkholes/{sinkhole_id}/ingresses">client.intel.sinkholes.ingresses.<a href="./src/cloudflare/resources/intel/sinkholes/ingresses.py">create</a>(sinkhole_id, \*, zone_id, \*\*<a href="src/cloudflare/types/intel/sinkholes/ingress_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/sinkholes/ingress_create_response.py">Optional[IngressCreateResponse]</a></code>
+- <code title="put /zones/{zone_id}/intel/sinkholes/{sinkhole_id}/ingresses/{ingress_id}">client.intel.sinkholes.ingresses.<a href="./src/cloudflare/resources/intel/sinkholes/ingresses.py">update</a>(ingress_id, \*, zone_id, sinkhole_id, \*\*<a href="src/cloudflare/types/intel/sinkholes/ingress_update_params.py">params</a>) -> object</code>
+- <code title="delete /zones/{zone_id}/intel/sinkholes/{sinkhole_id}/ingresses/{ingress_id}">client.intel.sinkholes.ingresses.<a href="./src/cloudflare/resources/intel/sinkholes/ingresses.py">delete</a>(ingress_id, \*, zone_id, sinkhole_id) -> object</code>
+- <code title="get /zones/{zone_id}/intel/sinkholes/{sinkhole_id}/ingresses/{ingress_id}">client.intel.sinkholes.ingresses.<a href="./src/cloudflare/resources/intel/sinkholes/ingresses.py">get</a>(ingress_id, \*, zone_id, sinkhole_id) -> <a href="./src/cloudflare/types/intel/sinkholes/ingress_get_response.py">Optional[IngressGetResponse]</a></code>
 
 ## AttackSurfaceReport
 

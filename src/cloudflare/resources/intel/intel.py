@@ -35,14 +35,6 @@ from .asn.asn import (
     AsyncASNResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .sinkholes import (
-    SinkholesResource,
-    AsyncSinkholesResource,
-    SinkholesResourceWithRawResponse,
-    AsyncSinkholesResourceWithRawResponse,
-    SinkholesResourceWithStreamingResponse,
-    AsyncSinkholesResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .domain_history import (
     DomainHistoryResource,
@@ -67,6 +59,14 @@ from .miscategorizations import (
     AsyncMiscategorizationsResourceWithRawResponse,
     MiscategorizationsResourceWithStreamingResponse,
     AsyncMiscategorizationsResourceWithStreamingResponse,
+)
+from .sinkholes.sinkholes import (
+    SinkholesResource,
+    AsyncSinkholesResource,
+    SinkholesResourceWithRawResponse,
+    AsyncSinkholesResourceWithRawResponse,
+    SinkholesResourceWithStreamingResponse,
+    AsyncSinkholesResourceWithStreamingResponse,
 )
 from .indicator_feeds.indicator_feeds import (
     IndicatorFeedsResource,
