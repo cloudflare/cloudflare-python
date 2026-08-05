@@ -75,14 +75,17 @@ class PortalsResource(SyncAPIResource):
         Args:
           id: portal id
 
-          allow_code_mode: Deprecated: use `code_mode` instead. Legacy on/off toggle for Dynamic Workers
-              (codemode). `true` maps to any non-off `code_mode`; `false` maps to
-              `code_mode: off`.
+          allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
+              Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
+              they must be consistent or the request returns a 400.
 
-          code_mode: Controls Dynamic Workers (codemode) availability for this portal. `off` disables
-              codemode. `opt_in` makes it available but clients must opt in per session.
-              `default_on` enables it by default with a client override. `enforced` requires
-              codemode for every session with no override.
+          code_mode: Code Mode policy for this portal. `off`: Code Mode is unavailable; query
+              parameters are ignored. `opt_in`: Code Mode is off by default; clients turn it
+              on with `?codemode=search_and_execute`. `default_on`: Code Mode is on by
+              default; clients can opt out with `?codemode=off`. `enforced`: Code Mode is
+              always on; query parameters are ignored. Defaults to `opt_in` when omitted on
+              create. If both `code_mode` and `allow_code_mode` are sent, they must be
+              consistent or the request returns a 400.
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -146,14 +149,17 @@ class PortalsResource(SyncAPIResource):
         Args:
           id: portal id
 
-          allow_code_mode: Deprecated: use `code_mode` instead. Legacy on/off toggle for Dynamic Workers
-              (codemode). `true` maps to any non-off `code_mode`; `false` maps to
-              `code_mode: off`.
+          allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
+              Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
+              they must be consistent or the request returns a 400.
 
-          code_mode: Controls Dynamic Workers (codemode) availability for this portal. `off` disables
-              codemode. `opt_in` makes it available but clients must opt in per session.
-              `default_on` enables it by default with a client override. `enforced` requires
-              codemode for every session with no override.
+          code_mode: Code Mode policy for this portal. `off`: Code Mode is unavailable; query
+              parameters are ignored. `opt_in`: Code Mode is off by default; clients turn it
+              on with `?codemode=search_and_execute`. `default_on`: Code Mode is on by
+              default; clients can opt out with `?codemode=off`. `enforced`: Code Mode is
+              always on; query parameters are ignored. Defaults to `opt_in` when omitted on
+              create. If both `code_mode` and `allow_code_mode` are sent, they must be
+              consistent or the request returns a 400.
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -373,14 +379,17 @@ class AsyncPortalsResource(AsyncAPIResource):
         Args:
           id: portal id
 
-          allow_code_mode: Deprecated: use `code_mode` instead. Legacy on/off toggle for Dynamic Workers
-              (codemode). `true` maps to any non-off `code_mode`; `false` maps to
-              `code_mode: off`.
+          allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
+              Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
+              they must be consistent or the request returns a 400.
 
-          code_mode: Controls Dynamic Workers (codemode) availability for this portal. `off` disables
-              codemode. `opt_in` makes it available but clients must opt in per session.
-              `default_on` enables it by default with a client override. `enforced` requires
-              codemode for every session with no override.
+          code_mode: Code Mode policy for this portal. `off`: Code Mode is unavailable; query
+              parameters are ignored. `opt_in`: Code Mode is off by default; clients turn it
+              on with `?codemode=search_and_execute`. `default_on`: Code Mode is on by
+              default; clients can opt out with `?codemode=off`. `enforced`: Code Mode is
+              always on; query parameters are ignored. Defaults to `opt_in` when omitted on
+              create. If both `code_mode` and `allow_code_mode` are sent, they must be
+              consistent or the request returns a 400.
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
@@ -444,14 +453,17 @@ class AsyncPortalsResource(AsyncAPIResource):
         Args:
           id: portal id
 
-          allow_code_mode: Deprecated: use `code_mode` instead. Legacy on/off toggle for Dynamic Workers
-              (codemode). `true` maps to any non-off `code_mode`; `false` maps to
-              `code_mode: off`.
+          allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
+              Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
+              they must be consistent or the request returns a 400.
 
-          code_mode: Controls Dynamic Workers (codemode) availability for this portal. `off` disables
-              codemode. `opt_in` makes it available but clients must opt in per session.
-              `default_on` enables it by default with a client override. `enforced` requires
-              codemode for every session with no override.
+          code_mode: Code Mode policy for this portal. `off`: Code Mode is unavailable; query
+              parameters are ignored. `opt_in`: Code Mode is off by default; clients turn it
+              on with `?codemode=search_and_execute`. `default_on`: Code Mode is on by
+              default; clients can opt out with `?codemode=off`. `enforced`: Code Mode is
+              always on; query parameters are ignored. Defaults to `opt_in` when omitted on
+              create. If both `code_mode` and `allow_code_mode` are sent, they must be
+              consistent or the request returns a 400.
 
           secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 

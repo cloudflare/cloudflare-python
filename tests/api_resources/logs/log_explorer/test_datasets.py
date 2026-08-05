@@ -113,6 +113,7 @@ class TestDatasets:
                     "name": "name",
                 }
             ],
+            filter="filter",
         )
         assert_matches_type(Optional[Dataset], dataset, path=["response"])
 
@@ -391,6 +392,7 @@ class TestAsyncDatasets:
                     "name": "name",
                 }
             ],
+            filter="filter",
         )
         assert_matches_type(Optional[Dataset], dataset, path=["response"])
 

@@ -54,6 +54,7 @@ class CfInterconnectsResource(SyncAPIResource):
         *,
         account_id: str,
         automatic_return_routing: bool | Omit = omit,
+        bgp: cf_interconnect_update_params.BGP | Omit = omit,
         description: str | Omit = omit,
         gre: cf_interconnect_update_params.GRE | Omit = omit,
         health_check: HealthCheckParam | Omit = omit,
@@ -135,6 +136,7 @@ class CfInterconnectsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "automatic_return_routing": automatic_return_routing,
+                    "bgp": bgp,
                     "description": description,
                     "gre": gre,
                     "health_check": health_check,
@@ -346,6 +348,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         *,
         account_id: str,
         automatic_return_routing: bool | Omit = omit,
+        bgp: cf_interconnect_update_params.BGP | Omit = omit,
         description: str | Omit = omit,
         gre: cf_interconnect_update_params.GRE | Omit = omit,
         health_check: HealthCheckParam | Omit = omit,
@@ -427,6 +430,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "automatic_return_routing": automatic_return_routing,
+                    "bgp": bgp,
                     "description": description,
                     "gre": gre,
                     "health_check": health_check,

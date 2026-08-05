@@ -50,3 +50,9 @@ class Dataset(BaseModel):
 
     fields: Optional[List[Field]] = None
     """The field configuration for this dataset."""
+
+    filter: Optional[str] = None
+    """The Logpush filter predicate applied to this dataset.
+
+    Omitted when no filter is set.
+    """

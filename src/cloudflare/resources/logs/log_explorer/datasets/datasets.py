@@ -153,6 +153,7 @@ class DatasetsResource(SyncAPIResource):
         zone_id: str | Omit = omit,
         deletion_protection: bool | Omit = omit,
         fields: Iterable[dataset_update_params.Field] | Omit = omit,
+        filter: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,6 +176,12 @@ class DatasetsResource(SyncAPIResource):
 
           fields: Controls which fields the API ingests after the update. Defaults to all
               available fields when absent.
+
+          filter: Optional Logpush filter predicate to restrict which events are ingested. If
+              omitted, the existing filter is left unchanged. Set to an empty string (`""`) to
+              clear the filter. Otherwise, replaces the dataset's filter entirely. See
+              [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
+              syntax and examples.
 
           extra_headers: Send extra headers
 
@@ -210,6 +217,7 @@ class DatasetsResource(SyncAPIResource):
                     "enabled": enabled,
                     "deletion_protection": deletion_protection,
                     "fields": fields,
+                    "filter": filter,
                 },
                 dataset_update_params.DatasetUpdateParams,
             ),
@@ -467,6 +475,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         zone_id: str | Omit = omit,
         deletion_protection: bool | Omit = omit,
         fields: Iterable[dataset_update_params.Field] | Omit = omit,
+        filter: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -489,6 +498,12 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
           fields: Controls which fields the API ingests after the update. Defaults to all
               available fields when absent.
+
+          filter: Optional Logpush filter predicate to restrict which events are ingested. If
+              omitted, the existing filter is left unchanged. Set to an empty string (`""`) to
+              clear the filter. Otherwise, replaces the dataset's filter entirely. See
+              [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
+              syntax and examples.
 
           extra_headers: Send extra headers
 
@@ -524,6 +539,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
                     "enabled": enabled,
                     "deletion_protection": deletion_protection,
                     "fields": fields,
+                    "filter": filter,
                 },
                 dataset_update_params.DatasetUpdateParams,
             ),

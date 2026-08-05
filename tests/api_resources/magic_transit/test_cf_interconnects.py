@@ -38,6 +38,16 @@ class TestCfInterconnects:
             cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             automatic_return_routing=True,
+            bgp={
+                "as_no": 0,
+                "cloudflare_endpoint": "192.168.1.1",
+                "customer_asn": 0,
+                "customer_endpoint": "192.168.1.1",
+                "export_filter_id": "a1b2c3d4e5f647890a1b2c3d4e5f6789",
+                "extra_prefixes": ["string"],
+                "import_filter_id": "a1b2c3d4e5f647890a1b2c3d4e5f6789",
+                "md5_key": "md5_key",
+            },
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={
@@ -278,6 +288,16 @@ class TestAsyncCfInterconnects:
             cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             automatic_return_routing=True,
+            bgp={
+                "as_no": 0,
+                "cloudflare_endpoint": "192.168.1.1",
+                "customer_asn": 0,
+                "customer_endpoint": "192.168.1.1",
+                "export_filter_id": "a1b2c3d4e5f647890a1b2c3d4e5f6789",
+                "extra_prefixes": ["string"],
+                "import_filter_id": "a1b2c3d4e5f647890a1b2c3d4e5f6789",
+                "md5_key": "md5_key",
+            },
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={
