@@ -73,7 +73,7 @@ class MaintenanceConfigsResource(SyncAPIResource):
 
           bucket_name: Specifies the R2 bucket name.
 
-          compaction: Updates compaction configuration (all fields optional).
+          compaction: Updates table compaction configuration; all fields are optional.
 
           snapshot_expiration: Updates snapshot expiration configuration (all fields optional).
 
@@ -224,7 +224,7 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
 
           bucket_name: Specifies the R2 bucket name.
 
-          compaction: Updates compaction configuration (all fields optional).
+          compaction: Updates table compaction configuration; all fields are optional.
 
           snapshot_expiration: Updates snapshot expiration configuration (all fields optional).
 
