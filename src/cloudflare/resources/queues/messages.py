@@ -19,10 +19,19 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.queues import message_ack_params, message_pull_params, message_push_params, message_bulk_push_params
+from ...types.queues import (
+    message_ack_params,
+    message_peek_params,
+    message_pull_params,
+    message_push_params,
+    message_purge_params,
+    message_bulk_push_params,
+)
 from ...types.queues.message_ack_response import MessageAckResponse
+from ...types.queues.message_peek_response import MessagePeekResponse
 from ...types.queues.message_pull_response import MessagePullResponse
 from ...types.queues.message_push_response import MessagePushResponse
+from ...types.queues.message_purge_response import MessagePurgeResponse
 from ...types.queues.message_bulk_push_response import MessageBulkPushResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
@@ -160,6 +169,58 @@ class MessagesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[MessageBulkPushResponse]], ResultWrapper[MessageBulkPushResponse]),
         )
 
+    def peek(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        batch_size: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[MessagePeekResponse]:
+        """Peek messages from a Queue without leasing them.
+
+        Messages remain available for
+        subsequent peek or pull operations.
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          batch_size: The maximum number of messages to include in a batch.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return self._post(
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/peek", account_id=account_id, queue_id=queue_id
+            ),
+            body=maybe_transform({"batch_size": batch_size}, message_peek_params.MessagePeekParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePeekResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[MessagePeekResponse]], ResultWrapper[MessagePeekResponse]),
+        )
+
     def pull(
         self,
         queue_id: str,
@@ -218,6 +279,57 @@ class MessagesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
+        )
+
+    def purge(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        refs: Iterable[message_purge_params.Ref],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[MessagePurgeResponse]:
+        """Delete peeked messages from a Queue by their ref.
+
+        Purged messages aren't
+        considered delivered, they are instantly deleted from this queue and do not
+        affect metrics.
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return self._post(
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/purge", account_id=account_id, queue_id=queue_id
+            ),
+            body=maybe_transform({"refs": refs}, message_purge_params.MessagePurgeParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePurgeResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[MessagePurgeResponse]], ResultWrapper[MessagePurgeResponse]),
         )
 
     @overload
@@ -469,6 +581,58 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[MessageBulkPushResponse]], ResultWrapper[MessageBulkPushResponse]),
         )
 
+    async def peek(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        batch_size: float | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[MessagePeekResponse]:
+        """Peek messages from a Queue without leasing them.
+
+        Messages remain available for
+        subsequent peek or pull operations.
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          batch_size: The maximum number of messages to include in a batch.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return await self._post(
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/peek", account_id=account_id, queue_id=queue_id
+            ),
+            body=await async_maybe_transform({"batch_size": batch_size}, message_peek_params.MessagePeekParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePeekResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[MessagePeekResponse]], ResultWrapper[MessagePeekResponse]),
+        )
+
     async def pull(
         self,
         queue_id: str,
@@ -527,6 +691,57 @@ class AsyncMessagesResource(AsyncAPIResource):
                 post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
+        )
+
+    async def purge(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        refs: Iterable[message_purge_params.Ref],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[MessagePurgeResponse]:
+        """Delete peeked messages from a Queue by their ref.
+
+        Purged messages aren't
+        considered delivered, they are instantly deleted from this queue and do not
+        affect metrics.
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return await self._post(
+            path_template(
+                "/accounts/{account_id}/queues/{queue_id}/messages/purge", account_id=account_id, queue_id=queue_id
+            ),
+            body=await async_maybe_transform({"refs": refs}, message_purge_params.MessagePurgeParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePurgeResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[MessagePurgeResponse]], ResultWrapper[MessagePurgeResponse]),
         )
 
     @overload
@@ -656,8 +871,14 @@ class MessagesResourceWithRawResponse:
         self.bulk_push = to_raw_response_wrapper(
             messages.bulk_push,
         )
+        self.peek = to_raw_response_wrapper(
+            messages.peek,
+        )
         self.pull = to_raw_response_wrapper(
             messages.pull,
+        )
+        self.purge = to_raw_response_wrapper(
+            messages.purge,
         )
         self.push = to_raw_response_wrapper(
             messages.push,
@@ -674,8 +895,14 @@ class AsyncMessagesResourceWithRawResponse:
         self.bulk_push = async_to_raw_response_wrapper(
             messages.bulk_push,
         )
+        self.peek = async_to_raw_response_wrapper(
+            messages.peek,
+        )
         self.pull = async_to_raw_response_wrapper(
             messages.pull,
+        )
+        self.purge = async_to_raw_response_wrapper(
+            messages.purge,
         )
         self.push = async_to_raw_response_wrapper(
             messages.push,
@@ -692,8 +919,14 @@ class MessagesResourceWithStreamingResponse:
         self.bulk_push = to_streamed_response_wrapper(
             messages.bulk_push,
         )
+        self.peek = to_streamed_response_wrapper(
+            messages.peek,
+        )
         self.pull = to_streamed_response_wrapper(
             messages.pull,
+        )
+        self.purge = to_streamed_response_wrapper(
+            messages.purge,
         )
         self.push = to_streamed_response_wrapper(
             messages.push,
@@ -710,8 +943,14 @@ class AsyncMessagesResourceWithStreamingResponse:
         self.bulk_push = async_to_streamed_response_wrapper(
             messages.bulk_push,
         )
+        self.peek = async_to_streamed_response_wrapper(
+            messages.peek,
+        )
         self.pull = async_to_streamed_response_wrapper(
             messages.pull,
+        )
+        self.purge = async_to_streamed_response_wrapper(
+            messages.purge,
         )
         self.push = async_to_streamed_response_wrapper(
             messages.push,
