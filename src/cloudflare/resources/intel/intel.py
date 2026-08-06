@@ -18,6 +18,14 @@ from .ips import (
     IPsResourceWithStreamingResponse,
     AsyncIPsResourceWithStreamingResponse,
 )
+from .urls import (
+    URLsResource,
+    AsyncURLsResource,
+    URLsResourceWithRawResponse,
+    AsyncURLsResourceWithRawResponse,
+    URLsResourceWithStreamingResponse,
+    AsyncURLsResourceWithStreamingResponse,
+)
 from .whois import (
     WhoisResource,
     AsyncWhoisResource,
@@ -118,6 +126,10 @@ class IntelResource(SyncAPIResource):
         return WhoisResource(self._client)
 
     @cached_property
+    def urls(self) -> URLsResource:
+        return URLsResource(self._client)
+
+    @cached_property
     def indicator_feeds(self) -> IndicatorFeedsResource:
         return IndicatorFeedsResource(self._client)
 
@@ -177,6 +189,10 @@ class AsyncIntelResource(AsyncAPIResource):
     @cached_property
     def whois(self) -> AsyncWhoisResource:
         return AsyncWhoisResource(self._client)
+
+    @cached_property
+    def urls(self) -> AsyncURLsResource:
+        return AsyncURLsResource(self._client)
 
     @cached_property
     def indicator_feeds(self) -> AsyncIndicatorFeedsResource:
@@ -243,6 +259,10 @@ class IntelResourceWithRawResponse:
         return WhoisResourceWithRawResponse(self._intel.whois)
 
     @cached_property
+    def urls(self) -> URLsResourceWithRawResponse:
+        return URLsResourceWithRawResponse(self._intel.urls)
+
+    @cached_property
     def indicator_feeds(self) -> IndicatorFeedsResourceWithRawResponse:
         return IndicatorFeedsResourceWithRawResponse(self._intel.indicator_feeds)
 
@@ -286,6 +306,10 @@ class AsyncIntelResourceWithRawResponse:
     @cached_property
     def whois(self) -> AsyncWhoisResourceWithRawResponse:
         return AsyncWhoisResourceWithRawResponse(self._intel.whois)
+
+    @cached_property
+    def urls(self) -> AsyncURLsResourceWithRawResponse:
+        return AsyncURLsResourceWithRawResponse(self._intel.urls)
 
     @cached_property
     def indicator_feeds(self) -> AsyncIndicatorFeedsResourceWithRawResponse:
@@ -333,6 +357,10 @@ class IntelResourceWithStreamingResponse:
         return WhoisResourceWithStreamingResponse(self._intel.whois)
 
     @cached_property
+    def urls(self) -> URLsResourceWithStreamingResponse:
+        return URLsResourceWithStreamingResponse(self._intel.urls)
+
+    @cached_property
     def indicator_feeds(self) -> IndicatorFeedsResourceWithStreamingResponse:
         return IndicatorFeedsResourceWithStreamingResponse(self._intel.indicator_feeds)
 
@@ -376,6 +404,10 @@ class AsyncIntelResourceWithStreamingResponse:
     @cached_property
     def whois(self) -> AsyncWhoisResourceWithStreamingResponse:
         return AsyncWhoisResourceWithStreamingResponse(self._intel.whois)
+
+    @cached_property
+    def urls(self) -> AsyncURLsResourceWithStreamingResponse:
+        return AsyncURLsResourceWithStreamingResponse(self._intel.urls)
 
     @cached_property
     def indicator_feeds(self) -> AsyncIndicatorFeedsResourceWithStreamingResponse:

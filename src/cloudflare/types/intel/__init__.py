@@ -4,10 +4,12 @@ from __future__ import annotations
 
 from .ip import IP as IP
 from .dns import DNS as DNS
+from .url import URL as URL
 from .domain import Domain as Domain
 from .sinkhole import Sinkhole as Sinkhole
 from .ip_get_params import IPGetParams as IPGetParams
 from .domain_history import DomainHistory as DomainHistory
+from .url_get_params import URLGetParams as URLGetParams
 from .dns_list_params import DNSListParams as DNSListParams
 from .ip_get_response import IPGetResponse as IPGetResponse
 from .whois_get_params import WhoisGetParams as WhoisGetParams

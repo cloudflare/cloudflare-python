@@ -110,6 +110,18 @@ Methods:
 
 - <code title="get /accounts/{account_id}/intel/whois">client.intel.whois.<a href="./src/cloudflare/resources/intel/whois.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/whois_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/whois_get_response.py">Optional[WhoisGetResponse]</a></code>
 
+## URLs
+
+Types:
+
+```python
+from cloudflare.types.intel import URL
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/intel/url">client.intel.urls.<a href="./src/cloudflare/resources/intel/urls.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/url_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/url.py">Optional[URL]</a></code>
+
 ## IndicatorFeeds
 
 Types:
