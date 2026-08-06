@@ -109,11 +109,11 @@ class IndicatorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndicatorListResponse:
-        """Retrieves a paginated list of indicators across specified datasets.
-
-        Use
-        datasetIds=all or datasetIds=\\** to query all datasets for the account. If no
-        datasetIds provided, uses the default dataset.
+        """
+        Retrieves indicators across specified datasets, ordered by createdAt descending
+        then UUID, dataset ID, and shard ID ascending. Use datasetIds=all or
+        datasetIds=\\** to query all datasets for the account. If no datasetIds provided,
+        uses the default dataset.
 
         Args:
           account_id: Account ID.
@@ -136,8 +136,8 @@ class IndicatorsResource(SyncAPIResource):
 
           include_tags: Whether to include full tag details for each indicator. Defaults to true.
 
-          include_total_count: Whether to compute accurate total count via COUNT(\\**). Defaults to false for
-              performance. When false, total_count is an approximation.
+          include_total_count: Whether to compute total count via COUNT(\\**). Defaults to false for performance.
+              total_count is null unless this is true and the complete fan-out succeeds.
 
           name: Filter indicators by value using substring match (LIKE). Legacy alternative to
               structured search.
@@ -283,11 +283,11 @@ class AsyncIndicatorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndicatorListResponse:
-        """Retrieves a paginated list of indicators across specified datasets.
-
-        Use
-        datasetIds=all or datasetIds=\\** to query all datasets for the account. If no
-        datasetIds provided, uses the default dataset.
+        """
+        Retrieves indicators across specified datasets, ordered by createdAt descending
+        then UUID, dataset ID, and shard ID ascending. Use datasetIds=all or
+        datasetIds=\\** to query all datasets for the account. If no datasetIds provided,
+        uses the default dataset.
 
         Args:
           account_id: Account ID.
@@ -310,8 +310,8 @@ class AsyncIndicatorsResource(AsyncAPIResource):
 
           include_tags: Whether to include full tag details for each indicator. Defaults to true.
 
-          include_total_count: Whether to compute accurate total count via COUNT(\\**). Defaults to false for
-              performance. When false, total_count is an approximation.
+          include_total_count: Whether to compute total count via COUNT(\\**). Defaults to false for performance.
+              total_count is null unless this is true and the complete fan-out succeeds.
 
           name: Filter indicators by value using substring match (LIKE). Legacy alternative to
               structured search.

@@ -10,6 +10,18 @@ from ...._models import BaseModel
 __all__ = [
     "IndicatorListResponse",
     "Properties",
+    "PropertiesCompleteness",
+    "PropertiesCompletenessProperties",
+    "PropertiesCompletenessPropertiesComplete",
+    "PropertiesCompletenessPropertiesFailedDatasets",
+    "PropertiesCompletenessPropertiesFailedDatasetsItems",
+    "PropertiesCompletenessPropertiesFailedShards",
+    "PropertiesCompletenessPropertiesFailedShardsItems",
+    "PropertiesCompletenessPropertiesFailedShardsItemsProperties",
+    "PropertiesCompletenessPropertiesFailedShardsItemsPropertiesDatasetID",
+    "PropertiesCompletenessPropertiesFailedShardsItemsPropertiesShardID",
+    "PropertiesCompletenessPropertiesWarnings",
+    "PropertiesCompletenessPropertiesWarningsItems",
     "PropertiesIndicators",
     "PropertiesIndicatorsItems",
     "PropertiesIndicatorsItemsRelatedEvent",
@@ -20,7 +32,74 @@ __all__ = [
     "PropertiesPaginationPropertiesPage",
     "PropertiesPaginationPropertiesPerPage",
     "PropertiesPaginationPropertiesTotalCount",
+    "PropertiesPaginationPropertiesTotalCountIsExact",
 ]
+
+
+class PropertiesCompletenessPropertiesComplete(BaseModel):
+    type: str
+
+
+class PropertiesCompletenessPropertiesFailedDatasetsItems(BaseModel):
+    type: str
+
+
+class PropertiesCompletenessPropertiesFailedDatasets(BaseModel):
+    items: PropertiesCompletenessPropertiesFailedDatasetsItems
+
+    type: str
+
+
+class PropertiesCompletenessPropertiesFailedShardsItemsPropertiesDatasetID(BaseModel):
+    type: str
+
+
+class PropertiesCompletenessPropertiesFailedShardsItemsPropertiesShardID(BaseModel):
+    type: str
+
+
+class PropertiesCompletenessPropertiesFailedShardsItemsProperties(BaseModel):
+    dataset_id: PropertiesCompletenessPropertiesFailedShardsItemsPropertiesDatasetID = FieldInfo(alias="datasetId")
+
+    shard_id: PropertiesCompletenessPropertiesFailedShardsItemsPropertiesShardID = FieldInfo(alias="shardId")
+
+
+class PropertiesCompletenessPropertiesFailedShardsItems(BaseModel):
+    properties: PropertiesCompletenessPropertiesFailedShardsItemsProperties
+
+    type: str
+
+
+class PropertiesCompletenessPropertiesFailedShards(BaseModel):
+    items: PropertiesCompletenessPropertiesFailedShardsItems
+
+    type: str
+
+
+class PropertiesCompletenessPropertiesWarningsItems(BaseModel):
+    type: str
+
+
+class PropertiesCompletenessPropertiesWarnings(BaseModel):
+    items: PropertiesCompletenessPropertiesWarningsItems
+
+    type: str
+
+
+class PropertiesCompletenessProperties(BaseModel):
+    complete: PropertiesCompletenessPropertiesComplete
+
+    failed_datasets: PropertiesCompletenessPropertiesFailedDatasets = FieldInfo(alias="failedDatasets")
+
+    failed_shards: PropertiesCompletenessPropertiesFailedShards = FieldInfo(alias="failedShards")
+
+    warnings: PropertiesCompletenessPropertiesWarnings
+
+
+class PropertiesCompleteness(BaseModel):
+    properties: PropertiesCompletenessProperties
+
+    type: str
 
 
 class PropertiesIndicatorsItemsRelatedEvent(BaseModel):
@@ -77,6 +156,16 @@ class PropertiesPaginationPropertiesPerPage(BaseModel):
 
 
 class PropertiesPaginationPropertiesTotalCount(BaseModel):
+    description: str
+
+    nullable: bool
+
+    type: str
+
+
+class PropertiesPaginationPropertiesTotalCountIsExact(BaseModel):
+    description: str
+
     type: str
 
 
@@ -89,6 +178,8 @@ class PropertiesPaginationProperties(BaseModel):
 
     total_count: PropertiesPaginationPropertiesTotalCount
 
+    total_count_is_exact: PropertiesPaginationPropertiesTotalCountIsExact
+
 
 class PropertiesPagination(BaseModel):
     properties: PropertiesPaginationProperties
@@ -97,6 +188,8 @@ class PropertiesPagination(BaseModel):
 
 
 class Properties(BaseModel):
+    completeness: PropertiesCompleteness
+
     indicators: PropertiesIndicators
 
     pagination: PropertiesPagination
