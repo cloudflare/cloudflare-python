@@ -115,6 +115,13 @@ class ServerListResponse(BaseModel):
     value.
     """
 
+    authentication_status: Optional[Literal["not_required", "required", "connected", "stale", "manual"]] = None
+    """
+    Whether administrative authentication is required before capabilities can be
+    synced. Manual OAuth is user-managed and has no administrative authentication
+    flow.
+    """
+
     created_at: Optional[datetime] = None
 
     created_by: Optional[str] = None
