@@ -88,6 +88,7 @@ class InstancesResource(SyncAPIResource):
         account_id: str,
         instance_id: str | Omit = omit,
         instance_retention: instance_create_params.InstanceRetention | Omit = omit,
+        location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "oc", "sam", "afr", "me"] | Omit = omit,
         params: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -124,6 +125,7 @@ class InstancesResource(SyncAPIResource):
                 {
                     "instance_id": instance_id,
                     "instance_retention": instance_retention,
+                    "location_hint": location_hint,
                     "params": params,
                 },
                 instance_create_params.InstanceCreateParams,
@@ -445,6 +447,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         account_id: str,
         instance_id: str | Omit = omit,
         instance_retention: instance_create_params.InstanceRetention | Omit = omit,
+        location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "oc", "sam", "afr", "me"] | Omit = omit,
         params: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -481,6 +484,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                 {
                     "instance_id": instance_id,
                     "instance_retention": instance_retention,
+                    "location_hint": location_hint,
                     "params": params,
                 },
                 instance_create_params.InstanceCreateParams,

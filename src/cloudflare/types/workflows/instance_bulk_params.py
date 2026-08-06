@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["InstanceBulkParams", "Body", "BodyInstanceRetention"]
 
@@ -26,6 +26,8 @@ class Body(TypedDict, total=False):
     instance_id: str
 
     instance_retention: BodyInstanceRetention
+
+    location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "oc", "sam", "afr", "me"]
 
     params: str
     """JSON-encoded event payload passed into the new instance."""
