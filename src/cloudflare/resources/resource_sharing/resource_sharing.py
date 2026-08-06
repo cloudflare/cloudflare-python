@@ -145,8 +145,20 @@ class ResourceSharingResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingUpdateResponse]:
-        """
-        Updating is not immediate, an updated share object with a new status will be
+        """Updates the share's display name and tags.
+
+        This endpoint does **not** modify
+        recipients or resources — those are managed via dedicated subresource endpoints:
+
+        - **Recipients**: Use `POST /accounts/{account_id}/shares/{share_id}/recipients`
+          to add a single recipient,
+          `PUT /accounts/{account_id}/shares/{share_id}/recipients` to replace the full
+          recipient list, or
+          `DELETE /accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}` to
+          remove a recipient.
+        - **Resources**: Use the share's resource subresource endpoints.
+
+        Updating is not immediate; an updated share object with a new status will be
         returned.
 
         Args:
@@ -482,8 +494,20 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingUpdateResponse]:
-        """
-        Updating is not immediate, an updated share object with a new status will be
+        """Updates the share's display name and tags.
+
+        This endpoint does **not** modify
+        recipients or resources — those are managed via dedicated subresource endpoints:
+
+        - **Recipients**: Use `POST /accounts/{account_id}/shares/{share_id}/recipients`
+          to add a single recipient,
+          `PUT /accounts/{account_id}/shares/{share_id}/recipients` to replace the full
+          recipient list, or
+          `DELETE /accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}` to
+          remove a recipient.
+        - **Resources**: Use the share's resource subresource endpoints.
+
+        Updating is not immediate; an updated share object with a new status will be
         returned.
 
         Args:

@@ -64,8 +64,12 @@ class RecipientsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientCreateResponse]:
         """
-        Adds a recipient to a resource share, granting them access to the shared
-        resources.
+        Adds a single recipient to an account-targeted resource share, granting them
+        access to the shared resources. The recipient account must belong to the same
+        organization as the share owner.
+
+        To replace the entire recipient list in one call, use
+        `PUT /accounts/{account_id}/shares/{share_id}/recipients` instead.
 
         Args:
           path_account_id: Account identifier.
@@ -133,8 +137,12 @@ class RecipientsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[RecipientListResponse]:
-        """
-        List share recipients by share ID.
+        """List share recipients by share ID.
+
+        Returns **all** recipients regardless of
+        their `association_status` (associating, associated, disassociating,
+        disassociated). Callers that want only "active" recipients must filter
+        client-side on the `association_status` field.
 
         Args:
           account_id: Account identifier.
@@ -198,8 +206,16 @@ class RecipientsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientDeleteResponse]:
         """
-        Deletion is not immediate, an updated share recipient object with a new status
-        will be returned.
+        Performs a **soft delete**: sets the recipient's `desired_association_status` to
+        `disassociated`, which signals the background reconciliation workflow (Temporal)
+        to remove the shared resources from the recipient account. The recipient record
+        remains in the database for audit purposes and is still returned by
+        `GET /accounts/{account_id}/shares/{share_id}/recipients` with its updated
+        status.
+
+        Resource access is not fully removed until the workflow completes and
+        `current_association_status` transitions to `disassociated`. The recipient
+        record itself is never physically deleted.
 
         Args:
           account_id: Account identifier.
@@ -336,8 +352,12 @@ class AsyncRecipientsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientCreateResponse]:
         """
-        Adds a recipient to a resource share, granting them access to the shared
-        resources.
+        Adds a single recipient to an account-targeted resource share, granting them
+        access to the shared resources. The recipient account must belong to the same
+        organization as the share owner.
+
+        To replace the entire recipient list in one call, use
+        `PUT /accounts/{account_id}/shares/{share_id}/recipients` instead.
 
         Args:
           path_account_id: Account identifier.
@@ -405,8 +425,12 @@ class AsyncRecipientsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RecipientListResponse, AsyncV4PagePaginationArray[RecipientListResponse]]:
-        """
-        List share recipients by share ID.
+        """List share recipients by share ID.
+
+        Returns **all** recipients regardless of
+        their `association_status` (associating, associated, disassociating,
+        disassociated). Callers that want only "active" recipients must filter
+        client-side on the `association_status` field.
 
         Args:
           account_id: Account identifier.
@@ -470,8 +494,16 @@ class AsyncRecipientsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientDeleteResponse]:
         """
-        Deletion is not immediate, an updated share recipient object with a new status
-        will be returned.
+        Performs a **soft delete**: sets the recipient's `desired_association_status` to
+        `disassociated`, which signals the background reconciliation workflow (Temporal)
+        to remove the shared resources from the recipient account. The recipient record
+        remains in the database for audit purposes and is still returned by
+        `GET /accounts/{account_id}/shares/{share_id}/recipients` with its updated
+        status.
+
+        Resource access is not fully removed until the workflow completes and
+        `current_association_status` transitions to `disassociated`. The recipient
+        record itself is never physically deleted.
 
         Args:
           account_id: Account identifier.

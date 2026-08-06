@@ -606,6 +606,9 @@ class SnapshotGetResponse(BaseModel):
     platform: Optional[str] = None
     """Platform identifier"""
 
+    site_id: Optional[str] = None
+    """Site identifier"""
+
     snmp_icmp_in_addr_mask_reps: Optional[float] = None
     """Number of ICMP Address Mask Reply messages received"""
 
