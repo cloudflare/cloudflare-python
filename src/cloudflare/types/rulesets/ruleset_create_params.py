@@ -112,6 +112,13 @@ class RulesetCreateParams(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     description: str
     """An informative description of the ruleset."""
 

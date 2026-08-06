@@ -23,6 +23,7 @@ __all__ = [
     "RetrievalOptionsBoostBy",
     "SourceParams",
     "SourceParamsWebCrawler",
+    "SourceParamsWebCrawlerDiscoverOptions",
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerParseOptionsContentSelector",
 ]
@@ -224,6 +225,37 @@ class RetrievalOptions(BaseModel):
         __pydantic_extra__: Dict[str, Optional[object]]
 
 
+class SourceParamsWebCrawlerDiscoverOptions(BaseModel):
+    depth: Optional[float] = None
+
+    include_external_links: Optional[bool] = None
+
+    include_subdomains: Optional[bool] = None
+
+    limit: Optional[float] = None
+    """Maximum number of pages to crawl.
+
+    New values are capped at 100000; instances configured before that cap may report
+    a higher stored value, which the crawler clamps at run time.
+    """
+
+    max_age: Optional[float] = None
+
+    source: Optional[Literal["all", "sitemaps", "links"]] = None
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> Optional[object]: ...
+    else:
+        __pydantic_extra__: Dict[str, Optional[object]]
+
+
 class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
     path: str
 
@@ -267,6 +299,8 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
 
 
 class SourceParamsWebCrawler(BaseModel):
+    discover_options: Optional[SourceParamsWebCrawlerDiscoverOptions] = None
+
     parse_options: Optional[SourceParamsWebCrawlerParseOptions] = None
 
     parse_type: Optional[Literal["sitemap", "discover"]] = None

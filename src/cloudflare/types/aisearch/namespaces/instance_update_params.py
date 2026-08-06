@@ -23,6 +23,7 @@ __all__ = [
     "RetrievalOptionsBoostBy",
     "SourceParams",
     "SourceParamsWebCrawler",
+    "SourceParamsWebCrawlerDiscoverOptions",
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerParseOptionsContentSelector",
 ]
@@ -358,6 +359,36 @@ class RetrievalOptions(TypedDict, total=False):
     """
 
 
+class SourceParamsWebCrawlerDiscoverOptions(TypedDict, total=False):
+    """
+    Options for parse_type 'discover', where Browser Run discovers URLs by link following and sitemaps. Ignored for 'sitemap'.
+    """
+
+    depth: float
+    """Maximum link-follow depth from the seed URL."""
+
+    include_external_links: bool
+    """Follow links that point outside the source domain.
+
+    Must stay `false` — discover crawls are restricted to the zone you own.
+    """
+
+    include_subdomains: bool
+    """Follow links to subdomains of the source host."""
+
+    limit: float
+    """Maximum number of pages to crawl (1-100000)."""
+
+    max_age: float
+    """Maximum content age in seconds to accept (0–604800)."""
+
+    source: Literal["all", "sitemaps", "links"]
+    """
+    Where the crawler looks for URLs: 'sitemaps' reads sitemap XML only, 'links'
+    follows page links only, 'all' does both.
+    """
+
+
 class SourceParamsWebCrawlerParseOptionsContentSelector(TypedDict, total=False):
     path: Required[str]
     """Glob pattern to match against the page URL path.
@@ -403,9 +434,20 @@ class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
 
 
 class SourceParamsWebCrawler(TypedDict, total=False):
+    discover_options: SourceParamsWebCrawlerDiscoverOptions
+    """
+    Options for parse_type 'discover', where Browser Run discovers URLs by link
+    following and sitemaps. Ignored for 'sitemap'.
+    """
+
     parse_options: SourceParamsWebCrawlerParseOptions
 
     parse_type: Literal["sitemap", "discover"]
+    """How URLs are discovered.
+
+    'sitemap' reads XML sitemaps; 'discover' follows links recursively and requires
+    the source to be a Verified zone on this account.
+    """
 
 
 class SourceParams(TypedDict, total=False):
@@ -414,14 +456,16 @@ class SourceParams(TypedDict, total=False):
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
     path segments (e.g., /admin/** matches /admin/users and
-    /admin/settings/advanced)
+    /admin/settings/advanced). Most accounts are limited to 10 rules; contact
+    support to raise it.
     """
 
     include_items: SequenceNotStr[str]
     """List of path patterns to include.
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
-    path segments (e.g., /blog/** matches /blog/post and /blog/2024/post)
+    path segments (e.g., /blog/** matches /blog/post and /blog/2024/post). Most
+    accounts are limited to 10 rules; contact support to raise it.
     """
 
     prefix: str
