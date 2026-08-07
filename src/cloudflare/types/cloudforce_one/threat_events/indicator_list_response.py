@@ -107,6 +107,12 @@ class PropertiesIndicatorsItemsRelatedEvent(BaseModel):
 
     event_id: str = FieldInfo(alias="eventId")
 
+    event_date: Optional[str] = FieldInfo(alias="eventDate", default=None)
+    """ISO 8601 date of the related event.
+
+    Null for legacy relationships created before event-date tracking was added.
+    """
+
 
 class PropertiesIndicatorsItemsTag(BaseModel):
     category_name: Optional[str] = FieldInfo(alias="categoryName", default=None)
