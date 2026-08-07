@@ -13,6 +13,8 @@ __all__ = [
     "Timeframe",
     "Parameters",
     "ParametersCalculation",
+    "ParametersCalculationUnionMember0",
+    "ParametersCalculationUnionMember1",
     "ParametersFilter",
     "ParametersFilterUnionMember0",
     "ParametersFilterUnionMember0Filter",
@@ -142,11 +144,45 @@ class Timeframe(_TimeframeReservedKeywords, total=False):
     """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
 
 
-class ParametersCalculation(TypedDict, total=False):
+class ParametersCalculationUnionMember0(TypedDict, total=False):
+    operator: Required[Literal["count", "COUNT"]]
+    """Aggregation operator to apply.
+
+    Examples: count, avg, sum, min, max, median, p90, p95, p99, uniq, stddev,
+    variance.
+    """
+
+    alias: str
+    """Custom label for this calculation in the results.
+
+    Useful for distinguishing multiple calculations.
+    """
+
+    key: str
+    """Field name to calculate over.
+
+    Must exist in the data — verify with the keys endpoint. Required for every
+    operator except `count`, which aggregates whole rows and may omit it.
+    """
+
+    key_type: Annotated[Literal["string", "number", "boolean"], PropertyInfo(alias="keyType")]
+    """Data type of the key.
+
+    Required when key is provided to ensure correct aggregation.
+    """
+
+
+class ParametersCalculationUnionMember1(TypedDict, total=False):
+    key: Required[str]
+    """Field name to calculate over.
+
+    Must exist in the data — verify with the keys endpoint. Required for every
+    operator except `count`, which aggregates whole rows and may omit it.
+    """
+
     operator: Required[
         Literal[
             "uniq",
-            "count",
             "max",
             "min",
             "sum",
@@ -165,7 +201,6 @@ class ParametersCalculation(TypedDict, total=False):
             "stddev",
             "variance",
             "COUNT_DISTINCT",
-            "COUNT",
             "MAX",
             "MIN",
             "SUM",
@@ -197,18 +232,14 @@ class ParametersCalculation(TypedDict, total=False):
     Useful for distinguishing multiple calculations.
     """
 
-    key: str
-    """Field name to calculate over.
-
-    Must exist in the data — verify with the keys endpoint. Omit for operators that
-    don't require a key (e.g. count).
-    """
-
     key_type: Annotated[Literal["string", "number", "boolean"], PropertyInfo(alias="keyType")]
     """Data type of the key.
 
     Required when key is provided to ensure correct aggregation.
     """
+
+
+ParametersCalculation: TypeAlias = Union[ParametersCalculationUnionMember0, ParametersCalculationUnionMember1]
 
 
 class ParametersFilterUnionMember0FilterUnionMember0(TypedDict, total=False):

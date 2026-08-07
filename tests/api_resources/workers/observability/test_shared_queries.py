@@ -56,7 +56,7 @@ class TestSharedQueries:
             parameters={
                 "calculations": [
                     {
-                        "operator": "uniq",
+                        "operator": "count",
                         "alias": "alias",
                         "key": "key",
                         "key_type": "string",
@@ -253,7 +253,7 @@ class TestAsyncSharedQueries:
             parameters={
                 "calculations": [
                     {
-                        "operator": "uniq",
+                        "operator": "count",
                         "alias": "alias",
                         "key": "key",
                         "key_type": "string",

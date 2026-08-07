@@ -1,16 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
+from ...._utils import PropertyInfo
 from ...._models import BaseModel
 
 __all__ = [
     "QueryListResponse",
     "Parameters",
     "ParametersCalculation",
+    "ParametersCalculationUnionMember0",
+    "ParametersCalculationUnionMember1",
     "ParametersFilter",
     "ParametersFilterUnionMember0",
     "ParametersFilterWorkersObservabilityFilterLeaf",
@@ -21,10 +24,21 @@ __all__ = [
 ]
 
 
-class ParametersCalculation(BaseModel):
+class ParametersCalculationUnionMember0(BaseModel):
+    operator: Literal["count", "COUNT"]
+
+    alias: Optional[str] = None
+
+    key: Optional[str] = None
+
+    key_type: Optional[Literal["string", "number", "boolean"]] = FieldInfo(alias="keyType", default=None)
+
+
+class ParametersCalculationUnionMember1(BaseModel):
+    key: str
+
     operator: Literal[
         "uniq",
-        "count",
         "max",
         "min",
         "sum",
@@ -43,7 +57,6 @@ class ParametersCalculation(BaseModel):
         "stddev",
         "variance",
         "COUNT_DISTINCT",
-        "COUNT",
         "MAX",
         "MIN",
         "SUM",
@@ -65,9 +78,12 @@ class ParametersCalculation(BaseModel):
 
     alias: Optional[str] = None
 
-    key: Optional[str] = None
-
     key_type: Optional[Literal["string", "number", "boolean"]] = FieldInfo(alias="keyType", default=None)
+
+
+ParametersCalculation: TypeAlias = Annotated[
+    Union[ParametersCalculationUnionMember0, ParametersCalculationUnionMember1], PropertyInfo(discriminator="operator")
+]
 
 
 class ParametersFilterUnionMember0(BaseModel):

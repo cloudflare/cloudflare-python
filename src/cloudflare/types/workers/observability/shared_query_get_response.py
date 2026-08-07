@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
+from ...._utils import PropertyInfo
 from ...._models import BaseModel
 
 __all__ = [
@@ -13,6 +14,8 @@ __all__ = [
     "RunQuery",
     "RunQueryParameters",
     "RunQueryParametersCalculation",
+    "RunQueryParametersCalculationUnionMember0",
+    "RunQueryParametersCalculationUnionMember1",
     "RunQueryParametersFilter",
     "RunQueryParametersFilterUnionMember0",
     "RunQueryParametersFilterWorkersObservabilityFilterLeaf",
@@ -67,10 +70,21 @@ __all__ = [
 ]
 
 
-class RunQueryParametersCalculation(BaseModel):
+class RunQueryParametersCalculationUnionMember0(BaseModel):
+    operator: Literal["count", "COUNT"]
+
+    alias: Optional[str] = None
+
+    key: Optional[str] = None
+
+    key_type: Optional[Literal["string", "number", "boolean"]] = FieldInfo(alias="keyType", default=None)
+
+
+class RunQueryParametersCalculationUnionMember1(BaseModel):
+    key: str
+
     operator: Literal[
         "uniq",
-        "count",
         "max",
         "min",
         "sum",
@@ -89,7 +103,6 @@ class RunQueryParametersCalculation(BaseModel):
         "stddev",
         "variance",
         "COUNT_DISTINCT",
-        "COUNT",
         "MAX",
         "MIN",
         "SUM",
@@ -111,9 +124,13 @@ class RunQueryParametersCalculation(BaseModel):
 
     alias: Optional[str] = None
 
-    key: Optional[str] = None
-
     key_type: Optional[Literal["string", "number", "boolean"]] = FieldInfo(alias="keyType", default=None)
+
+
+RunQueryParametersCalculation: TypeAlias = Annotated[
+    Union[RunQueryParametersCalculationUnionMember0, RunQueryParametersCalculationUnionMember1],
+    PropertyInfo(discriminator="operator"),
+]
 
 
 class RunQueryParametersFilterUnionMember0(BaseModel):
