@@ -606,6 +606,9 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -874,6 +877,9 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -1478,6 +1484,9 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -2081,6 +2090,9 @@ class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -2408,6 +2420,9 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -2572,6 +2587,9 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2739,6 +2757,9 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2916,6 +2937,9 @@ class GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink(TypedDict
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -3064,6 +3088,9 @@ class BookmarkApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -3690,6 +3717,9 @@ class BrowserRDPApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -4185,6 +4215,9 @@ class McpServerApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -4687,6 +4720,9 @@ class McpServerPortalApplicationPolicyAccessAppPolicyLink(TypedDict, total=False
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.

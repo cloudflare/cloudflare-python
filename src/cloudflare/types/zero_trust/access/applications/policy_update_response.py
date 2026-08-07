@@ -59,6 +59,9 @@ class PolicyUpdateResponse(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
+    account_id: Optional[str] = None
+    """Identifier."""
+
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
 

@@ -430,6 +430,9 @@ class SelfHostedApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
+    account_id: Optional[str] = None
+    """Identifier."""
+
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
 
@@ -836,6 +839,9 @@ class SaaSApplicationPolicyMfaConfig(BaseModel):
 class SaaSApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
+
+    account_id: Optional[str] = None
+    """Identifier."""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -1297,6 +1303,9 @@ class BrowserSSHApplicationPolicyMfaConfig(BaseModel):
 class BrowserSSHApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
+
+    account_id: Optional[str] = None
+    """Identifier."""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -1904,6 +1913,9 @@ class BrowserVNCApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
+    account_id: Optional[str] = None
+    """Identifier."""
+
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
 
@@ -2353,6 +2365,9 @@ class AppLauncherApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
+    account_id: Optional[str] = None
+    """Identifier."""
+
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
 
@@ -2567,6 +2582,9 @@ class DeviceEnrollmentPermissionsApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
+    account_id: Optional[str] = None
+    """Identifier."""
+
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
 
@@ -2747,6 +2765,9 @@ class BrowserIsolationPermissionsApplicationPolicyMfaConfig(BaseModel):
 class BrowserIsolationPermissionsApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
+
+    account_id: Optional[str] = None
+    """Identifier."""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -2929,6 +2950,9 @@ class GatewayIdentityProxyEndpointApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
+    account_id: Optional[str] = None
+    """Identifier."""
+
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
 
@@ -3109,6 +3133,9 @@ class BookmarkApplicationPolicyMfaConfig(BaseModel):
 class BookmarkApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
+
+    account_id: Optional[str] = None
+    """Identifier."""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -3590,6 +3617,9 @@ class BrowserRDPApplicationPolicyMfaConfig(BaseModel):
 class BrowserRDPApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
+
+    account_id: Optional[str] = None
+    """Identifier."""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -4164,6 +4194,9 @@ class McpServerApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
+    account_id: Optional[str] = None
+    """Identifier."""
+
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
 
@@ -4664,6 +4697,9 @@ class McpServerPortalApplicationPolicyMfaConfig(BaseModel):
 class McpServerPortalApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
+
+    account_id: Optional[str] = None
+    """Identifier."""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
