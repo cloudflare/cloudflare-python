@@ -14,6 +14,7 @@ from .cni_create_response import CNICreateResponse as CNICreateResponse
 from .cni_update_response import CNIUpdateResponse as CNIUpdateResponse
 from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
+from .interconnect_loa_params import InterconnectLOAParams as InterconnectLOAParams
 from .setting_update_response import SettingUpdateResponse as SettingUpdateResponse
 from .interconnect_list_params import InterconnectListParams as InterconnectListParams
 from .interconnect_get_response import InterconnectGetResponse as InterconnectGetResponse

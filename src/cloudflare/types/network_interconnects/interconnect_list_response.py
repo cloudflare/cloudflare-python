@@ -36,6 +36,10 @@ class ItemNscInterconnectPhysicalBody(BaseModel):
 
     type: str
 
+    virtual_port_reservation_id: str
+
+    ccr_device_name: Optional[str] = None
+
     owner: Optional[str] = None
 
 
@@ -47,6 +51,8 @@ class ItemNscInterconnectGcpPartnerBody(BaseModel):
     region: str
 
     type: str
+
+    virtual_port_reservation_id: str
 
     owner: Optional[str] = None
 

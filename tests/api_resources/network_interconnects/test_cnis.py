@@ -145,6 +145,7 @@ class TestCNIs:
                 "extra_prefixes": ["string"],
                 "md5_key": "md5_key",
             },
+            bgp_mode="dynamic_route_exchange",
         )
         assert_matches_type(CNIUpdateResponse, cni, path=["response"])
 
@@ -502,6 +503,7 @@ class TestAsyncCNIs:
                 "extra_prefixes": ["string"],
                 "md5_key": "md5_key",
             },
+            bgp_mode="dynamic_route_exchange",
         )
         assert_matches_type(CNIUpdateResponse, cni, path=["response"])
 

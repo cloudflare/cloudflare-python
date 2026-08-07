@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -65,3 +66,14 @@ class CNIGetResponse(BaseModel):
     """Cloudflare end of the point-to-point link"""
 
     bgp: Optional[BGP] = None
+
+    bgp_mode: Optional[Literal["dynamic_route_exchange", "advertise_only"]] = None
+    """The BGP mode for a CNI.
+
+    Controls the customer-facing data path:
+
+    - `DynamicRouteExchange` — Full BGP: routes flow through to conduit via CRE /
+      bgp-bridge / bgp-bridge-receiver.
+    - `AdvertiseOnly` — static advertisement via taserver, no routes exchanged with
+      Conduit
+    """

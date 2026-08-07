@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from ..._types import SequenceNotStr
 
@@ -34,6 +34,17 @@ class CNIUpdateParams(TypedDict, total=False):
     """Cloudflare end of the point-to-point link"""
 
     bgp: BGP
+
+    bgp_mode: Literal["dynamic_route_exchange", "advertise_only"]
+    """The BGP mode for a CNI.
+
+    Controls the customer-facing data path:
+
+    - `DynamicRouteExchange` — Full BGP: routes flow through to conduit via CRE /
+      bgp-bridge / bgp-bridge-receiver.
+    - `AdvertiseOnly` — static advertisement via taserver, no routes exchanged with
+      Conduit
+    """
 
 
 class Magic(TypedDict, total=False):
