@@ -17,20 +17,20 @@ class MaintenanceConfigUpdateParams(TypedDict, total=False):
     namespace: Required[str]
 
     compaction: Compaction
-    """Updates compaction configuration (all fields optional)."""
+    """Updates table compaction configuration; all fields are optional."""
 
     snapshot_expiration: SnapshotExpiration
     """Updates snapshot expiration configuration (all fields optional)."""
 
 
 class Compaction(TypedDict, total=False):
-    """Updates compaction configuration (all fields optional)."""
+    """Updates table compaction configuration; all fields are optional."""
 
     state: Literal["enabled", "disabled"]
-    """Updates the state optionally."""
+    """Specifies the state of maintenance operations."""
 
     target_size_mb: Literal["64", "128", "256", "512"]
-    """Updates the target file size optionally."""
+    """Sets the target file size for compaction in megabytes. Defaults to "128"."""
 
 
 class SnapshotExpiration(TypedDict, total=False):

@@ -16,6 +16,7 @@ class IntegrationCreateParams(TypedDict, total=False):
     application: Required[
         Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
@@ -27,12 +28,14 @@ class IntegrationCreateParams(TypedDict, total=False):
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
         ]
     ]
     """Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
     - `ANTHROPIC` - ANTHROPIC
+    - `AWS` - AWS
     - `BITBUCKET` - BITBUCKET
     - `BOX` - BOX
     - `CONFLUENCE` - CONFLUENCE
@@ -44,6 +47,7 @@ class IntegrationCreateParams(TypedDict, total=False):
     - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
     - `OPENAI` - OPENAI
     - `SALESFORCE` - SALESFORCE
+    - `SERVICENOW` - SERVICENOW
     - `SLACK` - SLACK
     """
 

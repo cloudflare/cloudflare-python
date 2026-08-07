@@ -6,7 +6,6 @@ from typing import Union
 from datetime import date
 from typing_extensions import Required, Annotated, TypedDict
 
-from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["UsageGetParams"]
@@ -22,12 +21,6 @@ class UsageGetParams(TypedDict, total=False):
     Required if `to` is set. When omitted along with `to`, defaults to the start of
     the current month. Filters by charge period (when consumption happened), not
     billing period. The maximum date range is 31 days.
-    """
-
-    metric_id: SequenceNotStr[str]
-    """Filter results by one or more billable metric ids.
-
-    Repeat the parameter to filter by multiple metrics. Maximum 10 values.
     """
 
     to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]

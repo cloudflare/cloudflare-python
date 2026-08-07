@@ -178,7 +178,7 @@ class TestCertificates:
         certificate = client.zero_trust.access.certificates.list(
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(SyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 
@@ -518,7 +518,7 @@ class TestAsyncCertificates:
         certificate = await async_client.zero_trust.access.certificates.list(
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(AsyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 

@@ -24,6 +24,14 @@ from .ips import (
     IPsResourceWithStreamingResponse,
     AsyncIPsResourceWithStreamingResponse,
 )
+from .urls import (
+    URLsResource,
+    AsyncURLsResource,
+    URLsResourceWithRawResponse,
+    AsyncURLsResourceWithRawResponse,
+    URLsResourceWithStreamingResponse,
+    AsyncURLsResourceWithStreamingResponse,
+)
 from .intel import (
     IntelResource,
     AsyncIntelResource,
@@ -132,6 +140,12 @@ __all__ = [
     "AsyncWhoisResourceWithRawResponse",
     "WhoisResourceWithStreamingResponse",
     "AsyncWhoisResourceWithStreamingResponse",
+    "URLsResource",
+    "AsyncURLsResource",
+    "URLsResourceWithRawResponse",
+    "AsyncURLsResourceWithRawResponse",
+    "URLsResourceWithStreamingResponse",
+    "AsyncURLsResourceWithStreamingResponse",
     "IndicatorFeedsResource",
     "AsyncIndicatorFeedsResource",
     "IndicatorFeedsResourceWithRawResponse",

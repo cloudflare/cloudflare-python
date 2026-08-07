@@ -105,10 +105,11 @@ class UseCase(BaseModel):
 
 
 class ApplicationGetResponse(BaseModel):
-    """Full application detail for onboarding UI."""
+    """The requested item."""
 
     id: Literal[
         "ANTHROPIC",
+        "AWS",
         "BITBUCKET",
         "BOX",
         "CONFLUENCE",
@@ -120,11 +121,13 @@ class ApplicationGetResponse(BaseModel):
         "MICROSOFT_INTERNAL",
         "OPENAI",
         "SALESFORCE",
+        "SERVICENOW",
         "SLACK",
     ]
     """Vendor identifier.
 
     - `ANTHROPIC` - ANTHROPIC
+    - `AWS` - AWS
     - `BITBUCKET` - BITBUCKET
     - `BOX` - BOX
     - `CONFLUENCE` - CONFLUENCE
@@ -136,6 +139,7 @@ class ApplicationGetResponse(BaseModel):
     - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
     - `OPENAI` - OPENAI
     - `SALESFORCE` - SALESFORCE
+    - `SERVICENOW` - SERVICENOW
     - `SLACK` - SLACK
     """
 

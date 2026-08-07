@@ -88,7 +88,7 @@ class SendingDomainRestrictionsResource(SyncAPIResource):
 
           domain: Domain that requires TLS enforcement.
 
-          exclude: Excluded subdomains that are exempt from TLS requirements.
+          exclude: Subdomains to exempt from TLS requirements.
 
           extra_headers: Send extra headers
 
@@ -278,7 +278,7 @@ class SendingDomainRestrictionsResource(SyncAPIResource):
 
           domain: Domain that requires TLS enforcement.
 
-          exclude: Excluded subdomains that are exempt from TLS requirements.
+          exclude: Subdomains to exempt from TLS requirements.
 
           extra_headers: Send extra headers
 
@@ -419,7 +419,7 @@ class AsyncSendingDomainRestrictionsResource(AsyncAPIResource):
 
           domain: Domain that requires TLS enforcement.
 
-          exclude: Excluded subdomains that are exempt from TLS requirements.
+          exclude: Subdomains to exempt from TLS requirements.
 
           extra_headers: Send extra headers
 
@@ -611,7 +611,7 @@ class AsyncSendingDomainRestrictionsResource(AsyncAPIResource):
 
           domain: Domain that requires TLS enforcement.
 
-          exclude: Excluded subdomains that are exempt from TLS requirements.
+          exclude: Subdomains to exempt from TLS requirements.
 
           extra_headers: Send extra headers
 

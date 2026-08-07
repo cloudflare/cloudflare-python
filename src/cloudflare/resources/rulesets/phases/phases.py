@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Any, Type, Iterable, cast
 
 import httpx
 
@@ -64,6 +64,7 @@ class PhasesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
         rules: Iterable[phase_update_params.Rule] | Omit = omit,
@@ -83,6 +84,10 @@ class PhasesResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           description: An informative description of the ruleset.
 
@@ -112,29 +117,35 @@ class PhasesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._put(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
-                ruleset_phase=ruleset_phase,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            PhaseUpdateResponse,
+            self._put(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
+                    ruleset_phase=ruleset_phase,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=maybe_transform(
+                    {
+                        "description": description,
+                        "name": name,
+                        "rules": rules,
+                    },
+                    phase_update_params.PhaseUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform({"dry_run": dry_run}, phase_update_params.PhaseUpdateParams),
+                    post_parser=ResultWrapper[PhaseUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PhaseUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=maybe_transform(
-                {
-                    "description": description,
-                    "name": name,
-                    "rules": rules,
-                },
-                phase_update_params.PhaseUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PhaseUpdateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[PhaseUpdateResponse], ResultWrapper[PhaseUpdateResponse]),
         )
 
     def get(
@@ -231,6 +242,7 @@ class AsyncPhasesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
         rules: Iterable[phase_update_params.Rule] | Omit = omit,
@@ -250,6 +262,10 @@ class AsyncPhasesResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           description: An informative description of the ruleset.
 
@@ -279,29 +295,35 @@ class AsyncPhasesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._put(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
-                ruleset_phase=ruleset_phase,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            PhaseUpdateResponse,
+            await self._put(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
+                    ruleset_phase=ruleset_phase,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=await async_maybe_transform(
+                    {
+                        "description": description,
+                        "name": name,
+                        "rules": rules,
+                    },
+                    phase_update_params.PhaseUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform({"dry_run": dry_run}, phase_update_params.PhaseUpdateParams),
+                    post_parser=ResultWrapper[PhaseUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PhaseUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=await async_maybe_transform(
-                {
-                    "description": description,
-                    "name": name,
-                    "rules": rules,
-                },
-                phase_update_params.PhaseUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PhaseUpdateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[PhaseUpdateResponse], ResultWrapper[PhaseUpdateResponse]),
         )
 
     async def get(

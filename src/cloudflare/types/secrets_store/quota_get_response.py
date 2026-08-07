@@ -7,10 +7,10 @@ __all__ = ["QuotaGetResponse", "Secrets"]
 
 class Secrets(BaseModel):
     quota: float
-    """The number of secrets the account is entitlted to use"""
+    """The number of secrets the account is entitled to use."""
 
     usage: float
-    """The number of secrets the account is currently using"""
+    """The number of secrets the account is currently using."""
 
 
 class QuotaGetResponse(BaseModel):

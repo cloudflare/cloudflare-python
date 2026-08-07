@@ -176,7 +176,7 @@ class SinksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete Pipeline in Account.
+        Delete Sink in Account.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -407,7 +407,7 @@ class AsyncSinksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete Pipeline in Account.
+        Delete Sink in Account.
 
         Args:
           account_id: Specifies the public ID of the account.

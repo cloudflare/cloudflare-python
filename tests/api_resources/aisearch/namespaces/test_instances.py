@@ -107,6 +107,14 @@ class TestInstances:
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
+                    "discover_options": {
+                        "depth": 5,
+                        "include_external_links": False,
+                        "include_subdomains": False,
+                        "limit": 10000,
+                        "max_age": 86400,
+                        "source": "all",
+                    },
                     "parse_options": {
                         "content_selector": [
                             {
@@ -259,6 +267,14 @@ class TestInstances:
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
+                    "discover_options": {
+                        "depth": 5,
+                        "include_external_links": False,
+                        "include_subdomains": False,
+                        "limit": 10000,
+                        "max_age": 86400,
+                        "source": "all",
+                    },
                     "parse_options": {
                         "content_selector": [
                             {
@@ -923,6 +939,14 @@ class TestAsyncInstances:
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
+                    "discover_options": {
+                        "depth": 5,
+                        "include_external_links": False,
+                        "include_subdomains": False,
+                        "limit": 10000,
+                        "max_age": 86400,
+                        "source": "all",
+                    },
                     "parse_options": {
                         "content_selector": [
                             {
@@ -1075,6 +1099,14 @@ class TestAsyncInstances:
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
+                    "discover_options": {
+                        "depth": 5,
+                        "include_external_links": False,
+                        "include_subdomains": False,
+                        "limit": 10000,
+                        "max_age": 86400,
+                        "source": "all",
+                    },
                     "parse_options": {
                         "content_selector": [
                             {

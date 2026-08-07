@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["InstanceCreateParams", "InstanceRetention"]
 
@@ -15,7 +15,10 @@ class InstanceCreateParams(TypedDict, total=False):
 
     instance_retention: InstanceRetention
 
-    params: object
+    location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "oc", "sam", "afr", "me"]
+
+    params: str
+    """JSON-encoded event payload passed into the new instance."""
 
 
 class InstanceRetention(TypedDict, total=False):

@@ -2827,7 +2827,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.list(
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
             scim_enabled="scim_enabled",
         )
         assert_matches_type(
@@ -5822,7 +5822,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.list(
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
             scim_enabled="scim_enabled",
         )
         assert_matches_type(

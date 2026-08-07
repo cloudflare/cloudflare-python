@@ -7,4 +7,4 @@ __all__ = ["TrustedDomainDeleteResponse"]
 
 class TrustedDomainDeleteResponse(BaseModel):
     id: str
-    """Trusted domain identifier"""
+    """Trusted domain identifier."""

@@ -162,6 +162,12 @@ class Organization(BaseModel):
     Valid time units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`.
     """
 
+    warp_auth_non_browser_401: Optional[bool] = None
+    """
+    When enabled, unsuccessful WARP authentication requests with a non-HTML Accept
+    header return a 401 response instead of redirecting to the login page.
+    """
+
     warp_auth_session_duration: Optional[str] = None
     """The amount of time that tokens issued for applications will be valid.
 

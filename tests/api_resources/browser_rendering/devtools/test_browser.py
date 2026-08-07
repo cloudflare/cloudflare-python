@@ -38,6 +38,10 @@ class TestBrowser:
             live_view_url_expires_in_ms=60000,
             recording=True,
             targets=True,
+            guardrails={
+                "allowed_domains": ["string"],
+                "allowed_domain_sets": ["string"],
+            },
         )
         assert_matches_type(BrowserCreateResponse, browser, path=["response"])
 
@@ -355,6 +359,10 @@ class TestAsyncBrowser:
             live_view_url_expires_in_ms=60000,
             recording=True,
             targets=True,
+            guardrails={
+                "allowed_domains": ["string"],
+                "allowed_domain_sets": ["string"],
+            },
         )
         assert_matches_type(BrowserCreateResponse, browser, path=["response"])
 

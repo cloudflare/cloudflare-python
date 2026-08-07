@@ -75,6 +75,7 @@ class NamespacesResource(SyncAPIResource):
         account_id: str,
         name: str,
         description: Optional[str] | Omit = omit,
+        public_endpoint_params: namespace_create_params.PublicEndpointParams | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -104,6 +105,7 @@ class NamespacesResource(SyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "public_endpoint_params": public_endpoint_params,
                 },
                 namespace_create_params.NamespaceCreateParams,
             ),
@@ -123,6 +125,7 @@ class NamespacesResource(SyncAPIResource):
         *,
         account_id: str,
         description: Optional[str] | Omit = omit,
+        public_endpoint_params: Optional[namespace_update_params.PublicEndpointParams] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,10 +133,10 @@ class NamespacesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceUpdateResponse:
-        """Update the description of an existing namespace.
-
-        The default namespace cannot be
-        modified.
+        """
+        Update the description and/or the public endpoint configuration of an existing
+        namespace. The default namespace's description cannot be modified, but its
+        public endpoint can.
 
         Args:
           description: Optional description for the namespace. Max 256 characters.
@@ -152,7 +155,13 @@ class NamespacesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._put(
             path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
-            body=maybe_transform({"description": description}, namespace_update_params.NamespaceUpdateParams),
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "public_endpoint_params": public_endpoint_params,
+                },
+                namespace_update_params.NamespaceUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -478,6 +487,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         account_id: str,
         name: str,
         description: Optional[str] | Omit = omit,
+        public_endpoint_params: namespace_create_params.PublicEndpointParams | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -507,6 +517,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "public_endpoint_params": public_endpoint_params,
                 },
                 namespace_create_params.NamespaceCreateParams,
             ),
@@ -526,6 +537,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         *,
         account_id: str,
         description: Optional[str] | Omit = omit,
+        public_endpoint_params: Optional[namespace_update_params.PublicEndpointParams] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -533,10 +545,10 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceUpdateResponse:
-        """Update the description of an existing namespace.
-
-        The default namespace cannot be
-        modified.
+        """
+        Update the description and/or the public endpoint configuration of an existing
+        namespace. The default namespace's description cannot be modified, but its
+        public endpoint can.
 
         Args:
           description: Optional description for the namespace. Max 256 characters.
@@ -556,7 +568,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         return await self._put(
             path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
             body=await async_maybe_transform(
-                {"description": description}, namespace_update_params.NamespaceUpdateParams
+                {
+                    "description": description,
+                    "public_endpoint_params": public_endpoint_params,
+                },
+                namespace_update_params.NamespaceUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,

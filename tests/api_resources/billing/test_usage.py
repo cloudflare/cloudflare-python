@@ -14,7 +14,12 @@ from cloudflare.types.billing import (
     UsageGetResponse,
     UsagePaygoResponse,
     UsagePaygoInfoResponse,
+    UsageGetAccountUsageV1Response,
+    UsageGetAccountUsageV2Response,
+    UsageGetAccountUsageInfoV1Response,
 )
+
+# pyright: reportDeprecated=false
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,26 +29,30 @@ class TestUsage:
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        usage = client.billing.usage.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = client.billing.usage.get(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
         assert_matches_type(UsageGetResponse, usage, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        usage = client.billing.usage.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            from_=parse_date("2025-05-01"),
-            metric_id=["workers_standard_requests", "http_transferred_bytes"],
-            to=parse_date("2025-05-31"),
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = client.billing.usage.get(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                from_=parse_date("2025-05-01"),
+                to=parse_date("2025-05-31"),
+            )
+
         assert_matches_type(UsageGetResponse, usage, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.billing.usage.with_raw_response.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.billing.usage.with_raw_response.get(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -52,45 +61,184 @@ class TestUsage:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.billing.usage.with_streaming_response.get(
+        with pytest.warns(DeprecationWarning):
+            with client.billing.usage.with_streaming_response.get(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                usage = response.parse()
+                assert_matches_type(UsageGetResponse, usage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                client.billing.usage.with_raw_response.get(
+                    account_id="",
+                )
+
+    @parametrize
+    def test_method_get_account_usage_info_v1(self, client: Cloudflare) -> None:
+        usage = client.billing.usage.get_account_usage_info_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(UsageGetAccountUsageInfoV1Response, usage, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_account_usage_info_v1(self, client: Cloudflare) -> None:
+        response = client.billing.usage.with_raw_response.get_account_usage_info_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        usage = response.parse()
+        assert_matches_type(UsageGetAccountUsageInfoV1Response, usage, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_account_usage_info_v1(self, client: Cloudflare) -> None:
+        with client.billing.usage.with_streaming_response.get_account_usage_info_v1(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             usage = response.parse()
-            assert_matches_type(UsageGetResponse, usage, path=["response"])
+            assert_matches_type(UsageGetAccountUsageInfoV1Response, usage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_get(self, client: Cloudflare) -> None:
+    def test_path_params_get_account_usage_info_v1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.billing.usage.with_raw_response.get(
+            client.billing.usage.with_raw_response.get_account_usage_info_v1(
+                account_id="",
+            )
+
+    @parametrize
+    def test_method_get_account_usage_v1(self, client: Cloudflare) -> None:
+        usage = client.billing.usage.get_account_usage_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(UsageGetAccountUsageV1Response, usage, path=["response"])
+
+    @parametrize
+    def test_method_get_account_usage_v1_with_all_params(self, client: Cloudflare) -> None:
+        usage = client.billing.usage.get_account_usage_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            from_=parse_date("2025-05-01"),
+            to=parse_date("2025-05-31"),
+        )
+        assert_matches_type(UsageGetAccountUsageV1Response, usage, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_account_usage_v1(self, client: Cloudflare) -> None:
+        response = client.billing.usage.with_raw_response.get_account_usage_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        usage = response.parse()
+        assert_matches_type(UsageGetAccountUsageV1Response, usage, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_account_usage_v1(self, client: Cloudflare) -> None:
+        with client.billing.usage.with_streaming_response.get_account_usage_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            usage = response.parse()
+            assert_matches_type(UsageGetAccountUsageV1Response, usage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get_account_usage_v1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.billing.usage.with_raw_response.get_account_usage_v1(
+                account_id="",
+            )
+
+    @parametrize
+    def test_method_get_account_usage_v2(self, client: Cloudflare) -> None:
+        usage = client.billing.usage.get_account_usage_v2(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(UsageGetAccountUsageV2Response, usage, path=["response"])
+
+    @parametrize
+    def test_method_get_account_usage_v2_with_all_params(self, client: Cloudflare) -> None:
+        usage = client.billing.usage.get_account_usage_v2(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            from_=parse_date("2025-05-01"),
+            to=parse_date("2025-05-31"),
+        )
+        assert_matches_type(UsageGetAccountUsageV2Response, usage, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_account_usage_v2(self, client: Cloudflare) -> None:
+        response = client.billing.usage.with_raw_response.get_account_usage_v2(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        usage = response.parse()
+        assert_matches_type(UsageGetAccountUsageV2Response, usage, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_account_usage_v2(self, client: Cloudflare) -> None:
+        with client.billing.usage.with_streaming_response.get_account_usage_v2(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            usage = response.parse()
+            assert_matches_type(UsageGetAccountUsageV2Response, usage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get_account_usage_v2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.billing.usage.with_raw_response.get_account_usage_v2(
                 account_id="",
             )
 
     @parametrize
     def test_method_paygo(self, client: Cloudflare) -> None:
-        usage = client.billing.usage.paygo(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = client.billing.usage.paygo(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
         assert_matches_type(UsagePaygoResponse, usage, path=["response"])
 
     @parametrize
     def test_method_paygo_with_all_params(self, client: Cloudflare) -> None:
-        usage = client.billing.usage.paygo(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            from_=parse_date("2025-05-01"),
-            to=parse_date("2025-05-31"),
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = client.billing.usage.paygo(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                from_=parse_date("2025-05-01"),
+                to=parse_date("2025-05-31"),
+            )
+
         assert_matches_type(UsagePaygoResponse, usage, path=["response"])
 
     @parametrize
     def test_raw_response_paygo(self, client: Cloudflare) -> None:
-        response = client.billing.usage.with_raw_response.paygo(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.billing.usage.with_raw_response.paygo(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -99,36 +247,41 @@ class TestUsage:
 
     @parametrize
     def test_streaming_response_paygo(self, client: Cloudflare) -> None:
-        with client.billing.usage.with_streaming_response.paygo(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.billing.usage.with_streaming_response.paygo(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            usage = response.parse()
-            assert_matches_type(UsagePaygoResponse, usage, path=["response"])
+                usage = response.parse()
+                assert_matches_type(UsagePaygoResponse, usage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_paygo(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.billing.usage.with_raw_response.paygo(
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                client.billing.usage.with_raw_response.paygo(
+                    account_id="",
+                )
 
     @parametrize
     def test_method_paygo_info(self, client: Cloudflare) -> None:
-        usage = client.billing.usage.paygo_info(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = client.billing.usage.paygo_info(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
         assert_matches_type(UsagePaygoInfoResponse, usage, path=["response"])
 
     @parametrize
     def test_raw_response_paygo_info(self, client: Cloudflare) -> None:
-        response = client.billing.usage.with_raw_response.paygo_info(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.billing.usage.with_raw_response.paygo_info(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -137,23 +290,25 @@ class TestUsage:
 
     @parametrize
     def test_streaming_response_paygo_info(self, client: Cloudflare) -> None:
-        with client.billing.usage.with_streaming_response.paygo_info(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.billing.usage.with_streaming_response.paygo_info(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            usage = response.parse()
-            assert_matches_type(UsagePaygoInfoResponse, usage, path=["response"])
+                usage = response.parse()
+                assert_matches_type(UsagePaygoInfoResponse, usage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_paygo_info(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.billing.usage.with_raw_response.paygo_info(
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                client.billing.usage.with_raw_response.paygo_info(
+                    account_id="",
+                )
 
 
 class TestAsyncUsage:
@@ -163,26 +318,30 @@ class TestAsyncUsage:
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        usage = await async_client.billing.usage.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = await async_client.billing.usage.get(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
         assert_matches_type(UsageGetResponse, usage, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        usage = await async_client.billing.usage.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            from_=parse_date("2025-05-01"),
-            metric_id=["workers_standard_requests", "http_transferred_bytes"],
-            to=parse_date("2025-05-31"),
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = await async_client.billing.usage.get(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                from_=parse_date("2025-05-01"),
+                to=parse_date("2025-05-31"),
+            )
+
         assert_matches_type(UsageGetResponse, usage, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.billing.usage.with_raw_response.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.billing.usage.with_raw_response.get(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -191,45 +350,184 @@ class TestAsyncUsage:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.billing.usage.with_streaming_response.get(
+        with pytest.warns(DeprecationWarning):
+            async with async_client.billing.usage.with_streaming_response.get(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                usage = await response.parse()
+                assert_matches_type(UsageGetResponse, usage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                await async_client.billing.usage.with_raw_response.get(
+                    account_id="",
+                )
+
+    @parametrize
+    async def test_method_get_account_usage_info_v1(self, async_client: AsyncCloudflare) -> None:
+        usage = await async_client.billing.usage.get_account_usage_info_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(UsageGetAccountUsageInfoV1Response, usage, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_account_usage_info_v1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.billing.usage.with_raw_response.get_account_usage_info_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        usage = await response.parse()
+        assert_matches_type(UsageGetAccountUsageInfoV1Response, usage, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_account_usage_info_v1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.billing.usage.with_streaming_response.get_account_usage_info_v1(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             usage = await response.parse()
-            assert_matches_type(UsageGetResponse, usage, path=["response"])
+            assert_matches_type(UsageGetAccountUsageInfoV1Response, usage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_get_account_usage_info_v1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.billing.usage.with_raw_response.get(
+            await async_client.billing.usage.with_raw_response.get_account_usage_info_v1(
+                account_id="",
+            )
+
+    @parametrize
+    async def test_method_get_account_usage_v1(self, async_client: AsyncCloudflare) -> None:
+        usage = await async_client.billing.usage.get_account_usage_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(UsageGetAccountUsageV1Response, usage, path=["response"])
+
+    @parametrize
+    async def test_method_get_account_usage_v1_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        usage = await async_client.billing.usage.get_account_usage_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            from_=parse_date("2025-05-01"),
+            to=parse_date("2025-05-31"),
+        )
+        assert_matches_type(UsageGetAccountUsageV1Response, usage, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_account_usage_v1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.billing.usage.with_raw_response.get_account_usage_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        usage = await response.parse()
+        assert_matches_type(UsageGetAccountUsageV1Response, usage, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_account_usage_v1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.billing.usage.with_streaming_response.get_account_usage_v1(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            usage = await response.parse()
+            assert_matches_type(UsageGetAccountUsageV1Response, usage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get_account_usage_v1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.billing.usage.with_raw_response.get_account_usage_v1(
+                account_id="",
+            )
+
+    @parametrize
+    async def test_method_get_account_usage_v2(self, async_client: AsyncCloudflare) -> None:
+        usage = await async_client.billing.usage.get_account_usage_v2(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(UsageGetAccountUsageV2Response, usage, path=["response"])
+
+    @parametrize
+    async def test_method_get_account_usage_v2_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        usage = await async_client.billing.usage.get_account_usage_v2(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            from_=parse_date("2025-05-01"),
+            to=parse_date("2025-05-31"),
+        )
+        assert_matches_type(UsageGetAccountUsageV2Response, usage, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_account_usage_v2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.billing.usage.with_raw_response.get_account_usage_v2(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        usage = await response.parse()
+        assert_matches_type(UsageGetAccountUsageV2Response, usage, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_account_usage_v2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.billing.usage.with_streaming_response.get_account_usage_v2(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            usage = await response.parse()
+            assert_matches_type(UsageGetAccountUsageV2Response, usage, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get_account_usage_v2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.billing.usage.with_raw_response.get_account_usage_v2(
                 account_id="",
             )
 
     @parametrize
     async def test_method_paygo(self, async_client: AsyncCloudflare) -> None:
-        usage = await async_client.billing.usage.paygo(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = await async_client.billing.usage.paygo(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
         assert_matches_type(UsagePaygoResponse, usage, path=["response"])
 
     @parametrize
     async def test_method_paygo_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        usage = await async_client.billing.usage.paygo(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            from_=parse_date("2025-05-01"),
-            to=parse_date("2025-05-31"),
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = await async_client.billing.usage.paygo(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                from_=parse_date("2025-05-01"),
+                to=parse_date("2025-05-31"),
+            )
+
         assert_matches_type(UsagePaygoResponse, usage, path=["response"])
 
     @parametrize
     async def test_raw_response_paygo(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.billing.usage.with_raw_response.paygo(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.billing.usage.with_raw_response.paygo(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -238,36 +536,41 @@ class TestAsyncUsage:
 
     @parametrize
     async def test_streaming_response_paygo(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.billing.usage.with_streaming_response.paygo(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.billing.usage.with_streaming_response.paygo(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            usage = await response.parse()
-            assert_matches_type(UsagePaygoResponse, usage, path=["response"])
+                usage = await response.parse()
+                assert_matches_type(UsagePaygoResponse, usage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_paygo(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.billing.usage.with_raw_response.paygo(
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                await async_client.billing.usage.with_raw_response.paygo(
+                    account_id="",
+                )
 
     @parametrize
     async def test_method_paygo_info(self, async_client: AsyncCloudflare) -> None:
-        usage = await async_client.billing.usage.paygo_info(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            usage = await async_client.billing.usage.paygo_info(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
         assert_matches_type(UsagePaygoInfoResponse, usage, path=["response"])
 
     @parametrize
     async def test_raw_response_paygo_info(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.billing.usage.with_raw_response.paygo_info(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.billing.usage.with_raw_response.paygo_info(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -276,20 +579,22 @@ class TestAsyncUsage:
 
     @parametrize
     async def test_streaming_response_paygo_info(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.billing.usage.with_streaming_response.paygo_info(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.billing.usage.with_streaming_response.paygo_info(
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            usage = await response.parse()
-            assert_matches_type(UsagePaygoInfoResponse, usage, path=["response"])
+                usage = await response.parse()
+                assert_matches_type(UsagePaygoInfoResponse, usage, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_paygo_info(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.billing.usage.with_raw_response.paygo_info(
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                await async_client.billing.usage.with_raw_response.paygo_info(
+                    account_id="",
+                )

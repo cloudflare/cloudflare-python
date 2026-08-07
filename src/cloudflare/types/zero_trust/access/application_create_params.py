@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .decision import Decision
@@ -697,7 +697,7 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -966,7 +966,7 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -1569,7 +1569,7 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -2172,7 +2172,7 @@ class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -2499,7 +2499,7 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -2664,7 +2664,7 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -2831,7 +2831,7 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -3007,7 +3007,7 @@ class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2(TypedDict, total
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -3156,7 +3156,7 @@ class BookmarkApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -3781,7 +3781,7 @@ class BrowserRDPApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -4277,7 +4277,7 @@ class McpServerApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -4779,7 +4779,7 @@ class McpServerPortalApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),

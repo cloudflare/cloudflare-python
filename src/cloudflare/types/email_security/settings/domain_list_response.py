@@ -27,7 +27,7 @@ class EmailsProcessed(BaseModel):
 
 class DomainListResponse(BaseModel):
     id: Optional[str] = None
-    """Domain identifier"""
+    """Domain identifier."""
 
     allowed_delivery_modes: Optional[List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]]] = None
 

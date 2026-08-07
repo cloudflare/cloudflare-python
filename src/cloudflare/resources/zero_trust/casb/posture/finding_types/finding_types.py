@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import List, Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -64,6 +65,27 @@ class FindingTypesResource(SyncAPIResource):
         account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        vendors: List[
+            Literal[
+                "ANTHROPIC",
+                "AWS",
+                "BITBUCKET",
+                "BOX",
+                "CONFLUENCE",
+                "DROPBOX",
+                "GITHUB",
+                "GOOGLE_CLOUD_PLATFORM",
+                "GOOGLE_WORKSPACE",
+                "JIRA",
+                "MICROSOFT",
+                "MICROSOFT_INTERNAL",
+                "OPENAI",
+                "SALESFORCE",
+                "SERVICENOW",
+                "SLACK",
+            ]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,6 +100,8 @@ class FindingTypesResource(SyncAPIResource):
           page: A page number within the paginated result set.
 
           per_page: Number of results to return per page.
+
+          vendors: Filter finding types by vendor. Supports multiple comma-separated values.
 
           extra_headers: Send extra headers
 
@@ -101,6 +125,7 @@ class FindingTypesResource(SyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
+                        "vendors": vendors,
                     },
                     finding_type_list_params.FindingTypeListParams,
                 ),
@@ -183,6 +208,27 @@ class AsyncFindingTypesResource(AsyncAPIResource):
         account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        vendors: List[
+            Literal[
+                "ANTHROPIC",
+                "AWS",
+                "BITBUCKET",
+                "BOX",
+                "CONFLUENCE",
+                "DROPBOX",
+                "GITHUB",
+                "GOOGLE_CLOUD_PLATFORM",
+                "GOOGLE_WORKSPACE",
+                "JIRA",
+                "MICROSOFT",
+                "MICROSOFT_INTERNAL",
+                "OPENAI",
+                "SALESFORCE",
+                "SERVICENOW",
+                "SLACK",
+            ]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,6 +243,8 @@ class AsyncFindingTypesResource(AsyncAPIResource):
           page: A page number within the paginated result set.
 
           per_page: Number of results to return per page.
+
+          vendors: Filter finding types by vendor. Supports multiple comma-separated values.
 
           extra_headers: Send extra headers
 
@@ -220,6 +268,7 @@ class AsyncFindingTypesResource(AsyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
+                        "vendors": vendors,
                     },
                     finding_type_list_params.FindingTypeListParams,
                 ),

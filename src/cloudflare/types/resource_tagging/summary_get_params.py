@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["IssueDismissParams"]
+__all__ = ["SummaryGetParams"]
 
 
-class IssueDismissParams(TypedDict, total=False):
+class SummaryGetParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    dismiss: bool
+    cursor: str
+    """Cursor for pagination."""

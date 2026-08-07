@@ -6,7 +6,59 @@ from datetime import datetime
 from ..._models import BaseModel
 from .health_check import HealthCheck
 
-__all__ = ["CfInterconnectBulkUpdateResponse", "ModifiedInterconnect", "ModifiedInterconnectGRE"]
+__all__ = [
+    "CfInterconnectBulkUpdateResponse",
+    "ModifiedInterconnect",
+    "ModifiedInterconnectBGP",
+    "ModifiedInterconnectGRE",
+]
+
+
+class ModifiedInterconnectBGP(BaseModel):
+    as_no: Optional[int] = None
+    """Deprecated. Use customer_asn."""
+
+    cloudflare_endpoint: Optional[str] = None
+    """Read-only for v1.5; derived from interface_address."""
+
+    customer_asn: Optional[int] = None
+    """ASN used on the customer end of the BGP session."""
+
+    customer_endpoint: Optional[str] = None
+    """Read-only for v1.5; derived from interface_address."""
+
+    export_filter_id: Optional[str] = None
+    """ID of the BGP filter profile applied to routes advertised to the customer."""
+
+    extra_prefixes: Optional[List[str]] = None
+    """
+    Prefixes in this list will be advertised to the customer device, in addition to
+    the routes in the Magic routing table.
+    """
+
+    import_filter_id: Optional[str] = None
+    """ID of the BGP filter profile applied to routes received from the customer."""
+
+    md5_key: Optional[str] = None
+    """MD5 key to use for session authentication.
+
+    Note that _this is not a security measure_. MD5 is not a valid security
+    mechanism, and the key is not treated as a secret value. This is _only_
+    supported for preventing misconfiguration, not for defending against malicious
+    attacks.
+
+    The MD5 key, if set, must be of non-zero length and consist only of the
+    following types of character:
+
+    - ASCII alphanumerics: `[a-zA-Z0-9]`
+    - Special characters in the set `'!@#$%^&*()+[]{}<>/.,;:_-~`= \\||`
+
+    In other words, MD5 keys may contain any printable ASCII character aside from
+    newline (0x0A), quotation mark (`"`), vertical tab (0x0B), carriage return
+    (0x0D), tab (0x09), form feed (0x0C), and the question mark (`?`). Requests
+    specifying an MD5 key with one or more of these disallowed characters will be
+    rejected.
+    """
 
 
 class ModifiedInterconnectGRE(BaseModel):
@@ -30,6 +82,8 @@ class ModifiedInterconnect(BaseModel):
     requests setting this to `true` without that flag will be rejected.
     """
 
+    bgp: Optional[ModifiedInterconnectBGP] = None
+
     colo_name: Optional[str] = None
     """The name of the interconnect. The name cannot share a name with other tunnels."""
 
@@ -45,10 +99,13 @@ class ModifiedInterconnect(BaseModel):
     health_check: Optional[HealthCheck] = None
 
     interface_address: Optional[str] = None
-    """
-    A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
-    of the tunnel. Select the subnet from the following private IP space:
-    10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+    """The IPv4 interface address for the interconnect.
+
+    For MPLS Interconnects, use a /30 or /31 prefix. For GRE Interconnects, a /29,
+    /30, or /31 prefix may be used. A /29 prefix is only allowed for v1.5
+    interconnects, and the address must be the .3 host of the subnet (the fourth
+    address overall; the network address is not usable). Select the subnet from RFC
+    1918 or the approved link-local ranges.
     """
 
     interface_address6: Optional[str] = None
@@ -70,6 +127,14 @@ class ModifiedInterconnect(BaseModel):
 
     name: Optional[str] = None
     """The name of the interconnect. The name cannot share a name with other tunnels."""
+
+    version: Optional[str] = None
+    """Immutable interconnect version configured at creation time. One of:
+
+    - "1"
+    - "1.5"
+    - "2"
+    """
 
     virtual_port_reservation_id: Optional[str] = None
     """

@@ -9,7 +9,6 @@ __all__ = ["StoreDeleteParams"]
 
 class StoreDeleteParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
 
     force: bool
     """

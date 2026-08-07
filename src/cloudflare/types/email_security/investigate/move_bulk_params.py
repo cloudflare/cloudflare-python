@@ -22,10 +22,7 @@ class MoveBulkParams(TypedDict, total=False):
     ]
 
     ids: SequenceNotStr[str]
-    """List of message IDs to move"""
+    """List of message IDs to move."""
 
     postfix_ids: SequenceNotStr[str]
-    """Deprecated, use `ids` instead.
-
-    End of life: November 1, 2026. List of message IDs to move.
-    """
+    """Deprecated, use `ids` instead. End of life: November 1, 2026."""

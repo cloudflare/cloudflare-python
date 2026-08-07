@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Any, Type, Iterable, cast
 
 import httpx
 
@@ -43,7 +43,14 @@ from .phases.phases import (
     AsyncPhasesResourceWithStreamingResponse,
 )
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.rulesets import Kind, Phase, ruleset_list_params, ruleset_create_params, ruleset_update_params
+from ...types.rulesets import (
+    Kind,
+    Phase,
+    ruleset_list_params,
+    ruleset_create_params,
+    ruleset_delete_params,
+    ruleset_update_params,
+)
 from ...types.rulesets.kind import Kind
 from ...types.rulesets.phase import Phase
 from ...types.rulesets.ruleset_get_response import RulesetGetResponse
@@ -94,6 +101,7 @@ class RulesetsResource(SyncAPIResource):
         phase: Phase,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         description: str | Omit = omit,
         rules: Iterable[ruleset_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -116,6 +124,10 @@ class RulesetsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           description: An informative description of the ruleset.
 
@@ -141,30 +153,36 @@ class RulesetsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._post(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets",
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RulesetCreateResponse,
+            self._post(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets",
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=maybe_transform(
+                    {
+                        "kind": kind,
+                        "name": name,
+                        "phase": phase,
+                        "description": description,
+                        "rules": rules,
+                    },
+                    ruleset_create_params.RulesetCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform({"dry_run": dry_run}, ruleset_create_params.RulesetCreateParams),
+                    post_parser=ResultWrapper[RulesetCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RulesetCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=maybe_transform(
-                {
-                    "kind": kind,
-                    "name": name,
-                    "phase": phase,
-                    "description": description,
-                    "rules": rules,
-                },
-                ruleset_create_params.RulesetCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RulesetCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RulesetCreateResponse], ResultWrapper[RulesetCreateResponse]),
         )
 
     def update(
@@ -173,6 +191,7 @@ class RulesetsResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         description: str | Omit = omit,
         kind: Kind | Omit = omit,
         name: str | Omit = omit,
@@ -194,6 +213,10 @@ class RulesetsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           description: An informative description of the ruleset.
 
@@ -227,31 +250,37 @@ class RulesetsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._put(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
-                ruleset_id=ruleset_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RulesetUpdateResponse,
+            self._put(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
+                    ruleset_id=ruleset_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=maybe_transform(
+                    {
+                        "description": description,
+                        "kind": kind,
+                        "name": name,
+                        "phase": phase,
+                        "rules": rules,
+                    },
+                    ruleset_update_params.RulesetUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform({"dry_run": dry_run}, ruleset_update_params.RulesetUpdateParams),
+                    post_parser=ResultWrapper[RulesetUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RulesetUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=maybe_transform(
-                {
-                    "description": description,
-                    "kind": kind,
-                    "name": name,
-                    "phase": phase,
-                    "rules": rules,
-                },
-                ruleset_update_params.RulesetUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RulesetUpdateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RulesetUpdateResponse], ResultWrapper[RulesetUpdateResponse]),
         )
 
     def list(
@@ -329,6 +358,7 @@ class RulesetsResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -345,6 +375,10 @@ class RulesetsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           extra_headers: Send extra headers
 
@@ -377,7 +411,11 @@ class RulesetsResource(SyncAPIResource):
                 account_or_zone_id=account_or_zone_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"dry_run": dry_run}, ruleset_delete_params.RulesetDeleteParams),
             ),
             cast_to=NoneType,
         )
@@ -485,6 +523,7 @@ class AsyncRulesetsResource(AsyncAPIResource):
         phase: Phase,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         description: str | Omit = omit,
         rules: Iterable[ruleset_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -507,6 +546,10 @@ class AsyncRulesetsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           description: An informative description of the ruleset.
 
@@ -532,30 +575,36 @@ class AsyncRulesetsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._post(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets",
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RulesetCreateResponse,
+            await self._post(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets",
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=await async_maybe_transform(
+                    {
+                        "kind": kind,
+                        "name": name,
+                        "phase": phase,
+                        "description": description,
+                        "rules": rules,
+                    },
+                    ruleset_create_params.RulesetCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform({"dry_run": dry_run}, ruleset_create_params.RulesetCreateParams),
+                    post_parser=ResultWrapper[RulesetCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RulesetCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=await async_maybe_transform(
-                {
-                    "kind": kind,
-                    "name": name,
-                    "phase": phase,
-                    "description": description,
-                    "rules": rules,
-                },
-                ruleset_create_params.RulesetCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RulesetCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RulesetCreateResponse], ResultWrapper[RulesetCreateResponse]),
         )
 
     async def update(
@@ -564,6 +613,7 @@ class AsyncRulesetsResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         description: str | Omit = omit,
         kind: Kind | Omit = omit,
         name: str | Omit = omit,
@@ -585,6 +635,10 @@ class AsyncRulesetsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           description: An informative description of the ruleset.
 
@@ -618,31 +672,37 @@ class AsyncRulesetsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._put(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
-                ruleset_id=ruleset_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RulesetUpdateResponse,
+            await self._put(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
+                    ruleset_id=ruleset_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=await async_maybe_transform(
+                    {
+                        "description": description,
+                        "kind": kind,
+                        "name": name,
+                        "phase": phase,
+                        "rules": rules,
+                    },
+                    ruleset_update_params.RulesetUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform({"dry_run": dry_run}, ruleset_update_params.RulesetUpdateParams),
+                    post_parser=ResultWrapper[RulesetUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RulesetUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=await async_maybe_transform(
-                {
-                    "description": description,
-                    "kind": kind,
-                    "name": name,
-                    "phase": phase,
-                    "rules": rules,
-                },
-                ruleset_update_params.RulesetUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RulesetUpdateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RulesetUpdateResponse], ResultWrapper[RulesetUpdateResponse]),
         )
 
     def list(
@@ -720,6 +780,7 @@ class AsyncRulesetsResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -736,6 +797,10 @@ class AsyncRulesetsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           extra_headers: Send extra headers
 
@@ -768,7 +833,11 @@ class AsyncRulesetsResource(AsyncAPIResource):
                 account_or_zone_id=account_or_zone_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"dry_run": dry_run}, ruleset_delete_params.RulesetDeleteParams),
             ),
             cast_to=NoneType,
         )

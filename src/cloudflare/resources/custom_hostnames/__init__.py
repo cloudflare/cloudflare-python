@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .quota import (
+    QuotaResource,
+    AsyncQuotaResource,
+    QuotaResourceWithRawResponse,
+    AsyncQuotaResourceWithRawResponse,
+    QuotaResourceWithStreamingResponse,
+    AsyncQuotaResourceWithStreamingResponse,
+)
 from .fallback_origin import (
     FallbackOriginResource,
     AsyncFallbackOriginResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncCertificatePackResourceWithRawResponse",
     "CertificatePackResourceWithStreamingResponse",
     "AsyncCertificatePackResourceWithStreamingResponse",
+    "QuotaResource",
+    "AsyncQuotaResource",
+    "QuotaResourceWithRawResponse",
+    "AsyncQuotaResourceWithRawResponse",
+    "QuotaResourceWithStreamingResponse",
+    "AsyncQuotaResourceWithStreamingResponse",
     "CustomHostnamesResource",
     "AsyncCustomHostnamesResource",
     "CustomHostnamesResourceWithRawResponse",

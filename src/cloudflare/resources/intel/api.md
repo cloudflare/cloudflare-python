@@ -110,6 +110,18 @@ Methods:
 
 - <code title="get /accounts/{account_id}/intel/whois">client.intel.whois.<a href="./src/cloudflare/resources/intel/whois.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/whois_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/whois_get_response.py">Optional[WhoisGetResponse]</a></code>
 
+## URLs
+
+Types:
+
+```python
+from cloudflare.types.intel import URL
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/intel/url">client.intel.urls.<a href="./src/cloudflare/resources/intel/urls.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/url_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/url.py">Optional[URL]</a></code>
+
 ## IndicatorFeeds
 
 Types:
@@ -172,7 +184,26 @@ from cloudflare.types.intel import Sinkhole
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/sinkholes">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/intel/sinkhole.py">SyncSinglePage[Sinkhole]</a></code>
+- <code title="post /accounts/{account_id}/intel/sinkholes">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/sinkhole_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/sinkhole.py">Optional[Sinkhole]</a></code>
+- <code title="put /accounts/{account_id}/intel/sinkholes/{sinkhole_id}">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">update</a>(sinkhole_id, \*, account_id, \*\*<a href="src/cloudflare/types/intel/sinkhole_update_params.py">params</a>) -> object</code>
+- <code title="get /accounts/{account_id}/intel/sinkholes">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/intel/sinkhole.py">SyncSinglePage[Sinkhole]</a></code>
+- <code title="delete /accounts/{account_id}/intel/sinkholes/{sinkhole_id}">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">delete</a>(sinkhole_id, \*, account_id) -> object</code>
+- <code title="get /accounts/{account_id}/intel/sinkholes/{sinkhole_id}">client.intel.sinkholes.<a href="./src/cloudflare/resources/intel/sinkholes/sinkholes.py">get</a>(sinkhole_id, \*, account_id) -> <a href="./src/cloudflare/types/intel/sinkhole.py">Optional[Sinkhole]</a></code>
+
+### Ingresses
+
+Types:
+
+```python
+from cloudflare.types.intel.sinkholes import IngressCreateResponse, IngressGetResponse
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/intel/sinkholes/{sinkhole_id}/ingresses">client.intel.sinkholes.ingresses.<a href="./src/cloudflare/resources/intel/sinkholes/ingresses.py">create</a>(sinkhole_id, \*, zone_id, \*\*<a href="src/cloudflare/types/intel/sinkholes/ingress_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/sinkholes/ingress_create_response.py">Optional[IngressCreateResponse]</a></code>
+- <code title="put /zones/{zone_id}/intel/sinkholes/{sinkhole_id}/ingresses/{ingress_id}">client.intel.sinkholes.ingresses.<a href="./src/cloudflare/resources/intel/sinkholes/ingresses.py">update</a>(ingress_id, \*, zone_id, sinkhole_id, \*\*<a href="src/cloudflare/types/intel/sinkholes/ingress_update_params.py">params</a>) -> object</code>
+- <code title="delete /zones/{zone_id}/intel/sinkholes/{sinkhole_id}/ingresses/{ingress_id}">client.intel.sinkholes.ingresses.<a href="./src/cloudflare/resources/intel/sinkholes/ingresses.py">delete</a>(ingress_id, \*, zone_id, sinkhole_id) -> object</code>
+- <code title="get /zones/{zone_id}/intel/sinkholes/{sinkhole_id}/ingresses/{ingress_id}">client.intel.sinkholes.ingresses.<a href="./src/cloudflare/resources/intel/sinkholes/ingresses.py">get</a>(ingress_id, \*, zone_id, sinkhole_id) -> <a href="./src/cloudflare/types/intel/sinkholes/ingress_get_response.py">Optional[IngressGetResponse]</a></code>
 
 ## AttackSurfaceReport
 
@@ -198,7 +229,6 @@ from cloudflare.types.intel.attack_surface_report import (
     SeverityQueryParam,
     IssueListResponse,
     IssueClassResponse,
-    IssueDismissResponse,
     IssueSeverityResponse,
     IssueTypeResponse,
 )
@@ -208,6 +238,5 @@ Methods:
 
 - <code title="get /accounts/{account_id}/intel/attack-surface-report/issues">client.intel.attack_surface_report.issues.<a href="./src/cloudflare/resources/intel/attack_surface_report/issues.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/attack_surface_report/issue_list_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/attack_surface_report/issue_list_response.py">SyncV4PagePagination[Optional[IssueListResponse]]</a></code>
 - <code title="get /accounts/{account_id}/intel/attack-surface-report/issues/class">client.intel.attack*surface_report.issues.<a href="./src/cloudflare/resources/intel/attack_surface_report/issues.py">class*</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/attack_surface_report/issue_class_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/attack_surface_report/issue_class_response.py">Optional[IssueClassResponse]</a></code>
-- <code title="put /accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss">client.intel.attack_surface_report.issues.<a href="./src/cloudflare/resources/intel/attack_surface_report/issues.py">dismiss</a>(issue_id, \*, account_id, \*\*<a href="src/cloudflare/types/intel/attack_surface_report/issue_dismiss_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/attack_surface_report/issue_dismiss_response.py">IssueDismissResponse</a></code>
 - <code title="get /accounts/{account_id}/intel/attack-surface-report/issues/severity">client.intel.attack_surface_report.issues.<a href="./src/cloudflare/resources/intel/attack_surface_report/issues.py">severity</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/attack_surface_report/issue_severity_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/attack_surface_report/issue_severity_response.py">Optional[IssueSeverityResponse]</a></code>
 - <code title="get /accounts/{account_id}/intel/attack-surface-report/issues/type">client.intel.attack_surface_report.issues.<a href="./src/cloudflare/resources/intel/attack_surface_report/issues.py">type</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/attack_surface_report/issue_type_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/attack_surface_report/issue_type_response.py">Optional[IssueTypeResponse]</a></code>

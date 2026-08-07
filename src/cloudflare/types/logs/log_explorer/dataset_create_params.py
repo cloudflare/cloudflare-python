@@ -24,6 +24,14 @@ class DatasetCreateParams(TypedDict, total=False):
     Defaults to all available fields when absent.
     """
 
+    filter: str
+    """
+    Optional Logpush filter predicate to restrict which events are ingested. If
+    provided, replaces the dataset's default filter entirely. See
+    [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
+    syntax and examples.
+    """
+
 
 class Field(TypedDict, total=False):
     enabled: Required[bool]

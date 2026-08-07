@@ -66,6 +66,7 @@ class TestOrganizations:
             session_duration="24h",
             ui_read_only_toggle_reason="Temporarily turn off the UI read only lock to make a change via the UI",
             user_seat_expiration_inactive_time="730h",
+            warp_auth_non_browser_401=False,
             warp_auth_session_duration="24h",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
@@ -165,6 +166,7 @@ class TestOrganizations:
             session_duration="24h",
             ui_read_only_toggle_reason="Temporarily turn off the UI read only lock to make a change via the UI",
             user_seat_expiration_inactive_time="730h",
+            warp_auth_non_browser_401=False,
             warp_auth_session_duration="24h",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
@@ -380,6 +382,7 @@ class TestAsyncOrganizations:
             session_duration="24h",
             ui_read_only_toggle_reason="Temporarily turn off the UI read only lock to make a change via the UI",
             user_seat_expiration_inactive_time="730h",
+            warp_auth_non_browser_401=False,
             warp_auth_session_duration="24h",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
@@ -479,6 +482,7 @@ class TestAsyncOrganizations:
             session_duration="24h",
             ui_read_only_toggle_reason="Temporarily turn off the UI read only lock to make a change via the UI",
             user_seat_expiration_inactive_time="730h",
+            warp_auth_non_browser_401=False,
             warp_auth_session_duration="24h",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])

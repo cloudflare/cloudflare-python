@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .quota import (
+    QuotaResource,
+    AsyncQuotaResource,
+    QuotaResourceWithRawResponse,
+    AsyncQuotaResourceWithRawResponse,
+    QuotaResourceWithStreamingResponse,
+    AsyncQuotaResourceWithStreamingResponse,
+)
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -58,6 +66,10 @@ class CustomHostnamesResource(SyncAPIResource):
     @cached_property
     def certificate_pack(self) -> CertificatePackResource:
         return CertificatePackResource(self._client)
+
+    @cached_property
+    def quota(self) -> QuotaResource:
+        return QuotaResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomHostnamesResourceWithRawResponse:
@@ -476,6 +488,10 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
     @cached_property
     def certificate_pack(self) -> AsyncCertificatePackResource:
         return AsyncCertificatePackResource(self._client)
+
+    @cached_property
+    def quota(self) -> AsyncQuotaResource:
+        return AsyncQuotaResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomHostnamesResourceWithRawResponse:
@@ -914,6 +930,10 @@ class CustomHostnamesResourceWithRawResponse:
     def certificate_pack(self) -> CertificatePackResourceWithRawResponse:
         return CertificatePackResourceWithRawResponse(self._custom_hostnames.certificate_pack)
 
+    @cached_property
+    def quota(self) -> QuotaResourceWithRawResponse:
+        return QuotaResourceWithRawResponse(self._custom_hostnames.quota)
+
 
 class AsyncCustomHostnamesResourceWithRawResponse:
     def __init__(self, custom_hostnames: AsyncCustomHostnamesResource) -> None:
@@ -942,6 +962,10 @@ class AsyncCustomHostnamesResourceWithRawResponse:
     @cached_property
     def certificate_pack(self) -> AsyncCertificatePackResourceWithRawResponse:
         return AsyncCertificatePackResourceWithRawResponse(self._custom_hostnames.certificate_pack)
+
+    @cached_property
+    def quota(self) -> AsyncQuotaResourceWithRawResponse:
+        return AsyncQuotaResourceWithRawResponse(self._custom_hostnames.quota)
 
 
 class CustomHostnamesResourceWithStreamingResponse:
@@ -972,6 +996,10 @@ class CustomHostnamesResourceWithStreamingResponse:
     def certificate_pack(self) -> CertificatePackResourceWithStreamingResponse:
         return CertificatePackResourceWithStreamingResponse(self._custom_hostnames.certificate_pack)
 
+    @cached_property
+    def quota(self) -> QuotaResourceWithStreamingResponse:
+        return QuotaResourceWithStreamingResponse(self._custom_hostnames.quota)
+
 
 class AsyncCustomHostnamesResourceWithStreamingResponse:
     def __init__(self, custom_hostnames: AsyncCustomHostnamesResource) -> None:
@@ -1000,3 +1028,7 @@ class AsyncCustomHostnamesResourceWithStreamingResponse:
     @cached_property
     def certificate_pack(self) -> AsyncCertificatePackResourceWithStreamingResponse:
         return AsyncCertificatePackResourceWithStreamingResponse(self._custom_hostnames.certificate_pack)
+
+    @cached_property
+    def quota(self) -> AsyncQuotaResourceWithStreamingResponse:
+        return AsyncQuotaResourceWithStreamingResponse(self._custom_hostnames.quota)

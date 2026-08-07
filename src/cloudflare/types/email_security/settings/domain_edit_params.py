@@ -16,8 +16,6 @@ class DomainEditParams(TypedDict, total=False):
 
     allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]]
 
-    domain: str
-
     drop_dispositions: List[
         Literal[
             "MALICIOUS",

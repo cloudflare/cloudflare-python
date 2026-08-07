@@ -12,3 +12,9 @@ class ApplicationListParams(TypedDict, total=False):
 
     environment: str
     """Filter by supported environment (standard, fedramp)."""
+
+    page: int
+    """A page number within the paginated result set."""
+
+    page_size: int
+    """Number of results to return per page."""

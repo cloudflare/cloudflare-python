@@ -147,7 +147,7 @@ class TestCustomPages:
         custom_page = client.zero_trust.access.custom_pages.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(SyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
 
@@ -409,7 +409,7 @@ class TestAsyncCustomPages:
         custom_page = await async_client.zero_trust.access.custom_pages.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(AsyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
 

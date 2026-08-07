@@ -10,7 +10,7 @@ __all__ = ["SendingDomainRestrictionCreateResponse"]
 
 class SendingDomainRestrictionCreateResponse(BaseModel):
     """
-    A sending domain restriction that enforces TLS (Transport Layer Security) requirements for emails from specific domains. If TLS is required, mail without TLS from the specified domain will be dropped.
+    A sending domain restriction that enforces TLS (Transport Layer Security) requirements for emails from specific domains. If TLS is required, the system drops mail without TLS from the specified domain.
     """
 
     id: Optional[str] = None
@@ -24,7 +24,7 @@ class SendingDomainRestrictionCreateResponse(BaseModel):
     """Domain that requires TLS enforcement."""
 
     exclude: Optional[List[str]] = None
-    """Excluded subdomains that are exempt from TLS requirements."""
+    """Subdomains to exempt from TLS requirements."""
 
     last_modified: Optional[datetime] = None
     """Deprecated, use `modified_at` instead. End of life: November 1, 2026."""

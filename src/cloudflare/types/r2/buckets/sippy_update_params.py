@@ -19,6 +19,9 @@ __all__ = [
     "R2EnableSippyS3",
     "R2EnableSippyS3Destination",
     "R2EnableSippyS3Source",
+    "R2EnableSippyAzure",
+    "R2EnableSippyAzureDestination",
+    "R2EnableSippyAzureSource",
 ]
 
 
@@ -190,4 +193,65 @@ class R2EnableSippyS3Source(TypedDict, total=False):
     """Secret Access Key of an IAM credential (ideally scoped to a single S3 bucket)."""
 
 
-SippyUpdateParams: TypeAlias = Union[R2EnableSippyAws, R2EnableSippyGcs, R2EnableSippyS3]
+class R2EnableSippyAzure(TypedDict, total=False):
+    account_id: Required[str]
+    """Account ID."""
+
+    destination: R2EnableSippyAzureDestination
+    """R2 bucket to copy objects to."""
+
+    source: R2EnableSippyAzureSource
+    """Azure Blob Storage container to copy objects from."""
+
+    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""
+
+
+class R2EnableSippyAzureDestination(TypedDict, total=False):
+    """R2 bucket to copy objects to."""
+
+    access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
+    """
+    ID of a Cloudflare API token. This is the value labelled "Access Key ID" when
+    creating an API. token from the
+    [R2 dashboard](https://dash.cloudflare.com/?to=/:account/r2/api-tokens).
+
+    Sippy will use this token when writing objects to R2, so it is best to scope
+    this token to the bucket you're enabling Sippy for.
+    """
+
+    provider: Provider
+
+    secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
+    """
+    Value of a Cloudflare API token. This is the value labelled "Secret Access Key"
+    when creating an API. token from the
+    [R2 dashboard](https://dash.cloudflare.com/?to=/:account/r2/api-tokens).
+
+    Sippy will use this token when writing objects to R2, so it is best to scope
+    this token to the bucket you're enabling Sippy for.
+    """
+
+
+class R2EnableSippyAzureSource(TypedDict, total=False):
+    """Azure Blob Storage container to copy objects from."""
+
+    account_key: Annotated[str, PropertyInfo(alias="accountKey")]
+    """Access key for the Azure Storage account. Mutually exclusive with sasToken."""
+
+    account_name: Annotated[str, PropertyInfo(alias="accountName")]
+    """Name of the Azure Storage account."""
+
+    container: str
+    """Name of the Azure Blob Storage container."""
+
+    provider: Literal["azure"]
+
+    sas_token: Annotated[str, PropertyInfo(alias="sasToken")]
+    """Shared Access Signature token for the Azure Storage account.
+
+    Mutually exclusive with accountKey.
+    """
+
+
+SippyUpdateParams: TypeAlias = Union[R2EnableSippyAws, R2EnableSippyGcs, R2EnableSippyS3, R2EnableSippyAzure]

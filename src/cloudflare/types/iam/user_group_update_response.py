@@ -80,8 +80,8 @@ class PolicyResourceGroup(BaseModel):
     id: str
     """Identifier of the resource group."""
 
-    scope: List[PolicyResourceGroupScope]
-    """The scope associated to the resource group"""
+    scope: PolicyResourceGroupScope
+    """A scope is a combination of scope objects which provides additional context."""
 
     meta: Optional[PolicyResourceGroupMeta] = None
     """Attributes associated to the resource group."""

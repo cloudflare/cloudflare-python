@@ -81,7 +81,7 @@ class MoveResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           extra_headers: Send extra headers
 
@@ -153,10 +153,9 @@ class MoveResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          ids: List of message IDs to move
+          ids: List of message IDs to move.
 
-          postfix_ids: Deprecated, use `ids` instead. End of life: November 1, 2026. List of message
-              IDs to move.
+          postfix_ids: Deprecated, use `ids` instead. End of life: November 1, 2026.
 
           extra_headers: Send extra headers
 
@@ -244,7 +243,7 @@ class AsyncMoveResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           extra_headers: Send extra headers
 
@@ -316,10 +315,9 @@ class AsyncMoveResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          ids: List of message IDs to move
+          ids: List of message IDs to move.
 
-          postfix_ids: Deprecated, use `ids` instead. End of life: November 1, 2026. List of message
-              IDs to move.
+          postfix_ids: Deprecated, use `ids` instead. End of life: November 1, 2026.
 
           extra_headers: Send extra headers
 

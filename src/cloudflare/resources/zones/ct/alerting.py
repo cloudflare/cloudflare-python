@@ -19,8 +19,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.zones.ct import alerting_edit_params
-from ....types.zones.ct.alerting_get_response import AlertingGetResponse
-from ....types.zones.ct.alerting_edit_response import AlertingEditResponse
+from ....types.zones.ct.ct_alerting_subscription import CTAlertingSubscription
 
 __all__ = ["AlertingResource", "AsyncAlertingResource"]
 
@@ -57,7 +56,7 @@ class AlertingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[AlertingEditResponse]:
+    ) -> Optional[CTAlertingSubscription]:
         """
         Create or update the Certificate Transparency alerting subscription for a zone.
         Enables or disables email notifications when certificates are issued for the
@@ -102,9 +101,9 @@ class AlertingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[AlertingEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[CTAlertingSubscription]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlertingEditResponse]], ResultWrapper[AlertingEditResponse]),
+            cast_to=cast(Type[Optional[CTAlertingSubscription]], ResultWrapper[CTAlertingSubscription]),
         )
 
     def get(
@@ -117,7 +116,7 @@ class AlertingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[AlertingGetResponse]:
+    ) -> Optional[CTAlertingSubscription]:
         """
         Retrieve the Certificate Transparency alerting subscription settings for a zone.
         Returns whether CT monitoring is enabled and, for Business and Enterprise zones,
@@ -143,9 +142,9 @@ class AlertingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[AlertingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[CTAlertingSubscription]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlertingGetResponse]], ResultWrapper[AlertingGetResponse]),
+            cast_to=cast(Type[Optional[CTAlertingSubscription]], ResultWrapper[CTAlertingSubscription]),
         )
 
 
@@ -181,7 +180,7 @@ class AsyncAlertingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[AlertingEditResponse]:
+    ) -> Optional[CTAlertingSubscription]:
         """
         Create or update the Certificate Transparency alerting subscription for a zone.
         Enables or disables email notifications when certificates are issued for the
@@ -226,9 +225,9 @@ class AsyncAlertingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[AlertingEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[CTAlertingSubscription]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlertingEditResponse]], ResultWrapper[AlertingEditResponse]),
+            cast_to=cast(Type[Optional[CTAlertingSubscription]], ResultWrapper[CTAlertingSubscription]),
         )
 
     async def get(
@@ -241,7 +240,7 @@ class AsyncAlertingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[AlertingGetResponse]:
+    ) -> Optional[CTAlertingSubscription]:
         """
         Retrieve the Certificate Transparency alerting subscription settings for a zone.
         Returns whether CT monitoring is enabled and, for Business and Enterprise zones,
@@ -267,9 +266,9 @@ class AsyncAlertingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[AlertingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[CTAlertingSubscription]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AlertingGetResponse]], ResultWrapper[AlertingGetResponse]),
+            cast_to=cast(Type[Optional[CTAlertingSubscription]], ResultWrapper[CTAlertingSubscription]),
         )
 
 

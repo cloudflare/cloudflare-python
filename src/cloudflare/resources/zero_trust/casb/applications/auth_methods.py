@@ -6,8 +6,8 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import Body, Query, Headers, NotGiven, not_given
-from ....._utils import path_template
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -16,7 +16,9 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.casb.applications import auth_method_list_params
 from .....types.zero_trust.casb.applications.auth_method_list_response import AuthMethodListResponse
 
 __all__ = ["AuthMethodsResource", "AsyncAuthMethodsResource"]
@@ -46,6 +48,7 @@ class AuthMethodsResource(SyncAPIResource):
         self,
         application_id: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
@@ -57,23 +60,30 @@ class AuthMethodsResource(SyncAPIResource):
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
         ],
         *,
         account_id: str,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthMethodListResponse:
+    ) -> SyncSinglePage[AuthMethodListResponse]:
         """
         Returns available auth methods for the specified vendor, including credential
         schema, instructions, and example payloads. Use this to understand what
         credentials are required before calling POST /v2/integrations.
 
         Args:
+          page: A page number within the paginated result set.
+
+          page_size: Number of results to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -86,16 +96,27 @@ class AuthMethodsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not application_id:
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template(
                 "/accounts/{account_id}/one/applications/{application_id}/auth-methods",
                 account_id=account_id,
                 application_id=application_id,
             ),
+            page=SyncSinglePage[AuthMethodListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "page_size": page_size,
+                    },
+                    auth_method_list_params.AuthMethodListParams,
+                ),
             ),
-            cast_to=AuthMethodListResponse,
+            model=AuthMethodListResponse,
         )
 
 
@@ -119,10 +140,11 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
         """
         return AsyncAuthMethodsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         application_id: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
@@ -134,23 +156,30 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
         ],
         *,
         account_id: str,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthMethodListResponse:
+    ) -> AsyncPaginator[AuthMethodListResponse, AsyncSinglePage[AuthMethodListResponse]]:
         """
         Returns available auth methods for the specified vendor, including credential
         schema, instructions, and example payloads. Use this to understand what
         credentials are required before calling POST /v2/integrations.
 
         Args:
+          page: A page number within the paginated result set.
+
+          page_size: Number of results to return per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -163,16 +192,27 @@ class AsyncAuthMethodsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not application_id:
             raise ValueError(f"Expected a non-empty value for `application_id` but received {application_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template(
                 "/accounts/{account_id}/one/applications/{application_id}/auth-methods",
                 account_id=account_id,
                 application_id=application_id,
             ),
+            page=AsyncSinglePage[AuthMethodListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "page_size": page_size,
+                    },
+                    auth_method_list_params.AuthMethodListParams,
+                ),
             ),
-            cast_to=AuthMethodListResponse,
+            model=AuthMethodListResponse,
         )
 
 

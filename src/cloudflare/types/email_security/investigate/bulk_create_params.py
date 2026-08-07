@@ -45,7 +45,7 @@ class SearchParams(TypedDict, total=False):
     domain: Optional[str]
 
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """End of search date range"""
+    """End of search date range."""
 
     exact_subject: Optional[str]
 
@@ -66,7 +66,7 @@ class SearchParams(TypedDict, total=False):
     sender: Optional[str]
 
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Beginning of search date range"""
+    """Beginning of search date range."""
 
     subject: Optional[str]
 

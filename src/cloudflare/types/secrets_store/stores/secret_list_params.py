@@ -2,32 +2,29 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List
 from typing_extensions import Literal, Required, TypedDict
-
-from ...._types import SequenceNotStr
 
 __all__ = ["SecretListParams"]
 
 
 class SecretListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
 
     direction: Literal["asc", "desc"]
-    """Direction to sort objects"""
+    """Direction to sort objects."""
 
     order: Literal["name", "comment", "created", "modified", "status"]
-    """Order secrets by values in the given field"""
+    """Order secrets by values in the given field."""
 
     page: int
-    """Page number"""
+    """Page number."""
 
     per_page: int
-    """Number of objects to return per page"""
+    """Number of objects to return per page."""
 
-    scopes: Iterable[SequenceNotStr[str]]
-    """Only secrets with the given scopes will be returned"""
+    scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]]
+    """Only secrets with the given scopes will be returned."""
 
     search: str
-    """Search secrets using a filter string, filtering across name and comment"""
+    """Search secrets using a filter string, filtering across name and comment."""

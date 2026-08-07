@@ -67,11 +67,12 @@ class OverridesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
-        """
-        Creates a URI-based WAF override for a zone.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously created a URI-based WAF override for a zone.
 
         Args:
           zone_id: Defines an identifier.
@@ -120,11 +121,12 @@ class OverridesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
-        """
-        Updates an existing URI-based WAF override.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously updated an existing URI-based WAF override.
 
         Args:
           zone_id: Defines an identifier.
@@ -195,11 +197,12 @@ class OverridesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Override]:
-        """
-        Fetches the URI-based WAF overrides in a zone.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously fetched the URI-based WAF overrides in a zone.
 
         Args:
           zone_id: Defines an identifier.
@@ -250,11 +253,12 @@ class OverridesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OverrideDeleteResponse]:
-        """
-        Deletes an existing URI-based WAF override.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously deleted an existing URI-based WAF override.
 
         Args:
           zone_id: Defines an identifier.
@@ -300,11 +304,12 @@ class OverridesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
-        """
-        Fetches the details of a URI-based WAF override.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously fetched the details of a URI-based WAF override.
 
         Args:
           zone_id: Defines an identifier.
@@ -371,11 +376,12 @@ class AsyncOverridesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
-        """
-        Creates a URI-based WAF override for a zone.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously created a URI-based WAF override for a zone.
 
         Args:
           zone_id: Defines an identifier.
@@ -424,11 +430,12 @@ class AsyncOverridesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
-        """
-        Updates an existing URI-based WAF override.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously updated an existing URI-based WAF override.
 
         Args:
           zone_id: Defines an identifier.
@@ -499,11 +506,12 @@ class AsyncOverridesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Override, AsyncV4PagePaginationArray[Override]]:
-        """
-        Fetches the URI-based WAF overrides in a zone.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously fetched the URI-based WAF overrides in a zone.
 
         Args:
           zone_id: Defines an identifier.
@@ -554,11 +562,12 @@ class AsyncOverridesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OverrideDeleteResponse]:
-        """
-        Deletes an existing URI-based WAF override.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously deleted an existing URI-based WAF override.
 
         Args:
           zone_id: Defines an identifier.
@@ -604,11 +613,12 @@ class AsyncOverridesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Override:
-        """
-        Fetches the details of a URI-based WAF override.
+        """**This endpoint has been deprecated and returns 410 Gone.
 
-        **Note:** Applies only to the
-        [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
+        Please use the
+        [Rulesets API](https://developers.cloudflare.com/ruleset-engine/) instead.**
+
+        Previously fetched the details of a URI-based WAF override.
 
         Args:
           zone_id: Defines an identifier.

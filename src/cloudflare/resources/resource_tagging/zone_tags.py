@@ -57,8 +57,12 @@ class ZoneTagsResource(SyncAPIResource):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
         ],
         tags: Dict[str, str] | Omit = omit,
         if_match: str | Omit = omit,
@@ -81,7 +85,8 @@ class ZoneTagsResource(SyncAPIResource):
 
           resource_type: Enum for base zone-level resource types (those with no extra required fields).
 
-          tags: Contains key-value pairs of tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -105,8 +110,12 @@ class ZoneTagsResource(SyncAPIResource):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
             "access_application_policy",
         ],
         tags: Dict[str, str] | Omit = omit,
@@ -132,7 +141,8 @@ class ZoneTagsResource(SyncAPIResource):
 
           resource_type: Enum for base zone-level resource types (those with no extra required fields).
 
-          tags: Contains key-value pairs of tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -158,16 +168,24 @@ class ZoneTagsResource(SyncAPIResource):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
         ]
         | Literal[
             "api_gateway_operation",
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
             "access_application_policy",
         ],
         tags: Dict[str, str] | Omit = omit,
@@ -258,8 +276,12 @@ class ZoneTagsResource(SyncAPIResource):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
         ],
         access_application_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -349,8 +371,12 @@ class AsyncZoneTagsResource(AsyncAPIResource):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
         ],
         tags: Dict[str, str] | Omit = omit,
         if_match: str | Omit = omit,
@@ -373,7 +399,8 @@ class AsyncZoneTagsResource(AsyncAPIResource):
 
           resource_type: Enum for base zone-level resource types (those with no extra required fields).
 
-          tags: Contains key-value pairs of tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -397,8 +424,12 @@ class AsyncZoneTagsResource(AsyncAPIResource):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
             "access_application_policy",
         ],
         tags: Dict[str, str] | Omit = omit,
@@ -424,7 +455,8 @@ class AsyncZoneTagsResource(AsyncAPIResource):
 
           resource_type: Enum for base zone-level resource types (those with no extra required fields).
 
-          tags: Contains key-value pairs of tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -450,16 +482,24 @@ class AsyncZoneTagsResource(AsyncAPIResource):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
         ]
         | Literal[
             "api_gateway_operation",
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
             "access_application_policy",
         ],
         tags: Dict[str, str] | Omit = omit,
@@ -550,8 +590,12 @@ class AsyncZoneTagsResource(AsyncAPIResource):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
         ],
         access_application_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

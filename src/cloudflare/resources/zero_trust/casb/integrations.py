@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -17,9 +17,12 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.casb import integration_list_params, integration_create_params, integration_update_params
 from ....types.zero_trust.casb.integration_get_response import IntegrationGetResponse
+from ....types.zero_trust.casb.integration_list_response import IntegrationListResponse
 from ....types.zero_trust.casb.integration_pause_response import IntegrationPauseResponse
 from ....types.zero_trust.casb.integration_create_response import IntegrationCreateResponse
 from ....types.zero_trust.casb.integration_resume_response import IntegrationResumeResponse
@@ -54,6 +57,7 @@ class IntegrationsResource(SyncAPIResource):
         account_id: str,
         application: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
@@ -65,6 +69,7 @@ class IntegrationsResource(SyncAPIResource):
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
         ],
         credentials: Dict[str, object],
@@ -91,6 +96,7 @@ class IntegrationsResource(SyncAPIResource):
           application: Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
               - `ANTHROPIC` - ANTHROPIC
+              - `AWS` - AWS
               - `BITBUCKET` - BITBUCKET
               - `BOX` - BOX
               - `CONFLUENCE` - CONFLUENCE
@@ -102,6 +108,7 @@ class IntegrationsResource(SyncAPIResource):
               - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
               - `OPENAI` - OPENAI
               - `SALESFORCE` - SALESFORCE
+              - `SERVICENOW` - SERVICENOW
               - `SLACK` - SLACK
 
           credentials: Credentials for the integration.
@@ -142,9 +149,13 @@ class IntegrationsResource(SyncAPIResource):
                 integration_create_params.IntegrationCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationCreateResponse]._unwrapper,
             ),
-            cast_to=IntegrationCreateResponse,
+            cast_to=cast(Type[IntegrationCreateResponse], ResultWrapper[IntegrationCreateResponse]),
         )
 
     def update(
@@ -205,9 +216,13 @@ class IntegrationsResource(SyncAPIResource):
                 integration_update_params.IntegrationUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationUpdateResponse]._unwrapper,
             ),
-            cast_to=IntegrationUpdateResponse,
+            cast_to=cast(Type[IntegrationUpdateResponse], ResultWrapper[IntegrationUpdateResponse]),
         )
 
     def list(
@@ -229,7 +244,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> SyncSinglePage[IntegrationListResponse]:
         """
         Returns a paginated list of integrations for the account.
 
@@ -263,8 +278,9 @@ class IntegrationsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/one/integrations", account_id=account_id),
+            page=SyncSinglePage[IntegrationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -285,7 +301,7 @@ class IntegrationsResource(SyncAPIResource):
                     integration_list_params.IntegrationListParams,
                 ),
             ),
-            cast_to=object,
+            model=IntegrationListResponse,
         )
 
     def delete(
@@ -356,9 +372,13 @@ class IntegrationsResource(SyncAPIResource):
         return self._get(
             path_template("/accounts/{account_id}/one/integrations/{id}", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationGetResponse]._unwrapper,
             ),
-            cast_to=IntegrationGetResponse,
+            cast_to=cast(Type[IntegrationGetResponse], ResultWrapper[IntegrationGetResponse]),
         )
 
     def pause(
@@ -392,9 +412,13 @@ class IntegrationsResource(SyncAPIResource):
         return self._post(
             path_template("/accounts/{account_id}/one/integrations/{id}/pause", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationPauseResponse]._unwrapper,
             ),
-            cast_to=IntegrationPauseResponse,
+            cast_to=cast(Type[IntegrationPauseResponse], ResultWrapper[IntegrationPauseResponse]),
         )
 
     def resume(
@@ -428,9 +452,13 @@ class IntegrationsResource(SyncAPIResource):
         return self._post(
             path_template("/accounts/{account_id}/one/integrations/{id}/resume", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationResumeResponse]._unwrapper,
             ),
-            cast_to=IntegrationResumeResponse,
+            cast_to=cast(Type[IntegrationResumeResponse], ResultWrapper[IntegrationResumeResponse]),
         )
 
 
@@ -460,6 +488,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         account_id: str,
         application: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
@@ -471,6 +500,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
         ],
         credentials: Dict[str, object],
@@ -497,6 +527,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           application: Vendor/application slug (e.g., GOOGLE_WORKSPACE).
 
               - `ANTHROPIC` - ANTHROPIC
+              - `AWS` - AWS
               - `BITBUCKET` - BITBUCKET
               - `BOX` - BOX
               - `CONFLUENCE` - CONFLUENCE
@@ -508,6 +539,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
               - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
               - `OPENAI` - OPENAI
               - `SALESFORCE` - SALESFORCE
+              - `SERVICENOW` - SERVICENOW
               - `SLACK` - SLACK
 
           credentials: Credentials for the integration.
@@ -548,9 +580,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                 integration_create_params.IntegrationCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationCreateResponse]._unwrapper,
             ),
-            cast_to=IntegrationCreateResponse,
+            cast_to=cast(Type[IntegrationCreateResponse], ResultWrapper[IntegrationCreateResponse]),
         )
 
     async def update(
@@ -611,12 +647,16 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                 integration_update_params.IntegrationUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationUpdateResponse]._unwrapper,
             ),
-            cast_to=IntegrationUpdateResponse,
+            cast_to=cast(Type[IntegrationUpdateResponse], ResultWrapper[IntegrationUpdateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -635,7 +675,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AsyncPaginator[IntegrationListResponse, AsyncSinglePage[IntegrationListResponse]]:
         """
         Returns a paginated list of integrations for the account.
 
@@ -669,14 +709,15 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/one/integrations", account_id=account_id),
+            page=AsyncSinglePage[IntegrationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "application": application,
                         "direction": direction,
@@ -691,7 +732,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                     integration_list_params.IntegrationListParams,
                 ),
             ),
-            cast_to=object,
+            model=IntegrationListResponse,
         )
 
     async def delete(
@@ -762,9 +803,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         return await self._get(
             path_template("/accounts/{account_id}/one/integrations/{id}", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationGetResponse]._unwrapper,
             ),
-            cast_to=IntegrationGetResponse,
+            cast_to=cast(Type[IntegrationGetResponse], ResultWrapper[IntegrationGetResponse]),
         )
 
     async def pause(
@@ -798,9 +843,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         return await self._post(
             path_template("/accounts/{account_id}/one/integrations/{id}/pause", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationPauseResponse]._unwrapper,
             ),
-            cast_to=IntegrationPauseResponse,
+            cast_to=cast(Type[IntegrationPauseResponse], ResultWrapper[IntegrationPauseResponse]),
         )
 
     async def resume(
@@ -834,9 +883,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         return await self._post(
             path_template("/accounts/{account_id}/one/integrations/{id}/resume", account_id=account_id, id=id),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IntegrationResumeResponse]._unwrapper,
             ),
-            cast_to=IntegrationResumeResponse,
+            cast_to=cast(Type[IntegrationResumeResponse], ResultWrapper[IntegrationResumeResponse]),
         )
 
 

@@ -43,7 +43,8 @@ class TestInstances:
                 "error_retention": "5 minutes",
                 "success_retention": "5 minutes",
             },
-            params={},
+            location_hint="wnam",
+            params="params",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
 
@@ -170,7 +171,8 @@ class TestInstances:
                         "error_retention": "5 minutes",
                         "success_retention": "5 minutes",
                     },
-                    "params": {},
+                    "location_hint": "wnam",
+                    "params": "params",
                 }
             ],
         )
@@ -395,7 +397,8 @@ class TestAsyncInstances:
                 "error_retention": "5 minutes",
                 "success_retention": "5 minutes",
             },
-            params={},
+            location_hint="wnam",
+            params="params",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
 
@@ -522,7 +525,8 @@ class TestAsyncInstances:
                         "error_retention": "5 minutes",
                         "success_retention": "5 minutes",
                     },
-                    "params": {},
+                    "location_hint": "wnam",
+                    "params": "params",
                 }
             ],
         )

@@ -16,6 +16,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindAI",
     "MetadataBindingWorkersBindingKindAISearch",
     "MetadataBindingWorkersBindingKindAISearchNamespace",
+    "MetadataBindingWorkersBindingKindMessaging",
     "MetadataBindingWorkersBindingKindAnalyticsEngine",
     "MetadataBindingWorkersBindingKindAssets",
     "MetadataBindingWorkersBindingKindBrowser",
@@ -146,6 +147,17 @@ class MetadataBindingWorkersBindingKindAISearchNamespace(TypedDict, total=False)
     """
 
     type: Required[Literal["ai_search_namespace"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindMessaging(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace: Required[str]
+    """The Messaging namespace to bind to."""
+
+    type: Required[Literal["messaging"]]
     """The kind of resource that the binding provides."""
 
 
@@ -649,6 +661,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
     MetadataBindingWorkersBindingKindAISearch,
     MetadataBindingWorkersBindingKindAISearchNamespace,
+    MetadataBindingWorkersBindingKindMessaging,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
     MetadataBindingWorkersBindingKindAssets,
     MetadataBindingWorkersBindingKindBrowser,

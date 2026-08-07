@@ -10,16 +10,16 @@ __all__ = ["URLIgnorePatternGetResponse"]
 
 class URLIgnorePatternGetResponse(BaseModel):
     """
-    A URL ignore pattern that exempts matching URLs from being rewritten by Email Security.
+    A URL ignore pattern that exempts matching URLs from Email Security's URL rewriting.
     """
 
     id: str
-    """URL ignore pattern identifier"""
+    """URL ignore pattern identifier."""
 
     created_at: datetime
 
     pattern: str
-    """Regular expression matching URLs that should not be rewritten."""
+    """Regular expression identifying URLs to exempt from rewriting."""
 
     comments: Optional[str] = None
     """Optional note describing the reason for the ignore pattern."""

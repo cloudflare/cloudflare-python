@@ -1,21 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from typing_extensions import TypeAlias
+from typing import Dict, Optional
 
 from ....._models import BaseModel
 
-__all__ = ["AuthMethodListResponse", "AuthMethodListResponseItem", "AuthMethodListResponseItemInstructions"]
+__all__ = ["AuthMethodListResponse", "Instructions"]
 
 
-class AuthMethodListResponseItemInstructions(BaseModel):
+class Instructions(BaseModel):
     """Step-by-step instructions for obtaining credentials."""
 
     markdown: str
     """Detailed instructions in markdown format."""
 
 
-class AuthMethodListResponseItem(BaseModel):
+class AuthMethodListResponse(BaseModel):
     """Detailed auth method info including credentials schema and instructions."""
 
     id: str
@@ -30,7 +29,7 @@ class AuthMethodListResponseItem(BaseModel):
     using API (e.g., For OAuth can not be created without user interaction).
     """
 
-    instructions: AuthMethodListResponseItemInstructions
+    instructions: Instructions
     """Step-by-step instructions for obtaining credentials."""
 
     payload_example: Optional[Dict[str, object]] = None
@@ -41,6 +40,3 @@ class AuthMethodListResponseItem(BaseModel):
 
     redirect_url: Optional[str] = None
     """OAuth redirect URL for vendors requiring human interaction."""
-
-
-AuthMethodListResponse: TypeAlias = List[AuthMethodListResponseItem]

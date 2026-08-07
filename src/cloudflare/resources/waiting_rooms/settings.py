@@ -59,8 +59,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingUpdateResponse:
         """
-        Fully updates zone-level Waiting Room settings, replacing the existing
-        configuration.
+        Replace zone-level Waiting Room settings.
 
         Args:
           zone_id: Identifier.
@@ -108,7 +107,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingEditResponse:
         """
-        Partially updates zone-level Waiting Room settings using PATCH semantics.
+        Patch zone-level Waiting Room settings.
 
         Args:
           zone_id: Identifier.
@@ -154,8 +153,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingGetResponse:
         """
-        Gets the zone-level Waiting Room settings that apply as defaults to all waiting
-        rooms on the zone.
+        Get zone-level Waiting Room settings.
 
         Args:
           zone_id: Identifier.
@@ -216,8 +214,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingUpdateResponse:
         """
-        Fully updates zone-level Waiting Room settings, replacing the existing
-        configuration.
+        Replace zone-level Waiting Room settings.
 
         Args:
           zone_id: Identifier.
@@ -265,7 +262,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingEditResponse:
         """
-        Partially updates zone-level Waiting Room settings using PATCH semantics.
+        Patch zone-level Waiting Room settings.
 
         Args:
           zone_id: Identifier.
@@ -311,8 +308,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingGetResponse:
         """
-        Gets the zone-level Waiting Room settings that apply as defaults to all waiting
-        rooms on the zone.
+        Get zone-level Waiting Room settings.
 
         Args:
           zone_id: Identifier.

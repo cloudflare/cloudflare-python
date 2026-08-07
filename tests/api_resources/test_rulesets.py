@@ -42,6 +42,7 @@ class TestRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             account_id="account_id",
+            dry_run=True,
             description="A description for my ruleset.",
             rules=[
                 {
@@ -144,6 +145,7 @@ class TestRulesets:
         ruleset = client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             description="A description for my ruleset.",
             kind="root",
             name="My ruleset",
@@ -304,6 +306,7 @@ class TestRulesets:
         ruleset = client.rulesets.delete(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
         )
         assert ruleset is None
 
@@ -448,6 +451,7 @@ class TestAsyncRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             account_id="account_id",
+            dry_run=True,
             description="A description for my ruleset.",
             rules=[
                 {
@@ -550,6 +554,7 @@ class TestAsyncRulesets:
         ruleset = await async_client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             description="A description for my ruleset.",
             kind="root",
             name="My ruleset",
@@ -710,6 +715,7 @@ class TestAsyncRulesets:
         ruleset = await async_client.rulesets.delete(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
         )
         assert ruleset is None
 

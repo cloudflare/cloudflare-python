@@ -7,4 +7,4 @@ __all__ = ["DomainBulkDeleteResponse"]
 
 class DomainBulkDeleteResponse(BaseModel):
     id: str
-    """Domain identifier"""
+    """Domain identifier."""

@@ -199,7 +199,11 @@ MessageContentUnionMember1: TypeAlias = Union[
 ]
 
 
-class Message(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class Message(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     content: Required[Union[str, Iterable[MessageContentUnionMember1], None]]
 
     role: Required[Literal["system", "developer", "user", "assistant", "tool"]]

@@ -24,6 +24,12 @@ class InstanceStepResponse(BaseModel):
         "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "rollingBack"
     ]
 
+    event_type: Optional[str] = None
+    """The event type the step is waiting on, as supplied to step.waitForEvent.
+
+    Only present when type='waitForEvent'.
+    """
+
     output: Optional[object] = None
     """Full step output or waitForEvent payload without truncation.
 

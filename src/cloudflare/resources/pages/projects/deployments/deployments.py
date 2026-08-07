@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .tails import (
+    TailsResource,
+    AsyncTailsResource,
+    TailsResourceWithRawResponse,
+    AsyncTailsResourceWithRawResponse,
+    TailsResourceWithStreamingResponse,
+    AsyncTailsResourceWithStreamingResponse,
+)
 from ....._files import deepcopy_with_paths
 from ....._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
 from ....._utils import extract_files, path_template, maybe_transform, async_maybe_transform
@@ -39,6 +47,10 @@ class DeploymentsResource(SyncAPIResource):
     @cached_property
     def history(self) -> HistoryResource:
         return HistoryResource(self._client)
+
+    @cached_property
+    def tails(self) -> TailsResource:
+        return TailsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DeploymentsResourceWithRawResponse:
@@ -488,6 +500,10 @@ class AsyncDeploymentsResource(AsyncAPIResource):
     @cached_property
     def history(self) -> AsyncHistoryResource:
         return AsyncHistoryResource(self._client)
+
+    @cached_property
+    def tails(self) -> AsyncTailsResource:
+        return AsyncTailsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDeploymentsResourceWithRawResponse:
@@ -960,6 +976,10 @@ class DeploymentsResourceWithRawResponse:
     def history(self) -> HistoryResourceWithRawResponse:
         return HistoryResourceWithRawResponse(self._deployments.history)
 
+    @cached_property
+    def tails(self) -> TailsResourceWithRawResponse:
+        return TailsResourceWithRawResponse(self._deployments.tails)
+
 
 class AsyncDeploymentsResourceWithRawResponse:
     def __init__(self, deployments: AsyncDeploymentsResource) -> None:
@@ -987,6 +1007,10 @@ class AsyncDeploymentsResourceWithRawResponse:
     @cached_property
     def history(self) -> AsyncHistoryResourceWithRawResponse:
         return AsyncHistoryResourceWithRawResponse(self._deployments.history)
+
+    @cached_property
+    def tails(self) -> AsyncTailsResourceWithRawResponse:
+        return AsyncTailsResourceWithRawResponse(self._deployments.tails)
 
 
 class DeploymentsResourceWithStreamingResponse:
@@ -1016,6 +1040,10 @@ class DeploymentsResourceWithStreamingResponse:
     def history(self) -> HistoryResourceWithStreamingResponse:
         return HistoryResourceWithStreamingResponse(self._deployments.history)
 
+    @cached_property
+    def tails(self) -> TailsResourceWithStreamingResponse:
+        return TailsResourceWithStreamingResponse(self._deployments.tails)
+
 
 class AsyncDeploymentsResourceWithStreamingResponse:
     def __init__(self, deployments: AsyncDeploymentsResource) -> None:
@@ -1043,3 +1071,7 @@ class AsyncDeploymentsResourceWithStreamingResponse:
     @cached_property
     def history(self) -> AsyncHistoryResourceWithStreamingResponse:
         return AsyncHistoryResourceWithStreamingResponse(self._deployments.history)
+
+    @cached_property
+    def tails(self) -> AsyncTailsResourceWithStreamingResponse:
+        return AsyncTailsResourceWithStreamingResponse(self._deployments.tails)

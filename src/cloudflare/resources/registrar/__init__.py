@@ -16,6 +16,14 @@ from .registrar import (
     RegistrarResourceWithStreamingResponse,
     AsyncRegistrarResourceWithStreamingResponse,
 )
+from .extensions import (
+    ExtensionsResource,
+    AsyncExtensionsResource,
+    ExtensionsResourceWithRawResponse,
+    AsyncExtensionsResourceWithRawResponse,
+    ExtensionsResourceWithStreamingResponse,
+    AsyncExtensionsResourceWithStreamingResponse,
+)
 from .registrations import (
     RegistrationsResource,
     AsyncRegistrationsResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncUpdateStatusResourceWithRawResponse",
     "UpdateStatusResourceWithStreamingResponse",
     "AsyncUpdateStatusResourceWithStreamingResponse",
+    "ExtensionsResource",
+    "AsyncExtensionsResource",
+    "ExtensionsResourceWithRawResponse",
+    "AsyncExtensionsResourceWithRawResponse",
+    "ExtensionsResourceWithStreamingResponse",
+    "AsyncExtensionsResourceWithStreamingResponse",
     "RegistrarResource",
     "AsyncRegistrarResource",
     "RegistrarResourceWithRawResponse",

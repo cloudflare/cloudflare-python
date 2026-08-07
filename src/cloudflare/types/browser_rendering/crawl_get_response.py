@@ -11,6 +11,8 @@ __all__ = ["CrawlGetResponse", "Record", "RecordMetadata"]
 
 
 class RecordMetadata(BaseModel):
+    """Absent for urls that never reached a fetch."""
+
     status: float
     """HTTP status code of the crawled page."""
 
@@ -22,8 +24,6 @@ class RecordMetadata(BaseModel):
 
 
 class Record(BaseModel):
-    metadata: RecordMetadata
-
     status: Literal["queued", "errored", "completed", "disallowed", "skipped", "cancelled"]
     """Current status of the crawled URL."""
 
@@ -38,6 +38,9 @@ class Record(BaseModel):
 
     markdown: Optional[str] = None
     """Markdown of the content of the crawled URL."""
+
+    metadata: Optional[RecordMetadata] = None
+    """Absent for urls that never reached a fetch."""
 
 
 class CrawlGetResponse(BaseModel):

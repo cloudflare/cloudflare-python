@@ -239,6 +239,80 @@ class TestSippy:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    def test_method_update_overload_4(self, client: Cloudflare) -> None:
+        sippy = client.r2.buckets.sippy.update(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Sippy, sippy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params_overload_4(self, client: Cloudflare) -> None:
+        sippy = client.r2.buckets.sippy.update(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            destination={
+                "access_key_id": "accessKeyId",
+                "provider": "r2",
+                "secret_access_key": "secretAccessKey",
+            },
+            source={
+                "account_key": "accountKey",
+                "account_name": "accountName",
+                "container": "container",
+                "provider": "azure",
+                "sas_token": "sasToken",
+            },
+            jurisdiction="default",
+        )
+        assert_matches_type(Sippy, sippy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
+        response = client.r2.buckets.sippy.with_raw_response.update(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        sippy = response.parse()
+        assert_matches_type(Sippy, sippy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_update_overload_4(self, client: Cloudflare) -> None:
+        with client.r2.buckets.sippy.with_streaming_response.update(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            sippy = response.parse()
+            assert_matches_type(Sippy, sippy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.r2.buckets.sippy.with_raw_response.update(
+                bucket_name="example-bucket",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            client.r2.buckets.sippy.with_raw_response.update(
+                bucket_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         sippy = client.r2.buckets.sippy.delete(
             bucket_name="example-bucket",
@@ -575,6 +649,80 @@ class TestAsyncSippy:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.r2.buckets.sippy.with_raw_response.update(
+                bucket_name="example-bucket",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            await async_client.r2.buckets.sippy.with_raw_response.update(
+                bucket_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_overload_4(self, async_client: AsyncCloudflare) -> None:
+        sippy = await async_client.r2.buckets.sippy.update(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Sippy, sippy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
+        sippy = await async_client.r2.buckets.sippy.update(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            destination={
+                "access_key_id": "accessKeyId",
+                "provider": "r2",
+                "secret_access_key": "secretAccessKey",
+            },
+            source={
+                "account_key": "accountKey",
+                "account_name": "accountName",
+                "container": "container",
+                "provider": "azure",
+                "sas_token": "sasToken",
+            },
+            jurisdiction="default",
+        )
+        assert_matches_type(Sippy, sippy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.r2.buckets.sippy.with_raw_response.update(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        sippy = await response.parse()
+        assert_matches_type(Sippy, sippy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.r2.buckets.sippy.with_streaming_response.update(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            sippy = await response.parse()
+            assert_matches_type(Sippy, sippy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.buckets.sippy.with_raw_response.update(
                 bucket_name="example-bucket",

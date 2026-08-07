@@ -124,6 +124,8 @@ class TestCustomCsrs:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         custom_csr = client.custom_csrs.list(
             account_id="account_id",
+            direction="asc",
+            order="name",
             page=1,
             per_page=5,
         )
@@ -396,6 +398,8 @@ class TestAsyncCustomCsrs:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom_csr = await async_client.custom_csrs.list(
             account_id="account_id",
+            direction="asc",
+            order="name",
             page=1,
             per_page=5,
         )

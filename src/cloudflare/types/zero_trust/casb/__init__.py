@@ -8,6 +8,7 @@ from .application_get_response import ApplicationGetResponse as ApplicationGetRe
 from .integration_get_response import IntegrationGetResponse as IntegrationGetResponse
 from .application_list_response import ApplicationListResponse as ApplicationListResponse
 from .integration_create_params import IntegrationCreateParams as IntegrationCreateParams
+from .integration_list_response import IntegrationListResponse as IntegrationListResponse
 from .integration_update_params import IntegrationUpdateParams as IntegrationUpdateParams
 from .integration_pause_response import IntegrationPauseResponse as IntegrationPauseResponse
 from .integration_create_response import IntegrationCreateResponse as IntegrationCreateResponse

@@ -74,7 +74,11 @@ class SnapshotCreateResponse(BaseModel):
     """HTML content."""
 
     markdown: Optional[str] = None
-    """Markdown content."""
+    """Markdown content.
+
+    Prefixed with YAML frontmatter (e.g. `title`) when the page provides that
+    metadata.
+    """
 
     screenshot: Optional[str] = None
     """Base64 encoded image."""

@@ -249,10 +249,12 @@ class AIGatewayUpdateResponse(BaseModel):
 
     stripe: Optional[Stripe] = None
 
-    workers_ai_billing_mode: Optional[Literal["postpaid"]] = None
+    workers_ai_billing_mode: Optional[Literal["postpaid", "unified"]] = None
     """Controls how Workers AI inference calls routed through this gateway are billed.
 
-    Only 'postpaid' is currently supported.
+    'postpaid' bills the account directly through Workers AI; 'unified' deducts
+    credits via AI Gateway using neuron-based pricing and delegates billing to AI
+    Gateway.
     """
 
     zdr: Optional[bool] = None

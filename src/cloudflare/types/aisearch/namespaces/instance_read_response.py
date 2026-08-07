@@ -23,6 +23,7 @@ __all__ = [
     "RetrievalOptionsBoostBy",
     "SourceParams",
     "SourceParamsWebCrawler",
+    "SourceParamsWebCrawlerDiscoverOptions",
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerParseOptionsContentSelector",
 ]
@@ -158,6 +159,36 @@ class RetrievalOptions(BaseModel):
     """
 
 
+class SourceParamsWebCrawlerDiscoverOptions(BaseModel):
+    """
+    Options for parse_type 'discover', where Browser Run discovers URLs by link following and sitemaps. Ignored for 'sitemap'.
+    """
+
+    depth: Optional[float] = None
+    """Maximum link-follow depth from the seed URL."""
+
+    include_external_links: Optional[bool] = None
+    """Follow links that point outside the source domain.
+
+    Must stay `false` — discover crawls are restricted to the zone you own.
+    """
+
+    include_subdomains: Optional[bool] = None
+    """Follow links to subdomains of the source host."""
+
+    limit: Optional[float] = None
+    """Maximum number of pages to crawl (1-100000)."""
+
+    max_age: Optional[float] = None
+    """Maximum content age in seconds to accept (0–604800)."""
+
+    source: Optional[Literal["all", "sitemaps", "links"]] = None
+    """
+    Where the crawler looks for URLs: 'sitemaps' reads sitemap XML only, 'links'
+    follows page links only, 'all' does both.
+    """
+
+
 class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
     path: str
     """Glob pattern to match against the page URL path.
@@ -203,9 +234,20 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
 
 
 class SourceParamsWebCrawler(BaseModel):
+    discover_options: Optional[SourceParamsWebCrawlerDiscoverOptions] = None
+    """
+    Options for parse_type 'discover', where Browser Run discovers URLs by link
+    following and sitemaps. Ignored for 'sitemap'.
+    """
+
     parse_options: Optional[SourceParamsWebCrawlerParseOptions] = None
 
-    parse_type: Optional[Literal["sitemap", "crawl"]] = None
+    parse_type: Optional[Literal["sitemap", "discover"]] = None
+    """How URLs are discovered.
+
+    'sitemap' reads XML sitemaps; 'discover' follows links recursively and requires
+    the source to be a Verified zone on this account.
+    """
 
 
 class SourceParams(BaseModel):
@@ -214,14 +256,16 @@ class SourceParams(BaseModel):
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
     path segments (e.g., /admin/** matches /admin/users and
-    /admin/settings/advanced)
+    /admin/settings/advanced). Most accounts are limited to 10 rules; contact
+    support to raise it.
     """
 
     include_items: Optional[List[str]] = None
     """List of path patterns to include.
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
-    path segments (e.g., /blog/** matches /blog/post and /blog/2024/post)
+    path segments (e.g., /blog/** matches /blog/post and /blog/2024/post). Most
+    accounts are limited to 10 rules; contact support to raise it.
     """
 
     prefix: Optional[str] = None

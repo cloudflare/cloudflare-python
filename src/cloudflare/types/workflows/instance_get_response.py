@@ -156,6 +156,8 @@ class StepUnionMember3(BaseModel):
 
     type: Literal["waitForEvent"]
 
+    event_type: Optional[str] = None
+
     output: Optional[str] = None
 
 

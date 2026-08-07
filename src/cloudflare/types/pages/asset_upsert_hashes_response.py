@@ -3,9 +3,9 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["IssueDismissResponse", "Error", "ErrorSource", "Message", "MessageSource"]
+__all__ = ["AssetUpsertHashesResponse", "Error", "ErrorSource", "Message", "MessageSource"]
 
 
 class ErrorSource(BaseModel):
@@ -36,7 +36,7 @@ class Message(BaseModel):
     source: Optional[MessageSource] = None
 
 
-class IssueDismissResponse(BaseModel):
+class AssetUpsertHashesResponse(BaseModel):
     errors: List[Error]
 
     messages: List[Message]

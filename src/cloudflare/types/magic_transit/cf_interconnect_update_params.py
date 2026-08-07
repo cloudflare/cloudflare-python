@@ -4,10 +4,11 @@ from __future__ import annotations
 
 from typing_extensions import Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .health_check_param import HealthCheckParam
 
-__all__ = ["CfInterconnectUpdateParams", "GRE"]
+__all__ = ["CfInterconnectUpdateParams", "BGP", "GRE"]
 
 
 class CfInterconnectUpdateParams(TypedDict, total=False):
@@ -21,6 +22,8 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     requests setting this to `true` without that flag will be rejected.
     """
 
+    bgp: BGP
+
     description: str
     """An optional description of the interconnect."""
 
@@ -30,10 +33,13 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     health_check: HealthCheckParam
 
     interface_address: str
-    """
-    A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
-    of the tunnel. Select the subnet from the following private IP space:
-    10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+    """The IPv4 interface address for the interconnect.
+
+    For MPLS Interconnects, use a /30 or /31 prefix. For GRE Interconnects, a /29,
+    /30, or /31 prefix may be used. A /29 prefix is only allowed for v1.5
+    interconnects, and the address must be the .3 host of the subnet (the fourth
+    address overall; the network address is not usable). Select the subnet from RFC
+    1918 or the approved link-local ranges.
     """
 
     interface_address6: str
@@ -54,6 +60,53 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     """The name of the interconnect. The name cannot share a name with other tunnels."""
 
     x_magic_new_hc_target: Annotated[bool, PropertyInfo(alias="x-magic-new-hc-target")]
+
+
+class BGP(TypedDict, total=False):
+    as_no: int
+    """Deprecated. Use customer_asn."""
+
+    cloudflare_endpoint: str
+    """Read-only for v1.5; derived from interface_address."""
+
+    customer_asn: int
+    """ASN used on the customer end of the BGP session."""
+
+    customer_endpoint: str
+    """Read-only for v1.5; derived from interface_address."""
+
+    export_filter_id: str
+    """ID of the BGP filter profile applied to routes advertised to the customer."""
+
+    extra_prefixes: SequenceNotStr[str]
+    """
+    Prefixes in this list will be advertised to the customer device, in addition to
+    the routes in the Magic routing table.
+    """
+
+    import_filter_id: str
+    """ID of the BGP filter profile applied to routes received from the customer."""
+
+    md5_key: str
+    """MD5 key to use for session authentication.
+
+    Note that _this is not a security measure_. MD5 is not a valid security
+    mechanism, and the key is not treated as a secret value. This is _only_
+    supported for preventing misconfiguration, not for defending against malicious
+    attacks.
+
+    The MD5 key, if set, must be of non-zero length and consist only of the
+    following types of character:
+
+    - ASCII alphanumerics: `[a-zA-Z0-9]`
+    - Special characters in the set `'!@#$%^&*()+[]{}<>/.,;:_-~`= \\||`
+
+    In other words, MD5 keys may contain any printable ASCII character aside from
+    newline (0x0A), quotation mark (`"`), vertical tab (0x0B), carriage return
+    (0x0D), tab (0x09), form feed (0x0C), and the question mark (`?`). Requests
+    specifying an MD5 key with one or more of these disallowed characters will be
+    rejected.
+    """
 
 
 class GRE(TypedDict, total=False):

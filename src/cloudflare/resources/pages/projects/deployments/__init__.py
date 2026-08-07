@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .tails import (
+    TailsResource,
+    AsyncTailsResource,
+    TailsResourceWithRawResponse,
+    AsyncTailsResourceWithRawResponse,
+    TailsResourceWithStreamingResponse,
+    AsyncTailsResourceWithStreamingResponse,
+)
 from .history import (
     HistoryResource,
     AsyncHistoryResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncHistoryResourceWithRawResponse",
     "HistoryResourceWithStreamingResponse",
     "AsyncHistoryResourceWithStreamingResponse",
+    "TailsResource",
+    "AsyncTailsResource",
+    "TailsResourceWithRawResponse",
+    "AsyncTailsResourceWithRawResponse",
+    "TailsResourceWithStreamingResponse",
+    "AsyncTailsResourceWithStreamingResponse",
     "DeploymentsResource",
     "AsyncDeploymentsResource",
     "DeploymentsResourceWithRawResponse",

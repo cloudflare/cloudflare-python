@@ -72,7 +72,7 @@ class TargetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetCreateResponse]:
         """
-        Create new target
+        Creates a new infrastructure access target in the account.
 
         Args:
           account_id: Account identifier
@@ -127,7 +127,7 @@ class TargetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetUpdateResponse]:
         """
-        Update target
+        Updates an existing infrastructure access target by its ID.
 
         Args:
           account_id: Account identifier
@@ -204,7 +204,7 @@ class TargetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[TargetListResponse]:
-        """Lists and sorts an account’s targets.
+        """Lists and sorts an account's targets.
 
         Filters are optional and are ANDed
         together.
@@ -319,7 +319,7 @@ class TargetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete target
+        Removes a single infrastructure access target by its ID.
 
         Args:
           account_id: Account identifier
@@ -478,7 +478,7 @@ class TargetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetGetResponse]:
         """
-        Get target
+        Fetches a single infrastructure access target by its ID.
 
         Args:
           account_id: Account identifier
@@ -546,7 +546,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetCreateResponse]:
         """
-        Create new target
+        Creates a new infrastructure access target in the account.
 
         Args:
           account_id: Account identifier
@@ -601,7 +601,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetUpdateResponse]:
         """
-        Update target
+        Updates an existing infrastructure access target by its ID.
 
         Args:
           account_id: Account identifier
@@ -678,7 +678,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TargetListResponse, AsyncV4PagePaginationArray[TargetListResponse]]:
-        """Lists and sorts an account’s targets.
+        """Lists and sorts an account's targets.
 
         Filters are optional and are ANDed
         together.
@@ -793,7 +793,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete target
+        Removes a single infrastructure access target by its ID.
 
         Args:
           account_id: Account identifier
@@ -954,7 +954,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TargetGetResponse]:
         """
-        Get target
+        Fetches a single infrastructure access target by its ID.
 
         Args:
           account_id: Account identifier

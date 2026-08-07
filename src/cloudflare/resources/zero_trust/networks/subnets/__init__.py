@@ -24,6 +24,14 @@ from .cloudflare_source import (
     CloudflareSourceResourceWithStreamingResponse,
     AsyncCloudflareSourceResourceWithStreamingResponse,
 )
+from .initial_resolved_ip import (
+    InitialResolvedIPResource,
+    AsyncInitialResolvedIPResource,
+    InitialResolvedIPResourceWithRawResponse,
+    AsyncInitialResolvedIPResourceWithRawResponse,
+    InitialResolvedIPResourceWithStreamingResponse,
+    AsyncInitialResolvedIPResourceWithStreamingResponse,
+)
 
 __all__ = [
     "WARPResource",
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncCloudflareSourceResourceWithRawResponse",
     "CloudflareSourceResourceWithStreamingResponse",
     "AsyncCloudflareSourceResourceWithStreamingResponse",
+    "InitialResolvedIPResource",
+    "AsyncInitialResolvedIPResource",
+    "InitialResolvedIPResourceWithRawResponse",
+    "AsyncInitialResolvedIPResourceWithRawResponse",
+    "InitialResolvedIPResourceWithStreamingResponse",
+    "AsyncInitialResolvedIPResourceWithStreamingResponse",
     "SubnetsResource",
     "AsyncSubnetsResource",
     "SubnetsResourceWithRawResponse",

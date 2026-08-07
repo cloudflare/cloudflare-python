@@ -17,6 +17,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindAI",
     "SettingsBindingWorkersBindingKindAISearch",
     "SettingsBindingWorkersBindingKindAISearchNamespace",
+    "SettingsBindingWorkersBindingKindMessaging",
     "SettingsBindingWorkersBindingKindAnalyticsEngine",
     "SettingsBindingWorkersBindingKindAssets",
     "SettingsBindingWorkersBindingKindBrowser",
@@ -143,6 +144,17 @@ class SettingsBindingWorkersBindingKindAISearchNamespace(TypedDict, total=False)
     """
 
     type: Required[Literal["ai_search_namespace"]]
+    """The kind of resource that the binding provides."""
+
+
+class SettingsBindingWorkersBindingKindMessaging(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace: Required[str]
+    """The Messaging namespace to bind to."""
+
+    type: Required[Literal["messaging"]]
     """The kind of resource that the binding provides."""
 
 
@@ -646,6 +658,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindAI,
     SettingsBindingWorkersBindingKindAISearch,
     SettingsBindingWorkersBindingKindAISearchNamespace,
+    SettingsBindingWorkersBindingKindMessaging,
     SettingsBindingWorkersBindingKindAnalyticsEngine,
     SettingsBindingWorkersBindingKindAssets,
     SettingsBindingWorkersBindingKindBrowser,

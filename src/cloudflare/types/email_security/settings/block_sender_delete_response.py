@@ -7,4 +7,4 @@ __all__ = ["BlockSenderDeleteResponse"]
 
 class BlockSenderDeleteResponse(BaseModel):
     id: str
-    """Blocked sender pattern identifier"""
+    """Blocked sender pattern identifier."""

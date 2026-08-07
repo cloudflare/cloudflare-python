@@ -19,10 +19,10 @@ __all__ = [
 
 class Attachment(BaseModel):
     size: int
-    """Size of the attachment in bytes"""
+    """Size of the attachment in bytes."""
 
     content_type: Optional[str] = None
-    """MIME type of the attachment"""
+    """MIME type of the attachment."""
 
     detection: Optional[
         Literal[
@@ -38,25 +38,25 @@ class Attachment(BaseModel):
             "NONE",
         ]
     ] = None
-    """Detection result for this attachment"""
+    """Detection result for this attachment."""
 
     encrypted: Optional[bool] = None
-    """Whether the attachment is encrypted"""
+    """Whether the attachment is encrypted."""
 
     filename: Optional[str] = None
-    """Name of the attached file"""
+    """Name of the attached file."""
 
     md5: Optional[str] = None
-    """MD5 hash of the attachment"""
+    """MD5 hash of the attachment."""
 
     name: Optional[str] = None
-    """Attachment name (alternative to filename)"""
+    """Attachment name (alternative to filename)."""
 
     sha1: Optional[str] = None
-    """SHA1 hash of the attachment"""
+    """SHA1 hash of the attachment."""
 
     sha256: Optional[str] = None
-    """SHA256 hash of the attachment"""
+    """SHA256 hash of the attachment."""
 
 
 class Finding(BaseModel):

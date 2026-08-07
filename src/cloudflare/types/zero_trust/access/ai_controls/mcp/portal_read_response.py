@@ -127,6 +127,13 @@ class Server(BaseModel):
     value.
     """
 
+    authentication_status: Optional[Literal["not_required", "required", "connected", "stale", "manual"]] = None
+    """
+    Whether administrative authentication is required before capabilities can be
+    synced. Manual OAuth is user-managed and has no administrative authentication
+    flow.
+    """
+
     created_at: Optional[datetime] = None
 
     created_by: Optional[str] = None
@@ -144,8 +151,7 @@ class Server(BaseModel):
     When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
     endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
     customer portal hostname. Defaults to false (off); opt in per server by setting
-    true. Effective behavior is gated by the gateway worker's per-env rollout mode
-    KV key.
+    true.
     """
 
     last_successful_sync: Optional[datetime] = None
@@ -180,7 +186,23 @@ class PortalReadResponse(BaseModel):
     servers: List[Server]
 
     allow_code_mode: Optional[bool] = None
-    """Allow remote code execution in Dynamic Workers (beta)"""
+    """Deprecated: use `code_mode` for new integrations.
+
+    `true` maps to any non-off Code Mode policy; `false` maps to `code_mode: off`.
+    If both fields are sent, they must be consistent or the request returns a 400.
+    """
+
+    code_mode: Optional[Literal["off", "opt_in", "default_on", "enforced"]] = None
+    """Code Mode policy for this portal.
+
+    `off`: Code Mode is unavailable; query parameters are ignored. `opt_in`: Code
+    Mode is off by default; clients turn it on with `?codemode=search_and_execute`.
+    `default_on`: Code Mode is on by default; clients can opt out with
+    `?codemode=off`. `enforced`: Code Mode is always on; query parameters are
+    ignored. Defaults to `opt_in` when omitted on create. If both `code_mode` and
+    `allow_code_mode` are sent, they must be consistent or the request returns
+    a 400.
+    """
 
     created_at: Optional[datetime] = None
 

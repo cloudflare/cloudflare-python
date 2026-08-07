@@ -246,7 +246,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(SyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 
@@ -689,7 +689,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(AsyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 

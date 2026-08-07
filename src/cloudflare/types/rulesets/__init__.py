@@ -27,6 +27,7 @@ from .execute_rule_param import ExecuteRuleParam as ExecuteRuleParam
 from .phase_get_response import PhaseGetResponse as PhaseGetResponse
 from .rewrite_rule_param import RewriteRuleParam as RewriteRuleParam
 from .rule_create_params import RuleCreateParams as RuleCreateParams
+from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
 from .rule_edit_response import RuleEditResponse as RuleEditResponse
 from .phase_update_params import PhaseUpdateParams as PhaseUpdateParams
 from .redirect_rule_param import RedirectRuleParam as RedirectRuleParam
@@ -38,9 +39,11 @@ from .version_get_response import VersionGetResponse as VersionGetResponse
 from .log_custom_field_rule import LogCustomFieldRule as LogCustomFieldRule
 from .phase_update_response import PhaseUpdateResponse as PhaseUpdateResponse
 from .ruleset_create_params import RulesetCreateParams as RulesetCreateParams
+from .ruleset_delete_params import RulesetDeleteParams as RulesetDeleteParams
 from .ruleset_list_response import RulesetListResponse as RulesetListResponse
 from .ruleset_update_params import RulesetUpdateParams as RulesetUpdateParams
 from .set_config_rule_param import SetConfigRuleParam as SetConfigRuleParam
+from .version_delete_params import VersionDeleteParams as VersionDeleteParams
 from .version_list_response import VersionListResponse as VersionListResponse
 from .compress_response_rule import CompressResponseRule as CompressResponseRule
 from .managed_challenge_rule import ManagedChallengeRule as ManagedChallengeRule

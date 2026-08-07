@@ -6,7 +6,15 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["VersionListResponse", "Limits"]
+__all__ = ["VersionListResponse", "DefaultRetention", "Limits"]
+
+
+class DefaultRetention(BaseModel):
+    error_retention: Optional[int] = None
+    """Default error retention in milliseconds."""
+
+    success_retention: Optional[int] = None
+    """Default success retention in milliseconds."""
 
 
 class Limits(BaseModel):
@@ -28,5 +36,7 @@ class VersionListResponse(BaseModel):
     modified_on: datetime
 
     workflow_id: str
+
+    default_retention: Optional[DefaultRetention] = None
 
     limits: Optional[Limits] = None

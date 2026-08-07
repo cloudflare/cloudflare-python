@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..decision import Decision
@@ -129,7 +129,7 @@ class PolicyUnionMember0(TypedDict, total=False):
     To match the policy, a user must meet all of the Require rules.
     """
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),

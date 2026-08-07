@@ -53,9 +53,10 @@ class IndicatorListParams(TypedDict, total=False):
     """Whether to include full tag details for each indicator. Defaults to true."""
 
     include_total_count: Annotated[bool, PropertyInfo(alias="includeTotalCount")]
-    """Whether to compute accurate total count via COUNT(\\**).
+    """Whether to compute total count via COUNT(\\**).
 
-    Defaults to false for performance. When false, total_count is an approximation.
+    Defaults to false for performance. total_count is null unless this is true and
+    the complete fan-out succeeds.
     """
 
     indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]

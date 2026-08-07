@@ -126,11 +126,12 @@ class TokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TokenListResponse]:
-        """Returns metadata for every token in the relay's registry.
+        """Returns metadata for every token the relay accepts.
 
-        Secrets are never
-        returned. The dashboard derives an `expired` flag by comparing each token's
-        `expires` to the current time.
+        Secrets are never returned,
+        so a token that has been lost cannot be recovered here. There is no expiry
+        filter: compare each token's `expires` to the current time to tell which ones
+        have lapsed.
 
         Args:
           account_id: Cloudflare account identifier.
@@ -174,10 +175,12 @@ class TokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenDeleteResponse:
-        """Revokes a token by removing it from the relay's registry.
+        """Revokes a token by removing it from the set the relay accepts.
 
-        crique rejects the
-        token within the cache TTL. Idempotent — revoking an unknown token succeeds.
+        Relays cache that
+        set, so revocation takes effect within seconds rather than instantly, and
+        connections already established with the token are not closed. Revoking an
+        unknown token succeeds, so the call is idempotent.
 
         Args:
           account_id: Cloudflare account identifier.
@@ -308,11 +311,12 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TokenListResponse]:
-        """Returns metadata for every token in the relay's registry.
+        """Returns metadata for every token the relay accepts.
 
-        Secrets are never
-        returned. The dashboard derives an `expired` flag by comparing each token's
-        `expires` to the current time.
+        Secrets are never returned,
+        so a token that has been lost cannot be recovered here. There is no expiry
+        filter: compare each token's `expires` to the current time to tell which ones
+        have lapsed.
 
         Args:
           account_id: Cloudflare account identifier.
@@ -356,10 +360,12 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenDeleteResponse:
-        """Revokes a token by removing it from the relay's registry.
+        """Revokes a token by removing it from the set the relay accepts.
 
-        crique rejects the
-        token within the cache TTL. Idempotent — revoking an unknown token succeeds.
+        Relays cache that
+        set, so revocation takes effect within seconds rather than instantly, and
+        connections already established with the token are not closed. Revoking an
+        unknown token succeeds, so the call is idempotent.
 
         Args:
           account_id: Cloudflare account identifier.

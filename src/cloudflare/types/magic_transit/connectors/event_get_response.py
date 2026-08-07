@@ -36,6 +36,10 @@ class E(BaseModel):
     - `RekeyAdvance`: Confirmed traffic on new inbound key, swapped outbound to new
     - `RekeyComplete`: Deleted old keys
     - `RekeyReset`: Deleted all keys after receiving an unexpected key
+    - `HaTransition`: Completed HA state transition
+    - `HaError`: Received unexpected HA error
+    - `HaInit`: Initialized HA subsystem
+    - `HaLeave`: Stopped HA subsystem
     """
 
     k: Literal[
@@ -61,6 +65,10 @@ class E(BaseModel):
         "RekeyAdvance",
         "RekeyComplete",
         "RekeyReset",
+        "HaTransition",
+        "HaError",
+        "HaInit",
+        "HaLeave",
     ]
     """Event kind"""
 
@@ -107,6 +115,10 @@ class EventGetResponse(BaseModel):
     - `RekeyAdvance`: Confirmed traffic on new inbound key, swapped outbound to new
     - `RekeyComplete`: Deleted old keys
     - `RekeyReset`: Deleted all keys after receiving an unexpected key
+    - `HaTransition`: Completed HA state transition
+    - `HaError`: Received unexpected HA error
+    - `HaInit`: Initialized HA subsystem
+    - `HaLeave`: Stopped HA subsystem
     """
 
     n: float

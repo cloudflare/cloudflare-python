@@ -3,5 +3,4 @@
 from __future__ import annotations
 
 from .alerting_edit_params import AlertingEditParams as AlertingEditParams
-from .alerting_get_response import AlertingGetResponse as AlertingGetResponse
-from .alerting_edit_response import AlertingEditResponse as AlertingEditResponse
+from .ct_alerting_subscription import CTAlertingSubscription as CTAlertingSubscription

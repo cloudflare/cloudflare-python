@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from .auth_methods import (
     AuthMethodsResource,
@@ -24,7 +25,9 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._base_client import make_request_options
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.casb import application_list_params
 from .....types.zero_trust.casb.application_get_response import ApplicationGetResponse
 from .....types.zero_trust.casb.application_list_response import ApplicationListResponse
@@ -61,18 +64,24 @@ class ApplicationsResource(SyncAPIResource):
         *,
         account_id: str,
         environment: str | Omit = omit,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ApplicationListResponse:
+    ) -> SyncSinglePage[ApplicationListResponse]:
         """
         Returns a list of available applications with use cases and permissions.
 
         Args:
           environment: Filter by supported environment (standard, fedramp).
+
+          page: A page number within the paginated result set.
+
+          page_size: Number of results to return per page.
 
           extra_headers: Send extra headers
 
@@ -84,22 +93,31 @@ class ApplicationsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/one/applications", account_id=account_id),
+            page=SyncSinglePage[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, application_list_params.ApplicationListParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "page": page,
+                        "page_size": page_size,
+                    },
+                    application_list_params.ApplicationListParams,
+                ),
             ),
-            cast_to=ApplicationListResponse,
+            model=ApplicationListResponse,
         )
 
     def get(
         self,
         application_id: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
@@ -111,6 +129,7 @@ class ApplicationsResource(SyncAPIResource):
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
         ],
         *,
@@ -146,9 +165,13 @@ class ApplicationsResource(SyncAPIResource):
                 application_id=application_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ApplicationGetResponse]._unwrapper,
             ),
-            cast_to=ApplicationGetResponse,
+            cast_to=cast(Type[ApplicationGetResponse], ResultWrapper[ApplicationGetResponse]),
         )
 
 
@@ -176,23 +199,29 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         return AsyncApplicationsResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
         environment: str | Omit = omit,
+        page: int | Omit = omit,
+        page_size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ApplicationListResponse:
+    ) -> AsyncPaginator[ApplicationListResponse, AsyncSinglePage[ApplicationListResponse]]:
         """
         Returns a list of available applications with use cases and permissions.
 
         Args:
           environment: Filter by supported environment (standard, fedramp).
+
+          page: A page number within the paginated result set.
+
+          page_size: Number of results to return per page.
 
           extra_headers: Send extra headers
 
@@ -204,24 +233,31 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/one/applications", account_id=account_id),
+            page=AsyncSinglePage[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"environment": environment}, application_list_params.ApplicationListParams
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "page": page,
+                        "page_size": page_size,
+                    },
+                    application_list_params.ApplicationListParams,
                 ),
             ),
-            cast_to=ApplicationListResponse,
+            model=ApplicationListResponse,
         )
 
     async def get(
         self,
         application_id: Literal[
             "ANTHROPIC",
+            "AWS",
             "BITBUCKET",
             "BOX",
             "CONFLUENCE",
@@ -233,6 +269,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "MICROSOFT_INTERNAL",
             "OPENAI",
             "SALESFORCE",
+            "SERVICENOW",
             "SLACK",
         ],
         *,
@@ -268,9 +305,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
                 application_id=application_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ApplicationGetResponse]._unwrapper,
             ),
-            cast_to=ApplicationGetResponse,
+            cast_to=cast(Type[ApplicationGetResponse], ResultWrapper[ApplicationGetResponse]),
         )
 
 

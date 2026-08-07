@@ -4,10 +4,10 @@ from typing import List, Optional
 
 from ...._models import BaseModel
 
-__all__ = ["AlertingGetResponse"]
+__all__ = ["CTAlertingSubscription"]
 
 
-class AlertingGetResponse(BaseModel):
+class CTAlertingSubscription(BaseModel):
     """Certificate Transparency alerting subscription settings for a zone."""
 
     enabled: bool

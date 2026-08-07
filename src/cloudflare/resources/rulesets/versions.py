@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import path_template
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,6 +19,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.rulesets import version_delete_params
 from ...types.rulesets.version_get_response import VersionGetResponse
 from ...types.rulesets.version_list_response import VersionListResponse
 
@@ -111,6 +112,7 @@ class VersionsResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -129,6 +131,10 @@ class VersionsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           extra_headers: Send extra headers
 
@@ -164,7 +170,11 @@ class VersionsResource(SyncAPIResource):
                 account_or_zone_id=account_or_zone_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"dry_run": dry_run}, version_delete_params.VersionDeleteParams),
             ),
             cast_to=NoneType,
         )
@@ -324,6 +334,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -342,6 +353,10 @@ class AsyncVersionsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           extra_headers: Send extra headers
 
@@ -377,7 +392,11 @@ class AsyncVersionsResource(AsyncAPIResource):
                 account_or_zone_id=account_or_zone_id,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"dry_run": dry_run}, version_delete_params.VersionDeleteParams),
             ),
             cast_to=NoneType,
         )

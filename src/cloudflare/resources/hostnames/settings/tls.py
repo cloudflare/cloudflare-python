@@ -22,7 +22,7 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.hostnames.settings import tls_update_params
 from ....types.hostnames.settings.setting import Setting
-from ....types.hostnames.settings.tls_get_response import TLSGetResponse
+from ....types.hostnames.settings.tls_list_response import TLSListResponse
 from ....types.hostnames.settings.setting_value_param import SettingValueParam
 from ....types.hostnames.settings.tls_delete_response import TLSDeleteResponse
 
@@ -122,6 +122,54 @@ class TLSResource(SyncAPIResource):
             cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
+    def list(
+        self,
+        setting_id: Literal["ciphers", "min_tls_version", "http2"],
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[TLSListResponse]:
+        """
+        List the requested TLS setting for the hostnames under this zone.
+
+        Args:
+          zone_id: Identifier.
+
+          setting_id:
+              The TLS Setting name. The value type depends on the setting:
+
+              - `ciphers`: value is an array of cipher suite strings (e.g.,
+                `["ECDHE-RSA-AES128-GCM-SHA256", "AES128-GCM-SHA256"]`).
+              - `min_tls_version`: value is a TLS version string (`"1.0"`, `"1.1"`, `"1.2"`,
+                or `"1.3"`).
+              - `http2`: value is `"on"` or `"off"`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not setting_id:
+            raise ValueError(f"Expected a non-empty value for `setting_id` but received {setting_id!r}")
+        return self._get_api_list(
+            path_template("/zones/{zone_id}/hostnames/settings/{setting_id}", zone_id=zone_id, setting_id=setting_id),
+            page=SyncSinglePage[TLSListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=TLSListResponse,
+        )
+
     def delete(
         self,
         hostname: str,
@@ -185,18 +233,19 @@ class TLSResource(SyncAPIResource):
 
     def get(
         self,
-        setting_id: Literal["ciphers", "min_tls_version", "http2"],
+        hostname: str,
         *,
         zone_id: str,
+        setting_id: Literal["ciphers", "min_tls_version", "http2"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[TLSGetResponse]:
+    ) -> Optional[Setting]:
         """
-        List the requested TLS setting for the hostnames under this zone.
+        Get the requested TLS setting for the hostname.
 
         Args:
           zone_id: Identifier.
@@ -210,6 +259,8 @@ class TLSResource(SyncAPIResource):
                 or `"1.3"`).
               - `http2`: value is `"on"` or `"off"`.
 
+          hostname: The hostname for which the tls settings are set.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -222,13 +273,23 @@ class TLSResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
             raise ValueError(f"Expected a non-empty value for `setting_id` but received {setting_id!r}")
-        return self._get_api_list(
-            path_template("/zones/{zone_id}/hostnames/settings/{setting_id}", zone_id=zone_id, setting_id=setting_id),
-            page=SyncSinglePage[TLSGetResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        if not hostname:
+            raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
+        return self._get(
+            path_template(
+                "/zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}",
+                zone_id=zone_id,
+                setting_id=setting_id,
+                hostname=hostname,
             ),
-            model=TLSGetResponse,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
 
@@ -325,6 +386,54 @@ class AsyncTLSResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
+    def list(
+        self,
+        setting_id: Literal["ciphers", "min_tls_version", "http2"],
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[TLSListResponse, AsyncSinglePage[TLSListResponse]]:
+        """
+        List the requested TLS setting for the hostnames under this zone.
+
+        Args:
+          zone_id: Identifier.
+
+          setting_id:
+              The TLS Setting name. The value type depends on the setting:
+
+              - `ciphers`: value is an array of cipher suite strings (e.g.,
+                `["ECDHE-RSA-AES128-GCM-SHA256", "AES128-GCM-SHA256"]`).
+              - `min_tls_version`: value is a TLS version string (`"1.0"`, `"1.1"`, `"1.2"`,
+                or `"1.3"`).
+              - `http2`: value is `"on"` or `"off"`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not setting_id:
+            raise ValueError(f"Expected a non-empty value for `setting_id` but received {setting_id!r}")
+        return self._get_api_list(
+            path_template("/zones/{zone_id}/hostnames/settings/{setting_id}", zone_id=zone_id, setting_id=setting_id),
+            page=AsyncSinglePage[TLSListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=TLSListResponse,
+        )
+
     async def delete(
         self,
         hostname: str,
@@ -386,20 +495,21 @@ class AsyncTLSResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[TLSDeleteResponse]], ResultWrapper[TLSDeleteResponse]),
         )
 
-    def get(
+    async def get(
         self,
-        setting_id: Literal["ciphers", "min_tls_version", "http2"],
+        hostname: str,
         *,
         zone_id: str,
+        setting_id: Literal["ciphers", "min_tls_version", "http2"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[TLSGetResponse, AsyncSinglePage[TLSGetResponse]]:
+    ) -> Optional[Setting]:
         """
-        List the requested TLS setting for the hostnames under this zone.
+        Get the requested TLS setting for the hostname.
 
         Args:
           zone_id: Identifier.
@@ -413,6 +523,8 @@ class AsyncTLSResource(AsyncAPIResource):
                 or `"1.3"`).
               - `http2`: value is `"on"` or `"off"`.
 
+          hostname: The hostname for which the tls settings are set.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -425,13 +537,23 @@ class AsyncTLSResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
             raise ValueError(f"Expected a non-empty value for `setting_id` but received {setting_id!r}")
-        return self._get_api_list(
-            path_template("/zones/{zone_id}/hostnames/settings/{setting_id}", zone_id=zone_id, setting_id=setting_id),
-            page=AsyncSinglePage[TLSGetResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        if not hostname:
+            raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
+        return await self._get(
+            path_template(
+                "/zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}",
+                zone_id=zone_id,
+                setting_id=setting_id,
+                hostname=hostname,
             ),
-            model=TLSGetResponse,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
 
@@ -441,6 +563,9 @@ class TLSResourceWithRawResponse:
 
         self.update = to_raw_response_wrapper(
             tls.update,
+        )
+        self.list = to_raw_response_wrapper(
+            tls.list,
         )
         self.delete = to_raw_response_wrapper(
             tls.delete,
@@ -457,6 +582,9 @@ class AsyncTLSResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             tls.update,
         )
+        self.list = async_to_raw_response_wrapper(
+            tls.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             tls.delete,
         )
@@ -472,6 +600,9 @@ class TLSResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             tls.update,
         )
+        self.list = to_streamed_response_wrapper(
+            tls.list,
+        )
         self.delete = to_streamed_response_wrapper(
             tls.delete,
         )
@@ -486,6 +617,9 @@ class AsyncTLSResourceWithStreamingResponse:
 
         self.update = async_to_streamed_response_wrapper(
             tls.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            tls.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             tls.delete,

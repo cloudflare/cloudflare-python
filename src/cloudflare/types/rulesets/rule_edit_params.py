@@ -281,6 +281,13 @@ class BlockRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -433,6 +440,13 @@ class ChallengeRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -564,6 +578,13 @@ class ResponseCompressionRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
@@ -713,6 +734,13 @@ class DDoSDynamicRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -844,6 +872,13 @@ class ExecuteRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
@@ -1070,6 +1105,13 @@ class ForceConnectionCloseRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -1203,6 +1245,13 @@ class JavaScriptChallengeRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
@@ -1338,6 +1387,13 @@ class LogRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -1469,6 +1525,13 @@ class LogCustomFieldRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
@@ -1664,6 +1727,13 @@ class ManagedChallengeRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -1797,6 +1867,13 @@ class RedirectRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
@@ -1972,6 +2049,13 @@ class RewriteRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
@@ -2210,6 +2294,13 @@ class RouteRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -2372,6 +2463,13 @@ class ScoreRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -2510,6 +2608,13 @@ class ServeErrorRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
@@ -2669,6 +2774,13 @@ class SetCacheControlRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
@@ -3225,6 +3337,13 @@ class SetCacheSettingsRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -3714,6 +3833,13 @@ class SetCacheTagsRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -3915,6 +4041,13 @@ class SetConfigurationRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
@@ -4136,6 +4269,13 @@ class SkipRule(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
+
     id: str
     """The unique ID of the rule."""
 
@@ -4304,6 +4444,13 @@ class TransformResponseHTMLRule(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    dry_run: bool
+    """Validates the request without persisting changes when set to `true`.
+
+    Responses that normally return 200 return `result: null`; endpoints that
+    normally return 204 continue to return 204.
+    """
 
     id: str
     """The unique ID of the rule."""
