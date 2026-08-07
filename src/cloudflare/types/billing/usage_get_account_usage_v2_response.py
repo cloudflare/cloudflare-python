@@ -61,6 +61,12 @@ class UsageGetAccountUsageV2ResponseItem(BaseModel):
     service_provider_name: str = FieldInfo(alias="ServiceProviderName")
     """Name of the entity that made the services available for purchase."""
 
+    x_billable_metric_id: str = FieldInfo(alias="x_BillableMetricId")
+    """The unique identifier for the billable metric in the Cloudflare catalog.
+
+    Cloudflare extension; replaces FOCUS SkuId.
+    """
+
     x_billable_metric_name: str = FieldInfo(alias="x_BillableMetricName")
     """The display name of the billable metric.
 
@@ -150,12 +156,6 @@ class UsageGetAccountUsageV2ResponseItem(BaseModel):
     """Name assigned to a grouping of services.
 
     For Cloudflare, this is the subscription or contract display name.
-    """
-
-    x_billable_metric_id: Optional[str] = FieldInfo(alias="x_BillableMetricId", default=None)
-    """The unique identifier for the billable metric in the Cloudflare catalog.
-
-    Cloudflare extension; replaces FOCUS SkuId.
     """
 
     x_product_category_name: Optional[str] = FieldInfo(alias="x_ProductCategoryName", default=None)
