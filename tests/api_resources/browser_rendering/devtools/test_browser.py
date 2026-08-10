@@ -204,6 +204,7 @@ class TestBrowser:
             keep_alive=10000,
             lab=True,
             recording=True,
+            cf_brapi_guardrails="eyJhbGxvd2VkRG9tYWlucyI6WyIqLmV4YW1wbGUuY29tIl19",
         )
         assert browser is None
 
@@ -525,6 +526,7 @@ class TestAsyncBrowser:
             keep_alive=10000,
             lab=True,
             recording=True,
+            cf_brapi_guardrails="eyJhbGxvd2VkRG9tYWlucyI6WyIqLmV4YW1wbGUuY29tIl19",
         )
         assert browser is None
 
