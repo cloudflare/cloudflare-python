@@ -9,7 +9,7 @@ __all__ = ["ApplicationGetResponse"]
 
 
 class ApplicationGetResponse(BaseModel):
-    id: str
+    id: int
     """Returns the application ID."""
 
     application_confidence_score: float
@@ -59,6 +59,3 @@ class ApplicationGetResponse(BaseModel):
 
     application_score_composition: Optional[object] = None
     """Returns the score composition breakdown for the application."""
-
-    intel_id: Optional[int] = None
-    """Returns the Intel API ID for the application."""

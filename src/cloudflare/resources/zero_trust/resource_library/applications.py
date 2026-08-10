@@ -70,7 +70,7 @@ class ApplicationsResource(SyncAPIResource):
               Filter applications using key:value format. Supported filter keys:
 
               - name: Filter by application name (e.g., name:HR)
-              - id: Filter by application ID (e.g., id:0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0)
+              - id: Filter by application ID (e.g., id:498)
               - human_id: Filter by human-readable ID (e.g., human_id:HR)
               - hostname: Filter by hostname or support domain (e.g.,
                 hostname:portal.example.com)
@@ -78,8 +78,6 @@ class ApplicationsResource(SyncAPIResource):
               - ip_subnet: Filter by IP subnet using CIDR containment — returns applications
                 where any stored subnet contains the search value (e.g., ip_subnet:10.0.1.5/32
                 matches apps with 10.0.0.0/16)
-              - intel_id: Filter by Intel API ID (e.g., intel_id:498). also supports multiple
-                values (e.g., intel_id:498,1001)
               - category_id: Filter by category ID (e.g.,
                 category_id:37f8ec03-8766-49d4-9a15-369b044c842c).
               - category_name: Filter by category name (e.g., category_name:HR).
@@ -131,7 +129,7 @@ class ApplicationsResource(SyncAPIResource):
 
     def get(
         self,
-        id: str,
+        id: int,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -155,8 +153,6 @@ class ApplicationsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             path_template("/accounts/{account_id}/resource-library/applications/{id}", account_id=account_id, id=id),
             options=make_request_options(
@@ -214,7 +210,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
               Filter applications using key:value format. Supported filter keys:
 
               - name: Filter by application name (e.g., name:HR)
-              - id: Filter by application ID (e.g., id:0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0)
+              - id: Filter by application ID (e.g., id:498)
               - human_id: Filter by human-readable ID (e.g., human_id:HR)
               - hostname: Filter by hostname or support domain (e.g.,
                 hostname:portal.example.com)
@@ -222,8 +218,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
               - ip_subnet: Filter by IP subnet using CIDR containment — returns applications
                 where any stored subnet contains the search value (e.g., ip_subnet:10.0.1.5/32
                 matches apps with 10.0.0.0/16)
-              - intel_id: Filter by Intel API ID (e.g., intel_id:498). also supports multiple
-                values (e.g., intel_id:498,1001)
               - category_id: Filter by category ID (e.g.,
                 category_id:37f8ec03-8766-49d4-9a15-369b044c842c).
               - category_name: Filter by category name (e.g., category_name:HR).
@@ -275,7 +269,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: str,
+        id: int,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -299,8 +293,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             path_template("/accounts/{account_id}/resource-library/applications/{id}", account_id=account_id, id=id),
             options=make_request_options(

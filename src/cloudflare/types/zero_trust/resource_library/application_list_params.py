@@ -14,7 +14,7 @@ class ApplicationListParams(TypedDict, total=False):
     """Filter applications using key:value format. Supported filter keys:
 
     - name: Filter by application name (e.g., name:HR)
-    - id: Filter by application ID (e.g., id:0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0)
+    - id: Filter by application ID (e.g., id:498)
     - human_id: Filter by human-readable ID (e.g., human_id:HR)
     - hostname: Filter by hostname or support domain (e.g.,
       hostname:portal.example.com)
@@ -22,8 +22,6 @@ class ApplicationListParams(TypedDict, total=False):
     - ip_subnet: Filter by IP subnet using CIDR containment — returns applications
       where any stored subnet contains the search value (e.g., ip_subnet:10.0.1.5/32
       matches apps with 10.0.0.0/16)
-    - intel_id: Filter by Intel API ID (e.g., intel_id:498). also supports multiple
-      values (e.g., intel_id:498,1001)
     - category_id: Filter by category ID (e.g.,
       category_id:37f8ec03-8766-49d4-9a15-369b044c842c).
     - category_name: Filter by category name (e.g., category_name:HR).
