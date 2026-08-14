@@ -48,6 +48,14 @@ from .subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
+from .speed_settings import (
+    SpeedSettingsResource,
+    AsyncSpeedSettingsResource,
+    SpeedSettingsResourceWithRawResponse,
+    AsyncSpeedSettingsResourceWithRawResponse,
+    SpeedSettingsResourceWithStreamingResponse,
+    AsyncSpeedSettingsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "MembersResource",
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncLogsResourceWithRawResponse",
     "LogsResourceWithStreamingResponse",
     "AsyncLogsResourceWithStreamingResponse",
+    "SpeedSettingsResource",
+    "AsyncSpeedSettingsResource",
+    "SpeedSettingsResourceWithRawResponse",
+    "AsyncSpeedSettingsResourceWithRawResponse",
+    "SpeedSettingsResourceWithStreamingResponse",
+    "AsyncSpeedSettingsResourceWithStreamingResponse",
     "AccountsResource",
     "AsyncAccountsResource",
     "AccountsResourceWithRawResponse",

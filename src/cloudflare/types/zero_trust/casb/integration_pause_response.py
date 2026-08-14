@@ -51,9 +51,6 @@ class IntegrationPauseResponse(BaseModel):
     name: str
     """Name of the integration."""
 
-    organization_id: int
-    """Organization ID."""
-
     status: str
     """Integration status."""
 

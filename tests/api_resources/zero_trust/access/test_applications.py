@@ -1103,6 +1103,11 @@ class TestApplications:
             ],
             type="infrastructure",
             account_id="account_id",
+            mfa_config={
+                "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
+                "mfa_disabled": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
             policies=[
                 {
@@ -1117,7 +1122,7 @@ class TestApplications:
                     },
                     "exclude": [{"certificate": {}}],
                     "mfa_config": {
-                        "allowed_authenticators": ["piv_key"],
+                        "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
@@ -2957,6 +2962,11 @@ class TestApplications:
             ],
             type="infrastructure",
             account_id="account_id",
+            mfa_config={
+                "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
+                "mfa_disabled": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
             policies=[
                 {
@@ -2971,7 +2981,7 @@ class TestApplications:
                     },
                     "exclude": [{"certificate": {}}],
                     "mfa_config": {
-                        "allowed_authenticators": ["piv_key"],
+                        "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
@@ -5026,6 +5036,11 @@ class TestAsyncApplications:
             ],
             type="infrastructure",
             account_id="account_id",
+            mfa_config={
+                "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
+                "mfa_disabled": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
             policies=[
                 {
@@ -5040,7 +5055,7 @@ class TestAsyncApplications:
                     },
                     "exclude": [{"certificate": {}}],
                     "mfa_config": {
-                        "allowed_authenticators": ["piv_key"],
+                        "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },
@@ -6880,6 +6895,11 @@ class TestAsyncApplications:
             ],
             type="infrastructure",
             account_id="account_id",
+            mfa_config={
+                "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
+                "mfa_disabled": False,
+                "session_duration": "24h",
+            },
             name="Admin Site",
             policies=[
                 {
@@ -6894,7 +6914,7 @@ class TestAsyncApplications:
                     },
                     "exclude": [{"certificate": {}}],
                     "mfa_config": {
-                        "allowed_authenticators": ["piv_key"],
+                        "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
                         "mfa_disabled": False,
                         "session_duration": "24h",
                     },

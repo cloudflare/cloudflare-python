@@ -6,7 +6,7 @@ __all__ = ["CategoryListResponse"]
 
 
 class CategoryListResponse(BaseModel):
-    id: str
+    id: int
     """Returns the category ID."""
 
     created_at: str

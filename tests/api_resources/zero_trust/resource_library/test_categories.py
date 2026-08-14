@@ -68,7 +68,7 @@ class TestCategories:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         category = client.zero_trust.resource_library.categories.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CategoryGetResponse], category, path=["response"])
@@ -76,7 +76,7 @@ class TestCategories:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.resource_library.categories.with_raw_response.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -88,7 +88,7 @@ class TestCategories:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.resource_library.categories.with_streaming_response.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -103,14 +103,8 @@ class TestCategories:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.resource_library.categories.with_raw_response.get(
-                id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+                id=12,
                 account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.zero_trust.resource_library.categories.with_raw_response.get(
-                id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -169,7 +163,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         category = await async_client.zero_trust.resource_library.categories.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CategoryGetResponse], category, path=["response"])
@@ -177,7 +171,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.resource_library.categories.with_raw_response.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -189,7 +183,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.resource_library.categories.with_streaming_response.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -204,12 +198,6 @@ class TestAsyncCategories:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.resource_library.categories.with_raw_response.get(
-                id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+                id=12,
                 account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.zero_trust.resource_library.categories.with_raw_response.get(
-                id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

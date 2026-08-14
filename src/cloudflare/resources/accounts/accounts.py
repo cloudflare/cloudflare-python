@@ -62,6 +62,14 @@ from .tokens.tokens import (
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.accounts import account_list_params, account_create_params, account_update_params
 from ...types.accounts.account import Account
+from .speed_settings.speed_settings import (
+    SpeedSettingsResource,
+    AsyncSpeedSettingsResource,
+    SpeedSettingsResourceWithRawResponse,
+    AsyncSpeedSettingsResourceWithRawResponse,
+    SpeedSettingsResourceWithStreamingResponse,
+    AsyncSpeedSettingsResourceWithStreamingResponse,
+)
 from ...types.accounts.account_delete_response import AccountDeleteResponse
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
@@ -87,6 +95,10 @@ class AccountsResource(SyncAPIResource):
     @cached_property
     def logs(self) -> LogsResource:
         return LogsResource(self._client)
+
+    @cached_property
+    def speed_settings(self) -> SpeedSettingsResource:
+        return SpeedSettingsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AccountsResourceWithRawResponse:
@@ -377,6 +389,10 @@ class AsyncAccountsResource(AsyncAPIResource):
     @cached_property
     def logs(self) -> AsyncLogsResource:
         return AsyncLogsResource(self._client)
+
+    @cached_property
+    def speed_settings(self) -> AsyncSpeedSettingsResource:
+        return AsyncSpeedSettingsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAccountsResourceWithRawResponse:
@@ -687,6 +703,10 @@ class AccountsResourceWithRawResponse:
     def logs(self) -> LogsResourceWithRawResponse:
         return LogsResourceWithRawResponse(self._accounts.logs)
 
+    @cached_property
+    def speed_settings(self) -> SpeedSettingsResourceWithRawResponse:
+        return SpeedSettingsResourceWithRawResponse(self._accounts.speed_settings)
+
 
 class AsyncAccountsResourceWithRawResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
@@ -727,6 +747,10 @@ class AsyncAccountsResourceWithRawResponse:
     @cached_property
     def logs(self) -> AsyncLogsResourceWithRawResponse:
         return AsyncLogsResourceWithRawResponse(self._accounts.logs)
+
+    @cached_property
+    def speed_settings(self) -> AsyncSpeedSettingsResourceWithRawResponse:
+        return AsyncSpeedSettingsResourceWithRawResponse(self._accounts.speed_settings)
 
 
 class AccountsResourceWithStreamingResponse:
@@ -769,6 +793,10 @@ class AccountsResourceWithStreamingResponse:
     def logs(self) -> LogsResourceWithStreamingResponse:
         return LogsResourceWithStreamingResponse(self._accounts.logs)
 
+    @cached_property
+    def speed_settings(self) -> SpeedSettingsResourceWithStreamingResponse:
+        return SpeedSettingsResourceWithStreamingResponse(self._accounts.speed_settings)
+
 
 class AsyncAccountsResourceWithStreamingResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
@@ -809,3 +837,7 @@ class AsyncAccountsResourceWithStreamingResponse:
     @cached_property
     def logs(self) -> AsyncLogsResourceWithStreamingResponse:
         return AsyncLogsResourceWithStreamingResponse(self._accounts.logs)
+
+    @cached_property
+    def speed_settings(self) -> AsyncSpeedSettingsResourceWithStreamingResponse:
+        return AsyncSpeedSettingsResourceWithStreamingResponse(self._accounts.speed_settings)

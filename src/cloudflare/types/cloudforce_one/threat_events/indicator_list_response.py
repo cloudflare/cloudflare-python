@@ -29,6 +29,8 @@ __all__ = [
     "PropertiesPagination",
     "PropertiesPaginationProperties",
     "PropertiesPaginationPropertiesCount",
+    "PropertiesPaginationPropertiesCursor",
+    "PropertiesPaginationPropertiesHasMore",
     "PropertiesPaginationPropertiesPage",
     "PropertiesPaginationPropertiesPerPage",
     "PropertiesPaginationPropertiesTotalCount",
@@ -153,6 +155,20 @@ class PropertiesPaginationPropertiesCount(BaseModel):
     type: str
 
 
+class PropertiesPaginationPropertiesCursor(BaseModel):
+    description: str
+
+    nullable: bool
+
+    type: str
+
+
+class PropertiesPaginationPropertiesHasMore(BaseModel):
+    description: str
+
+    type: str
+
+
 class PropertiesPaginationPropertiesPage(BaseModel):
     type: str
 
@@ -177,6 +193,10 @@ class PropertiesPaginationPropertiesTotalCountIsExact(BaseModel):
 
 class PropertiesPaginationProperties(BaseModel):
     count: PropertiesPaginationPropertiesCount
+
+    cursor: PropertiesPaginationPropertiesCursor
+
+    has_more: PropertiesPaginationPropertiesHasMore
 
     page: PropertiesPaginationPropertiesPage
 

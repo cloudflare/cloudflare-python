@@ -52,7 +52,7 @@ class CatalogResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogListResponse:
         """
-        List all predefined target industries from the industry map catalog.
+        Lists all target industries from industry map catalog
 
         Args:
           account_id: Account ID.
@@ -110,7 +110,7 @@ class AsyncCatalogResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogListResponse:
         """
-        List all predefined target industries from the industry map catalog.
+        Lists all target industries from industry map catalog
 
         Args:
           account_id: Account ID.

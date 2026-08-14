@@ -24,6 +24,9 @@ class ApplicationListResponse(BaseModel):
     application_type_description: str
     """Returns the application type description."""
 
+    category_id: int
+    """Returns the category ID."""
+
     created_at: str
     """Returns the application creation time."""
 
@@ -31,22 +34,22 @@ class ApplicationListResponse(BaseModel):
     """GenAI score for the application. Returns -1 when no score is available."""
 
     hostnames: List[str]
-    """Returns the list of hostnames for the application."""
+    """Hostnames matched by the application."""
 
     human_id: str
     """Returns the human readable ID."""
 
     ip_subnets: List[str]
-    """Returns the list of IP subnets for the application."""
+    """IP subnets matched by the application."""
 
     name: str
     """Returns the application name."""
 
     port_protocols: List[str]
-    """Returns the list of port protocols for the application."""
+    """Port and protocol pairs matched by the application."""
 
     support_domains: List[str]
-    """Returns the list of support domains for the application."""
+    """Support domains matched by the application."""
 
     supported: List[Literal["GATEWAY", "ACCESS", "CASB"]]
     """Cloudflare products that support this application."""

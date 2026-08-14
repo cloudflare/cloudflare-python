@@ -32,6 +32,7 @@ class TestIndicators:
             cache="from-graph",
             created_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_before=parse_datetime("2019-12-27T18:11:19.117Z"),
+            cursor="cursor",
             dataset_ids=["string"],
             format="json",
             include_tags=True,
@@ -49,7 +50,6 @@ class TestIndicators:
                     "value": "malicious",
                 }
             ],
-            source="do",
             tags=["string"],
             tag_search=[
                 {
@@ -112,6 +112,7 @@ class TestAsyncIndicators:
             cache="from-graph",
             created_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_before=parse_datetime("2019-12-27T18:11:19.117Z"),
+            cursor="cursor",
             dataset_ids=["string"],
             format="json",
             include_tags=True,
@@ -129,7 +130,6 @@ class TestAsyncIndicators:
                     "value": "malicious",
                 }
             ],
-            source="do",
             tags=["string"],
             tag_search=[
                 {

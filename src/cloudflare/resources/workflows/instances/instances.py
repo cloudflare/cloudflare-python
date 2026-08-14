@@ -101,6 +101,9 @@ class InstancesResource(SyncAPIResource):
         Creates a new instance of a workflow, starting its execution.
 
         Args:
+          instance_id: An id of exactly `cf_` followed by 64 lowercase hex characters is reserved for
+              system-generated instances.
+
           params: JSON-encoded event payload passed into the new instance.
 
           extra_headers: Send extra headers
@@ -460,6 +463,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         Creates a new instance of a workflow, starting its execution.
 
         Args:
+          instance_id: An id of exactly `cf_` followed by 64 lowercase hex characters is reserved for
+              system-generated instances.
+
           params: JSON-encoded event payload passed into the new instance.
 
           extra_headers: Send extra headers

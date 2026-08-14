@@ -40,6 +40,7 @@ class TestServiceTokens:
             account_id="account_id",
             client_secret_version=0,
             duration="60m",
+            enabled=True,
             previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[ServiceTokenCreateResponse], service_token, path=["response"])
@@ -104,6 +105,7 @@ class TestServiceTokens:
             account_id="account_id",
             client_secret_version=0,
             duration="60m",
+            enabled=True,
             name="CI/CD token",
             previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
@@ -479,6 +481,7 @@ class TestAsyncServiceTokens:
             account_id="account_id",
             client_secret_version=0,
             duration="60m",
+            enabled=True,
             previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[ServiceTokenCreateResponse], service_token, path=["response"])
@@ -543,6 +546,7 @@ class TestAsyncServiceTokens:
             account_id="account_id",
             client_secret_version=0,
             duration="60m",
+            enabled=True,
             name="CI/CD token",
             previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )

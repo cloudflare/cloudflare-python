@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -48,8 +50,8 @@ class AggregateResource(SyncAPIResource):
         *,
         account_id: str,
         aggregate_by: str,
-        created_after: str | Omit = omit,
-        created_before: str | Omit = omit,
+        created_after: Union[Union[str, datetime], str] | Omit = omit,
+        created_before: Union[Union[str, datetime], str] | Omit = omit,
         dataset_ids: SequenceNotStr[str] | Omit = omit,
         event_date_after: str | Omit = omit,
         event_date_before: str | Omit = omit,
@@ -73,9 +75,11 @@ class AggregateResource(SyncAPIResource):
           aggregate_by: Column(s) to aggregate by - single column or comma-separated list (e.g.,
               'indicatorType', 'value', 'indicatorType,value')
 
-          created_after: Filter indicators created after this date (ISO 8601 format, e.g., '2024-01-01')
+          created_after: Filter indicators created after this date/datetime (ISO 8601, e.g., '2024-01-01'
+              or '2024-01-01T00:00:00Z')
 
-          created_before: Filter indicators created before this date (ISO 8601 format, e.g., '2024-12-31')
+          created_before: Filter indicators created before this date/datetime (ISO 8601, e.g.,
+              '2024-12-31' or '2024-12-31T23:59:59Z')
 
           dataset_ids: Dataset ID(s) to filter by. Can be a single dataset ID or comma-separated list.
               If not provided, aggregates across all accessible datasets
@@ -156,8 +160,8 @@ class AsyncAggregateResource(AsyncAPIResource):
         *,
         account_id: str,
         aggregate_by: str,
-        created_after: str | Omit = omit,
-        created_before: str | Omit = omit,
+        created_after: Union[Union[str, datetime], str] | Omit = omit,
+        created_before: Union[Union[str, datetime], str] | Omit = omit,
         dataset_ids: SequenceNotStr[str] | Omit = omit,
         event_date_after: str | Omit = omit,
         event_date_before: str | Omit = omit,
@@ -181,9 +185,11 @@ class AsyncAggregateResource(AsyncAPIResource):
           aggregate_by: Column(s) to aggregate by - single column or comma-separated list (e.g.,
               'indicatorType', 'value', 'indicatorType,value')
 
-          created_after: Filter indicators created after this date (ISO 8601 format, e.g., '2024-01-01')
+          created_after: Filter indicators created after this date/datetime (ISO 8601, e.g., '2024-01-01'
+              or '2024-01-01T00:00:00Z')
 
-          created_before: Filter indicators created before this date (ISO 8601 format, e.g., '2024-12-31')
+          created_before: Filter indicators created before this date/datetime (ISO 8601, e.g.,
+              '2024-12-31' or '2024-12-31T23:59:59Z')
 
           dataset_ids: Dataset ID(s) to filter by. Can be a single dataset ID or comma-separated list.
               If not provided, aggregates across all accessible datasets

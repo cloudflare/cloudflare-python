@@ -12,6 +12,10 @@ class InstanceCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     instance_id: str
+    """
+    An id of exactly `cf_` followed by 64 lowercase hex characters is reserved for
+    system-generated instances.
+    """
 
     instance_retention: InstanceRetention
 

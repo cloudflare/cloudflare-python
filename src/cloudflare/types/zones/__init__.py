@@ -64,6 +64,7 @@ from .ip_geolocation_param import IPGeolocationParam as IPGeolocationParam
 from .security_level_param import SecurityLevelParam as SecurityLevelParam
 from .server_side_excludes import ServerSideExcludes as ServerSideExcludes
 from .setting_get_response import SettingGetResponse as SettingGetResponse
+from .transformations_c2pa import TransformationsC2pa as TransformationsC2pa
 from .zone_delete_response import ZoneDeleteResponse as ZoneDeleteResponse
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .true_client_ip_header import TrueClientIPHeader as TrueClientIPHeader
@@ -96,10 +97,15 @@ from .custom_nameserver_get_response import CustomNameserverGetResponse as Custo
 from .opportunistic_encryption_param import OpportunisticEncryptionParam as OpportunisticEncryptionParam
 from .automatic_platform_optimization import AutomaticPlatformOptimization as AutomaticPlatformOptimization
 from .custom_nameserver_update_params import CustomNameserverUpdateParams as CustomNameserverUpdateParams
+from .transformations_allowed_origins import TransformationsAllowedOrigins as TransformationsAllowedOrigins
+from .transformations_c2pa_edit_params import TransformationsC2paEditParams as TransformationsC2paEditParams
 from .activation_check_trigger_response import ActivationCheckTriggerResponse as ActivationCheckTriggerResponse
 from .custom_nameserver_update_response import CustomNameserverUpdateResponse as CustomNameserverUpdateResponse
 from .origin_error_page_pass_thru_param import OriginErrorPagePassThruParam as OriginErrorPagePassThruParam
 from .sort_query_string_for_cache_param import SortQueryStringForCacheParam as SortQueryStringForCacheParam
 from .automatic_platform_optimization_param import (
     AutomaticPlatformOptimizationParam as AutomaticPlatformOptimizationParam,
+)
+from .transformations_allowed_origin_edit_params import (
+    TransformationsAllowedOriginEditParams as TransformationsAllowedOriginEditParams,
 )

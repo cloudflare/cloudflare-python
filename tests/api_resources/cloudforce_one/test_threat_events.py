@@ -151,7 +151,6 @@ class TestThreatEvents:
                     "value": "usa",
                 }
             ],
-            source="do",
         )
         assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
 
@@ -664,7 +663,6 @@ class TestAsyncThreatEvents:
                     "value": "usa",
                 }
             ],
-            source="do",
         )
         assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
 

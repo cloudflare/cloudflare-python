@@ -16,6 +16,7 @@ __all__ = [
     "RecordsCnamespfRecord",
     "RecordsDKIMRecord",
     "RecordsDMARCRecord",
+    "RecordsResolvedDMARCRecord",
     "RecordsSPFRecord",
 ]
 
@@ -165,6 +166,19 @@ class RecordsDMARCRecord(BaseModel):
     """Record type"""
 
 
+class RecordsResolvedDMARCRecord(BaseModel):
+    """A DMARC TXT record that a recursive lookup of _dmarc.{zone} returned.
+
+    Such a record usually lives in another zone outside this account's control, so this schema omits the DNS record ID. The API therefore treats such a record as read-only.
+    """
+
+    content: Optional[str] = None
+    """The TXT record value. The API joins all character-strings into a single string."""
+
+    name: Optional[str] = None
+    """The name the API queried."""
+
+
 class RecordsSPFRecord(BaseModel):
     """Summary of a single DNS record"""
 
@@ -194,7 +208,11 @@ class Records(BaseModel):
     """CNAME records for DKIM"""
 
     cname_dmarc_records: Optional[List[RecordsCnamedmarcRecord]] = None
-    """CNAME records at \\__dmarc (problematic)"""
+    """CNAME records at \\__dmarc.
+
+    When such a CNAME resolves to a DMARC TXT record, the API returns that record in
+    resolved_dmarc_records.
+    """
 
     cname_spf_records: Optional[List[RecordsCnamespfRecord]] = None
     """CNAME records for SPF"""
@@ -204,6 +222,13 @@ class Records(BaseModel):
 
     dmarc_records: Optional[List[RecordsDMARCRecord]] = None
     """DMARC TXT records"""
+
+    resolved_dmarc_records: Optional[List[RecordsResolvedDMARCRecord]] = None
+    """DMARC records that a recursive lookup of \\__dmarc.{zone} returned.
+
+    The API populates this only when the zone lacks a DMARC TXT record of its own,
+    which usually means a CNAME delegates DMARC to another zone.
+    """
 
     spf_records: Optional[List[RecordsSPFRecord]] = None
     """SPF TXT records"""
@@ -242,7 +267,14 @@ class DMARCReportGetResponse(BaseModel):
     status: Optional[
         Literal["missing-dmarc-report", "multiple-dmarc-reports", "missing-dmarc-rua", "cname-on-dmarc-record"]
     ] = None
-    """DMARC configuration status"""
+    """DMARC configuration status.
+
+    The API omits this field when DMARC is correctly configured. If the zone lacks a
+    DMARC TXT record of its own, the API resolves \\__dmarc.{zone} recursively and
+    evaluates whatever that lookup returns. A CNAME at \\__dmarc.{zone} that points to
+    a valid DMARC record is therefore healthy; the cname-on-dmarc-record value means
+    the CNAME resolves to no DMARC record at all.
+    """
 
     tag: Optional[str] = None
     """Use `zone_id` instead"""

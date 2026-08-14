@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._types import SequenceNotStr
@@ -20,12 +22,16 @@ class AggregateListParams(TypedDict, total=False):
     'indicatorType', 'value', 'indicatorType,value')
     """
 
-    created_after: Annotated[str, PropertyInfo(alias="createdAfter")]
-    """Filter indicators created after this date (ISO 8601 format, e.g., '2024-01-01')"""
-
-    created_before: Annotated[str, PropertyInfo(alias="createdBefore")]
+    created_after: Annotated[Union[Union[str, datetime], str], PropertyInfo(alias="createdAfter", format="iso8601")]
     """
-    Filter indicators created before this date (ISO 8601 format, e.g., '2024-12-31')
+    Filter indicators created after this date/datetime (ISO 8601, e.g., '2024-01-01'
+    or '2024-01-01T00:00:00Z')
+    """
+
+    created_before: Annotated[Union[Union[str, datetime], str], PropertyInfo(alias="createdBefore", format="iso8601")]
+    """
+    Filter indicators created before this date/datetime (ISO 8601, e.g.,
+    '2024-12-31' or '2024-12-31T23:59:59Z')
     """
 
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]

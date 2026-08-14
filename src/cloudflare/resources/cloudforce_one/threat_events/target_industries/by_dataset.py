@@ -53,7 +53,7 @@ class ByDatasetResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByDatasetListResponse:
         """
-        List all target industries referenced in events for a specific dataset.
+        Lists all target industries for a specific dataset
 
         Args:
           account_id: Account ID.
@@ -118,7 +118,7 @@ class AsyncByDatasetResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByDatasetListResponse:
         """
-        List all target industries referenced in events for a specific dataset.
+        Lists all target industries for a specific dataset
 
         Args:
           account_id: Account ID.

@@ -24,6 +24,10 @@ class BodyInstanceRetention(TypedDict, total=False):
 
 class Body(TypedDict, total=False):
     instance_id: str
+    """
+    An id of exactly `cf_` followed by 64 lowercase hex characters is reserved for
+    system-generated instances.
+    """
 
     instance_retention: BodyInstanceRetention
 

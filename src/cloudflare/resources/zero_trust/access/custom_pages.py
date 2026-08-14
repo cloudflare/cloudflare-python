@@ -54,7 +54,8 @@ class CustomPagesResource(SyncAPIResource):
         account_id: str,
         custom_html: str,
         name: str,
-        type: Literal["identity_denied", "forbidden"],
+        type: Literal["identity_denied", "forbidden", "login", "interstitial"],
+        contract_version: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,6 +75,9 @@ class CustomPagesResource(SyncAPIResource):
 
           type: Custom page type.
 
+          contract_version: Contract version of the page's Liquid template. Present (>= 1) marks a sanitized
+              template; absent or 0 marks a legacy page served verbatim.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -91,6 +95,7 @@ class CustomPagesResource(SyncAPIResource):
                     "custom_html": custom_html,
                     "name": name,
                     "type": type,
+                    "contract_version": contract_version,
                 },
                 custom_page_create_params.CustomPageCreateParams,
             ),
@@ -111,7 +116,8 @@ class CustomPagesResource(SyncAPIResource):
         account_id: str,
         custom_html: str,
         name: str,
-        type: Literal["identity_denied", "forbidden"],
+        type: Literal["identity_denied", "forbidden", "login", "interstitial"],
+        contract_version: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -132,6 +138,9 @@ class CustomPagesResource(SyncAPIResource):
           name: Custom page name.
 
           type: Custom page type.
+
+          contract_version: Contract version of the page's Liquid template. Present (>= 1) marks a sanitized
+              template; absent or 0 marks a legacy page served verbatim.
 
           extra_headers: Send extra headers
 
@@ -156,6 +165,7 @@ class CustomPagesResource(SyncAPIResource):
                     "custom_html": custom_html,
                     "name": name,
                     "type": type,
+                    "contract_version": contract_version,
                 },
                 custom_page_update_params.CustomPageUpdateParams,
             ),
@@ -344,7 +354,8 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         account_id: str,
         custom_html: str,
         name: str,
-        type: Literal["identity_denied", "forbidden"],
+        type: Literal["identity_denied", "forbidden", "login", "interstitial"],
+        contract_version: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -364,6 +375,9 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
           type: Custom page type.
 
+          contract_version: Contract version of the page's Liquid template. Present (>= 1) marks a sanitized
+              template; absent or 0 marks a legacy page served verbatim.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -381,6 +395,7 @@ class AsyncCustomPagesResource(AsyncAPIResource):
                     "custom_html": custom_html,
                     "name": name,
                     "type": type,
+                    "contract_version": contract_version,
                 },
                 custom_page_create_params.CustomPageCreateParams,
             ),
@@ -401,7 +416,8 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         account_id: str,
         custom_html: str,
         name: str,
-        type: Literal["identity_denied", "forbidden"],
+        type: Literal["identity_denied", "forbidden", "login", "interstitial"],
+        contract_version: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -422,6 +438,9 @@ class AsyncCustomPagesResource(AsyncAPIResource):
           name: Custom page name.
 
           type: Custom page type.
+
+          contract_version: Contract version of the page's Liquid template. Present (>= 1) marks a sanitized
+              template; absent or 0 marks a legacy page served verbatim.
 
           extra_headers: Send extra headers
 
@@ -446,6 +465,7 @@ class AsyncCustomPagesResource(AsyncAPIResource):
                     "custom_html": custom_html,
                     "name": name,
                     "type": type,
+                    "contract_version": contract_version,
                 },
                 custom_page_update_params.CustomPageUpdateParams,
             ),

@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Any, Type, Iterable, Optional, cast
+from typing_extensions import overload
 
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import path_template, maybe_transform, async_maybe_transform
+from ....._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -19,8 +20,11 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.access import Decision
+from .....types.zero_trust.access.decision import Decision
 from .....types.zero_trust.access.applications import policy_list_params, policy_create_params, policy_update_params
 from .....types.zero_trust.access.approval_group_param import ApprovalGroupParam
+from .....types.zero_trust.access.applications.access_rule_param import AccessRuleParam
 from .....types.zero_trust.access.applications.policy_get_response import PolicyGetResponse
 from .....types.zero_trust.access.applications.policy_list_response import PolicyListResponse
 from .....types.zero_trust.access.applications.policy_create_response import PolicyCreateResponse
@@ -50,6 +54,7 @@ class PoliciesResource(SyncAPIResource):
         """
         return PoliciesResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         app_id: str,
@@ -58,9 +63,9 @@ class PoliciesResource(SyncAPIResource):
         zone_id: str | Omit = omit,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
-        connection_rules: policy_create_params.ConnectionRules | Omit = omit,
+        connection_rules: policy_create_params.AccessAppPolicyRequestConnectionRules | Omit = omit,
         isolation_required: bool | Omit = omit,
-        mfa_config: policy_create_params.MfaConfig | Omit = omit,
+        mfa_config: policy_create_params.AccessAppPolicyRequestMfaConfig | Omit = omit,
         precedence: int | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
@@ -118,6 +123,103 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        app_id: str,
+        *,
+        decision: Decision,
+        include: Iterable[AccessRuleParam],
+        name: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        connection_rules: policy_create_params.AccessInfraPolicyReqConnectionRules | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        mfa_config: policy_create_params.AccessInfraPolicyReqMfaConfig | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[PolicyCreateResponse]:
+        """
+        Creates a policy applying exclusive to a single application that defines the
+        users or groups who can reach it. We recommend creating a reusable policy
+        instead and subsequently referencing its ID in the application's 'policies'
+        array.
+
+        Args:
+          app_id: UUID.
+
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
+
+          include: Rules evaluated with an OR logical operator. A user needs to meet only one of
+              the Include rules.
+
+          name: The name of the Access policy.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
+
+          exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
+              meet any of the Exclude rules.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
+              applications.
+
+          require: Rules evaluated with an AND logical operator. To match the policy, a user must
+              meet all of the Require rules.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    def create(
+        self,
+        app_id: str,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        connection_rules: policy_create_params.AccessAppPolicyRequestConnectionRules
+        | policy_create_params.AccessInfraPolicyReqConnectionRules
+        | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        mfa_config: policy_create_params.AccessAppPolicyRequestMfaConfig
+        | policy_create_params.AccessInfraPolicyReqMfaConfig
+        | Omit = omit,
+        precedence: int | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        session_duration: Optional[str] | Omit = omit,
+        decision: Decision | Omit = omit,
+        include: Iterable[AccessRuleParam] | Omit = omit,
+        name: str | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[PolicyCreateResponse]:
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
@@ -132,37 +234,48 @@ class PoliciesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._post(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-                app_id=app_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            Optional[PolicyCreateResponse],
+            self._post(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                    app_id=app_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=maybe_transform(
+                    {
+                        "approval_groups": approval_groups,
+                        "approval_required": approval_required,
+                        "connection_rules": connection_rules,
+                        "isolation_required": isolation_required,
+                        "mfa_config": mfa_config,
+                        "precedence": precedence,
+                        "purpose_justification_prompt": purpose_justification_prompt,
+                        "purpose_justification_required": purpose_justification_required,
+                        "session_duration": session_duration,
+                        "decision": decision,
+                        "include": include,
+                        "name": name,
+                        "exclude": exclude,
+                        "require": require,
+                    },
+                    policy_create_params.PolicyCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PolicyCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=maybe_transform(
-                {
-                    "approval_groups": approval_groups,
-                    "approval_required": approval_required,
-                    "connection_rules": connection_rules,
-                    "isolation_required": isolation_required,
-                    "mfa_config": mfa_config,
-                    "precedence": precedence,
-                    "purpose_justification_prompt": purpose_justification_prompt,
-                    "purpose_justification_required": purpose_justification_required,
-                    "session_duration": session_duration,
-                },
-                policy_create_params.PolicyCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
+    @overload
     def update(
         self,
         policy_id: str,
@@ -172,9 +285,9 @@ class PoliciesResource(SyncAPIResource):
         zone_id: str | Omit = omit,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
-        connection_rules: policy_update_params.ConnectionRules | Omit = omit,
+        connection_rules: policy_update_params.AccessAppPolicyRequestConnectionRules | Omit = omit,
         isolation_required: bool | Omit = omit,
-        mfa_config: policy_update_params.MfaConfig | Omit = omit,
+        mfa_config: policy_update_params.AccessAppPolicyRequestMfaConfig | Omit = omit,
         precedence: int | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
@@ -233,6 +346,107 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def update(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        decision: Decision,
+        include: Iterable[AccessRuleParam],
+        name: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        connection_rules: policy_update_params.AccessInfraPolicyReqConnectionRules | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        mfa_config: policy_update_params.AccessInfraPolicyReqMfaConfig | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[PolicyUpdateResponse]:
+        """Updates an Access policy specific to an application.
+
+        To update a reusable
+        policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
+
+        Args:
+          app_id: UUID.
+
+          policy_id: UUID.
+
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
+
+          include: Rules evaluated with an OR logical operator. A user needs to meet only one of
+              the Include rules.
+
+          name: The name of the Access policy.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
+
+          exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
+              meet any of the Exclude rules.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
+              applications.
+
+          require: Rules evaluated with an AND logical operator. To match the policy, a user must
+              meet all of the Require rules.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["app_id"], ["app_id", "decision", "include", "name"])
+    def update(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        connection_rules: policy_update_params.AccessAppPolicyRequestConnectionRules
+        | policy_update_params.AccessInfraPolicyReqConnectionRules
+        | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        mfa_config: policy_update_params.AccessAppPolicyRequestMfaConfig
+        | policy_update_params.AccessInfraPolicyReqMfaConfig
+        | Omit = omit,
+        precedence: int | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        session_duration: Optional[str] | Omit = omit,
+        decision: Decision | Omit = omit,
+        include: Iterable[AccessRuleParam] | Omit = omit,
+        name: str | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[PolicyUpdateResponse]:
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
@@ -249,36 +463,46 @@ class PoliciesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._put(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-                app_id=app_id,
-                policy_id=policy_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            Optional[PolicyUpdateResponse],
+            self._put(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                    app_id=app_id,
+                    policy_id=policy_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=maybe_transform(
+                    {
+                        "approval_groups": approval_groups,
+                        "approval_required": approval_required,
+                        "connection_rules": connection_rules,
+                        "isolation_required": isolation_required,
+                        "mfa_config": mfa_config,
+                        "precedence": precedence,
+                        "purpose_justification_prompt": purpose_justification_prompt,
+                        "purpose_justification_required": purpose_justification_required,
+                        "session_duration": session_duration,
+                        "decision": decision,
+                        "include": include,
+                        "name": name,
+                        "exclude": exclude,
+                        "require": require,
+                    },
+                    policy_update_params.PolicyUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PolicyUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=maybe_transform(
-                {
-                    "approval_groups": approval_groups,
-                    "approval_required": approval_required,
-                    "connection_rules": connection_rules,
-                    "isolation_required": isolation_required,
-                    "mfa_config": mfa_config,
-                    "precedence": precedence,
-                    "purpose_justification_prompt": purpose_justification_prompt,
-                    "purpose_justification_required": purpose_justification_required,
-                    "session_duration": session_duration,
-                },
-                policy_update_params.PolicyUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
@@ -355,7 +579,7 @@ class PoliciesResource(SyncAPIResource):
                     policy_list_params.PolicyListParams,
                 ),
             ),
-            model=PolicyListResponse,
+            model=cast(Any, PolicyListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -480,22 +704,27 @@ class PoliciesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-                app_id=app_id,
-                policy_id=policy_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            Optional[PolicyGetResponse],
+            self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                    app_id=app_id,
+                    policy_id=policy_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PolicyGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
 
 
@@ -519,6 +748,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         """
         return AsyncPoliciesResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         app_id: str,
@@ -527,9 +757,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
         zone_id: str | Omit = omit,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
-        connection_rules: policy_create_params.ConnectionRules | Omit = omit,
+        connection_rules: policy_create_params.AccessAppPolicyRequestConnectionRules | Omit = omit,
         isolation_required: bool | Omit = omit,
-        mfa_config: policy_create_params.MfaConfig | Omit = omit,
+        mfa_config: policy_create_params.AccessAppPolicyRequestMfaConfig | Omit = omit,
         precedence: int | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
@@ -587,6 +817,103 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        app_id: str,
+        *,
+        decision: Decision,
+        include: Iterable[AccessRuleParam],
+        name: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        connection_rules: policy_create_params.AccessInfraPolicyReqConnectionRules | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        mfa_config: policy_create_params.AccessInfraPolicyReqMfaConfig | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[PolicyCreateResponse]:
+        """
+        Creates a policy applying exclusive to a single application that defines the
+        users or groups who can reach it. We recommend creating a reusable policy
+        instead and subsequently referencing its ID in the application's 'policies'
+        array.
+
+        Args:
+          app_id: UUID.
+
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
+
+          include: Rules evaluated with an OR logical operator. A user needs to meet only one of
+              the Include rules.
+
+          name: The name of the Access policy.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
+
+          exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
+              meet any of the Exclude rules.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
+              applications.
+
+          require: Rules evaluated with an AND logical operator. To match the policy, a user must
+              meet all of the Require rules.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    async def create(
+        self,
+        app_id: str,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        connection_rules: policy_create_params.AccessAppPolicyRequestConnectionRules
+        | policy_create_params.AccessInfraPolicyReqConnectionRules
+        | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        mfa_config: policy_create_params.AccessAppPolicyRequestMfaConfig
+        | policy_create_params.AccessInfraPolicyReqMfaConfig
+        | Omit = omit,
+        precedence: int | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        session_duration: Optional[str] | Omit = omit,
+        decision: Decision | Omit = omit,
+        include: Iterable[AccessRuleParam] | Omit = omit,
+        name: str | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[PolicyCreateResponse]:
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
@@ -601,37 +928,48 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._post(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-                app_id=app_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            Optional[PolicyCreateResponse],
+            await self._post(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+                    app_id=app_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=await async_maybe_transform(
+                    {
+                        "approval_groups": approval_groups,
+                        "approval_required": approval_required,
+                        "connection_rules": connection_rules,
+                        "isolation_required": isolation_required,
+                        "mfa_config": mfa_config,
+                        "precedence": precedence,
+                        "purpose_justification_prompt": purpose_justification_prompt,
+                        "purpose_justification_required": purpose_justification_required,
+                        "session_duration": session_duration,
+                        "decision": decision,
+                        "include": include,
+                        "name": name,
+                        "exclude": exclude,
+                        "require": require,
+                    },
+                    policy_create_params.PolicyCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PolicyCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=await async_maybe_transform(
-                {
-                    "approval_groups": approval_groups,
-                    "approval_required": approval_required,
-                    "connection_rules": connection_rules,
-                    "isolation_required": isolation_required,
-                    "mfa_config": mfa_config,
-                    "precedence": precedence,
-                    "purpose_justification_prompt": purpose_justification_prompt,
-                    "purpose_justification_required": purpose_justification_required,
-                    "session_duration": session_duration,
-                },
-                policy_create_params.PolicyCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
+    @overload
     async def update(
         self,
         policy_id: str,
@@ -641,9 +979,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
         zone_id: str | Omit = omit,
         approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
         approval_required: bool | Omit = omit,
-        connection_rules: policy_update_params.ConnectionRules | Omit = omit,
+        connection_rules: policy_update_params.AccessAppPolicyRequestConnectionRules | Omit = omit,
         isolation_required: bool | Omit = omit,
-        mfa_config: policy_update_params.MfaConfig | Omit = omit,
+        mfa_config: policy_update_params.AccessAppPolicyRequestMfaConfig | Omit = omit,
         precedence: int | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
@@ -702,6 +1040,107 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def update(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        decision: Decision,
+        include: Iterable[AccessRuleParam],
+        name: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        connection_rules: policy_update_params.AccessInfraPolicyReqConnectionRules | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        mfa_config: policy_update_params.AccessInfraPolicyReqMfaConfig | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[PolicyUpdateResponse]:
+        """Updates an Access policy specific to an application.
+
+        To update a reusable
+        policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
+
+        Args:
+          app_id: UUID.
+
+          policy_id: UUID.
+
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
+
+          include: Rules evaluated with an OR logical operator. A user needs to meet only one of
+              the Include rules.
+
+          name: The name of the Access policy.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
+
+          exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
+              meet any of the Exclude rules.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
+              applications.
+
+          require: Rules evaluated with an AND logical operator. To match the policy, a user must
+              meet all of the Require rules.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["app_id"], ["app_id", "decision", "include", "name"])
+    async def update(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        approval_groups: Iterable[ApprovalGroupParam] | Omit = omit,
+        approval_required: bool | Omit = omit,
+        connection_rules: policy_update_params.AccessAppPolicyRequestConnectionRules
+        | policy_update_params.AccessInfraPolicyReqConnectionRules
+        | Omit = omit,
+        isolation_required: bool | Omit = omit,
+        mfa_config: policy_update_params.AccessAppPolicyRequestMfaConfig
+        | policy_update_params.AccessInfraPolicyReqMfaConfig
+        | Omit = omit,
+        precedence: int | Omit = omit,
+        purpose_justification_prompt: str | Omit = omit,
+        purpose_justification_required: bool | Omit = omit,
+        session_duration: Optional[str] | Omit = omit,
+        decision: Decision | Omit = omit,
+        include: Iterable[AccessRuleParam] | Omit = omit,
+        name: str | Omit = omit,
+        exclude: Iterable[AccessRuleParam] | Omit = omit,
+        require: Iterable[AccessRuleParam] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[PolicyUpdateResponse]:
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
@@ -718,36 +1157,46 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._put(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-                app_id=app_id,
-                policy_id=policy_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            Optional[PolicyUpdateResponse],
+            await self._put(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                    app_id=app_id,
+                    policy_id=policy_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=await async_maybe_transform(
+                    {
+                        "approval_groups": approval_groups,
+                        "approval_required": approval_required,
+                        "connection_rules": connection_rules,
+                        "isolation_required": isolation_required,
+                        "mfa_config": mfa_config,
+                        "precedence": precedence,
+                        "purpose_justification_prompt": purpose_justification_prompt,
+                        "purpose_justification_required": purpose_justification_required,
+                        "session_duration": session_duration,
+                        "decision": decision,
+                        "include": include,
+                        "name": name,
+                        "exclude": exclude,
+                        "require": require,
+                    },
+                    policy_update_params.PolicyUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PolicyUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=await async_maybe_transform(
-                {
-                    "approval_groups": approval_groups,
-                    "approval_required": approval_required,
-                    "connection_rules": connection_rules,
-                    "isolation_required": isolation_required,
-                    "mfa_config": mfa_config,
-                    "precedence": precedence,
-                    "purpose_justification_prompt": purpose_justification_prompt,
-                    "purpose_justification_required": purpose_justification_required,
-                    "session_duration": session_duration,
-                },
-                policy_update_params.PolicyUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
@@ -824,7 +1273,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     policy_list_params.PolicyListParams,
                 ),
             ),
-            model=PolicyListResponse,
+            model=cast(Any, PolicyListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -949,22 +1398,27 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-                app_id=app_id,
-                policy_id=policy_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            Optional[PolicyGetResponse],
+            await self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
+                    app_id=app_id,
+                    policy_id=policy_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PolicyGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
 
 

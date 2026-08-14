@@ -127,6 +127,7 @@ __all__ = [
     "BookmarkApplicationPolicyMfaConfig",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
+    "InfrastructureApplicationMfaConfig",
     "InfrastructureApplicationPolicy",
     "InfrastructureApplicationPolicyConnectionRules",
     "InfrastructureApplicationPolicyConnectionRulesSSH",
@@ -3258,6 +3259,32 @@ class InfrastructureApplicationTargetCriterion(BaseModel):
     """Contains a map of target attribute keys to target attribute values."""
 
 
+class InfrastructureApplicationMfaConfig(BaseModel):
+    """
+    Configures multi-factor authentication (MFA) settings for infrastructure applications.
+    """
+
+    allowed_authenticators: Optional[List[Literal["piv_key", "ssh_fido2_key"]]] = None
+    """Lists the MFA methods that users can authenticate with.
+
+    For infrastructure applications, supported values are `piv_key` and
+    `ssh_fido2_key`.
+    """
+
+    mfa_disabled: Optional[bool] = None
+    """Indicates whether to disable MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: Optional[str] = None
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples: `5m` or `24h`.
+    """
+
+
 class InfrastructureApplicationPolicyConnectionRulesSSH(BaseModel):
     """
     The SSH-specific rules that define how users may connect to the targets secured by your application.
@@ -3287,10 +3314,11 @@ class InfrastructureApplicationPolicyMfaConfig(BaseModel):
     Configures multi-factor authentication (MFA) settings for infrastructure applications.
     """
 
-    allowed_authenticators: Optional[List[Literal["piv_key"]]] = None
+    allowed_authenticators: Optional[List[Literal["piv_key", "ssh_fido2_key"]]] = None
     """Lists the MFA methods that users can authenticate with.
 
-    For infrastructure applications, only `piv_key` is supported.
+    For infrastructure applications, supported values are `piv_key` and
+    `ssh_fido2_key`.
     """
 
     mfa_disabled: Optional[bool] = None
@@ -3366,6 +3394,12 @@ class InfrastructureApplication(BaseModel):
 
     aud: Optional[str] = None
     """Audience tag."""
+
+    mfa_config: Optional[InfrastructureApplicationMfaConfig] = None
+    """
+    Configures multi-factor authentication (MFA) settings for infrastructure
+    applications.
+    """
 
     name: Optional[str] = None
     """The name of the application."""

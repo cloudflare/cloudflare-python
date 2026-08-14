@@ -49,6 +49,8 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     guardrails: Optional[Guardrails]
 
+    log_classification: bool
+
     log_management: Optional[int]
 
     log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]]

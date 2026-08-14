@@ -17,9 +17,8 @@ class AlertingEditParams(TypedDict, total=False):
     """Whether CT alerting is enabled for the zone."""
 
     emails: SequenceNotStr[str]
-    """Email addresses that receive CT alert notifications.
+    """Email addresses that receive CT alert notifications for the zone.
 
-    Only present and configurable for Business and Enterprise zones. Maximum of 10
-    addresses. For Free and Pro zones, notifications are sent to all users with SSL
-    permissions on the zone.
+    A maximum of 100 addresses may be configured. Each address must be a valid RFC
+    5322 email address and must not contain a comma.
     """

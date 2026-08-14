@@ -74,7 +74,8 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
         """
-        Create a new event category for the account.
+        Creates a new threat event category in Cloudforce One for organizing and
+        classifying threat events.
 
         Args:
           account_id: Account ID.
@@ -120,7 +121,8 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
-        List categories across one or more datasets for the account.
+        Lists all threat event categories configured for classifying and organizing
+        threat events.
 
         Args:
           account_id: Account ID.
@@ -163,7 +165,7 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
         """
-        Delete a category by its identifier.
+        Removes a threat event category from Cloudforce One.
 
         Args:
           account_id: Account ID.
@@ -212,7 +214,8 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
         """
-        Update an existing category by its identifier.
+        Partially updates a threat event category in Cloudforce One, modifying specific
+        fields without replacing the entire category.
 
         Args:
           account_id: Account ID.
@@ -266,7 +269,7 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryGetResponse:
         """
-        Retrieve a single category by its identifier.
+        Retrieves details for a specific threat event category.
 
         Args:
           account_id: Account ID.
@@ -339,7 +342,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
         """
-        Create a new event category for the account.
+        Creates a new threat event category in Cloudforce One for organizing and
+        classifying threat events.
 
         Args:
           account_id: Account ID.
@@ -385,7 +389,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
-        List categories across one or more datasets for the account.
+        Lists all threat event categories configured for classifying and organizing
+        threat events.
 
         Args:
           account_id: Account ID.
@@ -430,7 +435,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
         """
-        Delete a category by its identifier.
+        Removes a threat event category from Cloudforce One.
 
         Args:
           account_id: Account ID.
@@ -479,7 +484,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
         """
-        Update an existing category by its identifier.
+        Partially updates a threat event category in Cloudforce One, modifying specific
+        fields without replacing the entire category.
 
         Args:
           account_id: Account ID.
@@ -533,7 +539,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryGetResponse:
         """
-        Retrieve a single category by its identifier.
+        Retrieves details for a specific threat event category.
 
         Args:
           account_id: Account ID.
