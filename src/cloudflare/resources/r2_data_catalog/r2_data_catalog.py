@@ -6,8 +6,8 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from ..._utils import path_template
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -42,6 +42,7 @@ from .namespaces.namespaces import (
     NamespacesResourceWithStreamingResponse,
     AsyncNamespacesResourceWithStreamingResponse,
 )
+from ...types.r2_data_catalog import r2_data_catalog_delete_params
 from ...types.r2_data_catalog.r2_data_catalog_get_response import R2DataCatalogGetResponse
 from ...types.r2_data_catalog.r2_data_catalog_list_response import R2DataCatalogListResponse
 from ...types.r2_data_catalog.r2_data_catalog_enable_response import R2DataCatalogEnableResponse
@@ -120,6 +121,58 @@ class R2DataCatalogResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[R2DataCatalogListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[R2DataCatalogListResponse]], ResultWrapper[R2DataCatalogListResponse]),
+        )
+
+    def delete(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        force: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Removes the catalog from the control plane without deleting R2 bucket objects.
+        Set force=true to remove catalog namespaces, tables, views, and maintenance
+        metadata. Force deletion is limited to a configured catalog object count.
+
+        Args:
+          account_id: Use this to identify the account.
+
+          bucket_name: Specifies the R2 bucket name.
+
+          force: Remove child metadata before deleting the catalog.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not bucket_name:
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._post(
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/delete", account_id=account_id, bucket_name=bucket_name
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"force": force}, r2_data_catalog_delete_params.R2DataCatalogDeleteParams),
+            ),
+            cast_to=NoneType,
         )
 
     def disable(
@@ -339,6 +392,60 @@ class AsyncR2DataCatalogResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[R2DataCatalogListResponse]], ResultWrapper[R2DataCatalogListResponse]),
         )
 
+    async def delete(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        force: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Removes the catalog from the control plane without deleting R2 bucket objects.
+        Set force=true to remove catalog namespaces, tables, views, and maintenance
+        metadata. Force deletion is limited to a configured catalog object count.
+
+        Args:
+          account_id: Use this to identify the account.
+
+          bucket_name: Specifies the R2 bucket name.
+
+          force: Remove child metadata before deleting the catalog.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not bucket_name:
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._post(
+            path_template(
+                "/accounts/{account_id}/r2-catalog/{bucket_name}/delete", account_id=account_id, bucket_name=bucket_name
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"force": force}, r2_data_catalog_delete_params.R2DataCatalogDeleteParams
+                ),
+            ),
+            cast_to=NoneType,
+        )
+
     async def disable(
         self,
         bucket_name: str,
@@ -490,6 +597,9 @@ class R2DataCatalogResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             r2_data_catalog.list,
         )
+        self.delete = to_raw_response_wrapper(
+            r2_data_catalog.delete,
+        )
         self.disable = to_raw_response_wrapper(
             r2_data_catalog.disable,
         )
@@ -519,6 +629,9 @@ class AsyncR2DataCatalogResourceWithRawResponse:
 
         self.list = async_to_raw_response_wrapper(
             r2_data_catalog.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            r2_data_catalog.delete,
         )
         self.disable = async_to_raw_response_wrapper(
             r2_data_catalog.disable,
@@ -550,6 +663,9 @@ class R2DataCatalogResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             r2_data_catalog.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            r2_data_catalog.delete,
+        )
         self.disable = to_streamed_response_wrapper(
             r2_data_catalog.disable,
         )
@@ -579,6 +695,9 @@ class AsyncR2DataCatalogResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             r2_data_catalog.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            r2_data_catalog.delete,
         )
         self.disable = async_to_streamed_response_wrapper(
             r2_data_catalog.disable,
