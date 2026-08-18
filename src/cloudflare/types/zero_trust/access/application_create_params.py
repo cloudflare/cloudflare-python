@@ -146,6 +146,7 @@ __all__ = [
     "BookmarkApplicationPolicyUnionMember2MfaConfig",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
+    "InfrastructureApplicationMfaConfig",
     "InfrastructureApplicationPolicy",
     "InfrastructureApplicationPolicyConnectionRules",
     "InfrastructureApplicationPolicyConnectionRulesSSH",
@@ -606,6 +607,9 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -874,6 +878,9 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -1478,6 +1485,9 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -2081,6 +2091,9 @@ class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -2408,6 +2421,9 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -2572,6 +2588,9 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2739,6 +2758,9 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2916,6 +2938,9 @@ class GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink(TypedDict
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -3065,6 +3090,9 @@ class BookmarkApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -3181,6 +3209,12 @@ class InfrastructureApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    mfa_config: InfrastructureApplicationMfaConfig
+    """
+    Configures multi-factor authentication (MFA) settings for infrastructure
+    applications.
+    """
+
     name: str
     """The name of the application."""
 
@@ -3200,6 +3234,32 @@ class InfrastructureApplicationTargetCriterion(TypedDict, total=False):
 
     target_attributes: Required[Dict[str, SequenceNotStr[str]]]
     """Contains a map of target attribute keys to target attribute values."""
+
+
+class InfrastructureApplicationMfaConfig(TypedDict, total=False):
+    """
+    Configures multi-factor authentication (MFA) settings for infrastructure applications.
+    """
+
+    allowed_authenticators: List[Literal["piv_key", "ssh_fido2_key"]]
+    """Lists the MFA methods that users can authenticate with.
+
+    For infrastructure applications, supported values are `piv_key` and
+    `ssh_fido2_key`.
+    """
+
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples: `5m` or `24h`.
+    """
 
 
 class InfrastructureApplicationPolicyConnectionRulesSSH(TypedDict, total=False):
@@ -3231,10 +3291,11 @@ class InfrastructureApplicationPolicyMfaConfig(TypedDict, total=False):
     Configures multi-factor authentication (MFA) settings for infrastructure applications.
     """
 
-    allowed_authenticators: List[Literal["piv_key"]]
+    allowed_authenticators: List[Literal["piv_key", "ssh_fido2_key"]]
     """Lists the MFA methods that users can authenticate with.
 
-    For infrastructure applications, only `piv_key` is supported.
+    For infrastructure applications, supported values are `piv_key` and
+    `ssh_fido2_key`.
     """
 
     mfa_disabled: bool
@@ -3689,6 +3750,9 @@ class BrowserRDPApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -4185,6 +4249,9 @@ class McpServerApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -4687,6 +4754,9 @@ class McpServerPortalApplicationPolicyAccessAppPolicyLink(TypedDict, total=False
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.

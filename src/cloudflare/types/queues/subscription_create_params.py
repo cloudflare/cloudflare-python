@@ -18,6 +18,7 @@ __all__ = [
     "SourceMqEventSourceVectorize",
     "SourceMqEventSourceWorkersAIModel",
     "SourceMqEventSourceWorkersBuildsWorker",
+    "SourceMqEventSourceWorkersScript",
     "SourceMqEventSourceWorkflowsWorkflow",
 ]
 
@@ -93,6 +94,14 @@ class SourceMqEventSourceWorkersBuildsWorker(TypedDict, total=False):
     """Name of the worker"""
 
 
+class SourceMqEventSourceWorkersScript(TypedDict, total=False):
+    script_tag: str
+    """Tag of the Worker script"""
+
+    type: Literal["workers.script"]
+    """Type of source"""
+
+
 class SourceMqEventSourceWorkflowsWorkflow(TypedDict, total=False):
     type: Literal["workflows.workflow"]
     """Type of source"""
@@ -109,5 +118,6 @@ Source: TypeAlias = Union[
     SourceMqEventSourceVectorize,
     SourceMqEventSourceWorkersAIModel,
     SourceMqEventSourceWorkersBuildsWorker,
+    SourceMqEventSourceWorkersScript,
     SourceMqEventSourceWorkflowsWorkflow,
 ]

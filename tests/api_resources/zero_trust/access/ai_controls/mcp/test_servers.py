@@ -44,9 +44,9 @@ class TestServers:
             auth_type="unauthenticated",
             hostname="https://example.com/mcp",
             name="My MCP Server",
-            auth_credentials="auth_credentials",
+            auth_credentials="sk-my-bearer-token",
             client_secret="client_secret",
-            description="This is one remote mcp server",
+            description="This is one remote MCP server",
             is_shared_oauth_callback_enabled=True,
             secure_web_gateway=False,
             updated_prompts=[
@@ -124,9 +124,9 @@ class TestServers:
         server = client.zero_trust.access.ai_controls.mcp.servers.update(
             id="my-mcp-server",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
-            auth_credentials="auth_credentials",
+            auth_credentials="sk-my-bearer-token",
             client_secret="client_secret",
-            description="This is one remote mcp server",
+            description="This is one remote MCP server",
             is_shared_oauth_callback_enabled=True,
             name="My MCP Server",
             secure_web_gateway=False,
@@ -336,7 +336,7 @@ class TestServers:
     @parametrize
     def test_method_sync(self, client: Cloudflare) -> None:
         server = client.zero_trust.access.ai_controls.mcp.servers.sync(
-            id="my-mcp-portal",
+            id="my-mcp-server",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
         )
         assert_matches_type(ServerSyncResponse, server, path=["response"])
@@ -344,7 +344,7 @@ class TestServers:
     @parametrize
     def test_raw_response_sync(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.ai_controls.mcp.servers.with_raw_response.sync(
-            id="my-mcp-portal",
+            id="my-mcp-server",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
         )
 
@@ -356,7 +356,7 @@ class TestServers:
     @parametrize
     def test_streaming_response_sync(self, client: Cloudflare) -> None:
         with client.zero_trust.access.ai_controls.mcp.servers.with_streaming_response.sync(
-            id="my-mcp-portal",
+            id="my-mcp-server",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
         ) as response:
             assert not response.is_closed
@@ -371,7 +371,7 @@ class TestServers:
     def test_path_params_sync(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.ai_controls.mcp.servers.with_raw_response.sync(
-                id="my-mcp-portal",
+                id="my-mcp-server",
                 account_id="",
             )
 
@@ -406,9 +406,9 @@ class TestAsyncServers:
             auth_type="unauthenticated",
             hostname="https://example.com/mcp",
             name="My MCP Server",
-            auth_credentials="auth_credentials",
+            auth_credentials="sk-my-bearer-token",
             client_secret="client_secret",
-            description="This is one remote mcp server",
+            description="This is one remote MCP server",
             is_shared_oauth_callback_enabled=True,
             secure_web_gateway=False,
             updated_prompts=[
@@ -486,9 +486,9 @@ class TestAsyncServers:
         server = await async_client.zero_trust.access.ai_controls.mcp.servers.update(
             id="my-mcp-server",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
-            auth_credentials="auth_credentials",
+            auth_credentials="sk-my-bearer-token",
             client_secret="client_secret",
-            description="This is one remote mcp server",
+            description="This is one remote MCP server",
             is_shared_oauth_callback_enabled=True,
             name="My MCP Server",
             secure_web_gateway=False,
@@ -698,7 +698,7 @@ class TestAsyncServers:
     @parametrize
     async def test_method_sync(self, async_client: AsyncCloudflare) -> None:
         server = await async_client.zero_trust.access.ai_controls.mcp.servers.sync(
-            id="my-mcp-portal",
+            id="my-mcp-server",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
         )
         assert_matches_type(ServerSyncResponse, server, path=["response"])
@@ -706,7 +706,7 @@ class TestAsyncServers:
     @parametrize
     async def test_raw_response_sync(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.ai_controls.mcp.servers.with_raw_response.sync(
-            id="my-mcp-portal",
+            id="my-mcp-server",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
         )
 
@@ -718,7 +718,7 @@ class TestAsyncServers:
     @parametrize
     async def test_streaming_response_sync(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.ai_controls.mcp.servers.with_streaming_response.sync(
-            id="my-mcp-portal",
+            id="my-mcp-server",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
         ) as response:
             assert not response.is_closed
@@ -733,7 +733,7 @@ class TestAsyncServers:
     async def test_path_params_sync(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.ai_controls.mcp.servers.with_raw_response.sync(
-                id="my-mcp-portal",
+                id="my-mcp-server",
                 account_id="",
             )
 

@@ -128,9 +128,9 @@ class OrganizationsResource(SyncAPIResource):
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
-              session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'piv_key' if the organization has any non-infrastructure applications because
-              PIV keys are only compatible with infrastructure apps.
+              session duration configured. Note: 'allowed_authenticators' cannot contain only
+              the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if the
+              organization has any non-infrastructure applications.
 
           session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m,
@@ -272,9 +272,9 @@ class OrganizationsResource(SyncAPIResource):
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
-              session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'piv_key' if the organization has any non-infrastructure applications because
-              PIV keys are only compatible with infrastructure apps.
+              session duration configured. Note: 'allowed_authenticators' cannot contain only
+              the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if the
+              organization has any non-infrastructure applications.
 
           name: The name of your Zero Trust organization.
 
@@ -588,9 +588,9 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
-              session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'piv_key' if the organization has any non-infrastructure applications because
-              PIV keys are only compatible with infrastructure apps.
+              session duration configured. Note: 'allowed_authenticators' cannot contain only
+              the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if the
+              organization has any non-infrastructure applications.
 
           session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m,
@@ -732,9 +732,9 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
-              session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'piv_key' if the organization has any non-infrastructure applications because
-              PIV keys are only compatible with infrastructure apps.
+              session duration configured. Note: 'allowed_authenticators' cannot contain only
+              the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if the
+              organization has any non-infrastructure applications.
 
           name: The name of your Zero Trust organization.
 

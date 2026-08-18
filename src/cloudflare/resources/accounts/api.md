@@ -107,3 +107,17 @@ Methods:
 - <code title="get /accounts/{account_id}/logs/audit">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/logs/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/logs/audit_list_response.py">SyncCursorPaginationAfter[AuditListResponse]</a></code>
 - <code title="get /accounts/{account_id}/logs/audit/{id}/history">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">history</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/logs/audit_history_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/logs/audit_history_response.py">AuditHistoryResponse</a></code>
 - <code title="get /accounts/{account_id}/logs/audit/product_categories">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">product_categories</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/logs/audit_product_categories_response.py">SyncSinglePage[AuditProductCategoriesResponse]</a></code>
+
+## SpeedSettings
+
+### Transformations
+
+Types:
+
+```python
+from cloudflare.types.accounts.speed_settings import TransformationsConfig
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/settings/transformations">client.accounts.speed_settings.transformations.<a href="./src/cloudflare/resources/accounts/speed_settings/transformations.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/speed_settings/transformations_config.py">SyncSinglePage[TransformationsConfig]</a></code>

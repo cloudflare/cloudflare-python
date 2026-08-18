@@ -11,11 +11,13 @@ __all__ = ["PortalDeleteResponse"]
 
 class PortalDeleteResponse(BaseModel):
     id: str
-    """portal id"""
+    """Unique identifier for the MCP portal."""
 
     hostname: str
+    """Hostname where the MCP portal is available."""
 
     name: str
+    """Display name for the MCP portal."""
 
     allow_code_mode: Optional[bool] = None
     """Deprecated: use `code_mode` for new integrations.
@@ -41,10 +43,11 @@ class PortalDeleteResponse(BaseModel):
     created_by: Optional[str] = None
 
     description: Optional[str] = None
+    """Optional description of the MCP portal."""
 
     modified_at: Optional[datetime] = None
 
     modified_by: Optional[str] = None
 
     secure_web_gateway: Optional[bool] = None
-    """Route outbound MCP traffic through Zero Trust Secure Web Gateway"""
+    """Route outbound MCP traffic through Zero Trust Secure Web Gateway."""

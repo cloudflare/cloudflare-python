@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from typing import Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -50,6 +51,7 @@ class SnapshotsResource(SyncAPIResource):
         *,
         account_id: str,
         source: str | Omit = omit,
+        cf_async_upload: Literal["1"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,6 +88,10 @@ class SnapshotsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given({"Cf-Async-Upload": str(cf_async_upload) if is_given(cf_async_upload) else not_given}),
+            **(extra_headers or {}),
+        }
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
@@ -134,6 +140,7 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         *,
         account_id: str,
         source: str | Omit = omit,
+        cf_async_upload: Literal["1"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -170,6 +177,10 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given({"Cf-Async-Upload": str(cf_async_upload) if is_given(cf_async_upload) else not_given}),
+            **(extra_headers or {}),
+        }
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--

@@ -14,7 +14,7 @@ class DatabaseCreateParams(TypedDict, total=False):
     name: Required[str]
     """D1 database name."""
 
-    jurisdiction: Literal["eu", "fedramp"]
+    jurisdiction: Literal["eu", "fedramp", "us"]
     """Specify the location to restrict the D1 database to run and store data.
 
     If this option is present, the location hint is ignored.

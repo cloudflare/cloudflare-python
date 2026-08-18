@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["SnapshotUpdateParams"]
 
@@ -17,3 +19,5 @@ class SnapshotUpdateParams(TypedDict, total=False):
     Either a plain STIX2/CRDF body or a gzipped one (recognised by `0x1f 0x8b` magic
     bytes or a `.gz` filename suffix).
     """
+
+    cf_async_upload: Annotated[Literal["1"], PropertyInfo(alias="Cf-Async-Upload")]

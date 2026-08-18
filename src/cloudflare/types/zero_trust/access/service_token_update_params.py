@@ -34,6 +34,14 @@ class ServiceTokenUpdateParams(TypedDict, total=False):
     default is 1 year in hours (8760h).
     """
 
+    enabled: bool
+    """Whether the service token is enabled.
+
+    A disabled service token cannot be used to authenticate; both its current and
+    previous `client_secret` stop being accepted, but the token itself is preserved
+    and can be re-enabled at any time. Defaults to enabled when omitted on create.
+    """
+
     name: str
     """The name of the service token."""
 

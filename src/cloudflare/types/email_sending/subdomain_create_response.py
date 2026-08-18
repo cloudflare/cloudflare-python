@@ -13,7 +13,7 @@ class SubdomainCreateResponse(BaseModel):
     """Whether Email Sending is enabled on this subdomain."""
 
     name: str
-    """The subdomain domain name."""
+    """The exact domain name or a leftmost wildcard such as `*.example.com`."""
 
     tag: str
     """Sending subdomain identifier."""
@@ -22,7 +22,10 @@ class SubdomainCreateResponse(BaseModel):
     """The date and time the destination address has been created."""
 
     dkim_selector: Optional[str] = None
-    """The DKIM selector used for email signing."""
+    """The DKIM selector used for email signing.
+
+    Wildcard rows publish the selector and sign with `d=<base>`.
+    """
 
     modified: Optional[datetime] = None
     """The date and time the destination address was last modified."""
@@ -31,4 +34,7 @@ class SubdomainCreateResponse(BaseModel):
     """Whether sent messages from this subdomain can be previewed in the activity log."""
 
     return_path_domain: Optional[str] = None
-    """The return-path domain used for bounce handling."""
+    """The return-path domain used for bounce handling.
+
+    Wildcard rows use `cf-bounce.<base>`.
+    """

@@ -59,7 +59,7 @@ class EventTagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagCreateResponse:
         """
-        Add one or more tags to an event.
+        Adds a tag to a threat event in Cloudforce One for classification and filtering.
 
         Args:
           account_id: Account ID.
@@ -108,7 +108,7 @@ class EventTagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagDeleteResponse:
         """
-        Remove one or more tags from an event.
+        Removes a tag from a threat event in Cloudforce One.
 
         Args:
           account_id: Account ID.
@@ -178,7 +178,7 @@ class AsyncEventTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagCreateResponse:
         """
-        Add one or more tags to an event.
+        Adds a tag to a threat event in Cloudforce One for classification and filtering.
 
         Args:
           account_id: Account ID.
@@ -227,7 +227,7 @@ class AsyncEventTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagDeleteResponse:
         """
-        Remove one or more tags from an event.
+        Removes a tag from a threat event in Cloudforce One.
 
         Args:
           account_id: Account ID.

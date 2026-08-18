@@ -60,6 +60,63 @@ class TestR2DataCatalog:
             )
 
     @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        r2_data_catalog = client.r2_data_catalog.delete(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+        )
+        assert r2_data_catalog is None
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        r2_data_catalog = client.r2_data_catalog.delete(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+            force=True,
+        )
+        assert r2_data_catalog is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.r2_data_catalog.with_raw_response.delete(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        r2_data_catalog = response.parse()
+        assert r2_data_catalog is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.r2_data_catalog.with_streaming_response.delete(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            r2_data_catalog = response.parse()
+            assert r2_data_catalog is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.r2_data_catalog.with_raw_response.delete(
+                bucket_name="my-data-bucket",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            client.r2_data_catalog.with_raw_response.delete(
+                bucket_name="",
+                account_id="0123456789abcdef0123456789abcdef",
+            )
+
+    @parametrize
     def test_method_disable(self, client: Cloudflare) -> None:
         r2_data_catalog = client.r2_data_catalog.disable(
             bucket_name="my-data-bucket",
@@ -245,6 +302,63 @@ class TestAsyncR2DataCatalog:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2_data_catalog.with_raw_response.list(
                 account_id="",
+            )
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        r2_data_catalog = await async_client.r2_data_catalog.delete(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+        )
+        assert r2_data_catalog is None
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        r2_data_catalog = await async_client.r2_data_catalog.delete(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+            force=True,
+        )
+        assert r2_data_catalog is None
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.r2_data_catalog.with_raw_response.delete(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        r2_data_catalog = await response.parse()
+        assert r2_data_catalog is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.r2_data_catalog.with_streaming_response.delete(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            r2_data_catalog = await response.parse()
+            assert r2_data_catalog is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.r2_data_catalog.with_raw_response.delete(
+                bucket_name="my-data-bucket",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            await async_client.r2_data_catalog.with_raw_response.delete(
+                bucket_name="",
+                account_id="0123456789abcdef0123456789abcdef",
             )
 
     @parametrize

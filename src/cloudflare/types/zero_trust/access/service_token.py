@@ -26,6 +26,14 @@ class ServiceToken(BaseModel):
     default is 1 year in hours (8760h).
     """
 
+    enabled: Optional[bool] = None
+    """Whether the service token is enabled.
+
+    A disabled service token cannot be used to authenticate; both its current and
+    previous `client_secret` stop being accepted, but the token itself is preserved
+    and can be re-enabled at any time. Defaults to enabled when omitted on create.
+    """
+
     expires_at: Optional[datetime] = None
 
     name: Optional[str] = None

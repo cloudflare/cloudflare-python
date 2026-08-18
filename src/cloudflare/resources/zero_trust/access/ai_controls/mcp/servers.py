@@ -74,21 +74,40 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerCreateResponse:
         """
-        Creates a new MCP portal for managing AI tool access through Cloudflare Access.
+        Creates a new MCP server for connecting to an upstream MCP endpoint.
 
         Args:
-          id: server id
+          id: Unique identifier for the MCP server.
+
+          auth_type: Authentication method used to connect to the upstream MCP server.
+
+          hostname: URL of the upstream MCP endpoint.
+
+          name: Display name for the MCP server.
+
+          auth_credentials: Static credential for the upstream MCP server. For auth_type "bearer", either a
+              raw token string (e.g. "sk-abc123"), which is wrapped server-side as
+              `Authorization: Bearer <token>`, or a JSON-encoded object of the form
+              `{"headers":{"Header-Name":"value",...}}` for custom or multiple static headers
+              (e.g. Cloudflare Access service tokens:
+              `{"headers":{"cf-access-client-id":"...","cf-access-client-secret":"..."}}`).
 
           client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
               auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
               server_oauth_secrets; never returned by read endpoints.
+
+          description: Optional description of the MCP server.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
               customer portal hostname. Defaults to false (off); opt in per server by setting
               true.
 
-          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway
+          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway.
+
+          updated_prompts: Server-wide prompt capability overrides.
+
+          updated_tools: Server-wide tool capability overrides.
 
           extra_headers: Send extra headers
 
@@ -149,21 +168,36 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerUpdateResponse:
         """
-        Updates an MCP portal configuration.
+        Updates an MCP server's configuration and credentials.
 
         Args:
-          id: server id
+          id: Unique identifier for the MCP server.
+
+          auth_credentials: Static credential for the upstream MCP server. For auth_type "bearer", either a
+              raw token string (e.g. "sk-abc123"), which is wrapped server-side as
+              `Authorization: Bearer <token>`, or a JSON-encoded object of the form
+              `{"headers":{"Header-Name":"value",...}}` for custom or multiple static headers
+              (e.g. Cloudflare Access service tokens:
+              `{"headers":{"cf-access-client-id":"...","cf-access-client-secret":"..."}}`).
 
           client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
               auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
               server_oauth_secrets; never returned by read endpoints.
+
+          description: Optional description of the MCP server.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
               customer portal hostname. Defaults to false (off); opt in per server by setting
               true.
 
-          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway
+          name: Display name for the MCP server.
+
+          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway.
+
+          updated_prompts: Server-wide prompt capability overrides.
+
+          updated_tools: Server-wide tool capability overrides.
 
           extra_headers: Send extra headers
 
@@ -217,7 +251,7 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ServerListResponse]:
         """
-        Lists all MCP portals configured for the account.
+        Lists all MCP servers configured for the account.
 
         Args:
           search: Search by id, name
@@ -265,10 +299,10 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerDeleteResponse:
         """
-        Deletes an MCP portal from the account.
+        Deletes an MCP server from the account.
 
         Args:
-          id: server id
+          id: Unique identifier for the MCP server.
 
           extra_headers: Send extra headers
 
@@ -307,10 +341,10 @@ class ServersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerReadResponse:
         """
-        Retrieves gateway configuration for MCP portals.
+        Retrieves an MCP server's configuration and capability sync state.
 
         Args:
-          id: server id
+          id: Unique identifier for the MCP server.
 
           extra_headers: Send extra headers
 
@@ -353,7 +387,7 @@ class ServersResource(SyncAPIResource):
         including any connection errors.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP server.
 
           extra_headers: Send extra headers
 
@@ -425,21 +459,40 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerCreateResponse:
         """
-        Creates a new MCP portal for managing AI tool access through Cloudflare Access.
+        Creates a new MCP server for connecting to an upstream MCP endpoint.
 
         Args:
-          id: server id
+          id: Unique identifier for the MCP server.
+
+          auth_type: Authentication method used to connect to the upstream MCP server.
+
+          hostname: URL of the upstream MCP endpoint.
+
+          name: Display name for the MCP server.
+
+          auth_credentials: Static credential for the upstream MCP server. For auth_type "bearer", either a
+              raw token string (e.g. "sk-abc123"), which is wrapped server-side as
+              `Authorization: Bearer <token>`, or a JSON-encoded object of the form
+              `{"headers":{"Header-Name":"value",...}}` for custom or multiple static headers
+              (e.g. Cloudflare Access service tokens:
+              `{"headers":{"cf-access-client-id":"...","cf-access-client-secret":"..."}}`).
 
           client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
               auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
               server_oauth_secrets; never returned by read endpoints.
+
+          description: Optional description of the MCP server.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
               customer portal hostname. Defaults to false (off); opt in per server by setting
               true.
 
-          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway
+          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway.
+
+          updated_prompts: Server-wide prompt capability overrides.
+
+          updated_tools: Server-wide tool capability overrides.
 
           extra_headers: Send extra headers
 
@@ -500,21 +553,36 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerUpdateResponse:
         """
-        Updates an MCP portal configuration.
+        Updates an MCP server's configuration and credentials.
 
         Args:
-          id: server id
+          id: Unique identifier for the MCP server.
+
+          auth_credentials: Static credential for the upstream MCP server. For auth_type "bearer", either a
+              raw token string (e.g. "sk-abc123"), which is wrapped server-side as
+              `Authorization: Bearer <token>`, or a JSON-encoded object of the form
+              `{"headers":{"Header-Name":"value",...}}` for custom or multiple static headers
+              (e.g. Cloudflare Access service tokens:
+              `{"headers":{"cf-access-client-id":"...","cf-access-client-secret":"..."}}`).
 
           client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
               auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
               server_oauth_secrets; never returned by read endpoints.
+
+          description: Optional description of the MCP server.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
               customer portal hostname. Defaults to false (off); opt in per server by setting
               true.
 
-          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway
+          name: Display name for the MCP server.
+
+          secure_web_gateway: Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway.
+
+          updated_prompts: Server-wide prompt capability overrides.
+
+          updated_tools: Server-wide tool capability overrides.
 
           extra_headers: Send extra headers
 
@@ -568,7 +636,7 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ServerListResponse, AsyncV4PagePaginationArray[ServerListResponse]]:
         """
-        Lists all MCP portals configured for the account.
+        Lists all MCP servers configured for the account.
 
         Args:
           search: Search by id, name
@@ -616,10 +684,10 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerDeleteResponse:
         """
-        Deletes an MCP portal from the account.
+        Deletes an MCP server from the account.
 
         Args:
-          id: server id
+          id: Unique identifier for the MCP server.
 
           extra_headers: Send extra headers
 
@@ -658,10 +726,10 @@ class AsyncServersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ServerReadResponse:
         """
-        Retrieves gateway configuration for MCP portals.
+        Retrieves an MCP server's configuration and capability sync state.
 
         Args:
-          id: server id
+          id: Unique identifier for the MCP server.
 
           extra_headers: Send extra headers
 
@@ -704,7 +772,7 @@ class AsyncServersResource(AsyncAPIResource):
         including any connection errors.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP server.
 
           extra_headers: Send extra headers
 

@@ -104,18 +104,21 @@ class ServerUpdatedTool(BaseModel):
 
 class Server(BaseModel):
     id: str
-    """server id"""
+    """Unique identifier for the MCP server."""
 
     auth_type: Literal["oauth", "bearer", "unauthenticated"]
+    """Authentication method used to connect to the upstream MCP server."""
 
     hostname: str
+    """URL of the upstream MCP endpoint."""
 
     name: str
+    """Display name for the MCP server."""
 
     prompts: List[Dict[str, object]]
 
     server_id: str
-    """server id"""
+    """Unique identifier for the MCP server."""
 
     tools: List[Dict[str, object]]
 
@@ -141,6 +144,7 @@ class Server(BaseModel):
     default_disabled: Optional[bool] = None
 
     description: Optional[str] = None
+    """Optional description of the MCP server."""
 
     error: Optional[str] = None
 
@@ -165,7 +169,9 @@ class Server(BaseModel):
     on_behalf: Optional[bool] = None
 
     secure_web_gateway: Optional[bool] = None
-    """Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway"""
+    """
+    Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway.
+    """
 
     status: Optional[Literal["waiting", "ready", "stale", "error"]] = None
     """Current sync state of the server"""
@@ -177,11 +183,13 @@ class Server(BaseModel):
 
 class PortalReadResponse(BaseModel):
     id: str
-    """portal id"""
+    """Unique identifier for the MCP portal."""
 
     hostname: str
+    """Hostname where the MCP portal is available."""
 
     name: str
+    """Display name for the MCP portal."""
 
     servers: List[Server]
 
@@ -209,10 +217,11 @@ class PortalReadResponse(BaseModel):
     created_by: Optional[str] = None
 
     description: Optional[str] = None
+    """Optional description of the MCP portal."""
 
     modified_at: Optional[datetime] = None
 
     modified_by: Optional[str] = None
 
     secure_web_gateway: Optional[bool] = None
-    """Route outbound MCP traffic through Zero Trust Secure Web Gateway"""
+    """Route outbound MCP traffic through Zero Trust Secure Web Gateway."""

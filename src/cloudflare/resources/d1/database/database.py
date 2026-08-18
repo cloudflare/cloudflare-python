@@ -78,7 +78,7 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        jurisdiction: Literal["eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["eu", "fedramp", "us"] | Omit = omit,
         primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
         read_replication: database_create_params.ReadReplication | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -892,7 +892,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        jurisdiction: Literal["eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["eu", "fedramp", "us"] | Omit = omit,
         primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
         read_replication: database_create_params.ReadReplication | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

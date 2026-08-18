@@ -15,8 +15,15 @@ class CustomPage(BaseModel):
     name: str
     """Custom page name."""
 
-    type: Literal["identity_denied", "forbidden"]
+    type: Literal["identity_denied", "forbidden", "login", "interstitial"]
     """Custom page type."""
+
+    contract_version: Optional[int] = None
+    """Contract version of the page's Liquid template.
+
+    Present (>= 1) marks a sanitized template; absent or 0 marks a legacy page
+    served verbatim.
+    """
 
     uid: Optional[str] = None
     """UUID."""

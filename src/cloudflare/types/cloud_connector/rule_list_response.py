@@ -27,5 +27,5 @@ class RuleListResponse(BaseModel):
     parameters: Optional[Parameters] = None
     """Parameters of Cloud Connector Rule"""
 
-    provider: Optional[Literal["aws_s3", "cloudflare_r2", "gcp_storage", "azure_storage"]] = None
+    provider: Optional[Literal["aws_s3", "cloudflare_r2", "gcp_storage", "azure_storage", "oci_storage"]] = None
     """Cloud Provider type"""

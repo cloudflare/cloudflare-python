@@ -14,10 +14,10 @@ class ItemListParams(TypedDict, total=False):
     cursor: str
     """The pagination cursor.
 
-    An opaque string token indicating the position from which to continue when
-    requesting the next/previous set of records. Cursor values are provided under
-    `result_info.cursors` in the response. You should make no assumptions about a
-    cursor's content or length.
+    An opaque string token that indicates where to continue when requesting the
+    next/previous set of records. The response provides cursor values under
+    `result_info.cursors`. You should make no assumptions about a cursor's content
+    or length.
     """
 
     per_page: int

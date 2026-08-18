@@ -20,7 +20,8 @@ class IndicatorListParams(TypedDict, total=False):
     """Cache strategy.
 
     'from-graph' serves results from the graph-node KV cache when all requested
-    UUIDs are cached; falls back to normal path on partial/zero hit.
+    UUIDs are cached; falls back to normal path on partial/zero hit. Cannot be
+    combined with `cursor`.
     """
 
     created_after: Annotated[Union[str, datetime], PropertyInfo(alias="createdAfter", format="iso8601")]
@@ -33,6 +34,18 @@ class IndicatorListParams(TypedDict, total=False):
     """Filter indicators created on or before this date.
 
     Must use ISO 8601 format (e.g., '2024-12-31T23:59:59Z').
+    """
+
+    cursor: str
+    """Opaque cursor from a previous response's `pagination.cursor`.
+
+    When provided, all filters, datasetIds, page, `pageSize`, `includeTags` and
+    `relatedEventsLimit` come from the cursor — do not resend them. Sending any
+    filter, `page`, `pageSize`, `includeTags`, `relatedEventsLimit`,
+    `includeTotalCount=true`, or `cache=from-graph` alongside a cursor yields a 400
+    `CursorFilterConflictError`. A cursor issued for a different entity, an
+    unsupported version, or a dataset that has since been reconfigured as
+    analytics-only yields a 400 `InvalidCursorError`.
     """
 
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]
@@ -89,13 +102,6 @@ class IndicatorListParams(TypedDict, total=False):
     request, e.g.
     search=[{"field":"value","op":"in","value":["evil.com","bad.org"]}]. Multiple
     conditions are AND'd together. Max 10 conditions per request.
-    """
-
-    source: Literal["do", "r2catalog"]
-    """Read backend.
-
-    'do' (default) reads Durable Object storage. 'r2catalog' reads R2 Data Catalog
-    (admin-only, experimental; supports a subset of search fields).
     """
 
     tags: SequenceNotStr[str]

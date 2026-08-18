@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -62,7 +63,9 @@ class CNIsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CNICreateResponse:
         """
-        Create a new CNI object
+        Creates a new Cloud Network Interconnect (CNI) for private network connectivity
+        between Cloudflare and your infrastructure. CNIs enable dedicated,
+        high-performance network links.
 
         Args:
           account_id: Customer account tag
@@ -108,6 +111,7 @@ class CNIsResource(SyncAPIResource):
         magic: cni_update_params.Magic,
         p2p_ip: str,
         bgp: cni_update_params.BGP | Omit = omit,
+        bgp_mode: Literal["dynamic_route_exchange", "advertise_only"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,7 +120,8 @@ class CNIsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CNIUpdateResponse:
         """
-        Modify stored information about a CNI object
+        Updates the configuration of an existing Cloud Network Interconnect (CNI),
+        including connection parameters and routing settings.
 
         Args:
           account_id: Customer account tag
@@ -130,6 +135,15 @@ class CNIsResource(SyncAPIResource):
           interconnect: Interconnect identifier hosting this CNI
 
           p2p_ip: Cloudflare end of the point-to-point link
+
+          bgp_mode: The BGP mode for a CNI.
+
+              Controls the customer-facing data path:
+
+              - `DynamicRouteExchange` — Full BGP: routes flow through to conduit via CRE /
+                bgp-bridge / bgp-bridge-receiver.
+              - `AdvertiseOnly` — static advertisement via taserver, no routes exchanged with
+                Conduit
 
           extra_headers: Send extra headers
 
@@ -154,6 +168,7 @@ class CNIsResource(SyncAPIResource):
                     "magic": magic,
                     "p2p_ip": p2p_ip,
                     "bgp": bgp,
+                    "bgp_mode": bgp_mode,
                 },
                 cni_update_params.CNIUpdateParams,
             ),
@@ -179,7 +194,8 @@ class CNIsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CNIListResponse:
         """
-        List existing CNI objects
+        Lists all Cloud Network Interconnects (CNIs) configured for the account, showing
+        connection status and parameters.
 
         Args:
           account_id: Customer account tag
@@ -230,8 +246,10 @@ class CNIsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a specified CNI object
+        """Permanently removes a Cloud Network Interconnect (CNI) configuration.
+
+        The
+        private network connection will be terminated.
 
         Args:
           account_id: Customer account tag
@@ -270,7 +288,8 @@ class CNIsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CNIGetResponse:
         """
-        Get information about a CNI object
+        Retrieves configuration details for a specific Cloud Network Interconnect (CNI),
+        including connection status and parameters.
 
         Args:
           account_id: Customer account tag
@@ -332,7 +351,9 @@ class AsyncCNIsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CNICreateResponse:
         """
-        Create a new CNI object
+        Creates a new Cloud Network Interconnect (CNI) for private network connectivity
+        between Cloudflare and your infrastructure. CNIs enable dedicated,
+        high-performance network links.
 
         Args:
           account_id: Customer account tag
@@ -378,6 +399,7 @@ class AsyncCNIsResource(AsyncAPIResource):
         magic: cni_update_params.Magic,
         p2p_ip: str,
         bgp: cni_update_params.BGP | Omit = omit,
+        bgp_mode: Literal["dynamic_route_exchange", "advertise_only"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -386,7 +408,8 @@ class AsyncCNIsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CNIUpdateResponse:
         """
-        Modify stored information about a CNI object
+        Updates the configuration of an existing Cloud Network Interconnect (CNI),
+        including connection parameters and routing settings.
 
         Args:
           account_id: Customer account tag
@@ -400,6 +423,15 @@ class AsyncCNIsResource(AsyncAPIResource):
           interconnect: Interconnect identifier hosting this CNI
 
           p2p_ip: Cloudflare end of the point-to-point link
+
+          bgp_mode: The BGP mode for a CNI.
+
+              Controls the customer-facing data path:
+
+              - `DynamicRouteExchange` — Full BGP: routes flow through to conduit via CRE /
+                bgp-bridge / bgp-bridge-receiver.
+              - `AdvertiseOnly` — static advertisement via taserver, no routes exchanged with
+                Conduit
 
           extra_headers: Send extra headers
 
@@ -424,6 +456,7 @@ class AsyncCNIsResource(AsyncAPIResource):
                     "magic": magic,
                     "p2p_ip": p2p_ip,
                     "bgp": bgp,
+                    "bgp_mode": bgp_mode,
                 },
                 cni_update_params.CNIUpdateParams,
             ),
@@ -449,7 +482,8 @@ class AsyncCNIsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CNIListResponse:
         """
-        List existing CNI objects
+        Lists all Cloud Network Interconnects (CNIs) configured for the account, showing
+        connection status and parameters.
 
         Args:
           account_id: Customer account tag
@@ -500,8 +534,10 @@ class AsyncCNIsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a specified CNI object
+        """Permanently removes a Cloud Network Interconnect (CNI) configuration.
+
+        The
+        private network connection will be terminated.
 
         Args:
           account_id: Customer account tag
@@ -540,7 +576,8 @@ class AsyncCNIsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CNIGetResponse:
         """
-        Get information about a CNI object
+        Retrieves configuration details for a specific Cloud Network Interconnect (CNI),
+        including connection status and parameters.
 
         Args:
           account_id: Customer account tag

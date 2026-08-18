@@ -57,7 +57,10 @@ class Variant0(TypedDict, total=False):
     """
 
     allow_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowRequestPattern")]
-    """Only allow requests that match the provided regex patterns, eg. '/^.\\**\\..(css)'."""
+    """Only allow requests that match the provided regex patterns, eg.
+
+    '/^.\\**\\..(css)'. Reject rules are applied first.
+    """
 
     allow_resource_types: Annotated[
         List[
@@ -86,7 +89,7 @@ class Variant0(TypedDict, total=False):
     ]
     """Only allow requests that match the provided resource types, eg.
 
-    'image' or 'script'.
+    'image' or 'script'. Reject rules are applied first.
     """
 
     authenticate: Variant0Authenticate

@@ -28,3 +28,5 @@ class SlotGetResponse(BaseModel):
 
     account: Optional[str] = None
     """Customer account tag"""
+
+    ccr_device_name: Optional[str] = None

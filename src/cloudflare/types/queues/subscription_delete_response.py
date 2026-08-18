@@ -19,6 +19,7 @@ __all__ = [
     "SourceMqEventSourceVectorize",
     "SourceMqEventSourceWorkersAIModel",
     "SourceMqEventSourceWorkersBuildsWorker",
+    "SourceMqEventSourceWorkersScript",
     "SourceMqEventSourceWorkflowsWorkflow",
 ]
 
@@ -74,6 +75,14 @@ class SourceMqEventSourceWorkersBuildsWorker(BaseModel):
     """Name of the worker"""
 
 
+class SourceMqEventSourceWorkersScript(BaseModel):
+    script_tag: Optional[str] = None
+    """Tag of the Worker script"""
+
+    type: Optional[Literal["workers.script"]] = None
+    """Type of source"""
+
+
 class SourceMqEventSourceWorkflowsWorkflow(BaseModel):
     type: Optional[Literal["workflows.workflow"]] = None
     """Type of source"""
@@ -90,6 +99,7 @@ Source: TypeAlias = Union[
     SourceMqEventSourceVectorize,
     SourceMqEventSourceWorkersAIModel,
     SourceMqEventSourceWorkersBuildsWorker,
+    SourceMqEventSourceWorkersScript,
     SourceMqEventSourceWorkflowsWorkflow,
 ]
 

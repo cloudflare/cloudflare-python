@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Iterable, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .check_region import CheckRegion
 from .origin_param import OriginParam
@@ -33,6 +33,18 @@ class PoolEditParams(TypedDict, total=False):
     Disabled pools will not receive traffic and are excluded from health checks.
     Disabling a pool will cause any load balancers using it to failover to the next
     pool (if any).
+    """
+
+    health_sources: Optional[List[Literal["local", "regional", "global"]]]
+    """
+    A list of health sources, ordered from highest to lowest priority, used to
+    evaluate individual origin health and overall pool health. The load balancer
+    uses the first source that has data and falls back to the next. Currently
+    accepted values are null or the exact array ["regional", "global"]; any other
+    combination is rejected. Null (the default) behaves like ["local", "global"].
+    ["regional", "global"] makes each region steer on its own health, falling back
+    to the global decision when a region has no fresh data. Setting regional
+    requires at least one region in check_regions.
     """
 
     latitude: float

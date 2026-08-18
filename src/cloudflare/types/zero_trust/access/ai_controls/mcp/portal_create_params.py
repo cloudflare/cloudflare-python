@@ -12,11 +12,13 @@ class PortalCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     id: Required[str]
-    """portal id"""
+    """Unique identifier for the MCP portal."""
 
     hostname: Required[str]
+    """Hostname where the MCP portal is available."""
 
     name: Required[str]
+    """Display name for the MCP portal."""
 
     allow_code_mode: bool
     """Deprecated: use `code_mode` for new integrations.
@@ -38,41 +40,55 @@ class PortalCreateParams(TypedDict, total=False):
     """
 
     description: str
+    """Optional description of the MCP portal."""
 
     secure_web_gateway: bool
-    """Route outbound MCP traffic through Zero Trust Secure Web Gateway"""
+    """Route outbound MCP traffic through Zero Trust Secure Web Gateway."""
 
     servers: Iterable[Server]
+    """MCP servers attached to the portal and their portal-specific settings."""
 
 
 class ServerUpdatedPrompt(TypedDict, total=False):
     name: Required[str]
+    """Name of the tool or prompt capability to override."""
 
     alias: str
+    """Custom name exposed for the capability."""
 
     description: str
+    """Custom description exposed for the capability."""
 
     enabled: bool
+    """Whether the capability is available through the MCP server."""
 
 
 class ServerUpdatedTool(TypedDict, total=False):
     name: Required[str]
+    """Name of the tool or prompt capability to override."""
 
     alias: str
+    """Custom name exposed for the capability."""
 
     description: str
+    """Custom description exposed for the capability."""
 
     enabled: bool
+    """Whether the capability is available through the MCP server."""
 
 
 class Server(TypedDict, total=False):
     server_id: Required[str]
-    """server id"""
+    """Unique identifier for the MCP server."""
 
     default_disabled: bool
+    """Disable this server by default for clients connecting through the portal."""
 
     on_behalf: bool
+    """Use end-user OAuth credentials when connecting this server to the portal."""
 
     updated_prompts: Iterable[ServerUpdatedPrompt]
+    """Portal-specific prompt overrides."""
 
     updated_tools: Iterable[ServerUpdatedTool]
+    """Portal-specific tool overrides."""

@@ -178,10 +178,10 @@ class ItemsResource(SyncAPIResource):
 
           list_id: The unique ID of the list.
 
-          cursor: The pagination cursor. An opaque string token indicating the position from which
-              to continue when requesting the next/previous set of records. Cursor values are
-              provided under `result_info.cursors` in the response. You should make no
-              assumptions about a cursor's content or length.
+          cursor: The pagination cursor. An opaque string token that indicates where to continue
+              when requesting the next/previous set of records. The response provides cursor
+              values under `result_info.cursors`. You should make no assumptions about a
+              cursor's content or length.
 
           per_page: Amount of results to include in each paginated response. A non-negative 32 bit
               integer.
@@ -485,10 +485,10 @@ class AsyncItemsResource(AsyncAPIResource):
 
           list_id: The unique ID of the list.
 
-          cursor: The pagination cursor. An opaque string token indicating the position from which
-              to continue when requesting the next/previous set of records. Cursor values are
-              provided under `result_info.cursors` in the response. You should make no
-              assumptions about a cursor's content or length.
+          cursor: The pagination cursor. An opaque string token that indicates where to continue
+              when requesting the next/previous set of records. The response provides cursor
+              values under `result_info.cursors`. You should make no assumptions about a
+              cursor's content or length.
 
           per_page: Amount of results to include in each paginated response. A non-negative 32 bit
               integer.

@@ -26,7 +26,7 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_create(self, client: Cloudflare) -> None:
+    def test_method_create_overload_1(self, client: Cloudflare) -> None:
         policy = client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
@@ -35,7 +35,7 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         policy = client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
@@ -73,7 +73,7 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_raw_response_create(self, client: Cloudflare) -> None:
+    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.policies.with_raw_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
@@ -86,7 +86,7 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_streaming_response_create(self, client: Cloudflare) -> None:
+    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.policies.with_streaming_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
@@ -101,7 +101,7 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_path_params_create(self, client: Cloudflare) -> None:
+    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="",
@@ -122,7 +122,108 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
+    def test_method_create_overload_2(self, client: Cloudflare) -> None:
+        policy = client.zero_trust.access.applications.policies.create(
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        policy = client.zero_trust.access.applications.policies.create(
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+            connection_rules={
+                "ssh": {
+                    "usernames": ["root", "ubuntu"],
+                    "allow_email_alias": True,
+                }
+            },
+            exclude=[{"certificate": {}}],
+            mfa_config={
+                "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
+                "mfa_disabled": False,
+                "session_duration": "24h",
+            },
+            require=[{"certificate": {}}],
+        )
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.policies.with_raw_response.create(
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        policy = response.parse()
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.policies.with_streaming_response.create(
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            policy = response.parse()
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.policies.with_raw_response.create(
+                app_id="",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.policies.with_raw_response.create(
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.policies.with_raw_response.create(
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_overload_1(self, client: Cloudflare) -> None:
         policy = client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -132,7 +233,7 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+    def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         policy = client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -171,7 +272,7 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
+    def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.policies.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -185,7 +286,7 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
+    def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.policies.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -201,7 +302,7 @@ class TestPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
+    def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -227,6 +328,124 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_overload_2(self, client: Cloudflare) -> None:
+        policy = client.zero_trust.access.applications.policies.update(
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        policy = client.zero_trust.access.applications.policies.update(
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+            connection_rules={
+                "ssh": {
+                    "usernames": ["root", "ubuntu"],
+                    "allow_email_alias": True,
+                }
+            },
+            exclude=[{"certificate": {}}],
+            mfa_config={
+                "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
+                "mfa_disabled": False,
+                "session_duration": "24h",
+            },
+            require=[{"certificate": {}}],
+        )
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
+        response = client.zero_trust.access.applications.policies.with_raw_response.update(
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        policy = response.parse()
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
+        with client.zero_trust.access.applications.policies.with_streaming_response.update(
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            policy = response.parse()
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.policies.with_raw_response.update(
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                app_id="",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
+            client.zero_trust.access.applications.policies.with_raw_response.update(
+                policy_id="",
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.policies.with_raw_response.update(
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.access.applications.policies.with_raw_response.update(
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -469,7 +688,7 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
@@ -478,7 +697,7 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
@@ -516,7 +735,7 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.policies.with_raw_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
@@ -529,7 +748,7 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.policies.with_streaming_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
@@ -544,7 +763,7 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="",
@@ -565,7 +784,108 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        policy = await async_client.zero_trust.access.applications.policies.create(
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        policy = await async_client.zero_trust.access.applications.policies.create(
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+            connection_rules={
+                "ssh": {
+                    "usernames": ["root", "ubuntu"],
+                    "allow_email_alias": True,
+                }
+            },
+            exclude=[{"certificate": {}}],
+            mfa_config={
+                "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
+                "mfa_disabled": False,
+                "session_duration": "24h",
+            },
+            require=[{"certificate": {}}],
+        )
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.policies.with_raw_response.create(
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        policy = await response.parse()
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.policies.with_streaming_response.create(
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            policy = await response.parse()
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.policies.with_raw_response.create(
+                app_id="",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.policies.with_raw_response.create(
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.policies.with_raw_response.create(
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -575,7 +895,7 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -614,7 +934,7 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.policies.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -628,7 +948,7 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.policies.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -644,7 +964,7 @@ class TestAsyncPolicies:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -670,6 +990,124 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        policy = await async_client.zero_trust.access.applications.policies.update(
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        policy = await async_client.zero_trust.access.applications.policies.update(
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+            connection_rules={
+                "ssh": {
+                    "usernames": ["root", "ubuntu"],
+                    "allow_email_alias": True,
+                }
+            },
+            exclude=[{"certificate": {}}],
+            mfa_config={
+                "allowed_authenticators": ["piv_key", "ssh_fido2_key"],
+                "mfa_disabled": False,
+                "session_duration": "24h",
+            },
+            require=[{"certificate": {}}],
+        )
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.access.applications.policies.with_raw_response.update(
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        policy = await response.parse()
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.access.applications.policies.with_streaming_response.update(
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            decision="allow",
+            include=[{"certificate": {}}],
+            name="Allow devs",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            policy = await response.parse()
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.policies.with_raw_response.update(
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                app_id="",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
+            await async_client.zero_trust.access.applications.policies.with_raw_response.update(
+                policy_id="",
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.policies.with_raw_response.update(
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.access.applications.policies.with_raw_response.update(
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                decision="allow",
+                include=[{"certificate": {}}],
+                name="Allow devs",
                 account_id="account_id",
             )
 

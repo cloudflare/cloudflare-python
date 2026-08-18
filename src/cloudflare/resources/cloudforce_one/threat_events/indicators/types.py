@@ -54,7 +54,7 @@ class TypesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TypeListResponse:
         """
-        List indicator types across one or more datasets for the account.
+        Lists indicator types across multiple datasets
 
         Args:
           account_id: Account ID.
@@ -118,7 +118,7 @@ class AsyncTypesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TypeListResponse:
         """
-        List indicator types across one or more datasets for the account.
+        Lists indicator types across multiple datasets
 
         Args:
           account_id: Account ID.

@@ -73,7 +73,11 @@ class PortalsResource(SyncAPIResource):
         Creates a new MCP portal for managing AI tool access through Cloudflare Access.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
+
+          hostname: Hostname where the MCP portal is available.
+
+          name: Display name for the MCP portal.
 
           allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
               Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
@@ -87,7 +91,11 @@ class PortalsResource(SyncAPIResource):
               create. If both `code_mode` and `allow_code_mode` are sent, they must be
               consistent or the request returns a 400.
 
-          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
+          description: Optional description of the MCP portal.
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway.
+
+          servers: MCP servers attached to the portal and their portal-specific settings.
 
           extra_headers: Send extra headers
 
@@ -147,7 +155,7 @@ class PortalsResource(SyncAPIResource):
         Updates an MCP portal configuration.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
               Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
@@ -161,7 +169,15 @@ class PortalsResource(SyncAPIResource):
               create. If both `code_mode` and `allow_code_mode` are sent, they must be
               consistent or the request returns a 400.
 
-          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
+          description: Optional description of the MCP portal.
+
+          hostname: Hostname where the MCP portal is available.
+
+          name: Display name for the MCP portal.
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway.
+
+          servers: MCP servers attached to the portal and their portal-specific settings.
 
           extra_headers: Send extra headers
 
@@ -265,7 +281,7 @@ class PortalsResource(SyncAPIResource):
         Deletes an MCP portal from the account.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           extra_headers: Send extra headers
 
@@ -307,7 +323,7 @@ class PortalsResource(SyncAPIResource):
         Read the details of a single MCP Portal, including its configured servers.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           extra_headers: Send extra headers
 
@@ -377,7 +393,11 @@ class AsyncPortalsResource(AsyncAPIResource):
         Creates a new MCP portal for managing AI tool access through Cloudflare Access.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
+
+          hostname: Hostname where the MCP portal is available.
+
+          name: Display name for the MCP portal.
 
           allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
               Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
@@ -391,7 +411,11 @@ class AsyncPortalsResource(AsyncAPIResource):
               create. If both `code_mode` and `allow_code_mode` are sent, they must be
               consistent or the request returns a 400.
 
-          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
+          description: Optional description of the MCP portal.
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway.
+
+          servers: MCP servers attached to the portal and their portal-specific settings.
 
           extra_headers: Send extra headers
 
@@ -451,7 +475,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         Updates an MCP portal configuration.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
               Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
@@ -465,7 +489,15 @@ class AsyncPortalsResource(AsyncAPIResource):
               create. If both `code_mode` and `allow_code_mode` are sent, they must be
               consistent or the request returns a 400.
 
-          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
+          description: Optional description of the MCP portal.
+
+          hostname: Hostname where the MCP portal is available.
+
+          name: Display name for the MCP portal.
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway.
+
+          servers: MCP servers attached to the portal and their portal-specific settings.
 
           extra_headers: Send extra headers
 
@@ -569,7 +601,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         Deletes an MCP portal from the account.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           extra_headers: Send extra headers
 
@@ -611,7 +643,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         Read the details of a single MCP Portal, including its configured servers.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           extra_headers: Send extra headers
 
