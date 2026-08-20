@@ -2405,6 +2405,8 @@ Types:
 
 ```python
 from cloudflare.types.zero_trust.resource_library import (
+    ApplicationCreateResponse,
+    ApplicationUpdateResponse,
     ApplicationListResponse,
     ApplicationGetResponse,
 )
@@ -2412,7 +2414,10 @@ from cloudflare.types.zero_trust.resource_library import (
 
 Methods:
 
+- <code title="post /accounts/{account_id}/resource-library/applications">client.zero_trust.resource_library.applications.<a href="./src/cloudflare/resources/zero_trust/resource_library/applications.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/resource_library/application_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/resource_library/application_create_response.py">Optional[ApplicationCreateResponse]</a></code>
+- <code title="patch /accounts/{account_id}/resource-library/applications/{id}">client.zero_trust.resource_library.applications.<a href="./src/cloudflare/resources/zero_trust/resource_library/applications.py">update</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/resource_library/application_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/resource_library/application_update_response.py">Optional[ApplicationUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/resource-library/applications">client.zero_trust.resource_library.applications.<a href="./src/cloudflare/resources/zero_trust/resource_library/applications.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/resource_library/application_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/resource_library/application_list_response.py">SyncSinglePage[ApplicationListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/resource-library/applications/{id}">client.zero_trust.resource_library.applications.<a href="./src/cloudflare/resources/zero_trust/resource_library/applications.py">delete</a>(id, \*, account_id) -> object</code>
 - <code title="get /accounts/{account_id}/resource-library/applications/{id}">client.zero_trust.resource_library.applications.<a href="./src/cloudflare/resources/zero_trust/resource_library/applications.py">get</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/resource_library/application_get_response.py">Optional[ApplicationGetResponse]</a></code>
 
 ### Categories
