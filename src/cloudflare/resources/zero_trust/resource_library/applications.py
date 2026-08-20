@@ -6,8 +6,8 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import path_template, maybe_transform
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -19,9 +19,15 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.resource_library import application_list_params
+from ....types.zero_trust.resource_library import (
+    application_list_params,
+    application_create_params,
+    application_update_params,
+)
 from ....types.zero_trust.resource_library.application_get_response import ApplicationGetResponse
 from ....types.zero_trust.resource_library.application_list_response import ApplicationListResponse
+from ....types.zero_trust.resource_library.application_create_response import ApplicationCreateResponse
+from ....types.zero_trust.resource_library.application_update_response import ApplicationUpdateResponse
 
 __all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
 
@@ -45,6 +51,137 @@ class ApplicationsResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return ApplicationsResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        account_id: str,
+        category_id: int,
+        human_id: str,
+        name: str,
+        hostnames: SequenceNotStr[str] | Omit = omit,
+        ip_subnets: SequenceNotStr[str] | Omit = omit,
+        port_protocols: SequenceNotStr[str] | Omit = omit,
+        support_domains: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Create a custom application for an account.
+
+        Args:
+          category_id: Returns the category ID.
+
+          human_id: Returns the human readable ID.
+
+          name: Returns the application name.
+
+          hostnames: Hostnames matched by the application.
+
+          ip_subnets: IP subnets matched by the application.
+
+          port_protocols: Port and protocol pairs matched by the application.
+
+          support_domains: Support domains matched by the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template("/accounts/{account_id}/resource-library/applications", account_id=account_id),
+            body=maybe_transform(
+                {
+                    "category_id": category_id,
+                    "human_id": human_id,
+                    "name": name,
+                    "hostnames": hostnames,
+                    "ip_subnets": ip_subnets,
+                    "port_protocols": port_protocols,
+                    "support_domains": support_domains,
+                },
+                application_create_params.ApplicationCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ApplicationCreateResponse]], ResultWrapper[ApplicationCreateResponse]),
+        )
+
+    def update(
+        self,
+        id: int,
+        *,
+        account_id: str,
+        hostnames: SequenceNotStr[str] | Omit = omit,
+        ip_subnets: SequenceNotStr[str] | Omit = omit,
+        port_protocols: SequenceNotStr[str] | Omit = omit,
+        support_domains: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Replace the network matchers for a custom application and create a new version.
+
+        Args:
+          id: Returns the application ID.
+
+          hostnames: Hostnames matched by the application.
+
+          ip_subnets: IP subnets matched by the application.
+
+          port_protocols: Port and protocol pairs matched by the application.
+
+          support_domains: Support domains matched by the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._patch(
+            path_template("/accounts/{account_id}/resource-library/applications/{id}", account_id=account_id, id=id),
+            body=maybe_transform(
+                {
+                    "hostnames": hostnames,
+                    "ip_subnets": ip_subnets,
+                    "port_protocols": port_protocols,
+                    "support_domains": support_domains,
+                },
+                application_update_params.ApplicationUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ApplicationUpdateResponse]], ResultWrapper[ApplicationUpdateResponse]),
+        )
 
     def list(
         self,
@@ -126,6 +263,46 @@ class ApplicationsResource(SyncAPIResource):
             model=ApplicationListResponse,
         )
 
+    def delete(
+        self,
+        id: int,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Delete a custom application and all of its versions.
+
+        Args:
+          id: Returns the application ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._delete(
+            path_template("/accounts/{account_id}/resource-library/applications/{id}", account_id=account_id, id=id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
     def get(
         self,
         id: int,
@@ -184,6 +361,137 @@ class AsyncApplicationsResource(AsyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return AsyncApplicationsResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        account_id: str,
+        category_id: int,
+        human_id: str,
+        name: str,
+        hostnames: SequenceNotStr[str] | Omit = omit,
+        ip_subnets: SequenceNotStr[str] | Omit = omit,
+        port_protocols: SequenceNotStr[str] | Omit = omit,
+        support_domains: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Create a custom application for an account.
+
+        Args:
+          category_id: Returns the category ID.
+
+          human_id: Returns the human readable ID.
+
+          name: Returns the application name.
+
+          hostnames: Hostnames matched by the application.
+
+          ip_subnets: IP subnets matched by the application.
+
+          port_protocols: Port and protocol pairs matched by the application.
+
+          support_domains: Support domains matched by the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template("/accounts/{account_id}/resource-library/applications", account_id=account_id),
+            body=await async_maybe_transform(
+                {
+                    "category_id": category_id,
+                    "human_id": human_id,
+                    "name": name,
+                    "hostnames": hostnames,
+                    "ip_subnets": ip_subnets,
+                    "port_protocols": port_protocols,
+                    "support_domains": support_domains,
+                },
+                application_create_params.ApplicationCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ApplicationCreateResponse]], ResultWrapper[ApplicationCreateResponse]),
+        )
+
+    async def update(
+        self,
+        id: int,
+        *,
+        account_id: str,
+        hostnames: SequenceNotStr[str] | Omit = omit,
+        ip_subnets: SequenceNotStr[str] | Omit = omit,
+        port_protocols: SequenceNotStr[str] | Omit = omit,
+        support_domains: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Replace the network matchers for a custom application and create a new version.
+
+        Args:
+          id: Returns the application ID.
+
+          hostnames: Hostnames matched by the application.
+
+          ip_subnets: IP subnets matched by the application.
+
+          port_protocols: Port and protocol pairs matched by the application.
+
+          support_domains: Support domains matched by the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._patch(
+            path_template("/accounts/{account_id}/resource-library/applications/{id}", account_id=account_id, id=id),
+            body=await async_maybe_transform(
+                {
+                    "hostnames": hostnames,
+                    "ip_subnets": ip_subnets,
+                    "port_protocols": port_protocols,
+                    "support_domains": support_domains,
+                },
+                application_update_params.ApplicationUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ApplicationUpdateResponse]], ResultWrapper[ApplicationUpdateResponse]),
+        )
 
     def list(
         self,
@@ -265,6 +573,46 @@ class AsyncApplicationsResource(AsyncAPIResource):
             model=ApplicationListResponse,
         )
 
+    async def delete(
+        self,
+        id: int,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Delete a custom application and all of its versions.
+
+        Args:
+          id: Returns the application ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._delete(
+            path_template("/accounts/{account_id}/resource-library/applications/{id}", account_id=account_id, id=id),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
     async def get(
         self,
         id: int,
@@ -308,8 +656,17 @@ class ApplicationsResourceWithRawResponse:
     def __init__(self, applications: ApplicationsResource) -> None:
         self._applications = applications
 
+        self.create = to_raw_response_wrapper(
+            applications.create,
+        )
+        self.update = to_raw_response_wrapper(
+            applications.update,
+        )
         self.list = to_raw_response_wrapper(
             applications.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            applications.delete,
         )
         self.get = to_raw_response_wrapper(
             applications.get,
@@ -320,8 +677,17 @@ class AsyncApplicationsResourceWithRawResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
         self._applications = applications
 
+        self.create = async_to_raw_response_wrapper(
+            applications.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            applications.update,
+        )
         self.list = async_to_raw_response_wrapper(
             applications.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            applications.delete,
         )
         self.get = async_to_raw_response_wrapper(
             applications.get,
@@ -332,8 +698,17 @@ class ApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: ApplicationsResource) -> None:
         self._applications = applications
 
+        self.create = to_streamed_response_wrapper(
+            applications.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            applications.update,
+        )
         self.list = to_streamed_response_wrapper(
             applications.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            applications.delete,
         )
         self.get = to_streamed_response_wrapper(
             applications.get,
@@ -344,8 +719,17 @@ class AsyncApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
         self._applications = applications
 
+        self.create = async_to_streamed_response_wrapper(
+            applications.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            applications.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             applications.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            applications.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             applications.get,
