@@ -20,6 +20,7 @@ from cloudflare.types.email_sending import (
     SubdomainCreateResponse,
     SubdomainListResponse,
     SubdomainDeleteResponse,
+    SubdomainEditResponse,
     SubdomainGetResponse,
 )
 ```
@@ -29,6 +30,7 @@ Methods:
 - <code title="post /zones/{zone_id}/email/sending/subdomains">client.email_sending.subdomains.<a href="./src/cloudflare/resources/email_sending/subdomains/subdomains.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/email_sending/subdomain_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_sending/subdomain_create_response.py">Optional[SubdomainCreateResponse]</a></code>
 - <code title="get /zones/{zone_id}/email/sending/subdomains">client.email_sending.subdomains.<a href="./src/cloudflare/resources/email_sending/subdomains/subdomains.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/email_sending/subdomain_list_response.py">SyncSinglePage[SubdomainListResponse]</a></code>
 - <code title="delete /zones/{zone_id}/email/sending/subdomains/{subdomain_id}">client.email_sending.subdomains.<a href="./src/cloudflare/resources/email_sending/subdomains/subdomains.py">delete</a>(subdomain_id, \*, zone_id) -> <a href="./src/cloudflare/types/email_sending/subdomain_delete_response.py">SubdomainDeleteResponse</a></code>
+- <code title="patch /zones/{zone_id}/email/sending/subdomains/{subdomain_id}">client.email_sending.subdomains.<a href="./src/cloudflare/resources/email_sending/subdomains/subdomains.py">edit</a>(subdomain_id, \*, zone_id, \*\*<a href="src/cloudflare/types/email_sending/subdomain_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_sending/subdomain_edit_response.py">Optional[SubdomainEditResponse]</a></code>
 - <code title="get /zones/{zone_id}/email/sending/subdomains/{subdomain_id}">client.email_sending.subdomains.<a href="./src/cloudflare/resources/email_sending/subdomains/subdomains.py">get</a>(subdomain_id, \*, zone_id) -> <a href="./src/cloudflare/types/email_sending/subdomain_get_response.py">Optional[SubdomainGetResponse]</a></code>
 
 ### DNS

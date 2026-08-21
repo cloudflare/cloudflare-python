@@ -27,8 +27,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_sending import subdomain_create_params
+from ....types.email_sending import subdomain_edit_params, subdomain_create_params
 from ....types.email_sending.subdomain_get_response import SubdomainGetResponse
+from ....types.email_sending.subdomain_edit_response import SubdomainEditResponse
 from ....types.email_sending.subdomain_list_response import SubdomainListResponse
 from ....types.email_sending.subdomain_create_response import SubdomainCreateResponse
 from ....types.email_sending.subdomain_delete_response import SubdomainDeleteResponse
@@ -188,6 +189,56 @@ class SubdomainsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=SubdomainDeleteResponse,
+        )
+
+    def edit(
+        self,
+        subdomain_id: str,
+        *,
+        zone_id: str,
+        preview_enabled: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SubdomainEditResponse]:
+        """
+        Updates the activity-log preview preference for a sending subdomain.
+
+        Args:
+          zone_id: Identifier.
+
+          subdomain_id: Sending subdomain identifier.
+
+          preview_enabled: Whether sent messages from this subdomain can be previewed in the activity log.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not subdomain_id:
+            raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
+        return self._patch(
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
+            ),
+            body=maybe_transform({"preview_enabled": preview_enabled}, subdomain_edit_params.SubdomainEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SubdomainEditResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SubdomainEditResponse]], ResultWrapper[SubdomainEditResponse]),
         )
 
     def get(
@@ -391,6 +442,58 @@ class AsyncSubdomainsResource(AsyncAPIResource):
             cast_to=SubdomainDeleteResponse,
         )
 
+    async def edit(
+        self,
+        subdomain_id: str,
+        *,
+        zone_id: str,
+        preview_enabled: bool,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SubdomainEditResponse]:
+        """
+        Updates the activity-log preview preference for a sending subdomain.
+
+        Args:
+          zone_id: Identifier.
+
+          subdomain_id: Sending subdomain identifier.
+
+          preview_enabled: Whether sent messages from this subdomain can be previewed in the activity log.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not subdomain_id:
+            raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
+        return await self._patch(
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
+            ),
+            body=await async_maybe_transform(
+                {"preview_enabled": preview_enabled}, subdomain_edit_params.SubdomainEditParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SubdomainEditResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SubdomainEditResponse]], ResultWrapper[SubdomainEditResponse]),
+        )
+
     async def get(
         self,
         subdomain_id: str,
@@ -451,6 +554,9 @@ class SubdomainsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             subdomains.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            subdomains.edit,
+        )
         self.get = to_raw_response_wrapper(
             subdomains.get,
         )
@@ -472,6 +578,9 @@ class AsyncSubdomainsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             subdomains.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            subdomains.edit,
         )
         self.get = async_to_raw_response_wrapper(
             subdomains.get,
@@ -495,6 +604,9 @@ class SubdomainsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             subdomains.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            subdomains.edit,
+        )
         self.get = to_streamed_response_wrapper(
             subdomains.get,
         )
@@ -516,6 +628,9 @@ class AsyncSubdomainsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             subdomains.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            subdomains.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             subdomains.get,

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from .subdomain_edit_params import SubdomainEditParams as SubdomainEditParams
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse
 from .subdomain_create_params import SubdomainCreateParams as SubdomainCreateParams
+from .subdomain_edit_response import SubdomainEditResponse as SubdomainEditResponse
 from .subdomain_list_response import SubdomainListResponse as SubdomainListResponse
 from .email_sending_send_params import EmailSendingSendParams as EmailSendingSendParams
 from .subdomain_create_response import SubdomainCreateResponse as SubdomainCreateResponse
