@@ -462,8 +462,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
             if timeout is not None:
                 headers["x-stainless-read-timeout"] = str(timeout)
 
-        if self.api_version:
-            headers["API-Version"] = self.api_version
+        headers["api-version"] = self.api_version
 
         return headers
 

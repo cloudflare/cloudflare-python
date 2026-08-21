@@ -1,7 +1,4 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-# Set by codegen; empty string omits the header.
-__api_version__ = ""
-
 __title__ = "cloudflare"
 __version__ = "5.6.0"  # x-release-please-version

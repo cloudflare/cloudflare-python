@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import os
-import re
 from typing import TYPE_CHECKING, Any, Mapping
+from datetime import datetime
 from typing_extensions import Self, override
 
 import httpx
@@ -27,7 +27,7 @@ from ._utils import (
     get_async_library,
 )
 from ._compat import cached_property
-from ._version import __version__, __api_version__
+from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -35,8 +35,6 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-
-_API_VERSION_REGEX = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}\.[a-zA-Z][a-zA-Z0-9-]*")
 
 if TYPE_CHECKING:
     from .resources import (
@@ -411,12 +409,7 @@ class Cloudflare(SyncAPIClient):
             base_url = f"https://api.cloudflare.com/client/v4"
 
         if api_version is None:
-            api_version = os.environ.get("CLOUDFLARE_API_VERSION") or __api_version__
-
-        if api_version and not _API_VERSION_REGEX.fullmatch(api_version):
-            raise ValueError(
-                f"Invalid api_version format {api_version!r}, expected YYYY-MM-DD.{{train_name}}"
-            )
+            api_version = datetime.today().strftime("%Y-%m-%d")
 
         custom_headers_env = os.environ.get("CLOUDFLARE_CUSTOM_HEADERS")
         if custom_headers_env is not None:
@@ -1604,12 +1597,7 @@ class AsyncCloudflare(AsyncAPIClient):
             base_url = f"https://api.cloudflare.com/client/v4"
 
         if api_version is None:
-            api_version = os.environ.get("CLOUDFLARE_API_VERSION") or __api_version__
-
-        if api_version and not _API_VERSION_REGEX.fullmatch(api_version):
-            raise ValueError(
-                f"Invalid api_version format {api_version!r}, expected YYYY-MM-DD.{{train_name}}"
-            )
+            api_version = datetime.today().strftime("%Y-%m-%d")
 
         custom_headers_env = os.environ.get("CLOUDFLARE_CUSTOM_HEADERS")
         if custom_headers_env is not None:
