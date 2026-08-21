@@ -1,0 +1,23 @@
+src/cloudflare/_client.py
+  s_6f99efbe25c9de::t_5cd1e9b51097f0 30
+  s_6f99efbe25c9de::t_9fafaa98e3d95e 7
+  s_6f99efbe25c9de::t_d01645b8d0413c 412,1600
+src/cloudflare/_base_client.py
+  s_6f99efbe25c9de::t_7e5945637871ad 465
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ecdba20383b977d6d2e41c0fd816b26705576e79",
+  "prompts": {},
+  "sessions": {
+    "s_6f99efbe25c9de": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fdad454b1ffexxbUMzQW3Fcdcj",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Sarah Sicard <ssicard@cloudflare.com>"
+    }
+  }
+}
