@@ -1,0 +1,23 @@
+src/cloudflare/_client.py
+  s_f94aacad13a913::t_e880494df8f838 29,409,1591
+src/cloudflare/_version.py
+  s_f94aacad13a913::t_e880494df8f838 5-7
+src/cloudflare/_base_client.py
+  s_f94aacad13a913::t_e880494df8f838 465-466
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e40cb2336916a414360c8178f8ae41cbbc84ce29",
+  "prompts": {},
+  "sessions": {
+    "s_f94aacad13a913": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_06ebb99a7ffevAE92M56IYSF4c",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Musa Jundi <musa@cloudflare.com>"
+    }
+  }
+}

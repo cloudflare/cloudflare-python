@@ -1,0 +1,37 @@
+src/cloudflare/_version.py
+  s_f94aacad13a913::t_3402a7b5b24993 5-8
+src/cloudflare/_base_client.py
+  s_f94aacad13a913::t_986816c7eeb826 860
+  s_f94aacad13a913::t_23ac73b5b7ed0b 367,379,388
+  s_f94aacad13a913::t_cea643c5c0bda2 891
+  s_f94aacad13a913::t_210011742d7829 1444
+  s_f94aacad13a913::t_0ed584dd02323e 443-445
+  s_f94aacad13a913::t_c307d8fb7d0c04 1473
+src/cloudflare/_client.py
+  s_f94aacad13a913::t_5743ed0a3afb02 6
+  s_f94aacad13a913::t_ff041904f36db4 40
+  s_f94aacad13a913::t_caa263a56e966c 30
+  s_f94aacad13a913::t_5a887c2e969538 1582,1630-1632,1634-1637,1650
+  s_f94aacad13a913::t_ef7c9a8c7d267c 39
+  s_f94aacad13a913::t_72f73492e34560 427,1633
+  s_f94aacad13a913::t_45cce65e2c0de3 376,424-426,428-431,444
+tests/test_client.py
+  s_f94aacad13a913::t_f18101d0f5a362 1515-1549
+  s_f94aacad13a913::t_ad4847b2c5f4b9 465-499
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "9bd361121e53f484f68c242fc4f3082f9a370964",
+  "prompts": {},
+  "sessions": {
+    "s_f94aacad13a913": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_06ebb99a7ffevAE92M56IYSF4c",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": null
+    }
+  }
+}

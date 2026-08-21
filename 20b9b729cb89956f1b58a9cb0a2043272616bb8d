@@ -1,0 +1,42 @@
+CHANGELOG.md
+  s_a5da12728b3c65::t_796dd6c2a1e631 30
+  s_a5da12728b3c65::t_2d4325d7996946 34-80
+  s_5bf62dba178aee::t_19741d19e7ae64 18
+  s_a5da12728b3c65::t_5e1ee1f0289a6a 81-95
+  s_5bf62dba178aee::t_8558fc23051606 3-16,19-29,31-33,96-131,133-135,154-158,165-170
+  s_a5da12728b3c65::t_0700e8fa5e04d8 159-164
+  s_a5da12728b3c65::t_5b0796f7d5bab6 132
+  s_a5da12728b3c65::t_8b0fc4071311e9 136-153
+  s_a5da12728b3c65::t_4f96e9a55adec1 171-222
+  s_5bf62dba178aee::t_dc48cc83888a94 17
+pyproject.toml
+  s_5bf62dba178aee::t_3336f16f8efeba 3
+src/cloudflare/_version.py
+  s_5bf62dba178aee::t_f192c64c77f94c 4
+.release-please-manifest.json
+  s_5bf62dba178aee::t_59963fa90835cb 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "20b9b729cb89956f1b58a9cb0a2043272616bb8d",
+  "prompts": {},
+  "sessions": {
+    "s_5bf62dba178aee": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_074f6fa87ffeie2FF64a88aT5I",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "rotem <rotem@cloudflare.com>"
+    },
+    "s_a5da12728b3c65": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_074c91458ffesfZ8Y4GNI8LEu5",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "rotem <rotem@cloudflare.com>"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+src/cloudflare/_version.py
+  s_822aaf9deb178b::t_47431753fa65dd 5-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "bf7dbdd50e9aa658d2e27da7200306e8282f84a4",
+  "prompts": {},
+  "sessions": {
+    "s_822aaf9deb178b": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_022aebedeffedSOtqy2hjPkBc4",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "rotem <rotem@cloudflare.com>"
+    }
+  }
+}
