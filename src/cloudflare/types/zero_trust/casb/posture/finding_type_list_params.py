@@ -17,6 +17,9 @@ class FindingTypeListParams(TypedDict, total=False):
     per_page: int
     """Number of results to return per page."""
 
+    search: str
+    """Filter finding types by name or ID (case-insensitive substring match)."""
+
     vendors: List[
         Literal[
             "ANTHROPIC",

@@ -65,6 +65,7 @@ class FindingTypesResource(SyncAPIResource):
         account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        search: str | Omit = omit,
         vendors: List[
             Literal[
                 "ANTHROPIC",
@@ -101,6 +102,8 @@ class FindingTypesResource(SyncAPIResource):
 
           per_page: Number of results to return per page.
 
+          search: Filter finding types by name or ID (case-insensitive substring match).
+
           vendors: Filter finding types by vendor. Supports multiple comma-separated values.
 
           extra_headers: Send extra headers
@@ -125,6 +128,7 @@ class FindingTypesResource(SyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                         "vendors": vendors,
                     },
                     finding_type_list_params.FindingTypeListParams,
@@ -208,6 +212,7 @@ class AsyncFindingTypesResource(AsyncAPIResource):
         account_id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
+        search: str | Omit = omit,
         vendors: List[
             Literal[
                 "ANTHROPIC",
@@ -244,6 +249,8 @@ class AsyncFindingTypesResource(AsyncAPIResource):
 
           per_page: Number of results to return per page.
 
+          search: Filter finding types by name or ID (case-insensitive substring match).
+
           vendors: Filter finding types by vendor. Supports multiple comma-separated values.
 
           extra_headers: Send extra headers
@@ -268,6 +275,7 @@ class AsyncFindingTypesResource(AsyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                         "vendors": vendors,
                     },
                     finding_type_list_params.FindingTypeListParams,
