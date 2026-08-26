@@ -68,29 +68,7 @@ class MitigationsResource(SyncAPIResource):
         ]
         | Omit = omit,
         status: Literal["pending", "active", "in_review", "cancelled", "removed"] | Omit = omit,
-        type: Literal[
-            "account_suspend",
-            "copyright_interstitial",
-            "geo_block",
-            "legal_block",
-            "malware_interstitial",
-            "misleading_interstitial",
-            "network_block",
-            "phishing_interstitial",
-            "playfairite_enforce",
-            "r2_takedown_account",
-            "r2_takedown_bucket",
-            "r2_takedown_object",
-            "rate_limit_cache",
-            "redirect_video_stream",
-            "zone_fint",
-            "registrar_freeze",
-            "registrar_parking",
-            "stream_block_account",
-            "user_suspend",
-            "workers_takedown_by_zone_id",
-        ]
-        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,8 +95,7 @@ class MitigationsResource(SyncAPIResource):
           status: Filter by the status of the mitigation.
 
           type: Filter by the type of mitigation. This filter parameter can be specified
-              multiple times to include multiple types of mitigations in the result set, e.g.
-              ?type=rate_limit_cache&type=legal_block.
+              multiple times to include multiple types of mitigations in the result set.
 
           extra_headers: Send extra headers
 
@@ -263,29 +240,7 @@ class AsyncMitigationsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         status: Literal["pending", "active", "in_review", "cancelled", "removed"] | Omit = omit,
-        type: Literal[
-            "account_suspend",
-            "copyright_interstitial",
-            "geo_block",
-            "legal_block",
-            "malware_interstitial",
-            "misleading_interstitial",
-            "network_block",
-            "phishing_interstitial",
-            "playfairite_enforce",
-            "r2_takedown_account",
-            "r2_takedown_bucket",
-            "r2_takedown_object",
-            "rate_limit_cache",
-            "redirect_video_stream",
-            "zone_fint",
-            "registrar_freeze",
-            "registrar_parking",
-            "stream_block_account",
-            "user_suspend",
-            "workers_takedown_by_zone_id",
-        ]
-        | Omit = omit,
+        type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -312,8 +267,7 @@ class AsyncMitigationsResource(AsyncAPIResource):
           status: Filter by the status of the mitigation.
 
           type: Filter by the type of mitigation. This filter parameter can be specified
-              multiple times to include multiple types of mitigations in the result set, e.g.
-              ?type=rate_limit_cache&type=legal_block.
+              multiple times to include multiple types of mitigations in the result set.
 
           extra_headers: Send extra headers
 

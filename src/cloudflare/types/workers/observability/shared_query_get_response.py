@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
@@ -301,7 +302,7 @@ class RunQuery(BaseModel):
     adhoc: bool
     """If the query wasn't explcitly saved"""
 
-    created: str
+    created: Union[str, datetime]
 
     created_by: str = FieldInfo(alias="createdBy")
 
@@ -312,19 +313,22 @@ class RunQuery(BaseModel):
 
     parameters: RunQueryParameters
 
-    updated: str
+    updated: Union[str, datetime]
 
     updated_by: str = FieldInfo(alias="updatedBy")
 
 
 class RunTimeframe(BaseModel):
-    """Time range for the query execution"""
+    """Time range for the query execution.
 
-    from_: float = FieldInfo(alias="from")
-    """Start timestamp for the query timeframe (Unix timestamp in milliseconds)"""
+    'from' must be earlier than 'to'. No fractional milliseconds.
+    """
 
-    to: float
-    """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
+    from_: int = FieldInfo(alias="from")
+    """Start timestamp for the query timeframe. Unix timestamp in milliseconds"""
+
+    to: int
+    """End timestamp for the query timeframe. Unix timestamp in milliseconds"""
 
 
 class RunStatistics(BaseModel):
@@ -378,7 +382,10 @@ class Run(BaseModel):
     """Current execution status of the query run."""
 
     timeframe: RunTimeframe
-    """Time range for the query execution"""
+    """Time range for the query execution.
+
+    'from' must be earlier than 'to'. No fractional milliseconds.
+    """
 
     user_id: str = FieldInfo(alias="userId")
     """ID of the user who initiated the query run."""
@@ -420,7 +427,7 @@ class Statistics(BaseModel):
 
 class Agent(BaseModel):
     id: str
-    """Pagination cursor derived from the first agent invocation in the run."""
+    """Stable pagination cursor for this agent run."""
 
     errors: List[str]
     """Distinct errors reported by spans in the run."""

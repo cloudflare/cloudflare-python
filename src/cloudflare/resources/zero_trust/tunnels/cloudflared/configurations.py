@@ -59,7 +59,8 @@ class ConfigurationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigurationUpdateResponse]:
         """
-        Adds or updates the configuration for a remotely-managed tunnel.
+        Replaces the configuration for a remotely managed Cloudflare Tunnel, including
+        its ingress rules and origin request settings.
 
         Args:
           account_id: Identifier.
@@ -110,7 +111,7 @@ class ConfigurationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigurationGetResponse]:
         """
-        Gets the configuration for a remotely-managed tunnel
+        Retrieves the configuration for a remotely managed Cloudflare Tunnel.
 
         Args:
           account_id: Identifier.
@@ -180,7 +181,8 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigurationUpdateResponse]:
         """
-        Adds or updates the configuration for a remotely-managed tunnel.
+        Replaces the configuration for a remotely managed Cloudflare Tunnel, including
+        its ingress rules and origin request settings.
 
         Args:
           account_id: Identifier.
@@ -231,7 +233,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigurationGetResponse]:
         """
-        Gets the configuration for a remotely-managed tunnel
+        Retrieves the configuration for a remotely managed Cloudflare Tunnel.
 
         Args:
           account_id: Identifier.

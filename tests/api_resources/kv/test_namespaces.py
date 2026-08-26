@@ -33,6 +33,15 @@ class TestNamespaces:
         assert_matches_type(Optional[Namespace], namespace, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        namespace = client.kv.namespaces.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            title="My Own Namespace",
+            jurisdiction="eu",
+        )
+        assert_matches_type(Optional[Namespace], namespace, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -470,6 +479,15 @@ class TestAsyncNamespaces:
         namespace = await async_client.kv.namespaces.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
+        )
+        assert_matches_type(Optional[Namespace], namespace, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        namespace = await async_client.kv.namespaces.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            title="My Own Namespace",
+            jurisdiction="eu",
         )
         assert_matches_type(Optional[Namespace], namespace, path=["response"])
 

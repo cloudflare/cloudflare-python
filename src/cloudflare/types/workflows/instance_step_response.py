@@ -31,9 +31,9 @@ class InstanceStepResponse(BaseModel):
     """
 
     output: Optional[object] = None
-    """Full step output or waitForEvent payload without truncation.
+    """Contains the full step output or waitForEvent payload without truncation.
 
-    Sensitive outputs are returned as '[REDACTED]'. Populated when
-    status='complete'. May be a ReadableStream when the step returned one from
-    step.do; stream outputs are served as application/octet-stream rather than JSON.
+    Uses '[REDACTED]' for sensitive outputs. Contains a value when
+    status='complete'. May contain a ReadableStream when step.do returns one; the
+    response serves stream outputs as application/octet-stream rather than JSON.
     """

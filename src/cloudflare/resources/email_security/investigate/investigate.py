@@ -150,7 +150,9 @@ class InvestigateResource(SyncAPIResource):
         account_id: str,
         alert_id: str | Omit = omit,
         cursor: str | Omit = omit,
-        delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+        delivery_status: Literal[
+            "delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"
+        ]
         | Omit = omit,
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,
@@ -360,7 +362,9 @@ class AsyncInvestigateResource(AsyncAPIResource):
         account_id: str,
         alert_id: str | Omit = omit,
         cursor: str | Omit = omit,
-        delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+        delivery_status: Literal[
+            "delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"
+        ]
         | Omit = omit,
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,

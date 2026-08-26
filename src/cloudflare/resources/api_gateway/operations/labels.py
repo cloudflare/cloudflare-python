@@ -70,7 +70,7 @@ class LabelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LabelCreateResponse:
         """
-        Attach label(s) on an operation in endpoint management
+        Attaches one or more labels to a web or API operation.
 
         Args:
           zone_id: Identifier.
@@ -131,7 +131,7 @@ class LabelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LabelUpdateResponse:
         """
-        Replace label(s) on an operation in endpoint management
+        Replaces the complete label set on a web or API operation.
 
         Args:
           zone_id: Identifier.
@@ -192,7 +192,7 @@ class LabelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LabelDeleteResponse:
         """
-        Remove label(s) on an operation in endpoint management
+        Removes one or more labels from a web or API operation.
 
         Args:
           zone_id: Identifier.
@@ -242,7 +242,7 @@ class LabelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[LabelBulkCreateResponse]:
         """
-        Bulk attach label(s) on operation(s) in endpoint management
+        Attaches labels to multiple web or API operations in one request.
 
         Args:
           zone_id: Identifier.
@@ -289,7 +289,7 @@ class LabelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[LabelBulkDeleteResponse]:
         """
-        Bulk remove label(s) on operation(s) in endpoint management
+        Removes labels from multiple web or API operations in one request.
 
         Args:
           zone_id: Identifier.
@@ -329,7 +329,8 @@ class LabelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[LabelBulkUpdateResponse]:
         """
-        Bulk replace label(s) on operation(s) in endpoint management
+        Replaces the complete label sets on multiple web or API operations in one
+        request.
 
         Args:
           zone_id: Identifier.
@@ -404,7 +405,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LabelCreateResponse:
         """
-        Attach label(s) on an operation in endpoint management
+        Attaches one or more labels to a web or API operation.
 
         Args:
           zone_id: Identifier.
@@ -465,7 +466,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LabelUpdateResponse:
         """
-        Replace label(s) on an operation in endpoint management
+        Replaces the complete label set on a web or API operation.
 
         Args:
           zone_id: Identifier.
@@ -526,7 +527,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LabelDeleteResponse:
         """
-        Remove label(s) on an operation in endpoint management
+        Removes one or more labels from a web or API operation.
 
         Args:
           zone_id: Identifier.
@@ -576,7 +577,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LabelBulkCreateResponse, AsyncSinglePage[LabelBulkCreateResponse]]:
         """
-        Bulk attach label(s) on operation(s) in endpoint management
+        Attaches labels to multiple web or API operations in one request.
 
         Args:
           zone_id: Identifier.
@@ -623,7 +624,7 @@ class AsyncLabelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LabelBulkDeleteResponse, AsyncSinglePage[LabelBulkDeleteResponse]]:
         """
-        Bulk remove label(s) on operation(s) in endpoint management
+        Removes labels from multiple web or API operations in one request.
 
         Args:
           zone_id: Identifier.
@@ -663,7 +664,8 @@ class AsyncLabelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LabelBulkUpdateResponse, AsyncSinglePage[LabelBulkUpdateResponse]]:
         """
-        Bulk replace label(s) on operation(s) in endpoint management
+        Replaces the complete label sets on multiple web or API operations in one
+        request.
 
         Args:
           zone_id: Identifier.

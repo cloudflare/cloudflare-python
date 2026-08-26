@@ -8,6 +8,14 @@ from .ct import (
     CTResourceWithStreamingResponse,
     AsyncCTResourceWithStreamingResponse,
 )
+from .nel import (
+    NELResource,
+    AsyncNELResource,
+    NELResourceWithRawResponse,
+    AsyncNELResourceWithRawResponse,
+    NELResourceWithStreamingResponse,
+    AsyncNELResourceWithStreamingResponse,
+)
 from .holds import (
     HoldsResource,
     AsyncHoldsResource,
@@ -122,6 +130,12 @@ __all__ = [
     "AsyncTransformationsC2paResourceWithRawResponse",
     "TransformationsC2paResourceWithStreamingResponse",
     "AsyncTransformationsC2paResourceWithStreamingResponse",
+    "NELResource",
+    "AsyncNELResource",
+    "NELResourceWithRawResponse",
+    "AsyncNELResourceWithRawResponse",
+    "NELResourceWithStreamingResponse",
+    "AsyncNELResourceWithStreamingResponse",
     "EnvironmentsResource",
     "AsyncEnvironmentsResource",
     "EnvironmentsResourceWithRawResponse",

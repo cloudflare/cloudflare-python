@@ -37,9 +37,8 @@ class TestTags:
         tag = client.cloudforce_one.threat_events.tags.create(
             account_id="account_id",
             value="APT28",
-            active_duration="activeDuration",
-            actor_category="Nation State",
-            actor_category_confidence=7,
+            active_duration="string",
+            actor_category="string",
             aliases=[
                 {
                     "value": "Fancy Bear",
@@ -49,12 +48,11 @@ class TestTags:
             ],
             alias_group_names=["string"],
             alias_group_names_internal=["string"],
-            analytic_priority=0,
-            attribution_confidence="attributionConfidence",
-            attribution_confidence_score=7,
-            attribution_organization="attributionOrganization",
+            attribution_organization="string",
             category_uuid="12345678-1234-1234-1234-1234567890ab",
-            date_of_discovery="2024-01-15",
+            confidence=8,
+            date_of_discovery="2024-01-15T00:00:00Z",
+            description="A suspected state-sponsored group.",
             external_reference_links=["string"],
             external_references=[
                 {
@@ -70,14 +68,14 @@ class TestTags:
                 }
             ],
             internal_description="internalDescription",
-            motive="Espionage",
-            motive_confidence=7,
-            opsec_level="opsecLevel",
-            origin_country_confidence=7,
-            origin_country_iso="originCountryISO",
-            origin_country_tlp="amber",
+            last_seen="lastSeen",
+            motive="string",
+            opsec_level="string",
+            origin_country_iso="string",
             priority=0,
-            sophistication_level="sophisticationLevel",
+            properties={"foo": "bar"},
+            sophistication_level="string",
+            tlp="amber",
         )
         assert_matches_type(TagCreateResponse, tag, path=["response"])
 
@@ -133,9 +131,9 @@ class TestTags:
             category_uuid="categoryUuid",
             filters=[
                 {
-                    "field": "originCountryISO",
+                    "field": "value",
                     "op": "in",
-                    "value": "IR",
+                    "value": "APT28",
                 }
             ],
             page=0,
@@ -236,9 +234,8 @@ class TestTags:
         tag = client.cloudforce_one.threat_events.tags.edit(
             tag_uuid="tag_uuid",
             account_id="account_id",
-            active_duration="activeDuration",
-            actor_category="Nation State",
-            actor_category_confidence=7,
+            active_duration="string",
+            actor_category="string",
             aliases=[
                 {
                     "value": "Fancy Bear",
@@ -248,12 +245,11 @@ class TestTags:
             ],
             alias_group_names=["string"],
             alias_group_names_internal=["string"],
-            analytic_priority=0,
-            attribution_confidence="attributionConfidence",
-            attribution_confidence_score=7,
-            attribution_organization="attributionOrganization",
+            attribution_organization="string",
             category_uuid="12345678-1234-1234-1234-1234567890ab",
-            date_of_discovery="2024-01-15",
+            confidence=8,
+            date_of_discovery="2024-01-15T00:00:00Z",
+            description="description",
             external_reference_links=["string"],
             external_references=[
                 {
@@ -269,14 +265,14 @@ class TestTags:
                 }
             ],
             internal_description="internalDescription",
-            motive="Espionage",
-            motive_confidence=7,
-            opsec_level="opsecLevel",
-            origin_country_confidence=7,
-            origin_country_iso="originCountryISO",
-            origin_country_tlp="amber",
+            last_seen="lastSeen",
+            motive="string",
+            opsec_level="string",
+            origin_country_iso="string",
             priority=0,
-            sophistication_level="sophisticationLevel",
+            properties={"foo": "bar"},
+            sophistication_level="string",
+            tlp="amber",
             value="APT28",
         )
         assert_matches_type(TagEditResponse, tag, path=["response"])
@@ -342,9 +338,8 @@ class TestAsyncTags:
         tag = await async_client.cloudforce_one.threat_events.tags.create(
             account_id="account_id",
             value="APT28",
-            active_duration="activeDuration",
-            actor_category="Nation State",
-            actor_category_confidence=7,
+            active_duration="string",
+            actor_category="string",
             aliases=[
                 {
                     "value": "Fancy Bear",
@@ -354,12 +349,11 @@ class TestAsyncTags:
             ],
             alias_group_names=["string"],
             alias_group_names_internal=["string"],
-            analytic_priority=0,
-            attribution_confidence="attributionConfidence",
-            attribution_confidence_score=7,
-            attribution_organization="attributionOrganization",
+            attribution_organization="string",
             category_uuid="12345678-1234-1234-1234-1234567890ab",
-            date_of_discovery="2024-01-15",
+            confidence=8,
+            date_of_discovery="2024-01-15T00:00:00Z",
+            description="A suspected state-sponsored group.",
             external_reference_links=["string"],
             external_references=[
                 {
@@ -375,14 +369,14 @@ class TestAsyncTags:
                 }
             ],
             internal_description="internalDescription",
-            motive="Espionage",
-            motive_confidence=7,
-            opsec_level="opsecLevel",
-            origin_country_confidence=7,
-            origin_country_iso="originCountryISO",
-            origin_country_tlp="amber",
+            last_seen="lastSeen",
+            motive="string",
+            opsec_level="string",
+            origin_country_iso="string",
             priority=0,
-            sophistication_level="sophisticationLevel",
+            properties={"foo": "bar"},
+            sophistication_level="string",
+            tlp="amber",
         )
         assert_matches_type(TagCreateResponse, tag, path=["response"])
 
@@ -438,9 +432,9 @@ class TestAsyncTags:
             category_uuid="categoryUuid",
             filters=[
                 {
-                    "field": "originCountryISO",
+                    "field": "value",
                     "op": "in",
-                    "value": "IR",
+                    "value": "APT28",
                 }
             ],
             page=0,
@@ -541,9 +535,8 @@ class TestAsyncTags:
         tag = await async_client.cloudforce_one.threat_events.tags.edit(
             tag_uuid="tag_uuid",
             account_id="account_id",
-            active_duration="activeDuration",
-            actor_category="Nation State",
-            actor_category_confidence=7,
+            active_duration="string",
+            actor_category="string",
             aliases=[
                 {
                     "value": "Fancy Bear",
@@ -553,12 +546,11 @@ class TestAsyncTags:
             ],
             alias_group_names=["string"],
             alias_group_names_internal=["string"],
-            analytic_priority=0,
-            attribution_confidence="attributionConfidence",
-            attribution_confidence_score=7,
-            attribution_organization="attributionOrganization",
+            attribution_organization="string",
             category_uuid="12345678-1234-1234-1234-1234567890ab",
-            date_of_discovery="2024-01-15",
+            confidence=8,
+            date_of_discovery="2024-01-15T00:00:00Z",
+            description="description",
             external_reference_links=["string"],
             external_references=[
                 {
@@ -574,14 +566,14 @@ class TestAsyncTags:
                 }
             ],
             internal_description="internalDescription",
-            motive="Espionage",
-            motive_confidence=7,
-            opsec_level="opsecLevel",
-            origin_country_confidence=7,
-            origin_country_iso="originCountryISO",
-            origin_country_tlp="amber",
+            last_seen="lastSeen",
+            motive="string",
+            opsec_level="string",
+            origin_country_iso="string",
             priority=0,
-            sophistication_level="sophisticationLevel",
+            properties={"foo": "bar"},
+            sophistication_level="string",
+            tlp="amber",
             value="APT28",
         )
         assert_matches_type(TagEditResponse, tag, path=["response"])

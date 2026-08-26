@@ -2,15 +2,15 @@
 
 from ..._models import BaseModel
 
-__all__ = ["Setting"]
+__all__ = ["PageShieldGetResponse"]
 
 
-class Setting(BaseModel):
+class PageShieldGetResponse(BaseModel):
     enabled: bool
-    """When true, indicates that Page Shield is enabled."""
+    """When true, indicates that Client-Side Security is enabled."""
 
     updated_at: str
-    """The timestamp of when Page Shield was last updated."""
+    """The timestamp of when Client-Side Security was last updated."""
 
     use_cloudflare_reporting_endpoint: bool
     """

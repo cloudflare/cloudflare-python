@@ -40,30 +40,9 @@ class MitigationListParams(TypedDict, total=False):
     status: Literal["pending", "active", "in_review", "cancelled", "removed"]
     """Filter by the status of the mitigation."""
 
-    type: Literal[
-        "account_suspend",
-        "copyright_interstitial",
-        "geo_block",
-        "legal_block",
-        "malware_interstitial",
-        "misleading_interstitial",
-        "network_block",
-        "phishing_interstitial",
-        "playfairite_enforce",
-        "r2_takedown_account",
-        "r2_takedown_bucket",
-        "r2_takedown_object",
-        "rate_limit_cache",
-        "redirect_video_stream",
-        "zone_fint",
-        "registrar_freeze",
-        "registrar_parking",
-        "stream_block_account",
-        "user_suspend",
-        "workers_takedown_by_zone_id",
-    ]
+    type: str
     """Filter by the type of mitigation.
 
     This filter parameter can be specified multiple times to include multiple types
-    of mitigations in the result set, e.g. ?type=rate_limit_cache&type=legal_block.
+    of mitigations in the result set.
     """

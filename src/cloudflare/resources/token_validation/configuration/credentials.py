@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -16,8 +16,10 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.token_validation.configuration import credential_update_params
+from ....types.token_validation.configuration import credential_edit_params, credential_update_params
+from ....types.token_validation.configuration.credential_edit_response import CredentialEditResponse
 from ....types.token_validation.configuration.credential_update_response import CredentialUpdateResponse
 
 __all__ = ["CredentialsResource", "AsyncCredentialsResource"]
@@ -56,11 +58,10 @@ class CredentialsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CredentialUpdateResponse:
-        """Update Token Configuration credentials with full replacement semantics.
+        """Replaces the configuration's complete key set.
 
-        Key
-        identities (`{alg,kid}`) must be unique within the request. Symmetric keys
-        (`kty: "oct"`) require `k`; `k: null` is invalid.
+        Symmetric keys must include their
+        key material.
 
         Args:
           zone_id: Identifier.
@@ -85,9 +86,62 @@ class CredentialsResource(SyncAPIResource):
             ),
             body=maybe_transform({"keys": keys}, credential_update_params.CredentialUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[CredentialUpdateResponse]._unwrapper,
             ),
-            cast_to=CredentialUpdateResponse,
+            cast_to=cast(Type[CredentialUpdateResponse], ResultWrapper[CredentialUpdateResponse]),
+        )
+
+    def edit(
+        self,
+        config_id: str,
+        *,
+        zone_id: str,
+        keys: Iterable[credential_edit_params.Key],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CredentialEditResponse:
+        """
+        Updates the configuration's complete key set while allowing omitted fields on
+        existing keys to retain stored values. Omitted key identities are removed.
+
+        Args:
+          zone_id: Identifier.
+
+          config_id: UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not config_id:
+            raise ValueError(f"Expected a non-empty value for `config_id` but received {config_id!r}")
+        return self._patch(
+            path_template(
+                "/zones/{zone_id}/token_validation/config/{config_id}/credentials", zone_id=zone_id, config_id=config_id
+            ),
+            body=maybe_transform({"keys": keys}, credential_edit_params.CredentialEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[CredentialEditResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[CredentialEditResponse], ResultWrapper[CredentialEditResponse]),
         )
 
 
@@ -124,11 +178,10 @@ class AsyncCredentialsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CredentialUpdateResponse:
-        """Update Token Configuration credentials with full replacement semantics.
+        """Replaces the configuration's complete key set.
 
-        Key
-        identities (`{alg,kid}`) must be unique within the request. Symmetric keys
-        (`kty: "oct"`) require `k`; `k: null` is invalid.
+        Symmetric keys must include their
+        key material.
 
         Args:
           zone_id: Identifier.
@@ -153,9 +206,62 @@ class AsyncCredentialsResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform({"keys": keys}, credential_update_params.CredentialUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[CredentialUpdateResponse]._unwrapper,
             ),
-            cast_to=CredentialUpdateResponse,
+            cast_to=cast(Type[CredentialUpdateResponse], ResultWrapper[CredentialUpdateResponse]),
+        )
+
+    async def edit(
+        self,
+        config_id: str,
+        *,
+        zone_id: str,
+        keys: Iterable[credential_edit_params.Key],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CredentialEditResponse:
+        """
+        Updates the configuration's complete key set while allowing omitted fields on
+        existing keys to retain stored values. Omitted key identities are removed.
+
+        Args:
+          zone_id: Identifier.
+
+          config_id: UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not config_id:
+            raise ValueError(f"Expected a non-empty value for `config_id` but received {config_id!r}")
+        return await self._patch(
+            path_template(
+                "/zones/{zone_id}/token_validation/config/{config_id}/credentials", zone_id=zone_id, config_id=config_id
+            ),
+            body=await async_maybe_transform({"keys": keys}, credential_edit_params.CredentialEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[CredentialEditResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[CredentialEditResponse], ResultWrapper[CredentialEditResponse]),
         )
 
 
@@ -166,6 +272,9 @@ class CredentialsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             credentials.update,
         )
+        self.edit = to_raw_response_wrapper(
+            credentials.edit,
+        )
 
 
 class AsyncCredentialsResourceWithRawResponse:
@@ -174,6 +283,9 @@ class AsyncCredentialsResourceWithRawResponse:
 
         self.update = async_to_raw_response_wrapper(
             credentials.update,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            credentials.edit,
         )
 
 
@@ -184,6 +296,9 @@ class CredentialsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             credentials.update,
         )
+        self.edit = to_streamed_response_wrapper(
+            credentials.edit,
+        )
 
 
 class AsyncCredentialsResourceWithStreamingResponse:
@@ -192,4 +307,7 @@ class AsyncCredentialsResourceWithStreamingResponse:
 
         self.update = async_to_streamed_response_wrapper(
             credentials.update,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            credentials.edit,
         )

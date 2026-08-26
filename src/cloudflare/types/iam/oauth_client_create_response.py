@@ -63,6 +63,13 @@ class OAuthClientCreateResponse(BaseModel):
     logo_uri: Optional[str] = None
     """URL of the client's logo."""
 
+    optional_scopes: Optional[List[str]] = None
+    """Scopes that the authorizing user may decline during consent.
+
+    Each value must also appear in `scopes`. The scopes `openid`, `offline`, and
+    `offline_access` cannot be optional.
+    """
+
     policy_uri: Optional[str] = None
     """URL that points to a privacy policy document."""
 

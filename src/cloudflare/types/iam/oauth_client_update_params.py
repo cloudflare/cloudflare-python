@@ -32,6 +32,13 @@ class OAuthClientUpdateParams(TypedDict, total=False):
     logo_uri: str
     """URL of the client's logo."""
 
+    optional_scopes: SequenceNotStr[str]
+    """Scopes that the authorizing user may decline during consent.
+
+    Each value must also appear in `scopes`. The scopes `openid`, `offline`, and
+    `offline_access` cannot be optional.
+    """
+
     policy_uri: str
     """URL that points to a privacy policy document."""
 

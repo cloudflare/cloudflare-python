@@ -57,7 +57,9 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Client:
         """
-        Fetches connector and connection details for a Cloudflare Tunnel.
+        Retrieves a connector and its connection details for a Cloudflare Tunnel,
+        including its cloudflared version, architecture, and connected Cloudflare
+        locations.
 
         Args:
           account_id: Cloudflare account ID
@@ -132,7 +134,9 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Client:
         """
-        Fetches connector and connection details for a Cloudflare Tunnel.
+        Retrieves a connector and its connection details for a Cloudflare Tunnel,
+        including its cloudflared version, architecture, and connected Cloudflare
+        locations.
 
         Args:
           account_id: Cloudflare account ID

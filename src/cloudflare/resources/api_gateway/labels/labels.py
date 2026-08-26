@@ -88,7 +88,8 @@ class LabelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[LabelListResponse]:
         """
-        Retrieve all labels
+        Returns all managed and user-defined labels available for web and API operations
+        in the zone.
 
         Args:
           zone_id: Identifier.
@@ -190,7 +191,8 @@ class AsyncLabelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LabelListResponse, AsyncV4PagePaginationArray[LabelListResponse]]:
         """
-        Retrieve all labels
+        Returns all managed and user-defined labels available for web and API operations
+        in the zone.
 
         Args:
           zone_id: Identifier.

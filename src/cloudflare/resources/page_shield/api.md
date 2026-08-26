@@ -3,13 +3,13 @@
 Types:
 
 ```python
-from cloudflare.types.page_shield import Setting, PageShieldUpdateResponse
+from cloudflare.types.page_shield import PageShieldUpdateResponse, PageShieldGetResponse
 ```
 
 Methods:
 
 - <code title="put /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield/page_shield_update_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/page_shield_update_response.py">Optional[PageShieldUpdateResponse]</a></code>
-- <code title="get /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/page_shield/setting.py">Optional[Setting]</a></code>
+- <code title="get /zones/{zone_id}/page_shield">client.page_shield.<a href="./src/cloudflare/resources/page_shield/page_shield.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/page_shield/page_shield_get_response.py">Optional[PageShieldGetResponse]</a></code>
 
 ## Policies
 
@@ -17,7 +17,6 @@ Types:
 
 ```python
 from cloudflare.types.page_shield import (
-    Policy,
     PolicyCreateResponse,
     PolicyUpdateResponse,
     PolicyListResponse,
@@ -38,25 +37,25 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.page_shield import Connection
+from cloudflare.types.page_shield import ConnectionListResponse, ConnectionGetResponse
 ```
 
 Methods:
 
-- <code title="get /zones/{zone_id}/page_shield/connections">client.page_shield.connections.<a href="./src/cloudflare/resources/page_shield/connections.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield/connection_list_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/connection.py">SyncSinglePage[Connection]</a></code>
-- <code title="get /zones/{zone_id}/page_shield/connections/{connection_id}">client.page_shield.connections.<a href="./src/cloudflare/resources/page_shield/connections.py">get</a>(connection_id, \*, zone_id) -> <a href="./src/cloudflare/types/page_shield/connection.py">Optional[Connection]</a></code>
+- <code title="get /zones/{zone_id}/page_shield/connections">client.page_shield.connections.<a href="./src/cloudflare/resources/page_shield/connections.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield/connection_list_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/connection_list_response.py">SyncSinglePage[ConnectionListResponse]</a></code>
+- <code title="get /zones/{zone_id}/page_shield/connections/{connection_id}">client.page_shield.connections.<a href="./src/cloudflare/resources/page_shield/connections.py">get</a>(connection_id, \*, zone_id) -> <a href="./src/cloudflare/types/page_shield/connection_get_response.py">Optional[ConnectionGetResponse]</a></code>
 
 ## Scripts
 
 Types:
 
 ```python
-from cloudflare.types.page_shield import Script, ScriptGetResponse
+from cloudflare.types.page_shield import ScriptListResponse, ScriptGetResponse
 ```
 
 Methods:
 
-- <code title="get /zones/{zone_id}/page_shield/scripts">client.page_shield.scripts.<a href="./src/cloudflare/resources/page_shield/scripts.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield/script_list_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/script.py">SyncSinglePage[Script]</a></code>
+- <code title="get /zones/{zone_id}/page_shield/scripts">client.page_shield.scripts.<a href="./src/cloudflare/resources/page_shield/scripts.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_shield/script_list_params.py">params</a>) -> <a href="./src/cloudflare/types/page_shield/script_list_response.py">SyncSinglePage[ScriptListResponse]</a></code>
 - <code title="get /zones/{zone_id}/page_shield/scripts/{script_id}">client.page_shield.scripts.<a href="./src/cloudflare/resources/page_shield/scripts.py">get</a>(script_id, \*, zone_id) -> <a href="./src/cloudflare/types/page_shield/script_get_response.py">Optional[ScriptGetResponse]</a></code>
 
 ## Cookies

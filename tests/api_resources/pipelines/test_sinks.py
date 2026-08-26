@@ -180,15 +180,6 @@ class TestSinks:
         assert_matches_type(object, sink, path=["response"])
 
     @parametrize
-    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
-        sink = client.pipelines.sinks.delete(
-            sink_id="0223105f4ecef8ad9ca31a8372d0c353",
-            account_id="0123105f4ecef8ad9ca31a8372d0c353",
-            force="force",
-        )
-        assert_matches_type(object, sink, path=["response"])
-
-    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.pipelines.sinks.with_raw_response.delete(
             sink_id="0223105f4ecef8ad9ca31a8372d0c353",
@@ -436,15 +427,6 @@ class TestAsyncSinks:
         sink = await async_client.pipelines.sinks.delete(
             sink_id="0223105f4ecef8ad9ca31a8372d0c353",
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(object, sink, path=["response"])
-
-    @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        sink = await async_client.pipelines.sinks.delete(
-            sink_id="0223105f4ecef8ad9ca31a8372d0c353",
-            account_id="0123105f4ecef8ad9ca31a8372d0c353",
-            force="force",
         )
         assert_matches_type(object, sink, path=["response"])
 

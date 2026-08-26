@@ -9,10 +9,10 @@ __all__ = ["IngressCreateParams"]
 
 class IngressCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier."""
+    """An identifier for the resource."""
 
     cidr: Required[str]
     """
     The CIDR block for the ingress rule in IPv4 or IPv6 notation (e.g.,
-    192.0.2.0/24). Must be a Cloudflare BYOIP associated with your account.
+    192.0.2.0/24). Provide a Cloudflare BYOIP CIDR that your account owns.
     """

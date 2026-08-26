@@ -149,7 +149,7 @@ class BucketsResource(SyncAPIResource):
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam", "oc"] | Omit = omit,
         storage_class: Literal["Standard", "InfrequentAccess"] | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -215,7 +215,7 @@ class BucketsResource(SyncAPIResource):
         order: Literal["name"] | Omit = omit,
         per_page: float | Omit = omit,
         start_after: str | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -287,7 +287,7 @@ class BucketsResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -341,7 +341,7 @@ class BucketsResource(SyncAPIResource):
         *,
         account_id: str,
         storage_class: Literal["Standard", "InfrequentAccess"],
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -401,7 +401,7 @@ class BucketsResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -509,7 +509,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam", "oc"] | Omit = omit,
         storage_class: Literal["Standard", "InfrequentAccess"] | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -575,7 +575,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         order: Literal["name"] | Omit = omit,
         per_page: float | Omit = omit,
         start_after: str | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -647,7 +647,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -701,7 +701,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         *,
         account_id: str,
         storage_class: Literal["Standard", "InfrequentAccess"],
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -761,7 +761,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

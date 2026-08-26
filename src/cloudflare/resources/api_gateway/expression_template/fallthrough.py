@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, cast
 
 import httpx
@@ -44,6 +45,9 @@ class FallthroughResource(SyncAPIResource):
         """
         return FallthroughResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use the cf.api_gateway.fallthrough_detected field in custom rule for a more customized logic check."
+    )
     def create(
         self,
         *,
@@ -56,10 +60,10 @@ class FallthroughResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FallthroughCreateResponse:
-        """Creates an expression template fallthrough rule for API Shield.
-
-        Used for
-        configuring default behavior when no other expression templates match.
+        """
+        Generates a WAF expression template that matches fallthrough traffic for the
+        supplied API hosts. This operation is deprecated and should not be used for new
+        integrations.
 
         Args:
           zone_id: Identifier.
@@ -110,6 +114,9 @@ class AsyncFallthroughResource(AsyncAPIResource):
         """
         return AsyncFallthroughResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use the cf.api_gateway.fallthrough_detected field in custom rule for a more customized logic check."
+    )
     async def create(
         self,
         *,
@@ -122,10 +129,10 @@ class AsyncFallthroughResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FallthroughCreateResponse:
-        """Creates an expression template fallthrough rule for API Shield.
-
-        Used for
-        configuring default behavior when no other expression templates match.
+        """
+        Generates a WAF expression template that matches fallthrough traffic for the
+        supplied API hosts. This operation is deprecated and should not be used for new
+        integrations.
 
         Args:
           zone_id: Identifier.
@@ -160,8 +167,10 @@ class FallthroughResourceWithRawResponse:
     def __init__(self, fallthrough: FallthroughResource) -> None:
         self._fallthrough = fallthrough
 
-        self.create = to_raw_response_wrapper(
-            fallthrough.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                fallthrough.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -169,8 +178,10 @@ class AsyncFallthroughResourceWithRawResponse:
     def __init__(self, fallthrough: AsyncFallthroughResource) -> None:
         self._fallthrough = fallthrough
 
-        self.create = async_to_raw_response_wrapper(
-            fallthrough.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                fallthrough.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -178,8 +189,10 @@ class FallthroughResourceWithStreamingResponse:
     def __init__(self, fallthrough: FallthroughResource) -> None:
         self._fallthrough = fallthrough
 
-        self.create = to_streamed_response_wrapper(
-            fallthrough.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                fallthrough.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -187,6 +200,8 @@ class AsyncFallthroughResourceWithStreamingResponse:
     def __init__(self, fallthrough: AsyncFallthroughResource) -> None:
         self._fallthrough = fallthrough
 
-        self.create = async_to_streamed_response_wrapper(
-            fallthrough.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                fallthrough.create,  # pyright: ignore[reportDeprecated],
+            )
         )

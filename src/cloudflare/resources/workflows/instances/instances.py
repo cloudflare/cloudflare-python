@@ -88,7 +88,8 @@ class InstancesResource(SyncAPIResource):
         account_id: str,
         instance_id: str | Omit = omit,
         instance_retention: instance_create_params.InstanceRetention | Omit = omit,
-        location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "oc", "sam", "afr", "me"] | Omit = omit,
+        location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "apac-ne", "apac-se", "oc", "sam", "afr", "me"]
+        | Omit = omit,
         params: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -101,8 +102,8 @@ class InstancesResource(SyncAPIResource):
         Creates a new instance of a workflow, starting its execution.
 
         Args:
-          instance_id: An id of exactly `cf_` followed by 64 lowercase hex characters is reserved for
-              system-generated instances.
+          instance_id: The system reserves IDs that consist of the `cf_` prefix and exactly 64
+              lowercase hexadecimal characters.
 
           params: JSON-encoded event payload passed into the new instance.
 
@@ -450,7 +451,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         account_id: str,
         instance_id: str | Omit = omit,
         instance_retention: instance_create_params.InstanceRetention | Omit = omit,
-        location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "oc", "sam", "afr", "me"] | Omit = omit,
+        location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "apac-ne", "apac-se", "oc", "sam", "afr", "me"]
+        | Omit = omit,
         params: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -463,8 +465,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         Creates a new instance of a workflow, starting its execution.
 
         Args:
-          instance_id: An id of exactly `cf_` followed by 64 lowercase hex characters is reserved for
-              system-generated instances.
+          instance_id: The system reserves IDs that consist of the `cf_` prefix and exactly 64
+              lowercase hexadecimal characters.
 
           params: JSON-encoded event payload passed into the new instance.
 

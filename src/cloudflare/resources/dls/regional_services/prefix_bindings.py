@@ -68,10 +68,7 @@ class PrefixBindingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixBindingCreateResponse:
         """
-        Bind a CIDR from a BYOIP prefix to a region.
-
-        This requires the **IP Prefixes Write** permission in addition to **DLS Write**,
-        because the binding is created against a BYOIP prefix in Addressing.
+        Create a DLS prefix binding
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -126,7 +123,7 @@ class PrefixBindingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorPagination[PrefixBindingListResponse]:
         """
-        List the BYOIP prefix bindings configured for an account.
+        List DLS prefix bindings for an account
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -176,10 +173,7 @@ class PrefixBindingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixBindingDeleteResponse:
         """
-        Delete a BYOIP prefix binding.
-
-        Like creating a binding, this requires **IP Prefixes Write** in addition to
-        **DLS Write**.
+        Delete a DLS prefix binding
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -224,10 +218,7 @@ class PrefixBindingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixBindingEditResponse:
         """
-        Update the region of an existing BYOIP prefix binding.
-
-        Like creating a binding, this requires **IP Prefixes Write** in addition to
-        **DLS Write**.
+        Update a DLS prefix binding
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -278,7 +269,7 @@ class PrefixBindingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixBindingGetResponse:
         """
-        Retrieve a single BYOIP prefix binding by ID.
+        Get a DLS prefix binding
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -349,10 +340,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixBindingCreateResponse:
         """
-        Bind a CIDR from a BYOIP prefix to a region.
-
-        This requires the **IP Prefixes Write** permission in addition to **DLS Write**,
-        because the binding is created against a BYOIP prefix in Addressing.
+        Create a DLS prefix binding
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -407,7 +395,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PrefixBindingListResponse, AsyncCursorPagination[PrefixBindingListResponse]]:
         """
-        List the BYOIP prefix bindings configured for an account.
+        List DLS prefix bindings for an account
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -457,10 +445,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixBindingDeleteResponse:
         """
-        Delete a BYOIP prefix binding.
-
-        Like creating a binding, this requires **IP Prefixes Write** in addition to
-        **DLS Write**.
+        Delete a DLS prefix binding
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -505,10 +490,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixBindingEditResponse:
         """
-        Update the region of an existing BYOIP prefix binding.
-
-        Like creating a binding, this requires **IP Prefixes Write** in addition to
-        **DLS Write**.
+        Update a DLS prefix binding
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -561,7 +543,7 @@ class AsyncPrefixBindingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PrefixBindingGetResponse:
         """
-        Retrieve a single BYOIP prefix binding by ID.
+        Get a DLS prefix binding
 
         Args:
           account_id: Identifier of a Cloudflare account.

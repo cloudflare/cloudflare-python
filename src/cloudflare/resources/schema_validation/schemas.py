@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -22,7 +22,6 @@ from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.schema_validation import schema_get_params, schema_edit_params, schema_list_params, schema_create_params
 from ...types.schema_validation.public_schema import PublicSchema
-from ...types.schema_validation.schema_delete_response import SchemaDeleteResponse
 
 __all__ = ["SchemasResource", "AsyncSchemasResource"]
 
@@ -62,10 +61,9 @@ class SchemasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
-        """Uploads a new OpenAPI schema for API Shield schema validation.
-
-        The schema
-        defines expected request/response formats for API endpoints.
+        """
+        Uploads an OpenAPI schema that defines expected request formats for API
+        operations.
 
         Args:
           zone_id: Identifier.
@@ -125,7 +123,7 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[PublicSchema]:
         """
-        Lists all OpenAPI schemas uploaded to API Shield with pagination support.
+        Lists all OpenAPI schemas uploaded to API Security.
 
         Args:
           zone_id: Identifier.
@@ -180,11 +178,11 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SchemaDeleteResponse:
-        """Permanently removes an uploaded OpenAPI schema from API Shield.
+    ) -> object:
+        """Permanently removes an uploaded OpenAPI schema from API Security.
 
-        Operations using
-        this schema will lose their validation rules.
+        Operations
+        using this schema will lose their validation rules.
 
         Args:
           zone_id: Identifier.
@@ -212,9 +210,9 @@ class SchemasResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SchemaDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[SchemaDeleteResponse], ResultWrapper[SchemaDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def edit(
@@ -231,8 +229,8 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
-        Modifies an existing OpenAPI schema in API Shield, updating the validation rules
-        for associated API operations.
+        Enables or disables validation for an uploaded OpenAPI schema without changing
+        the schema document.
 
         Args:
           zone_id: Identifier.
@@ -283,7 +281,7 @@ class SchemasResource(SyncAPIResource):
     ) -> PublicSchema:
         """
         Gets the contents and metadata of a specific OpenAPI schema uploaded to API
-        Shield.
+        Security.
 
         Args:
           zone_id: Identifier.
@@ -355,10 +353,9 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
-        """Uploads a new OpenAPI schema for API Shield schema validation.
-
-        The schema
-        defines expected request/response formats for API endpoints.
+        """
+        Uploads an OpenAPI schema that defines expected request formats for API
+        operations.
 
         Args:
           zone_id: Identifier.
@@ -418,7 +415,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PublicSchema, AsyncV4PagePaginationArray[PublicSchema]]:
         """
-        Lists all OpenAPI schemas uploaded to API Shield with pagination support.
+        Lists all OpenAPI schemas uploaded to API Security.
 
         Args:
           zone_id: Identifier.
@@ -473,11 +470,11 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SchemaDeleteResponse:
-        """Permanently removes an uploaded OpenAPI schema from API Shield.
+    ) -> object:
+        """Permanently removes an uploaded OpenAPI schema from API Security.
 
-        Operations using
-        this schema will lose their validation rules.
+        Operations
+        using this schema will lose their validation rules.
 
         Args:
           zone_id: Identifier.
@@ -505,9 +502,9 @@ class AsyncSchemasResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SchemaDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[SchemaDeleteResponse], ResultWrapper[SchemaDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def edit(
@@ -524,8 +521,8 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
-        Modifies an existing OpenAPI schema in API Shield, updating the validation rules
-        for associated API operations.
+        Enables or disables validation for an uploaded OpenAPI schema without changing
+        the schema document.
 
         Args:
           zone_id: Identifier.
@@ -578,7 +575,7 @@ class AsyncSchemasResource(AsyncAPIResource):
     ) -> PublicSchema:
         """
         Gets the contents and metadata of a specific OpenAPI schema uploaded to API
-        Shield.
+        Security.
 
         Args:
           zone_id: Identifier.

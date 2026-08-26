@@ -31,7 +31,7 @@ class VersionListResponse(BaseModel):
     has_dag: bool
 
     language: Literal["javascript", "python"]
-    """The programming language of the workflow implementation"""
+    """The programming language of the workflow implementation."""
 
     modified_on: datetime
 

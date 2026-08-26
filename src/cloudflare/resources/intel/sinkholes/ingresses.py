@@ -66,10 +66,10 @@ class IngressesResource(SyncAPIResource):
         account as the zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: An identifier for the resource.
 
           cidr: The CIDR block for the ingress rule in IPv4 or IPv6 notation (e.g.,
-              192.0.2.0/24). Must be a Cloudflare BYOIP associated with your account.
+              192.0.2.0/24). Provide a Cloudflare BYOIP CIDR that your account owns.
 
           extra_headers: Send extra headers
 
@@ -112,16 +112,16 @@ class IngressesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Update the specified ingress rule.
+        """Replaces the specified ingress rule.
 
-        The sinkhole must belong to the same account
-        as the zone.
+        The sinkhole must belong to the same
+        account as the zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: An identifier for the resource.
 
           cidr: The CIDR block for the ingress rule in IPv4 or IPv6 notation (e.g.,
-              192.0.2.0/24). Must be a Cloudflare BYOIP associated with your account.
+              192.0.2.0/24). Provide a Cloudflare BYOIP CIDR that your account owns.
 
           extra_headers: Send extra headers
 
@@ -174,7 +174,7 @@ class IngressesResource(SyncAPIResource):
         as the zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 
@@ -226,7 +226,7 @@ class IngressesResource(SyncAPIResource):
         belong to the same account as the zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 
@@ -301,10 +301,10 @@ class AsyncIngressesResource(AsyncAPIResource):
         account as the zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: An identifier for the resource.
 
           cidr: The CIDR block for the ingress rule in IPv4 or IPv6 notation (e.g.,
-              192.0.2.0/24). Must be a Cloudflare BYOIP associated with your account.
+              192.0.2.0/24). Provide a Cloudflare BYOIP CIDR that your account owns.
 
           extra_headers: Send extra headers
 
@@ -347,16 +347,16 @@ class AsyncIngressesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Update the specified ingress rule.
+        """Replaces the specified ingress rule.
 
-        The sinkhole must belong to the same account
-        as the zone.
+        The sinkhole must belong to the same
+        account as the zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: An identifier for the resource.
 
           cidr: The CIDR block for the ingress rule in IPv4 or IPv6 notation (e.g.,
-              192.0.2.0/24). Must be a Cloudflare BYOIP associated with your account.
+              192.0.2.0/24). Provide a Cloudflare BYOIP CIDR that your account owns.
 
           extra_headers: Send extra headers
 
@@ -409,7 +409,7 @@ class AsyncIngressesResource(AsyncAPIResource):
         as the zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 
@@ -461,7 +461,7 @@ class AsyncIngressesResource(AsyncAPIResource):
         belong to the same account as the zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 

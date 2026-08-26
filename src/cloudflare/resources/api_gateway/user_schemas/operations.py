@@ -71,7 +71,8 @@ class OperationsResource(SyncAPIResource):
         """Retrieves all operations from the schema.
 
         Operations that already exist in API
-        Shield Endpoint Management will be returned as full operations.
+        Shield Endpoint Management will be returned as full operations. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/{schema_id}/operations` instead.
 
         Args:
           zone_id: Identifier.
@@ -179,7 +180,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         """Retrieves all operations from the schema.
 
         Operations that already exist in API
-        Shield Endpoint Management will be returned as full operations.
+        Shield Endpoint Management will be returned as full operations. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/{schema_id}/operations` instead.
 
         Args:
           zone_id: Identifier.

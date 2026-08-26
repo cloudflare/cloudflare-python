@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["Script"]
+__all__ = ["ScriptListResponse"]
 
 
-class Script(BaseModel):
+class ScriptListResponse(BaseModel):
     id: str
     """Identifier"""
 

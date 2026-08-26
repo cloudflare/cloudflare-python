@@ -2,13 +2,34 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Dict, Union, Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
-__all__ = ["TagCreateParams", "Alias", "ExternalReference", "InternalAlias"]
+__all__ = [
+    "TagCreateParams",
+    "ActiveDuration",
+    "ActiveDurationUnionMember1",
+    "ActorCategory",
+    "ActorCategoryUnionMember1",
+    "Alias",
+    "AttributionOrganization",
+    "AttributionOrganizationUnionMember1",
+    "ExternalReference",
+    "InternalAlias",
+    "Motive",
+    "MotiveUnionMember1",
+    "OpsecLevel",
+    "OpsecLevelUnionMember1",
+    "OriginCountryISO",
+    "OriginCountryISOUnionMember1",
+    "Priority",
+    "PriorityUnionMember1",
+    "SophisticationLevel",
+    "SophisticationLevelUnionMember1",
+]
 
 
 class TagCreateParams(TypedDict, total=False):
@@ -17,21 +38,9 @@ class TagCreateParams(TypedDict, total=False):
 
     value: Required[str]
 
-    active_duration: Annotated[str, PropertyInfo(alias="activeDuration")]
+    active_duration: Annotated[ActiveDuration, PropertyInfo(alias="activeDuration")]
 
-    actor_category: Annotated[str, PropertyInfo(alias="actorCategory")]
-    """Actor variety.
-
-    Allowed values: Activist, Competitor, Customer, Crime Syndicate, Former
-    Employee, Nation State, Organized Crime, Nation State Affiliated, Terrorist,
-    Unaffiliated.
-    """
-
-    actor_category_confidence: Annotated[int, PropertyInfo(alias="actorCategoryConfidence")]
-    """Confidence (1-10) in the actor variety (actorCategory).
-
-    CFONE-only: stripped from responses to non-CFONE accounts.
-    """
+    actor_category: Annotated[ActorCategory, PropertyInfo(alias="actorCategory")]
 
     aliases: Iterable[Alias]
     """Structured aliases ({ value, confidence 1-10, tlp }).
@@ -43,18 +52,22 @@ class TagCreateParams(TypedDict, total=False):
 
     alias_group_names_internal: Annotated[SequenceNotStr[str], PropertyInfo(alias="aliasGroupNamesInternal")]
 
-    analytic_priority: Annotated[float, PropertyInfo(alias="analyticPriority")]
-
-    attribution_confidence: Annotated[str, PropertyInfo(alias="attributionConfidence")]
-
-    attribution_confidence_score: Annotated[int, PropertyInfo(alias="attributionConfidenceScore")]
-
-    attribution_organization: Annotated[str, PropertyInfo(alias="attributionOrganization")]
+    attribution_organization: Annotated[AttributionOrganization, PropertyInfo(alias="attributionOrganization")]
 
     category_uuid: Annotated[str, PropertyInfo(alias="categoryUuid")]
+    """Tag type (category) UUID.
+
+    Optional — when present, `properties` is validated against this category's
+    schema. When absent, the tag is typeless and properties are accepted free-form.
+    """
+
+    confidence: int
+    """Overall tag confidence (1-10). Optional."""
 
     date_of_discovery: Annotated[str, PropertyInfo(alias="dateOfDiscovery")]
-    """Date the actor was discovered (ISO YYYY-MM-DD)."""
+    """Date of discovery (ISO YYYY-MM-DD). Optional."""
+
+    description: str
 
     external_reference_links: Annotated[SequenceNotStr[str], PropertyInfo(alias="externalReferenceLinks")]
 
@@ -72,37 +85,53 @@ class TagCreateParams(TypedDict, total=False):
 
     internal_description: Annotated[str, PropertyInfo(alias="internalDescription")]
 
-    motive: str
-    """Actor motive.
+    last_seen: Annotated[str, PropertyInfo(alias="lastSeen")]
 
-    Allowed values: Convenience, Fear, Fun, Financial, Grudge, Ideology, Espionage.
+    motive: Motive
+
+    opsec_level: Annotated[OpsecLevel, PropertyInfo(alias="opsecLevel")]
+
+    origin_country_iso: Annotated[OriginCountryISO, PropertyInfo(alias="originCountryISO")]
+
+    priority: Priority
+
+    properties: Dict[str, object]
+    """Structured metadata blob.
+
+    Optional. When `categoryUuid` is given, validated against this category's schema
+    on write. When typeless, accepted free-form. Use `{}` for a tag with no custom
+    data.
     """
 
-    motive_confidence: Annotated[int, PropertyInfo(alias="motiveConfidence")]
-    """Confidence (1-10) in the actor motive.
+    sophistication_level: Annotated[SophisticationLevel, PropertyInfo(alias="sophisticationLevel")]
 
-    CFONE-only: stripped from responses to non-CFONE accounts.
+    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    """Tag-level TLP handling marking.
+
+    Optional. Allowed values: red, amber, amber+strict, green, clear, purple.
     """
 
-    opsec_level: Annotated[str, PropertyInfo(alias="opsecLevel")]
 
-    origin_country_confidence: Annotated[int, PropertyInfo(alias="originCountryConfidence")]
-    """Confidence (1-10) in the origin-country attribution.
+class ActiveDurationUnionMember1(TypedDict, total=False):
+    value: Required[str]
 
-    CFONE-only: stripped from responses to non-CFONE accounts.
-    """
+    confidence: int
 
-    origin_country_iso: Annotated[str, PropertyInfo(alias="originCountryISO")]
+    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
 
-    origin_country_tlp: Annotated[Literal["red", "amber", "green", "white"], PropertyInfo(alias="originCountryTlp")]
-    """TLP marking for the origin-country attribution.
 
-    CFONE-only: stripped from responses to non-CFONE accounts.
-    """
+ActiveDuration: TypeAlias = Union[str, ActiveDurationUnionMember1]
 
-    priority: float
 
-    sophistication_level: Annotated[str, PropertyInfo(alias="sophisticationLevel")]
+class ActorCategoryUnionMember1(TypedDict, total=False):
+    value: Required[str]
+
+    confidence: int
+
+    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+
+
+ActorCategory: TypeAlias = Union[str, ActorCategoryUnionMember1]
 
 
 class Alias(TypedDict, total=False):
@@ -110,7 +139,18 @@ class Alias(TypedDict, total=False):
 
     confidence: Optional[int]
 
-    tlp: Optional[Literal["red", "amber", "green", "white"]]
+    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]]
+
+
+class AttributionOrganizationUnionMember1(TypedDict, total=False):
+    value: Required[str]
+
+    confidence: int
+
+    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+
+
+AttributionOrganization: TypeAlias = Union[str, AttributionOrganizationUnionMember1]
 
 
 class ExternalReference(TypedDict, total=False):
@@ -124,4 +164,59 @@ class InternalAlias(TypedDict, total=False):
 
     confidence: Optional[int]
 
-    tlp: Optional[Literal["red", "amber", "green", "white"]]
+    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]]
+
+
+class MotiveUnionMember1(TypedDict, total=False):
+    value: Required[str]
+
+    confidence: int
+
+    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+
+
+Motive: TypeAlias = Union[str, MotiveUnionMember1]
+
+
+class OpsecLevelUnionMember1(TypedDict, total=False):
+    value: Required[str]
+
+    confidence: int
+
+    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+
+
+OpsecLevel: TypeAlias = Union[str, OpsecLevelUnionMember1]
+
+
+class OriginCountryISOUnionMember1(TypedDict, total=False):
+    value: Required[str]
+
+    confidence: int
+
+    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+
+
+OriginCountryISO: TypeAlias = Union[str, OriginCountryISOUnionMember1]
+
+
+class PriorityUnionMember1(TypedDict, total=False):
+    value: Required[float]
+
+    confidence: int
+
+    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+
+
+Priority: TypeAlias = Union[float, PriorityUnionMember1]
+
+
+class SophisticationLevelUnionMember1(TypedDict, total=False):
+    value: Required[str]
+
+    confidence: int
+
+    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+
+
+SophisticationLevel: TypeAlias = Union[str, SophisticationLevelUnionMember1]

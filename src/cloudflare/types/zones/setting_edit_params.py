@@ -86,7 +86,6 @@ Variant1Value: TypeAlias = Union[
     float,
     AutomaticPlatformOptimizationParam,
     Variant1ValueZonesSecurityHeaderValue,
-    str,
     object,
 ]
 

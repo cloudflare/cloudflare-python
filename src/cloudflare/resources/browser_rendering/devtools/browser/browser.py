@@ -186,6 +186,7 @@ class BrowserResource(SyncAPIResource):
         keep_alive: float | Omit = omit,
         lab: bool | Omit = omit,
         recording: bool | Omit = omit,
+        cf_brapi_guardrails: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,6 +206,8 @@ class BrowserResource(SyncAPIResource):
 
           lab: Use experimental browser.
 
+          cf_brapi_guardrails: Optional base64url-encoded JSON connection guardrails (mode)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -218,6 +221,7 @@ class BrowserResource(SyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"cf-brapi-guardrails": cf_brapi_guardrails}), **(extra_headers or {})}
         return self._get(
             path_template(
                 "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}",
@@ -540,6 +544,7 @@ class AsyncBrowserResource(AsyncAPIResource):
         keep_alive: float | Omit = omit,
         lab: bool | Omit = omit,
         recording: bool | Omit = omit,
+        cf_brapi_guardrails: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -559,6 +564,8 @@ class AsyncBrowserResource(AsyncAPIResource):
 
           lab: Use experimental browser.
 
+          cf_brapi_guardrails: Optional base64url-encoded JSON connection guardrails (mode)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -572,6 +579,7 @@ class AsyncBrowserResource(AsyncAPIResource):
         if not session_id:
             raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"cf-brapi-guardrails": cf_brapi_guardrails}), **(extra_headers or {})}
         return await self._get(
             path_template(
                 "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}",

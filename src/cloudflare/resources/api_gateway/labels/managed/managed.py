@@ -70,7 +70,7 @@ class ManagedResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedGetResponse:
         """
-        Retrieve managed label
+        Returns a managed label and the web and API operations associated with it.
 
         Args:
           zone_id: Identifier.
@@ -145,7 +145,7 @@ class AsyncManagedResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedGetResponse:
         """
-        Retrieve managed label
+        Returns a managed label and the web and API operations associated with it.
 
         Args:
           zone_id: Identifier.

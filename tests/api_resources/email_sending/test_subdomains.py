@@ -157,6 +157,15 @@ class TestSubdomains:
         subdomain = client.email_sending.subdomains.edit(
             subdomain_id="aabbccdd11223344aabbccdd11223344",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[SubdomainEditResponse], subdomain, path=["response"])
+
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        subdomain = client.email_sending.subdomains.edit(
+            subdomain_id="aabbccdd11223344aabbccdd11223344",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            drop_suppressed_recipients=True,
             preview_enabled=True,
         )
         assert_matches_type(Optional[SubdomainEditResponse], subdomain, path=["response"])
@@ -166,7 +175,6 @@ class TestSubdomains:
         response = client.email_sending.subdomains.with_raw_response.edit(
             subdomain_id="aabbccdd11223344aabbccdd11223344",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            preview_enabled=True,
         )
 
         assert response.is_closed is True
@@ -179,7 +187,6 @@ class TestSubdomains:
         with client.email_sending.subdomains.with_streaming_response.edit(
             subdomain_id="aabbccdd11223344aabbccdd11223344",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            preview_enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -195,14 +202,12 @@ class TestSubdomains:
             client.email_sending.subdomains.with_raw_response.edit(
                 subdomain_id="aabbccdd11223344aabbccdd11223344",
                 zone_id="",
-                preview_enabled=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subdomain_id` but received ''"):
             client.email_sending.subdomains.with_raw_response.edit(
                 subdomain_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                preview_enabled=True,
             )
 
     @parametrize
@@ -392,6 +397,15 @@ class TestAsyncSubdomains:
         subdomain = await async_client.email_sending.subdomains.edit(
             subdomain_id="aabbccdd11223344aabbccdd11223344",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[SubdomainEditResponse], subdomain, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        subdomain = await async_client.email_sending.subdomains.edit(
+            subdomain_id="aabbccdd11223344aabbccdd11223344",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            drop_suppressed_recipients=True,
             preview_enabled=True,
         )
         assert_matches_type(Optional[SubdomainEditResponse], subdomain, path=["response"])
@@ -401,7 +415,6 @@ class TestAsyncSubdomains:
         response = await async_client.email_sending.subdomains.with_raw_response.edit(
             subdomain_id="aabbccdd11223344aabbccdd11223344",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            preview_enabled=True,
         )
 
         assert response.is_closed is True
@@ -414,7 +427,6 @@ class TestAsyncSubdomains:
         async with async_client.email_sending.subdomains.with_streaming_response.edit(
             subdomain_id="aabbccdd11223344aabbccdd11223344",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            preview_enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -430,14 +442,12 @@ class TestAsyncSubdomains:
             await async_client.email_sending.subdomains.with_raw_response.edit(
                 subdomain_id="aabbccdd11223344aabbccdd11223344",
                 zone_id="",
-                preview_enabled=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `subdomain_id` but received ''"):
             await async_client.email_sending.subdomains.with_raw_response.edit(
                 subdomain_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                preview_enabled=True,
             )
 
     @parametrize

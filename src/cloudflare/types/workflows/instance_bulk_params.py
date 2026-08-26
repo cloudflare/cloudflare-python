@@ -25,13 +25,13 @@ class BodyInstanceRetention(TypedDict, total=False):
 class Body(TypedDict, total=False):
     instance_id: str
     """
-    An id of exactly `cf_` followed by 64 lowercase hex characters is reserved for
-    system-generated instances.
+    The system reserves IDs that consist of the `cf_` prefix and exactly 64
+    lowercase hexadecimal characters.
     """
 
     instance_retention: BodyInstanceRetention
 
-    location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "oc", "sam", "afr", "me"]
+    location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "apac-ne", "apac-se", "oc", "sam", "afr", "me"]
 
     params: str
     """JSON-encoded event payload passed into the new instance."""

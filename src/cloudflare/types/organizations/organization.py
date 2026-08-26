@@ -16,6 +16,8 @@ class MetaTenantFlags(BaseModel):
 
     account_creation: str
 
+    account_creation_applies_tenant_defaults: str
+
     account_deletion: str
 
     account_migration: str

@@ -44,7 +44,17 @@ class AuditHistoryResponseItemActor(BaseModel):
     If a user performed the action, this will be their User ID.
     """
 
-    context: Optional[Literal["api_key", "api_token", "dash", "oauth", "origin_ca_key"]] = None
+    context: Optional[Literal["api", "api_key", "api_token", "dash", "oauth", "origin_ca_key"]] = None
+    """The context in which the action was initiated.
+
+    - `api`: The action was performed through the API. The specific credential type
+      was not recorded.
+    - `api_key`: The action was authenticated with a Cloudflare Global API Key.
+    - `api_token`: The action was authenticated with an API token.
+    - `dash`: The action was performed through the Cloudflare dashboard.
+    - `oauth`: The action was authenticated with an OAuth token.
+    - `origin_ca_key`: The action was authenticated with an Origin CA key.
+    """
 
     email: Optional[str] = None
     """The email of the actor who performed the action."""

@@ -16,7 +16,7 @@ class Component(BaseModel):
     """The unique component."""
 
     unit_price: Optional[float] = None
-    """The unit price of the addon."""
+    """The unit price of the component."""
 
 
 class RatePlanGetResponse(BaseModel):

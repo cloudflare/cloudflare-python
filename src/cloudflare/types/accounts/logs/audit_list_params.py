@@ -181,7 +181,7 @@ class ActionType(_ActionTypeReservedKeywords, total=False):
 _ActorContextReservedKeywords = TypedDict(
     "_ActorContextReservedKeywords",
     {
-        "not": List[Literal["api_key", "api_token", "dash", "oauth", "origin_ca_key"]],
+        "not": List[Literal["api", "api_key", "api_token", "dash", "oauth", "origin_ca_key"]],
     },
     total=False,
 )
@@ -259,7 +259,7 @@ class ActorTokenName(_ActorTokenNameReservedKeywords, total=False):
 _ActorTypeReservedKeywords = TypedDict(
     "_ActorTypeReservedKeywords",
     {
-        "not": List[Literal["account", "cloudflare_admin", "system", "user"]],
+        "not": List[Literal["account", "cloudflare_admin", "delegated_service", "system", "user"]],
     },
     total=False,
 )

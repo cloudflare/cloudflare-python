@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.page_shield import Setting, PageShieldUpdateResponse
+from cloudflare.types.page_shield import PageShieldGetResponse, PageShieldUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -70,7 +70,7 @@ class TestPageShield:
         page_shield = client.page_shield.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Setting], page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldGetResponse], page_shield, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -81,7 +81,7 @@ class TestPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = response.parse()
-        assert_matches_type(Optional[Setting], page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldGetResponse], page_shield, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -92,7 +92,7 @@ class TestPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = response.parse()
-            assert_matches_type(Optional[Setting], page_shield, path=["response"])
+            assert_matches_type(Optional[PageShieldGetResponse], page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -162,7 +162,7 @@ class TestAsyncPageShield:
         page_shield = await async_client.page_shield.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Setting], page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldGetResponse], page_shield, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -173,7 +173,7 @@ class TestAsyncPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = await response.parse()
-        assert_matches_type(Optional[Setting], page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldGetResponse], page_shield, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -184,7 +184,7 @@ class TestAsyncPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = await response.parse()
-            assert_matches_type(Optional[Setting], page_shield, path=["response"])
+            assert_matches_type(Optional[PageShieldGetResponse], page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -70,7 +70,7 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenValidationRule:
         """
-        Create a token validation rule.
+        Creates a token validation rule for the zone.
 
         Args:
           zone_id: Identifier.
@@ -149,7 +149,8 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[TokenValidationRule]:
         """
-        List token validation rules
+        Lists token validation rules for the zone, with filters for configuration,
+        action, state, ID, and host.
 
         Args:
           zone_id: Identifier.
@@ -222,7 +223,7 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a zone token validation rule.
+        Deletes a token validation rule from the zone.
 
         Args:
           zone_id: Identifier.
@@ -266,9 +267,7 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TokenValidationRule]:
         """
-        Create zone token validation rules.
-
-        A request can create multiple Token Validation Rules.
+        Creates multiple token validation rules for the zone in one request.
 
         Args:
           zone_id: Identifier.
@@ -307,13 +306,8 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TokenValidationRule]:
         """
-        Edit token validation rules.
-
-        A request can update multiple Token Validation Rules.
-
-        Rules can be re-ordered using the `position` field.
-
-        Returns all updated rules.
+        Updates and reorders multiple token validation rules in one request, then
+        returns the updated rules.
 
         Args:
           zone_id: Identifier.
@@ -359,7 +353,7 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenValidationRule:
         """
-        Edit a zone token validation rule.
+        Updates only the supplied fields on a token validation rule.
 
         Args:
           zone_id: Identifier.
@@ -437,7 +431,7 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenValidationRule:
         """
-        Get a zone token validation rule.
+        Returns a token validation rule by ID.
 
         Args:
           zone_id: Identifier.
@@ -507,7 +501,7 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenValidationRule:
         """
-        Create a token validation rule.
+        Creates a token validation rule for the zone.
 
         Args:
           zone_id: Identifier.
@@ -586,7 +580,8 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TokenValidationRule, AsyncV4PagePaginationArray[TokenValidationRule]]:
         """
-        List token validation rules
+        Lists token validation rules for the zone, with filters for configuration,
+        action, state, ID, and host.
 
         Args:
           zone_id: Identifier.
@@ -659,7 +654,7 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a zone token validation rule.
+        Deletes a token validation rule from the zone.
 
         Args:
           zone_id: Identifier.
@@ -703,9 +698,7 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TokenValidationRule, AsyncSinglePage[TokenValidationRule]]:
         """
-        Create zone token validation rules.
-
-        A request can create multiple Token Validation Rules.
+        Creates multiple token validation rules for the zone in one request.
 
         Args:
           zone_id: Identifier.
@@ -744,13 +737,8 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TokenValidationRule, AsyncSinglePage[TokenValidationRule]]:
         """
-        Edit token validation rules.
-
-        A request can update multiple Token Validation Rules.
-
-        Rules can be re-ordered using the `position` field.
-
-        Returns all updated rules.
+        Updates and reorders multiple token validation rules in one request, then
+        returns the updated rules.
 
         Args:
           zone_id: Identifier.
@@ -796,7 +784,7 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenValidationRule:
         """
-        Edit a zone token validation rule.
+        Updates only the supplied fields on a token validation rule.
 
         Args:
           zone_id: Identifier.
@@ -874,7 +862,7 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenValidationRule:
         """
-        Get a zone token validation rule.
+        Returns a token validation rule by ID.
 
         Args:
           zone_id: Identifier.

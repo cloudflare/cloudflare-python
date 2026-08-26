@@ -37,43 +37,7 @@ class InstanceCreateParams(TypedDict, total=False):
 
     ai_gateway_id: Optional[str]
 
-    aisearch_model: Annotated[
-        Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ],
-        PropertyInfo(alias="ai_search_model"),
-    ]
+    aisearch_model: Annotated[Optional[str], PropertyInfo(alias="ai_search_model")]
 
     cache: bool
 
@@ -94,21 +58,7 @@ class InstanceCreateParams(TypedDict, total=False):
 
     custom_metadata: Iterable[CustomMetadata]
 
-    embedding_model: Optional[
-        Literal[
-            "@cf/qwen/qwen3-embedding-0.6b",
-            "@cf/qwen/qwen3-vl-embedding-2b",
-            "@cf/baai/bge-m3",
-            "@cf/baai/bge-large-en-v1.5",
-            "@cf/google/embeddinggemma-300m",
-            "google-ai-studio/gemini-embedding-001",
-            "google-ai-studio/gemini-embedding-2-preview",
-            "google-ai-studio/gemini-embedding-2",
-            "openai/text-embedding-3-small",
-            "openai/text-embedding-3-large",
-            "",
-        ]
-    ]
+    embedding_model: Optional[str]
 
     fusion_method: Literal["max", "rrf"]
 
@@ -131,44 +81,11 @@ class InstanceCreateParams(TypedDict, total=False):
 
     reranking: bool
 
-    reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]]
+    reranking_model: Optional[str]
 
     retrieval_options: Optional[RetrievalOptions]
 
-    rewrite_model: Optional[
-        Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "@cf/google/gemma-4-26b-a4b-it",
-            "@cf/moonshotai/kimi-k2.5",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-    ]
+    rewrite_model: Optional[str]
 
     rewrite_query: bool
 

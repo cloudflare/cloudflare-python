@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.workflows.instances import EventCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +25,7 @@ class TestEvents:
             workflow_name="x",
             instance_id="x",
         )
-        assert_matches_type(object, event, path=["response"])
+        assert_matches_type(EventCreateResponse, event, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -35,7 +36,7 @@ class TestEvents:
             instance_id="x",
             body={},
         )
-        assert_matches_type(object, event, path=["response"])
+        assert_matches_type(EventCreateResponse, event, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -49,7 +50,7 @@ class TestEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = response.parse()
-        assert_matches_type(object, event, path=["response"])
+        assert_matches_type(EventCreateResponse, event, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -63,7 +64,7 @@ class TestEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = response.parse()
-            assert_matches_type(object, event, path=["response"])
+            assert_matches_type(EventCreateResponse, event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -115,7 +116,7 @@ class TestAsyncEvents:
             workflow_name="x",
             instance_id="x",
         )
-        assert_matches_type(object, event, path=["response"])
+        assert_matches_type(EventCreateResponse, event, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -126,7 +127,7 @@ class TestAsyncEvents:
             instance_id="x",
             body={},
         )
-        assert_matches_type(object, event, path=["response"])
+        assert_matches_type(EventCreateResponse, event, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -140,7 +141,7 @@ class TestAsyncEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = await response.parse()
-        assert_matches_type(object, event, path=["response"])
+        assert_matches_type(EventCreateResponse, event, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -154,7 +155,7 @@ class TestAsyncEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = await response.parse()
-            assert_matches_type(object, event, path=["response"])
+            assert_matches_type(EventCreateResponse, event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

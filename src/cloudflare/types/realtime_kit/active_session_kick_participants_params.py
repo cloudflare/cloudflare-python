@@ -16,6 +16,6 @@ class ActiveSessionKickParticipantsParams(TypedDict, total=False):
     app_id: Required[str]
     """The app identifier tag."""
 
-    custom_participant_ids: Required[SequenceNotStr[str]]
+    custom_participant_ids: SequenceNotStr[str]
 
-    participant_ids: Required[SequenceNotStr[str]]
+    participant_ids: SequenceNotStr[str]

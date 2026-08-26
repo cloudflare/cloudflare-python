@@ -129,7 +129,7 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[OperationListResponse]:
         """
-        Lists all per-operation schema validation settings configured for the zone.
+        Lists per-operation schema validation settings configured for the zone.
 
         Args:
           zone_id: Identifier.
@@ -403,7 +403,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """
-        Lists all per-operation schema validation settings configured for the zone.
+        Lists per-operation schema validation settings configured for the zone.
 
         Args:
           zone_id: Identifier.

@@ -64,6 +64,16 @@ class RecordsBimiRecord(BaseModel):
     name: Optional[str] = None
     """DNS record name"""
 
+    resolved: Optional[List[str]] = None
+    """
+    For a CNAME record, the TXT content(s) found by following the CNAME chain to its
+    target. An empty array means the chain was resolved but nothing usable was found
+    there; omitted/null means resolution was not attempted for this record (always
+    the case for non-CNAME entries). A CNAME chain that terminates in more than one
+    TXT value at the target yields multiple entries. Populated on entries in
+    cname_dmarc_records, cname_spf_records, and cname_dkim_records.
+    """
+
     ttl: Optional[int] = None
     """Time to live in seconds"""
 
@@ -82,6 +92,16 @@ class RecordsCnamedkimRecord(BaseModel):
 
     name: Optional[str] = None
     """DNS record name"""
+
+    resolved: Optional[List[str]] = None
+    """
+    For a CNAME record, the TXT content(s) found by following the CNAME chain to its
+    target. An empty array means the chain was resolved but nothing usable was found
+    there; omitted/null means resolution was not attempted for this record (always
+    the case for non-CNAME entries). A CNAME chain that terminates in more than one
+    TXT value at the target yields multiple entries. Populated on entries in
+    cname_dmarc_records, cname_spf_records, and cname_dkim_records.
+    """
 
     ttl: Optional[int] = None
     """Time to live in seconds"""
@@ -102,6 +122,16 @@ class RecordsCnamedmarcRecord(BaseModel):
     name: Optional[str] = None
     """DNS record name"""
 
+    resolved: Optional[List[str]] = None
+    """
+    For a CNAME record, the TXT content(s) found by following the CNAME chain to its
+    target. An empty array means the chain was resolved but nothing usable was found
+    there; omitted/null means resolution was not attempted for this record (always
+    the case for non-CNAME entries). A CNAME chain that terminates in more than one
+    TXT value at the target yields multiple entries. Populated on entries in
+    cname_dmarc_records, cname_spf_records, and cname_dkim_records.
+    """
+
     ttl: Optional[int] = None
     """Time to live in seconds"""
 
@@ -120,6 +150,16 @@ class RecordsCnamespfRecord(BaseModel):
 
     name: Optional[str] = None
     """DNS record name"""
+
+    resolved: Optional[List[str]] = None
+    """
+    For a CNAME record, the TXT content(s) found by following the CNAME chain to its
+    target. An empty array means the chain was resolved but nothing usable was found
+    there; omitted/null means resolution was not attempted for this record (always
+    the case for non-CNAME entries). A CNAME chain that terminates in more than one
+    TXT value at the target yields multiple entries. Populated on entries in
+    cname_dmarc_records, cname_spf_records, and cname_dkim_records.
+    """
 
     ttl: Optional[int] = None
     """Time to live in seconds"""
@@ -140,6 +180,16 @@ class RecordsDKIMRecord(BaseModel):
     name: Optional[str] = None
     """DNS record name"""
 
+    resolved: Optional[List[str]] = None
+    """
+    For a CNAME record, the TXT content(s) found by following the CNAME chain to its
+    target. An empty array means the chain was resolved but nothing usable was found
+    there; omitted/null means resolution was not attempted for this record (always
+    the case for non-CNAME entries). A CNAME chain that terminates in more than one
+    TXT value at the target yields multiple entries. Populated on entries in
+    cname_dmarc_records, cname_spf_records, and cname_dkim_records.
+    """
+
     ttl: Optional[int] = None
     """Time to live in seconds"""
 
@@ -158,6 +208,16 @@ class RecordsDMARCRecord(BaseModel):
 
     name: Optional[str] = None
     """DNS record name"""
+
+    resolved: Optional[List[str]] = None
+    """
+    For a CNAME record, the TXT content(s) found by following the CNAME chain to its
+    target. An empty array means the chain was resolved but nothing usable was found
+    there; omitted/null means resolution was not attempted for this record (always
+    the case for non-CNAME entries). A CNAME chain that terminates in more than one
+    TXT value at the target yields multiple entries. Populated on entries in
+    cname_dmarc_records, cname_spf_records, and cname_dkim_records.
+    """
 
     ttl: Optional[int] = None
     """Time to live in seconds"""
@@ -191,6 +251,16 @@ class RecordsSPFRecord(BaseModel):
     name: Optional[str] = None
     """DNS record name"""
 
+    resolved: Optional[List[str]] = None
+    """
+    For a CNAME record, the TXT content(s) found by following the CNAME chain to its
+    target. An empty array means the chain was resolved but nothing usable was found
+    there; omitted/null means resolution was not attempted for this record (always
+    the case for non-CNAME entries). A CNAME chain that terminates in more than one
+    TXT value at the target yields multiple entries. Populated on entries in
+    cname_dmarc_records, cname_spf_records, and cname_dkim_records.
+    """
+
     ttl: Optional[int] = None
     """Time to live in seconds"""
 
@@ -205,17 +275,26 @@ class Records(BaseModel):
     """BIMI TXT records"""
 
     cname_dkim_records: Optional[List[RecordsCnamedkimRecord]] = None
-    """CNAME records for DKIM"""
+    """CNAME records for DKIM selectors.
+
+    Each selector is resolved independently; when a selector's CNAME resolves to a
+    DKIM TXT record, the API returns that record's content in the `resolved` field
+    of the corresponding entry.
+    """
 
     cname_dmarc_records: Optional[List[RecordsCnamedmarcRecord]] = None
     """CNAME records at \\__dmarc.
 
-    When such a CNAME resolves to a DMARC TXT record, the API returns that record in
-    resolved_dmarc_records.
+    When such a CNAME resolves to a DMARC TXT record, the API returns that record's
+    content in the `resolved` field of the corresponding entry.
     """
 
     cname_spf_records: Optional[List[RecordsCnamespfRecord]] = None
-    """CNAME records for SPF"""
+    """CNAME records at the zone apex.
+
+    When such a CNAME resolves to an SPF TXT record, the API returns that record's
+    content in the `resolved` field of the corresponding entry.
+    """
 
     dkim_records: Optional[List[RecordsDKIMRecord]] = None
     """DKIM TXT records"""
@@ -265,7 +344,13 @@ class DMARCReportEditResponse(BaseModel):
     """Whether to skip the setup wizard"""
 
     status: Optional[
-        Literal["missing-dmarc-report", "multiple-dmarc-reports", "missing-dmarc-rua", "cname-on-dmarc-record"]
+        Literal[
+            "missing-dmarc-report",
+            "multiple-dmarc-reports",
+            "missing-dmarc-rua",
+            "cname-on-dmarc-record",
+            "unauthorized-reporting-domain",
+        ]
     ] = None
     """DMARC configuration status.
 

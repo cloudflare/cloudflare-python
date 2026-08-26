@@ -197,6 +197,30 @@ Methods:
 - <code title="patch /accounts/{account_id}/email-security/settings/block_senders/{pattern_id}">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">edit</a>(pattern_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/block_sender_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_edit_response.py">Optional[BlockSenderEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/block_senders/{pattern_id}">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">get</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_get_response.py">Optional[BlockSenderGetResponse]</a></code>
 
+### ContentPolicies
+
+Types:
+
+```python
+from cloudflare.types.email_security.settings import (
+    ContentPolicyCreateResponse,
+    ContentPolicyListResponse,
+    ContentPolicyDeleteResponse,
+    ContentPolicyBatchResponse,
+    ContentPolicyEditResponse,
+    ContentPolicyGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/settings/content_policies">client.email_security.settings.content_policies.<a href="./src/cloudflare/resources/email_security/settings/content_policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/content_policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/content_policy_create_response.py">Optional[ContentPolicyCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/content_policies">client.email_security.settings.content_policies.<a href="./src/cloudflare/resources/email_security/settings/content_policies.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/content_policy_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/content_policy_list_response.py">SyncV4PagePaginationArray[ContentPolicyListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/settings/content_policies/{policy_id}">client.email_security.settings.content_policies.<a href="./src/cloudflare/resources/email_security/settings/content_policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/content_policy_delete_response.py">Optional[ContentPolicyDeleteResponse]</a></code>
+- <code title="post /accounts/{account_id}/email-security/settings/content_policies/batch">client.email_security.settings.content_policies.<a href="./src/cloudflare/resources/email_security/settings/content_policies.py">batch</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/content_policy_batch_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/content_policy_batch_response.py">Optional[ContentPolicyBatchResponse]</a></code>
+- <code title="patch /accounts/{account_id}/email-security/settings/content_policies/{policy_id}">client.email_security.settings.content_policies.<a href="./src/cloudflare/resources/email_security/settings/content_policies.py">edit</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/content_policy_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/content_policy_edit_response.py">Optional[ContentPolicyEditResponse]</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/content_policies/{policy_id}">client.email_security.settings.content_policies.<a href="./src/cloudflare/resources/email_security/settings/content_policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/content_policy_get_response.py">Optional[ContentPolicyGetResponse]</a></code>
+
 ### Domains
 
 Types:

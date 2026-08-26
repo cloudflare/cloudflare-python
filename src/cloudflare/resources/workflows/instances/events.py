@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -19,6 +19,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workflows.instances import event_create_params
+from ....types.workflows.instances.event_create_response import EventCreateResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
 
@@ -57,7 +58,7 @@ class EventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> EventCreateResponse:
         """
         Sends an event to a running workflow instance to trigger state transitions.
 
@@ -96,9 +97,9 @@ class EventsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[EventCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[EventCreateResponse], ResultWrapper[EventCreateResponse]),
         )
 
 
@@ -136,7 +137,7 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> EventCreateResponse:
         """
         Sends an event to a running workflow instance to trigger state transitions.
 
@@ -175,9 +176,9 @@ class AsyncEventsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[EventCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[EventCreateResponse], ResultWrapper[EventCreateResponse]),
         )
 
 

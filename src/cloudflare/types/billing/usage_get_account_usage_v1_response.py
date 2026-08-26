@@ -86,7 +86,7 @@ class UsageGetAccountUsageV1ResponseItem(BaseModel):
     """Specifies the cumulated cost for the billing period in the billing currency."""
 
     cumulated_pricing_quantity: int = FieldInfo(alias="CumulatedPricingQuantity")
-    """Specifies the cumulated pricing quantity for the billing period."""
+    """Specifies the portion of usage that is actually subject to a unit price."""
 
     effective_cost: float = FieldInfo(alias="EffectiveCost")
     """The amortized cost of the charge.

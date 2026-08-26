@@ -59,7 +59,10 @@ class PayloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PayloadCreateResponse]:
         """
-        Add custom scan expressions for Content Scanning.
+        Create one or more Content Scanning custom expressions, appending them to the
+        existing list of the zone, and return the updated list. Each expression reaches
+        content objects the scanner cannot find automatically, for example
+        `lookup_json_string(http.request.body.raw, "file")`.
 
         Args:
           zone_id: Defines an identifier.
@@ -97,7 +100,10 @@ class PayloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PayloadListResponse]:
         """
-        Get a list of existing custom scan expressions for Content Scanning.
+        List the Content Scanning custom expressions configured for the zone, each with
+        its own identifier. A custom expression tells the scanner how to reach content
+        objects in a request it cannot parse on its own, such as files Base64-encoded
+        inside a JSON body.
 
         Args:
           zone_id: Defines an identifier.
@@ -134,12 +140,14 @@ class PayloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PayloadDeleteResponse]:
         """
-        Delete a Content Scan Custom Expression.
+        Delete the Content Scanning custom expression with the given identifier and
+        return the expressions that remain. Content objects reached only by the deleted
+        expression are no longer scanned.
 
         Args:
           zone_id: Defines an identifier.
 
-          expression_id: defines the unique ID for this custom scan expression.
+          expression_id: Defines the unique ID for this Content Scanning custom expression.
 
           extra_headers: Send extra headers
 
@@ -201,7 +209,10 @@ class AsyncPayloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PayloadCreateResponse, AsyncSinglePage[PayloadCreateResponse]]:
         """
-        Add custom scan expressions for Content Scanning.
+        Create one or more Content Scanning custom expressions, appending them to the
+        existing list of the zone, and return the updated list. Each expression reaches
+        content objects the scanner cannot find automatically, for example
+        `lookup_json_string(http.request.body.raw, "file")`.
 
         Args:
           zone_id: Defines an identifier.
@@ -239,7 +250,10 @@ class AsyncPayloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PayloadListResponse, AsyncSinglePage[PayloadListResponse]]:
         """
-        Get a list of existing custom scan expressions for Content Scanning.
+        List the Content Scanning custom expressions configured for the zone, each with
+        its own identifier. A custom expression tells the scanner how to reach content
+        objects in a request it cannot parse on its own, such as files Base64-encoded
+        inside a JSON body.
 
         Args:
           zone_id: Defines an identifier.
@@ -276,12 +290,14 @@ class AsyncPayloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PayloadDeleteResponse, AsyncSinglePage[PayloadDeleteResponse]]:
         """
-        Delete a Content Scan Custom Expression.
+        Delete the Content Scanning custom expression with the given identifier and
+        return the expressions that remain. Content objects reached only by the deleted
+        expression are no longer scanned.
 
         Args:
           zone_id: Defines an identifier.
 
-          expression_id: defines the unique ID for this custom scan expression.
+          expression_id: Defines the unique ID for this Content Scanning custom expression.
 
           extra_headers: Send extra headers
 

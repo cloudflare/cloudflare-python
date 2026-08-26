@@ -70,7 +70,7 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DiscoveryOperation]:
         """
-        Retrieve the most up to date view of discovered operations
+        Returns the latest web and API operations discovered from zone traffic.
 
         Args:
           zone_id: Identifier.
@@ -158,7 +158,7 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkEditResponse:
         """
-        Update the `state` on one or more discovered operations
+        Updates the state of one or more discovered web and API operations.
 
         Args:
           zone_id: Identifier.
@@ -230,7 +230,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DiscoveryOperation, AsyncV4PagePaginationArray[DiscoveryOperation]]:
         """
-        Retrieve the most up to date view of discovered operations
+        Returns the latest web and API operations discovered from zone traffic.
 
         Args:
           zone_id: Identifier.
@@ -318,7 +318,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkEditResponse:
         """
-        Update the `state` on one or more discovered operations
+        Updates the state of one or more discovered web and API operations.
 
         Args:
           zone_id: Identifier.

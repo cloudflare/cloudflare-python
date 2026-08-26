@@ -73,7 +73,7 @@ class CookiesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[CookieListResponse]:
         """
-        Lists all cookies collected by Page Shield.
+        Lists cookies detected on the zone.
 
         Args:
           zone_id: Identifier
@@ -176,7 +176,7 @@ class CookiesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CookieGetResponse]:
         """
-        Fetches a cookie collected by Page Shield by cookie ID.
+        Returns a cookie detected on the zone by cookie ID.
 
         Args:
           zone_id: Identifier
@@ -254,7 +254,7 @@ class AsyncCookiesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CookieListResponse, AsyncSinglePage[CookieListResponse]]:
         """
-        Lists all cookies collected by Page Shield.
+        Lists cookies detected on the zone.
 
         Args:
           zone_id: Identifier
@@ -357,7 +357,7 @@ class AsyncCookiesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CookieGetResponse]:
         """
-        Fetches a cookie collected by Page Shield by cookie ID.
+        Returns a cookie detected on the zone by cookie ID.
 
         Args:
           zone_id: Identifier

@@ -8,7 +8,6 @@ from .scope import Scope as Scope
 from .cf1_site import Cf1Site as Cf1Site
 from .pcap_filter import PCAPFilter as PCAPFilter
 from .scope_param import ScopeParam as ScopeParam
-from .health_check import HealthCheck as HealthCheck
 from .psk_metadata import PSKMetadata as PSKMetadata
 from .site_location import SiteLocation as SiteLocation
 from .cf1_site_param import Cf1SiteParam as Cf1SiteParam
@@ -24,7 +23,6 @@ from .health_check_rate import HealthCheckRate as HealthCheckRate
 from .health_check_type import HealthCheckType as HealthCheckType
 from .pcap_filter_param import PCAPFilterParam as PCAPFilterParam
 from .pcap_get_response import PCAPGetResponse as PCAPGetResponse
-from .health_check_param import HealthCheckParam as HealthCheckParam
 from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
 from .pcap_list_response import PCAPListResponse as PCAPListResponse
 from .route_get_response import RouteGetResponse as RouteGetResponse

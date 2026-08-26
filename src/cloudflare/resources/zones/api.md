@@ -118,6 +118,19 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/transformations_c2pa">client.zones.transformations_c2pa.<a href="./src/cloudflare/resources/zones/transformations_c2pa.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/transformations_c2pa_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/transformations_c2pa.py">Optional[TransformationsC2pa]</a></code>
 - <code title="get /zones/{zone_id}/settings/transformations_c2pa">client.zones.transformations_c2pa.<a href="./src/cloudflare/resources/zones/transformations_c2pa.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/transformations_c2pa.py">Optional[TransformationsC2pa]</a></code>
 
+## NEL
+
+Types:
+
+```python
+from cloudflare.types.zones import Setting
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_id}/settings/nel">client.zones.nel.<a href="./src/cloudflare/resources/zones/nel.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/nel_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/setting.py">Setting</a></code>
+- <code title="get /zones/{zone_id}/settings/nel">client.zones.nel.<a href="./src/cloudflare/resources/zones/nel.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/setting.py">Setting</a></code>
+
 ## Environments
 
 Types:

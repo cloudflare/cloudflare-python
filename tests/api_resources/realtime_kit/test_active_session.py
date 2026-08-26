@@ -247,8 +247,18 @@ class TestActiveSession:
             meeting_id="meeting_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
+        )
+        assert_matches_type(ActiveSessionKickParticipantsResponse, active_session, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @parametrize
+    def test_method_kick_participants_with_all_params(self, client: Cloudflare) -> None:
+        active_session = client.realtime_kit.active_session.kick_participants(
+            meeting_id="meeting_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="app_id",
             custom_participant_ids=["string"],
-            participant_ids=["string"],
+            participant_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(ActiveSessionKickParticipantsResponse, active_session, path=["response"])
 
@@ -259,8 +269,6 @@ class TestActiveSession:
             meeting_id="meeting_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
-            custom_participant_ids=["string"],
-            participant_ids=["string"],
         )
 
         assert response.is_closed is True
@@ -275,8 +283,6 @@ class TestActiveSession:
             meeting_id="meeting_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
-            custom_participant_ids=["string"],
-            participant_ids=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -294,8 +300,6 @@ class TestActiveSession:
                 meeting_id="meeting_id",
                 account_id="",
                 app_id="app_id",
-                custom_participant_ids=["string"],
-                participant_ids=["string"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
@@ -303,8 +307,6 @@ class TestActiveSession:
                 meeting_id="meeting_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
-                custom_participant_ids=["string"],
-                participant_ids=["string"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `meeting_id` but received ''"):
@@ -312,8 +314,6 @@ class TestActiveSession:
                 meeting_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="app_id",
-                custom_participant_ids=["string"],
-                participant_ids=["string"],
             )
 
 
@@ -547,8 +547,18 @@ class TestAsyncActiveSession:
             meeting_id="meeting_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
+        )
+        assert_matches_type(ActiveSessionKickParticipantsResponse, active_session, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @parametrize
+    async def test_method_kick_participants_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        active_session = await async_client.realtime_kit.active_session.kick_participants(
+            meeting_id="meeting_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="app_id",
             custom_participant_ids=["string"],
-            participant_ids=["string"],
+            participant_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(ActiveSessionKickParticipantsResponse, active_session, path=["response"])
 
@@ -559,8 +569,6 @@ class TestAsyncActiveSession:
             meeting_id="meeting_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
-            custom_participant_ids=["string"],
-            participant_ids=["string"],
         )
 
         assert response.is_closed is True
@@ -575,8 +583,6 @@ class TestAsyncActiveSession:
             meeting_id="meeting_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="app_id",
-            custom_participant_ids=["string"],
-            participant_ids=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -594,8 +600,6 @@ class TestAsyncActiveSession:
                 meeting_id="meeting_id",
                 account_id="",
                 app_id="app_id",
-                custom_participant_ids=["string"],
-                participant_ids=["string"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
@@ -603,8 +607,6 @@ class TestAsyncActiveSession:
                 meeting_id="meeting_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
-                custom_participant_ids=["string"],
-                participant_ids=["string"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `meeting_id` but received ''"):
@@ -612,6 +614,4 @@ class TestAsyncActiveSession:
                 meeting_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="app_id",
-                custom_participant_ids=["string"],
-                participant_ids=["string"],
             )

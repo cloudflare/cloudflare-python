@@ -48,7 +48,7 @@ class SearchParams(BaseModel):
     alert_id: Optional[str] = None
 
     delivery_status: Optional[
-        Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+        Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"]
     ] = None
     """Delivery status of the message."""
 

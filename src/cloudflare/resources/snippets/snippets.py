@@ -188,8 +188,10 @@ class SnippetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Deletes a snippet belonging to the zone.
+        """Deletes a snippet belonging to the zone.
+
+        Returns a 4XX response if the zone or
+        snippet no longer exists.
 
         Args:
           zone_id: Use this field to specify the unique ID of the zone.
@@ -410,8 +412,10 @@ class AsyncSnippetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Deletes a snippet belonging to the zone.
+        """Deletes a snippet belonging to the zone.
+
+        Returns a 4XX response if the zone or
+        snippet no longer exists.
 
         Args:
           zone_id: Use this field to specify the unique ID of the zone.

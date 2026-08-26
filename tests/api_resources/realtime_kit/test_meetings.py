@@ -71,7 +71,6 @@ class TestMeetings:
                 "max_seconds": 60,
                 "realtimekit_bucket_config": {"enabled": True},
                 "storage_config": {
-                    "type": "aws",
                     "access_key": "access_key",
                     "auth_method": "KEY",
                     "bucket": "bucket",
@@ -82,6 +81,7 @@ class TestMeetings:
                     "private_key": "private_key",
                     "region": "us-east-1",
                     "secret": "secret",
+                    "type": "gcs",
                     "username": "username",
                 },
                 "video_config": {
@@ -826,7 +826,6 @@ class TestMeetings:
                 "max_seconds": 60,
                 "realtimekit_bucket_config": {"enabled": True},
                 "storage_config": {
-                    "type": "aws",
                     "access_key": "access_key",
                     "auth_method": "KEY",
                     "bucket": "bucket",
@@ -837,6 +836,7 @@ class TestMeetings:
                     "private_key": "private_key",
                     "region": "us-east-1",
                     "secret": "secret",
+                    "type": "gcs",
                     "username": "username",
                 },
                 "video_config": {
@@ -958,7 +958,6 @@ class TestMeetings:
                 "max_seconds": 60,
                 "realtimekit_bucket_config": {"enabled": True},
                 "storage_config": {
-                    "type": "aws",
                     "access_key": "access_key",
                     "auth_method": "KEY",
                     "bucket": "bucket",
@@ -969,6 +968,7 @@ class TestMeetings:
                     "private_key": "private_key",
                     "region": "us-east-1",
                     "secret": "secret",
+                    "type": "gcs",
                     "username": "username",
                 },
                 "video_config": {
@@ -1095,7 +1095,6 @@ class TestAsyncMeetings:
                 "max_seconds": 60,
                 "realtimekit_bucket_config": {"enabled": True},
                 "storage_config": {
-                    "type": "aws",
                     "access_key": "access_key",
                     "auth_method": "KEY",
                     "bucket": "bucket",
@@ -1106,6 +1105,7 @@ class TestAsyncMeetings:
                     "private_key": "private_key",
                     "region": "us-east-1",
                     "secret": "secret",
+                    "type": "gcs",
                     "username": "username",
                 },
                 "video_config": {
@@ -1850,7 +1850,6 @@ class TestAsyncMeetings:
                 "max_seconds": 60,
                 "realtimekit_bucket_config": {"enabled": True},
                 "storage_config": {
-                    "type": "aws",
                     "access_key": "access_key",
                     "auth_method": "KEY",
                     "bucket": "bucket",
@@ -1861,6 +1860,7 @@ class TestAsyncMeetings:
                     "private_key": "private_key",
                     "region": "us-east-1",
                     "secret": "secret",
+                    "type": "gcs",
                     "username": "username",
                 },
                 "video_config": {
@@ -1982,7 +1982,6 @@ class TestAsyncMeetings:
                 "max_seconds": 60,
                 "realtimekit_bucket_config": {"enabled": True},
                 "storage_config": {
-                    "type": "aws",
                     "access_key": "access_key",
                     "auth_method": "KEY",
                     "bucket": "bucket",
@@ -1993,6 +1992,7 @@ class TestAsyncMeetings:
                     "private_key": "private_key",
                     "region": "us-east-1",
                     "secret": "secret",
+                    "type": "gcs",
                     "username": "username",
                 },
                 "video_config": {

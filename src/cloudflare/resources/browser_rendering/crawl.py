@@ -83,6 +83,7 @@ class CrawlResource(SyncAPIResource):
         | Omit = omit,
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
+        content_use: Literal["reference", "full"] | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
@@ -163,6 +164,11 @@ class CrawlResource(SyncAPIResource):
 
           best_attempt: Attempt to proceed when 'awaited' events fail or timeout.
 
+          content_use: Intended content use level to respect the `use` Content-Signal directive in
+              robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
+              disallowed when the publisher's declared `use` level is lower than this intent.
+              Learn more: https://contentsignals.org/. Default: 'full'.
+
           cookies: Check [options](https://pptr.dev/api/puppeteer.page.setcookie).
 
           crawl_purposes: List of crawl purposes to respect Content-Signal directives in robots.txt.
@@ -229,6 +235,7 @@ class CrawlResource(SyncAPIResource):
         render: Literal[False],
         url: str,
         cache_ttl: float | Omit = omit,
+        content_use: Literal["reference", "full"] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
         formats: List[Literal["html", "markdown", "json"]] | Omit = omit,
@@ -258,6 +265,11 @@ class CrawlResource(SyncAPIResource):
           url: URL to navigate to, eg. `https://example.com`.
 
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
+
+          content_use: Intended content use level to respect the `use` Content-Signal directive in
+              robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
+              disallowed when the publisher's declared `use` level is lower than this intent.
+              Learn more: https://contentsignals.org/. Default: 'full'.
 
           crawl_purposes: List of crawl purposes to respect Content-Signal directives in robots.txt.
               Allowed values: 'search', 'ai-input', 'ai-train'. Learn more:
@@ -334,6 +346,7 @@ class CrawlResource(SyncAPIResource):
         | Omit = omit,
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
+        content_use: Literal["reference", "full"] | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
@@ -397,6 +410,7 @@ class CrawlResource(SyncAPIResource):
                     "allow_resource_types": allow_resource_types,
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
+                    "content_use": content_use,
                     "cookies": cookies,
                     "crawl_purposes": crawl_purposes,
                     "depth": depth,
@@ -602,6 +616,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         | Omit = omit,
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
+        content_use: Literal["reference", "full"] | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
@@ -682,6 +697,11 @@ class AsyncCrawlResource(AsyncAPIResource):
 
           best_attempt: Attempt to proceed when 'awaited' events fail or timeout.
 
+          content_use: Intended content use level to respect the `use` Content-Signal directive in
+              robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
+              disallowed when the publisher's declared `use` level is lower than this intent.
+              Learn more: https://contentsignals.org/. Default: 'full'.
+
           cookies: Check [options](https://pptr.dev/api/puppeteer.page.setcookie).
 
           crawl_purposes: List of crawl purposes to respect Content-Signal directives in robots.txt.
@@ -748,6 +768,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         render: Literal[False],
         url: str,
         cache_ttl: float | Omit = omit,
+        content_use: Literal["reference", "full"] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
         formats: List[Literal["html", "markdown", "json"]] | Omit = omit,
@@ -777,6 +798,11 @@ class AsyncCrawlResource(AsyncAPIResource):
           url: URL to navigate to, eg. `https://example.com`.
 
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
+
+          content_use: Intended content use level to respect the `use` Content-Signal directive in
+              robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
+              disallowed when the publisher's declared `use` level is lower than this intent.
+              Learn more: https://contentsignals.org/. Default: 'full'.
 
           crawl_purposes: List of crawl purposes to respect Content-Signal directives in robots.txt.
               Allowed values: 'search', 'ai-input', 'ai-train'. Learn more:
@@ -853,6 +879,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         | Omit = omit,
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
+        content_use: Literal["reference", "full"] | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
         depth: float | Omit = omit,
@@ -916,6 +943,7 @@ class AsyncCrawlResource(AsyncAPIResource):
                     "allow_resource_types": allow_resource_types,
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
+                    "content_use": content_use,
                     "cookies": cookies,
                     "crawl_purposes": crawl_purposes,
                     "depth": depth,

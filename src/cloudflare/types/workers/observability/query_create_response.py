@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
@@ -244,7 +245,7 @@ class QueryCreateResponse(BaseModel):
     adhoc: bool
     """If the query wasn't explcitly saved"""
 
-    created: str
+    created: datetime
 
     created_by: str = FieldInfo(alias="createdBy")
 
@@ -255,6 +256,6 @@ class QueryCreateResponse(BaseModel):
 
     parameters: Parameters
 
-    updated: str
+    updated: datetime
 
     updated_by: str = FieldInfo(alias="updatedBy")

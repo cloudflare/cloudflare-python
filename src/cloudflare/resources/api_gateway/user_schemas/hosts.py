@@ -63,7 +63,8 @@ class HostsResource(SyncAPIResource):
         """Lists all unique hosts found in uploaded OpenAPI schemas for the zone.
 
         Useful
-        for understanding which domains have schema coverage.
+        for understanding which domains have schema coverage. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/hosts` instead.
 
         Args:
           zone_id: Identifier.
@@ -141,7 +142,8 @@ class AsyncHostsResource(AsyncAPIResource):
         """Lists all unique hosts found in uploaded OpenAPI schemas for the zone.
 
         Useful
-        for understanding which domains have schema coverage.
+        for understanding which domains have schema coverage. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/hosts` instead.
 
         Args:
           zone_id: Identifier.

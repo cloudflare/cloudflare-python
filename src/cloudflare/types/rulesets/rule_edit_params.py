@@ -218,6 +218,7 @@ __all__ = [
     "SetCacheSettingsRuleActionParametersEdgeTTL",
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL",
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
+    "SetCacheSettingsRuleActionParametersOriginRangeRequests",
     "SetCacheSettingsRuleActionParametersServeStale",
     "SetCacheSettingsRuleActionParametersSharedDictionary",
     "SetCacheSettingsRuleActionParametersVary",
@@ -3583,6 +3584,18 @@ class SetCacheSettingsRuleActionParametersEdgeTTL(TypedDict, total=False):
     """A list of TTLs to apply to specific status codes or status code ranges."""
 
 
+class SetCacheSettingsRuleActionParametersOriginRangeRequests(TypedDict, total=False):
+    """
+    Controls whether Cloudflare fetches a large asset from the origin as a series of range requests instead of one whole-body request.
+    """
+
+    mode: Required[Literal["on", "off", "default"]]
+    """Whether to use range requests.
+
+    `default` is the behaviour the zone gets without this rule.
+    """
+
+
 class SetCacheSettingsRuleActionParametersServeStale(TypedDict, total=False):
     """When to serve stale content from cache."""
 
@@ -3690,6 +3703,12 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
 
     origin_error_page_passthru: bool
     """Whether to generate Cloudflare error pages for issues from the origin server."""
+
+    origin_range_requests: SetCacheSettingsRuleActionParametersOriginRangeRequests
+    """
+    Controls whether Cloudflare fetches a large asset from the origin as a series of
+    range requests instead of one whole-body request.
+    """
 
     read_timeout: int
     """

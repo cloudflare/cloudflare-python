@@ -38,7 +38,7 @@ class RegistrationGetResponse(BaseModel):
     locked: bool
     """Whether the domain is locked for transfer."""
 
-    privacy_mode: Literal["redaction"]
+    privacy_mode: Literal["off", "redaction"]
     """Current WHOIS privacy mode for the registration."""
 
     status: Literal["active", "registration_pending", "expired", "suspended", "redemption_period", "pending_delete"]

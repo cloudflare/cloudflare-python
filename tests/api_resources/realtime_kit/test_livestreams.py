@@ -573,8 +573,8 @@ class TestLivestreams:
         livestream = client.realtime_kit.livestreams.get_org_analytics(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            end_date="2022-09-22",
-            start_date="2022-09-01",
+            end_date="2022-09-22T00:00:00Z",
+            start_date="2022-09-01T00:00:00Z",
         )
         assert_matches_type(LivestreamGetOrgAnalyticsResponse, livestream, path=["response"])
 
@@ -1339,8 +1339,8 @@ class TestAsyncLivestreams:
         livestream = await async_client.realtime_kit.livestreams.get_org_analytics(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            end_date="2022-09-22",
-            start_date="2022-09-01",
+            end_date="2022-09-22T00:00:00Z",
+            start_date="2022-09-01T00:00:00Z",
         )
         assert_matches_type(LivestreamGetOrgAnalyticsResponse, livestream, path=["response"])
 

@@ -121,8 +121,11 @@ class CloudflaredResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudflareTunnel:
-        """
-        Creates a new Cloudflare Tunnel in an account.
+        """Creates a remotely or locally managed Cloudflare Tunnel in an account.
+
+        After
+        creation, retrieve its token and run cloudflared to establish the connector
+        connection.
 
         Args:
           account_id: Cloudflare account ID
@@ -263,8 +266,10 @@ class CloudflaredResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudflareTunnel:
-        """
-        Deletes a Cloudflare Tunnel from an account.
+        """Permanently deletes a Cloudflare Tunnel from an account.
+
+        The tunnel must have no
+        active connections.
 
         Args:
           account_id: Cloudflare account ID
@@ -310,7 +315,7 @@ class CloudflaredResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudflareTunnel:
         """
-        Updates an existing Cloudflare Tunnel.
+        Updates the name or secret of an existing Cloudflare Tunnel.
 
         Args:
           account_id: Cloudflare account ID
@@ -452,8 +457,11 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudflareTunnel:
-        """
-        Creates a new Cloudflare Tunnel in an account.
+        """Creates a remotely or locally managed Cloudflare Tunnel in an account.
+
+        After
+        creation, retrieve its token and run cloudflared to establish the connector
+        connection.
 
         Args:
           account_id: Cloudflare account ID
@@ -594,8 +602,10 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudflareTunnel:
-        """
-        Deletes a Cloudflare Tunnel from an account.
+        """Permanently deletes a Cloudflare Tunnel from an account.
+
+        The tunnel must have no
+        active connections.
 
         Args:
           account_id: Cloudflare account ID
@@ -641,7 +651,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudflareTunnel:
         """
-        Updates an existing Cloudflare Tunnel.
+        Updates the name or secret of an existing Cloudflare Tunnel.
 
         Args:
           account_id: Cloudflare account ID

@@ -98,6 +98,14 @@ class Variant0(TypedDict, total=False):
     best_attempt: Annotated[bool, PropertyInfo(alias="bestAttempt")]
     """Attempt to proceed when 'awaited' events fail or timeout."""
 
+    content_use: Annotated[Literal["reference", "full"], PropertyInfo(alias="contentUse")]
+    """
+    Intended content use level to respect the `use` Content-Signal directive in
+    robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
+    disallowed when the publisher's declared `use` level is lower than this intent.
+    Learn more: https://contentsignals.org/. Default: 'full'.
+    """
+
     cookies: Iterable[Variant0Cookie]
     """Check [options](https://pptr.dev/api/puppeteer.page.setcookie)."""
 
@@ -394,6 +402,14 @@ class Variant1(TypedDict, total=False):
 
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
     """Cache TTL default is 5s. Set to 0 to disable."""
+
+    content_use: Annotated[Literal["reference", "full"], PropertyInfo(alias="contentUse")]
+    """
+    Intended content use level to respect the `use` Content-Signal directive in
+    robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
+    disallowed when the publisher's declared `use` level is lower than this intent.
+    Learn more: https://contentsignals.org/. Default: 'full'.
+    """
 
     crawl_purposes: Annotated[List[Literal["search", "ai-input", "ai-train"]], PropertyInfo(alias="crawlPurposes")]
     """List of crawl purposes to respect Content-Signal directives in robots.txt.

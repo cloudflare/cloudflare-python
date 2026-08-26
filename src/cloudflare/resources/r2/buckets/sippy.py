@@ -54,7 +54,7 @@ class SippyResource(SyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyAwsDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyAwsSource | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,7 +94,7 @@ class SippyResource(SyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyGcsDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyGcsSource | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -134,7 +134,7 @@ class SippyResource(SyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyS3Destination | Omit = omit,
         source: sippy_update_params.R2EnableSippyS3Source | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,7 +174,7 @@ class SippyResource(SyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyAzureDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyAzureSource | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,7 +222,7 @@ class SippyResource(SyncAPIResource):
         | sippy_update_params.R2EnableSippyS3Source
         | sippy_update_params.R2EnableSippyAzureSource
         | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -264,7 +264,7 @@ class SippyResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -317,7 +317,7 @@ class SippyResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -394,7 +394,7 @@ class AsyncSippyResource(AsyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyAwsDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyAwsSource | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -434,7 +434,7 @@ class AsyncSippyResource(AsyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyGcsDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyGcsSource | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -474,7 +474,7 @@ class AsyncSippyResource(AsyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyS3Destination | Omit = omit,
         source: sippy_update_params.R2EnableSippyS3Source | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -514,7 +514,7 @@ class AsyncSippyResource(AsyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyAzureDestination | Omit = omit,
         source: sippy_update_params.R2EnableSippyAzureSource | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -562,7 +562,7 @@ class AsyncSippyResource(AsyncAPIResource):
         | sippy_update_params.R2EnableSippyS3Source
         | sippy_update_params.R2EnableSippyAzureSource
         | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -604,7 +604,7 @@ class AsyncSippyResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -657,7 +657,7 @@ class AsyncSippyResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

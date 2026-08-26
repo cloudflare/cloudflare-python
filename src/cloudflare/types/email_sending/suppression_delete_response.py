@@ -2,9 +2,8 @@
 
 from ..._models import BaseModel
 
-__all__ = ["SchemaDeleteResponse"]
+__all__ = ["SuppressionDeleteResponse"]
 
 
-class SchemaDeleteResponse(BaseModel):
+class SuppressionDeleteResponse(BaseModel):
     id: str
-    """The ID of the schema that was just deleted"""

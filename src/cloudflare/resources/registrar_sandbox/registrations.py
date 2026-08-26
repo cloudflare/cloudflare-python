@@ -58,7 +58,7 @@ class RegistrationsResource(SyncAPIResource):
         auto_renew: bool | Omit = omit,
         contact_extensions: Dict[str, object] | Omit = omit,
         contacts: registration_create_params.Contacts | Omit = omit,
-        privacy_mode: Literal["redaction"] | Omit = omit,
+        privacy_mode: Literal["off", "redaction"] | Omit = omit,
         years: int | Omit = omit,
         prefer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -74,7 +74,7 @@ class RegistrationsResource(SyncAPIResource):
         ### Prerequisites
 
         - The account must not already be at the maximum supported domain limit. A
-          single account may own up to 100 domains in total across registrations created
+          single account may own up to 500 domains in total across registrations created
           through either the dashboard or this API.
         - The domain must be on a supported extension for programmatic registration.
         - Use `POST /domain-check` immediately before calling this endpoint to confirm
@@ -435,7 +435,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         auto_renew: bool | Omit = omit,
         contact_extensions: Dict[str, object] | Omit = omit,
         contacts: registration_create_params.Contacts | Omit = omit,
-        privacy_mode: Literal["redaction"] | Omit = omit,
+        privacy_mode: Literal["off", "redaction"] | Omit = omit,
         years: int | Omit = omit,
         prefer: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -451,7 +451,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         ### Prerequisites
 
         - The account must not already be at the maximum supported domain limit. A
-          single account may own up to 100 domains in total across registrations created
+          single account may own up to 500 domains in total across registrations created
           through either the dashboard or this API.
         - The domain must be on a supported extension for programmatic registration.
         - Use `POST /domain-check` immediately before calling this endpoint to confirm

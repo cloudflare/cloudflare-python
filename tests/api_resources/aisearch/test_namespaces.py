@@ -293,13 +293,13 @@ class TestNamespaces:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [
@@ -324,7 +324,7 @@ class TestNamespaces:
                     "role": "system",
                 }
             ],
-            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            model="model",
             stream=True,
         )
         assert_matches_type(NamespaceChatCompletionsResponse, namespace, path=["response"])
@@ -467,13 +467,13 @@ class TestNamespaces:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [
@@ -820,13 +820,13 @@ class TestAsyncNamespaces:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [
@@ -851,7 +851,7 @@ class TestAsyncNamespaces:
                     "role": "system",
                 }
             ],
-            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            model="model",
             stream=True,
         )
         assert_matches_type(NamespaceChatCompletionsResponse, namespace, path=["response"])
@@ -994,13 +994,13 @@ class TestAsyncNamespaces:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [

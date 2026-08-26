@@ -62,7 +62,11 @@ class DetectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetectionCreateResponse:
         """
-        Create user-defined detection pattern for Leaked Credential Checks.
+        Create a detection location for credentials that the default scan locations do
+        not cover, using Rules language expressions such as
+        `lookup_json_string(http.request.body.raw, "user")`. Only the username
+        expression is required, and Leaked Credential Checks must be enabled on the
+        zone.
 
         Args:
           zone_id: Defines an identifier.
@@ -115,7 +119,9 @@ class DetectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetectionUpdateResponse:
         """
-        Update user-defined detection pattern for Leaked Credential Checks.
+        Update the username and password expressions of an existing detection location,
+        identified by its detection ID. Both expressions are overwritten, so omitting
+        the password expression clears it.
 
         Args:
           zone_id: Defines an identifier.
@@ -173,7 +179,9 @@ class DetectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DetectionListResponse]:
         """
-        List user-defined detection patterns for Leaked Credential Checks.
+        List the user-defined detection locations configured for Leaked Credential
+        Checks, each with its own identifier. A custom detection location tells the WAF
+        where to find the username and password in requests to your application.
 
         Args:
           zone_id: Defines an identifier.
@@ -210,7 +218,9 @@ class DetectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Remove user-defined detection pattern for Leaked Credential Checks.
+        Delete a user-defined detection location, identified by its detection ID.
+        Incoming requests are then scanned using only the default scan locations and the
+        detection locations that remain.
 
         Args:
           zone_id: Defines an identifier.
@@ -258,7 +268,8 @@ class DetectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetectionGetResponse:
         """
-        Get user-defined detection pattern for Leaked Credential Checks.
+        Get the username and password expressions of a single user-defined detection
+        location, identified by its detection ID.
 
         Args:
           zone_id: Defines an identifier.
@@ -328,7 +339,11 @@ class AsyncDetectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetectionCreateResponse:
         """
-        Create user-defined detection pattern for Leaked Credential Checks.
+        Create a detection location for credentials that the default scan locations do
+        not cover, using Rules language expressions such as
+        `lookup_json_string(http.request.body.raw, "user")`. Only the username
+        expression is required, and Leaked Credential Checks must be enabled on the
+        zone.
 
         Args:
           zone_id: Defines an identifier.
@@ -381,7 +396,9 @@ class AsyncDetectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetectionUpdateResponse:
         """
-        Update user-defined detection pattern for Leaked Credential Checks.
+        Update the username and password expressions of an existing detection location,
+        identified by its detection ID. Both expressions are overwritten, so omitting
+        the password expression clears it.
 
         Args:
           zone_id: Defines an identifier.
@@ -439,7 +456,9 @@ class AsyncDetectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DetectionListResponse, AsyncSinglePage[DetectionListResponse]]:
         """
-        List user-defined detection patterns for Leaked Credential Checks.
+        List the user-defined detection locations configured for Leaked Credential
+        Checks, each with its own identifier. A custom detection location tells the WAF
+        where to find the username and password in requests to your application.
 
         Args:
           zone_id: Defines an identifier.
@@ -476,7 +495,9 @@ class AsyncDetectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Remove user-defined detection pattern for Leaked Credential Checks.
+        Delete a user-defined detection location, identified by its detection ID.
+        Incoming requests are then scanned using only the default scan locations and the
+        detection locations that remain.
 
         Args:
           zone_id: Defines an identifier.
@@ -524,7 +545,8 @@ class AsyncDetectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DetectionGetResponse:
         """
-        Get user-defined detection pattern for Leaked Credential Checks.
+        Get the username and password expressions of a single user-defined detection
+        location, identified by its detection ID.
 
         Args:
           zone_id: Defines an identifier.

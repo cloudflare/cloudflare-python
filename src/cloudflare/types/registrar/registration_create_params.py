@@ -89,7 +89,7 @@ class RegistrationCreateParams(TypedDict, total=False):
     the registration request will fail with a validation error.
     """
 
-    privacy_mode: Literal["redaction"]
+    privacy_mode: Literal["off", "redaction"]
     """WHOIS privacy mode for the registration. Defaults to `redaction`.
 
     - `off`: Do not request WHOIS privacy.

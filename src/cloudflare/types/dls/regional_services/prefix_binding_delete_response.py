@@ -3,37 +3,14 @@
 from typing import List, Optional
 
 from ...._models import BaseModel
+from ...shared.response_info import ResponseInfo
 
-__all__ = ["PrefixBindingDeleteResponse", "Message", "Error"]
-
-
-class Message(BaseModel):
-    code: int
-
-    message: str
-
-    error_chain: Optional[List[object]] = None
-    """
-    Optional upstream error context for APIv4 errors that wrap downstream service
-    failures.
-    """
-
-
-class Error(BaseModel):
-    code: int
-
-    message: str
-
-    error_chain: Optional[List[object]] = None
-    """
-    Optional upstream error context for APIv4 errors that wrap downstream service
-    failures.
-    """
+__all__ = ["PrefixBindingDeleteResponse"]
 
 
 class PrefixBindingDeleteResponse(BaseModel):
-    messages: List[Message]
+    messages: List[ResponseInfo]
 
     success: bool
 
-    errors: Optional[List[Error]] = None
+    errors: Optional[List[ResponseInfo]] = None

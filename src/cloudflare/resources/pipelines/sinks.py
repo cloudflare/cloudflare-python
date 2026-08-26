@@ -20,7 +20,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.pipelines import sink_list_params, sink_create_params, sink_delete_params
+from ...types.pipelines import sink_list_params, sink_create_params
 from ...types.pipelines.sink_get_response import SinkGetResponse
 from ...types.pipelines.sink_list_response import SinkListResponse
 from ...types.pipelines.sink_create_response import SinkCreateResponse
@@ -167,7 +167,6 @@ class SinksResource(SyncAPIResource):
         sink_id: str,
         *,
         account_id: str,
-        force: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -182,8 +181,6 @@ class SinksResource(SyncAPIResource):
           account_id: Specifies the public ID of the account.
 
           sink_id: Specifies the publid ID of the sink.
-
-          force: Deprecated: Delete sink forcefully, including deleting any dependent pipelines.
 
           extra_headers: Send extra headers
 
@@ -206,7 +203,6 @@ class SinksResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"force": force}, sink_delete_params.SinkDeleteParams),
                 post_parser=ResultWrapper[object]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
@@ -398,7 +394,6 @@ class AsyncSinksResource(AsyncAPIResource):
         sink_id: str,
         *,
         account_id: str,
-        force: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -413,8 +408,6 @@ class AsyncSinksResource(AsyncAPIResource):
           account_id: Specifies the public ID of the account.
 
           sink_id: Specifies the publid ID of the sink.
-
-          force: Deprecated: Delete sink forcefully, including deleting any dependent pipelines.
 
           extra_headers: Send extra headers
 
@@ -437,7 +430,6 @@ class AsyncSinksResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"force": force}, sink_delete_params.SinkDeleteParams),
                 post_parser=ResultWrapper[object]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),

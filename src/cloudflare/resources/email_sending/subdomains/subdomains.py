@@ -14,7 +14,7 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
-from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -196,7 +196,8 @@ class SubdomainsResource(SyncAPIResource):
         subdomain_id: str,
         *,
         zone_id: str,
-        preview_enabled: bool,
+        drop_suppressed_recipients: bool | Omit = omit,
+        preview_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -211,6 +212,10 @@ class SubdomainsResource(SyncAPIResource):
           zone_id: Identifier.
 
           subdomain_id: Sending subdomain identifier.
+
+          drop_suppressed_recipients: Whether a send request that includes a recipient suppressed on this subdomain
+              drops that recipient and still delivers to the rest, instead of failing the
+              entire request.
 
           preview_enabled: Whether sent messages from this subdomain can be previewed in the activity log.
 
@@ -230,7 +235,13 @@ class SubdomainsResource(SyncAPIResource):
             path_template(
                 "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
             ),
-            body=maybe_transform({"preview_enabled": preview_enabled}, subdomain_edit_params.SubdomainEditParams),
+            body=maybe_transform(
+                {
+                    "drop_suppressed_recipients": drop_suppressed_recipients,
+                    "preview_enabled": preview_enabled,
+                },
+                subdomain_edit_params.SubdomainEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -447,7 +458,8 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         subdomain_id: str,
         *,
         zone_id: str,
-        preview_enabled: bool,
+        drop_suppressed_recipients: bool | Omit = omit,
+        preview_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -462,6 +474,10 @@ class AsyncSubdomainsResource(AsyncAPIResource):
           zone_id: Identifier.
 
           subdomain_id: Sending subdomain identifier.
+
+          drop_suppressed_recipients: Whether a send request that includes a recipient suppressed on this subdomain
+              drops that recipient and still delivers to the rest, instead of failing the
+              entire request.
 
           preview_enabled: Whether sent messages from this subdomain can be previewed in the activity log.
 
@@ -482,7 +498,11 @@ class AsyncSubdomainsResource(AsyncAPIResource):
                 "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
             ),
             body=await async_maybe_transform(
-                {"preview_enabled": preview_enabled}, subdomain_edit_params.SubdomainEditParams
+                {
+                    "drop_suppressed_recipients": drop_suppressed_recipients,
+                    "preview_enabled": preview_enabled,
+                },
+                subdomain_edit_params.SubdomainEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,

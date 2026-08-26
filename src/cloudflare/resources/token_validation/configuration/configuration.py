@@ -77,7 +77,7 @@ class ConfigurationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenConfig:
         """
-        Create a new Token Validation configuration
+        Creates a JWT validation configuration for the zone.
 
         Args:
           zone_id: Identifier.
@@ -131,7 +131,7 @@ class ConfigurationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[TokenConfig]:
         """
-        Lists all token validation configurations for this zone
+        Lists the JWT validation configurations defined for the zone.
 
         Args:
           zone_id: Identifier.
@@ -182,7 +182,7 @@ class ConfigurationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigurationDeleteResponse:
         """
-        Delete Token Configuration
+        Deletes a JWT validation configuration from the zone.
 
         Args:
           zone_id: Identifier.
@@ -229,7 +229,7 @@ class ConfigurationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigurationEditResponse:
         """
-        Edit fields of an existing Token Configuration
+        Updates only the supplied fields on a JWT validation configuration.
 
         Args:
           zone_id: Identifier.
@@ -281,7 +281,7 @@ class ConfigurationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenConfig:
         """
-        Get a single Token Configuration
+        Returns a JWT validation configuration by ID.
 
         Args:
           zone_id: Identifier.
@@ -354,7 +354,7 @@ class AsyncConfigurationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenConfig:
         """
-        Create a new Token Validation configuration
+        Creates a JWT validation configuration for the zone.
 
         Args:
           zone_id: Identifier.
@@ -408,7 +408,7 @@ class AsyncConfigurationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TokenConfig, AsyncV4PagePaginationArray[TokenConfig]]:
         """
-        Lists all token validation configurations for this zone
+        Lists the JWT validation configurations defined for the zone.
 
         Args:
           zone_id: Identifier.
@@ -459,7 +459,7 @@ class AsyncConfigurationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigurationDeleteResponse:
         """
-        Delete Token Configuration
+        Deletes a JWT validation configuration from the zone.
 
         Args:
           zone_id: Identifier.
@@ -506,7 +506,7 @@ class AsyncConfigurationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigurationEditResponse:
         """
-        Edit fields of an existing Token Configuration
+        Updates only the supplied fields on a JWT validation configuration.
 
         Args:
           zone_id: Identifier.
@@ -558,7 +558,7 @@ class AsyncConfigurationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenConfig:
         """
-        Get a single Token Configuration
+        Returns a JWT validation configuration by ID.
 
         Args:
           zone_id: Identifier.

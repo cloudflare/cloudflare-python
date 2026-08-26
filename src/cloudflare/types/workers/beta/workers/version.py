@@ -673,6 +673,12 @@ class BindingWorkersBindingKindVPCNetwork(BaseModel):
     type: Literal["vpc_network"]
     """The kind of resource that the binding provides."""
 
+    identity: Optional[Literal["runtime-email-alpha"]] = None
+    """Enables Gateway identity for the binding.
+
+    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id.
+    """
+
     network_id: Optional[str] = None
     """Identifier of the network to bind to.
 

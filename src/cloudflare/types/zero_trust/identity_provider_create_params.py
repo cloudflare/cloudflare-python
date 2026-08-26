@@ -772,6 +772,14 @@ class AccessSAMLConfig(TypedDict, total=False):
     issuer_url: str
     """IdP Entity ID or Issuer URL"""
 
+    max_sso_url_length: int
+    """
+    The maximum URL length the IdP accepts for the SSO redirect URL. When the
+    constructed SSO URL would exceed this length, the RelayState is stored
+    server-side and a short nonce is passed to the IdP instead. Set this if your IdP
+    enforces a URL length limit.
+    """
+
     sign_request: bool
     """Sign the SAML authentication request with Access credentials.
 

@@ -8,7 +8,30 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["LiveInput", "Recording", "Rtmps", "RtmpsPlayback", "Srt", "SrtPlayback", "WebRtc", "WebRtcPlayback"]
+__all__ = [
+    "LiveInput",
+    "Playback",
+    "Recording",
+    "Rtmps",
+    "RtmpsPlayback",
+    "Srt",
+    "SrtPlayback",
+    "WebRtc",
+    "WebRtcPlayback",
+]
+
+
+class Playback(BaseModel):
+    """Details for playing a live input's broadcast using the HLS or DASH manifests.
+
+    URLs reference the live input ID.
+    """
+
+    dash: str
+    """The DASH manifest URL used to play live video, referencing the live input ID."""
+
+    hls: str
+    """The HLS manifest URL used to play live video, referencing the live input ID."""
 
 
 class Recording(BaseModel):
@@ -145,6 +168,12 @@ class LiveInput(BaseModel):
 
     modified: Optional[datetime] = None
     """The date and time the live input was last modified."""
+
+    playback: Optional[Playback] = None
+    """Details for playing a live input's broadcast using the HLS or DASH manifests.
+
+    URLs reference the live input ID.
+    """
 
     prefer_low_latency: Optional[bool] = FieldInfo(alias="preferLowLatency", default=None)
     """

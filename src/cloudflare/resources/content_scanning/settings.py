@@ -55,7 +55,8 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingGetResponse:
         """
-        Retrieve the current status of Content Scanning.
+        Get the current Content Scanning status for the zone, together with the date the
+        status was last modified.
 
         Args:
           zone_id: Defines an identifier.
@@ -115,7 +116,8 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingGetResponse:
         """
-        Retrieve the current status of Content Scanning.
+        Get the current Content Scanning status for the zone, together with the date the
+        status was last modified.
 
         Args:
           zone_id: Defines an identifier.

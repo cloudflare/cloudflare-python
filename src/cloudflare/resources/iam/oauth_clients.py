@@ -65,6 +65,7 @@ class OAuthClientsResource(SyncAPIResource):
         allowed_cors_origins: SequenceNotStr[str] | Omit = omit,
         client_uri: str | Omit = omit,
         logo_uri: str | Omit = omit,
+        optional_scopes: SequenceNotStr[str] | Omit = omit,
         policy_uri: str | Omit = omit,
         post_logout_redirect_uris: SequenceNotStr[str] | Omit = omit,
         tos_uri: str | Omit = omit,
@@ -104,6 +105,10 @@ class OAuthClientsResource(SyncAPIResource):
 
           logo_uri: URL of the client's logo.
 
+          optional_scopes: Scopes that the authorizing user may decline during consent. Each value must
+              also appear in `scopes`. The scopes `openid`, `offline`, and `offline_access`
+              cannot be optional.
+
           policy_uri: URL that points to a privacy policy document.
 
           post_logout_redirect_uris: Array of allowed post-logout redirect URIs.
@@ -133,6 +138,7 @@ class OAuthClientsResource(SyncAPIResource):
                     "allowed_cors_origins": allowed_cors_origins,
                     "client_uri": client_uri,
                     "logo_uri": logo_uri,
+                    "optional_scopes": optional_scopes,
                     "policy_uri": policy_uri,
                     "post_logout_redirect_uris": post_logout_redirect_uris,
                     "tos_uri": tos_uri,
@@ -159,6 +165,7 @@ class OAuthClientsResource(SyncAPIResource):
         client_uri: str | Omit = omit,
         grant_types: List[Literal["authorization_code", "refresh_token"]] | Omit = omit,
         logo_uri: str | Omit = omit,
+        optional_scopes: SequenceNotStr[str] | Omit = omit,
         policy_uri: str | Omit = omit,
         post_logout_redirect_uris: SequenceNotStr[str] | Omit = omit,
         redirect_uris: SequenceNotStr[str] | Omit = omit,
@@ -193,6 +200,10 @@ class OAuthClientsResource(SyncAPIResource):
               required; `refresh_token` may be included optionally.
 
           logo_uri: URL of the client's logo.
+
+          optional_scopes: Scopes that the authorizing user may decline during consent. Each value must
+              also appear in `scopes`. The scopes `openid`, `offline`, and `offline_access`
+              cannot be optional.
 
           policy_uri: URL that points to a privacy policy document.
 
@@ -242,6 +253,7 @@ class OAuthClientsResource(SyncAPIResource):
                     "client_uri": client_uri,
                     "grant_types": grant_types,
                     "logo_uri": logo_uri,
+                    "optional_scopes": optional_scopes,
                     "policy_uri": policy_uri,
                     "post_logout_redirect_uris": post_logout_redirect_uris,
                     "redirect_uris": redirect_uris,
@@ -536,6 +548,7 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
         allowed_cors_origins: SequenceNotStr[str] | Omit = omit,
         client_uri: str | Omit = omit,
         logo_uri: str | Omit = omit,
+        optional_scopes: SequenceNotStr[str] | Omit = omit,
         policy_uri: str | Omit = omit,
         post_logout_redirect_uris: SequenceNotStr[str] | Omit = omit,
         tos_uri: str | Omit = omit,
@@ -575,6 +588,10 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
 
           logo_uri: URL of the client's logo.
 
+          optional_scopes: Scopes that the authorizing user may decline during consent. Each value must
+              also appear in `scopes`. The scopes `openid`, `offline`, and `offline_access`
+              cannot be optional.
+
           policy_uri: URL that points to a privacy policy document.
 
           post_logout_redirect_uris: Array of allowed post-logout redirect URIs.
@@ -604,6 +621,7 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
                     "allowed_cors_origins": allowed_cors_origins,
                     "client_uri": client_uri,
                     "logo_uri": logo_uri,
+                    "optional_scopes": optional_scopes,
                     "policy_uri": policy_uri,
                     "post_logout_redirect_uris": post_logout_redirect_uris,
                     "tos_uri": tos_uri,
@@ -630,6 +648,7 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
         client_uri: str | Omit = omit,
         grant_types: List[Literal["authorization_code", "refresh_token"]] | Omit = omit,
         logo_uri: str | Omit = omit,
+        optional_scopes: SequenceNotStr[str] | Omit = omit,
         policy_uri: str | Omit = omit,
         post_logout_redirect_uris: SequenceNotStr[str] | Omit = omit,
         redirect_uris: SequenceNotStr[str] | Omit = omit,
@@ -664,6 +683,10 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
               required; `refresh_token` may be included optionally.
 
           logo_uri: URL of the client's logo.
+
+          optional_scopes: Scopes that the authorizing user may decline during consent. Each value must
+              also appear in `scopes`. The scopes `openid`, `offline`, and `offline_access`
+              cannot be optional.
 
           policy_uri: URL that points to a privacy policy document.
 
@@ -713,6 +736,7 @@ class AsyncOAuthClientsResource(AsyncAPIResource):
                     "client_uri": client_uri,
                     "grant_types": grant_types,
                     "logo_uri": logo_uri,
+                    "optional_scopes": optional_scopes,
                     "policy_uri": policy_uri,
                     "post_logout_redirect_uris": post_logout_redirect_uris,
                     "redirect_uris": redirect_uris,

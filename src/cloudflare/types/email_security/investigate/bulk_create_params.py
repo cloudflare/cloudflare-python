@@ -37,7 +37,9 @@ class SearchParams(TypedDict, total=False):
 
     alert_id: Optional[str]
 
-    delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+    delivery_status: Literal[
+        "delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"
+    ]
     """Delivery status of the message."""
 
     detections_only: bool

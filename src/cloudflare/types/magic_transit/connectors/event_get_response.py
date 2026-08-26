@@ -28,9 +28,6 @@ class E(BaseModel):
     - `StartUpgrade`: Started upgrade
     - `FinishUpgradeSuccess`: Finished upgrade
     - `FinishUpgradeFailure`: Failed upgrade
-    - `BlessSlotSuccess`: Blessed boot entry slot
-    - `BlessSlotPending`: Boot entry slot is not yet blessed
-    - `BlessSlotFailure`: Failed to bless boot entry slot
     - `Reconcile`: Reconciled
     - `ConfigureCloudflaredTunnel`: Configured Cloudflared tunnel
     - `RekeyInstallBoth`: Installed initial inbound and outbound keys
@@ -60,9 +57,6 @@ class E(BaseModel):
         "StartUpgrade",
         "FinishUpgradeSuccess",
         "FinishUpgradeFailure",
-        "BlessSlotSuccess",
-        "BlessSlotPending",
-        "BlessSlotFailure",
         "Reconcile",
         "ConfigureCloudflaredTunnel",
         "RekeyInstallBoth",
@@ -113,9 +107,6 @@ class EventGetResponse(BaseModel):
     - `StartUpgrade`: Started upgrade
     - `FinishUpgradeSuccess`: Finished upgrade
     - `FinishUpgradeFailure`: Failed upgrade
-    - `BlessSlotSuccess`: Blessed boot entry slot
-    - `BlessSlotPending`: Boot entry slot is not yet blessed
-    - `BlessSlotFailure`: Failed to bless boot entry slot
     - `Reconcile`: Reconciled
     - `ConfigureCloudflaredTunnel`: Configured Cloudflared tunnel
     - `RekeyInstallBoth`: Installed initial inbound and outbound keys

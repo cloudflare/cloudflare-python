@@ -17,4 +17,7 @@ class PayloadCreateParams(TypedDict, total=False):
 
 class Body(TypedDict, total=False):
     payload: Required[str]
-    """Defines the ruleset expression to use in matching content objects."""
+    """
+    Defines the custom content extraction expression used to reach content objects
+    in the request.
+    """

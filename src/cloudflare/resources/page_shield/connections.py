@@ -21,7 +21,8 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.page_shield import connection_list_params
-from ...types.page_shield.connection import Connection
+from ...types.page_shield.connection_get_response import ConnectionGetResponse
+from ...types.page_shield.connection_list_response import ConnectionListResponse
 
 __all__ = ["ConnectionsResource", "AsyncConnectionsResource"]
 
@@ -68,9 +69,9 @@ class ConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[Connection]:
+    ) -> SyncSinglePage[ConnectionListResponse]:
         """
-        Lists all connections detected by Page Shield.
+        Lists outbound connections made by webpages in the zone.
 
         Args:
           zone_id: Identifier
@@ -131,7 +132,7 @@ class ConnectionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             path_template("/zones/{zone_id}/page_shield/connections", zone_id=zone_id),
-            page=SyncSinglePage[Connection],
+            page=SyncSinglePage[ConnectionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -155,7 +156,7 @@ class ConnectionsResource(SyncAPIResource):
                     connection_list_params.ConnectionListParams,
                 ),
             ),
-            model=Connection,
+            model=ConnectionListResponse,
         )
 
     def get(
@@ -169,9 +170,9 @@ class ConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[Connection]:
+    ) -> Optional[ConnectionGetResponse]:
         """
-        Fetches a connection detected by Page Shield by connection ID.
+        Returns a webpage connection detected on the zone by connection ID.
 
         Args:
           zone_id: Identifier
@@ -199,9 +200,9 @@ class ConnectionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Connection]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ConnectionGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Connection]], ResultWrapper[Connection]),
+            cast_to=cast(Type[Optional[ConnectionGetResponse]], ResultWrapper[ConnectionGetResponse]),
         )
 
 
@@ -247,9 +248,9 @@ class AsyncConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Connection, AsyncSinglePage[Connection]]:
+    ) -> AsyncPaginator[ConnectionListResponse, AsyncSinglePage[ConnectionListResponse]]:
         """
-        Lists all connections detected by Page Shield.
+        Lists outbound connections made by webpages in the zone.
 
         Args:
           zone_id: Identifier
@@ -310,7 +311,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             path_template("/zones/{zone_id}/page_shield/connections", zone_id=zone_id),
-            page=AsyncSinglePage[Connection],
+            page=AsyncSinglePage[ConnectionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -334,7 +335,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
                     connection_list_params.ConnectionListParams,
                 ),
             ),
-            model=Connection,
+            model=ConnectionListResponse,
         )
 
     async def get(
@@ -348,9 +349,9 @@ class AsyncConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[Connection]:
+    ) -> Optional[ConnectionGetResponse]:
         """
-        Fetches a connection detected by Page Shield by connection ID.
+        Returns a webpage connection detected on the zone by connection ID.
 
         Args:
           zone_id: Identifier
@@ -378,9 +379,9 @@ class AsyncConnectionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Connection]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ConnectionGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Connection]], ResultWrapper[Connection]),
+            cast_to=cast(Type[Optional[ConnectionGetResponse]], ResultWrapper[ConnectionGetResponse]),
         )
 
 

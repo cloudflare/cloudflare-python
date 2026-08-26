@@ -1,12 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
-from .health_check import HealthCheck
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
-__all__ = ["CfInterconnectListResponse", "Interconnect", "InterconnectBGP", "InterconnectGRE"]
+__all__ = [
+    "CfInterconnectListResponse",
+    "Interconnect",
+    "InterconnectBGP",
+    "InterconnectGRE",
+    "InterconnectHealthCheck",
+    "InterconnectHealthCheckTarget",
+    "InterconnectHealthCheckTargetMagicHealthCheckTarget",
+]
 
 
 class InterconnectBGP(BaseModel):
@@ -57,13 +67,78 @@ class InterconnectBGP(BaseModel):
 
 
 class InterconnectGRE(BaseModel):
-    """The configuration specific to GRE interconnects."""
+    """Omitted in responses for version 1.5 interconnects."""
 
     cloudflare_endpoint: Optional[str] = None
     """
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part
     of the Interconnect.
     """
+
+
+class InterconnectHealthCheckTargetMagicHealthCheckTarget(BaseModel):
+    """The destination address in a request type health check.
+
+    After the healthcheck is decapsulated at the customer end of the tunnel, the ICMP echo will be forwarded to this address. This field defaults to `customer_gre_endpoint address`. This field is ignored for bidirectional healthchecks as the interface_address (not assigned to the Cloudflare side of the tunnel) is used as the target.
+    """
+
+    effective: Optional[str] = None
+    """The effective health check target.
+
+    If 'saved' is empty, then this field will be populated with the calculated
+    default value on GET requests. Ignored in POST, PUT, and PATCH requests.
+    """
+
+    saved: Optional[str] = None
+    """The saved health check target.
+
+    Setting the value to the empty string indicates that the calculated default
+    value will be used.
+    """
+
+
+InterconnectHealthCheckTarget: TypeAlias = Union[InterconnectHealthCheckTargetMagicHealthCheckTarget, str]
+
+
+class InterconnectHealthCheck(BaseModel):
+    direction: Optional[Literal["unidirectional", "bidirectional"]] = None
+    """The direction of the flow of the healthcheck.
+
+    Either unidirectional, where the probe comes to you via the interconnect and the
+    result comes back to Cloudflare via the open Internet, or bidirectional where
+    both the probe and result come and go via the interconnect.
+    """
+
+    enabled: Optional[bool] = None
+    """Determines whether to run healthchecks for a tunnel."""
+
+    rate: Optional[HealthCheckRate] = None
+    """How frequent the health check is run. The default value is `mid`."""
+
+    source: Optional[str] = None
+    """The source IPv4 address used for bidirectional health checks.
+
+    Supported only for version 1.5 interconnects. It is required when `direction` is
+    `bidirectional` and must be omitted (and is cleared) when `direction` is
+    `unidirectional`. The address must be within RFC1918 space, the approved
+    link-local range 169.254.240.0/20, or the Cloudflare reserved range
+    198.41.199.224/27.
+    """
+
+    target: Optional[InterconnectHealthCheckTarget] = None
+    """The destination address in a request type health check.
+
+    After the healthcheck is decapsulated at the customer end of the tunnel, the
+    ICMP echo will be forwarded to this address. This field defaults to
+    `customer_gre_endpoint address`. This field is ignored for bidirectional
+    healthchecks as the interface_address (not assigned to the Cloudflare side of
+    the tunnel) is used as the target. Must be in object form if the
+    x-magic-new-hc-target header is set to true and string form if
+    x-magic-new-hc-target is absent or set to false.
+    """
+
+    type: Optional[HealthCheckType] = None
+    """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 
 class Interconnect(BaseModel):
@@ -89,18 +164,17 @@ class Interconnect(BaseModel):
     """An optional description of the interconnect."""
 
     gre: Optional[InterconnectGRE] = None
-    """The configuration specific to GRE interconnects."""
+    """Omitted in responses for version 1.5 interconnects."""
 
-    health_check: Optional[HealthCheck] = None
+    health_check: Optional[InterconnectHealthCheck] = None
 
     interface_address: Optional[str] = None
     """The IPv4 interface address for the interconnect.
 
-    For MPLS Interconnects, use a /30 or /31 prefix. For GRE Interconnects, a /29,
-    /30, or /31 prefix may be used. A /29 prefix is only allowed for v1.5
-    interconnects, and the address must be the .3 host of the subnet (the fourth
-    address overall; the network address is not usable). Select the subnet from RFC
-    1918 or the approved link-local ranges.
+    For MPLS Interconnects, use a /30 or /31 prefix. For GRE Interconnects, a /30 or
+    /31 prefix may be used. Version 1.5 interconnects require a /31 prefix and may
+    also use a prefix from the account's authorized prefixes; otherwise, select the
+    subnet from RFC 1918 or the approved link-local ranges.
     """
 
     interface_address6: Optional[str] = None

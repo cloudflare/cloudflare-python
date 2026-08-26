@@ -56,6 +56,7 @@ class TestCrawl:
                 "username": "x",
             },
             best_attempt=True,
+            content_use="reference",
             cookies=[
                 {
                     "name": "name",
@@ -180,6 +181,7 @@ class TestCrawl:
             render=False,
             url="https://example.com",
             cache_ttl=0,
+            content_use="reference",
             crawl_purposes=["search"],
             depth=1,
             formats=["html"],
@@ -396,6 +398,7 @@ class TestAsyncCrawl:
                 "username": "x",
             },
             best_attempt=True,
+            content_use="reference",
             cookies=[
                 {
                     "name": "name",
@@ -520,6 +523,7 @@ class TestAsyncCrawl:
             render=False,
             url="https://example.com",
             cache_ttl=0,
+            content_use="reference",
             crawl_purposes=["search"],
             depth=1,
             formats=["html"],

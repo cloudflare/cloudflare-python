@@ -42,7 +42,8 @@ class TelemetryQueryParams(TypedDict, total=False):
     timeframe: Required[Timeframe]
     """Timeframe for the query using Unix timestamps in milliseconds.
 
-    Narrower timeframes produce faster responses and more specific results.
+    'from' must be earlier than 'to'. Narrower timeframes produce faster responses
+    and more specific results.
     """
 
     chart: bool
@@ -64,6 +65,14 @@ class TelemetryQueryParams(TypedDict, total=False):
     """
     When true, includes a comparison dataset from the previous time period of equal
     length.
+    """
+
+    distribution_scale: Annotated[Literal["log", "linear"], PropertyInfo(alias="distributionScale")]
+    """Value-axis bucketing for chartType 'distribution'.
+
+    Omitted or 'log': geometric buckets, best for heavy-tailed latency. 'linear':
+    fixed-width buckets, clearer for narrow or additive ranges. Ignored for other
+    chartTypes. The response echoes the scheme used in distribution.bucketMode.
     """
 
     dry: bool
@@ -128,7 +137,7 @@ class TelemetryQueryParams(TypedDict, total=False):
 _TimeframeReservedKeywords = TypedDict(
     "_TimeframeReservedKeywords",
     {
-        "from": float,
+        "from": int,
     },
     total=False,
 )
@@ -137,11 +146,11 @@ _TimeframeReservedKeywords = TypedDict(
 class Timeframe(_TimeframeReservedKeywords, total=False):
     """Timeframe for the query using Unix timestamps in milliseconds.
 
-    Narrower timeframes produce faster responses and more specific results.
+    'from' must be earlier than 'to'. Narrower timeframes produce faster responses and more specific results.
     """
 
-    to: Required[float]
-    """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
+    to: Required[int]
+    """End timestamp for the query timeframe. Unix timestamp in milliseconds"""
 
 
 class ParametersCalculationUnionMember0(TypedDict, total=False):
@@ -161,7 +170,7 @@ class ParametersCalculationUnionMember0(TypedDict, total=False):
     key: str
     """Field name to calculate over.
 
-    Must exist in the data — verify with the keys endpoint. Required for every
+    Must exist in the data. Verify with the keys endpoint. Required for every
     operator except `count`, which aggregates whole rows and may omit it.
     """
 
@@ -176,7 +185,7 @@ class ParametersCalculationUnionMember1(TypedDict, total=False):
     key: Required[str]
     """Field name to calculate over.
 
-    Must exist in the data — verify with the keys endpoint. Required for every
+    Must exist in the data. Verify with the keys endpoint. Required for every
     operator except `count`, which aggregates whole rows and may omit it.
     """
 

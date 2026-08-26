@@ -35,7 +35,7 @@ class R2EnableSippyAws(TypedDict, total=False):
     source: R2EnableSippyAwsSource
     """AWS S3 bucket to copy objects from."""
 
-    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    jurisdiction: Annotated[Literal["default", "eu", "us", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
     """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
 
@@ -93,7 +93,7 @@ class R2EnableSippyGcs(TypedDict, total=False):
     source: R2EnableSippyGcsSource
     """GCS bucket to copy objects from."""
 
-    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    jurisdiction: Annotated[Literal["default", "eu", "us", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
     """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
 
@@ -148,7 +148,7 @@ class R2EnableSippyS3(TypedDict, total=False):
     source: R2EnableSippyS3Source
     """General S3-compatible provider to copy objects from."""
 
-    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    jurisdiction: Annotated[Literal["default", "eu", "us", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
     """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
 
@@ -203,7 +203,7 @@ class R2EnableSippyAzure(TypedDict, total=False):
     source: R2EnableSippyAzureSource
     """Azure Blob Storage container to copy objects from."""
 
-    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    jurisdiction: Annotated[Literal["default", "eu", "us", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
     """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
 

@@ -168,7 +168,7 @@ class InvestigateGetResponse(BaseModel):
     ] = None
 
     delivery_status: Optional[
-        List[Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]]
+        List[Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"]]
     ] = None
 
     edf_hash: Optional[str] = None

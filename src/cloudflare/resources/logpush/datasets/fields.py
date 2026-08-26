@@ -47,6 +47,7 @@ class FieldsResource(SyncAPIResource):
         self,
         dataset_id: Literal[
             "access_requests",
+            "account_abuse_protection_events",
             "audit_logs",
             "audit_logs_v2",
             "biso_user_actions",
@@ -65,6 +66,7 @@ class FieldsResource(SyncAPIResource):
             "gateway_network",
             "http_requests",
             "ipsec_logs",
+            "magic_bgp_logs",
             "magic_ids_detections",
             "mcp_portal_logs",
             "mnm_flow_logs",
@@ -169,6 +171,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         self,
         dataset_id: Literal[
             "access_requests",
+            "account_abuse_protection_events",
             "audit_logs",
             "audit_logs_v2",
             "biso_user_actions",
@@ -187,6 +190,7 @@ class AsyncFieldsResource(AsyncAPIResource):
             "gateway_network",
             "http_requests",
             "ipsec_logs",
+            "magic_bgp_logs",
             "magic_ids_detections",
             "mcp_portal_logs",
             "mnm_flow_logs",

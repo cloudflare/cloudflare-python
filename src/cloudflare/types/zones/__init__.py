@@ -15,6 +15,7 @@ from .brotli import Brotli as Brotli
 from .mirage import Mirage as Mirage
 from .polish import Polish as Polish
 from .ciphers import Ciphers as Ciphers
+from .setting import Setting as Setting
 from .tls_1_3 import TLS1_3 as TLS1_3
 from .zero_rtt import ZeroRTT as ZeroRTT
 from .ssl_param import SSLParam as SSLParam
@@ -35,6 +36,7 @@ from .image_resizing import ImageResizing as ImageResizing
 from .ip_geolocation import IPGeolocation as IPGeolocation
 from .security_level import SecurityLevel as SecurityLevel
 from .min_tls_version import MinTLSVersion as MinTLSVersion
+from .nel_edit_params import NELEditParams as NELEditParams
 from .ssl_recommender import SSLRecommender as SSLRecommender
 from .tls_client_auth import TLSClientAuth as TLSClientAuth
 from .always_use_https import AlwaysUseHTTPS as AlwaysUseHTTPS

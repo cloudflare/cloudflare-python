@@ -212,6 +212,7 @@ class ResourceSharingResource(SyncAPIResource):
                 "gateway-block-page-settings",
                 "gateway-extended-email-matching",
                 "idp-federation-grant",
+                "trust-grant",
             ]
         ]
         | Omit = omit,
@@ -563,6 +564,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                 "gateway-block-page-settings",
                 "gateway-extended-email-matching",
                 "idp-federation-grant",
+                "trust-grant",
             ]
         ]
         | Omit = omit,

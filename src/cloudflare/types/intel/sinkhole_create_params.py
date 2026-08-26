@@ -9,7 +9,7 @@ __all__ = ["SinkholeCreateParams"]
 
 class SinkholeCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """An identifier for the resource."""
 
     name: Required[str]
     """The name of the sinkhole."""

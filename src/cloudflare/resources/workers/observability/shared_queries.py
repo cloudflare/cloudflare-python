@@ -55,6 +55,7 @@ class SharedQueriesResource(SyncAPIResource):
         chart: bool | Omit = omit,
         chart_type: Literal["timeseries_and_aggregate", "timeseries", "aggregate", "distribution"] | Omit = omit,
         compare: bool | Omit = omit,
+        distribution_scale: Literal["log", "linear"] | Omit = omit,
         dry: bool | Omit = omit,
         granularity: float | Omit = omit,
         ignore_series: bool | Omit = omit,
@@ -80,8 +81,9 @@ class SharedQueriesResource(SyncAPIResource):
               previously saved query's parameters. When providing parameters inline, pass any
               identifier (e.g. an ad-hoc ID).
 
-          timeframe: Timeframe for the query using Unix timestamps in milliseconds. Narrower
-              timeframes produce faster responses and more specific results.
+          timeframe: Timeframe for the query using Unix timestamps in milliseconds. 'from' must be
+              earlier than 'to'. Narrower timeframes produce faster responses and more
+              specific results.
 
           chart: When true, includes time-series data in the response.
 
@@ -94,6 +96,11 @@ class SharedQueriesResource(SyncAPIResource):
 
           compare: When true, includes a comparison dataset from the previous time period of equal
               length.
+
+          distribution_scale: Value-axis bucketing for chartType 'distribution'. Omitted or 'log': geometric
+              buckets, best for heavy-tailed latency. 'linear': fixed-width buckets, clearer
+              for narrow or additive ranges. Ignored for other chartTypes. The response echoes
+              the scheme used in distribution.bucketMode.
 
           dry: When true, executes the query without persisting the results. Useful for
               validation or previewing.
@@ -146,6 +153,7 @@ class SharedQueriesResource(SyncAPIResource):
                     "chart": chart,
                     "chart_type": chart_type,
                     "compare": compare,
+                    "distribution_scale": distribution_scale,
                     "dry": dry,
                     "granularity": granularity,
                     "ignore_series": ignore_series,
@@ -247,6 +255,7 @@ class AsyncSharedQueriesResource(AsyncAPIResource):
         chart: bool | Omit = omit,
         chart_type: Literal["timeseries_and_aggregate", "timeseries", "aggregate", "distribution"] | Omit = omit,
         compare: bool | Omit = omit,
+        distribution_scale: Literal["log", "linear"] | Omit = omit,
         dry: bool | Omit = omit,
         granularity: float | Omit = omit,
         ignore_series: bool | Omit = omit,
@@ -272,8 +281,9 @@ class AsyncSharedQueriesResource(AsyncAPIResource):
               previously saved query's parameters. When providing parameters inline, pass any
               identifier (e.g. an ad-hoc ID).
 
-          timeframe: Timeframe for the query using Unix timestamps in milliseconds. Narrower
-              timeframes produce faster responses and more specific results.
+          timeframe: Timeframe for the query using Unix timestamps in milliseconds. 'from' must be
+              earlier than 'to'. Narrower timeframes produce faster responses and more
+              specific results.
 
           chart: When true, includes time-series data in the response.
 
@@ -286,6 +296,11 @@ class AsyncSharedQueriesResource(AsyncAPIResource):
 
           compare: When true, includes a comparison dataset from the previous time period of equal
               length.
+
+          distribution_scale: Value-axis bucketing for chartType 'distribution'. Omitted or 'log': geometric
+              buckets, best for heavy-tailed latency. 'linear': fixed-width buckets, clearer
+              for narrow or additive ranges. Ignored for other chartTypes. The response echoes
+              the scheme used in distribution.bucketMode.
 
           dry: When true, executes the query without persisting the results. Useful for
               validation or previewing.
@@ -338,6 +353,7 @@ class AsyncSharedQueriesResource(AsyncAPIResource):
                     "chart": chart,
                     "chart_type": chart_type,
                     "compare": compare,
+                    "distribution_scale": distribution_scale,
                     "dry": dry,
                     "granularity": granularity,
                     "ignore_series": ignore_series,

@@ -72,7 +72,11 @@ class LeakedCredentialChecksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LeakedCredentialCheckCreateResponse:
         """
-        Updates the current status of Leaked Credential Checks.
+        Update the Leaked Credential Checks status for the zone, enabling or disabling
+        the detection. While enabled, the detection populates the
+        `cf.waf.credential_check.*` fields, which you can reference in custom rules and
+        rate limiting rules to challenge or block requests carrying compromised
+        credentials.
 
         Args:
           zone_id: Defines an identifier.
@@ -115,8 +119,11 @@ class LeakedCredentialChecksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LeakedCredentialCheckGetResponse:
-        """
-        Retrieves the current status of Leaked Credential Checks.
+        """Get the current Leaked Credential Checks status for the zone.
+
+        While enabled,
+        Cloudflare scans incoming requests for usernames and passwords that were exposed
+        in known data breaches.
 
         Args:
           zone_id: Defines an identifier.
@@ -181,7 +188,11 @@ class AsyncLeakedCredentialChecksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LeakedCredentialCheckCreateResponse:
         """
-        Updates the current status of Leaked Credential Checks.
+        Update the Leaked Credential Checks status for the zone, enabling or disabling
+        the detection. While enabled, the detection populates the
+        `cf.waf.credential_check.*` fields, which you can reference in custom rules and
+        rate limiting rules to challenge or block requests carrying compromised
+        credentials.
 
         Args:
           zone_id: Defines an identifier.
@@ -224,8 +235,11 @@ class AsyncLeakedCredentialChecksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LeakedCredentialCheckGetResponse:
-        """
-        Retrieves the current status of Leaked Credential Checks.
+        """Get the current Leaked Credential Checks status for the zone.
+
+        While enabled,
+        Cloudflare scans incoming requests for usernames and passwords that were exposed
+        in known data breaches.
 
         Args:
           zone_id: Defines an identifier.

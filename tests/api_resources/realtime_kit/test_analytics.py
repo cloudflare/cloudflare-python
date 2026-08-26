@@ -32,8 +32,8 @@ class TestAnalytics:
         analytics = client.realtime_kit.analytics.get_org_analytics(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            end_date="2022-09-22",
-            start_date="2022-09-01",
+            end_date="2022-09-22T00:00:00Z",
+            start_date="2022-09-01T00:00:00Z",
         )
         assert_matches_type(AnalyticsGetOrgAnalyticsResponse, analytics, path=["response"])
 
@@ -101,8 +101,8 @@ class TestAsyncAnalytics:
         analytics = await async_client.realtime_kit.analytics.get_org_analytics(
             app_id="app_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            end_date="2022-09-22",
-            start_date="2022-09-01",
+            end_date="2022-09-22T00:00:00Z",
+            start_date="2022-09-01T00:00:00Z",
         )
         assert_matches_type(AnalyticsGetOrgAnalyticsResponse, analytics, path=["response"])
 

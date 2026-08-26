@@ -65,6 +65,7 @@ class ResourcesResource(SyncAPIResource):
             "gateway-block-page-settings",
             "gateway-extended-email-matching",
             "idp-federation-grant",
+            "trust-grant",
         ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -197,6 +198,7 @@ class ResourcesResource(SyncAPIResource):
             "gateway-block-page-settings",
             "gateway-extended-email-matching",
             "idp-federation-grant",
+            "trust-grant",
         ]
         | Omit = omit,
         status: Literal["active", "deleting", "deleted"] | Omit = omit,
@@ -406,6 +408,7 @@ class AsyncResourcesResource(AsyncAPIResource):
             "gateway-block-page-settings",
             "gateway-extended-email-matching",
             "idp-federation-grant",
+            "trust-grant",
         ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -538,6 +541,7 @@ class AsyncResourcesResource(AsyncAPIResource):
             "gateway-block-page-settings",
             "gateway-extended-email-matching",
             "idp-federation-grant",
+            "trust-grant",
         ]
         | Omit = omit,
         status: Literal["active", "deleting", "deleted"] | Omit = omit,

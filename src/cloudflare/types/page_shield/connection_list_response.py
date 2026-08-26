@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["Connection"]
+__all__ = ["ConnectionListResponse"]
 
 
-class Connection(BaseModel):
+class ConnectionListResponse(BaseModel):
     id: str
     """Identifier"""
 

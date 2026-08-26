@@ -66,7 +66,7 @@ class TestScripts:
                     "enabled": True,
                     "cross_version_cache": True,
                 },
-                "compatibility_date": "2021-01-01",
+                "compatibility_date": "2021-01-01T00:00:00Z",
                 "compatibility_flags": ["nodejs_compat"],
                 "exports": {
                     "Admin": {
@@ -129,6 +129,7 @@ class TestScripts:
                         "head_sampling_rate": 0.1,
                         "persist": True,
                     },
+                    "redact_query_string": False,
                     "traces": {
                         "destinations": ["cloudflare"],
                         "enabled": True,
@@ -462,7 +463,7 @@ class TestAsyncScripts:
                     "enabled": True,
                     "cross_version_cache": True,
                 },
-                "compatibility_date": "2021-01-01",
+                "compatibility_date": "2021-01-01T00:00:00Z",
                 "compatibility_flags": ["nodejs_compat"],
                 "exports": {
                     "Admin": {
@@ -525,6 +526,7 @@ class TestAsyncScripts:
                         "head_sampling_rate": 0.1,
                         "persist": True,
                     },
+                    "redact_query_string": False,
                     "traces": {
                         "destinations": ["cloudflare"],
                         "enabled": True,

@@ -80,7 +80,7 @@ class SinkholesResource(SyncAPIResource):
         body.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           name: The name of the sinkhole.
 
@@ -140,11 +140,14 @@ class SinkholesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Update the name or R2 configuration of the specified sinkhole.
+        """Replaces the name or R2 configuration of the specified sinkhole.
+
+        This is a full
+        replacement. All fields, including r2_secret, must be re-supplied. Omitting
+        r2_secret overwrites the stored value with an empty string.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           name: The name of the sinkhole.
 
@@ -207,7 +210,7 @@ class SinkholesResource(SyncAPIResource):
         Lists sinkholes owned by the account for redirecting malicious traffic.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 
@@ -246,7 +249,7 @@ class SinkholesResource(SyncAPIResource):
         rules defined. A 409 response code indicates that this condition is not met.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 
@@ -290,7 +293,7 @@ class SinkholesResource(SyncAPIResource):
         Get the specified sinkhole by its unique identifier.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 
@@ -366,7 +369,7 @@ class AsyncSinkholesResource(AsyncAPIResource):
         body.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           name: The name of the sinkhole.
 
@@ -426,11 +429,14 @@ class AsyncSinkholesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Update the name or R2 configuration of the specified sinkhole.
+        """Replaces the name or R2 configuration of the specified sinkhole.
+
+        This is a full
+        replacement. All fields, including r2_secret, must be re-supplied. Omitting
+        r2_secret overwrites the stored value with an empty string.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           name: The name of the sinkhole.
 
@@ -493,7 +499,7 @@ class AsyncSinkholesResource(AsyncAPIResource):
         Lists sinkholes owned by the account for redirecting malicious traffic.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 
@@ -532,7 +538,7 @@ class AsyncSinkholesResource(AsyncAPIResource):
         rules defined. A 409 response code indicates that this condition is not met.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 
@@ -576,7 +582,7 @@ class AsyncSinkholesResource(AsyncAPIResource):
         Get the specified sinkhole by its unique identifier.
 
         Args:
-          account_id: Identifier.
+          account_id: An identifier for the resource.
 
           extra_headers: Send extra headers
 

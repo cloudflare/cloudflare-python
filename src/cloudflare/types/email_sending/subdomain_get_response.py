@@ -27,6 +27,13 @@ class SubdomainGetResponse(BaseModel):
     Wildcard rows publish the selector and sign with `d=<base>`.
     """
 
+    drop_suppressed_recipients: Optional[bool] = None
+    """
+    Whether a send request that includes a recipient suppressed on this subdomain
+    drops that recipient and still delivers to the rest, instead of failing the
+    entire request.
+    """
+
     modified: Optional[datetime] = None
     """The date and time the destination address was last modified."""
 

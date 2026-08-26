@@ -62,7 +62,7 @@ class RegionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorPagination[RegionListResponse]:
         """
-        List the DLS regions (managed and custom) available to an account.
+        List DLS regions for an account
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -115,7 +115,7 @@ class RegionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegionGetResponse:
         """
-        Retrieve a single DLS region (managed or custom) by ID or region key.
+        Get a DLS region
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -182,7 +182,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RegionListResponse, AsyncCursorPagination[RegionListResponse]]:
         """
-        List the DLS regions (managed and custom) available to an account.
+        List DLS regions for an account
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -235,7 +235,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegionGetResponse:
         """
-        Retrieve a single DLS region (managed or custom) by ID or region key.
+        Get a DLS region
 
         Args:
           account_id: Identifier of a Cloudflare account.

@@ -41,7 +41,7 @@ class TestInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             ai_gateway_id="ai_gateway_id",
-            aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            aisearch_model="ai_search_model",
             cache=True,
             cache_threshold="super_strict_match",
             cache_ttl=600,
@@ -54,7 +54,7 @@ class TestInstances:
                     "field_name": "x",
                 }
             ],
-            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            embedding_model="embedding_model",
             fusion_method="max",
             hybrid_search_enabled=True,
             index_method={
@@ -85,7 +85,7 @@ class TestInstances:
                 "search_endpoint": {"disabled": True},
             },
             reranking=True,
-            reranking_model="@cf/baai/bge-reranker-base",
+            reranking_model="reranking_model",
             retrieval_options={
                 "boost_by": [
                     {
@@ -95,7 +95,7 @@ class TestInstances:
                 ],
                 "keyword_match_mode": "and",
             },
-            rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            rewrite_model="rewrite_model",
             rewrite_query=True,
             score_threshold=0,
             source="source",
@@ -189,7 +189,7 @@ class TestInstances:
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             ai_gateway_id="ai_gateway_id",
-            aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            aisearch_model="ai_search_model",
             cache=True,
             cache_threshold="super_strict_match",
             cache_ttl=600,
@@ -202,7 +202,7 @@ class TestInstances:
                     "field_name": "x",
                 }
             ],
-            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            embedding_model="embedding_model",
             fusion_method="max",
             index_method={
                 "keyword": True,
@@ -233,7 +233,7 @@ class TestInstances:
                 "search_endpoint": {"disabled": True},
             },
             reranking=True,
-            reranking_model="@cf/baai/bge-reranker-base",
+            reranking_model="reranking_model",
             retrieval_options={
                 "boost_by": [
                     {
@@ -243,7 +243,7 @@ class TestInstances:
                 ],
                 "keyword_match_mode": "and",
             },
-            rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            rewrite_model="rewrite_model",
             rewrite_query=True,
             score_threshold=0,
             source="source",
@@ -284,7 +284,7 @@ class TestInstances:
                 },
             },
             summarization=True,
-            summarization_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            summarization_model="summarization_model",
             sync_interval=900,
             system_prompt_aisearch="system_prompt_ai_search",
             system_prompt_index_summarization="system_prompt_index_summarization",
@@ -464,13 +464,13 @@ class TestInstances:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [
@@ -489,7 +489,7 @@ class TestInstances:
                     "return_on_failure": True,
                 },
             },
-            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            model="model",
             stream=True,
         )
         assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
@@ -626,13 +626,13 @@ class TestInstances:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [
@@ -769,7 +769,7 @@ class TestAsyncInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             ai_gateway_id="ai_gateway_id",
-            aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            aisearch_model="ai_search_model",
             cache=True,
             cache_threshold="super_strict_match",
             cache_ttl=600,
@@ -782,7 +782,7 @@ class TestAsyncInstances:
                     "field_name": "x",
                 }
             ],
-            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            embedding_model="embedding_model",
             fusion_method="max",
             hybrid_search_enabled=True,
             index_method={
@@ -813,7 +813,7 @@ class TestAsyncInstances:
                 "search_endpoint": {"disabled": True},
             },
             reranking=True,
-            reranking_model="@cf/baai/bge-reranker-base",
+            reranking_model="reranking_model",
             retrieval_options={
                 "boost_by": [
                     {
@@ -823,7 +823,7 @@ class TestAsyncInstances:
                 ],
                 "keyword_match_mode": "and",
             },
-            rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            rewrite_model="rewrite_model",
             rewrite_query=True,
             score_threshold=0,
             source="source",
@@ -917,7 +917,7 @@ class TestAsyncInstances:
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             ai_gateway_id="ai_gateway_id",
-            aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            aisearch_model="ai_search_model",
             cache=True,
             cache_threshold="super_strict_match",
             cache_ttl=600,
@@ -930,7 +930,7 @@ class TestAsyncInstances:
                     "field_name": "x",
                 }
             ],
-            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
+            embedding_model="embedding_model",
             fusion_method="max",
             index_method={
                 "keyword": True,
@@ -961,7 +961,7 @@ class TestAsyncInstances:
                 "search_endpoint": {"disabled": True},
             },
             reranking=True,
-            reranking_model="@cf/baai/bge-reranker-base",
+            reranking_model="reranking_model",
             retrieval_options={
                 "boost_by": [
                     {
@@ -971,7 +971,7 @@ class TestAsyncInstances:
                 ],
                 "keyword_match_mode": "and",
             },
-            rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            rewrite_model="rewrite_model",
             rewrite_query=True,
             score_threshold=0,
             source="source",
@@ -1012,7 +1012,7 @@ class TestAsyncInstances:
                 },
             },
             summarization=True,
-            summarization_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            summarization_model="summarization_model",
             sync_interval=900,
             system_prompt_aisearch="system_prompt_ai_search",
             system_prompt_index_summarization="system_prompt_index_summarization",
@@ -1192,13 +1192,13 @@ class TestAsyncInstances:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [
@@ -1217,7 +1217,7 @@ class TestAsyncInstances:
                     "return_on_failure": True,
                 },
             },
-            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            model="model",
             stream=True,
         )
         assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
@@ -1354,13 +1354,13 @@ class TestAsyncInstances:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [

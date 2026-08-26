@@ -152,6 +152,7 @@ class TestApplications:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.resource_library.applications.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            fields="fields",
             filter="filter",
             limit=0,
             offset=0,
@@ -410,6 +411,7 @@ class TestAsyncApplications:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.resource_library.applications.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            fields="fields",
             filter="filter",
             limit=0,
             offset=0,

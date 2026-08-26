@@ -19,7 +19,9 @@ class InvestigateListParams(TypedDict, total=False):
 
     cursor: str
 
-    delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+    delivery_status: Literal[
+        "delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"
+    ]
     """Delivery status to filter by."""
 
     detections_only: bool

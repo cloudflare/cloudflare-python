@@ -120,7 +120,7 @@ class TestHolds:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         hold = client.zones.holds.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            hold_after="2023-01-31T15:56:36+00:00",
+            hold_after="2023-01-31T15:56:36Z",
             include_subdomains=True,
         )
         assert_matches_type(ZoneHold, hold, path=["response"])
@@ -303,7 +303,7 @@ class TestAsyncHolds:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         hold = await async_client.zones.holds.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            hold_after="2023-01-31T15:56:36+00:00",
+            hold_after="2023-01-31T15:56:36Z",
             include_subdomains=True,
         )
         assert_matches_type(ZoneHold, hold, path=["response"])

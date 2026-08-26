@@ -88,7 +88,6 @@ class WaitingRoom(BaseModel):
             "da-DK",
             "fi-FI",
             "lt-LT",
-            "lv-LV",
             "ms-MY",
             "nb-NO",
             "ro-RO",

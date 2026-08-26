@@ -97,10 +97,9 @@ class UserSchemasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaCreateResponse:
-        """Uploads a new OpenAPI schema for API Shield schema validation.
-
-        The schema
-        defines expected request/response formats for API endpoints.
+        """
+        Uploads an OpenAPI schema that defines expected request formats for API
+        endpoints. Deprecated; use `/zones/{zone_id}/schema_validation/schemas` instead.
 
         Args:
           zone_id: Identifier.
@@ -171,7 +170,8 @@ class UserSchemasResource(SyncAPIResource):
     ) -> SyncV4PagePaginationArray[OldPublicSchema]:
         """
         Lists all OpenAPI schemas uploaded to API Shield for the zone, including their
-        validation status and associated operations.
+        validation status and associated operations. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas` instead.
 
         Args:
           zone_id: Identifier.
@@ -234,6 +234,8 @@ class UserSchemasResource(SyncAPIResource):
         validation.
 
         Operations using this schema will lose their validation rules.
+        Deprecated; use `/zones/{zone_id}/schema_validation/schemas/{schema_id}`
+        instead.
 
         Args:
           zone_id: Identifier.
@@ -279,7 +281,8 @@ class UserSchemasResource(SyncAPIResource):
         """Activates schema validation for an uploaded OpenAPI schema.
 
         Requests to matching
-        endpoints will be validated against the schema definitions.
+        endpoints will be validated against the schema definitions. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/{schema_id}` instead.
 
         Args:
           zone_id: Identifier.
@@ -333,7 +336,8 @@ class UserSchemasResource(SyncAPIResource):
     ) -> OldPublicSchema:
         """
         Gets detailed information about a specific uploaded OpenAPI schema, including
-        its contents and validation configuration.
+        its contents and validation configuration. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/{schema_id}` instead.
 
         Args:
           zone_id: Identifier.
@@ -414,10 +418,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaCreateResponse:
-        """Uploads a new OpenAPI schema for API Shield schema validation.
-
-        The schema
-        defines expected request/response formats for API endpoints.
+        """
+        Uploads an OpenAPI schema that defines expected request formats for API
+        endpoints. Deprecated; use `/zones/{zone_id}/schema_validation/schemas` instead.
 
         Args:
           zone_id: Identifier.
@@ -488,7 +491,8 @@ class AsyncUserSchemasResource(AsyncAPIResource):
     ) -> AsyncPaginator[OldPublicSchema, AsyncV4PagePaginationArray[OldPublicSchema]]:
         """
         Lists all OpenAPI schemas uploaded to API Shield for the zone, including their
-        validation status and associated operations.
+        validation status and associated operations. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas` instead.
 
         Args:
           zone_id: Identifier.
@@ -551,6 +555,8 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         validation.
 
         Operations using this schema will lose their validation rules.
+        Deprecated; use `/zones/{zone_id}/schema_validation/schemas/{schema_id}`
+        instead.
 
         Args:
           zone_id: Identifier.
@@ -596,7 +602,8 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         """Activates schema validation for an uploaded OpenAPI schema.
 
         Requests to matching
-        endpoints will be validated against the schema definitions.
+        endpoints will be validated against the schema definitions. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/{schema_id}` instead.
 
         Args:
           zone_id: Identifier.
@@ -650,7 +657,8 @@ class AsyncUserSchemasResource(AsyncAPIResource):
     ) -> OldPublicSchema:
         """
         Gets detailed information about a specific uploaded OpenAPI schema, including
-        its contents and validation configuration.
+        its contents and validation configuration. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/{schema_id}` instead.
 
         Args:
           zone_id: Identifier.

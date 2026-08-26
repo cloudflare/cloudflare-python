@@ -28,6 +28,7 @@ class ResourceCreateParams(TypedDict, total=False):
             "gateway-block-page-settings",
             "gateway-extended-email-matching",
             "idp-federation-grant",
+            "trust-grant",
         ]
     ]
     """Resource Type."""

@@ -60,6 +60,8 @@ class Attachment(BaseModel):
 
 
 class Finding(BaseModel):
+    """A single detection finding for a message."""
+
     attachment: Optional[str] = None
 
     detail: Optional[str] = None
@@ -78,6 +80,7 @@ class Finding(BaseModel):
             "NONE",
         ]
     ] = None
+    """Detection result associated with this finding."""
 
     field: Optional[str] = None
 

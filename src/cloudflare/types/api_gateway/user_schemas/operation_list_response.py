@@ -192,7 +192,7 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoAct
     created_at: Optional[datetime] = None
 
     is_learned: Optional[bool] = None
-    """True if schema is Cloudflare-provided."""
+    """Deprecated. Always false."""
 
     name: Optional[str] = None
     """Schema file name."""

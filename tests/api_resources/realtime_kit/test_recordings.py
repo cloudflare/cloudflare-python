@@ -323,7 +323,6 @@ class TestRecordings:
             realtimekit_bucket_config={"enabled": True},
             rtmp_out_config={"rtmp_url": "rtmp://a.rtmp.youtube.com/live2"},
             storage_config={
-                "type": "aws",
                 "access_key": "access_key",
                 "auth_method": "KEY",
                 "bucket": "bucket",
@@ -334,6 +333,7 @@ class TestRecordings:
                 "private_key": "private_key",
                 "region": "us-east-1",
                 "secret": "secret",
+                "type": "gcs",
                 "username": "username",
             },
             url="https://example.com",
@@ -779,7 +779,6 @@ class TestAsyncRecordings:
             realtimekit_bucket_config={"enabled": True},
             rtmp_out_config={"rtmp_url": "rtmp://a.rtmp.youtube.com/live2"},
             storage_config={
-                "type": "aws",
                 "access_key": "access_key",
                 "auth_method": "KEY",
                 "bucket": "bucket",
@@ -790,6 +789,7 @@ class TestAsyncRecordings:
                 "private_key": "private_key",
                 "region": "us-east-1",
                 "secret": "secret",
+                "type": "gcs",
                 "username": "username",
             },
             url="https://example.com",

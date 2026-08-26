@@ -14,8 +14,9 @@ class CTAlertingSubscription(BaseModel):
     """Whether CT alerting is enabled for the zone."""
 
     emails: Optional[List[str]] = None
-    """Email addresses that receive CT alert notifications for the zone.
+    """Email addresses that receive CT alert notifications.
 
-    A maximum of 100 addresses may be configured. Each address must be a valid RFC
-    5322 email address and must not contain a comma.
+    Only present and configurable for Business and Enterprise zones. Maximum of 10
+    addresses. For Free and Pro zones, notifications are sent to all users with SSL
+    permissions on the zone.
     """

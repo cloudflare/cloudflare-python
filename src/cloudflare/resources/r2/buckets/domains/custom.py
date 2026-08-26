@@ -59,7 +59,7 @@ class CustomResource(SyncAPIResource):
         zone_id: str,
         ciphers: SequenceNotStr[str] | Omit = omit,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,7 +141,7 @@ class CustomResource(SyncAPIResource):
         ciphers: SequenceNotStr[str] | Omit = omit,
         enabled: bool | Omit = omit,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,7 +217,7 @@ class CustomResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -273,7 +273,7 @@ class CustomResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -334,7 +334,7 @@ class CustomResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -420,7 +420,7 @@ class AsyncCustomResource(AsyncAPIResource):
         zone_id: str,
         ciphers: SequenceNotStr[str] | Omit = omit,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -502,7 +502,7 @@ class AsyncCustomResource(AsyncAPIResource):
         ciphers: SequenceNotStr[str] | Omit = omit,
         enabled: bool | Omit = omit,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -578,7 +578,7 @@ class AsyncCustomResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -634,7 +634,7 @@ class AsyncCustomResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -695,7 +695,7 @@ class AsyncCustomResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
