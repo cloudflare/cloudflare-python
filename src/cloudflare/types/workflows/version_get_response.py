@@ -6,7 +6,16 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["VersionGetResponse", "DefaultRetention", "Limits"]
+__all__ = ["VersionGetResponse", "Concurrency", "DefaultRetention", "Limits"]
+
+
+class Concurrency(BaseModel):
+    limit: Optional[int] = None
+    """Maximum number of instances of this workflow that can run concurrently.
+
+    Additional instances are queued and started as running instances complete. Must
+    not exceed the account concurrency limit.
+    """
 
 
 class DefaultRetention(BaseModel):
@@ -36,6 +45,8 @@ class VersionGetResponse(BaseModel):
     modified_on: datetime
 
     workflow_id: str
+
+    concurrency: Optional[Concurrency] = None
 
     default_retention: Optional[DefaultRetention] = None
 

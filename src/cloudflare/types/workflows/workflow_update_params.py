@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["WorkflowUpdateParams", "DefaultRetention", "Limits", "Schedule"]
+__all__ = ["WorkflowUpdateParams", "Concurrency", "DefaultRetention", "Limits", "Schedule"]
 
 
 class WorkflowUpdateParams(TypedDict, total=False):
@@ -14,6 +14,8 @@ class WorkflowUpdateParams(TypedDict, total=False):
     class_name: Required[str]
 
     script_name: Required[str]
+
+    concurrency: Concurrency
 
     default_retention: DefaultRetention
     """
@@ -24,6 +26,15 @@ class WorkflowUpdateParams(TypedDict, total=False):
     limits: Limits
 
     schedules: Iterable[Schedule]
+
+
+class Concurrency(TypedDict, total=False):
+    limit: int
+    """Maximum number of instances of this workflow that can run concurrently.
+
+    Additional instances are queued and started as running instances complete. Must
+    not exceed the account concurrency limit.
+    """
 
 
 class DefaultRetention(TypedDict, total=False):
