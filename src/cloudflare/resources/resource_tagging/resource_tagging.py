@@ -110,6 +110,7 @@ class ResourceTaggingResource(SyncAPIResource):
         *,
         account_id: str,
         id: SequenceNotStr[str] | Omit = omit,
+        case_insensitive: bool | Omit = omit,
         cursor: str | Omit = omit,
         name: str | Omit = omit,
         tag: SequenceNotStr[str] | Omit = omit,
@@ -171,6 +172,9 @@ class ResourceTaggingResource(SyncAPIResource):
           id: Filter by resource ID. Can be repeated up to 50 times to filter by multiple IDs.
               Example: ?id=abc&id=def
 
+          case_insensitive: Match `tag` keys and values case-insensitively. Stored casing is unchanged.
+              Example: ?tag=environment=production&case_insensitive=true
+
           cursor: Cursor for pagination.
 
           name:
@@ -219,6 +223,7 @@ class ResourceTaggingResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "id": id,
+                        "case_insensitive": case_insensitive,
                         "cursor": cursor,
                         "name": name,
                         "tag": tag,
@@ -278,6 +283,7 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
         *,
         account_id: str,
         id: SequenceNotStr[str] | Omit = omit,
+        case_insensitive: bool | Omit = omit,
         cursor: str | Omit = omit,
         name: str | Omit = omit,
         tag: SequenceNotStr[str] | Omit = omit,
@@ -339,6 +345,9 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
           id: Filter by resource ID. Can be repeated up to 50 times to filter by multiple IDs.
               Example: ?id=abc&id=def
 
+          case_insensitive: Match `tag` keys and values case-insensitively. Stored casing is unchanged.
+              Example: ?tag=environment=production&case_insensitive=true
+
           cursor: Cursor for pagination.
 
           name:
@@ -387,6 +396,7 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "id": id,
+                        "case_insensitive": case_insensitive,
                         "cursor": cursor,
                         "name": name,
                         "tag": tag,

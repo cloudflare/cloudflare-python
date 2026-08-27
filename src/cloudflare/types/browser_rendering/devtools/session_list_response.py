@@ -14,8 +14,8 @@ class SessionListResponseItem(BaseModel):
     session_id: str = FieldInfo(alias="sessionId")
     """Session ID."""
 
-    close_reason: Optional[str] = FieldInfo(alias="closeReason", default=None)
-    """Reason for session closure."""
+    close_reason: Optional[float] = FieldInfo(alias="closeReason", default=None)
+    """Reason code for session closure."""
 
     close_reason_text: Optional[str] = FieldInfo(alias="closeReasonText", default=None)
     """Human-readable close reason."""

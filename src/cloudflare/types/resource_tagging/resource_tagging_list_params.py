@@ -21,6 +21,13 @@ class ResourceTaggingListParams(TypedDict, total=False):
     ?id=abc&id=def
     """
 
+    case_insensitive: bool
+    """Match `tag` keys and values case-insensitively.
+
+    Stored casing is unchanged. Example:
+    ?tag=environment=production&case_insensitive=true
+    """
+
     cursor: str
     """Cursor for pagination."""
 
