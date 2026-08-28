@@ -157,6 +157,18 @@ Methods:
 - <code title="get /accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/json/protocol">client.browser_rendering.devtools.browser.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/browser.py">protocol</a>(session_id, \*, account_id) -> <a href="./src/cloudflare/types/browser_rendering/devtools/browser_protocol_response.py">BrowserProtocolResponse</a></code>
 - <code title="get /accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/json/version">client.browser_rendering.devtools.browser.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/browser.py">version</a>(session_id, \*, account_id) -> <a href="./src/cloudflare/types/browser_rendering/devtools/browser_version_response.py">BrowserVersionResponse</a></code>
 
+#### LiveView
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering.devtools.browser import LiveViewCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/live_view">client.browser_rendering.devtools.browser.live_view.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/live_view.py">create</a>(session_id, \*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/devtools/browser/live_view_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/devtools/browser/live_view_create_response.py">LiveViewCreateResponse</a></code>
+
 #### Page
 
 Methods:

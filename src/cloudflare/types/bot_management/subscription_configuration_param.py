@@ -24,6 +24,13 @@ class SubscriptionConfigurationParam(TypedDict, total=False):
     accessing the site. Defaults to true
     """
 
+    bot_preference_sync_enabled: bool
+    """Enable Bot Preference Sync for this zone.
+
+    When enabled, Cloudflare can serve robots.txt content derived from the zone's AI
+    Search, AI User, and AI Training preferences.
+    """
+
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
 

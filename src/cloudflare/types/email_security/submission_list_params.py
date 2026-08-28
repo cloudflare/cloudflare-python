@@ -15,6 +15,9 @@ class SubmissionListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
+    direction: Literal["asc", "desc"]
+    """The sorting direction."""
+
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The end of the search date range. Defaults to `now`."""
 
@@ -24,6 +27,16 @@ class SubmissionListParams(TypedDict, total=False):
     by the security team). When false, return only submissions that were not
     escalated by an end user. When omitted, no filter is applied.
     """
+
+    order: Literal[
+        "submission_id",
+        "subject",
+        "original_disposition",
+        "requested_disposition",
+        "outcome_disposition",
+        "requested_at",
+    ]
+    """Field to sort by."""
 
     original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
 

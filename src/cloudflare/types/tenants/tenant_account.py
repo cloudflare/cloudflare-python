@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -43,3 +43,6 @@ class TenantAccount(BaseModel):
     settings: Settings
 
     type: Literal["standard", "enterprise"]
+
+    tags: Optional[Dict[str, str]] = None
+    """Account tags, present only when `include_tags=true` is requested."""

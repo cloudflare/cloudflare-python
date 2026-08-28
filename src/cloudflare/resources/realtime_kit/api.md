@@ -58,6 +58,7 @@ from cloudflare.types.realtime_kit import (
     PresetDeleteResponse,
     PresetGetResponse,
     PresetGetPresetByIDResponse,
+    PresetReplacePresetByIDResponse,
 )
 ```
 
@@ -68,6 +69,7 @@ Methods:
 - <code title="delete /accounts/{account_id}/realtime/kit/{app_id}/presets/{preset_id}">client.realtime_kit.presets.<a href="./src/cloudflare/resources/realtime_kit/presets.py">delete</a>(preset_id, \*, account_id, app_id) -> <a href="./src/cloudflare/types/realtime_kit/preset_delete_response.py">PresetDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/presets">client.realtime_kit.presets.<a href="./src/cloudflare/resources/realtime_kit/presets.py">get</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/realtime_kit/preset_get_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/preset_get_response.py">PresetGetResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/presets/{preset_id}">client.realtime_kit.presets.<a href="./src/cloudflare/resources/realtime_kit/presets.py">get_preset_by_id</a>(preset_id, \*, account_id, app_id) -> <a href="./src/cloudflare/types/realtime_kit/preset_get_preset_by_id_response.py">PresetGetPresetByIDResponse</a></code>
+- <code title="put /accounts/{account_id}/realtime/kit/{app_id}/presets/{preset_id}">client.realtime_kit.presets.<a href="./src/cloudflare/resources/realtime_kit/presets.py">replace_preset_by_id</a>(preset_id, \*, account_id, app_id, \*\*<a href="src/cloudflare/types/realtime_kit/preset_replace_preset_by_id_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/preset_replace_preset_by_id_response.py">PresetReplacePresetByIDResponse</a></code>
 
 ## Sessions
 

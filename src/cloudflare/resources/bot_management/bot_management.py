@@ -52,6 +52,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -133,6 +134,10 @@ class BotManagementResource(SyncAPIResource):
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
+          bot_preference_sync_enabled: Enable Bot Preference Sync for this zone. When enabled, Cloudflare can serve
+              robots.txt content derived from the zone's AI Search, AI User, and AI Training
+              preferences.
+
           cf_robots_variant: Specifies the Robots Access Control License variant to use.
 
           content_bots_protection: Enable rule to block content bots. When enabled, blocks automated traffic with
@@ -165,6 +170,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -249,6 +255,10 @@ class BotManagementResource(SyncAPIResource):
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
+          bot_preference_sync_enabled: Enable Bot Preference Sync for this zone. When enabled, Cloudflare can serve
+              robots.txt content derived from the zone's AI Search, AI User, and AI Training
+              preferences.
+
           cf_robots_variant: Specifies the Robots Access Control License variant to use.
 
           content_bots_protection: Enable rule to block content bots. When enabled, blocks automated traffic with
@@ -289,6 +299,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -374,6 +385,10 @@ class BotManagementResource(SyncAPIResource):
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
+          bot_preference_sync_enabled: Enable Bot Preference Sync for this zone. When enabled, Cloudflare can serve
+              robots.txt content derived from the zone's AI Search, AI User, and AI Training
+              preferences.
+
           cf_robots_variant: Specifies the Robots Access Control License variant to use.
 
           content_bots_protection: Enable rule to block content bots. When enabled, blocks automated traffic with
@@ -418,6 +433,7 @@ class BotManagementResource(SyncAPIResource):
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         auto_update_model: bool | Omit = omit,
         bm_cookie_enabled: bool | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -506,6 +522,10 @@ class BotManagementResource(SyncAPIResource):
           bm_cookie_enabled: Indicates that the bot management cookie can be placed on end user devices
               accessing the site. Defaults to true
 
+          bot_preference_sync_enabled: Enable Bot Preference Sync for this zone. When enabled, Cloudflare can serve
+              robots.txt content derived from the zone's AI Search, AI User, and AI Training
+              preferences.
+
           cf_robots_variant: Specifies the Robots Access Control License variant to use.
 
           content_bots_protection: Enable rule to block content bots. When enabled, blocks automated traffic with
@@ -539,6 +559,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -569,6 +590,7 @@ class BotManagementResource(SyncAPIResource):
                 body=maybe_transform(
                     {
                         "ai_bots_protection": ai_bots_protection,
+                        "bot_preference_sync_enabled": bot_preference_sync_enabled,
                         "cf_robots_variant": cf_robots_variant,
                         "content_bots_protection": content_bots_protection,
                         "crawler_protection": crawler_protection,
@@ -670,6 +692,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -751,6 +774,10 @@ class AsyncBotManagementResource(AsyncAPIResource):
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
+          bot_preference_sync_enabled: Enable Bot Preference Sync for this zone. When enabled, Cloudflare can serve
+              robots.txt content derived from the zone's AI Search, AI User, and AI Training
+              preferences.
+
           cf_robots_variant: Specifies the Robots Access Control License variant to use.
 
           content_bots_protection: Enable rule to block content bots. When enabled, blocks automated traffic with
@@ -783,6 +810,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -867,6 +895,10 @@ class AsyncBotManagementResource(AsyncAPIResource):
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
+          bot_preference_sync_enabled: Enable Bot Preference Sync for this zone. When enabled, Cloudflare can serve
+              robots.txt content derived from the zone's AI Search, AI User, and AI Training
+              preferences.
+
           cf_robots_variant: Specifies the Robots Access Control License variant to use.
 
           content_bots_protection: Enable rule to block content bots. When enabled, blocks automated traffic with
@@ -907,6 +939,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -992,6 +1025,10 @@ class AsyncBotManagementResource(AsyncAPIResource):
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
+          bot_preference_sync_enabled: Enable Bot Preference Sync for this zone. When enabled, Cloudflare can serve
+              robots.txt content derived from the zone's AI Search, AI User, and AI Training
+              preferences.
+
           cf_robots_variant: Specifies the Robots Access Control License variant to use.
 
           content_bots_protection: Enable rule to block content bots. When enabled, blocks automated traffic with
@@ -1036,6 +1073,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         auto_update_model: bool | Omit = omit,
         bm_cookie_enabled: bool | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -1124,6 +1162,10 @@ class AsyncBotManagementResource(AsyncAPIResource):
           bm_cookie_enabled: Indicates that the bot management cookie can be placed on end user devices
               accessing the site. Defaults to true
 
+          bot_preference_sync_enabled: Enable Bot Preference Sync for this zone. When enabled, Cloudflare can serve
+              robots.txt content derived from the zone's AI Search, AI User, and AI Training
+              preferences.
+
           cf_robots_variant: Specifies the Robots Access Control License variant to use.
 
           content_bots_protection: Enable rule to block content bots. When enabled, blocks automated traffic with
@@ -1157,6 +1199,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        bot_preference_sync_enabled: bool | Omit = omit,
         cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         content_bots_protection: Literal["block", "disabled"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
@@ -1187,6 +1230,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
                 body=await async_maybe_transform(
                     {
                         "ai_bots_protection": ai_bots_protection,
+                        "bot_preference_sync_enabled": bot_preference_sync_enabled,
                         "cf_robots_variant": cf_robots_variant,
                         "content_bots_protection": content_bots_protection,
                         "crawler_protection": crawler_protection,

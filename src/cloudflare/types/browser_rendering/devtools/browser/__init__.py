@@ -8,4 +8,6 @@ from .target_create_params import TargetCreateParams as TargetCreateParams
 from .target_list_response import TargetListResponse as TargetListResponse
 from .target_close_response import TargetCloseResponse as TargetCloseResponse
 from .target_create_response import TargetCreateResponse as TargetCreateResponse
+from .live_view_create_params import LiveViewCreateParams as LiveViewCreateParams
 from .target_activate_response import TargetActivateResponse as TargetActivateResponse
+from .live_view_create_response import LiveViewCreateResponse as LiveViewCreateResponse

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._utils import PropertyInfo
@@ -81,7 +81,7 @@ class Message(  # type: ignore[call-arg]
     total=False,
     extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
 ):
-    content: Required[Union[str, Iterable[MessageContentUnionMember1], None]]
+    content: Required[Union[str, Iterable[MessageContentUnionMember1], Optional[str]]]
 
     role: Required[Literal["system", "developer", "user", "assistant", "tool"]]
 

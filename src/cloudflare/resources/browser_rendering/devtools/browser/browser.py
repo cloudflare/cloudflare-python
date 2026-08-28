@@ -20,6 +20,14 @@ from .targets import (
     TargetsResourceWithStreamingResponse,
     AsyncTargetsResourceWithStreamingResponse,
 )
+from .live_view import (
+    LiveViewResource,
+    AsyncLiveViewResource,
+    LiveViewResourceWithRawResponse,
+    AsyncLiveViewResourceWithRawResponse,
+    LiveViewResourceWithStreamingResponse,
+    AsyncLiveViewResourceWithStreamingResponse,
+)
 from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ....._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
@@ -41,6 +49,10 @@ __all__ = ["BrowserResource", "AsyncBrowserResource"]
 
 
 class BrowserResource(SyncAPIResource):
+    @cached_property
+    def live_view(self) -> LiveViewResource:
+        return LiveViewResource(self._client)
+
     @cached_property
     def page(self) -> PageResource:
         return PageResource(self._client)
@@ -399,6 +411,10 @@ class BrowserResource(SyncAPIResource):
 
 
 class AsyncBrowserResource(AsyncAPIResource):
+    @cached_property
+    def live_view(self) -> AsyncLiveViewResource:
+        return AsyncLiveViewResource(self._client)
+
     @cached_property
     def page(self) -> AsyncPageResource:
         return AsyncPageResource(self._client)
@@ -780,6 +796,10 @@ class BrowserResourceWithRawResponse:
         )
 
     @cached_property
+    def live_view(self) -> LiveViewResourceWithRawResponse:
+        return LiveViewResourceWithRawResponse(self._browser.live_view)
+
+    @cached_property
     def page(self) -> PageResourceWithRawResponse:
         return PageResourceWithRawResponse(self._browser.page)
 
@@ -810,6 +830,10 @@ class AsyncBrowserResourceWithRawResponse:
         self.version = async_to_raw_response_wrapper(
             browser.version,
         )
+
+    @cached_property
+    def live_view(self) -> AsyncLiveViewResourceWithRawResponse:
+        return AsyncLiveViewResourceWithRawResponse(self._browser.live_view)
 
     @cached_property
     def page(self) -> AsyncPageResourceWithRawResponse:
@@ -844,6 +868,10 @@ class BrowserResourceWithStreamingResponse:
         )
 
     @cached_property
+    def live_view(self) -> LiveViewResourceWithStreamingResponse:
+        return LiveViewResourceWithStreamingResponse(self._browser.live_view)
+
+    @cached_property
     def page(self) -> PageResourceWithStreamingResponse:
         return PageResourceWithStreamingResponse(self._browser.page)
 
@@ -874,6 +902,10 @@ class AsyncBrowserResourceWithStreamingResponse:
         self.version = async_to_streamed_response_wrapper(
             browser.version,
         )
+
+    @cached_property
+    def live_view(self) -> AsyncLiveViewResourceWithStreamingResponse:
+        return AsyncLiveViewResourceWithStreamingResponse(self._browser.live_view)
 
     @cached_property
     def page(self) -> AsyncPageResourceWithStreamingResponse:

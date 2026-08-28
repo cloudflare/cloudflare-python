@@ -24,8 +24,22 @@ from .targets import (
     TargetsResourceWithStreamingResponse,
     AsyncTargetsResourceWithStreamingResponse,
 )
+from .live_view import (
+    LiveViewResource,
+    AsyncLiveViewResource,
+    LiveViewResourceWithRawResponse,
+    AsyncLiveViewResourceWithRawResponse,
+    LiveViewResourceWithStreamingResponse,
+    AsyncLiveViewResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "LiveViewResource",
+    "AsyncLiveViewResource",
+    "LiveViewResourceWithRawResponse",
+    "AsyncLiveViewResourceWithRawResponse",
+    "LiveViewResourceWithStreamingResponse",
+    "AsyncLiveViewResourceWithStreamingResponse",
     "PageResource",
     "AsyncPageResource",
     "PageResourceWithRawResponse",

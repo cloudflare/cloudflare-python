@@ -32,6 +32,7 @@ class TestBotManagement:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            bot_preference_sync_enabled=True,
             cf_robots_variant="policy_only",
             content_bots_protection="disabled",
             crawler_protection="enabled",
@@ -84,6 +85,7 @@ class TestBotManagement:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            bot_preference_sync_enabled=True,
             cf_robots_variant="policy_only",
             content_bots_protection="disabled",
             crawler_protection="enabled",
@@ -139,6 +141,7 @@ class TestBotManagement:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            bot_preference_sync_enabled=True,
             cf_robots_variant="policy_only",
             content_bots_protection="disabled",
             crawler_protection="enabled",
@@ -197,6 +200,7 @@ class TestBotManagement:
             ai_bots_protection="block",
             auto_update_model=True,
             bm_cookie_enabled=True,
+            bot_preference_sync_enabled=True,
             cf_robots_variant="policy_only",
             content_bots_protection="disabled",
             crawler_protection="enabled",
@@ -293,6 +297,7 @@ class TestAsyncBotManagement:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            bot_preference_sync_enabled=True,
             cf_robots_variant="policy_only",
             content_bots_protection="disabled",
             crawler_protection="enabled",
@@ -345,6 +350,7 @@ class TestAsyncBotManagement:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            bot_preference_sync_enabled=True,
             cf_robots_variant="policy_only",
             content_bots_protection="disabled",
             crawler_protection="enabled",
@@ -400,6 +406,7 @@ class TestAsyncBotManagement:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            bot_preference_sync_enabled=True,
             cf_robots_variant="policy_only",
             content_bots_protection="disabled",
             crawler_protection="enabled",
@@ -458,6 +465,7 @@ class TestAsyncBotManagement:
             ai_bots_protection="block",
             auto_update_model=True,
             bm_cookie_enabled=True,
+            bot_preference_sync_enabled=True,
             cf_robots_variant="policy_only",
             content_bots_protection="disabled",
             crawler_protection="enabled",

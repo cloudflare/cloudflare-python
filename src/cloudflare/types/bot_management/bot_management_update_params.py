@@ -21,6 +21,13 @@ class BotFightModeConfiguration(TypedDict, total=False):
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
     """Enable rule to block AI Scrapers and Crawlers."""
 
+    bot_preference_sync_enabled: bool
+    """Enable Bot Preference Sync for this zone.
+
+    When enabled, Cloudflare can serve robots.txt content derived from the zone's AI
+    Search, AI User, and AI Training preferences.
+    """
+
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
 
@@ -57,6 +64,13 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
     """Enable rule to block AI Scrapers and Crawlers."""
+
+    bot_preference_sync_enabled: bool
+    """Enable Bot Preference Sync for this zone.
+
+    When enabled, Cloudflare can serve robots.txt content derived from the zone's AI
+    Search, AI User, and AI Training preferences.
+    """
 
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
@@ -107,6 +121,13 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
 
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
     """Enable rule to block AI Scrapers and Crawlers."""
+
+    bot_preference_sync_enabled: bool
+    """Enable Bot Preference Sync for this zone.
+
+    When enabled, Cloudflare can serve robots.txt content derived from the zone's AI
+    Search, AI User, and AI Training preferences.
+    """
 
     cf_robots_variant: Literal["off", "policy_only"]
     """Specifies the Robots Access Control License variant to use."""
@@ -172,6 +193,13 @@ class SubscriptionConfiguration(TypedDict, total=False):
     """
     Indicates that the bot management cookie can be placed on end user devices
     accessing the site. Defaults to true
+    """
+
+    bot_preference_sync_enabled: bool
+    """Enable Bot Preference Sync for this zone.
+
+    When enabled, Cloudflare can serve robots.txt content derived from the zone's AI
+    Search, AI User, and AI Training preferences.
     """
 
     cf_robots_variant: Literal["off", "policy_only"]

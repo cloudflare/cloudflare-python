@@ -63,7 +63,7 @@ ChoiceMessageContentUnionMember1: TypeAlias = Union[
 
 
 class ChoiceMessage(BaseModel):
-    content: Union[str, List[ChoiceMessageContentUnionMember1], None] = None
+    content: Union[str, List[ChoiceMessageContentUnionMember1], Optional[str]]
 
     role: Literal["system", "developer", "user", "assistant", "tool"]
 
