@@ -118,6 +118,9 @@ class InstancesResource(SyncAPIResource):
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
+          aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
@@ -126,6 +129,9 @@ class InstancesResource(SyncAPIResource):
 
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
+
+          rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
@@ -235,12 +241,18 @@ class InstancesResource(SyncAPIResource):
         Update the configuration of an AI Search instance.
 
         Args:
+          aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
+
+          rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
@@ -434,6 +446,9 @@ class InstancesResource(SyncAPIResource):
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
+
+          model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           extra_headers: Send extra headers
 
@@ -683,6 +698,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
+          aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
@@ -691,6 +709,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
+
+          rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
@@ -800,12 +821,18 @@ class AsyncInstancesResource(AsyncAPIResource):
         Update the configuration of an AI Search instance.
 
         Args:
+          aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
+
+          rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
@@ -999,6 +1026,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
+
+          model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           extra_headers: Send extra headers
 

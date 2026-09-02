@@ -166,6 +166,7 @@ class InvestigateResource(SyncAPIResource):
         query: str | Omit = omit,
         recipient: str | Omit = omit,
         sender: str | Omit = omit,
+        smtp_helo_ip: str | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
         subject: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -200,6 +201,8 @@ class InvestigateResource(SyncAPIResource):
           per_page: The number of results per page. Maximum value is 1000.
 
           query: Space-delimited search term. Case-insensitive.
+
+          smtp_helo_ip: Matches messages whose SMTP HELO server IP address equals this value.
 
           start: The beginning of the search date range. Defaults to `now - 30 days`. Must not be
               in the future.
@@ -239,6 +242,7 @@ class InvestigateResource(SyncAPIResource):
                         "query": query,
                         "recipient": recipient,
                         "sender": sender,
+                        "smtp_helo_ip": smtp_helo_ip,
                         "start": start,
                         "subject": subject,
                     },
@@ -378,6 +382,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         query: str | Omit = omit,
         recipient: str | Omit = omit,
         sender: str | Omit = omit,
+        smtp_helo_ip: str | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
         subject: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -412,6 +417,8 @@ class AsyncInvestigateResource(AsyncAPIResource):
           per_page: The number of results per page. Maximum value is 1000.
 
           query: Space-delimited search term. Case-insensitive.
+
+          smtp_helo_ip: Matches messages whose SMTP HELO server IP address equals this value.
 
           start: The beginning of the search date range. Defaults to `now - 30 days`. Must not be
               in the future.
@@ -451,6 +458,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
                         "query": query,
                         "recipient": recipient,
                         "sender": sender,
+                        "smtp_helo_ip": smtp_helo_ip,
                         "start": start,
                         "subject": subject,
                     },

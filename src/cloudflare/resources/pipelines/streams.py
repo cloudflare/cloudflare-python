@@ -72,6 +72,10 @@ class StreamsResource(SyncAPIResource):
 
           name: Specifies the name of the Stream.
 
+          format: Defines the data format of the events.
+
+          schema: Defines the schema of the events in the data stream.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -351,6 +355,10 @@ class AsyncStreamsResource(AsyncAPIResource):
           account_id: Specifies the public ID of the account.
 
           name: Specifies the name of the Stream.
+
+          format: Defines the data format of the events.
+
+          schema: Defines the schema of the events in the data stream.
 
           extra_headers: Send extra headers
 

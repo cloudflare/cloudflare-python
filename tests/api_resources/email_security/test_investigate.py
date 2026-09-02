@@ -48,6 +48,7 @@ class TestInvestigate:
             query="query",
             recipient="recipient",
             sender="sender",
+            smtp_helo_ip="smtp_helo_ip",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             subject="subject",
         )
@@ -173,6 +174,7 @@ class TestAsyncInvestigate:
             query="query",
             recipient="recipient",
             sender="sender",
+            smtp_helo_ip="smtp_helo_ip",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             subject="subject",
         )

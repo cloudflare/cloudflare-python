@@ -289,6 +289,9 @@ class NamespacesResource(SyncAPIResource):
         parallel, merging retrieved content as context for generating a response.
 
         Args:
+          model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -669,6 +672,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
         parallel, merging retrieved content as context for generating a response.
 
         Args:
+          model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -24,16 +24,6 @@ class TestEvents:
             account_id="account_id",
             workflow_name="x",
             instance_id="x",
-        )
-        assert_matches_type(EventCreateResponse, event, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        event = client.workflows.instances.events.create(
-            event_type="x",
-            account_id="account_id",
-            workflow_name="x",
-            instance_id="x",
             body={},
         )
         assert_matches_type(EventCreateResponse, event, path=["response"])
@@ -45,6 +35,7 @@ class TestEvents:
             account_id="account_id",
             workflow_name="x",
             instance_id="x",
+            body={},
         )
 
         assert response.is_closed is True
@@ -59,6 +50,7 @@ class TestEvents:
             account_id="account_id",
             workflow_name="x",
             instance_id="x",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,6 +68,7 @@ class TestEvents:
                 account_id="",
                 workflow_name="x",
                 instance_id="x",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
@@ -84,6 +77,7 @@ class TestEvents:
                 account_id="account_id",
                 workflow_name="",
                 instance_id="x",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
@@ -92,6 +86,7 @@ class TestEvents:
                 account_id="account_id",
                 workflow_name="x",
                 instance_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_type` but received ''"):
@@ -100,6 +95,7 @@ class TestEvents:
                 account_id="account_id",
                 workflow_name="x",
                 instance_id="x",
+                body={},
             )
 
 
@@ -110,16 +106,6 @@ class TestAsyncEvents:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        event = await async_client.workflows.instances.events.create(
-            event_type="x",
-            account_id="account_id",
-            workflow_name="x",
-            instance_id="x",
-        )
-        assert_matches_type(EventCreateResponse, event, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         event = await async_client.workflows.instances.events.create(
             event_type="x",
             account_id="account_id",
@@ -136,6 +122,7 @@ class TestAsyncEvents:
             account_id="account_id",
             workflow_name="x",
             instance_id="x",
+            body={},
         )
 
         assert response.is_closed is True
@@ -150,6 +137,7 @@ class TestAsyncEvents:
             account_id="account_id",
             workflow_name="x",
             instance_id="x",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -167,6 +155,7 @@ class TestAsyncEvents:
                 account_id="",
                 workflow_name="x",
                 instance_id="x",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
@@ -175,6 +164,7 @@ class TestAsyncEvents:
                 account_id="account_id",
                 workflow_name="",
                 instance_id="x",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `instance_id` but received ''"):
@@ -183,6 +173,7 @@ class TestAsyncEvents:
                 account_id="account_id",
                 workflow_name="x",
                 instance_id="",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_type` but received ''"):
@@ -191,4 +182,5 @@ class TestAsyncEvents:
                 account_id="account_id",
                 workflow_name="x",
                 instance_id="x",
+                body={},
             )

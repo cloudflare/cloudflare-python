@@ -123,9 +123,6 @@ from .recording_pause_resume_stop_recording_response import (
 from .session_get_session_participant_details_params import (
     SessionGetSessionParticipantDetailsParams as SessionGetSessionParticipantDetailsParams,
 )
-from .livestream_create_independent_livestream_params import (
-    LivestreamCreateIndependentLivestreamParams as LivestreamCreateIndependentLivestreamParams,
-)
 from .livestream_start_livestreaming_a_meeting_params import (
     LivestreamStartLivestreamingAMeetingParams as LivestreamStartLivestreamingAMeetingParams,
 )
@@ -140,9 +137,6 @@ from .session_get_participant_data_from_peer_id_params import (
 )
 from .session_get_session_participant_details_response import (
     SessionGetSessionParticipantDetailsResponse as SessionGetSessionParticipantDetailsResponse,
-)
-from .livestream_create_independent_livestream_response import (
-    LivestreamCreateIndependentLivestreamResponse as LivestreamCreateIndependentLivestreamResponse,
 )
 from .livestream_start_livestreaming_a_meeting_response import (
     LivestreamStartLivestreamingAMeetingResponse as LivestreamStartLivestreamingAMeetingResponse,

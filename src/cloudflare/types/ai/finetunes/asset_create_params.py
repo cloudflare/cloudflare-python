@@ -13,7 +13,7 @@ class AssetCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     file: Required[FileTypes]
-    """File to upload"""
+    """File to upload."""
 
     file_name: Required[str]
-    """Name of the file (adapter_config.json or adapter_model.safetensors)"""
+    """Name of the file (adapter_config.json or adapter_model.safetensors)."""

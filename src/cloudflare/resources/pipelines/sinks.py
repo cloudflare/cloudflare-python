@@ -76,6 +76,10 @@ class SinksResource(SyncAPIResource):
 
           config: Defines the configuration of the R2 Sink.
 
+          format: Defines the data format of the events.
+
+          schema: Defines the schema of the events in the data stream.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -302,6 +306,10 @@ class AsyncSinksResource(AsyncAPIResource):
           type: Specifies the type of sink.
 
           config: Defines the configuration of the R2 Sink.
+
+          format: Defines the data format of the events.
+
+          schema: Defines the schema of the events in the data stream.
 
           extra_headers: Send extra headers
 

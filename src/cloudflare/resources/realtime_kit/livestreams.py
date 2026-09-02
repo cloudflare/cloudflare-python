@@ -22,7 +22,6 @@ from ..._base_client import make_request_options
 from ...types.realtime_kit import (
     livestream_get_org_analytics_params,
     livestream_get_all_livestreams_params,
-    livestream_create_independent_livestream_params,
     livestream_start_livestreaming_a_meeting_params,
     livestream_get_livestream_analytics_daywise_params,
     livestream_get_livestream_analytics_complete_params,
@@ -32,9 +31,6 @@ from ...types.realtime_kit.livestream_get_org_analytics_response import Livestre
 from ...types.realtime_kit.livestream_get_all_livestreams_response import LivestreamGetAllLivestreamsResponse
 from ...types.realtime_kit.livestream_stop_livestreaming_a_meeting_response import (
     LivestreamStopLivestreamingAMeetingResponse,
-)
-from ...types.realtime_kit.livestream_create_independent_livestream_response import (
-    LivestreamCreateIndependentLivestreamResponse,
 )
 from ...types.realtime_kit.livestream_start_livestreaming_a_meeting_response import (
     LivestreamStartLivestreamingAMeetingResponse,
@@ -80,58 +76,6 @@ class LivestreamsResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return LivestreamsResourceWithStreamingResponse(self)
-
-    def create_independent_livestream(
-        self,
-        app_id: str,
-        *,
-        account_id: str,
-        name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LivestreamCreateIndependentLivestreamResponse:
-        """
-        Creates a livestream for the given App ID and returns ingest server, stream key,
-        and playback URL. You can pass custom input to the ingest server and stream key,
-        and freely distribute the content using the playback URL on any player that
-        supports HLS/LHLS.
-
-        Args:
-          account_id: The account identifier tag.
-
-          app_id: The app identifier tag.
-
-          name: Name of the livestream
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
-        return self._post(
-            path_template(
-                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams", account_id=account_id, app_id=app_id
-            ),
-            body=maybe_transform(
-                {"name": name},
-                livestream_create_independent_livestream_params.LivestreamCreateIndependentLivestreamParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=LivestreamCreateIndependentLivestreamResponse,
-        )
 
     def get_active_livestreams_for_livestream_id(
         self,
@@ -752,58 +696,6 @@ class AsyncLivestreamsResource(AsyncAPIResource):
         """
         return AsyncLivestreamsResourceWithStreamingResponse(self)
 
-    async def create_independent_livestream(
-        self,
-        app_id: str,
-        *,
-        account_id: str,
-        name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LivestreamCreateIndependentLivestreamResponse:
-        """
-        Creates a livestream for the given App ID and returns ingest server, stream key,
-        and playback URL. You can pass custom input to the ingest server and stream key,
-        and freely distribute the content using the playback URL on any player that
-        supports HLS/LHLS.
-
-        Args:
-          account_id: The account identifier tag.
-
-          app_id: The app identifier tag.
-
-          name: Name of the livestream
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
-        return await self._post(
-            path_template(
-                "/accounts/{account_id}/realtime/kit/{app_id}/livestreams", account_id=account_id, app_id=app_id
-            ),
-            body=await async_maybe_transform(
-                {"name": name},
-                livestream_create_independent_livestream_params.LivestreamCreateIndependentLivestreamParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=LivestreamCreateIndependentLivestreamResponse,
-        )
-
     async def get_active_livestreams_for_livestream_id(
         self,
         livestream_id: str,
@@ -1407,9 +1299,6 @@ class LivestreamsResourceWithRawResponse:
     def __init__(self, livestreams: LivestreamsResource) -> None:
         self._livestreams = livestreams
 
-        self.create_independent_livestream = to_raw_response_wrapper(
-            livestreams.create_independent_livestream,
-        )
         self.get_active_livestreams_for_livestream_id = to_raw_response_wrapper(
             livestreams.get_active_livestreams_for_livestream_id,
         )
@@ -1446,9 +1335,6 @@ class AsyncLivestreamsResourceWithRawResponse:
     def __init__(self, livestreams: AsyncLivestreamsResource) -> None:
         self._livestreams = livestreams
 
-        self.create_independent_livestream = async_to_raw_response_wrapper(
-            livestreams.create_independent_livestream,
-        )
         self.get_active_livestreams_for_livestream_id = async_to_raw_response_wrapper(
             livestreams.get_active_livestreams_for_livestream_id,
         )
@@ -1485,9 +1371,6 @@ class LivestreamsResourceWithStreamingResponse:
     def __init__(self, livestreams: LivestreamsResource) -> None:
         self._livestreams = livestreams
 
-        self.create_independent_livestream = to_streamed_response_wrapper(
-            livestreams.create_independent_livestream,
-        )
         self.get_active_livestreams_for_livestream_id = to_streamed_response_wrapper(
             livestreams.get_active_livestreams_for_livestream_id,
         )
@@ -1524,9 +1407,6 @@ class AsyncLivestreamsResourceWithStreamingResponse:
     def __init__(self, livestreams: AsyncLivestreamsResource) -> None:
         self._livestreams = livestreams
 
-        self.create_independent_livestream = async_to_streamed_response_wrapper(
-            livestreams.create_independent_livestream,
-        )
         self.get_active_livestreams_for_livestream_id = async_to_streamed_response_wrapper(
             livestreams.get_active_livestreams_for_livestream_id,
         )

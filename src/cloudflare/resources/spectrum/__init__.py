@@ -24,6 +24,14 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
+from .protocols import (
+    ProtocolsResource,
+    AsyncProtocolsResource,
+    ProtocolsResourceWithRawResponse,
+    AsyncProtocolsResourceWithRawResponse,
+    ProtocolsResourceWithStreamingResponse,
+    AsyncProtocolsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AnalyticsResource",
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncAppsResourceWithRawResponse",
     "AppsResourceWithStreamingResponse",
     "AsyncAppsResourceWithStreamingResponse",
+    "ProtocolsResource",
+    "AsyncProtocolsResource",
+    "ProtocolsResourceWithRawResponse",
+    "AsyncProtocolsResourceWithRawResponse",
+    "ProtocolsResourceWithStreamingResponse",
+    "AsyncProtocolsResourceWithStreamingResponse",
     "SpectrumResource",
     "AsyncSpectrumResource",
     "SpectrumResourceWithRawResponse",

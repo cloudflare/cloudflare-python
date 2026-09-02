@@ -484,7 +484,7 @@ class BindingWorkersBindingKindR2Bucket(BaseModel):
     type: Literal["r2_bucket"]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Optional[Literal["eu", "fedramp", "fedramp-high"]] = None
+    jurisdiction: Optional[Literal["eu", "fedramp", "fedramp-high", "us"]] = None
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)

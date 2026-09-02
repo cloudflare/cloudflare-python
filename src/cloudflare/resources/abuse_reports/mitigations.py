@@ -53,7 +53,7 @@ class MitigationsResource(SyncAPIResource):
         account_id: str,
         effective_after: str | Omit = omit,
         effective_before: str | Omit = omit,
-        entity_type: Literal["url_pattern", "account", "zone"] | Omit = omit,
+        entity_type: Literal["url_pattern", "account", "zone", "custom_expression"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         sort: Literal[
@@ -225,7 +225,7 @@ class AsyncMitigationsResource(AsyncAPIResource):
         account_id: str,
         effective_after: str | Omit = omit,
         effective_before: str | Omit = omit,
-        entity_type: Literal["url_pattern", "account", "zone"] | Omit = omit,
+        entity_type: Literal["url_pattern", "account", "zone", "custom_expression"] | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         sort: Literal[

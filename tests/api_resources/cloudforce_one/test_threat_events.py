@@ -146,9 +146,9 @@ class TestThreatEvents:
             page_size=0,
             search=[
                 {
-                    "field": "attackerCountry",
+                    "field": "attacker",
                     "op": "equals",
-                    "value": "usa",
+                    "value": "x",
                 }
             ],
         )
@@ -658,9 +658,9 @@ class TestAsyncThreatEvents:
             page_size=0,
             search=[
                 {
-                    "field": "attackerCountry",
+                    "field": "attacker",
                     "op": "equals",
-                    "value": "usa",
+                    "value": "x",
                 }
             ],
         )

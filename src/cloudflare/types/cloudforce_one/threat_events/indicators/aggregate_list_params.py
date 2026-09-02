@@ -43,14 +43,18 @@ class AggregateListParams(TypedDict, total=False):
 
     event_date_after: Annotated[str, PropertyInfo(alias="eventDateAfter")]
     """
-    For measure=relationships: only count event links whose eventDate is on/after
-    this date (ISO 8601). Use to bound 'top indicator' to recent activity.
+    For measure=relationships: only count indicator→event links whose relationship
+    was created/observed on or after this date (ISO 8601). Bounds the activity view
+    to recently-observed links. Note: this filters by the relationship's createdAt
+    (link-observation time), not the underlying event's business date.
     """
 
     event_date_before: Annotated[str, PropertyInfo(alias="eventDateBefore")]
     """
-    For measure=relationships: only count event links whose eventDate is on/before
-    this date (ISO 8601).
+    For measure=relationships: only count indicator→event links whose relationship
+    was created/observed on or before this date (ISO 8601). Bounds the activity view
+    by the relationship's createdAt (link-observation time), not the underlying
+    event's business date.
     """
 
     limit: float

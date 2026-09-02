@@ -175,7 +175,6 @@ Types:
 
 ```python
 from cloudflare.types.realtime_kit import (
-    LivestreamCreateIndependentLivestreamResponse,
     LivestreamGetActiveLivestreamsForLivestreamIDResponse,
     LivestreamGetAllLivestreamsResponse,
     LivestreamGetLivestreamAnalyticsCompleteResponse,
@@ -191,7 +190,6 @@ from cloudflare.types.realtime_kit import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/realtime/kit/{app_id}/livestreams">client.realtime_kit.livestreams.<a href="./src/cloudflare/resources/realtime_kit/livestreams.py">create_independent_livestream</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/realtime_kit/livestream_create_independent_livestream_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/livestream_create_independent_livestream_response.py">LivestreamCreateIndependentLivestreamResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/livestreams/{livestream_id}/active-livestream-session">client.realtime_kit.livestreams.<a href="./src/cloudflare/resources/realtime_kit/livestreams.py">get_active_livestreams_for_livestream_id</a>(livestream_id, \*, account_id, app_id) -> <a href="./src/cloudflare/types/realtime_kit/livestream_get_active_livestreams_for_livestream_id_response.py">LivestreamGetActiveLivestreamsForLivestreamIDResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/livestreams">client.realtime_kit.livestreams.<a href="./src/cloudflare/resources/realtime_kit/livestreams.py">get_all_livestreams</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/realtime_kit/livestream_get_all_livestreams_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/livestream_get_all_livestreams_response.py">LivestreamGetAllLivestreamsResponse</a></code>
 - <code title="get /accounts/{account_id}/realtime/kit/{app_id}/analytics/livestreams/overall">client.realtime_kit.livestreams.<a href="./src/cloudflare/resources/realtime_kit/livestreams.py">get_livestream_analytics_complete</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/realtime_kit/livestream_get_livestream_analytics_complete_params.py">params</a>) -> <a href="./src/cloudflare/types/realtime_kit/livestream_get_livestream_analytics_complete_response.py">LivestreamGetLivestreamAnalyticsCompleteResponse</a></code>

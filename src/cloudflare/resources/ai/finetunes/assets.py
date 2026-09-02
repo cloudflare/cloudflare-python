@@ -62,9 +62,9 @@ class AssetsResource(SyncAPIResource):
         Uploads training data assets for a Workers AI fine-tuning job.
 
         Args:
-          file: File to upload
+          file: File to upload.
 
-          file_name: Name of the file (adapter_config.json or adapter_model.safetensors)
+          file_name: Name of the file (adapter_config.json or adapter_model.safetensors).
 
           extra_headers: Send extra headers
 
@@ -143,9 +143,9 @@ class AsyncAssetsResource(AsyncAPIResource):
         Uploads training data assets for a Workers AI fine-tuning job.
 
         Args:
-          file: File to upload
+          file: File to upload.
 
-          file_name: Name of the file (adapter_config.json or adapter_model.safetensors)
+          file_name: Name of the file (adapter_config.json or adapter_model.safetensors).
 
           extra_headers: Send extra headers
 

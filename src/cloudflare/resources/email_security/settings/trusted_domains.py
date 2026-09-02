@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -23,11 +23,13 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.settings import (
     trusted_domain_edit_params,
     trusted_domain_list_params,
+    trusted_domain_batch_params,
     trusted_domain_create_params,
 )
 from ....types.email_security.settings.trusted_domain_get_response import TrustedDomainGetResponse
 from ....types.email_security.settings.trusted_domain_edit_response import TrustedDomainEditResponse
 from ....types.email_security.settings.trusted_domain_list_response import TrustedDomainListResponse
+from ....types.email_security.settings.trusted_domain_batch_response import TrustedDomainBatchResponse
 from ....types.email_security.settings.trusted_domain_create_response import TrustedDomainCreateResponse
 from ....types.email_security.settings.trusted_domain_delete_response import TrustedDomainDeleteResponse
 
@@ -244,6 +246,63 @@ class TrustedDomainsResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[TrustedDomainDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TrustedDomainDeleteResponse]], ResultWrapper[TrustedDomainDeleteResponse]),
+        )
+
+    def batch(
+        self,
+        *,
+        account_id: str,
+        deletes: Iterable[trusted_domain_batch_params.Delete],
+        patches: Iterable[trusted_domain_batch_params.Patch],
+        posts: Iterable[trusted_domain_batch_params.Post],
+        puts: Iterable[trusted_domain_batch_params.Put],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[TrustedDomainBatchResponse]:
+        """Executes multiple operations atomically.
+
+        All four operation arrays (deletes,
+        patches, puts, posts) are required and executed in order. Send empty arrays for
+        unused operations.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template(
+                "/accounts/{account_id}/email-security/settings/trusted_domains/batch", account_id=account_id
+            ),
+            body=maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                trusted_domain_batch_params.TrustedDomainBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TrustedDomainBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[TrustedDomainBatchResponse]], ResultWrapper[TrustedDomainBatchResponse]),
         )
 
     def edit(
@@ -579,6 +638,63 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[TrustedDomainDeleteResponse]], ResultWrapper[TrustedDomainDeleteResponse]),
         )
 
+    async def batch(
+        self,
+        *,
+        account_id: str,
+        deletes: Iterable[trusted_domain_batch_params.Delete],
+        patches: Iterable[trusted_domain_batch_params.Patch],
+        posts: Iterable[trusted_domain_batch_params.Post],
+        puts: Iterable[trusted_domain_batch_params.Put],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[TrustedDomainBatchResponse]:
+        """Executes multiple operations atomically.
+
+        All four operation arrays (deletes,
+        patches, puts, posts) are required and executed in order. Send empty arrays for
+        unused operations.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template(
+                "/accounts/{account_id}/email-security/settings/trusted_domains/batch", account_id=account_id
+            ),
+            body=await async_maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                trusted_domain_batch_params.TrustedDomainBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TrustedDomainBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[TrustedDomainBatchResponse]], ResultWrapper[TrustedDomainBatchResponse]),
+        )
+
     async def edit(
         self,
         trusted_domain_id: str,
@@ -713,6 +829,9 @@ class TrustedDomainsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             trusted_domains.delete,
         )
+        self.batch = to_raw_response_wrapper(
+            trusted_domains.batch,
+        )
         self.edit = to_raw_response_wrapper(
             trusted_domains.edit,
         )
@@ -733,6 +852,9 @@ class AsyncTrustedDomainsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             trusted_domains.delete,
+        )
+        self.batch = async_to_raw_response_wrapper(
+            trusted_domains.batch,
         )
         self.edit = async_to_raw_response_wrapper(
             trusted_domains.edit,
@@ -755,6 +877,9 @@ class TrustedDomainsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             trusted_domains.delete,
         )
+        self.batch = to_streamed_response_wrapper(
+            trusted_domains.batch,
+        )
         self.edit = to_streamed_response_wrapper(
             trusted_domains.edit,
         )
@@ -775,6 +900,9 @@ class AsyncTrustedDomainsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             trusted_domains.delete,
+        )
+        self.batch = async_to_streamed_response_wrapper(
+            trusted_domains.batch,
         )
         self.edit = async_to_streamed_response_wrapper(
             trusted_domains.edit,

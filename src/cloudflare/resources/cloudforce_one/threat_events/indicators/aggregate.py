@@ -84,11 +84,15 @@ class AggregateResource(SyncAPIResource):
           dataset_ids: Dataset ID(s) to filter by. Can be a single dataset ID or comma-separated list.
               If not provided, aggregates across all accessible datasets
 
-          event_date_after: For measure=relationships: only count event links whose eventDate is on/after
-              this date (ISO 8601). Use to bound 'top indicator' to recent activity.
+          event_date_after: For measure=relationships: only count indicator→event links whose relationship
+              was created/observed on or after this date (ISO 8601). Bounds the activity view
+              to recently-observed links. Note: this filters by the relationship's createdAt
+              (link-observation time), not the underlying event's business date.
 
-          event_date_before: For measure=relationships: only count event links whose eventDate is on/before
-              this date (ISO 8601).
+          event_date_before: For measure=relationships: only count indicator→event links whose relationship
+              was created/observed on or before this date (ISO 8601). Bounds the activity view
+              by the relationship's createdAt (link-observation time), not the underlying
+              event's business date.
 
           limit: Maximum number of aggregation results to return (1-100)
 
@@ -194,11 +198,15 @@ class AsyncAggregateResource(AsyncAPIResource):
           dataset_ids: Dataset ID(s) to filter by. Can be a single dataset ID or comma-separated list.
               If not provided, aggregates across all accessible datasets
 
-          event_date_after: For measure=relationships: only count event links whose eventDate is on/after
-              this date (ISO 8601). Use to bound 'top indicator' to recent activity.
+          event_date_after: For measure=relationships: only count indicator→event links whose relationship
+              was created/observed on or after this date (ISO 8601). Bounds the activity view
+              to recently-observed links. Note: this filters by the relationship's createdAt
+              (link-observation time), not the underlying event's business date.
 
-          event_date_before: For measure=relationships: only count event links whose eventDate is on/before
-              this date (ISO 8601).
+          event_date_before: For measure=relationships: only count indicator→event links whose relationship
+              was created/observed on or before this date (ISO 8601). Bounds the activity view
+              by the relationship's createdAt (link-observation time), not the underlying
+              event's business date.
 
           limit: Maximum number of aggregation results to return (1-100)
 

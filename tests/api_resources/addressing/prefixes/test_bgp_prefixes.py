@@ -10,7 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.addressing.prefixes import BGPPrefix
+from cloudflare.types.addressing.prefixes import (
+    BGPPrefix,
+    BGPPrefixDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -117,6 +120,66 @@ class TestBGPPrefixes:
             client.addressing.prefixes.bgp_prefixes.with_raw_response.list(
                 prefix_id="",
                 account_id="258def64c72dae45f3e4c8516e2111f2",
+            )
+
+    @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        bgp_prefix = client.addressing.prefixes.bgp_prefixes.delete(
+            bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
+            prefix_id="2af39739cc4e3b5910c918468bb89828",
+        )
+        assert_matches_type(BGPPrefixDeleteResponse, bgp_prefix, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.addressing.prefixes.bgp_prefixes.with_raw_response.delete(
+            bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
+            prefix_id="2af39739cc4e3b5910c918468bb89828",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        bgp_prefix = response.parse()
+        assert_matches_type(BGPPrefixDeleteResponse, bgp_prefix, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.addressing.prefixes.bgp_prefixes.with_streaming_response.delete(
+            bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
+            prefix_id="2af39739cc4e3b5910c918468bb89828",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bgp_prefix = response.parse()
+            assert_matches_type(BGPPrefixDeleteResponse, bgp_prefix, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.delete(
+                bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+                account_id="",
+                prefix_id="2af39739cc4e3b5910c918468bb89828",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.delete(
+                bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+                account_id="258def64c72dae45f3e4c8516e2111f2",
+                prefix_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bgp_prefix_id` but received ''"):
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.delete(
+                bgp_prefix_id="",
+                account_id="258def64c72dae45f3e4c8516e2111f2",
+                prefix_id="2af39739cc4e3b5910c918468bb89828",
             )
 
     @parametrize
@@ -356,6 +419,66 @@ class TestAsyncBGPPrefixes:
             await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.list(
                 prefix_id="",
                 account_id="258def64c72dae45f3e4c8516e2111f2",
+            )
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        bgp_prefix = await async_client.addressing.prefixes.bgp_prefixes.delete(
+            bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
+            prefix_id="2af39739cc4e3b5910c918468bb89828",
+        )
+        assert_matches_type(BGPPrefixDeleteResponse, bgp_prefix, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.delete(
+            bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
+            prefix_id="2af39739cc4e3b5910c918468bb89828",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        bgp_prefix = await response.parse()
+        assert_matches_type(BGPPrefixDeleteResponse, bgp_prefix, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.addressing.prefixes.bgp_prefixes.with_streaming_response.delete(
+            bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
+            prefix_id="2af39739cc4e3b5910c918468bb89828",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bgp_prefix = await response.parse()
+            assert_matches_type(BGPPrefixDeleteResponse, bgp_prefix, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.delete(
+                bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+                account_id="",
+                prefix_id="2af39739cc4e3b5910c918468bb89828",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.delete(
+                bgp_prefix_id="7009ba364c7a5760798ceb430e603b74",
+                account_id="258def64c72dae45f3e4c8516e2111f2",
+                prefix_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bgp_prefix_id` but received ''"):
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.delete(
+                bgp_prefix_id="",
+                account_id="258def64c72dae45f3e4c8516e2111f2",
+                prefix_id="2af39739cc4e3b5910c918468bb89828",
             )
 
     @parametrize

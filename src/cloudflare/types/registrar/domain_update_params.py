@@ -9,7 +9,7 @@ __all__ = ["DomainUpdateParams"]
 
 class DomainUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     auto_renew: bool
     """

@@ -11,6 +11,14 @@ from .apps import (
     AsyncAppsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .protocols import (
+    ProtocolsResource,
+    AsyncProtocolsResource,
+    ProtocolsResourceWithRawResponse,
+    AsyncProtocolsResourceWithRawResponse,
+    ProtocolsResourceWithStreamingResponse,
+    AsyncProtocolsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .analytics.analytics import (
     AnalyticsResource,
@@ -32,6 +40,10 @@ class SpectrumResource(SyncAPIResource):
     @cached_property
     def apps(self) -> AppsResource:
         return AppsResource(self._client)
+
+    @cached_property
+    def protocols(self) -> ProtocolsResource:
+        return ProtocolsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> SpectrumResourceWithRawResponse:
@@ -61,6 +73,10 @@ class AsyncSpectrumResource(AsyncAPIResource):
     @cached_property
     def apps(self) -> AsyncAppsResource:
         return AsyncAppsResource(self._client)
+
+    @cached_property
+    def protocols(self) -> AsyncProtocolsResource:
+        return AsyncProtocolsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncSpectrumResourceWithRawResponse:
@@ -94,6 +110,10 @@ class SpectrumResourceWithRawResponse:
     def apps(self) -> AppsResourceWithRawResponse:
         return AppsResourceWithRawResponse(self._spectrum.apps)
 
+    @cached_property
+    def protocols(self) -> ProtocolsResourceWithRawResponse:
+        return ProtocolsResourceWithRawResponse(self._spectrum.protocols)
+
 
 class AsyncSpectrumResourceWithRawResponse:
     def __init__(self, spectrum: AsyncSpectrumResource) -> None:
@@ -106,6 +126,10 @@ class AsyncSpectrumResourceWithRawResponse:
     @cached_property
     def apps(self) -> AsyncAppsResourceWithRawResponse:
         return AsyncAppsResourceWithRawResponse(self._spectrum.apps)
+
+    @cached_property
+    def protocols(self) -> AsyncProtocolsResourceWithRawResponse:
+        return AsyncProtocolsResourceWithRawResponse(self._spectrum.protocols)
 
 
 class SpectrumResourceWithStreamingResponse:
@@ -120,6 +144,10 @@ class SpectrumResourceWithStreamingResponse:
     def apps(self) -> AppsResourceWithStreamingResponse:
         return AppsResourceWithStreamingResponse(self._spectrum.apps)
 
+    @cached_property
+    def protocols(self) -> ProtocolsResourceWithStreamingResponse:
+        return ProtocolsResourceWithStreamingResponse(self._spectrum.protocols)
+
 
 class AsyncSpectrumResourceWithStreamingResponse:
     def __init__(self, spectrum: AsyncSpectrumResource) -> None:
@@ -132,3 +160,7 @@ class AsyncSpectrumResourceWithStreamingResponse:
     @cached_property
     def apps(self) -> AsyncAppsResourceWithStreamingResponse:
         return AsyncAppsResourceWithStreamingResponse(self._spectrum.apps)
+
+    @cached_property
+    def protocols(self) -> AsyncProtocolsResourceWithStreamingResponse:
+        return AsyncProtocolsResourceWithStreamingResponse(self._spectrum.protocols)

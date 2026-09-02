@@ -43,7 +43,7 @@ class SourceGcsSourceResponseSchema(BaseModel):
 class SourceR2SourceResponseSchema(BaseModel):
     bucket: Optional[str] = None
 
-    jurisdiction: Optional[Literal["default", "eu", "fedramp"]] = None
+    jurisdiction: Optional[Literal["default", "eu", "us", "fedramp"]] = None
 
     keys: Optional[List[str]] = None
 
@@ -58,7 +58,7 @@ Source: TypeAlias = Union[SourceS3SourceResponseSchema, SourceGcsSourceResponseS
 class Target(BaseModel):
     bucket: Optional[str] = None
 
-    jurisdiction: Optional[Literal["default", "eu", "fedramp"]] = None
+    jurisdiction: Optional[Literal["default", "eu", "us", "fedramp"]] = None
 
     vendor: Optional[Provider] = None
 

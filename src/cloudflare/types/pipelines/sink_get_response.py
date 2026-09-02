@@ -34,9 +34,6 @@ __all__ = [
     "SchemaFieldJson",
     "SchemaFieldStruct",
     "SchemaFieldList",
-    "SchemaFormat",
-    "SchemaFormatJson",
-    "SchemaFormatParquet",
 ]
 
 
@@ -290,31 +287,10 @@ SchemaField: TypeAlias = Annotated[
 ]
 
 
-class SchemaFormatJson(BaseModel):
-    type: Literal["json"]
-
-    decimal_encoding: Optional[Literal["number", "string", "bytes"]] = None
-
-    timestamp_format: Optional[Literal["rfc3339", "unix_millis"]] = None
-
-    unstructured: Optional[bool] = None
-
-
-class SchemaFormatParquet(BaseModel):
-    type: Literal["parquet"]
-
-    compression: Optional[Literal["uncompressed", "snappy", "gzip", "zstd", "lz4"]] = None
-
-    row_group_bytes: Optional[int] = None
-
-
-SchemaFormat: TypeAlias = Annotated[Union[SchemaFormatJson, SchemaFormatParquet], PropertyInfo(discriminator="type")]
-
-
 class Schema(BaseModel):
-    fields: Optional[List[SchemaField]] = None
+    """Defines the schema of the events in the data stream."""
 
-    format: Optional[SchemaFormat] = None
+    fields: Optional[List[SchemaField]] = None
 
     inferred: Optional[bool] = None
 
@@ -337,5 +313,7 @@ class SinkGetResponse(BaseModel):
     """Defines the configuration of the R2 Sink."""
 
     format: Optional[Format] = None
+    """Defines the data format of the events."""
 
     schema_: Optional[Schema] = FieldInfo(alias="schema", default=None)
+    """Defines the schema of the events in the data stream."""

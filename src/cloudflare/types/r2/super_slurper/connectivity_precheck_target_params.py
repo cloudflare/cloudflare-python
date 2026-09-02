@@ -19,7 +19,7 @@ class ConnectivityPrecheckTargetParams(TypedDict, total=False):
 
     vendor: Required[Provider]
 
-    jurisdiction: Literal["default", "eu", "fedramp"]
+    jurisdiction: Literal["default", "eu", "us", "fedramp"]
 
 
 class Secret(TypedDict, total=False):

@@ -65,15 +65,15 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Update individual domain.
+        Updates an individual domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           auto_renew: Auto-renew controls whether subscription is automatically renewed upon domain
               expiration.
@@ -131,10 +131,10 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Domain]:
         """
-        List domains handled by Registrar.
+        Lists domains handled by Registrar.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -174,12 +174,12 @@ class DomainsResource(SyncAPIResource):
         Show individual domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           extra_headers: Send extra headers
 
@@ -247,15 +247,15 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Update individual domain.
+        Updates an individual domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           auto_renew: Auto-renew controls whether subscription is automatically renewed upon domain
               expiration.
@@ -313,10 +313,10 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Domain, AsyncSinglePage[Domain]]:
         """
-        List domains handled by Registrar.
+        Lists domains handled by Registrar.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -356,12 +356,12 @@ class AsyncDomainsResource(AsyncAPIResource):
         Show individual domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           extra_headers: Send extra headers
 

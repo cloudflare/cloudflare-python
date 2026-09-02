@@ -40,6 +40,8 @@ class GraphNode(BaseModel):
 
 
 class Graph(BaseModel):
+    """Indicates the processing flow to implement the SQL."""
+
     edges: List[GraphEdge]
 
     nodes: List[GraphNode]
@@ -50,3 +52,4 @@ class PipelineValidateSqlResponse(BaseModel):
     """Indicates tables involved in the processing."""
 
     graph: Optional[Graph] = None
+    """Indicates the processing flow to implement the SQL."""

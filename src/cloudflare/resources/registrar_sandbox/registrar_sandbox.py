@@ -262,17 +262,17 @@ class RegistrarSandboxResource(SyncAPIResource):
         4. Proceed to `POST /registrations` only for supported non-premium domains.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           domains: List of fully qualified domain names (FQDNs) to check for availability. Each
               domain must include the extension.
 
-              - Minimum: 1 domain
-              - Maximum: 20 domains per request
-              - Domains on unsupported extensions are returned with `registrable: false` and a
-                `reason` field
-              - Malformed domain names (e.g., missing extension) may be omitted from the
-                response
+              - Minimum: 1 domain.
+              - Maximum: 20 domains per request.
+              - The response returns domains on unsupported extensions with
+                `registrable: false` and a `reason` field.
+              - The response may omit malformed domain names (e.g., names missing an
+                extension).
 
           extra_headers: Send extra headers
 
@@ -345,7 +345,7 @@ class RegistrarSandboxResource(SyncAPIResource):
         supported. Provide a keyword or domain name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           q: The search term to find domain suggestions. Accepts keywords, phrases, or full
               domain names.
@@ -596,17 +596,17 @@ class AsyncRegistrarSandboxResource(AsyncAPIResource):
         4. Proceed to `POST /registrations` only for supported non-premium domains.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           domains: List of fully qualified domain names (FQDNs) to check for availability. Each
               domain must include the extension.
 
-              - Minimum: 1 domain
-              - Maximum: 20 domains per request
-              - Domains on unsupported extensions are returned with `registrable: false` and a
-                `reason` field
-              - Malformed domain names (e.g., missing extension) may be omitted from the
-                response
+              - Minimum: 1 domain.
+              - Maximum: 20 domains per request.
+              - The response returns domains on unsupported extensions with
+                `registrable: false` and a `reason` field.
+              - The response may omit malformed domain names (e.g., names missing an
+                extension).
 
           extra_headers: Send extra headers
 
@@ -681,7 +681,7 @@ class AsyncRegistrarSandboxResource(AsyncAPIResource):
         supported. Provide a keyword or domain name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           q: The search term to find domain suggestions. Accepts keywords, phrases, or full
               domain names.

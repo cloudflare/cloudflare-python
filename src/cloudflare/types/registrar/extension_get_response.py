@@ -6,15 +6,15 @@ __all__ = ["ExtensionGetResponse", "Metadata"]
 
 
 class Metadata(BaseModel):
-    """Extension metadata"""
+    """Extension metadata."""
 
     name: str
-    """The full name of the extension. For example, "co.uk", or "uk" """
+    """The full name of the extension. For example, "co.uk", or "uk"."""
 
     tld: str
-    """The tld of the extension.
+    """The TLD of the extension.
 
-    For example, for "co.uk", it's "uk". For "uk", it's "uk"
+    For example, for "co.uk", it is "uk". For "uk", it is "uk".
     """
 
 
@@ -24,7 +24,7 @@ class ExtensionGetResponse(BaseModel):
     """
 
     metadata: Metadata
-    """Extension metadata"""
+    """Extension metadata."""
 
     registration_schema: object
     """

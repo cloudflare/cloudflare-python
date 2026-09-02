@@ -286,6 +286,10 @@ class InstanceUpdateResponse(BaseModel):
     ai_gateway_id: Optional[str] = None
 
     aisearch_model: Optional[str] = FieldInfo(alias="ai_search_model", default=None)
+    """
+    A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+    Completions API. An empty string uses the configured or default model.
+    """
 
     cache: Optional[bool] = None
 
@@ -348,6 +352,10 @@ class InstanceUpdateResponse(BaseModel):
     retrieval_options: Optional[RetrievalOptions] = None
 
     rewrite_model: Optional[str] = None
+    """
+    A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+    Completions API. An empty string uses the configured or default model.
+    """
 
     rewrite_query: Optional[bool] = None
 

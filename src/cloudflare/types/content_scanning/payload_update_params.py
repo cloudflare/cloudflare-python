@@ -1,0 +1,18 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Required, TypedDict
+
+__all__ = ["PayloadUpdateParams"]
+
+
+class PayloadUpdateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Defines an identifier."""
+
+    payload: Required[str]
+    """
+    Defines the custom content extraction expression used to reach content objects
+    in the request.
+    """

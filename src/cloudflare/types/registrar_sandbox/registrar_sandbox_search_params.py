@@ -11,7 +11,7 @@ __all__ = ["RegistrarSandboxSearchParams"]
 
 class RegistrarSandboxSearchParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     q: Required[str]
     """The search term to find domain suggestions.

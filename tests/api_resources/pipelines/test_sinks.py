@@ -74,12 +74,6 @@ class TestSinks:
                         "sql_name": "sql_name",
                     }
                 ],
-                "format": {
-                    "type": "json",
-                    "decimal_encoding": "number",
-                    "timestamp_format": "rfc3339",
-                    "unstructured": True,
-                },
                 "inferred": True,
             },
         )
@@ -325,12 +319,6 @@ class TestAsyncSinks:
                         "sql_name": "sql_name",
                     }
                 ],
-                "format": {
-                    "type": "json",
-                    "decimal_encoding": "number",
-                    "timestamp_format": "rfc3339",
-                    "unstructured": True,
-                },
                 "inferred": True,
             },
         )

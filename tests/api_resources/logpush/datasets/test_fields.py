@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.logpush.datasets import FieldGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +24,7 @@ class TestFields:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(Optional[FieldGetResponse], field, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -32,7 +33,7 @@ class TestFields:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(Optional[FieldGetResponse], field, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -45,7 +46,7 @@ class TestFields:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         field = response.parse()
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(Optional[FieldGetResponse], field, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -58,7 +59,7 @@ class TestFields:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             field = response.parse()
-            assert_matches_type(object, field, path=["response"])
+            assert_matches_type(Optional[FieldGetResponse], field, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -90,7 +91,7 @@ class TestAsyncFields:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(Optional[FieldGetResponse], field, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -99,7 +100,7 @@ class TestAsyncFields:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(Optional[FieldGetResponse], field, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -112,7 +113,7 @@ class TestAsyncFields:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         field = await response.parse()
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(Optional[FieldGetResponse], field, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -125,7 +126,7 @@ class TestAsyncFields:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             field = await response.parse()
-            assert_matches_type(object, field, path=["response"])
+            assert_matches_type(Optional[FieldGetResponse], field, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

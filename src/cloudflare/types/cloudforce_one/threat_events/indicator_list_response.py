@@ -117,6 +117,9 @@ class PropertiesIndicatorsItemsRelatedEvent(BaseModel):
 
 
 class PropertiesIndicatorsItemsTag(BaseModel):
+    category_id: Optional[str] = FieldInfo(alias="categoryId", default=None)
+    """The UUID of the tag category, or null when the tag is uncategorized."""
+
     category_name: Optional[str] = FieldInfo(alias="categoryName", default=None)
 
     uuid: Optional[str] = None
@@ -143,6 +146,13 @@ class PropertiesIndicatorsItems(BaseModel):
     )
 
     tags: Optional[List[PropertiesIndicatorsItemsTag]] = None
+
+    tlp: Optional[str] = None
+    """Traffic Light Protocol designation.
+
+    UPPERCASE. Possible values: CLEAR, GREEN, AMBER, AMBER-STRICT, RED, PURPLE. Null
+    when not set.
+    """
 
 
 class PropertiesIndicators(BaseModel):

@@ -14,7 +14,10 @@ from cloudflare.types.email_security.settings import (
     DomainGetResponse,
     DomainEditResponse,
     DomainListResponse,
+    DomainBatchResponse,
+    DomainCreateResponse,
     DomainDeleteResponse,
+    DomainUpdateResponse,
     DomainBulkDeleteResponse,
 )
 
@@ -25,6 +28,168 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestDomains:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        domain = client.email_security.settings.domains.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            domain="domain",
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        )
+        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        domain = client.email_security.settings.domains.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            domain="domain",
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+            folder="AllItems",
+            integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            lookback_hops=1,
+            require_tls_inbound=True,
+            require_tls_outbound=True,
+            transport="transport",
+        )
+        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.email_security.settings.domains.with_raw_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            domain="domain",
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        domain = response.parse()
+        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.email_security.settings.domains.with_streaming_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            domain="domain",
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            domain = response.parse()
+            assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.email_security.settings.domains.with_raw_response.create(
+                account_id="",
+                allowed_delivery_modes=["DIRECT"],
+                domain="domain",
+                drop_dispositions=["MALICIOUS"],
+                ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+                regions=["GLOBAL"],
+            )
+
+    @parametrize
+    def test_method_update(self, client: Cloudflare) -> None:
+        domain = client.email_security.settings.domains.update(
+            domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        )
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        domain = client.email_security.settings.domains.update(
+            domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+            folder="AllItems",
+            integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            lookback_hops=1,
+            require_tls_inbound=True,
+            require_tls_outbound=True,
+            transport="transport",
+        )
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.email_security.settings.domains.with_raw_response.update(
+            domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        domain = response.parse()
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.email_security.settings.domains.with_streaming_response.update(
+            domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            domain = response.parse()
+            assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.email_security.settings.domains.with_raw_response.update(
+                domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+                allowed_delivery_modes=["DIRECT"],
+                drop_dispositions=["MALICIOUS"],
+                ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+                regions=["GLOBAL"],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_id` but received ''"):
+            client.email_security.settings.domains.with_raw_response.update(
+                domain_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                allowed_delivery_modes=["DIRECT"],
+                drop_dispositions=["MALICIOUS"],
+                ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+                regions=["GLOBAL"],
+            )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
@@ -127,6 +292,124 @@ class TestDomains:
             client.email_security.settings.domains.with_raw_response.delete(
                 domain_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    def test_method_batch(self, client: Cloudflare) -> None:
+        domain = client.email_security.settings.domains.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            posts=[
+                {
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "domain": "domain",
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+            puts=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+        )
+        assert_matches_type(Optional[DomainBatchResponse], domain, path=["response"])
+
+    @parametrize
+    def test_raw_response_batch(self, client: Cloudflare) -> None:
+        response = client.email_security.settings.domains.with_raw_response.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            posts=[
+                {
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "domain": "domain",
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+            puts=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        domain = response.parse()
+        assert_matches_type(Optional[DomainBatchResponse], domain, path=["response"])
+
+    @parametrize
+    def test_streaming_response_batch(self, client: Cloudflare) -> None:
+        with client.email_security.settings.domains.with_streaming_response.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            posts=[
+                {
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "domain": "domain",
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+            puts=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            domain = response.parse()
+            assert_matches_type(Optional[DomainBatchResponse], domain, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_batch(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.email_security.settings.domains.with_raw_response.batch(
+                account_id="",
+                deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+                patches=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+                posts=[
+                    {
+                        "allowed_delivery_modes": ["DIRECT"],
+                        "domain": "domain",
+                        "drop_dispositions": ["MALICIOUS"],
+                        "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                        "regions": ["GLOBAL"],
+                    }
+                ],
+                puts=[
+                    {
+                        "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                        "allowed_delivery_modes": ["DIRECT"],
+                        "drop_dispositions": ["MALICIOUS"],
+                        "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                        "regions": ["GLOBAL"],
+                    }
+                ],
             )
 
     @parametrize
@@ -293,6 +576,168 @@ class TestAsyncDomains:
     )
 
     @parametrize
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        domain = await async_client.email_security.settings.domains.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            domain="domain",
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        )
+        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        domain = await async_client.email_security.settings.domains.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            domain="domain",
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+            folder="AllItems",
+            integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            lookback_hops=1,
+            require_tls_inbound=True,
+            require_tls_outbound=True,
+            transport="transport",
+        )
+        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.email_security.settings.domains.with_raw_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            domain="domain",
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        domain = await response.parse()
+        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.email_security.settings.domains.with_streaming_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            domain="domain",
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            domain = await response.parse()
+            assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.email_security.settings.domains.with_raw_response.create(
+                account_id="",
+                allowed_delivery_modes=["DIRECT"],
+                domain="domain",
+                drop_dispositions=["MALICIOUS"],
+                ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+                regions=["GLOBAL"],
+            )
+
+    @parametrize
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        domain = await async_client.email_security.settings.domains.update(
+            domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        )
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        domain = await async_client.email_security.settings.domains.update(
+            domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+            folder="AllItems",
+            integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            lookback_hops=1,
+            require_tls_inbound=True,
+            require_tls_outbound=True,
+            transport="transport",
+        )
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.email_security.settings.domains.with_raw_response.update(
+            domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        domain = await response.parse()
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.email_security.settings.domains.with_streaming_response.update(
+            domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allowed_delivery_modes=["DIRECT"],
+            drop_dispositions=["MALICIOUS"],
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+            regions=["GLOBAL"],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            domain = await response.parse()
+            assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.email_security.settings.domains.with_raw_response.update(
+                domain_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+                allowed_delivery_modes=["DIRECT"],
+                drop_dispositions=["MALICIOUS"],
+                ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+                regions=["GLOBAL"],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_id` but received ''"):
+            await async_client.email_security.settings.domains.with_raw_response.update(
+                domain_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                allowed_delivery_modes=["DIRECT"],
+                drop_dispositions=["MALICIOUS"],
+                ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
+                regions=["GLOBAL"],
+            )
+
+    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.email_security.settings.domains.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -393,6 +838,124 @@ class TestAsyncDomains:
             await async_client.email_security.settings.domains.with_raw_response.delete(
                 domain_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_batch(self, async_client: AsyncCloudflare) -> None:
+        domain = await async_client.email_security.settings.domains.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            posts=[
+                {
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "domain": "domain",
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+            puts=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+        )
+        assert_matches_type(Optional[DomainBatchResponse], domain, path=["response"])
+
+    @parametrize
+    async def test_raw_response_batch(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.email_security.settings.domains.with_raw_response.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            posts=[
+                {
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "domain": "domain",
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+            puts=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        domain = await response.parse()
+        assert_matches_type(Optional[DomainBatchResponse], domain, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_batch(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.email_security.settings.domains.with_streaming_response.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            posts=[
+                {
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "domain": "domain",
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+            puts=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "allowed_delivery_modes": ["DIRECT"],
+                    "drop_dispositions": ["MALICIOUS"],
+                    "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                    "regions": ["GLOBAL"],
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            domain = await response.parse()
+            assert_matches_type(Optional[DomainBatchResponse], domain, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_batch(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.email_security.settings.domains.with_raw_response.batch(
+                account_id="",
+                deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+                patches=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+                posts=[
+                    {
+                        "allowed_delivery_modes": ["DIRECT"],
+                        "domain": "domain",
+                        "drop_dispositions": ["MALICIOUS"],
+                        "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                        "regions": ["GLOBAL"],
+                    }
+                ],
+                puts=[
+                    {
+                        "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                        "allowed_delivery_modes": ["DIRECT"],
+                        "drop_dispositions": ["MALICIOUS"],
+                        "ip_restrictions": ["192.0.2.0/24", "2001:db8::/32"],
+                        "regions": ["GLOBAL"],
+                    }
+                ],
             )
 
     @parametrize

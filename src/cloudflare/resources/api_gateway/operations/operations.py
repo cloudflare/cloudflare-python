@@ -147,7 +147,7 @@ class OperationsResource(SyncAPIResource):
         zone_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         endpoint: str | Omit = omit,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         method: SequenceNotStr[str] | Omit = omit,
         order: Literal["method", "host", "endpoint", "thresholds.$key"] | Omit = omit,
@@ -345,7 +345,7 @@ class OperationsResource(SyncAPIResource):
         operation_id: str,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         with_schemas: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -500,7 +500,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         zone_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         endpoint: str | Omit = omit,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         method: SequenceNotStr[str] | Omit = omit,
         order: Literal["method", "host", "endpoint", "thresholds.$key"] | Omit = omit,
@@ -698,7 +698,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         operation_id: str,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         with_schemas: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

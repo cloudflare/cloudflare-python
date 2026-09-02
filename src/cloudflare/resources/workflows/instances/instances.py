@@ -233,7 +233,7 @@ class InstancesResource(SyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        body: Iterable[instance_bulk_params.Body] | Omit = omit,
+        body: Iterable[instance_bulk_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -291,10 +291,6 @@ class InstancesResource(SyncAPIResource):
         Retrieves logs and execution status for a specific workflow instance.
 
         Args:
-          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
-              (max 100 characters); cron-triggered instances can use a longer,
-              system-generated id derived from the cron expression.
-
           order: Step ordering: "asc" (default, oldest first) or "desc" (newest first).
 
           simple: When true, omits step details and returns only metadata with step_count.
@@ -364,10 +360,6 @@ class InstancesResource(SyncAPIResource):
         currently retrying after a prior attempt failed.
 
         Args:
-          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
-              (max 100 characters); cron-triggered instances can use a longer,
-              system-generated id derived from the cron expression.
-
           name: Exact step name from the instance logs response, including the generated counter
               suffix.
 
@@ -596,7 +588,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        body: Iterable[instance_bulk_params.Body] | Omit = omit,
+        body: Iterable[instance_bulk_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -654,10 +646,6 @@ class AsyncInstancesResource(AsyncAPIResource):
         Retrieves logs and execution status for a specific workflow instance.
 
         Args:
-          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
-              (max 100 characters); cron-triggered instances can use a longer,
-              system-generated id derived from the cron expression.
-
           order: Step ordering: "asc" (default, oldest first) or "desc" (newest first).
 
           simple: When true, omits step details and returns only metadata with step_count.
@@ -727,10 +715,6 @@ class AsyncInstancesResource(AsyncAPIResource):
         currently retrying after a prior attempt failed.
 
         Args:
-          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
-              (max 100 characters); cron-triggered instances can use a longer,
-              system-generated id derived from the cron expression.
-
           name: Exact step name from the instance logs response, including the generated counter
               suffix.
 

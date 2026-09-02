@@ -88,6 +88,9 @@ class SearchParams(BaseModel):
 
     sender: Optional[str] = None
 
+    smtp_helo_ip: Optional[str] = None
+    """Matches messages whose SMTP HELO server IP address equals this value."""
+
     start: Optional[datetime] = None
     """Beginning of search date range."""
 

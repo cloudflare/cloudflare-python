@@ -31,9 +31,6 @@ __all__ = [
     "SchemaFieldJson",
     "SchemaFieldStruct",
     "SchemaFieldList",
-    "SchemaFormat",
-    "SchemaFormatJson",
-    "SchemaFormatParquet",
 ]
 
 
@@ -51,8 +48,10 @@ class SinkCreateParams(TypedDict, total=False):
     """Defines the configuration of the R2 Sink."""
 
     format: Format
+    """Defines the data format of the events."""
 
     schema: Schema
+    """Defines the schema of the events in the data stream."""
 
 
 class ConfigCloudflarePipelinesR2TableCredentials(TypedDict, total=False):
@@ -313,30 +312,9 @@ SchemaField: TypeAlias = Union[
 ]
 
 
-class SchemaFormatJson(TypedDict, total=False):
-    type: Required[Literal["json"]]
-
-    decimal_encoding: Literal["number", "string", "bytes"]
-
-    timestamp_format: Literal["rfc3339", "unix_millis"]
-
-    unstructured: bool
-
-
-class SchemaFormatParquet(TypedDict, total=False):
-    type: Required[Literal["parquet"]]
-
-    compression: Literal["uncompressed", "snappy", "gzip", "zstd", "lz4"]
-
-    row_group_bytes: Optional[int]
-
-
-SchemaFormat: TypeAlias = Union[SchemaFormatJson, SchemaFormatParquet]
-
-
 class Schema(TypedDict, total=False):
-    fields: Iterable[SchemaField]
+    """Defines the schema of the events in the data stream."""
 
-    format: SchemaFormat
+    fields: Iterable[SchemaField]
 
     inferred: Optional[bool]

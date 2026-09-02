@@ -16,7 +16,7 @@ class MitigationListParams(TypedDict, total=False):
     effective_before: str
     """Returns mitigations that were dispatched before the given date"""
 
-    entity_type: Literal["url_pattern", "account", "zone"]
+    entity_type: Literal["url_pattern", "account", "zone", "custom_expression"]
     """Filter by the type of entity the mitigation impacts."""
 
     page: int

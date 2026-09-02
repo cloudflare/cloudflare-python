@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -156,6 +156,13 @@ class UsageGetAccountUsageV2ResponseItem(BaseModel):
     """Name assigned to a grouping of services.
 
     For Cloudflare, this is the subscription or contract display name.
+    """
+
+    tags: Optional[Dict[str, Union[str, Literal[True]]]] = FieldInfo(alias="Tags", default=None)
+    """Tag values for the requested `GroupBy` keys.
+
+    Omitted when `GroupBy` is not provided. Missing keys are omitted, and key-only
+    tags are returned as boolean `true`. All other tag values are strings.
     """
 
     x_product_category_name: Optional[str] = FieldInfo(alias="x_ProductCategoryName", default=None)

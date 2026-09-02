@@ -109,16 +109,16 @@ class RegistrationsResource(SyncAPIResource):
         To skip the wait and receive an immediate `202`, send `Prefer: respond-async`.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
-          acknowledgements: User acknowledgements required by a specific extension or premium registration
-              flow. The expected keys are described by the extension registration schema
-              returned by the extension discovery endpoint.
+          acknowledgements: Provides user acknowledgements for a specific extension or premium registration
+              flow. The extension registration schema from the extension discovery endpoint
+              identifies the required keys.
 
           auto_renew: Enable or disable automatic renewal. Defaults to `false` if omitted. Setting
               this field to `true` is an explicit opt-in authorizing Cloudflare to charge the
@@ -126,51 +126,49 @@ class RegistrationsResource(SyncAPIResource):
               domain automatically. Renewal pricing may change over time based on registry
               pricing.
 
-          contact_extensions: Registry-specific contact extension values for the registrant. The required keys
-              and allowed values vary by extension and are described by
-              `GET /accounts/{account_id}/registrar/extensions/{extension}` in the
+          contact_extensions: Provides registry-specific contact extension values for the registrant.
+              `GET /accounts/{account_id}/registrar/extensions/{extension}` identifies the
+              required keys and allowed values for each extension in the
               `registration_schema.properties.contact_extensions` object.
 
               Examples include `.us` nexus fields, `.uk` registrant type fields, and `.ca`
-              legal type fields. Omit this object for extensions whose registration schema
-              does not include `contact_extensions`.
+              legal type fields. Omit this object when the extension's registration schema
+              excludes `contact_extensions`.
 
-          contacts: Contact data for the registration request.
+          contacts: Provides contact data for the registration request.
 
-              The per-extension schema returned by
-              `GET /accounts/{account_id}/registrar/extensions/{extension}` is the
-              authoritative contract for which contact roles are accepted. Every currently
-              supported extension requires only `contacts.registrant` from API callers.
-              Additional roles such as `technical`, `administrator`, and `billing` may be
-              provided when the extension schema includes them. If a registry requires one of
-              those roles and the caller omits it, Cloudflare may derive that contact from
-              `contacts.registrant`.
+              The per-extension schema from
+              `GET /accounts/{account_id}/registrar/extensions/{extension}` defines the
+              accepted contact roles. Every currently supported extension requires only
+              `contacts.registrant` from API callers. Callers may provide additional roles
+              such as `technical`, `administrator`, and `billing` when the extension schema
+              includes them. When a registry requires an omitted role, Cloudflare may derive
+              that contact from `contacts.registrant`.
 
-              If the `contacts` object is omitted entirely from the request, or if
-              `contacts.registrant` is not provided, the system will use the account's default
-              address book entry as the registrant contact. This default must be
-              pre-configured by the account owner at
+              When the request omits either the entire `contacts` object or
+              `contacts.registrant`, the system uses the account's default address book entry
+              as the registrant contact. The account owner must configure this default at
               `https://dash.cloudflare.com/{account_id}/domains/registrations`, where they can
-              create or update the address book entry and accept the required agreement. No
-              API exists for managing address book entries at this time.
+              create or update the address book entry and accept the required agreement.
+              Dashboard settings currently provide the only way to manage address book
+              entries.
 
-              If no default address book entry exists and no registrant contact is provided,
-              the registration request will fail with a validation error.
+              Without either a default address book entry or a registrant contact, the
+              registration request fails validation.
 
-          privacy_mode: WHOIS privacy mode for the registration. Defaults to `redaction`.
+          privacy_mode: Sets the WHOIS privacy mode for the registration. Defaults to `redaction`.
 
-              - `off`: Do not request WHOIS privacy.
-              - `redaction`: Request WHOIS redaction where supported by the extension. Some
-                extensions do not support privacy/redaction.
+              - `off`: Disables WHOIS privacy.
+              - `redaction`: Requests WHOIS redaction where the extension supports it. Some
+                extensions exclude privacy and redaction.
 
-          years: Number of years to register (1–10). If omitted, defaults to the minimum
-              registration period required by the registry for this extension. For most
-              extensions this is 1 year, but some extensions require longer minimum terms
-              (e.g., `.ai` requires a minimum of 2 years).
+          years: Sets the registration term from 1 to 10 years. When omitted, this field defaults
+              to the registry's minimum registration period for the extension. Most extensions
+              require 1 year, while some require longer minimum terms (e.g., `.ai` requires 2
+              years).
 
-              The registry for each extension may also enforce its own maximum registration
-              term. If the requested value exceeds the registry's maximum, the registration
-              will be rejected. When in doubt, use the default by omitting this field.
+              Each registry may also enforce its own maximum registration term. A request
+              above that maximum fails. When uncertain, omit this field to use the default.
 
           extra_headers: Send extra headers
 
@@ -231,7 +229,7 @@ class RegistrationsResource(SyncAPIResource):
         next request. An empty `cursor` string indicates there are no more pages.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           cursor: Opaque token from a previous response's `result_info.cursor`. Pass this value to
               fetch the next page of results. Omit (or pass an empty string) for the first
@@ -304,12 +302,12 @@ class RegistrationsResource(SyncAPIResource):
         This endpoint currently supports updating `auto_renew` only.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           auto_renew: Enable or disable automatic renewal. Setting this field to `true` authorizes
               Cloudflare to charge the account's default payment method up to 30 days before
@@ -370,12 +368,12 @@ class RegistrationsResource(SyncAPIResource):
         in the response.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           extra_headers: Send extra headers
 
@@ -486,16 +484,16 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         To skip the wait and receive an immediate `202`, send `Prefer: respond-async`.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
-          acknowledgements: User acknowledgements required by a specific extension or premium registration
-              flow. The expected keys are described by the extension registration schema
-              returned by the extension discovery endpoint.
+          acknowledgements: Provides user acknowledgements for a specific extension or premium registration
+              flow. The extension registration schema from the extension discovery endpoint
+              identifies the required keys.
 
           auto_renew: Enable or disable automatic renewal. Defaults to `false` if omitted. Setting
               this field to `true` is an explicit opt-in authorizing Cloudflare to charge the
@@ -503,51 +501,49 @@ class AsyncRegistrationsResource(AsyncAPIResource):
               domain automatically. Renewal pricing may change over time based on registry
               pricing.
 
-          contact_extensions: Registry-specific contact extension values for the registrant. The required keys
-              and allowed values vary by extension and are described by
-              `GET /accounts/{account_id}/registrar/extensions/{extension}` in the
+          contact_extensions: Provides registry-specific contact extension values for the registrant.
+              `GET /accounts/{account_id}/registrar/extensions/{extension}` identifies the
+              required keys and allowed values for each extension in the
               `registration_schema.properties.contact_extensions` object.
 
               Examples include `.us` nexus fields, `.uk` registrant type fields, and `.ca`
-              legal type fields. Omit this object for extensions whose registration schema
-              does not include `contact_extensions`.
+              legal type fields. Omit this object when the extension's registration schema
+              excludes `contact_extensions`.
 
-          contacts: Contact data for the registration request.
+          contacts: Provides contact data for the registration request.
 
-              The per-extension schema returned by
-              `GET /accounts/{account_id}/registrar/extensions/{extension}` is the
-              authoritative contract for which contact roles are accepted. Every currently
-              supported extension requires only `contacts.registrant` from API callers.
-              Additional roles such as `technical`, `administrator`, and `billing` may be
-              provided when the extension schema includes them. If a registry requires one of
-              those roles and the caller omits it, Cloudflare may derive that contact from
-              `contacts.registrant`.
+              The per-extension schema from
+              `GET /accounts/{account_id}/registrar/extensions/{extension}` defines the
+              accepted contact roles. Every currently supported extension requires only
+              `contacts.registrant` from API callers. Callers may provide additional roles
+              such as `technical`, `administrator`, and `billing` when the extension schema
+              includes them. When a registry requires an omitted role, Cloudflare may derive
+              that contact from `contacts.registrant`.
 
-              If the `contacts` object is omitted entirely from the request, or if
-              `contacts.registrant` is not provided, the system will use the account's default
-              address book entry as the registrant contact. This default must be
-              pre-configured by the account owner at
+              When the request omits either the entire `contacts` object or
+              `contacts.registrant`, the system uses the account's default address book entry
+              as the registrant contact. The account owner must configure this default at
               `https://dash.cloudflare.com/{account_id}/domains/registrations`, where they can
-              create or update the address book entry and accept the required agreement. No
-              API exists for managing address book entries at this time.
+              create or update the address book entry and accept the required agreement.
+              Dashboard settings currently provide the only way to manage address book
+              entries.
 
-              If no default address book entry exists and no registrant contact is provided,
-              the registration request will fail with a validation error.
+              Without either a default address book entry or a registrant contact, the
+              registration request fails validation.
 
-          privacy_mode: WHOIS privacy mode for the registration. Defaults to `redaction`.
+          privacy_mode: Sets the WHOIS privacy mode for the registration. Defaults to `redaction`.
 
-              - `off`: Do not request WHOIS privacy.
-              - `redaction`: Request WHOIS redaction where supported by the extension. Some
-                extensions do not support privacy/redaction.
+              - `off`: Disables WHOIS privacy.
+              - `redaction`: Requests WHOIS redaction where the extension supports it. Some
+                extensions exclude privacy and redaction.
 
-          years: Number of years to register (1–10). If omitted, defaults to the minimum
-              registration period required by the registry for this extension. For most
-              extensions this is 1 year, but some extensions require longer minimum terms
-              (e.g., `.ai` requires a minimum of 2 years).
+          years: Sets the registration term from 1 to 10 years. When omitted, this field defaults
+              to the registry's minimum registration period for the extension. Most extensions
+              require 1 year, while some require longer minimum terms (e.g., `.ai` requires 2
+              years).
 
-              The registry for each extension may also enforce its own maximum registration
-              term. If the requested value exceeds the registry's maximum, the registration
-              will be rejected. When in doubt, use the default by omitting this field.
+              Each registry may also enforce its own maximum registration term. A request
+              above that maximum fails. When uncertain, omit this field to use the default.
 
           extra_headers: Send extra headers
 
@@ -608,7 +604,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         next request. An empty `cursor` string indicates there are no more pages.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           cursor: Opaque token from a previous response's `result_info.cursor`. Pass this value to
               fetch the next page of results. Omit (or pass an empty string) for the first
@@ -681,12 +677,12 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         This endpoint currently supports updating `auto_renew` only.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           auto_renew: Enable or disable automatic renewal. Setting this field to `true` authorizes
               Cloudflare to charge the account's default payment method up to 30 days before
@@ -749,12 +745,12 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         in the response.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           extra_headers: Send extra headers
 

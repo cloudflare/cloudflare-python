@@ -27,7 +27,7 @@ __all__ = [
 class ActiveDurationAnnotated(BaseModel):
     value: str
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class ActorCategoryAnnotated(BaseModel):
@@ -35,7 +35,7 @@ class ActorCategoryAnnotated(BaseModel):
 
     confidence: Optional[float] = None
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class Alias(BaseModel):
@@ -43,7 +43,7 @@ class Alias(BaseModel):
 
     confidence: Optional[int] = None
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class AttributionOrganizationAnnotated(BaseModel):
@@ -51,7 +51,7 @@ class AttributionOrganizationAnnotated(BaseModel):
 
     confidence: Optional[float] = None
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class ExternalReference(BaseModel):
@@ -63,7 +63,7 @@ class ExternalReference(BaseModel):
 class ExternalReferencesAnnotated(BaseModel):
     value: str
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class InternalAlias(BaseModel):
@@ -71,7 +71,7 @@ class InternalAlias(BaseModel):
 
     confidence: Optional[int] = None
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class MotiveAnnotated(BaseModel):
@@ -79,7 +79,7 @@ class MotiveAnnotated(BaseModel):
 
     confidence: Optional[float] = None
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class OpsecLevelAnnotated(BaseModel):
@@ -87,7 +87,7 @@ class OpsecLevelAnnotated(BaseModel):
 
     confidence: Optional[float] = None
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class OriginCountryISOAnnotated(BaseModel):
@@ -95,13 +95,13 @@ class OriginCountryISOAnnotated(BaseModel):
 
     confidence: Optional[float] = None
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class PriorityAnnotated(BaseModel):
     value: float
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class SophisticationLevelAnnotated(BaseModel):
@@ -109,7 +109,7 @@ class SophisticationLevelAnnotated(BaseModel):
 
     confidence: Optional[float] = None
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
 
 
 class TagEditResponse(BaseModel):
@@ -132,7 +132,8 @@ class TagEditResponse(BaseModel):
     aliases: Optional[List[Alias]] = None
     """Structured aliases ({ value, confidence 1-10, tlp }).
 
-    CFONE-only: stripped from responses to non-CFONE accounts.
+    Public: returned to all accounts with per-entry TLP filtering (entries with tlp:
+    purple are removed for non-CFONE accounts).
     """
 
     alias_group_names: Optional[List[str]] = FieldInfo(alias="aliasGroupNames", default=None)
@@ -211,7 +212,7 @@ class TagEditResponse(BaseModel):
         alias="sophisticationLevel_annotated", default=None
     )
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]] = None
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]] = None
     """Tag-level TLP handling marking."""
 
     updated_at: Optional[str] = FieldInfo(alias="updatedAt", default=None)

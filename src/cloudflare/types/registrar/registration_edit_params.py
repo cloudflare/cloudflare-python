@@ -11,7 +11,7 @@ __all__ = ["RegistrationEditParams"]
 
 class RegistrationEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     auto_renew: bool
     """

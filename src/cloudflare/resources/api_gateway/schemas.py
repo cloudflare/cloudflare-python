@@ -49,7 +49,7 @@ class SchemasResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         include_schema_kind: List[Literal["learned"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -129,7 +129,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         include_schema_kind: List[Literal["learned"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

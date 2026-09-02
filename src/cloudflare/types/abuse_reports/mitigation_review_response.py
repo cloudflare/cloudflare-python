@@ -19,7 +19,7 @@ class MitigationReviewResponse(BaseModel):
 
     entity_id: str
 
-    entity_type: Literal["url_pattern", "account", "zone"]
+    entity_type: Literal["url_pattern", "account", "zone", "custom_expression"]
     """The type of entity targeted by a mitigation."""
 
     status: Literal["pending", "active", "in_review", "cancelled", "removed"]

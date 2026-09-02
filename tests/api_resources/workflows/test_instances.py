@@ -156,25 +156,7 @@ class TestInstances:
         instance = client.workflows.instances.bulk(
             workflow_name="x",
             account_id="account_id",
-        )
-        assert_matches_type(SyncSinglePage[InstanceBulkResponse], instance, path=["response"])
-
-    @parametrize
-    def test_method_bulk_with_all_params(self, client: Cloudflare) -> None:
-        instance = client.workflows.instances.bulk(
-            workflow_name="x",
-            account_id="account_id",
-            body=[
-                {
-                    "instance_id": "instance_id",
-                    "instance_retention": {
-                        "error_retention": "5 minutes",
-                        "success_retention": "5 minutes",
-                    },
-                    "location_hint": "wnam",
-                    "params": "params",
-                }
-            ],
+            body=[{}],
         )
         assert_matches_type(SyncSinglePage[InstanceBulkResponse], instance, path=["response"])
 
@@ -183,6 +165,7 @@ class TestInstances:
         response = client.workflows.instances.with_raw_response.bulk(
             workflow_name="x",
             account_id="account_id",
+            body=[{}],
         )
 
         assert response.is_closed is True
@@ -195,6 +178,7 @@ class TestInstances:
         with client.workflows.instances.with_streaming_response.bulk(
             workflow_name="x",
             account_id="account_id",
+            body=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -210,12 +194,14 @@ class TestInstances:
             client.workflows.instances.with_raw_response.bulk(
                 workflow_name="x",
                 account_id="",
+                body=[{}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
             client.workflows.instances.with_raw_response.bulk(
                 workflow_name="",
                 account_id="account_id",
+                body=[{}],
             )
 
     @parametrize
@@ -510,25 +496,7 @@ class TestAsyncInstances:
         instance = await async_client.workflows.instances.bulk(
             workflow_name="x",
             account_id="account_id",
-        )
-        assert_matches_type(AsyncSinglePage[InstanceBulkResponse], instance, path=["response"])
-
-    @parametrize
-    async def test_method_bulk_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        instance = await async_client.workflows.instances.bulk(
-            workflow_name="x",
-            account_id="account_id",
-            body=[
-                {
-                    "instance_id": "instance_id",
-                    "instance_retention": {
-                        "error_retention": "5 minutes",
-                        "success_retention": "5 minutes",
-                    },
-                    "location_hint": "wnam",
-                    "params": "params",
-                }
-            ],
+            body=[{}],
         )
         assert_matches_type(AsyncSinglePage[InstanceBulkResponse], instance, path=["response"])
 
@@ -537,6 +505,7 @@ class TestAsyncInstances:
         response = await async_client.workflows.instances.with_raw_response.bulk(
             workflow_name="x",
             account_id="account_id",
+            body=[{}],
         )
 
         assert response.is_closed is True
@@ -549,6 +518,7 @@ class TestAsyncInstances:
         async with async_client.workflows.instances.with_streaming_response.bulk(
             workflow_name="x",
             account_id="account_id",
+            body=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -564,12 +534,14 @@ class TestAsyncInstances:
             await async_client.workflows.instances.with_raw_response.bulk(
                 workflow_name="x",
                 account_id="",
+                body=[{}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_name` but received ''"):
             await async_client.workflows.instances.with_raw_response.bulk(
                 workflow_name="",
                 account_id="account_id",
+                body=[{}],
             )
 
     @parametrize

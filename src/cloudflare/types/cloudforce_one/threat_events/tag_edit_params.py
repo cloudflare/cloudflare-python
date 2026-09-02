@@ -43,7 +43,8 @@ class TagEditParams(TypedDict, total=False):
     aliases: Iterable[Alias]
     """Structured aliases ({ value, confidence 1-10, tlp }).
 
-    CFONE-only: stripped from responses to non-CFONE accounts.
+    Public: returned to all accounts with per-entry TLP filtering (entries with tlp:
+    purple are removed for non-CFONE accounts).
     """
 
     alias_group_names: Annotated[SequenceNotStr[str], PropertyInfo(alias="aliasGroupNames")]
@@ -106,7 +107,7 @@ class TagEditParams(TypedDict, total=False):
 
     sophistication_level: Annotated[SophisticationLevel, PropertyInfo(alias="sophisticationLevel")]
 
-    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]
     """Tag-level TLP marking. Omit to preserve existing. Cannot be cleared to null."""
 
     value: str
@@ -117,7 +118,7 @@ class ActiveDurationUnionMember1(TypedDict, total=False):
 
     confidence: int
 
-    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]
 
 
 ActiveDuration: TypeAlias = Union[str, ActiveDurationUnionMember1]
@@ -128,7 +129,7 @@ class ActorCategoryUnionMember1(TypedDict, total=False):
 
     confidence: int
 
-    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]
 
 
 ActorCategory: TypeAlias = Union[str, ActorCategoryUnionMember1]
@@ -139,7 +140,7 @@ class Alias(TypedDict, total=False):
 
     confidence: Optional[int]
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]]
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]]
 
 
 class AttributionOrganizationUnionMember1(TypedDict, total=False):
@@ -147,7 +148,7 @@ class AttributionOrganizationUnionMember1(TypedDict, total=False):
 
     confidence: int
 
-    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]
 
 
 AttributionOrganization: TypeAlias = Union[str, AttributionOrganizationUnionMember1]
@@ -164,7 +165,7 @@ class InternalAlias(TypedDict, total=False):
 
     confidence: Optional[int]
 
-    tlp: Optional[Literal["red", "amber", "amber+strict", "green", "clear", "purple"]]
+    tlp: Optional[Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]]
 
 
 class MotiveUnionMember1(TypedDict, total=False):
@@ -172,7 +173,7 @@ class MotiveUnionMember1(TypedDict, total=False):
 
     confidence: int
 
-    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]
 
 
 Motive: TypeAlias = Union[str, MotiveUnionMember1]
@@ -183,7 +184,7 @@ class OpsecLevelUnionMember1(TypedDict, total=False):
 
     confidence: int
 
-    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]
 
 
 OpsecLevel: TypeAlias = Union[str, OpsecLevelUnionMember1]
@@ -194,7 +195,7 @@ class OriginCountryISOUnionMember1(TypedDict, total=False):
 
     confidence: int
 
-    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]
 
 
 OriginCountryISO: TypeAlias = Union[str, OriginCountryISOUnionMember1]
@@ -205,7 +206,7 @@ class PriorityUnionMember1(TypedDict, total=False):
 
     confidence: int
 
-    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]
 
 
 Priority: TypeAlias = Union[float, PriorityUnionMember1]
@@ -216,7 +217,7 @@ class SophisticationLevelUnionMember1(TypedDict, total=False):
 
     confidence: int
 
-    tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"]
+    tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"]
 
 
 SophisticationLevel: TypeAlias = Union[str, SophisticationLevelUnionMember1]

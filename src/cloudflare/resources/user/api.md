@@ -71,6 +71,22 @@ Methods:
 - <code title="delete /user/organizations/{organization_id}">client.user.organizations.<a href="./src/cloudflare/resources/user/organizations.py">delete</a>(organization_id) -> <a href="./src/cloudflare/types/user/organization_delete_response.py">OrganizationDeleteResponse</a></code>
 - <code title="get /user/organizations/{organization_id}">client.user.organizations.<a href="./src/cloudflare/resources/user/organizations.py">get</a>(organization_id) -> object</code>
 
+## SpectrumAnalytics
+
+### Zones
+
+#### Reports
+
+Types:
+
+```python
+from cloudflare.types.user.spectrum_analytics.zones import ReportGetResponse
+```
+
+Methods:
+
+- <code title="get /user/spectrum_analytics/zones/report">client.user.spectrum_analytics.zones.reports.<a href="./src/cloudflare/resources/user/spectrum_analytics/zones/reports.py">get</a>(\*\*<a href="src/cloudflare/types/user/spectrum_analytics/zones/report_get_params.py">params</a>) -> <a href="./src/cloudflare/types/user/spectrum_analytics/zones/report_get_response.py">ReportGetResponse</a></code>
+
 ## Subscriptions
 
 Types:

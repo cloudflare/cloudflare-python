@@ -35,6 +35,10 @@ class InstanceUpdateParams(TypedDict, total=False):
     ai_gateway_id: Optional[str]
 
     aisearch_model: Annotated[Optional[str], PropertyInfo(alias="ai_search_model")]
+    """
+    A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+    Completions API. An empty string uses the configured or default model.
+    """
 
     cache: bool
 
@@ -82,6 +86,10 @@ class InstanceUpdateParams(TypedDict, total=False):
     retrieval_options: Optional[RetrievalOptions]
 
     rewrite_model: Optional[str]
+    """
+    A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+    Completions API. An empty string uses the configured or default model.
+    """
 
     rewrite_query: bool
 

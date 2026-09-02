@@ -185,9 +185,6 @@ class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseMode
 
     created_at: Optional[datetime] = None
 
-    is_learned: Optional[bool] = None
-    """Deprecated. Always false."""
-
     name: Optional[str] = None
     """Schema file name."""
 
@@ -195,9 +192,6 @@ class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseMode
 class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo(BaseModel):
     active_schema: Optional[FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema] = None
     """Schema active on endpoint."""
-
-    learned_available: Optional[bool] = None
-    """Deprecated. Always false."""
 
     mitigation_action: Optional[Literal["none", "log", "block"]] = None
     """Action taken on requests failing validation."""

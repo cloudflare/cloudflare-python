@@ -162,6 +162,7 @@ from cloudflare.types.email_security.settings import (
     AllowPolicyCreateResponse,
     AllowPolicyListResponse,
     AllowPolicyDeleteResponse,
+    AllowPolicyBatchResponse,
     AllowPolicyEditResponse,
     AllowPolicyGetResponse,
 )
@@ -172,6 +173,7 @@ Methods:
 - <code title="post /accounts/{account_id}/email-security/settings/allow_policies">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_create_response.py">Optional[AllowPolicyCreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/allow_policies">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_policy_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_list_response.py">SyncV4PagePaginationArray[AllowPolicyListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/email-security/settings/allow_policies/{policy_id}">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_delete_response.py">Optional[AllowPolicyDeleteResponse]</a></code>
+- <code title="post /accounts/{account_id}/email-security/settings/allow_policies/batch">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">batch</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_policy_batch_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_batch_response.py">Optional[AllowPolicyBatchResponse]</a></code>
 - <code title="patch /accounts/{account_id}/email-security/settings/allow_policies/{policy_id}">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">edit</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_policy_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_edit_response.py">Optional[AllowPolicyEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/allow_policies/{policy_id}">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_get_response.py">Optional[AllowPolicyGetResponse]</a></code>
 
@@ -184,6 +186,7 @@ from cloudflare.types.email_security.settings import (
     BlockSenderCreateResponse,
     BlockSenderListResponse,
     BlockSenderDeleteResponse,
+    BlockSenderBatchResponse,
     BlockSenderEditResponse,
     BlockSenderGetResponse,
 )
@@ -194,6 +197,7 @@ Methods:
 - <code title="post /accounts/{account_id}/email-security/settings/block_senders">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/block_sender_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_create_response.py">Optional[BlockSenderCreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/block_senders">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/block_sender_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_list_response.py">SyncV4PagePaginationArray[BlockSenderListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/email-security/settings/block_senders/{pattern_id}">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">delete</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_delete_response.py">Optional[BlockSenderDeleteResponse]</a></code>
+- <code title="post /accounts/{account_id}/email-security/settings/block_senders/batch">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">batch</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/block_sender_batch_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_batch_response.py">Optional[BlockSenderBatchResponse]</a></code>
 - <code title="patch /accounts/{account_id}/email-security/settings/block_senders/{pattern_id}">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">edit</a>(pattern_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/block_sender_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_edit_response.py">Optional[BlockSenderEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/block_senders/{pattern_id}">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">get</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_get_response.py">Optional[BlockSenderGetResponse]</a></code>
 
@@ -227,8 +231,11 @@ Types:
 
 ```python
 from cloudflare.types.email_security.settings import (
+    DomainCreateResponse,
+    DomainUpdateResponse,
     DomainListResponse,
     DomainDeleteResponse,
+    DomainBatchResponse,
     DomainBulkDeleteResponse,
     DomainEditResponse,
     DomainGetResponse,
@@ -237,8 +244,11 @@ from cloudflare.types.email_security.settings import (
 
 Methods:
 
+- <code title="post /accounts/{account_id}/email-security/settings/domains">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/domain_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/domain_create_response.py">Optional[DomainCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/email-security/settings/domains/{domain_id}">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">update</a>(domain_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/domain_update_response.py">Optional[DomainUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/domains">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/domain_list_response.py">SyncV4PagePaginationArray[DomainListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/email-security/settings/domains/{domain_id}">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">delete</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/domain_delete_response.py">Optional[DomainDeleteResponse]</a></code>
+- <code title="post /accounts/{account_id}/email-security/settings/domains/batch">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">batch</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/domain_batch_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/domain_batch_response.py">Optional[DomainBatchResponse]</a></code>
 - <code title="delete /accounts/{account_id}/email-security/settings/domains">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">bulk_delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/domain_bulk_delete_response.py">SyncSinglePage[DomainBulkDeleteResponse]</a></code>
 - <code title="patch /accounts/{account_id}/email-security/settings/domains/{domain_id}">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">edit</a>(domain_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/domain_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/domain_edit_response.py">Optional[DomainEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/domains/{domain_id}">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">get</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/domain_get_response.py">Optional[DomainGetResponse]</a></code>
@@ -296,6 +306,7 @@ from cloudflare.types.email_security.settings import (
     TrustedDomainCreateResponse,
     TrustedDomainListResponse,
     TrustedDomainDeleteResponse,
+    TrustedDomainBatchResponse,
     TrustedDomainEditResponse,
     TrustedDomainGetResponse,
 )
@@ -306,6 +317,7 @@ Methods:
 - <code title="post /accounts/{account_id}/email-security/settings/trusted_domains">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/trusted_domain_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_create_response.py">Optional[TrustedDomainCreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/trusted_domains">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/trusted_domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_list_response.py">SyncV4PagePaginationArray[TrustedDomainListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">delete</a>(trusted_domain_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_delete_response.py">Optional[TrustedDomainDeleteResponse]</a></code>
+- <code title="post /accounts/{account_id}/email-security/settings/trusted_domains/batch">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">batch</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/trusted_domain_batch_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_batch_response.py">Optional[TrustedDomainBatchResponse]</a></code>
 - <code title="patch /accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">edit</a>(trusted_domain_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/trusted_domain_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_edit_response.py">Optional[TrustedDomainEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/trusted_domains/{trusted_domain_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">get</a>(trusted_domain_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_get_response.py">Optional[TrustedDomainGetResponse]</a></code>
 

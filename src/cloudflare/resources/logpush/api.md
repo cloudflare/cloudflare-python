@@ -4,9 +4,15 @@
 
 ### Fields
 
+Types:
+
+```python
+from cloudflare.types.logpush.datasets import FieldGetResponse
+```
+
 Methods:
 
-- <code title="get /{accounts_or_zones}/{account_or_zone_id}/logpush/datasets/{dataset_id}/fields">client.logpush.datasets.fields.<a href="./src/cloudflare/resources/logpush/datasets/fields.py">get</a>(dataset_id, \*, account_id, zone_id) -> object</code>
+- <code title="get /{accounts_or_zones}/{account_or_zone_id}/logpush/datasets/{dataset_id}/fields">client.logpush.datasets.fields.<a href="./src/cloudflare/resources/logpush/datasets/fields.py">get</a>(dataset_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/logpush/datasets/field_get_response.py">Optional[FieldGetResponse]</a></code>
 
 ### Jobs
 

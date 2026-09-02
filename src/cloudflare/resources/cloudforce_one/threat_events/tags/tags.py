@@ -97,7 +97,7 @@ class TagsResource(SyncAPIResource):
         priority: tag_create_params.Priority | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sophistication_level: tag_create_params.SophisticationLevel | Omit = omit,
-        tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"] | Omit = omit,
+        tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -111,8 +111,9 @@ class TagsResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
-          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). Public: returned to all
+              accounts with per-entry TLP filtering (entries with tlp: purple are removed for
+              non-CFONE accounts).
 
           category_uuid: Tag type (category) UUID. Optional — when present, `properties` is validated
               against this category's schema. When absent, the tag is typeless and properties
@@ -133,7 +134,7 @@ class TagsResource(SyncAPIResource):
               `{}` for a tag with no custom data.
 
           tlp: Tag-level TLP handling marking. Optional. Allowed values: red, amber,
-              amber+strict, green, clear, purple.
+              amber-strict, green, clear, purple, amber+strict.
 
           extra_headers: Send extra headers
 
@@ -339,7 +340,7 @@ class TagsResource(SyncAPIResource):
         priority: tag_edit_params.Priority | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sophistication_level: tag_edit_params.SophisticationLevel | Omit = omit,
-        tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"] | Omit = omit,
+        tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"] | Omit = omit,
         value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -356,8 +357,9 @@ class TagsResource(SyncAPIResource):
 
           tag_uuid: Tag UUID.
 
-          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). Public: returned to all
+              accounts with per-entry TLP filtering (entries with tlp: purple are removed for
+              non-CFONE accounts).
 
           category_uuid: Tag type (category) UUID. When changed, existing `properties` are re-validated
               against the new category's schema (400 on mismatch). Set to null to unlink
@@ -486,7 +488,7 @@ class AsyncTagsResource(AsyncAPIResource):
         priority: tag_create_params.Priority | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sophistication_level: tag_create_params.SophisticationLevel | Omit = omit,
-        tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"] | Omit = omit,
+        tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -500,8 +502,9 @@ class AsyncTagsResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
-          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). Public: returned to all
+              accounts with per-entry TLP filtering (entries with tlp: purple are removed for
+              non-CFONE accounts).
 
           category_uuid: Tag type (category) UUID. Optional — when present, `properties` is validated
               against this category's schema. When absent, the tag is typeless and properties
@@ -522,7 +525,7 @@ class AsyncTagsResource(AsyncAPIResource):
               `{}` for a tag with no custom data.
 
           tlp: Tag-level TLP handling marking. Optional. Allowed values: red, amber,
-              amber+strict, green, clear, purple.
+              amber-strict, green, clear, purple, amber+strict.
 
           extra_headers: Send extra headers
 
@@ -728,7 +731,7 @@ class AsyncTagsResource(AsyncAPIResource):
         priority: tag_edit_params.Priority | Omit = omit,
         properties: Dict[str, object] | Omit = omit,
         sophistication_level: tag_edit_params.SophisticationLevel | Omit = omit,
-        tlp: Literal["red", "amber", "amber+strict", "green", "clear", "purple"] | Omit = omit,
+        tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"] | Omit = omit,
         value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -745,8 +748,9 @@ class AsyncTagsResource(AsyncAPIResource):
 
           tag_uuid: Tag UUID.
 
-          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). Public: returned to all
+              accounts with per-entry TLP filtering (entries with tlp: purple are removed for
+              non-CFONE accounts).
 
           category_uuid: Tag type (category) UUID. When changed, existing `properties` are re-validated
               against the new category's schema (400 on mismatch). Set to null to unlink

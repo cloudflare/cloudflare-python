@@ -77,7 +77,7 @@ class ExtensionsResource(SyncAPIResource):
         when the data has not changed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           cursor: Opaque token from a previous response's `result_info.cursor`. Pass this value to
               fetch the next page of results. Omit (or pass an empty string) for the first
@@ -145,7 +145,7 @@ class ExtensionsResource(SyncAPIResource):
         when the data has not changed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -224,7 +224,7 @@ class AsyncExtensionsResource(AsyncAPIResource):
         when the data has not changed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           cursor: Opaque token from a previous response's `result_info.cursor`. Pass this value to
               fetch the next page of results. Omit (or pass an empty string) for the first
@@ -292,7 +292,7 @@ class AsyncExtensionsResource(AsyncAPIResource):
         when the data has not changed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

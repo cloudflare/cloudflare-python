@@ -67,6 +67,9 @@ class SearchParams(TypedDict, total=False):
 
     sender: Optional[str]
 
+    smtp_helo_ip: Optional[str]
+    """Matches messages whose SMTP HELO server IP address equals this value."""
+
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Beginning of search date range."""
 
