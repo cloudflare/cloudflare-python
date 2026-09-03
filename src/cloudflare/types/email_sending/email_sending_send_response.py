@@ -19,3 +19,10 @@ class EmailSendingSendResponse(BaseModel):
 
     queued: List[str]
     """Email addresses for which delivery was queued for later."""
+
+    suppressed_recipients: List[str]
+    """Email addresses dropped because they are on the suppression list.
+
+    Returned when suppressed-recipient dropping is enabled for the sending
+    subdomain; otherwise the request fails instead.
+    """

@@ -77,15 +77,20 @@ class IndicatorsResource(SyncAPIResource):
 
         By
         default fans out across every indicator dataset the account can read; pass
-        datasetIds to scope to specific datasets.
+        datasetIds to scope to UUIDs, analytics datasets, or operational datasets.
+        Analytics datasets do not expose tag associations, so the analytics scope
+        returns an empty result.
 
         Args:
           account_id: Account ID.
 
           tag_uuid: Tag UUID.
 
-          dataset_ids: Dataset UUIDs to scope to (repeat the param for multiple), or 'all' / '\\**' for
-              every readable indicator dataset. Omit to search all readable datasets.
+          dataset_ids: Dataset UUIDs to scope to (repeat the param for multiple), or one standalone
+              scope: 'all'/'\\**', 'analytics' for isAnalytics=true datasets, or 'operational'
+              for isAnalytics=false datasets. Analytics datasets do not expose tag
+              associations, so 'analytics' returns an empty result. Omit to search all
+              readable datasets.
 
           related_event: Filter indicators by related event UUID(s). Multiple UUIDs can be provided by
               repeating the parameter.
@@ -179,15 +184,20 @@ class AsyncIndicatorsResource(AsyncAPIResource):
 
         By
         default fans out across every indicator dataset the account can read; pass
-        datasetIds to scope to specific datasets.
+        datasetIds to scope to UUIDs, analytics datasets, or operational datasets.
+        Analytics datasets do not expose tag associations, so the analytics scope
+        returns an empty result.
 
         Args:
           account_id: Account ID.
 
           tag_uuid: Tag UUID.
 
-          dataset_ids: Dataset UUIDs to scope to (repeat the param for multiple), or 'all' / '\\**' for
-              every readable indicator dataset. Omit to search all readable datasets.
+          dataset_ids: Dataset UUIDs to scope to (repeat the param for multiple), or one standalone
+              scope: 'all'/'\\**', 'analytics' for isAnalytics=true datasets, or 'operational'
+              for isAnalytics=false datasets. Analytics datasets do not expose tag
+              associations, so 'analytics' returns an empty result. Omit to search all
+              readable datasets.
 
           related_event: Filter indicators by related event UUID(s). Multiple UUIDs can be provided by
               repeating the parameter.

@@ -27,16 +27,25 @@ class TestAnnotations:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         annotation = client.radar.annotations.list(
             asn=174,
+            bot="gptbot",
+            ca="ca",
             data_source="ALL",
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             event_type="OUTAGE",
             format="JSON",
+            geo_id="3190509",
             limit=1,
             location="US",
+            log="log",
             offset=0,
             origin="amazon-us-east-1",
+            outage_cause="BLOCKING",
+            outage_type="NATIONWIDE",
+            query="portugal",
+            tags=["ADM1"],
+            tld="com",
         )
         assert_matches_type(AnnotationListResponse, annotation, path=["response"])
 
@@ -75,16 +84,25 @@ class TestAsyncAnnotations:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         annotation = await async_client.radar.annotations.list(
             asn=174,
+            bot="gptbot",
+            ca="ca",
             data_source="ALL",
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             event_type="OUTAGE",
             format="JSON",
+            geo_id="3190509",
             limit=1,
             location="US",
+            log="log",
             offset=0,
             origin="amazon-us-east-1",
+            outage_cause="BLOCKING",
+            outage_type="NATIONWIDE",
+            query="portugal",
+            tags=["ADM1"],
+            tld="com",
         )
         assert_matches_type(AnnotationListResponse, annotation, path=["response"])
 

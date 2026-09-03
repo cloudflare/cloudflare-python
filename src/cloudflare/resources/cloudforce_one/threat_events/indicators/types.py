@@ -59,8 +59,9 @@ class TypesResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query indicator types from. If not provided, queries all
-              datasets for the account.
+          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**', 'analytics'
+              for isAnalytics=true datasets, or 'operational' for isAnalytics=false datasets.
+              If not provided, queries all accessible datasets.
 
           extra_headers: Send extra headers
 
@@ -123,8 +124,9 @@ class AsyncTypesResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query indicator types from. If not provided, queries all
-              datasets for the account.
+          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**', 'analytics'
+              for isAnalytics=true datasets, or 'operational' for isAnalytics=false datasets.
+              If not provided, queries all accessible datasets.
 
           extra_headers: Send extra headers
 

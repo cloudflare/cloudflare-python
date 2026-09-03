@@ -11,13 +11,13 @@ __all__ = [
     "TrafficAnomalyGetResponse",
     "TrafficAnomaly",
     "TrafficAnomalyASNDetails",
-    "TrafficAnomalyASNDetailsLocations",
+    "TrafficAnomalyASNDetailsLocation",
     "TrafficAnomalyLocationDetails",
     "TrafficAnomalyOriginDetails",
 ]
 
 
-class TrafficAnomalyASNDetailsLocations(BaseModel):
+class TrafficAnomalyASNDetailsLocation(BaseModel):
     code: str
 
     name: str
@@ -26,9 +26,9 @@ class TrafficAnomalyASNDetailsLocations(BaseModel):
 class TrafficAnomalyASNDetails(BaseModel):
     asn: str
 
-    name: str
+    location: Optional[TrafficAnomalyASNDetailsLocation] = None
 
-    locations: Optional[TrafficAnomalyASNDetailsLocations] = None
+    name: Optional[str] = None
 
 
 class TrafficAnomalyLocationDetails(BaseModel):
@@ -38,20 +38,12 @@ class TrafficAnomalyLocationDetails(BaseModel):
 
 
 class TrafficAnomalyOriginDetails(BaseModel):
-    name: str
+    name: Optional[str] = None
 
     origin: str
 
 
 class TrafficAnomaly(BaseModel):
-    start_date: str = FieldInfo(alias="startDate")
-
-    status: str
-
-    type: str
-
-    uuid: str
-
     asn_details: Optional[TrafficAnomalyASNDetails] = FieldInfo(alias="asnDetails", default=None)
 
     end_date: Optional[datetime] = FieldInfo(alias="endDate", default=None)
@@ -59,6 +51,14 @@ class TrafficAnomaly(BaseModel):
     location_details: Optional[TrafficAnomalyLocationDetails] = FieldInfo(alias="locationDetails", default=None)
 
     origin_details: Optional[TrafficAnomalyOriginDetails] = FieldInfo(alias="originDetails", default=None)
+
+    start_date: str = FieldInfo(alias="startDate")
+
+    status: str
+
+    type: str
+
+    uuid: str
 
     visible_in_data_sources: Optional[List[str]] = FieldInfo(alias="visibleInDataSources", default=None)
 

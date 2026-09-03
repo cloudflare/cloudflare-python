@@ -211,7 +211,7 @@ class TestDomains:
             page=1,
             per_page=20,
             search="search",
-            status="pending",
+            status="PENDING",
         )
         assert_matches_type(SyncV4PagePaginationArray[DomainListResponse], domain, path=["response"])
 
@@ -757,7 +757,7 @@ class TestAsyncDomains:
             page=1,
             per_page=20,
             search="search",
-            status="pending",
+            status="PENDING",
         )
         assert_matches_type(AsyncV4PagePaginationArray[DomainListResponse], domain, path=["response"])
 

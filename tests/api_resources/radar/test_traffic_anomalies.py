@@ -27,6 +27,7 @@ class TestTrafficAnomalies:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         traffic_anomaly = client.radar.traffic_anomalies.get(
             asn=174,
+            data_source="ALL",
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
@@ -75,6 +76,7 @@ class TestAsyncTrafficAnomalies:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         traffic_anomaly = await async_client.radar.traffic_anomalies.get(
             asn=174,
+            data_source="ALL",
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),

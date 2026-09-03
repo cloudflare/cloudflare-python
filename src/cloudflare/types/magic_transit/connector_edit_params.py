@@ -12,7 +12,6 @@ __all__ = ["ConnectorEditParams"]
 
 class ConnectorEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account identifier"""
 
     activated: bool
 

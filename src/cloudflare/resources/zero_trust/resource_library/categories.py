@@ -112,6 +112,8 @@ class CategoriesResource(SyncAPIResource):
         Get application category by ID.
 
         Args:
+          id: Returns the category ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -221,6 +223,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
         Get application category by ID.
 
         Args:
+          id: Returns the category ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

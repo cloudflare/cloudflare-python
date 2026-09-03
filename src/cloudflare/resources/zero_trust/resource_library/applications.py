@@ -349,6 +349,8 @@ class ApplicationsResource(SyncAPIResource):
         Get application by ID.
 
         Args:
+          id: Returns the application ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -689,6 +691,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Get application by ID.
 
         Args:
+          id: Returns the application ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

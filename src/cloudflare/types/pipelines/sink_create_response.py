@@ -20,8 +20,8 @@ __all__ = [
     "ConfigCloudflarePipelinesR2DataCatalogTable",
     "ConfigCloudflarePipelinesR2DataCatalogTableRollingPolicy",
     "Format",
-    "FormatJson",
-    "FormatParquet",
+    "FormatCloudflarePipelinesSinkJsonFormat",
+    "FormatCloudflarePipelinesSinkParquetFormat",
     "Schema",
     "SchemaField",
     "SchemaFieldInt32",
@@ -142,8 +142,11 @@ class ConfigCloudflarePipelinesR2DataCatalogTable(BaseModel):
 Config: TypeAlias = Union[ConfigCloudflarePipelinesR2Table, ConfigCloudflarePipelinesR2DataCatalogTable]
 
 
-class FormatJson(BaseModel):
+class FormatCloudflarePipelinesSinkJsonFormat(BaseModel):
     type: Literal["json"]
+
+    compression: Optional[Literal["uncompressed", "gzip"]] = None
+    """Specifies the compression applied to JSON sink output."""
 
     decimal_encoding: Optional[Literal["number", "string", "bytes"]] = None
 
@@ -152,7 +155,7 @@ class FormatJson(BaseModel):
     unstructured: Optional[bool] = None
 
 
-class FormatParquet(BaseModel):
+class FormatCloudflarePipelinesSinkParquetFormat(BaseModel):
     type: Literal["parquet"]
 
     compression: Optional[Literal["uncompressed", "snappy", "gzip", "zstd", "lz4"]] = None
@@ -160,7 +163,10 @@ class FormatParquet(BaseModel):
     row_group_bytes: Optional[int] = None
 
 
-Format: TypeAlias = Annotated[Union[FormatJson, FormatParquet], PropertyInfo(discriminator="type")]
+Format: TypeAlias = Annotated[
+    Union[FormatCloudflarePipelinesSinkJsonFormat, FormatCloudflarePipelinesSinkParquetFormat],
+    PropertyInfo(discriminator="type"),
+]
 
 
 class SchemaFieldInt32(BaseModel):
@@ -325,7 +331,7 @@ class SinkCreateResponse(BaseModel):
     """R2 Data Catalog Sink"""
 
     format: Optional[Format] = None
-    """Defines the data format of the events."""
+    """Defines the output data format of a sink."""
 
     schema_: Optional[Schema] = FieldInfo(alias="schema", default=None)
     """Defines the schema of the events in the data stream."""

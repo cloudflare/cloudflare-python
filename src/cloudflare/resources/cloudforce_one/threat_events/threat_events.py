@@ -339,9 +339,12 @@ class ThreatEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
-        Use `datasetId=all` or `datasetId=*` to query all event datasets for the account
-        (limited to 50). When `datasetId` is unspecified, events are listed from the
-        default Cloudforce One Threat Events dataset. To list existing datasets, use the
+        Use `datasetId=all` or `datasetId=*` for the legacy all-datasets scope,
+        `datasetId=analytics` for datasets with `isAnalytics=true`, or
+        `datasetId=operational` for datasets with `isAnalytics=false` (limited to 50).
+        Scope values must be used alone. When `datasetId` is unspecified, events are
+        listed from the default Cloudforce One Threat Events dataset. To list existing
+        datasets, use the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
         endpoint.
 
@@ -356,9 +359,10 @@ class ThreatEventsResource(SyncAPIResource):
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
 
-          dataset_id: Dataset IDs to query events from (array of UUIDs), or special value 'all' or
-              '\\**' to query all event datasets for the account. If not provided, uses the
-              default dataset.
+          dataset_id: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for the legacy
+              all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
+              'operational' for isAnalytics=false datasets. If not provided, uses the default
+              dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.
@@ -808,9 +812,12 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
-        Use `datasetId=all` or `datasetId=*` to query all event datasets for the account
-        (limited to 50). When `datasetId` is unspecified, events are listed from the
-        default Cloudforce One Threat Events dataset. To list existing datasets, use the
+        Use `datasetId=all` or `datasetId=*` for the legacy all-datasets scope,
+        `datasetId=analytics` for datasets with `isAnalytics=true`, or
+        `datasetId=operational` for datasets with `isAnalytics=false` (limited to 50).
+        Scope values must be used alone. When `datasetId` is unspecified, events are
+        listed from the default Cloudforce One Threat Events dataset. To list existing
+        datasets, use the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
         endpoint.
 
@@ -825,9 +832,10 @@ class AsyncThreatEventsResource(AsyncAPIResource):
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
 
-          dataset_id: Dataset IDs to query events from (array of UUIDs), or special value 'all' or
-              '\\**' to query all event datasets for the account. If not provided, uses the
-              default dataset.
+          dataset_id: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for the legacy
+              all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
+              'operational' for isAnalytics=false datasets. If not provided, uses the default
+              dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.

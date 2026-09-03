@@ -41,5 +41,5 @@ class DomainListParams(TypedDict, total=False):
     search: str
     """Search term for filtering records. Behavior may change."""
 
-    status: Optional[Literal["pending", "active", "failed", "timeout"]]
+    status: Optional[Literal["PENDING", "ACTIVE", "FAILED", "TIMEOUT"]]
     """Filters response to domains with the provided status."""

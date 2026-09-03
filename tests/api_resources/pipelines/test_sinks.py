@@ -60,6 +60,7 @@ class TestSinks:
             },
             format={
                 "type": "json",
+                "compression": "uncompressed",
                 "decimal_encoding": "number",
                 "timestamp_format": "rfc3339",
                 "unstructured": True,
@@ -305,6 +306,7 @@ class TestAsyncSinks:
             },
             format={
                 "type": "json",
+                "compression": "uncompressed",
                 "decimal_encoding": "number",
                 "timestamp_format": "rfc3339",
                 "unstructured": True,

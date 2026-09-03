@@ -65,8 +65,6 @@ class InterruptsResource(SyncAPIResource):
         Creates an interrupt for a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -119,8 +117,6 @@ class InterruptsResource(SyncAPIResource):
         Lists interrupts for a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -186,8 +182,6 @@ class AsyncInterruptsResource(AsyncAPIResource):
         Creates an interrupt for a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -240,8 +234,6 @@ class AsyncInterruptsResource(AsyncAPIResource):
         Lists interrupts for a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

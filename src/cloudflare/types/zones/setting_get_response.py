@@ -57,6 +57,7 @@ __all__ = [
     "ZonesCacheRulesOriginH2MaxStreams",
     "ZonesCacheRulesOriginMaxHTTPVersion",
     "ZonesPolish2",
+    "ZonesPreRender",
     "ZonesPrivacyPass",
     "ZonesRedirectsForAITraining",
     "ZonesReplaceInsecureJS",
@@ -479,6 +480,28 @@ class ZonesPolish2(BaseModel):
     """ID of the zone setting."""
 
     value: Literal["off", "lossless", "lossy"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
+class ZonesPreRender(BaseModel):
+    """
+    When enabled, Cloudflare serves pre-rendered HTML to eligible search and
+    AI crawlers instead of the origin's unrendered response.
+    """
+
+    id: Literal["pre_render"]
+    """ID of the zone setting."""
+
+    value: Literal["off", "on"]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -924,6 +947,7 @@ SettingGetResponse: TypeAlias = Union[
     ZonesCacheRulesOriginMaxHTTPVersion,
     ZonesPolish2,
     PrefetchPreload,
+    ZonesPreRender,
     ZonesPrivacyPass,
     ProxyReadTimeout,
     PseudoIPV4,

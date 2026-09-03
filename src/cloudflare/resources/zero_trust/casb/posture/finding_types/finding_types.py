@@ -104,7 +104,9 @@ class FindingTypesResource(SyncAPIResource):
 
           search: Filter finding types by name or ID (case-insensitive substring match).
 
-          vendors: Filter finding types by vendor. Supports multiple comma-separated values.
+          vendors: Filter finding types by vendor. Supports multiple comma-separated values. Each
+              value may be either the vendor enum (GOOGLE_WORKSPACE) or the friendly name
+              returned by the read routes (Google Workspace).
 
           extra_headers: Send extra headers
 
@@ -251,7 +253,9 @@ class AsyncFindingTypesResource(AsyncAPIResource):
 
           search: Filter finding types by name or ID (case-insensitive substring match).
 
-          vendors: Filter finding types by vendor. Supports multiple comma-separated values.
+          vendors: Filter finding types by vendor. Supports multiple comma-separated values. Each
+              value may be either the vendor enum (GOOGLE_WORKSPACE) or the friendly name
+              returned by the read routes (Google Workspace).
 
           extra_headers: Send extra headers
 

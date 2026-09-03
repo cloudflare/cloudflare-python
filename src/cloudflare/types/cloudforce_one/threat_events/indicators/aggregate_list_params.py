@@ -35,10 +35,11 @@ class AggregateListParams(TypedDict, total=False):
     """
 
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]
-    """Dataset ID(s) to filter by.
-
-    Can be a single dataset ID or comma-separated list. If not provided, aggregates
-    across all accessible datasets
+    """
+    Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
+    accessible datasets, 'analytics' for isAnalytics=true datasets, or 'operational'
+    for isAnalytics=false datasets. If not provided, aggregates across all
+    accessible datasets.
     """
 
     event_date_after: Annotated[str, PropertyInfo(alias="eventDateAfter")]

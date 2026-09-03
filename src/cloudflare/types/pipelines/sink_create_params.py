@@ -16,8 +16,8 @@ __all__ = [
     "ConfigCloudflarePipelinesR2DataCatalogTable",
     "ConfigCloudflarePipelinesR2DataCatalogTableRollingPolicy",
     "Format",
-    "FormatJson",
-    "FormatParquet",
+    "FormatCloudflarePipelinesSinkJsonFormat",
+    "FormatCloudflarePipelinesSinkParquetFormat",
     "Schema",
     "SchemaField",
     "SchemaFieldInt32",
@@ -48,7 +48,7 @@ class SinkCreateParams(TypedDict, total=False):
     """Defines the configuration of the R2 Sink."""
 
     format: Format
-    """Defines the data format of the events."""
+    """Defines the output data format of a sink."""
 
     schema: Schema
     """Defines the schema of the events in the data stream."""
@@ -158,8 +158,11 @@ class ConfigCloudflarePipelinesR2DataCatalogTable(TypedDict, total=False):
 Config: TypeAlias = Union[ConfigCloudflarePipelinesR2Table, ConfigCloudflarePipelinesR2DataCatalogTable]
 
 
-class FormatJson(TypedDict, total=False):
+class FormatCloudflarePipelinesSinkJsonFormat(TypedDict, total=False):
     type: Required[Literal["json"]]
+
+    compression: Literal["uncompressed", "gzip"]
+    """Specifies the compression applied to JSON sink output."""
 
     decimal_encoding: Literal["number", "string", "bytes"]
 
@@ -168,7 +171,7 @@ class FormatJson(TypedDict, total=False):
     unstructured: bool
 
 
-class FormatParquet(TypedDict, total=False):
+class FormatCloudflarePipelinesSinkParquetFormat(TypedDict, total=False):
     type: Required[Literal["parquet"]]
 
     compression: Literal["uncompressed", "snappy", "gzip", "zstd", "lz4"]
@@ -176,7 +179,7 @@ class FormatParquet(TypedDict, total=False):
     row_group_bytes: Optional[int]
 
 
-Format: TypeAlias = Union[FormatJson, FormatParquet]
+Format: TypeAlias = Union[FormatCloudflarePipelinesSinkJsonFormat, FormatCloudflarePipelinesSinkParquetFormat]
 
 
 class SchemaFieldInt32(TypedDict, total=False):

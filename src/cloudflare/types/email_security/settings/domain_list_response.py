@@ -83,6 +83,6 @@ class DomainListResponse(BaseModel):
 
     spf_status: Optional[Literal["none", "good", "neutral", "open", "invalid"]] = None
 
-    status: Optional[Literal["pending", "active", "failed", "timeout"]] = None
+    status: Optional[Literal["PENDING", "ACTIVE", "FAILED", "TIMEOUT"]] = None
 
     transport: Optional[str] = None

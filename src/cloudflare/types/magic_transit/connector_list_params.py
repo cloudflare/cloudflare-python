@@ -9,7 +9,6 @@ __all__ = ["ConnectorListParams"]
 
 class ConnectorListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account identifier"""
 
     device_type: Literal["MANAGED", "LICENSED"]
     """Filter connectors by device type."""

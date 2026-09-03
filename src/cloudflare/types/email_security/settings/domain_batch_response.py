@@ -100,7 +100,7 @@ class Patch(BaseModel):
 
     spf_status: Optional[Literal["none", "good", "neutral", "open", "invalid"]] = None
 
-    status: Optional[Literal["pending", "active", "failed", "timeout"]] = None
+    status: Optional[Literal["PENDING", "ACTIVE", "FAILED", "TIMEOUT"]] = None
 
     transport: Optional[str] = None
 
@@ -179,7 +179,7 @@ class Post(BaseModel):
 
     spf_status: Optional[Literal["none", "good", "neutral", "open", "invalid"]] = None
 
-    status: Optional[Literal["pending", "active", "failed", "timeout"]] = None
+    status: Optional[Literal["PENDING", "ACTIVE", "FAILED", "TIMEOUT"]] = None
 
     transport: Optional[str] = None
 
@@ -258,7 +258,7 @@ class Put(BaseModel):
 
     spf_status: Optional[Literal["none", "good", "neutral", "open", "invalid"]] = None
 
-    status: Optional[Literal["pending", "active", "failed", "timeout"]] = None
+    status: Optional[Literal["PENDING", "ACTIVE", "FAILED", "TIMEOUT"]] = None
 
     transport: Optional[str] = None
 

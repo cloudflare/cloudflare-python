@@ -14,6 +14,7 @@ __all__ = [
     "ItemInterfaceIPAddress",
     "ItemMount",
     "ItemNetdev",
+    "ItemRoute",
     "ItemThermal",
     "ItemTunnel",
 ]
@@ -227,6 +228,28 @@ class ItemNetdev(BaseModel):
 
     sent_packets: float
     """Total packets transmitted"""
+
+
+class ItemRoute(BaseModel):
+    """Snapshot Route"""
+
+    destination: str
+    """Route destination as default or an IPv4 CIDR"""
+
+    interface_name: str
+    """Interface used by the next hop"""
+
+    kind: str
+    """Routing decision type: tunnel, breakout, or lan"""
+
+    metric: float
+    """Route metric; lower metrics are preferred"""
+
+    gateway: Optional[str] = None
+    """Gateway address for the next hop"""
+
+    weight: Optional[float] = None
+    """Relative weight within an equal-cost route"""
 
 
 class ItemThermal(BaseModel):
@@ -606,6 +629,8 @@ class Item(BaseModel):
 
     platform: Optional[str] = None
     """Platform identifier"""
+
+    routes: Optional[List[ItemRoute]] = None
 
     site_id: Optional[str] = None
     """Site identifier"""

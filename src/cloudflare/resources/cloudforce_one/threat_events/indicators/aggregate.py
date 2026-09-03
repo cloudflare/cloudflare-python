@@ -81,8 +81,10 @@ class AggregateResource(SyncAPIResource):
           created_before: Filter indicators created before this date/datetime (ISO 8601, e.g.,
               '2024-12-31' or '2024-12-31T23:59:59Z')
 
-          dataset_ids: Dataset ID(s) to filter by. Can be a single dataset ID or comma-separated list.
-              If not provided, aggregates across all accessible datasets
+          dataset_ids: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
+              accessible datasets, 'analytics' for isAnalytics=true datasets, or 'operational'
+              for isAnalytics=false datasets. If not provided, aggregates across all
+              accessible datasets.
 
           event_date_after: For measure=relationships: only count indicator→event links whose relationship
               was created/observed on or after this date (ISO 8601). Bounds the activity view
@@ -195,8 +197,10 @@ class AsyncAggregateResource(AsyncAPIResource):
           created_before: Filter indicators created before this date/datetime (ISO 8601, e.g.,
               '2024-12-31' or '2024-12-31T23:59:59Z')
 
-          dataset_ids: Dataset ID(s) to filter by. Can be a single dataset ID or comma-separated list.
-              If not provided, aggregates across all accessible datasets
+          dataset_ids: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
+              accessible datasets, 'analytics' for isAnalytics=true datasets, or 'operational'
+              for isAnalytics=false datasets. If not provided, aggregates across all
+              accessible datasets.
 
           event_date_after: For measure=relationships: only count indicator→event links whose relationship
               was created/observed on or after this date (ISO 8601). Bounds the activity view

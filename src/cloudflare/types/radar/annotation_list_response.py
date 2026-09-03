@@ -10,14 +10,15 @@ __all__ = [
     "AnnotationListResponse",
     "Annotation",
     "AnnotationASNsDetail",
-    "AnnotationASNsDetailLocations",
+    "AnnotationASNsDetailLocation",
+    "AnnotationEntity",
     "AnnotationLocationsDetail",
     "AnnotationOriginsDetail",
     "AnnotationOutage",
 ]
 
 
-class AnnotationASNsDetailLocations(BaseModel):
+class AnnotationASNsDetailLocation(BaseModel):
     code: str
 
     name: str
@@ -26,9 +27,17 @@ class AnnotationASNsDetailLocations(BaseModel):
 class AnnotationASNsDetail(BaseModel):
     asn: str
 
-    name: str
+    location: Optional[AnnotationASNsDetailLocation] = None
 
-    locations: Optional[AnnotationASNsDetailLocations] = None
+    name: Optional[str] = None
+
+
+class AnnotationEntity(BaseModel):
+    entity_name: Optional[str] = FieldInfo(alias="entityName", default=None)
+
+    entity_type: str = FieldInfo(alias="entityType")
+
+    entity_value: str = FieldInfo(alias="entityValue")
 
 
 class AnnotationLocationsDetail(BaseModel):
@@ -38,7 +47,7 @@ class AnnotationLocationsDetail(BaseModel):
 
 
 class AnnotationOriginsDetail(BaseModel):
-    name: str
+    name: Optional[str] = None
 
     origin: str
 
@@ -58,27 +67,33 @@ class Annotation(BaseModel):
 
     data_source: str = FieldInfo(alias="dataSource")
 
+    description: Optional[str] = None
+
+    end_date: Optional[str] = FieldInfo(alias="endDate", default=None)
+
+    entities: List[AnnotationEntity]
+
     event_type: str = FieldInfo(alias="eventType")
+
+    geo_ids: List[str] = FieldInfo(alias="geoIds")
+
+    linked_url: Optional[str] = FieldInfo(alias="linkedUrl", default=None)
 
     locations: List[str]
 
-    locations_details: List[AnnotationLocationsDetail] = FieldInfo(alias="locationsDetails")
+    locations_details: List[Optional[AnnotationLocationsDetail]] = FieldInfo(alias="locationsDetails")
 
     origins: List[str]
 
     origins_details: List[AnnotationOriginsDetail] = FieldInfo(alias="originsDetails")
 
-    outage: AnnotationOutage
+    outage: Optional[AnnotationOutage] = None
+
+    scope: Optional[str] = None
 
     start_date: str = FieldInfo(alias="startDate")
 
-    description: Optional[str] = None
-
-    end_date: Optional[str] = FieldInfo(alias="endDate", default=None)
-
-    linked_url: Optional[str] = FieldInfo(alias="linkedUrl", default=None)
-
-    scope: Optional[str] = None
+    tags: List[str]
 
 
 class AnnotationListResponse(BaseModel):

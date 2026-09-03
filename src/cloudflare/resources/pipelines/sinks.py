@@ -76,7 +76,7 @@ class SinksResource(SyncAPIResource):
 
           config: Defines the configuration of the R2 Sink.
 
-          format: Defines the data format of the events.
+          format: Defines the output data format of a sink.
 
           schema: Defines the schema of the events in the data stream.
 
@@ -307,7 +307,7 @@ class AsyncSinksResource(AsyncAPIResource):
 
           config: Defines the configuration of the R2 Sink.
 
-          format: Defines the data format of the events.
+          format: Defines the output data format of a sink.
 
           schema: Defines the schema of the events in the data stream.
 

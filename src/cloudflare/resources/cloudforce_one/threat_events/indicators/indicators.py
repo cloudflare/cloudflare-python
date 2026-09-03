@@ -111,9 +111,10 @@ class IndicatorsResource(SyncAPIResource):
     ) -> IndicatorListResponse:
         """
         Retrieves indicators across specified datasets, ordered by createdAt descending
-        then UUID, dataset ID, and shard ID ascending. Use datasetIds=all or
-        datasetIds=\\** to query all datasets for the account. If no datasetIds provided,
-        uses the default dataset.
+        then UUID, dataset ID, and shard ID ascending. Use the standalone datasetIds
+        value 'all'/'\\**' for legacy all-datasets behavior, 'analytics' for
+        isAnalytics=true datasets, or 'operational' for isAnalytics=false datasets. If
+        no datasetIds are provided, uses the default dataset.
 
         Args:
           account_id: Account ID.
@@ -137,8 +138,10 @@ class IndicatorsResource(SyncAPIResource):
               that has since been reconfigured as analytics-only yields a 400
               `InvalidCursorError`.
 
-          dataset_ids: Dataset IDs to query indicators from (array of UUIDs), or special value 'all' or
-              '\\**' to query all datasets. If not provided, uses the default dataset.
+          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for legacy
+              all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
+              'operational' for isAnalytics=false datasets. If not provided, uses the default
+              dataset.
 
           format: Output format for indicator data. 'json' returns the default format, 'stix2'
               returns STIX 2.1 Indicator SDOs, 'taxii' returns a TAXII 2.1 Envelope with
@@ -292,9 +295,10 @@ class AsyncIndicatorsResource(AsyncAPIResource):
     ) -> IndicatorListResponse:
         """
         Retrieves indicators across specified datasets, ordered by createdAt descending
-        then UUID, dataset ID, and shard ID ascending. Use datasetIds=all or
-        datasetIds=\\** to query all datasets for the account. If no datasetIds provided,
-        uses the default dataset.
+        then UUID, dataset ID, and shard ID ascending. Use the standalone datasetIds
+        value 'all'/'\\**' for legacy all-datasets behavior, 'analytics' for
+        isAnalytics=true datasets, or 'operational' for isAnalytics=false datasets. If
+        no datasetIds are provided, uses the default dataset.
 
         Args:
           account_id: Account ID.
@@ -318,8 +322,10 @@ class AsyncIndicatorsResource(AsyncAPIResource):
               that has since been reconfigured as analytics-only yields a 400
               `InvalidCursorError`.
 
-          dataset_ids: Dataset IDs to query indicators from (array of UUIDs), or special value 'all' or
-              '\\**' to query all datasets. If not provided, uses the default dataset.
+          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for legacy
+              all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
+              'operational' for isAnalytics=false datasets. If not provided, uses the default
+              dataset.
 
           format: Output format for indicator data. 'json' returns the default format, 'stix2'
               returns STIX 2.1 Indicator SDOs, 'taxii' returns a TAXII 2.1 Envelope with
