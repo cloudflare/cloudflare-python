@@ -40,9 +40,4 @@ class FindingTypeListParams(TypedDict, total=False):
             "SLACK",
         ]
     ]
-    """Filter finding types by vendor.
-
-    Supports multiple comma-separated values. Each value may be either the vendor
-    enum (GOOGLE_WORKSPACE) or the friendly name returned by the read routes (Google
-    Workspace).
-    """
+    """Filter finding types by vendor. Supports multiple comma-separated values."""
