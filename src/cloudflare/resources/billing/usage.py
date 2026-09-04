@@ -8,7 +8,7 @@ from datetime import date
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -772,6 +772,9 @@ class UsageResourceWithRawResponse:
                 usage.paygo_info,  # pyright: ignore[reportDeprecated],
             )
         )
+        self.paygo_info = to_raw_response_wrapper(
+            usage.paygo_info,
+        )
 
 
 class AsyncUsageResourceWithRawResponse:
@@ -801,6 +804,9 @@ class AsyncUsageResourceWithRawResponse:
             async_to_raw_response_wrapper(
                 usage.paygo_info,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.paygo_info = async_to_raw_response_wrapper(
+            usage.paygo_info,
         )
 
 
@@ -832,6 +838,9 @@ class UsageResourceWithStreamingResponse:
                 usage.paygo_info,  # pyright: ignore[reportDeprecated],
             )
         )
+        self.paygo_info = to_streamed_response_wrapper(
+            usage.paygo_info,
+        )
 
 
 class AsyncUsageResourceWithStreamingResponse:
@@ -861,4 +870,7 @@ class AsyncUsageResourceWithStreamingResponse:
             async_to_streamed_response_wrapper(
                 usage.paygo_info,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.paygo_info = async_to_streamed_response_wrapper(
+            usage.paygo_info,
         )

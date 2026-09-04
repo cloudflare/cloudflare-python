@@ -133,6 +133,10 @@ class RegistrationsResource(SyncAPIResource):
               flow. The extension registration schema from the extension discovery endpoint
               identifies the required keys.
 
+          acknowledgements: User acknowledgements required by a specific extension or premium registration
+              flow. The expected keys are described by the extension registration schema
+              returned by the extension discovery endpoint.
+
           auto_renew: Enable or disable automatic renewal. Defaults to `false` if omitted. Setting
               this field to `true` is an explicit opt-in authorizing Cloudflare to charge the
               account's default payment method up to 30 days before domain expiry to renew the
@@ -522,6 +526,10 @@ class AsyncRegistrationsResource(AsyncAPIResource):
           acknowledgements: Provides user acknowledgements for a specific extension or premium registration
               flow. The extension registration schema from the extension discovery endpoint
               identifies the required keys.
+
+          acknowledgements: User acknowledgements required by a specific extension or premium registration
+              flow. The expected keys are described by the extension registration schema
+              returned by the extension discovery endpoint.
 
           auto_renew: Enable or disable automatic renewal. Defaults to `false` if omitted. Setting
               this field to `true` is an explicit opt-in authorizing Cloudflare to charge the

@@ -44,6 +44,13 @@ class RegistrationCreateParams(TypedDict, total=False):
     identifies the required keys.
     """
 
+    acknowledgements: Dict[str, object]
+    """
+    User acknowledgements required by a specific extension or premium registration
+    flow. The expected keys are described by the extension registration schema
+    returned by the extension discovery endpoint.
+    """
+
     auto_renew: bool
     """Enable or disable automatic renewal.
 

@@ -98,6 +98,10 @@ class ServersResource(SyncAPIResource):
 
           description: Optional description of the MCP server.
 
+          client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
+              auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
+              server_oauth_secrets; never returned by read endpoints.
+
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
               customer portal hostname. Defaults to false (off); opt in per server by setting
@@ -185,6 +189,10 @@ class ServersResource(SyncAPIResource):
               server_oauth_secrets; never returned by read endpoints.
 
           description: Optional description of the MCP server.
+
+          client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
+              auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
+              server_oauth_secrets; never returned by read endpoints.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
@@ -483,6 +491,10 @@ class AsyncServersResource(AsyncAPIResource):
 
           description: Optional description of the MCP server.
 
+          client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
+              auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
+              server_oauth_secrets; never returned by read endpoints.
+
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
               customer portal hostname. Defaults to false (off); opt in per server by setting
@@ -570,6 +582,10 @@ class AsyncServersResource(AsyncAPIResource):
               server_oauth_secrets; never returned by read endpoints.
 
           description: Optional description of the MCP server.
+
+          client_secret: Pre-registered OAuth client_secret. Write-only - accepted on create/update when
+              auth_credentials.auth_mode is 'manual'. Stored AES-GCM-encrypted in
+              server_oauth_secrets; never returned by read endpoints.
 
           is_shared_oauth_callback_enabled: When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
               endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
