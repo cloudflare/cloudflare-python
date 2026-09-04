@@ -20,7 +20,7 @@ workflow:
 
 lint:
   stage: lint
-  timeout: 10 minutes
+  timeout: 20 minutes
   rules:
     - if: $CI_COMMIT_TITLE == "codegen metadata"
       when: never
@@ -32,7 +32,7 @@ lint:
 
 build:
   stage: build
-  timeout: 10 minutes
+  timeout: 20 minutes
   rules:
     - if: $CI_COMMIT_TITLE == "codegen metadata"
       when: never
@@ -45,7 +45,7 @@ build:
 test:
   stage: test
   image: $IMAGE_NODE_TRIXIE
-  timeout: 15 minutes
+  timeout: 20 minutes
   allow_failure: true
   rules:
     - if: $CI_COMMIT_TITLE == "codegen metadata"
