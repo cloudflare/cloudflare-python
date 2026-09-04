@@ -57,10 +57,9 @@ class ConfigurationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
-        """Updates API Shield configuration settings for a zone.
-
-        Can modify validation
-        strictness, enforcement mode, and other global settings.
+        """
+        Replaces the zone's authentication identifier characteristics used to identify
+        distinct API sessions.
 
         Args:
           zone_id: Identifier.
@@ -107,8 +106,8 @@ class ConfigurationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
-        Gets the current API Shield configuration settings for a zone, including
-        validation behavior and enforcement mode.
+        Returns the authentication identifier characteristics configured for the zone.
+        Header, cookie, or JWT claim values identify distinct API sessions.
 
         Args:
           zone_id: Identifier.
@@ -172,10 +171,9 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
-        """Updates API Shield configuration settings for a zone.
-
-        Can modify validation
-        strictness, enforcement mode, and other global settings.
+        """
+        Replaces the zone's authentication identifier characteristics used to identify
+        distinct API sessions.
 
         Args:
           zone_id: Identifier.
@@ -224,8 +222,8 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
-        Gets the current API Shield configuration settings for a zone, including
-        validation behavior and enforcement mode.
+        Returns the authentication identifier characteristics configured for the zone.
+        Header, cookie, or JWT claim values identify distinct API sessions.
 
         Args:
           zone_id: Identifier.

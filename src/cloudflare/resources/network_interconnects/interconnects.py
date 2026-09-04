@@ -18,7 +18,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.network_interconnects import interconnect_list_params, interconnect_create_params
+from ...types.network_interconnects import interconnect_loa_params, interconnect_list_params, interconnect_create_params
 from ...types.network_interconnects.interconnect_get_response import InterconnectGetResponse
 from ...types.network_interconnects.interconnect_list_response import InterconnectListResponse
 from ...types.network_interconnects.interconnect_create_response import InterconnectCreateResponse
@@ -64,7 +64,9 @@ class InterconnectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectCreateResponse:
         """
-        Create a new interconnect
+        Creates a new network interconnect for connecting Cloudflare's network to
+        external networks. Interconnects provide dedicated bandwidth and reduced latency
+        for traffic exchange.
 
         Args:
           account_id: Customer account tag
@@ -96,7 +98,9 @@ class InterconnectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectCreateResponse:
         """
-        Create a new interconnect
+        Creates a new network interconnect for connecting Cloudflare's network to
+        external networks. Interconnects provide dedicated bandwidth and reduced latency
+        for traffic exchange.
 
         Args:
           account_id: Customer account tag
@@ -178,7 +182,8 @@ class InterconnectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectListResponse:
         """
-        List existing interconnects
+        Lists all network interconnects configured for the account, including physical
+        and virtual connections.
 
         Args:
           account_id: Customer account tag
@@ -229,8 +234,10 @@ class InterconnectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete an interconnect object
+        """Permanently removes a network interconnect configuration.
+
+        The physical or
+        virtual connection will be terminated.
 
         Args:
           account_id: Customer account tag
@@ -269,7 +276,7 @@ class InterconnectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectGetResponse:
         """
-        Get information about an interconnect object
+        Retrieves configuration and status details for a specific network interconnect.
 
         Args:
           account_id: Customer account tag
@@ -304,6 +311,7 @@ class InterconnectsResource(SyncAPIResource):
         icon: str,
         *,
         account_id: str,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -312,10 +320,13 @@ class InterconnectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Generate the Letter of Authorization (LOA) for a given interconnect
+        Downloads the Letter of Authorization (LOA) for a network interconnect, required
+        for physical cross-connect provisioning.
 
         Args:
           account_id: Customer account tag
+
+          name: Custom name to use in the LOA instead of the account name (200 Character limit)
 
           extra_headers: Send extra headers
 
@@ -333,7 +344,11 @@ class InterconnectsResource(SyncAPIResource):
         return self._get(
             path_template("/accounts/{account_id}/cni/interconnects/{icon}/loa", account_id=account_id, icon=icon),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"name": name}, interconnect_loa_params.InterconnectLOAParams),
             ),
             cast_to=NoneType,
         )
@@ -351,7 +366,8 @@ class InterconnectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectStatusResponse:
         """
-        Get the current status of an interconnect object
+        Gets the current operational status of a network interconnect, including link
+        state and traffic metrics.
 
         Args:
           account_id: Customer account tag
@@ -421,7 +437,9 @@ class AsyncInterconnectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectCreateResponse:
         """
-        Create a new interconnect
+        Creates a new network interconnect for connecting Cloudflare's network to
+        external networks. Interconnects provide dedicated bandwidth and reduced latency
+        for traffic exchange.
 
         Args:
           account_id: Customer account tag
@@ -453,7 +471,9 @@ class AsyncInterconnectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectCreateResponse:
         """
-        Create a new interconnect
+        Creates a new network interconnect for connecting Cloudflare's network to
+        external networks. Interconnects provide dedicated bandwidth and reduced latency
+        for traffic exchange.
 
         Args:
           account_id: Customer account tag
@@ -535,7 +555,8 @@ class AsyncInterconnectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectListResponse:
         """
-        List existing interconnects
+        Lists all network interconnects configured for the account, including physical
+        and virtual connections.
 
         Args:
           account_id: Customer account tag
@@ -586,8 +607,10 @@ class AsyncInterconnectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete an interconnect object
+        """Permanently removes a network interconnect configuration.
+
+        The physical or
+        virtual connection will be terminated.
 
         Args:
           account_id: Customer account tag
@@ -626,7 +649,7 @@ class AsyncInterconnectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectGetResponse:
         """
-        Get information about an interconnect object
+        Retrieves configuration and status details for a specific network interconnect.
 
         Args:
           account_id: Customer account tag
@@ -661,6 +684,7 @@ class AsyncInterconnectsResource(AsyncAPIResource):
         icon: str,
         *,
         account_id: str,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -669,10 +693,13 @@ class AsyncInterconnectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Generate the Letter of Authorization (LOA) for a given interconnect
+        Downloads the Letter of Authorization (LOA) for a network interconnect, required
+        for physical cross-connect provisioning.
 
         Args:
           account_id: Customer account tag
+
+          name: Custom name to use in the LOA instead of the account name (200 Character limit)
 
           extra_headers: Send extra headers
 
@@ -690,7 +717,11 @@ class AsyncInterconnectsResource(AsyncAPIResource):
         return await self._get(
             path_template("/accounts/{account_id}/cni/interconnects/{icon}/loa", account_id=account_id, icon=icon),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"name": name}, interconnect_loa_params.InterconnectLOAParams),
             ),
             cast_to=NoneType,
         )
@@ -708,7 +739,8 @@ class AsyncInterconnectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InterconnectStatusResponse:
         """
-        Get the current status of an interconnect object
+        Gets the current operational status of a network interconnect, including link
+        state and traffic metrics.
 
         Args:
           account_id: Customer account tag

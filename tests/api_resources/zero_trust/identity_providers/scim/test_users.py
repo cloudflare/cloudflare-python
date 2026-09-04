@@ -36,7 +36,7 @@ class TestUsers:
             idp_resource_id=["john_smith_01"],
             name="John Smith",
             page=0,
-            per_page=0,
+            per_page=100,
             username="John Smith",
         )
         assert_matches_type(SyncV4PagePaginationArray[AccessUser], user, path=["response"])
@@ -105,7 +105,7 @@ class TestAsyncUsers:
             idp_resource_id=["john_smith_01"],
             name="John Smith",
             page=0,
-            per_page=0,
+            per_page=100,
             username="John Smith",
         )
         assert_matches_type(AsyncV4PagePaginationArray[AccessUser], user, path=["response"])

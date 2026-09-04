@@ -9,10 +9,10 @@ __all__ = ["TrustedDomainListResponse"]
 
 
 class TrustedDomainListResponse(BaseModel):
-    """A trusted email domain"""
+    """A trusted email domain."""
 
     id: Optional[str] = None
-    """Trusted domain identifier"""
+    """Trusted domain identifier."""
 
     comments: Optional[str] = None
 

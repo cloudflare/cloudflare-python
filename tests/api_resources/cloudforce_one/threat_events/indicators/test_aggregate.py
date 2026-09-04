@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.types.cloudforce_one.threat_events.indicators import AggregateListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,8 +31,8 @@ class TestAggregate:
         aggregate = client.cloudforce_one.threat_events.indicators.aggregate.list(
             account_id="account_id",
             aggregate_by="aggregateBy",
-            created_after="createdAfter",
-            created_before="createdBefore",
+            created_after=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_before=parse_datetime("2019-12-27T18:11:19.117Z"),
             dataset_ids=["string"],
             event_date_after="eventDateAfter",
             event_date_before="eventDateBefore",
@@ -94,8 +95,8 @@ class TestAsyncAggregate:
         aggregate = await async_client.cloudforce_one.threat_events.indicators.aggregate.list(
             account_id="account_id",
             aggregate_by="aggregateBy",
-            created_after="createdAfter",
-            created_before="createdBefore",
+            created_after=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_before=parse_datetime("2019-12-27T18:11:19.117Z"),
             dataset_ids=["string"],
             event_date_after="eventDateAfter",
             event_date_before="eventDateBefore",

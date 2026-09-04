@@ -13,10 +13,10 @@ class PublicListParams(TypedDict, total=False):
     account_id: Required[str]
 
     limit: float
-    """Pagination Limit"""
+    """Pagination Limit."""
 
     offset: float
-    """Pagination Offset"""
+    """Pagination Offset."""
 
     order_by: Annotated[str, PropertyInfo(alias="orderBy")]
-    """Order By Column Name"""
+    """Order By Column Name."""

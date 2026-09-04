@@ -24,10 +24,16 @@ class InstanceStepResponse(BaseModel):
         "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "rollingBack"
     ]
 
-    output: Optional[object] = None
-    """Full step output or waitForEvent payload without truncation.
+    event_type: Optional[str] = None
+    """The event type the step is waiting on, as supplied to step.waitForEvent.
 
-    Sensitive outputs are returned as '[REDACTED]'. Populated when
-    status='complete'. May be a ReadableStream when the step returned one from
-    step.do; stream outputs are served as application/octet-stream rather than JSON.
+    Only present when type='waitForEvent'.
+    """
+
+    output: Optional[object] = None
+    """Contains the full step output or waitForEvent payload without truncation.
+
+    Uses '[REDACTED]' for sensitive outputs. Contains a value when
+    status='complete'. May contain a ReadableStream when step.do returns one; the
+    response serves stream outputs as application/octet-stream rather than JSON.
     """

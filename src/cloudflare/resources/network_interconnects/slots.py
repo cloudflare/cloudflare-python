@@ -62,7 +62,8 @@ class SlotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SlotListResponse:
         """
-        Retrieve a list of all slots matching the specified parameters
+        Lists all available infrastructure slots for the account, showing allocation
+        status and capacity.
 
         Args:
           account_id: Customer account tag
@@ -120,7 +121,7 @@ class SlotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SlotGetResponse:
         """
-        Get information about the specified slot
+        Gets information about a specific infrastructure slot allocation.
 
         Args:
           account_id: Customer account tag
@@ -184,7 +185,8 @@ class AsyncSlotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SlotListResponse:
         """
-        Retrieve a list of all slots matching the specified parameters
+        Lists all available infrastructure slots for the account, showing allocation
+        status and capacity.
 
         Args:
           account_id: Customer account tag
@@ -242,7 +244,7 @@ class AsyncSlotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SlotGetResponse:
         """
-        Get information about the specified slot
+        Gets information about a specific infrastructure slot allocation.
 
         Args:
           account_id: Customer account tag

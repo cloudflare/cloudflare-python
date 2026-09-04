@@ -17,5 +17,12 @@ class CustomPageUpdateParams(TypedDict, total=False):
     name: Required[str]
     """Custom page name."""
 
-    type: Required[Literal["identity_denied", "forbidden"]]
+    type: Required[Literal["identity_denied", "forbidden", "login", "interstitial"]]
     """Custom page type."""
+
+    contract_version: int
+    """Contract version of the page's Liquid template.
+
+    Present (>= 1) marks a sanitized template; absent or 0 marks a legacy page
+    served verbatim.
+    """

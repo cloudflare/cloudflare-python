@@ -32,7 +32,7 @@ class TestUsers:
             policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
-            per_page=0,
+            per_page=1000,
             status="success",
         )
         assert_matches_type(SyncV4PagePaginationArray[UserListResponse], user, path=["response"])
@@ -97,7 +97,7 @@ class TestAsyncUsers:
             policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
-            per_page=0,
+            per_page=1000,
             status="success",
         )
         assert_matches_type(AsyncV4PagePaginationArray[UserListResponse], user, path=["response"])

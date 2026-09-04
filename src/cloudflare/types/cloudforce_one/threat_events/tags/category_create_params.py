@@ -2,9 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Dict, Iterable
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-__all__ = ["CategoryCreateParams"]
+from ....._types import SequenceNotStr
+from ....._utils import PropertyInfo
+
+__all__ = ["CategoryCreateParams", "Schema", "SchemaAnnotations", "SchemaNumberConstraint"]
 
 
 class CategoryCreateParams(TypedDict, total=False):
@@ -14,3 +18,53 @@ class CategoryCreateParams(TypedDict, total=False):
     name: Required[str]
 
     description: str
+
+    schema: Iterable[Schema]
+    """
+    Optional array of FieldDefinition objects defining custom fields for tags in
+    this category. Persisted as JSON; returned as a parsed array.
+    """
+
+
+class SchemaAnnotations(TypedDict, total=False):
+    confidence: bool
+
+    tlp: bool
+
+
+class SchemaNumberConstraint(TypedDict, total=False):
+    integer: bool
+
+    max: float
+
+    min: float
+
+
+class Schema(TypedDict, total=False):
+    key: Required[str]
+
+    kind: Required[Literal["string", "number", "enum", "date", "array", "object"]]
+
+    allowed_values: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowedValues")]
+
+    annotations: SchemaAnnotations
+
+    element: object
+
+    enforcement: Literal["error", "warn", "off"]
+
+    format: Literal["date", "url", "duration", "country"]
+
+    label: str
+
+    max_length: Annotated[int, PropertyInfo(alias="maxLength")]
+
+    number_constraint: Annotated[SchemaNumberConstraint, PropertyInfo(alias="numberConstraint")]
+
+    properties: Dict[str, object]
+    """Map of property key to FieldDefinition for object fields.
+
+    Required when kind is 'object'. See FieldDefinition (recursive).
+    """
+
+    required: bool

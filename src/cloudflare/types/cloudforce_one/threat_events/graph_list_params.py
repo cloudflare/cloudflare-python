@@ -21,9 +21,10 @@ class GraphListParams(TypedDict, total=False):
     """
 
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]
-    """Comma-separated dataset UUIDs to restrict neighbor scope.
-
-    Intersected with ACL grants.
+    """
+    Comma-separated dataset UUIDs to restrict neighbor scope, or one standalone
+    scope value: 'all'/'\\**', 'analytics' for isAnalytics=true datasets, or
+    'operational' for isAnalytics=false datasets. Intersected with access grants.
     """
 
     direction: str

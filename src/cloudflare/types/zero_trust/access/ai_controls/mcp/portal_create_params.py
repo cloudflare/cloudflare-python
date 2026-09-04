@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["PortalCreateParams", "Server", "ServerUpdatedPrompt", "ServerUpdatedTool"]
 
@@ -12,51 +12,83 @@ class PortalCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     id: Required[str]
-    """portal id"""
+    """Unique identifier for the MCP portal."""
 
     hostname: Required[str]
+    """Hostname where the MCP portal is available."""
 
     name: Required[str]
+    """Display name for the MCP portal."""
 
     allow_code_mode: bool
-    """Allow remote code execution in Dynamic Workers (beta)"""
+    """Deprecated: use `code_mode` for new integrations.
+
+    `true` maps to any non-off Code Mode policy; `false` maps to `code_mode: off`.
+    If both fields are sent, they must be consistent or the request returns a 400.
+    """
+
+    code_mode: Literal["off", "opt_in", "default_on", "enforced"]
+    """Code Mode policy for this portal.
+
+    `off`: Code Mode is unavailable; query parameters are ignored. `opt_in`: Code
+    Mode is off by default; clients turn it on with `?codemode=search_and_execute`.
+    `default_on`: Code Mode is on by default; clients can opt out with
+    `?codemode=off`. `enforced`: Code Mode is always on; query parameters are
+    ignored. Defaults to `opt_in` when omitted on create. If both `code_mode` and
+    `allow_code_mode` are sent, they must be consistent or the request returns
+    a 400.
+    """
 
     description: str
+    """Optional description of the MCP portal."""
 
     secure_web_gateway: bool
-    """Route outbound MCP traffic through Zero Trust Secure Web Gateway"""
+    """Route outbound MCP traffic through Zero Trust Secure Web Gateway."""
 
     servers: Iterable[Server]
+    """MCP servers attached to the portal and their portal-specific settings."""
 
 
 class ServerUpdatedPrompt(TypedDict, total=False):
     name: Required[str]
+    """Name of the tool or prompt capability to override."""
 
     alias: str
+    """Custom name exposed for the capability."""
 
     description: str
+    """Custom description exposed for the capability."""
 
     enabled: bool
+    """Whether the capability is available through the MCP server."""
 
 
 class ServerUpdatedTool(TypedDict, total=False):
     name: Required[str]
+    """Name of the tool or prompt capability to override."""
 
     alias: str
+    """Custom name exposed for the capability."""
 
     description: str
+    """Custom description exposed for the capability."""
 
     enabled: bool
+    """Whether the capability is available through the MCP server."""
 
 
 class Server(TypedDict, total=False):
     server_id: Required[str]
-    """server id"""
+    """Unique identifier for the MCP server."""
 
     default_disabled: bool
+    """Disable this server by default for clients connecting through the portal."""
 
     on_behalf: bool
+    """Use end-user OAuth credentials when connecting this server to the portal."""
 
     updated_prompts: Iterable[ServerUpdatedPrompt]
+    """Portal-specific prompt overrides."""
 
     updated_tools: Iterable[ServerUpdatedTool]
+    """Portal-specific tool overrides."""

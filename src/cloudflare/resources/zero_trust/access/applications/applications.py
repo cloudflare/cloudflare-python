@@ -1078,6 +1078,7 @@ class ApplicationsResource(SyncAPIResource):
         type: ApplicationType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        mfa_config: application_create_params.InfrastructureApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
         policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1096,6 +1097,9 @@ class ApplicationsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
+              applications.
 
           name: The name of the application.
 
@@ -1554,6 +1558,7 @@ class ApplicationsResource(SyncAPIResource):
         mfa_config: application_create_params.SelfHostedApplicationMfaConfig
         | application_create_params.BrowserSSHApplicationMfaConfig
         | application_create_params.BrowserVNCApplicationMfaConfig
+        | application_create_params.InfrastructureApplicationMfaConfig
         | application_create_params.BrowserRDPApplicationMfaConfig
         | Omit = omit,
         name: str | Omit = omit,
@@ -2676,6 +2681,7 @@ class ApplicationsResource(SyncAPIResource):
         type: ApplicationType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        mfa_config: application_update_params.InfrastructureApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
         policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2696,6 +2702,9 @@ class ApplicationsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
+              applications.
 
           name: The name of the application.
 
@@ -3164,6 +3173,7 @@ class ApplicationsResource(SyncAPIResource):
         mfa_config: application_update_params.SelfHostedApplicationMfaConfig
         | application_update_params.BrowserSSHApplicationMfaConfig
         | application_update_params.BrowserVNCApplicationMfaConfig
+        | application_update_params.InfrastructureApplicationMfaConfig
         | application_update_params.BrowserRDPApplicationMfaConfig
         | Omit = omit,
         name: str | Omit = omit,
@@ -4586,6 +4596,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         type: ApplicationType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        mfa_config: application_create_params.InfrastructureApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
         policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4604,6 +4615,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
+              applications.
 
           name: The name of the application.
 
@@ -5062,6 +5076,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         mfa_config: application_create_params.SelfHostedApplicationMfaConfig
         | application_create_params.BrowserSSHApplicationMfaConfig
         | application_create_params.BrowserVNCApplicationMfaConfig
+        | application_create_params.InfrastructureApplicationMfaConfig
         | application_create_params.BrowserRDPApplicationMfaConfig
         | Omit = omit,
         name: str | Omit = omit,
@@ -6184,6 +6199,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         type: ApplicationType,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        mfa_config: application_update_params.InfrastructureApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
         policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -6204,6 +6220,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
+              applications.
 
           name: The name of the application.
 
@@ -6672,6 +6691,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         mfa_config: application_update_params.SelfHostedApplicationMfaConfig
         | application_update_params.BrowserSSHApplicationMfaConfig
         | application_update_params.BrowserVNCApplicationMfaConfig
+        | application_update_params.InfrastructureApplicationMfaConfig
         | application_update_params.BrowserRDPApplicationMfaConfig
         | Omit = omit,
         name: str | Omit = omit,

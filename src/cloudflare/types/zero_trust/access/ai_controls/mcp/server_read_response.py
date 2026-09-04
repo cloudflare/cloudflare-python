@@ -75,33 +75,44 @@ class ErrorDetails(BaseModel):
 
 class UpdatedPrompt(BaseModel):
     name: str
+    """Name of the tool or prompt capability to override."""
 
     alias: Optional[str] = None
+    """Custom name exposed for the capability."""
 
     description: Optional[str] = None
+    """Custom description exposed for the capability."""
 
     enabled: Optional[bool] = None
+    """Whether the capability is available through the MCP server."""
 
 
 class UpdatedTool(BaseModel):
     name: str
+    """Name of the tool or prompt capability to override."""
 
     alias: Optional[str] = None
+    """Custom name exposed for the capability."""
 
     description: Optional[str] = None
+    """Custom description exposed for the capability."""
 
     enabled: Optional[bool] = None
+    """Whether the capability is available through the MCP server."""
 
 
 class ServerReadResponse(BaseModel):
     id: str
-    """server id"""
+    """Unique identifier for the MCP server."""
 
     auth_type: Literal["oauth", "bearer", "unauthenticated"]
+    """Authentication method used to connect to the upstream MCP server."""
 
     hostname: str
+    """URL of the upstream MCP endpoint."""
 
     name: str
+    """Display name for the MCP server."""
 
     prompts: List[Dict[str, object]]
 
@@ -115,11 +126,19 @@ class ServerReadResponse(BaseModel):
     value.
     """
 
+    authentication_status: Optional[Literal["not_required", "required", "connected", "stale", "manual"]] = None
+    """
+    Whether administrative authentication is required before capabilities can be
+    synced. Manual OAuth is user-managed and has no administrative authentication
+    flow.
+    """
+
     created_at: Optional[datetime] = None
 
     created_by: Optional[str] = None
 
     description: Optional[str] = None
+    """Optional description of the MCP server."""
 
     error: Optional[str] = None
 
@@ -130,8 +149,7 @@ class ServerReadResponse(BaseModel):
     When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
     endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
     customer portal hostname. Defaults to false (off); opt in per server by setting
-    true. Effective behavior is gated by the gateway worker's per-env rollout mode
-    KV key.
+    true.
     """
 
     last_successful_sync: Optional[datetime] = None
@@ -143,11 +161,15 @@ class ServerReadResponse(BaseModel):
     modified_by: Optional[str] = None
 
     secure_web_gateway: Optional[bool] = None
-    """Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway"""
+    """
+    Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway.
+    """
 
     status: Optional[Literal["waiting", "ready", "stale", "error"]] = None
     """Current sync state of the server"""
 
     updated_prompts: Optional[List[UpdatedPrompt]] = None
+    """Server-wide prompt capability overrides."""
 
     updated_tools: Optional[List[UpdatedTool]] = None
+    """Server-wide tool capability overrides."""

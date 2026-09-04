@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -48,8 +50,8 @@ class AggregateResource(SyncAPIResource):
         *,
         account_id: str,
         aggregate_by: str,
-        created_after: str | Omit = omit,
-        created_before: str | Omit = omit,
+        created_after: Union[Union[str, datetime], str] | Omit = omit,
+        created_before: Union[Union[str, datetime], str] | Omit = omit,
         dataset_ids: SequenceNotStr[str] | Omit = omit,
         event_date_after: str | Omit = omit,
         event_date_before: str | Omit = omit,
@@ -73,18 +75,26 @@ class AggregateResource(SyncAPIResource):
           aggregate_by: Column(s) to aggregate by - single column or comma-separated list (e.g.,
               'indicatorType', 'value', 'indicatorType,value')
 
-          created_after: Filter indicators created after this date (ISO 8601 format, e.g., '2024-01-01')
+          created_after: Filter indicators created after this date/datetime (ISO 8601, e.g., '2024-01-01'
+              or '2024-01-01T00:00:00Z')
 
-          created_before: Filter indicators created before this date (ISO 8601 format, e.g., '2024-12-31')
+          created_before: Filter indicators created before this date/datetime (ISO 8601, e.g.,
+              '2024-12-31' or '2024-12-31T23:59:59Z')
 
-          dataset_ids: Dataset ID(s) to filter by. Can be a single dataset ID or comma-separated list.
-              If not provided, aggregates across all accessible datasets
+          dataset_ids: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
+              accessible datasets, 'analytics' for isAnalytics=true datasets, or 'operational'
+              for isAnalytics=false datasets. If not provided, aggregates across all
+              accessible datasets.
 
-          event_date_after: For measure=relationships: only count event links whose eventDate is on/after
-              this date (ISO 8601). Use to bound 'top indicator' to recent activity.
+          event_date_after: For measure=relationships: only count indicator→event links whose relationship
+              was created/observed on or after this date (ISO 8601). Bounds the activity view
+              to recently-observed links. Note: this filters by the relationship's createdAt
+              (link-observation time), not the underlying event's business date.
 
-          event_date_before: For measure=relationships: only count event links whose eventDate is on/before
-              this date (ISO 8601).
+          event_date_before: For measure=relationships: only count indicator→event links whose relationship
+              was created/observed on or before this date (ISO 8601). Bounds the activity view
+              by the relationship's createdAt (link-observation time), not the underlying
+              event's business date.
 
           limit: Maximum number of aggregation results to return (1-100)
 
@@ -156,8 +166,8 @@ class AsyncAggregateResource(AsyncAPIResource):
         *,
         account_id: str,
         aggregate_by: str,
-        created_after: str | Omit = omit,
-        created_before: str | Omit = omit,
+        created_after: Union[Union[str, datetime], str] | Omit = omit,
+        created_before: Union[Union[str, datetime], str] | Omit = omit,
         dataset_ids: SequenceNotStr[str] | Omit = omit,
         event_date_after: str | Omit = omit,
         event_date_before: str | Omit = omit,
@@ -181,18 +191,26 @@ class AsyncAggregateResource(AsyncAPIResource):
           aggregate_by: Column(s) to aggregate by - single column or comma-separated list (e.g.,
               'indicatorType', 'value', 'indicatorType,value')
 
-          created_after: Filter indicators created after this date (ISO 8601 format, e.g., '2024-01-01')
+          created_after: Filter indicators created after this date/datetime (ISO 8601, e.g., '2024-01-01'
+              or '2024-01-01T00:00:00Z')
 
-          created_before: Filter indicators created before this date (ISO 8601 format, e.g., '2024-12-31')
+          created_before: Filter indicators created before this date/datetime (ISO 8601, e.g.,
+              '2024-12-31' or '2024-12-31T23:59:59Z')
 
-          dataset_ids: Dataset ID(s) to filter by. Can be a single dataset ID or comma-separated list.
-              If not provided, aggregates across all accessible datasets
+          dataset_ids: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
+              accessible datasets, 'analytics' for isAnalytics=true datasets, or 'operational'
+              for isAnalytics=false datasets. If not provided, aggregates across all
+              accessible datasets.
 
-          event_date_after: For measure=relationships: only count event links whose eventDate is on/after
-              this date (ISO 8601). Use to bound 'top indicator' to recent activity.
+          event_date_after: For measure=relationships: only count indicator→event links whose relationship
+              was created/observed on or after this date (ISO 8601). Bounds the activity view
+              to recently-observed links. Note: this filters by the relationship's createdAt
+              (link-observation time), not the underlying event's business date.
 
-          event_date_before: For measure=relationships: only count event links whose eventDate is on/before
-              this date (ISO 8601).
+          event_date_before: For measure=relationships: only count indicator→event links whose relationship
+              was created/observed on or before this date (ISO 8601). Bounds the activity view
+              by the relationship's createdAt (link-observation time), not the underlying
+              event's business date.
 
           limit: Maximum number of aggregation results to return (1-100)
 

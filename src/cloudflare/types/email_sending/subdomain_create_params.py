@@ -12,4 +12,8 @@ class SubdomainCreateParams(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """The subdomain name. Must be within the zone."""
+    """The domain name within the zone.
+
+    A wildcard is allowed only as the complete leftmost label (`*.example.com`) and
+    requires the account wildcard Email Sending entitlement.
+    """

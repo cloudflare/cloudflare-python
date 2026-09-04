@@ -54,13 +54,14 @@ class TypesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TypeListResponse:
         """
-        List indicator types across one or more datasets for the account.
+        Lists indicator types across multiple datasets
 
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query indicator types from. If not provided, queries all
-              datasets for the account.
+          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**', 'analytics'
+              for isAnalytics=true datasets, or 'operational' for isAnalytics=false datasets.
+              If not provided, queries all accessible datasets.
 
           extra_headers: Send extra headers
 
@@ -118,13 +119,14 @@ class AsyncTypesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TypeListResponse:
         """
-        List indicator types across one or more datasets for the account.
+        Lists indicator types across multiple datasets
 
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query indicator types from. If not provided, queries all
-              datasets for the account.
+          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**', 'analytics'
+              for isAnalytics=true datasets, or 'operational' for isAnalytics=false datasets.
+              If not provided, queries all accessible datasets.
 
           extra_headers: Send extra headers
 

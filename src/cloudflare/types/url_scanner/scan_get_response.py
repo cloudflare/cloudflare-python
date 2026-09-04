@@ -98,6 +98,11 @@ __all__ = [
     "MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationEvidenceResponse",
     "MetaProcessorsAgentReadinessChecksDiscoverability",
+    "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAid",
+    "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidence",
+    "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceFinding",
+    "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceRequest",
+    "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceResponse",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeaders",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidenceFinding",
@@ -129,6 +134,16 @@ __all__ = [
     "MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryArd",
+    "MetaProcessorsAgentReadinessChecksDiscoveryArdEvidence",
+    "MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceFinding",
+    "MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceRequest",
+    "MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryAuthMd",
+    "MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidence",
+    "MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceFinding",
+    "MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceRequest",
+    "MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceResponse",
     "MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCard",
     "MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidenceFinding",
@@ -1106,6 +1121,58 @@ class MetaProcessorsAgentReadinessChecksContentAccessibility(BaseModel):
     )
 
 
+class MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceFinding(BaseModel):
+    outcome: str
+
+    summary: str
+
+
+class MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceRequest(BaseModel):
+    method: str
+
+    url: str
+
+    headers: Optional[object] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceResponse(BaseModel):
+    status: int
+
+    status_text: str = FieldInfo(alias="statusText")
+
+    body_preview: Optional[str] = FieldInfo(alias="bodyPreview", default=None)
+
+    body_size: Optional[int] = FieldInfo(alias="bodySize", default=None)
+
+    headers: Optional[object] = None
+
+    redirected_to: Optional[str] = FieldInfo(alias="redirectedTo", default=None)
+
+
+class MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidence(BaseModel):
+    action: str
+
+    label: str
+
+    finding: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceFinding] = None
+
+    request: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceRequest] = None
+
+    response: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceResponse] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAid(BaseModel):
+    status: str
+
+    details: Optional[object] = None
+
+    duration_ms: Optional[float] = FieldInfo(alias="durationMs", default=None)
+
+    evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidence]] = None
+
+    message: Optional[str] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidenceFinding(BaseModel):
     outcome: str
 
@@ -1263,6 +1330,8 @@ class MetaProcessorsAgentReadinessChecksDiscoverabilitySitemap(BaseModel):
 
 
 class MetaProcessorsAgentReadinessChecksDiscoverability(BaseModel):
+    dns_aid: MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAid = FieldInfo(alias="dnsAid")
+
     link_headers: MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeaders = FieldInfo(alias="linkHeaders")
 
     robots_txt: MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXT = FieldInfo(alias="robotsTxt")
@@ -1422,6 +1491,110 @@ class MetaProcessorsAgentReadinessChecksDiscoveryAPICatalog(BaseModel):
     duration_ms: Optional[float] = FieldInfo(alias="durationMs", default=None)
 
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidence]] = None
+
+    message: Optional[str] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceFinding(BaseModel):
+    outcome: str
+
+    summary: str
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceRequest(BaseModel):
+    method: str
+
+    url: str
+
+    headers: Optional[object] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceResponse(BaseModel):
+    status: int
+
+    status_text: str = FieldInfo(alias="statusText")
+
+    body_preview: Optional[str] = FieldInfo(alias="bodyPreview", default=None)
+
+    body_size: Optional[int] = FieldInfo(alias="bodySize", default=None)
+
+    headers: Optional[object] = None
+
+    redirected_to: Optional[str] = FieldInfo(alias="redirectedTo", default=None)
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryArdEvidence(BaseModel):
+    action: str
+
+    label: str
+
+    finding: Optional[MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceFinding] = None
+
+    request: Optional[MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceRequest] = None
+
+    response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceResponse] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryArd(BaseModel):
+    status: str
+
+    details: Optional[object] = None
+
+    duration_ms: Optional[float] = FieldInfo(alias="durationMs", default=None)
+
+    evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryArdEvidence]] = None
+
+    message: Optional[str] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceFinding(BaseModel):
+    outcome: str
+
+    summary: str
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceRequest(BaseModel):
+    method: str
+
+    url: str
+
+    headers: Optional[object] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceResponse(BaseModel):
+    status: int
+
+    status_text: str = FieldInfo(alias="statusText")
+
+    body_preview: Optional[str] = FieldInfo(alias="bodyPreview", default=None)
+
+    body_size: Optional[int] = FieldInfo(alias="bodySize", default=None)
+
+    headers: Optional[object] = None
+
+    redirected_to: Optional[str] = FieldInfo(alias="redirectedTo", default=None)
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidence(BaseModel):
+    action: str
+
+    label: str
+
+    finding: Optional[MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceFinding] = None
+
+    request: Optional[MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceRequest] = None
+
+    response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceResponse] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryAuthMd(BaseModel):
+    status: str
+
+    details: Optional[object] = None
+
+    duration_ms: Optional[float] = FieldInfo(alias="durationMs", default=None)
+
+    evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidence]] = None
 
     message: Optional[str] = None
 
@@ -1640,6 +1813,10 @@ class MetaProcessorsAgentReadinessChecksDiscovery(BaseModel):
     agent_skills: MetaProcessorsAgentReadinessChecksDiscoveryAgentSkills = FieldInfo(alias="agentSkills")
 
     api_catalog: MetaProcessorsAgentReadinessChecksDiscoveryAPICatalog = FieldInfo(alias="apiCatalog")
+
+    ard: MetaProcessorsAgentReadinessChecksDiscoveryArd
+
+    auth_md: MetaProcessorsAgentReadinessChecksDiscoveryAuthMd = FieldInfo(alias="authMd")
 
     mcp_server_card: MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCard = FieldInfo(alias="mcpServerCard")
 

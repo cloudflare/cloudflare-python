@@ -94,13 +94,10 @@ class OperationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationCreateResponse:
-        """Add one operation to a zone.
+        """Creates one web or API operation.
 
-        Endpoints can contain path variables. Host, method,
-        endpoint will be normalized to a canoncial form when creating an operation and
-        must be unique on the zone. Inserting an operation that matches an existing one
-        will return the record of the already existing operation and update its
-        last_updated date.
+        The host, method, and path are normalized; an
+        existing matching operation is returned instead of duplicated.
 
         Args:
           zone_id: Identifier.
@@ -150,7 +147,7 @@ class OperationsResource(SyncAPIResource):
         zone_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         endpoint: str | Omit = omit,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         method: SequenceNotStr[str] | Omit = omit,
         order: Literal["method", "host", "endpoint", "thresholds.$key"] | Omit = omit,
@@ -164,8 +161,8 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[OperationListResponse]:
         """
-        Lists all API operations tracked by API Shield for a zone with pagination.
-        Returns operation details including method, path, and feature configurations.
+        Lists web and API operations tracked for the zone, including each operation's
+        method, path, and feature configuration.
 
         Args:
           zone_id: Identifier.
@@ -236,10 +233,9 @@ class OperationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationDeleteResponse:
-        """Removes a single API operation from API Shield endpoint management.
-
-        The
-        operation will no longer be tracked or protected by API Shield rules.
+        """
+        Deletes a web or API operation from endpoint management so its feature
+        configuration is no longer tracked.
 
         Args:
           zone_id: Identifier.
@@ -280,13 +276,10 @@ class OperationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[OperationBulkCreateResponse]:
-        """Add one or more operations to a zone.
+        """Creates one or more web or API operations.
 
-        Endpoints can contain path variables.
-        Host, method, endpoint will be normalized to a canoncial form when creating an
-        operation and must be unique on the zone. Inserting an operation that matches an
-        existing one will return the record of the already existing operation and update
-        its last_updated date.
+        Hosts, methods, and paths are
+        normalized; an existing matching operation is returned instead of duplicated.
 
         Args:
           zone_id: Identifier.
@@ -324,8 +317,7 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkDeleteResponse:
         """
-        Bulk removes multiple API operations from API Shield endpoint management in a
-        single request. Efficient for cleaning up unused endpoints.
+        Deletes multiple web or API operations from endpoint management in one request.
 
         Args:
           zone_id: Identifier.
@@ -353,7 +345,7 @@ class OperationsResource(SyncAPIResource):
         operation_id: str,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         with_schemas: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -363,8 +355,8 @@ class OperationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationGetResponse:
         """
-        Gets detailed information about a specific API operation in API Shield,
-        including its schema validation settings and traffic statistics.
+        Returns a web or API operation, including its schema validation settings and
+        requested feature data.
 
         Args:
           zone_id: Identifier.
@@ -455,13 +447,10 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationCreateResponse:
-        """Add one operation to a zone.
+        """Creates one web or API operation.
 
-        Endpoints can contain path variables. Host, method,
-        endpoint will be normalized to a canoncial form when creating an operation and
-        must be unique on the zone. Inserting an operation that matches an existing one
-        will return the record of the already existing operation and update its
-        last_updated date.
+        The host, method, and path are normalized; an
+        existing matching operation is returned instead of duplicated.
 
         Args:
           zone_id: Identifier.
@@ -511,7 +500,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         zone_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
         endpoint: str | Omit = omit,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         method: SequenceNotStr[str] | Omit = omit,
         order: Literal["method", "host", "endpoint", "thresholds.$key"] | Omit = omit,
@@ -525,8 +514,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """
-        Lists all API operations tracked by API Shield for a zone with pagination.
-        Returns operation details including method, path, and feature configurations.
+        Lists web and API operations tracked for the zone, including each operation's
+        method, path, and feature configuration.
 
         Args:
           zone_id: Identifier.
@@ -597,10 +586,9 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationDeleteResponse:
-        """Removes a single API operation from API Shield endpoint management.
-
-        The
-        operation will no longer be tracked or protected by API Shield rules.
+        """
+        Deletes a web or API operation from endpoint management so its feature
+        configuration is no longer tracked.
 
         Args:
           zone_id: Identifier.
@@ -641,13 +629,10 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OperationBulkCreateResponse, AsyncSinglePage[OperationBulkCreateResponse]]:
-        """Add one or more operations to a zone.
+        """Creates one or more web or API operations.
 
-        Endpoints can contain path variables.
-        Host, method, endpoint will be normalized to a canoncial form when creating an
-        operation and must be unique on the zone. Inserting an operation that matches an
-        existing one will return the record of the already existing operation and update
-        its last_updated date.
+        Hosts, methods, and paths are
+        normalized; an existing matching operation is returned instead of duplicated.
 
         Args:
           zone_id: Identifier.
@@ -685,8 +670,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkDeleteResponse:
         """
-        Bulk removes multiple API operations from API Shield endpoint management in a
-        single request. Efficient for cleaning up unused endpoints.
+        Deletes multiple web or API operations from endpoint management in one request.
 
         Args:
           zone_id: Identifier.
@@ -714,7 +698,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         operation_id: str,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         with_schemas: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -724,8 +708,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationGetResponse:
         """
-        Gets detailed information about a specific API operation in API Shield,
-        including its schema validation settings and traffic statistics.
+        Returns a web or API operation, including its schema validation settings and
+        requested feature data.
 
         Args:
           zone_id: Identifier.

@@ -62,7 +62,7 @@ class ConfigResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigCreateResponse]:
         """
-        Create a new Scan Config
+        Creates a new scan configuration for Cloudforce One's network scanning service.
 
         Args:
           account_id: Defines the Account ID.
@@ -118,7 +118,7 @@ class ConfigResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ConfigListResponse]:
         """
-        List Scan Configs
+        Lists scan configurations for Cloudforce One's network scanning service.
 
         Args:
           account_id: Defines the Account ID.
@@ -155,7 +155,7 @@ class ConfigResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a Scan Config
+        Deletes a scan configuration from Cloudforce One's network scanning service.
 
         Args:
           account_id: Defines the Account ID.
@@ -206,7 +206,8 @@ class ConfigResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigEditResponse]:
         """
-        Update an existing Scan Config
+        Updates an existing scan configuration in Cloudforce One's network scanning
+        service.
 
         Args:
           account_id: Defines the Account ID.
@@ -294,7 +295,7 @@ class AsyncConfigResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigCreateResponse]:
         """
-        Create a new Scan Config
+        Creates a new scan configuration for Cloudforce One's network scanning service.
 
         Args:
           account_id: Defines the Account ID.
@@ -350,7 +351,7 @@ class AsyncConfigResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ConfigListResponse, AsyncSinglePage[ConfigListResponse]]:
         """
-        List Scan Configs
+        Lists scan configurations for Cloudforce One's network scanning service.
 
         Args:
           account_id: Defines the Account ID.
@@ -387,7 +388,7 @@ class AsyncConfigResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a Scan Config
+        Deletes a scan configuration from Cloudforce One's network scanning service.
 
         Args:
           account_id: Defines the Account ID.
@@ -438,7 +439,8 @@ class AsyncConfigResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigEditResponse]:
         """
-        Update an existing Scan Config
+        Updates an existing scan configuration in Cloudforce One's network scanning
+        service.
 
         Args:
           account_id: Defines the Account ID.

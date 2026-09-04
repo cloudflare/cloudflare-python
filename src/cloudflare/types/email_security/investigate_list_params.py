@@ -19,7 +19,9 @@ class InvestigateListParams(TypedDict, total=False):
 
     cursor: str
 
-    delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+    delivery_status: Literal[
+        "delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"
+    ]
     """Delivery status to filter by."""
 
     detections_only: bool
@@ -53,6 +55,9 @@ class InvestigateListParams(TypedDict, total=False):
     recipient: str
 
     sender: str
+
+    smtp_helo_ip: str
+    """Matches messages whose SMTP HELO server IP address equals this value."""
 
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The beginning of the search date range.

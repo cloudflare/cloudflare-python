@@ -42,7 +42,7 @@ class TestQueries:
             parameters={
                 "calculations": [
                     {
-                        "operator": "uniq",
+                        "operator": "count",
                         "alias": "alias",
                         "key": "key",
                         "key_type": "string",
@@ -203,7 +203,7 @@ class TestAsyncQueries:
             parameters={
                 "calculations": [
                     {
-                        "operator": "uniq",
+                        "operator": "count",
                         "alias": "alias",
                         "key": "key",
                         "key_type": "string",

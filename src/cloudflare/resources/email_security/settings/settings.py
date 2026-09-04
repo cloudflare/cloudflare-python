@@ -36,6 +36,14 @@ from .trusted_domains import (
     TrustedDomainsResourceWithStreamingResponse,
     AsyncTrustedDomainsResourceWithStreamingResponse,
 )
+from .content_policies import (
+    ContentPoliciesResource,
+    AsyncContentPoliciesResource,
+    ContentPoliciesResourceWithRawResponse,
+    AsyncContentPoliciesResourceWithRawResponse,
+    ContentPoliciesResourceWithStreamingResponse,
+    AsyncContentPoliciesResourceWithStreamingResponse,
+)
 from .url_ignore_patterns import (
     URLIgnorePatternsResource,
     AsyncURLIgnorePatternsResource,
@@ -72,6 +80,10 @@ class SettingsResource(SyncAPIResource):
     @cached_property
     def block_senders(self) -> BlockSendersResource:
         return BlockSendersResource(self._client)
+
+    @cached_property
+    def content_policies(self) -> ContentPoliciesResource:
+        return ContentPoliciesResource(self._client)
 
     @cached_property
     def domains(self) -> DomainsResource:
@@ -121,6 +133,10 @@ class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
     def block_senders(self) -> AsyncBlockSendersResource:
         return AsyncBlockSendersResource(self._client)
+
+    @cached_property
+    def content_policies(self) -> AsyncContentPoliciesResource:
+        return AsyncContentPoliciesResource(self._client)
 
     @cached_property
     def domains(self) -> AsyncDomainsResource:
@@ -175,6 +191,10 @@ class SettingsResourceWithRawResponse:
         return BlockSendersResourceWithRawResponse(self._settings.block_senders)
 
     @cached_property
+    def content_policies(self) -> ContentPoliciesResourceWithRawResponse:
+        return ContentPoliciesResourceWithRawResponse(self._settings.content_policies)
+
+    @cached_property
     def domains(self) -> DomainsResourceWithRawResponse:
         return DomainsResourceWithRawResponse(self._settings.domains)
 
@@ -206,6 +226,10 @@ class AsyncSettingsResourceWithRawResponse:
     @cached_property
     def block_senders(self) -> AsyncBlockSendersResourceWithRawResponse:
         return AsyncBlockSendersResourceWithRawResponse(self._settings.block_senders)
+
+    @cached_property
+    def content_policies(self) -> AsyncContentPoliciesResourceWithRawResponse:
+        return AsyncContentPoliciesResourceWithRawResponse(self._settings.content_policies)
 
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithRawResponse:
@@ -241,6 +265,10 @@ class SettingsResourceWithStreamingResponse:
         return BlockSendersResourceWithStreamingResponse(self._settings.block_senders)
 
     @cached_property
+    def content_policies(self) -> ContentPoliciesResourceWithStreamingResponse:
+        return ContentPoliciesResourceWithStreamingResponse(self._settings.content_policies)
+
+    @cached_property
     def domains(self) -> DomainsResourceWithStreamingResponse:
         return DomainsResourceWithStreamingResponse(self._settings.domains)
 
@@ -272,6 +300,10 @@ class AsyncSettingsResourceWithStreamingResponse:
     @cached_property
     def block_senders(self) -> AsyncBlockSendersResourceWithStreamingResponse:
         return AsyncBlockSendersResourceWithStreamingResponse(self._settings.block_senders)
+
+    @cached_property
+    def content_policies(self) -> AsyncContentPoliciesResourceWithStreamingResponse:
+        return AsyncContentPoliciesResourceWithStreamingResponse(self._settings.content_policies)
 
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithStreamingResponse:

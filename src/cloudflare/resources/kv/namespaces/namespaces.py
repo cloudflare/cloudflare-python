@@ -97,6 +97,7 @@ class NamespacesResource(SyncAPIResource):
         *,
         account_id: str,
         title: str,
+        jurisdiction: Literal["eu", "fedramp", "us"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -115,6 +116,9 @@ class NamespacesResource(SyncAPIResource):
 
           title: A human-readable string name for a Namespace.
 
+          jurisdiction: Specify the jurisdiction to restrict the KV namespace to durably store data
+              within. Can only be set at namespace creation time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -127,7 +131,13 @@ class NamespacesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             path_template("/accounts/{account_id}/storage/kv/namespaces", account_id=account_id),
-            body=maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
+            body=maybe_transform(
+                {
+                    "title": title,
+                    "jurisdiction": jurisdiction,
+                },
+                namespace_create_params.NamespaceCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -565,6 +575,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         *,
         account_id: str,
         title: str,
+        jurisdiction: Literal["eu", "fedramp", "us"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -583,6 +594,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
 
           title: A human-readable string name for a Namespace.
 
+          jurisdiction: Specify the jurisdiction to restrict the KV namespace to durably store data
+              within. Can only be set at namespace creation time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -595,7 +609,13 @@ class AsyncNamespacesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             path_template("/accounts/{account_id}/storage/kv/namespaces", account_id=account_id),
-            body=await async_maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "title": title,
+                    "jurisdiction": jurisdiction,
+                },
+                namespace_create_params.NamespaceCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

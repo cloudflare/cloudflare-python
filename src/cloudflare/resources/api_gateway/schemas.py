@@ -49,7 +49,7 @@ class SchemasResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         include_schema_kind: List[Literal["learned"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -60,7 +60,8 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaListResponse:
         """
-        Retrieves API operations and their features exported as OpenAPI schemas.
+        Returns tracked web and API operations and their feature configuration rendered
+        as OpenAPI schemas.
 
         Args:
           zone_id: Identifier.
@@ -128,7 +129,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         include_schema_kind: List[Literal["learned"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,7 +140,8 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaListResponse:
         """
-        Retrieves API operations and their features exported as OpenAPI schemas.
+        Returns tracked web and API operations and their feature configuration rendered
+        as OpenAPI schemas.
 
         Args:
           zone_id: Identifier.

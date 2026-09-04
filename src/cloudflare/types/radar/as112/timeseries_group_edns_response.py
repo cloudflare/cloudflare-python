@@ -55,7 +55,7 @@ class MetaConfidenceInfoAnnotation(BaseModel):
 
     end_date: datetime = FieldInfo(alias="endDate")
 
-    event_type: Literal["EVENT", "GENERAL", "OUTAGE", "PARTIAL_PROJECTION", "PIPELINE", "TRAFFIC_ANOMALY"] = FieldInfo(
+    event_type: Literal["GENERAL", "OUTAGE", "PARTIAL_PROJECTION", "PIPELINE", "TRAFFIC_ANOMALY"] = FieldInfo(
         alias="eventType"
     )
     """Event type for annotations."""

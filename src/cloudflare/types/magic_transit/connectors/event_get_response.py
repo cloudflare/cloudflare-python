@@ -28,6 +28,9 @@ class E(BaseModel):
     - `StartUpgrade`: Started upgrade
     - `FinishUpgradeSuccess`: Finished upgrade
     - `FinishUpgradeFailure`: Failed upgrade
+    - `BlessSlotSuccess`: Blessed boot entry slot
+    - `BlessSlotPending`: Boot entry slot is not yet blessed
+    - `BlessSlotFailure`: Failed to bless boot entry slot
     - `Reconcile`: Reconciled
     - `ConfigureCloudflaredTunnel`: Configured Cloudflared tunnel
     - `RekeyInstallBoth`: Installed initial inbound and outbound keys
@@ -36,6 +39,10 @@ class E(BaseModel):
     - `RekeyAdvance`: Confirmed traffic on new inbound key, swapped outbound to new
     - `RekeyComplete`: Deleted old keys
     - `RekeyReset`: Deleted all keys after receiving an unexpected key
+    - `HaTransition`: Completed HA state transition
+    - `HaError`: Received unexpected HA error
+    - `HaInit`: Initialized HA subsystem
+    - `HaLeave`: Stopped HA subsystem
     """
 
     k: Literal[
@@ -53,6 +60,9 @@ class E(BaseModel):
         "StartUpgrade",
         "FinishUpgradeSuccess",
         "FinishUpgradeFailure",
+        "BlessSlotSuccess",
+        "BlessSlotPending",
+        "BlessSlotFailure",
         "Reconcile",
         "ConfigureCloudflaredTunnel",
         "RekeyInstallBoth",
@@ -61,6 +71,10 @@ class E(BaseModel):
         "RekeyAdvance",
         "RekeyComplete",
         "RekeyReset",
+        "HaTransition",
+        "HaError",
+        "HaInit",
+        "HaLeave",
     ]
     """Event kind"""
 
@@ -99,6 +113,9 @@ class EventGetResponse(BaseModel):
     - `StartUpgrade`: Started upgrade
     - `FinishUpgradeSuccess`: Finished upgrade
     - `FinishUpgradeFailure`: Failed upgrade
+    - `BlessSlotSuccess`: Blessed boot entry slot
+    - `BlessSlotPending`: Boot entry slot is not yet blessed
+    - `BlessSlotFailure`: Failed to bless boot entry slot
     - `Reconcile`: Reconciled
     - `ConfigureCloudflaredTunnel`: Configured Cloudflared tunnel
     - `RekeyInstallBoth`: Installed initial inbound and outbound keys
@@ -107,6 +124,10 @@ class EventGetResponse(BaseModel):
     - `RekeyAdvance`: Confirmed traffic on new inbound key, swapped outbound to new
     - `RekeyComplete`: Deleted old keys
     - `RekeyReset`: Deleted all keys after receiving an unexpected key
+    - `HaTransition`: Completed HA state transition
+    - `HaError`: Received unexpected HA error
+    - `HaInit`: Initialized HA subsystem
+    - `HaLeave`: Stopped HA subsystem
     """
 
     n: float

@@ -146,12 +146,11 @@ class TestThreatEvents:
             page_size=0,
             search=[
                 {
-                    "field": "attackerCountry",
+                    "field": "attacker",
                     "op": "equals",
-                    "value": "usa",
+                    "value": "x",
                 }
             ],
-            source="do",
         )
         assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
 
@@ -659,12 +658,11 @@ class TestAsyncThreatEvents:
             page_size=0,
             search=[
                 {
-                    "field": "attackerCountry",
+                    "field": "attacker",
                     "op": "equals",
-                    "value": "usa",
+                    "value": "x",
                 }
             ],
-            source="do",
         )
         assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
 

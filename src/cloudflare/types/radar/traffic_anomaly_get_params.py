@@ -18,6 +18,38 @@ class TrafficAnomalyGetParams(TypedDict, total=False):
     Specify a single Autonomous System Number (ASN) as integer.
     """
 
+    data_source: Annotated[
+        Literal[
+            "ALL",
+            "AI_BOTS",
+            "AI_GATEWAY",
+            "BGP",
+            "BOTS",
+            "CONNECTION_ANOMALY",
+            "CT",
+            "DNS",
+            "DNS_MAGNITUDE",
+            "DNS_AS112",
+            "DOS",
+            "EMAIL_ROUTING",
+            "EMAIL_SECURITY",
+            "FW",
+            "FW_PG",
+            "HTTP",
+            "HTTP_CONTROL",
+            "HTTP_CRAWLER_REFERER",
+            "HTTP_ORIGINS",
+            "IQI",
+            "LEAKED_CREDENTIALS",
+            "NET",
+            "ROBOTS_TXT",
+            "SPEED",
+            "WORKERS_AI",
+        ],
+        PropertyInfo(alias="dataSource"),
+    ]
+    """Filters results by data source."""
+
     date_end: Annotated[Union[str, datetime], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive).
 

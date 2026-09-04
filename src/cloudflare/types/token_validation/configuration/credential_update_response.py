@@ -4,7 +4,6 @@ from typing import List, Union
 from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
-from ...api_gateway.message import Message
 
 __all__ = [
     "CredentialUpdateResponse",
@@ -103,11 +102,4 @@ Key: TypeAlias = Union[
 
 
 class CredentialUpdateResponse(BaseModel):
-    errors: Message
-
     keys: List[Key]
-
-    messages: Message
-
-    success: Literal[True]
-    """Whether the API call was successful."""

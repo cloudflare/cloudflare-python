@@ -70,7 +70,8 @@ class TopupResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TopupCreateResponse:
         """
-        Create a credit top-up via Stripe PaymentIntent for the given account.
+        Create a credit top-up for the given account, charged to the account's default
+        payment method.
 
         Args:
           amount: Top-up amount in cents (min 1000).
@@ -177,7 +178,8 @@ class AsyncTopupResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TopupCreateResponse:
         """
-        Create a credit top-up via Stripe PaymentIntent for the given account.
+        Create a credit top-up for the given account, charged to the account's default
+        payment method.
 
         Args:
           amount: Top-up amount in cents (min 1000).

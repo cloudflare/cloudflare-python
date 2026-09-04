@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["InstanceBulkParams", "Body", "BodyInstanceRetention"]
 
@@ -11,7 +11,7 @@ __all__ = ["InstanceBulkParams", "Body", "BodyInstanceRetention"]
 class InstanceBulkParams(TypedDict, total=False):
     account_id: Required[str]
 
-    body: Iterable[Body]
+    body: Required[Iterable[Body]]
 
 
 class BodyInstanceRetention(TypedDict, total=False):
@@ -24,7 +24,14 @@ class BodyInstanceRetention(TypedDict, total=False):
 
 class Body(TypedDict, total=False):
     instance_id: str
+    """
+    The system reserves IDs that consist of the `cf_` prefix and exactly 64
+    lowercase hexadecimal characters.
+    """
 
     instance_retention: BodyInstanceRetention
 
-    params: object
+    location_hint: Literal["wnam", "weur", "enam", "eeur", "apac", "apac-ne", "apac-se", "oc", "sam", "afr", "me"]
+
+    params: str
+    """JSON-encoded event payload passed into the new instance."""

@@ -14,27 +14,27 @@ class AllowPolicyCreateParams(TypedDict, total=False):
 
     is_acceptable_sender: Required[bool]
     """
-    Messages from this sender will be exempted from Spam, Spoof and Bulk
-    dispositions. Note - This will not exempt messages with Malicious or Suspicious
-    dispositions.
+    Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
+    Malicious and Suspicious dispositions still apply.
     """
 
     is_exempt_recipient: Required[bool]
-    """Messages to this recipient will bypass all detections"""
+    """Bypasses all detections for messages to this recipient."""
 
     is_regex: Required[bool]
 
     is_trusted_sender: Required[bool]
-    """Messages from this sender will bypass all detections and link following"""
+    """Bypasses all detections and link following for messages from this sender."""
 
     pattern: Required[str]
-    """The pattern value to match against. Format depends on `pattern_type`:
+    """The pattern value to match.
 
-    - EMAIL: a valid email address, e.g. `user@example.com`
-    - DOMAIN: a valid domain name, e.g. `example.com`
-    - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-      `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-      loopback, link-local, and unspecified addresses are rejected.
+    The format depends on `pattern_type`: a valid email address for EMAIL (e.g.
+    `user@example.com`), a valid domain name for DOMAIN (e.g. `example.com`), or a
+    plain IPv4 or IPv6 address or CIDR block for IP (e.g. `1.2.3.4`, `1.2.3.0/24`,
+    `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the API rejects private or
+    unique-local, loopback, link-local, unspecified, and IPv4 broadcast addresses,
+    including their IPv4-mapped IPv6 equivalents.
     """
 
     pattern_type: Required[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]]
@@ -42,10 +42,13 @@ class AllowPolicyCreateParams(TypedDict, total=False):
 
     - EMAIL: matches a full email address (e.g. `user@example.com`)
     - DOMAIN: matches a domain name (e.g. `example.com`)
-    - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-      `1.2.3.0/24`). Only globally reachable addresses are accepted.
-    - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-      may be returned for existing entries.
+    - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+      `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+      `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+      link-local, unspecified, and IPv4 broadcast addresses, including their
+      IPv4-mapped IPv6 equivalents.
+    - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+      but it may appear on existing entries.
     """
 
     verify_sender: Required[bool]

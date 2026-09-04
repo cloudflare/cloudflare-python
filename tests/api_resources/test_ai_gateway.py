@@ -56,6 +56,7 @@ class TestAIGateway:
             retry_backoff="constant",
             retry_delay=0,
             retry_max_attempts=1,
+            store_id="store_id",
             workers_ai_billing_mode="postpaid",
             zdr=True,
         )
@@ -173,6 +174,7 @@ class TestAIGateway:
                     "s9": "FLAG",
                 },
             },
+            log_classification=True,
             log_management=10000,
             log_management_strategy="STOP_INSERTING",
             logpush=True,
@@ -463,6 +465,7 @@ class TestAsyncAIGateway:
             retry_backoff="constant",
             retry_delay=0,
             retry_max_attempts=1,
+            store_id="store_id",
             workers_ai_billing_mode="postpaid",
             zdr=True,
         )
@@ -580,6 +583,7 @@ class TestAsyncAIGateway:
                     "s9": "FLAG",
                 },
             },
+            log_classification=True,
             log_management=10000,
             log_management_strategy="STOP_INSERTING",
             logpush=True,

@@ -1,20 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = [
-    "ApplicationListResponse",
-    "ApplicationListResponseItem",
-    "ApplicationListResponseItemAuthMethod",
-    "ApplicationListResponseItemPermission",
-    "ApplicationListResponseItemUseCase",
-]
+__all__ = ["ApplicationListResponse", "AuthMethod", "Permission", "UseCase"]
 
 
-class ApplicationListResponseItemAuthMethod(BaseModel):
+class AuthMethod(BaseModel):
     """Auth method summary for list endpoint."""
 
     id: str
@@ -24,7 +18,7 @@ class ApplicationListResponseItemAuthMethod(BaseModel):
     """Human-readable auth method name."""
 
 
-class ApplicationListResponseItemPermission(BaseModel):
+class Permission(BaseModel):
     """Permission/scope with severity for display."""
 
     display_name: str
@@ -43,7 +37,7 @@ class ApplicationListResponseItemPermission(BaseModel):
     """
 
 
-class ApplicationListResponseItemUseCase(BaseModel):
+class UseCase(BaseModel):
     """Lightweight use case for list endpoint."""
 
     id: str
@@ -53,11 +47,12 @@ class ApplicationListResponseItemUseCase(BaseModel):
     """Human-readable use case name."""
 
 
-class ApplicationListResponseItem(BaseModel):
+class ApplicationListResponse(BaseModel):
     """Application item in list response."""
 
     id: Literal[
         "ANTHROPIC",
+        "AWS",
         "BITBUCKET",
         "BOX",
         "CONFLUENCE",
@@ -69,11 +64,13 @@ class ApplicationListResponseItem(BaseModel):
         "MICROSOFT_INTERNAL",
         "OPENAI",
         "SALESFORCE",
+        "SERVICENOW",
         "SLACK",
     ]
     """Vendor identifier (e.g. microsoft_internal, google_workspace).
 
     - `ANTHROPIC` - ANTHROPIC
+    - `AWS` - AWS
     - `BITBUCKET` - BITBUCKET
     - `BOX` - BOX
     - `CONFLUENCE` - CONFLUENCE
@@ -85,10 +82,11 @@ class ApplicationListResponseItem(BaseModel):
     - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
     - `OPENAI` - OPENAI
     - `SALESFORCE` - SALESFORCE
+    - `SERVICENOW` - SERVICENOW
     - `SLACK` - SLACK
     """
 
-    auth_methods: List[ApplicationListResponseItemAuthMethod]
+    auth_methods: List[AuthMethod]
     """Available auth methods."""
 
     category: str
@@ -106,14 +104,11 @@ class ApplicationListResponseItem(BaseModel):
     logo: Optional[str] = None
     """Logo path."""
 
-    permissions: List[ApplicationListResponseItemPermission]
+    permissions: List[Permission]
     """All permissions with severity."""
 
     supported_environments: List[str]
     """Environments this vendor supports (standard, fedramp)."""
 
-    use_cases: List[ApplicationListResponseItemUseCase]
+    use_cases: List[UseCase]
     """Supported use cases."""
-
-
-ApplicationListResponse: TypeAlias = List[ApplicationListResponseItem]

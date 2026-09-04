@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -19,6 +19,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workflows.instances import event_create_params
+from ....types.workflows.instances.event_create_response import EventCreateResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
 
@@ -50,22 +51,18 @@ class EventsResource(SyncAPIResource):
         account_id: str,
         workflow_name: str,
         instance_id: str,
-        body: object | Omit = omit,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> EventCreateResponse:
         """
         Sends an event to a running workflow instance to trigger state transitions.
 
         Args:
-          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
-              (max 100 characters); cron-triggered instances can use a longer,
-              system-generated id derived from the cron expression.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -96,9 +93,9 @@ class EventsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[EventCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[EventCreateResponse], ResultWrapper[EventCreateResponse]),
         )
 
 
@@ -129,22 +126,18 @@ class AsyncEventsResource(AsyncAPIResource):
         account_id: str,
         workflow_name: str,
         instance_id: str,
-        body: object | Omit = omit,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> EventCreateResponse:
         """
         Sends an event to a running workflow instance to trigger state transitions.
 
         Args:
-          instance_id: Instance identifier. User-created instances match `^[a-zA-Z0-9_][a-zA-Z0-9-_]*$`
-              (max 100 characters); cron-triggered instances can use a longer,
-              system-generated id derived from the cron expression.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -175,9 +168,9 @@ class AsyncEventsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[EventCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[EventCreateResponse], ResultWrapper[EventCreateResponse]),
         )
 
 

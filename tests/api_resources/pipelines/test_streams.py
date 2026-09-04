@@ -57,12 +57,6 @@ class TestStreams:
                         "sql_name": "sql_name",
                     }
                 ],
-                "format": {
-                    "type": "json",
-                    "decimal_encoding": "number",
-                    "timestamp_format": "rfc3339",
-                    "unstructured": True,
-                },
                 "inferred": True,
             },
             worker_binding={"enabled": True},
@@ -223,15 +217,6 @@ class TestStreams:
         assert_matches_type(object, stream, path=["response"])
 
     @parametrize
-    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
-        stream = client.pipelines.streams.delete(
-            stream_id="033e105f4ecef8ad9ca31a8372d0c353",
-            account_id="0123105f4ecef8ad9ca31a8372d0c353",
-            force="force",
-        )
-        assert_matches_type(object, stream, path=["response"])
-
-    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.pipelines.streams.with_raw_response.delete(
             stream_id="033e105f4ecef8ad9ca31a8372d0c353",
@@ -359,12 +344,6 @@ class TestAsyncStreams:
                         "sql_name": "sql_name",
                     }
                 ],
-                "format": {
-                    "type": "json",
-                    "decimal_encoding": "number",
-                    "timestamp_format": "rfc3339",
-                    "unstructured": True,
-                },
                 "inferred": True,
             },
             worker_binding={"enabled": True},
@@ -521,15 +500,6 @@ class TestAsyncStreams:
         stream = await async_client.pipelines.streams.delete(
             stream_id="033e105f4ecef8ad9ca31a8372d0c353",
             account_id="0123105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(object, stream, path=["response"])
-
-    @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        stream = await async_client.pipelines.streams.delete(
-            stream_id="033e105f4ecef8ad9ca31a8372d0c353",
-            account_id="0123105f4ecef8ad9ca31a8372d0c353",
-            force="force",
         )
         assert_matches_type(object, stream, path=["response"])
 

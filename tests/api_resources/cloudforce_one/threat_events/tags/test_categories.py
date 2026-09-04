@@ -36,6 +36,28 @@ class TestCategories:
             account_id="account_id",
             name="Actor",
             description="description",
+            schema=[
+                {
+                    "key": "family",
+                    "kind": "string",
+                    "allowed_values": ["low", "medium", "high", "critical"],
+                    "annotations": {
+                        "confidence": True,
+                        "tlp": True,
+                    },
+                    "enforcement": "error",
+                    "format": "date",
+                    "label": "Attacker Name",
+                    "max_length": 1,
+                    "number_constraint": {
+                        "integer": True,
+                        "max": 0,
+                        "min": 0,
+                    },
+                    "properties": {},
+                    "required": True,
+                }
+            ],
         )
         assert_matches_type(CategoryCreateResponse, category, path=["response"])
 
@@ -182,6 +204,28 @@ class TestCategories:
             account_id="account_id",
             description="description",
             name="name",
+            schema=[
+                {
+                    "key": "family",
+                    "kind": "string",
+                    "allowed_values": ["low", "medium", "high", "critical"],
+                    "annotations": {
+                        "confidence": True,
+                        "tlp": True,
+                    },
+                    "enforcement": "error",
+                    "format": "date",
+                    "label": "Attacker Name",
+                    "max_length": 1,
+                    "number_constraint": {
+                        "integer": True,
+                        "max": 0,
+                        "min": 0,
+                    },
+                    "properties": {},
+                    "required": True,
+                }
+            ],
         )
         assert_matches_type(CategoryEditResponse, category, path=["response"])
 
@@ -245,6 +289,28 @@ class TestAsyncCategories:
             account_id="account_id",
             name="Actor",
             description="description",
+            schema=[
+                {
+                    "key": "family",
+                    "kind": "string",
+                    "allowed_values": ["low", "medium", "high", "critical"],
+                    "annotations": {
+                        "confidence": True,
+                        "tlp": True,
+                    },
+                    "enforcement": "error",
+                    "format": "date",
+                    "label": "Attacker Name",
+                    "max_length": 1,
+                    "number_constraint": {
+                        "integer": True,
+                        "max": 0,
+                        "min": 0,
+                    },
+                    "properties": {},
+                    "required": True,
+                }
+            ],
         )
         assert_matches_type(CategoryCreateResponse, category, path=["response"])
 
@@ -391,6 +457,28 @@ class TestAsyncCategories:
             account_id="account_id",
             description="description",
             name="name",
+            schema=[
+                {
+                    "key": "family",
+                    "kind": "string",
+                    "allowed_values": ["low", "medium", "high", "critical"],
+                    "annotations": {
+                        "confidence": True,
+                        "tlp": True,
+                    },
+                    "enforcement": "error",
+                    "format": "date",
+                    "label": "Attacker Name",
+                    "max_length": 1,
+                    "number_constraint": {
+                        "integer": True,
+                        "max": 0,
+                        "min": 0,
+                    },
+                    "properties": {},
+                    "required": True,
+                }
+            ],
         )
         assert_matches_type(CategoryEditResponse, category, path=["response"])
 

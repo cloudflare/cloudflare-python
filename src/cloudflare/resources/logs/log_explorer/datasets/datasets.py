@@ -65,6 +65,7 @@ class DatasetsResource(SyncAPIResource):
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
         fields: Iterable[dataset_create_params.Field] | Omit = omit,
+        filter: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -93,6 +94,11 @@ class DatasetsResource(SyncAPIResource):
 
           fields: Controls which fields the API ingests. Defaults to all available fields when
               absent.
+
+          filter: Optional Logpush filter predicate to restrict which events are ingested. If
+              provided, replaces the dataset's default filter entirely. See
+              [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
+              syntax and examples.
 
           extra_headers: Send extra headers
 
@@ -124,6 +130,7 @@ class DatasetsResource(SyncAPIResource):
                 {
                     "dataset": dataset,
                     "fields": fields,
+                    "filter": filter,
                 },
                 dataset_create_params.DatasetCreateParams,
             ),
@@ -144,7 +151,9 @@ class DatasetsResource(SyncAPIResource):
         enabled: bool,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        deletion_protection: bool | Omit = omit,
         fields: Iterable[dataset_update_params.Field] | Omit = omit,
+        filter: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -163,8 +172,16 @@ class DatasetsResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          deletion_protection: Set to `false` to allow deletion of this dataset.
+
           fields: Controls which fields the API ingests after the update. Defaults to all
               available fields when absent.
+
+          filter: Optional Logpush filter predicate to restrict which events are ingested. If
+              omitted, the existing filter is left unchanged. Set to an empty string (`""`) to
+              clear the filter. Otherwise, replaces the dataset's filter entirely. See
+              [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
+              syntax and examples.
 
           extra_headers: Send extra headers
 
@@ -198,7 +215,9 @@ class DatasetsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "enabled": enabled,
+                    "deletion_protection": deletion_protection,
                     "fields": fields,
+                    "filter": filter,
                 },
                 dataset_update_params.DatasetUpdateParams,
             ),
@@ -274,6 +293,68 @@ class DatasetsResource(SyncAPIResource):
                 query=maybe_transform({"include_zones": include_zones}, dataset_list_params.DatasetListParams),
             ),
             model=DatasetSummary,
+        )
+
+    def delete(
+        self,
+        dataset_id: str,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Dataset]:
+        """Deletes a Log Explorer dataset for the account or zone.
+
+        Dataset deletion must
+        not be protected.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dataset_id:
+            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._delete(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logs/explorer/datasets/{dataset_id}",
+                dataset_id=dataset_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
     def get(
@@ -368,6 +449,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
         fields: Iterable[dataset_create_params.Field] | Omit = omit,
+        filter: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -396,6 +478,11 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
           fields: Controls which fields the API ingests. Defaults to all available fields when
               absent.
+
+          filter: Optional Logpush filter predicate to restrict which events are ingested. If
+              provided, replaces the dataset's default filter entirely. See
+              [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
+              syntax and examples.
 
           extra_headers: Send extra headers
 
@@ -427,6 +514,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 {
                     "dataset": dataset,
                     "fields": fields,
+                    "filter": filter,
                 },
                 dataset_create_params.DatasetCreateParams,
             ),
@@ -447,7 +535,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
         enabled: bool,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        deletion_protection: bool | Omit = omit,
         fields: Iterable[dataset_update_params.Field] | Omit = omit,
+        filter: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -466,8 +556,16 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          deletion_protection: Set to `false` to allow deletion of this dataset.
+
           fields: Controls which fields the API ingests after the update. Defaults to all
               available fields when absent.
+
+          filter: Optional Logpush filter predicate to restrict which events are ingested. If
+              omitted, the existing filter is left unchanged. Set to an empty string (`""`) to
+              clear the filter. Otherwise, replaces the dataset's filter entirely. See
+              [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
+              syntax and examples.
 
           extra_headers: Send extra headers
 
@@ -501,7 +599,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "enabled": enabled,
+                    "deletion_protection": deletion_protection,
                     "fields": fields,
+                    "filter": filter,
                 },
                 dataset_update_params.DatasetUpdateParams,
             ),
@@ -579,6 +679,68 @@ class AsyncDatasetsResource(AsyncAPIResource):
             model=DatasetSummary,
         )
 
+    async def delete(
+        self,
+        dataset_id: str,
+        *,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Dataset]:
+        """Deletes a Log Explorer dataset for the account or zone.
+
+        Dataset deletion must
+        not be protected.
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dataset_id:
+            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return await self._delete(
+            path_template(
+                "/{account_or_zone}/{account_or_zone_id}/logs/explorer/datasets/{dataset_id}",
+                dataset_id=dataset_id,
+                account_or_zone=account_or_zone,
+                account_or_zone_id=account_or_zone_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
+        )
+
     async def get(
         self,
         dataset_id: str,
@@ -653,6 +815,9 @@ class DatasetsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             datasets.list,
         )
+        self.delete = to_raw_response_wrapper(
+            datasets.delete,
+        )
         self.get = to_raw_response_wrapper(
             datasets.get,
         )
@@ -674,6 +839,9 @@ class AsyncDatasetsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             datasets.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            datasets.delete,
         )
         self.get = async_to_raw_response_wrapper(
             datasets.get,
@@ -697,6 +865,9 @@ class DatasetsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             datasets.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            datasets.delete,
+        )
         self.get = to_streamed_response_wrapper(
             datasets.get,
         )
@@ -718,6 +889,9 @@ class AsyncDatasetsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             datasets.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            datasets.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             datasets.get,

@@ -14,7 +14,7 @@ class Bucket(BaseModel):
     creation_date: Optional[str] = None
     """Creation timestamp."""
 
-    jurisdiction: Optional[Literal["default", "eu", "fedramp"]] = None
+    jurisdiction: Optional[Literal["default", "eu", "us", "fedramp"]] = None
     """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
     location: Optional[Literal["apac", "eeur", "enam", "weur", "wnam", "oc"]] = None

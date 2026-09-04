@@ -15,8 +15,17 @@ class RelatedEvent(BaseModel):
 
     event_id: str = FieldInfo(alias="eventId")
 
+    event_date: Optional[str] = FieldInfo(alias="eventDate", default=None)
+    """ISO 8601 date of the related event.
+
+    Null for legacy relationships created before event-date tracking was added.
+    """
+
 
 class Tag(BaseModel):
+    category_id: Optional[str] = FieldInfo(alias="categoryId", default=None)
+    """The UUID of the tag category, or null when the tag is uncategorized."""
+
     category_name: Optional[str] = FieldInfo(alias="categoryName", default=None)
 
     uuid: Optional[str] = None
@@ -41,3 +50,10 @@ class ByDatasetGetResponse(BaseModel):
     related_events: Optional[List[RelatedEvent]] = FieldInfo(alias="relatedEvents", default=None)
 
     tags: Optional[List[Tag]] = None
+
+    tlp: Optional[str] = None
+    """Traffic Light Protocol designation.
+
+    UPPERCASE. Possible values: CLEAR, GREEN, AMBER, AMBER-STRICT, RED, PURPLE. Null
+    when not set.
+    """

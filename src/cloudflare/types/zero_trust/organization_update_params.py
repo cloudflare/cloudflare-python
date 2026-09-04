@@ -70,9 +70,9 @@ class OrganizationUpdateParams(TypedDict, total=False):
     """Determines whether global MFA settings apply to applications by default.
 
     The organization must have MFA enabled with at least one authentication method
-    and a session duration configured. Note: 'allowed_authenticators' cannot only
-    contain 'piv_key' if the organization has any non-infrastructure applications
-    because PIV keys are only compatible with infrastructure apps.
+    and a session duration configured. Note: 'allowed_authenticators' cannot contain
+    only the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if
+    the organization has any non-infrastructure applications.
     """
 
     name: str
@@ -97,6 +97,12 @@ class OrganizationUpdateParams(TypedDict, total=False):
     Valid time units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`.
     """
 
+    warp_auth_non_browser_401: bool
+    """
+    When enabled, unsuccessful WARP authentication requests with a non-HTML Accept
+    header return a 401 response instead of redirecting to the login page.
+    """
+
     warp_auth_session_duration: str
     """The amount of time that tokens issued for applications will be valid.
 
@@ -118,8 +124,12 @@ class CustomPages(TypedDict, total=False):
 class MfaConfig(TypedDict, total=False):
     """Configures multi-factor authentication (MFA) settings for an organization."""
 
-    allowed_authenticators: List[Literal["totp", "biometrics", "security_key", "piv_key"]]
-    """Lists the MFA methods that users can authenticate with."""
+    allowed_authenticators: List[Literal["totp", "biometrics", "security_key", "piv_key", "ssh_fido2_key"]]
+    """Lists the MFA methods that users can authenticate with.
+
+    The `piv_key` and `ssh_fido2_key` values are supported only for infrastructure
+    applications.
+    """
 
     amr_matching_session_duration: str
     """

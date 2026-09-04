@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
@@ -15,10 +15,18 @@ __all__ = [
     "DataMeetingRecordingConfigLiveStreamingConfig",
     "DataMeetingRecordingConfigRealtimekitBucketConfig",
     "DataMeetingRecordingConfigStorageConfig",
+    "DataMeetingRecordingConfigStorageConfigUnionMember0",
+    "DataMeetingRecordingConfigStorageConfigUnionMember1",
+    "DataMeetingRecordingConfigStorageConfigUnionMember2",
+    "DataMeetingRecordingConfigStorageConfigUnionMember3",
     "DataMeetingRecordingConfigVideoConfig",
     "DataMeetingRecordingConfigVideoConfigWatermark",
     "DataMeetingRecordingConfigVideoConfigWatermarkSize",
     "DataStorageConfig",
+    "DataStorageConfigUnionMember0",
+    "DataStorageConfigUnionMember1",
+    "DataStorageConfigUnionMember2",
+    "DataStorageConfigUnionMember3",
     "Paging",
 ]
 
@@ -54,9 +62,35 @@ class DataMeetingRecordingConfigRealtimekitBucketConfig(BaseModel):
     """
 
 
-class DataMeetingRecordingConfigStorageConfig(BaseModel):
-    type: Literal["aws", "azure", "digitalocean", "gcs", "sftp"]
-    """Type of storage media."""
+class DataMeetingRecordingConfigStorageConfigUnionMember0(BaseModel):
+    auth_method: Optional[Literal["KEY", "PASSWORD"]] = None
+    """Authentication method used for "sftp" type storage medium"""
+
+    bucket: Optional[str] = None
+    """Name of the storage medium's bucket."""
+
+    host: Optional[str] = None
+    """SSH destination server host for SFTP type storage medium"""
+
+    path: Optional[str] = None
+    """Path relative to the bucket root at which the recording will be placed."""
+
+    port: Optional[float] = None
+    """SSH destination server port for SFTP type storage medium"""
+
+    region: Optional[str] = None
+    """Region of the storage medium."""
+
+    type: Optional[Literal["gcs"]] = None
+
+    username: Optional[str] = None
+    """SSH destination server username for SFTP type storage medium"""
+
+
+class DataMeetingRecordingConfigStorageConfigUnionMember1(BaseModel):
+    access_key: object
+
+    region: object
 
     auth_method: Optional[Literal["KEY", "PASSWORD"]] = None
     """Authentication method used for "sftp" type storage medium"""
@@ -67,12 +101,26 @@ class DataMeetingRecordingConfigStorageConfig(BaseModel):
     host: Optional[str] = None
     """SSH destination server host for SFTP type storage medium"""
 
-    password: Optional[str] = None
-    """
-    SSH destination server password for SFTP type storage medium when auth_method is
-    "PASSWORD". If auth_method is "KEY", this specifies the password for the ssh
-    private key.
-    """
+    path: Optional[str] = None
+    """Path relative to the bucket root at which the recording will be placed."""
+
+    port: Optional[float] = None
+    """SSH destination server port for SFTP type storage medium"""
+
+    type: Optional[Literal["aws", "azure", "digitalocean"]] = None
+
+    username: Optional[str] = None
+    """SSH destination server username for SFTP type storage medium"""
+
+
+class DataMeetingRecordingConfigStorageConfigUnionMember2(BaseModel):
+    auth_method: Optional[Literal["KEY"]] = None
+
+    bucket: Optional[str] = None
+    """Name of the storage medium's bucket."""
+
+    host: Optional[str] = None
+    """SSH destination server host for SFTP type storage medium"""
 
     path: Optional[str] = None
     """Path relative to the bucket root at which the recording will be placed."""
@@ -80,23 +128,48 @@ class DataMeetingRecordingConfigStorageConfig(BaseModel):
     port: Optional[float] = None
     """SSH destination server port for SFTP type storage medium"""
 
-    private_key: Optional[str] = None
-    """
-    Private key used to login to destination SSH server for SFTP type storage
-    medium, when auth_method used is "KEY"
-    """
+    region: Optional[str] = None
+    """Region of the storage medium."""
+
+    type: Optional[Literal["aws", "azure", "digitalocean", "gcs", "sftp"]] = None
+    """Type of storage media."""
+
+    username: Optional[str] = None
+    """SSH destination server username for SFTP type storage medium"""
+
+
+class DataMeetingRecordingConfigStorageConfigUnionMember3(BaseModel):
+    auth_method: Optional[Literal["PASSWORD"]] = None
+
+    bucket: Optional[str] = None
+    """Name of the storage medium's bucket."""
+
+    host: Optional[str] = None
+    """SSH destination server host for SFTP type storage medium"""
+
+    path: Optional[str] = None
+    """Path relative to the bucket root at which the recording will be placed."""
+
+    port: Optional[float] = None
+    """SSH destination server port for SFTP type storage medium"""
 
     region: Optional[str] = None
     """Region of the storage medium."""
 
-    secret: Optional[str] = None
-    """Secret key of the storage medium.
-
-    Similar to `access_key`, it is only writeable by clients, not readable.
-    """
+    type: Optional[Literal["aws", "azure", "digitalocean", "gcs", "sftp"]] = None
+    """Type of storage media."""
 
     username: Optional[str] = None
     """SSH destination server username for SFTP type storage medium"""
+
+
+DataMeetingRecordingConfigStorageConfig: TypeAlias = Union[
+    DataMeetingRecordingConfigStorageConfigUnionMember0,
+    DataMeetingRecordingConfigStorageConfigUnionMember1,
+    DataMeetingRecordingConfigStorageConfigUnionMember2,
+    DataMeetingRecordingConfigStorageConfigUnionMember3,
+    None,
+]
 
 
 class DataMeetingRecordingConfigVideoConfigWatermarkSize(BaseModel):
@@ -123,7 +196,7 @@ class DataMeetingRecordingConfigVideoConfigWatermark(BaseModel):
 
 
 class DataMeetingRecordingConfigVideoConfig(BaseModel):
-    codec: Optional[Literal["H264", "VP8"]] = None
+    codec: Optional[Literal["H264", "VP8", "VP9"]] = None
     """Codec using which the recording will be encoded."""
 
     export_file: Optional[bool] = None
@@ -221,9 +294,35 @@ class DataMeeting(BaseModel):
     """Automatically generate transcripts when the meeting ends."""
 
 
-class DataStorageConfig(BaseModel):
-    type: Literal["aws", "azure", "digitalocean", "gcs", "sftp"]
-    """Type of storage media."""
+class DataStorageConfigUnionMember0(BaseModel):
+    auth_method: Optional[Literal["KEY", "PASSWORD"]] = None
+    """Authentication method used for "sftp" type storage medium"""
+
+    bucket: Optional[str] = None
+    """Name of the storage medium's bucket."""
+
+    host: Optional[str] = None
+    """SSH destination server host for SFTP type storage medium"""
+
+    path: Optional[str] = None
+    """Path relative to the bucket root at which the recording will be placed."""
+
+    port: Optional[float] = None
+    """SSH destination server port for SFTP type storage medium"""
+
+    region: Optional[str] = None
+    """Region of the storage medium."""
+
+    type: Optional[Literal["gcs"]] = None
+
+    username: Optional[str] = None
+    """SSH destination server username for SFTP type storage medium"""
+
+
+class DataStorageConfigUnionMember1(BaseModel):
+    access_key: object
+
+    region: object
 
     auth_method: Optional[Literal["KEY", "PASSWORD"]] = None
     """Authentication method used for "sftp" type storage medium"""
@@ -234,12 +333,26 @@ class DataStorageConfig(BaseModel):
     host: Optional[str] = None
     """SSH destination server host for SFTP type storage medium"""
 
-    password: Optional[str] = None
-    """
-    SSH destination server password for SFTP type storage medium when auth_method is
-    "PASSWORD". If auth_method is "KEY", this specifies the password for the ssh
-    private key.
-    """
+    path: Optional[str] = None
+    """Path relative to the bucket root at which the recording will be placed."""
+
+    port: Optional[float] = None
+    """SSH destination server port for SFTP type storage medium"""
+
+    type: Optional[Literal["aws", "azure", "digitalocean"]] = None
+
+    username: Optional[str] = None
+    """SSH destination server username for SFTP type storage medium"""
+
+
+class DataStorageConfigUnionMember2(BaseModel):
+    auth_method: Optional[Literal["KEY"]] = None
+
+    bucket: Optional[str] = None
+    """Name of the storage medium's bucket."""
+
+    host: Optional[str] = None
+    """SSH destination server host for SFTP type storage medium"""
 
     path: Optional[str] = None
     """Path relative to the bucket root at which the recording will be placed."""
@@ -247,23 +360,48 @@ class DataStorageConfig(BaseModel):
     port: Optional[float] = None
     """SSH destination server port for SFTP type storage medium"""
 
-    private_key: Optional[str] = None
-    """
-    Private key used to login to destination SSH server for SFTP type storage
-    medium, when auth_method used is "KEY"
-    """
+    region: Optional[str] = None
+    """Region of the storage medium."""
+
+    type: Optional[Literal["aws", "azure", "digitalocean", "gcs", "sftp"]] = None
+    """Type of storage media."""
+
+    username: Optional[str] = None
+    """SSH destination server username for SFTP type storage medium"""
+
+
+class DataStorageConfigUnionMember3(BaseModel):
+    auth_method: Optional[Literal["PASSWORD"]] = None
+
+    bucket: Optional[str] = None
+    """Name of the storage medium's bucket."""
+
+    host: Optional[str] = None
+    """SSH destination server host for SFTP type storage medium"""
+
+    path: Optional[str] = None
+    """Path relative to the bucket root at which the recording will be placed."""
+
+    port: Optional[float] = None
+    """SSH destination server port for SFTP type storage medium"""
 
     region: Optional[str] = None
     """Region of the storage medium."""
 
-    secret: Optional[str] = None
-    """Secret key of the storage medium.
-
-    Similar to `access_key`, it is only writeable by clients, not readable.
-    """
+    type: Optional[Literal["aws", "azure", "digitalocean", "gcs", "sftp"]] = None
+    """Type of storage media."""
 
     username: Optional[str] = None
     """SSH destination server username for SFTP type storage medium"""
+
+
+DataStorageConfig: TypeAlias = Union[
+    DataStorageConfigUnionMember0,
+    DataStorageConfigUnionMember1,
+    DataStorageConfigUnionMember2,
+    DataStorageConfigUnionMember3,
+    None,
+]
 
 
 class Data(BaseModel):

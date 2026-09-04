@@ -92,6 +92,45 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/{setting_id}">client.zones.settings.<a href="./src/cloudflare/resources/zones/settings.py">edit</a>(setting_id, \*, zone_id, \*\*<a href="src/cloudflare/types/zones/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/setting_edit_response.py">Optional[SettingEditResponse]</a></code>
 - <code title="get /zones/{zone_id}/settings/{setting_id}">client.zones.settings.<a href="./src/cloudflare/resources/zones/settings.py">get</a>(setting_id, \*, zone_id) -> <a href="./src/cloudflare/types/zones/setting_get_response.py">Optional[SettingGetResponse]</a></code>
 
+## TransformationsAllowedOrigins
+
+Types:
+
+```python
+from cloudflare.types.zones import TransformationsAllowedOrigins
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_id}/settings/transformations_allowed_origins">client.zones.transformations_allowed_origins.<a href="./src/cloudflare/resources/zones/transformations_allowed_origins.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/transformations_allowed_origin_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/transformations_allowed_origins.py">Optional[TransformationsAllowedOrigins]</a></code>
+- <code title="get /zones/{zone_id}/settings/transformations_allowed_origins">client.zones.transformations_allowed_origins.<a href="./src/cloudflare/resources/zones/transformations_allowed_origins.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/transformations_allowed_origins.py">Optional[TransformationsAllowedOrigins]</a></code>
+
+## TransformationsC2pa
+
+Types:
+
+```python
+from cloudflare.types.zones import TransformationsC2pa
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_id}/settings/transformations_c2pa">client.zones.transformations_c2pa.<a href="./src/cloudflare/resources/zones/transformations_c2pa.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/transformations_c2pa_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/transformations_c2pa.py">Optional[TransformationsC2pa]</a></code>
+- <code title="get /zones/{zone_id}/settings/transformations_c2pa">client.zones.transformations_c2pa.<a href="./src/cloudflare/resources/zones/transformations_c2pa.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/transformations_c2pa.py">Optional[TransformationsC2pa]</a></code>
+
+## NEL
+
+Types:
+
+```python
+from cloudflare.types.zones import Setting
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_id}/settings/nel">client.zones.nel.<a href="./src/cloudflare/resources/zones/nel.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/nel_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/setting.py">Setting</a></code>
+- <code title="get /zones/{zone_id}/settings/nel">client.zones.nel.<a href="./src/cloudflare/resources/zones/nel.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/setting.py">Setting</a></code>
+
 ## Environments
 
 Types:
@@ -194,10 +233,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zones.ct import AlertingEditResponse, AlertingGetResponse
+from cloudflare.types.zones.ct import CTAlertingSubscription
 ```
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/ct/alerting">client.zones.ct.alerting.<a href="./src/cloudflare/resources/zones/ct/alerting.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/ct/alerting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/ct/alerting_edit_response.py">Optional[AlertingEditResponse]</a></code>
-- <code title="get /zones/{zone_id}/ct/alerting">client.zones.ct.alerting.<a href="./src/cloudflare/resources/zones/ct/alerting.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/ct/alerting_get_response.py">Optional[AlertingGetResponse]</a></code>
+- <code title="patch /zones/{zone_id}/ct/alerting">client.zones.ct.alerting.<a href="./src/cloudflare/resources/zones/ct/alerting.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/ct/alerting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/ct/ct_alerting_subscription.py">Optional[CTAlertingSubscription]</a></code>
+- <code title="get /zones/{zone_id}/ct/alerting">client.zones.ct.alerting.<a href="./src/cloudflare/resources/zones/ct/alerting.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/ct/ct_alerting_subscription.py">Optional[CTAlertingSubscription]</a></code>

@@ -32,6 +32,7 @@ class TestPhases:
         phase = client.rulesets.phases.update(
             ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
+            dry_run=True,
             description="A description for my ruleset.",
             name="My ruleset",
             rules=[
@@ -194,6 +195,7 @@ class TestAsyncPhases:
         phase = await async_client.rulesets.phases.update(
             ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
+            dry_run=True,
             description="A description for my ruleset.",
             name="My ruleset",
             rules=[

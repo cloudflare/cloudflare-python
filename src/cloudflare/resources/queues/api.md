@@ -24,7 +24,9 @@ Types:
 from cloudflare.types.queues import (
     MessageAckResponse,
     MessageBulkPushResponse,
+    MessagePeekResponse,
     MessagePullResponse,
+    MessagePurgeResponse,
     MessagePushResponse,
 )
 ```
@@ -33,7 +35,9 @@ Methods:
 
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/ack">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">ack</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_ack_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_ack_response.py">Optional[MessageAckResponse]</a></code>
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/batch">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">bulk_push</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_bulk_push_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_bulk_push_response.py">Optional[MessageBulkPushResponse]</a></code>
+- <code title="post /accounts/{account_id}/queues/{queue_id}/messages/peek">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">peek</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_peek_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_peek_response.py">Optional[MessagePeekResponse]</a></code>
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/pull">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">pull</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_pull_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_pull_response.py">Optional[MessagePullResponse]</a></code>
+- <code title="post /accounts/{account_id}/queues/{queue_id}/messages/purge">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">purge</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_purge_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_purge_response.py">Optional[MessagePurgeResponse]</a></code>
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">push</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_push_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_push_response.py">Optional[MessagePushResponse]</a></code>
 
 ## Purge

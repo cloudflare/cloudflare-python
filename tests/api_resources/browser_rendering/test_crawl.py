@@ -56,6 +56,7 @@ class TestCrawl:
                 "username": "x",
             },
             best_attempt=True,
+            content_use="reference",
             cookies=[
                 {
                     "name": "name",
@@ -94,7 +95,7 @@ class TestCrawl:
                 "prompt": "prompt",
                 "response_format": {
                     "type": "type",
-                    "json_schema": {"foo": "string"},
+                    "json_schema": {"foo": "bar"},
                 },
             },
             limit=1,
@@ -180,6 +181,7 @@ class TestCrawl:
             render=False,
             url="https://example.com",
             cache_ttl=0,
+            content_use="reference",
             crawl_purposes=["search"],
             depth=1,
             formats=["html"],
@@ -193,7 +195,7 @@ class TestCrawl:
                 "prompt": "prompt",
                 "response_format": {
                     "type": "type",
-                    "json_schema": {"foo": "string"},
+                    "json_schema": {"foo": "bar"},
                 },
             },
             limit=1,
@@ -396,6 +398,7 @@ class TestAsyncCrawl:
                 "username": "x",
             },
             best_attempt=True,
+            content_use="reference",
             cookies=[
                 {
                     "name": "name",
@@ -434,7 +437,7 @@ class TestAsyncCrawl:
                 "prompt": "prompt",
                 "response_format": {
                     "type": "type",
-                    "json_schema": {"foo": "string"},
+                    "json_schema": {"foo": "bar"},
                 },
             },
             limit=1,
@@ -520,6 +523,7 @@ class TestAsyncCrawl:
             render=False,
             url="https://example.com",
             cache_ttl=0,
+            content_use="reference",
             crawl_purposes=["search"],
             depth=1,
             formats=["html"],
@@ -533,7 +537,7 @@ class TestAsyncCrawl:
                 "prompt": "prompt",
                 "response_format": {
                     "type": "type",
-                    "json_schema": {"foo": "string"},
+                    "json_schema": {"foo": "bar"},
                 },
             },
             limit=1,

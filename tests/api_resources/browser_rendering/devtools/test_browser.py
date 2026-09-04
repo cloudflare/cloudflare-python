@@ -38,6 +38,10 @@ class TestBrowser:
             live_view_url_expires_in_ms=60000,
             recording=True,
             targets=True,
+            guardrails={
+                "allowed_domains": ["string"],
+                "allowed_domain_sets": ["string"],
+            },
         )
         assert_matches_type(BrowserCreateResponse, browser, path=["response"])
 
@@ -138,6 +142,7 @@ class TestBrowser:
             keep_alive=10000,
             lab=True,
             recording=True,
+            cf_brapi_guardrails="eyJtb2RlIjoicmVhZG9ubHkifQ",
         )
         assert browser is None
 
@@ -200,6 +205,7 @@ class TestBrowser:
             keep_alive=10000,
             lab=True,
             recording=True,
+            cf_brapi_guardrails="eyJhbGxvd2VkRG9tYWlucyI6WyIqLmV4YW1wbGUuY29tIl19",
         )
         assert browser is None
 
@@ -355,6 +361,10 @@ class TestAsyncBrowser:
             live_view_url_expires_in_ms=60000,
             recording=True,
             targets=True,
+            guardrails={
+                "allowed_domains": ["string"],
+                "allowed_domain_sets": ["string"],
+            },
         )
         assert_matches_type(BrowserCreateResponse, browser, path=["response"])
 
@@ -455,6 +465,7 @@ class TestAsyncBrowser:
             keep_alive=10000,
             lab=True,
             recording=True,
+            cf_brapi_guardrails="eyJtb2RlIjoicmVhZG9ubHkifQ",
         )
         assert browser is None
 
@@ -517,6 +528,7 @@ class TestAsyncBrowser:
             keep_alive=10000,
             lab=True,
             recording=True,
+            cf_brapi_guardrails="eyJhbGxvd2VkRG9tYWlucyI6WyIqLmV4YW1wbGUuY29tIl19",
         )
         assert browser is None
 

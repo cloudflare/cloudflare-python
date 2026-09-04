@@ -21,6 +21,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindAI",
     "MetadataBindingWorkersBindingKindAISearch",
     "MetadataBindingWorkersBindingKindAISearchNamespace",
+    "MetadataBindingWorkersBindingKindMessaging",
     "MetadataBindingWorkersBindingKindAnalyticsEngine",
     "MetadataBindingWorkersBindingKindAssets",
     "MetadataBindingWorkersBindingKindBrowser",
@@ -219,6 +220,17 @@ class MetadataBindingWorkersBindingKindAISearchNamespace(TypedDict, total=False)
     """
 
     type: Required[Literal["ai_search_namespace"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindMessaging(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace: Required[str]
+    """The Messaging namespace to bind to."""
+
+    type: Required[Literal["messaging"]]
     """The kind of resource that the binding provides."""
 
 
@@ -504,7 +516,7 @@ class MetadataBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Literal["eu", "fedramp", "fedramp-high"]
+    jurisdiction: Literal["eu", "fedramp", "fedramp-high", "us"]
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -708,6 +720,12 @@ class MetadataBindingWorkersBindingKindVPCNetwork(TypedDict, total=False):
     type: Required[Literal["vpc_network"]]
     """The kind of resource that the binding provides."""
 
+    identity: Literal["runtime-email-alpha"]
+    """Enables Gateway identity for the binding.
+
+    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id.
+    """
+
     network_id: str
     """Identifier of the network to bind to.
 
@@ -722,6 +740,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
     MetadataBindingWorkersBindingKindAISearch,
     MetadataBindingWorkersBindingKindAISearchNamespace,
+    MetadataBindingWorkersBindingKindMessaging,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
     MetadataBindingWorkersBindingKindAssets,
     MetadataBindingWorkersBindingKindBrowser,
@@ -1023,13 +1042,13 @@ class MetadataObservabilityTraces(TypedDict, total=False):
     persist: bool
     """Whether trace persistence is enabled for the Worker."""
 
-    propagation_policy: Literal["authenticated", "accept"]
+    propagation_policy: Optional[Literal["authenticated", "accept"]]
     """
     Controls how inbound trace context (traceparent/tracestate) headers on incoming
-    requests are handled. "authenticated" (default) honors inbound trace context
-    only when accompanied by a valid trace auth token. "accept" unconditionally
-    accepts inbound trace context. Requires the trace propagation feature to be
-    enabled.
+    requests are handled. "authenticated" honors inbound trace context only when
+    accompanied by a valid trace auth token. "accept" unconditionally accepts
+    inbound trace context. Requires the trace propagation feature to be enabled.
+    Returns null when the trace propagation feature is not enabled for the account.
     """
 
 
@@ -1047,6 +1066,9 @@ class MetadataObservability(TypedDict, total=False):
 
     logs: Optional[MetadataObservabilityLogs]
     """Log settings for the Worker."""
+
+    redact_query_string: bool
+    """Whether query strings are removed from request URLs in logs and traces."""
 
     traces: Optional[MetadataObservabilityTraces]
     """Trace settings for the Worker."""

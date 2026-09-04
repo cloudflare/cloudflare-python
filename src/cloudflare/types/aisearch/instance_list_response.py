@@ -23,6 +23,7 @@ __all__ = [
     "RetrievalOptionsBoostBy",
     "SourceParams",
     "SourceParamsWebCrawler",
+    "SourceParamsWebCrawlerDiscoverOptions",
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerParseOptionsContentSelector",
 ]
@@ -42,14 +43,14 @@ class IndexMethod(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class IndexingOptions(BaseModel):
@@ -58,14 +59,14 @@ class IndexingOptions(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class Metadata(BaseModel):
@@ -76,14 +77,14 @@ class Metadata(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class PublicEndpointParamsChatCompletionsEndpoint(BaseModel):
@@ -92,14 +93,14 @@ class PublicEndpointParamsChatCompletionsEndpoint(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class PublicEndpointParamsMcp(BaseModel):
@@ -110,14 +111,14 @@ class PublicEndpointParamsMcp(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class PublicEndpointParamsRateLimit(BaseModel):
@@ -130,14 +131,14 @@ class PublicEndpointParamsRateLimit(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class PublicEndpointParamsSearchEndpoint(BaseModel):
@@ -146,14 +147,14 @@ class PublicEndpointParamsSearchEndpoint(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class PublicEndpointParams(BaseModel):
@@ -176,14 +177,14 @@ class PublicEndpointParams(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class RetrievalOptionsBoostBy(BaseModel):
@@ -196,14 +197,14 @@ class RetrievalOptionsBoostBy(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class RetrievalOptions(BaseModel):
@@ -214,14 +215,45 @@ class RetrievalOptions(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
+
+
+class SourceParamsWebCrawlerDiscoverOptions(BaseModel):
+    depth: Optional[float] = None
+
+    include_external_links: Optional[bool] = None
+
+    include_subdomains: Optional[bool] = None
+
+    limit: Optional[float] = None
+    """Maximum number of pages to crawl.
+
+    New values are capped at 100000; instances configured before that cap may report
+    a higher stored value, which the crawler clamps at run time.
+    """
+
+    max_age: Optional[float] = None
+
+    source: Optional[Literal["all", "sitemaps", "links"]] = None
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+    else:
+        __pydantic_extra__: Dict[str, object]
 
 
 class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
@@ -232,14 +264,14 @@ class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class SourceParamsWebCrawlerParseOptions(BaseModel):
@@ -256,23 +288,25 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class SourceParamsWebCrawler(BaseModel):
+    discover_options: Optional[SourceParamsWebCrawlerDiscoverOptions] = None
+
     parse_options: Optional[SourceParamsWebCrawlerParseOptions] = None
 
-    parse_type: Optional[Literal["sitemap", "crawl"]] = None
+    parse_type: Optional[Literal["sitemap", "discover"]] = None
 
     if TYPE_CHECKING:
-        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # Some versions of Pydantic <2.8.0 have a bug and don't allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
         __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
@@ -298,14 +332,14 @@ class SourceParams(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, Optional[object]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
 
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> Optional[object]: ...
+        def __getattr__(self, attr: str) -> object: ...
     else:
-        __pydantic_extra__: Dict[str, Optional[object]]
+        __pydantic_extra__: Dict[str, object]
 
 
 class InstanceListResponse(BaseModel):

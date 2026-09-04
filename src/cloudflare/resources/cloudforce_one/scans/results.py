@@ -56,7 +56,8 @@ class ResultsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResultGetResponse:
         """
-        Get the Latest Scan Result
+        Retrieves the latest scan results for a Cloudforce One scan configuration,
+        including discovered open ports.
 
         Args:
           account_id: Defines the Account ID.
@@ -125,7 +126,8 @@ class AsyncResultsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResultGetResponse:
         """
-        Get the Latest Scan Result
+        Retrieves the latest scan results for a Cloudforce One scan configuration,
+        including discovered open ports.
 
         Args:
           account_id: Defines the Account ID.

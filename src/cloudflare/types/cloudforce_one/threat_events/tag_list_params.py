@@ -27,12 +27,12 @@ class TagListParams(TypedDict, total=False):
     filters: Iterable[Filter]
     """Structured filters as a JSON array of {field, op, value} objects.
 
-    Searchable fields: uuid, value, actorCategory, actorCategoryConfidence,
-    aliasGroupNames, attributionConfidence, attributionConfidenceScore,
-    attributionOrganization, categoryName, motive, motiveConfidence, opsecLevel,
-    originCountryISO, originCountryConfidence, sophisticationLevel, priority,
-    analyticPriority. Operators: equals, not, contains, startsWith, endsWith, gt,
-    lt, gte, lte, like, in, find. Use 'in' for bulk OR within a single field, e.g.
+    Searchable fields: uuid, value, categoryName, description, dateOfDiscovery, tlp,
+    confidence, actorCategory, motive, attributionOrganization, originCountryISO,
+    aliases, externalReferences, opsecLevel, sophisticationLevel, activeDuration,
+    priority, lastSeen, aliasGroupNames. Operators: equals, not, contains,
+    startsWith, endsWith, gt, lt, gte, lte, like, in, find. Use 'in' for bulk OR
+    within a single field, e.g.
     filters=[{"field":"originCountryISO","op":"in","value":["IR","CN"]}]. Multiple
     entries are AND-joined. Max 10 entries per request, max 100 values per 'in'.
     Per-field notes: `uuid` accepts only 'equals' and 'in' (other operators throw
@@ -53,52 +53,36 @@ class TagListParams(TypedDict, total=False):
     page_size: Annotated[float, PropertyInfo(alias="pageSize")]
 
     search: str
-    """Legacy free-text substring match on tag value."""
+    """Free-text substring match on tag value AND custom-field properties.
+
+    Searches case-insensitively inside both `Tag.value` and the serialized
+    `Tag.properties` JSON blob (keys, values, and annotation metadata like
+    confidence/tlp are all searchable). Same serialized-text tradeoff as
+    `aliasGroupNames` — substrings can cross JSON boundaries.
+    """
 
 
 class Filter(TypedDict, total=False):
-    field: Required[
-        Literal[
-            "uuid",
-            "value",
-            "actorCategory",
-            "actorCategoryConfidence",
-            "aliasGroupNames",
-            "attributionConfidence",
-            "attributionConfidenceScore",
-            "attributionOrganization",
-            "categoryName",
-            "motive",
-            "motiveConfidence",
-            "opsecLevel",
-            "originCountryISO",
-            "originCountryConfidence",
-            "sophisticationLevel",
-            "priority",
-            "analyticPriority",
-        ]
-    ]
+    field: Required[str]
     """Tag field to search on.
 
-    Allowed: uuid, value, actorCategory, actorCategoryConfidence, aliasGroupNames,
-    attributionConfidence, attributionConfidenceScore, attributionOrganization,
-    categoryName, motive, motiveConfidence, opsecLevel, originCountryISO,
-    originCountryConfidence, sophisticationLevel, priority, analyticPriority.
+    Allowed first-class fields: uuid, value, categoryName, description,
+    dateOfDiscovery, tlp, confidence, actorCategory, motive,
+    attributionOrganization, originCountryISO, aliases, externalReferences,
+    opsecLevel, sophisticationLevel, activeDuration, priority, lastSeen,
+    aliasGroupNames. Also supports properties.<key> to filter on custom field values
+    (matches both raw values and annotated {value,confidence,tlp} shapes via
+    COALESCE), and properties.<key>.tlp / properties.<key>.confidence to filter
+    directly on annotation sub-fields.
     """
 
     op: Required[
         Literal["equals", "not", "gt", "gte", "lt", "lte", "like", "contains", "startsWith", "endsWith", "in", "find"]
     ]
-    """Search operator.
-
-    Use 'in' for bulk OR within a single field, e.g. {field:"originCountryISO",
-    op:"in", value:["IR","CN"]}.
-    """
+    """Search operator. Use 'in' for bulk OR within a single field."""
 
     value: Union[str, float, SequenceNotStr[Union[str, float]]]
     """Search value.
 
-    String or number for most operators. Array for 'in' (max 100 items). Country
-    values may be passed as alpha-2, alpha-3, name, or common alias (e.g. 'iran',
-    'IR', 'IRN') and are normalized to alpha-2 server-side.
+    String or number for most operators. Array for 'in' (max 100 items).
     """

@@ -141,9 +141,10 @@ class LinksResource(SyncAPIResource):
               `<style type="text/css">` tag with the content.
 
           allow_request_pattern: Only allow requests that match the provided regex patterns, eg. '/^.\\**\\..(css)'.
+              Reject rules are applied first.
 
           allow_resource_types: Only allow requests that match the provided resource types, eg. 'image' or
-              'script'.
+              'script'. Reject rules are applied first.
 
           authenticate: Provide credentials for HTTP authentication.
 
@@ -338,9 +339,10 @@ class AsyncLinksResource(AsyncAPIResource):
               `<style type="text/css">` tag with the content.
 
           allow_request_pattern: Only allow requests that match the provided regex patterns, eg. '/^.\\**\\..(css)'.
+              Reject rules are applied first.
 
           allow_resource_types: Only allow requests that match the provided resource types, eg. 'image' or
-              'script'.
+              'script'. Reject rules are applied first.
 
           authenticate: Provide credentials for HTTP authentication.
 

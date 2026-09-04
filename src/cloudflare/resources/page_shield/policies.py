@@ -66,7 +66,8 @@ class PoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyCreateResponse]:
         """
-        Create a Page Shield policy.
+        Creates a rule that applies a client-side security action when its filter
+        expression matches.
 
         Args:
           zone_id: Identifier
@@ -132,7 +133,8 @@ class PoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyUpdateResponse]:
         """
-        Update a Page Shield policy by ID.
+        Updates the description, action, expression, enabled state, and policy value for
+        a content security rule.
 
         Args:
           zone_id: Identifier
@@ -196,7 +198,7 @@ class PoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PolicyListResponse]:
         """
-        Lists all Page Shield policies.
+        Lists content security rules configured for the zone.
 
         Args:
           zone_id: Identifier
@@ -233,7 +235,7 @@ class PoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Page Shield policy by ID.
+        Permanently deletes a content security rule by ID.
 
         Args:
           zone_id: Identifier
@@ -274,7 +276,7 @@ class PoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyGetResponse]:
         """
-        Fetches a Page Shield policy by ID.
+        Returns a content security rule by ID.
 
         Args:
           zone_id: Identifier
@@ -343,7 +345,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyCreateResponse]:
         """
-        Create a Page Shield policy.
+        Creates a rule that applies a client-side security action when its filter
+        expression matches.
 
         Args:
           zone_id: Identifier
@@ -409,7 +412,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyUpdateResponse]:
         """
-        Update a Page Shield policy by ID.
+        Updates the description, action, expression, enabled state, and policy value for
+        a content security rule.
 
         Args:
           zone_id: Identifier
@@ -473,7 +477,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
         """
-        Lists all Page Shield policies.
+        Lists content security rules configured for the zone.
 
         Args:
           zone_id: Identifier
@@ -510,7 +514,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Page Shield policy by ID.
+        Permanently deletes a content security rule by ID.
 
         Args:
           zone_id: Identifier
@@ -551,7 +555,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyGetResponse]:
         """
-        Fetches a Page Shield policy by ID.
+        Returns a content security rule by ID.
 
         Args:
           zone_id: Identifier

@@ -24,7 +24,6 @@ from ....types.intel.attack_surface_report import (
     issue_list_params,
     issue_type_params,
     issue_class_params,
-    issue_dismiss_params,
     issue_severity_params,
 )
 from ....types.intel.attack_surface_report.issue_type import IssueType
@@ -32,7 +31,6 @@ from ....types.intel.attack_surface_report.issue_list_response import IssueListR
 from ....types.intel.attack_surface_report.issue_type_response import IssueTypeResponse
 from ....types.intel.attack_surface_report.issue_class_response import IssueClassResponse
 from ....types.intel.attack_surface_report.severity_query_param import SeverityQueryParam
-from ....types.intel.attack_surface_report.issue_dismiss_response import IssueDismissResponse
 from ....types.intel.attack_surface_report.issue_severity_response import IssueSeverityResponse
 
 __all__ = ["IssuesResource", "AsyncIssuesResource"]
@@ -199,53 +197,6 @@ class IssuesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[IssueClassResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IssueClassResponse]], ResultWrapper[IssueClassResponse]),
-        )
-
-    @typing_extensions.deprecated("deprecated")
-    def dismiss(
-        self,
-        issue_id: str,
-        *,
-        account_id: str,
-        dismiss: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IssueDismissResponse:
-        """Deprecated endpoint for archiving Security Center insights.
-
-        Use the newer
-        archive-security-center-insight endpoint instead.
-
-        Args:
-          account_id: Identifier.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not issue_id:
-            raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
-        return self._put(
-            path_template(
-                "/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
-                account_id=account_id,
-                issue_id=issue_id,
-            ),
-            body=maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=IssueDismissResponse,
         )
 
     @typing_extensions.deprecated("deprecated")
@@ -547,53 +498,6 @@ class AsyncIssuesResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated("deprecated")
-    async def dismiss(
-        self,
-        issue_id: str,
-        *,
-        account_id: str,
-        dismiss: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IssueDismissResponse:
-        """Deprecated endpoint for archiving Security Center insights.
-
-        Use the newer
-        archive-security-center-insight endpoint instead.
-
-        Args:
-          account_id: Identifier.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not issue_id:
-            raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
-        return await self._put(
-            path_template(
-                "/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
-                account_id=account_id,
-                issue_id=issue_id,
-            ),
-            body=await async_maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=IssueDismissResponse,
-        )
-
-    @typing_extensions.deprecated("deprecated")
     async def severity(
         self,
         *,
@@ -742,11 +646,6 @@ class IssuesResourceWithRawResponse:
                 issues.class_,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.dismiss = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                issues.dismiss,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.severity = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 issues.severity,  # pyright: ignore[reportDeprecated],
@@ -771,11 +670,6 @@ class AsyncIssuesResourceWithRawResponse:
         self.class_ = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 issues.class_,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.dismiss = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                issues.dismiss,  # pyright: ignore[reportDeprecated],
             )
         )
         self.severity = (  # pyright: ignore[reportDeprecated]
@@ -804,11 +698,6 @@ class IssuesResourceWithStreamingResponse:
                 issues.class_,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.dismiss = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                issues.dismiss,  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.severity = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 issues.severity,  # pyright: ignore[reportDeprecated],
@@ -833,11 +722,6 @@ class AsyncIssuesResourceWithStreamingResponse:
         self.class_ = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 issues.class_,  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.dismiss = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                issues.dismiss,  # pyright: ignore[reportDeprecated],
             )
         )
         self.severity = (  # pyright: ignore[reportDeprecated]

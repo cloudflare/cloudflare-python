@@ -54,9 +54,15 @@ Methods:
 
 ### Events
 
+Types:
+
+```python
+from cloudflare.types.workflows.instances import EventCreateResponse
+```
+
 Methods:
 
-- <code title="post /accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}">client.workflows.instances.events.<a href="./src/cloudflare/resources/workflows/instances/events.py">create</a>(event_type, \*, account_id, workflow_name, instance_id, \*\*<a href="src/cloudflare/types/workflows/instances/event_create_params.py">params</a>) -> object</code>
+- <code title="post /accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}">client.workflows.instances.events.<a href="./src/cloudflare/resources/workflows/instances/events.py">create</a>(event_type, \*, account_id, workflow_name, instance_id, \*\*<a href="src/cloudflare/types/workflows/instances/event_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instances/event_create_response.py">EventCreateResponse</a></code>
 
 ## Versions
 

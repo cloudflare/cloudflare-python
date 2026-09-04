@@ -77,8 +77,9 @@ class GraphResource(SyncAPIResource):
           cursor: Opaque pagination token. Only valid when seeds has exactly 1 entry; 400
               otherwise.
 
-          dataset_ids: Comma-separated dataset UUIDs to restrict neighbor scope. Intersected with ACL
-              grants.
+          dataset_ids: Comma-separated dataset UUIDs to restrict neighbor scope, or one standalone
+              scope value: 'all'/'\\**', 'analytics' for isAnalytics=true datasets, or
+              'operational' for isAnalytics=false datasets. Intersected with access grants.
 
           direction: Edge direction relative to each seed: out (seed→neighbors), in (neighbors→seed),
               both (default).
@@ -193,8 +194,9 @@ class AsyncGraphResource(AsyncAPIResource):
           cursor: Opaque pagination token. Only valid when seeds has exactly 1 entry; 400
               otherwise.
 
-          dataset_ids: Comma-separated dataset UUIDs to restrict neighbor scope. Intersected with ACL
-              grants.
+          dataset_ids: Comma-separated dataset UUIDs to restrict neighbor scope, or one standalone
+              scope value: 'all'/'\\**', 'analytics' for isAnalytics=true datasets, or
+              'operational' for isAnalytics=false datasets. Intersected with access grants.
 
           direction: Edge direction relative to each seed: out (seed→neighbors), in (neighbors→seed),
               both (default).

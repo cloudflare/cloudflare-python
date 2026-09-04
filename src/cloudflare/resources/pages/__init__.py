@@ -8,6 +8,14 @@ from .pages import (
     PagesResourceWithStreamingResponse,
     AsyncPagesResourceWithStreamingResponse,
 )
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from .projects import (
     ProjectsResource,
     AsyncProjectsResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncProjectsResourceWithRawResponse",
     "ProjectsResourceWithStreamingResponse",
     "AsyncProjectsResourceWithStreamingResponse",
+    "AssetsResource",
+    "AsyncAssetsResource",
+    "AssetsResourceWithRawResponse",
+    "AsyncAssetsResourceWithRawResponse",
+    "AssetsResourceWithStreamingResponse",
+    "AsyncAssetsResourceWithStreamingResponse",
     "PagesResource",
     "AsyncPagesResource",
     "PagesResourceWithRawResponse",

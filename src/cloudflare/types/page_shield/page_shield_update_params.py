@@ -12,7 +12,7 @@ class PageShieldUpdateParams(TypedDict, total=False):
     """Identifier"""
 
     enabled: bool
-    """When true, indicates that Page Shield is enabled."""
+    """When true, indicates that Client-Side Security is enabled."""
 
     use_cloudflare_reporting_endpoint: bool
     """

@@ -44,6 +44,14 @@ from .datasets.datasets import (
     DatasetsResourceWithStreamingResponse,
     AsyncDatasetsResourceWithStreamingResponse,
 )
+from .transformers.transformers import (
+    TransformersResource,
+    AsyncTransformersResource,
+    TransformersResourceWithRawResponse,
+    AsyncTransformersResourceWithRawResponse,
+    TransformersResourceWithStreamingResponse,
+    AsyncTransformersResourceWithStreamingResponse,
+)
 
 __all__ = ["LogpushResource", "AsyncLogpushResource"]
 
@@ -64,6 +72,10 @@ class LogpushResource(SyncAPIResource):
     @cached_property
     def ownership(self) -> OwnershipResource:
         return OwnershipResource(self._client)
+
+    @cached_property
+    def transformers(self) -> TransformersResource:
+        return TransformersResource(self._client)
 
     @cached_property
     def validate(self) -> ValidateResource:
@@ -105,6 +117,10 @@ class AsyncLogpushResource(AsyncAPIResource):
     @cached_property
     def ownership(self) -> AsyncOwnershipResource:
         return AsyncOwnershipResource(self._client)
+
+    @cached_property
+    def transformers(self) -> AsyncTransformersResource:
+        return AsyncTransformersResource(self._client)
 
     @cached_property
     def validate(self) -> AsyncValidateResource:
@@ -151,6 +167,10 @@ class LogpushResourceWithRawResponse:
         return OwnershipResourceWithRawResponse(self._logpush.ownership)
 
     @cached_property
+    def transformers(self) -> TransformersResourceWithRawResponse:
+        return TransformersResourceWithRawResponse(self._logpush.transformers)
+
+    @cached_property
     def validate(self) -> ValidateResourceWithRawResponse:
         return ValidateResourceWithRawResponse(self._logpush.validate)
 
@@ -174,6 +194,10 @@ class AsyncLogpushResourceWithRawResponse:
     @cached_property
     def ownership(self) -> AsyncOwnershipResourceWithRawResponse:
         return AsyncOwnershipResourceWithRawResponse(self._logpush.ownership)
+
+    @cached_property
+    def transformers(self) -> AsyncTransformersResourceWithRawResponse:
+        return AsyncTransformersResourceWithRawResponse(self._logpush.transformers)
 
     @cached_property
     def validate(self) -> AsyncValidateResourceWithRawResponse:
@@ -201,6 +225,10 @@ class LogpushResourceWithStreamingResponse:
         return OwnershipResourceWithStreamingResponse(self._logpush.ownership)
 
     @cached_property
+    def transformers(self) -> TransformersResourceWithStreamingResponse:
+        return TransformersResourceWithStreamingResponse(self._logpush.transformers)
+
+    @cached_property
     def validate(self) -> ValidateResourceWithStreamingResponse:
         return ValidateResourceWithStreamingResponse(self._logpush.validate)
 
@@ -224,6 +252,10 @@ class AsyncLogpushResourceWithStreamingResponse:
     @cached_property
     def ownership(self) -> AsyncOwnershipResourceWithStreamingResponse:
         return AsyncOwnershipResourceWithStreamingResponse(self._logpush.ownership)
+
+    @cached_property
+    def transformers(self) -> AsyncTransformersResourceWithStreamingResponse:
+        return AsyncTransformersResourceWithStreamingResponse(self._logpush.transformers)
 
     @cached_property
     def validate(self) -> AsyncValidateResourceWithStreamingResponse:

@@ -64,6 +64,14 @@ from .subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
+from .spectrum_analytics import (
+    SpectrumAnalyticsResource,
+    AsyncSpectrumAnalyticsResource,
+    SpectrumAnalyticsResourceWithRawResponse,
+    AsyncSpectrumAnalyticsResourceWithRawResponse,
+    SpectrumAnalyticsResourceWithStreamingResponse,
+    AsyncSpectrumAnalyticsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AuditLogsResource",
@@ -90,6 +98,12 @@ __all__ = [
     "AsyncOrganizationsResourceWithRawResponse",
     "OrganizationsResourceWithStreamingResponse",
     "AsyncOrganizationsResourceWithStreamingResponse",
+    "SpectrumAnalyticsResource",
+    "AsyncSpectrumAnalyticsResource",
+    "SpectrumAnalyticsResourceWithRawResponse",
+    "AsyncSpectrumAnalyticsResourceWithRawResponse",
+    "SpectrumAnalyticsResourceWithStreamingResponse",
+    "AsyncSpectrumAnalyticsResourceWithStreamingResponse",
     "SubscriptionsResource",
     "AsyncSubscriptionsResource",
     "SubscriptionsResourceWithRawResponse",

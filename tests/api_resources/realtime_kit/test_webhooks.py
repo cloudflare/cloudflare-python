@@ -24,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWebhooks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_method_create_webhook(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.create_webhook(
@@ -46,7 +46,7 @@ class TestWebhooks:
         )
         assert_matches_type(WebhookCreateWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_method_create_webhook_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.create_webhook(
@@ -69,7 +69,7 @@ class TestWebhooks:
         )
         assert_matches_type(WebhookCreateWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_raw_response_create_webhook(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.create_webhook(
@@ -95,7 +95,7 @@ class TestWebhooks:
         webhook = response.parse()
         assert_matches_type(WebhookCreateWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_streaming_response_create_webhook(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.create_webhook(
@@ -123,7 +123,7 @@ class TestWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_path_params_create_webhook(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -164,7 +164,7 @@ class TestWebhooks:
                 url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_method_delete_webhook(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.delete_webhook(
@@ -174,7 +174,7 @@ class TestWebhooks:
         )
         assert_matches_type(WebhookDeleteWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_raw_response_delete_webhook(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.delete_webhook(
@@ -188,7 +188,7 @@ class TestWebhooks:
         webhook = response.parse()
         assert_matches_type(WebhookDeleteWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_streaming_response_delete_webhook(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.delete_webhook(
@@ -204,7 +204,7 @@ class TestWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_path_params_delete_webhook(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -228,7 +228,7 @@ class TestWebhooks:
                 app_id="app_id",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_method_edit_webhook(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.edit_webhook(
@@ -238,7 +238,7 @@ class TestWebhooks:
         )
         assert_matches_type(WebhookEditWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_method_edit_webhook_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.edit_webhook(
@@ -252,7 +252,7 @@ class TestWebhooks:
         )
         assert_matches_type(WebhookEditWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_raw_response_edit_webhook(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.edit_webhook(
@@ -266,7 +266,7 @@ class TestWebhooks:
         webhook = response.parse()
         assert_matches_type(WebhookEditWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_streaming_response_edit_webhook(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.edit_webhook(
@@ -282,7 +282,7 @@ class TestWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_path_params_edit_webhook(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -306,7 +306,7 @@ class TestWebhooks:
                 app_id="app_id",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_method_get_webhook_by_id(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.get_webhook_by_id(
@@ -316,7 +316,7 @@ class TestWebhooks:
         )
         assert_matches_type(WebhookGetWebhookByIDResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_raw_response_get_webhook_by_id(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.get_webhook_by_id(
@@ -330,7 +330,7 @@ class TestWebhooks:
         webhook = response.parse()
         assert_matches_type(WebhookGetWebhookByIDResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_streaming_response_get_webhook_by_id(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.get_webhook_by_id(
@@ -346,7 +346,7 @@ class TestWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_path_params_get_webhook_by_id(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -370,7 +370,7 @@ class TestWebhooks:
                 app_id="app_id",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_method_get_webhooks(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.get_webhooks(
@@ -379,7 +379,7 @@ class TestWebhooks:
         )
         assert_matches_type(WebhookGetWebhooksResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_raw_response_get_webhooks(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.get_webhooks(
@@ -392,7 +392,7 @@ class TestWebhooks:
         webhook = response.parse()
         assert_matches_type(WebhookGetWebhooksResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_streaming_response_get_webhooks(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.get_webhooks(
@@ -407,7 +407,7 @@ class TestWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_path_params_get_webhooks(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -422,7 +422,7 @@ class TestWebhooks:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_method_replace_webhook(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.replace_webhook(
@@ -445,7 +445,7 @@ class TestWebhooks:
         )
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_method_replace_webhook_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.realtime_kit.webhooks.replace_webhook(
@@ -469,7 +469,7 @@ class TestWebhooks:
         )
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_raw_response_replace_webhook(self, client: Cloudflare) -> None:
         response = client.realtime_kit.webhooks.with_raw_response.replace_webhook(
@@ -496,7 +496,7 @@ class TestWebhooks:
         webhook = response.parse()
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_streaming_response_replace_webhook(self, client: Cloudflare) -> None:
         with client.realtime_kit.webhooks.with_streaming_response.replace_webhook(
@@ -525,7 +525,7 @@ class TestWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     def test_path_params_replace_webhook(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -594,7 +594,7 @@ class TestAsyncWebhooks:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_method_create_webhook(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.create_webhook(
@@ -616,7 +616,7 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(WebhookCreateWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_method_create_webhook_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.create_webhook(
@@ -639,7 +639,7 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(WebhookCreateWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_raw_response_create_webhook(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.create_webhook(
@@ -665,7 +665,7 @@ class TestAsyncWebhooks:
         webhook = await response.parse()
         assert_matches_type(WebhookCreateWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_streaming_response_create_webhook(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.create_webhook(
@@ -693,7 +693,7 @@ class TestAsyncWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_path_params_create_webhook(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -734,7 +734,7 @@ class TestAsyncWebhooks:
                 url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_method_delete_webhook(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.delete_webhook(
@@ -744,7 +744,7 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(WebhookDeleteWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_raw_response_delete_webhook(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.delete_webhook(
@@ -758,7 +758,7 @@ class TestAsyncWebhooks:
         webhook = await response.parse()
         assert_matches_type(WebhookDeleteWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_streaming_response_delete_webhook(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.delete_webhook(
@@ -774,7 +774,7 @@ class TestAsyncWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_path_params_delete_webhook(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -798,7 +798,7 @@ class TestAsyncWebhooks:
                 app_id="app_id",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_method_edit_webhook(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.edit_webhook(
@@ -808,7 +808,7 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(WebhookEditWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_method_edit_webhook_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.edit_webhook(
@@ -822,7 +822,7 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(WebhookEditWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_raw_response_edit_webhook(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.edit_webhook(
@@ -836,7 +836,7 @@ class TestAsyncWebhooks:
         webhook = await response.parse()
         assert_matches_type(WebhookEditWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_streaming_response_edit_webhook(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.edit_webhook(
@@ -852,7 +852,7 @@ class TestAsyncWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_path_params_edit_webhook(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -876,7 +876,7 @@ class TestAsyncWebhooks:
                 app_id="app_id",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_method_get_webhook_by_id(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.get_webhook_by_id(
@@ -886,7 +886,7 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(WebhookGetWebhookByIDResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_raw_response_get_webhook_by_id(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.get_webhook_by_id(
@@ -900,7 +900,7 @@ class TestAsyncWebhooks:
         webhook = await response.parse()
         assert_matches_type(WebhookGetWebhookByIDResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_streaming_response_get_webhook_by_id(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.get_webhook_by_id(
@@ -916,7 +916,7 @@ class TestAsyncWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_path_params_get_webhook_by_id(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -940,7 +940,7 @@ class TestAsyncWebhooks:
                 app_id="app_id",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_method_get_webhooks(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.get_webhooks(
@@ -949,7 +949,7 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(WebhookGetWebhooksResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_raw_response_get_webhooks(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.get_webhooks(
@@ -962,7 +962,7 @@ class TestAsyncWebhooks:
         webhook = await response.parse()
         assert_matches_type(WebhookGetWebhooksResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_streaming_response_get_webhooks(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.get_webhooks(
@@ -977,7 +977,7 @@ class TestAsyncWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_path_params_get_webhooks(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -992,7 +992,7 @@ class TestAsyncWebhooks:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_method_replace_webhook(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.replace_webhook(
@@ -1015,7 +1015,7 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_method_replace_webhook_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.realtime_kit.webhooks.replace_webhook(
@@ -1039,7 +1039,7 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_raw_response_replace_webhook(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.webhooks.with_raw_response.replace_webhook(
@@ -1066,7 +1066,7 @@ class TestAsyncWebhooks:
         webhook = await response.parse()
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_streaming_response_replace_webhook(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.webhooks.with_streaming_response.replace_webhook(
@@ -1095,7 +1095,7 @@ class TestAsyncWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
+    @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
     async def test_path_params_replace_webhook(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

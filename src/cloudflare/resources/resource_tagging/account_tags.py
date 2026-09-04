@@ -56,6 +56,7 @@ class AccountTagsResource(SyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -65,12 +66,17 @@ class AccountTagsResource(SyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
             "worker_version",
         ],
@@ -97,7 +103,8 @@ class AccountTagsResource(SyncAPIResource):
 
           worker_id: Worker ID is required only for worker_version resources
 
-          tags: Contains key-value pairs of tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -119,6 +126,7 @@ class AccountTagsResource(SyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -128,12 +136,17 @@ class AccountTagsResource(SyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
         ],
         tags: Dict[str, str] | Omit = omit,
@@ -156,7 +169,8 @@ class AccountTagsResource(SyncAPIResource):
           resource_type: Enum for base account-level resource types (those with no extra required
               fields).
 
-          tags: Contains key-value pairs of tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -180,6 +194,7 @@ class AccountTagsResource(SyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -189,12 +204,17 @@ class AccountTagsResource(SyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
             "worker_version",
         ]
@@ -202,6 +222,7 @@ class AccountTagsResource(SyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -211,12 +232,17 @@ class AccountTagsResource(SyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
         ],
         worker_id: str | Omit = omit,
@@ -305,6 +331,7 @@ class AccountTagsResource(SyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -314,12 +341,17 @@ class AccountTagsResource(SyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
             "worker_version",
         ],
@@ -409,6 +441,7 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -418,12 +451,17 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
             "worker_version",
         ],
@@ -450,7 +488,8 @@ class AsyncAccountTagsResource(AsyncAPIResource):
 
           worker_id: Worker ID is required only for worker_version resources
 
-          tags: Contains key-value pairs of tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -472,6 +511,7 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -481,12 +521,17 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
         ],
         tags: Dict[str, str] | Omit = omit,
@@ -509,7 +554,8 @@ class AsyncAccountTagsResource(AsyncAPIResource):
           resource_type: Enum for base account-level resource types (those with no extra required
               fields).
 
-          tags: Contains key-value pairs of tags.
+          tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
+              Values may contain at most 1024 characters and may be empty for key-only tags.
 
           extra_headers: Send extra headers
 
@@ -533,6 +579,7 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -542,12 +589,17 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
             "worker_version",
         ]
@@ -555,6 +607,7 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -564,12 +617,17 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
         ],
         worker_id: str | Omit = omit,
@@ -658,6 +716,7 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -667,12 +726,17 @@ class AsyncAccountTagsResource(AsyncAPIResource):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
             "worker_version",
         ],

@@ -62,6 +62,34 @@ class TrafficAnomaliesResource(SyncAPIResource):
         self,
         *,
         asn: int | Omit = omit,
+        data_source: Literal[
+            "ALL",
+            "AI_BOTS",
+            "AI_GATEWAY",
+            "BGP",
+            "BOTS",
+            "CONNECTION_ANOMALY",
+            "CT",
+            "DNS",
+            "DNS_MAGNITUDE",
+            "DNS_AS112",
+            "DOS",
+            "EMAIL_ROUTING",
+            "EMAIL_SECURITY",
+            "FW",
+            "FW_PG",
+            "HTTP",
+            "HTTP_CONTROL",
+            "HTTP_CRAWLER_REFERER",
+            "HTTP_ORIGINS",
+            "IQI",
+            "LEAKED_CREDENTIALS",
+            "NET",
+            "ROBOTS_TXT",
+            "SPEED",
+            "WORKERS_AI",
+        ]
+        | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_range: str | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
@@ -87,6 +115,8 @@ class TrafficAnomaliesResource(SyncAPIResource):
         Args:
           asn: Filters results by Autonomous System. Specify a single Autonomous System Number
               (ASN) as integer.
+
+          data_source: Filters results by data source.
 
           date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
               with `dateStart`.
@@ -133,6 +163,7 @@ class TrafficAnomaliesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "data_source": data_source,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -180,6 +211,34 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
         self,
         *,
         asn: int | Omit = omit,
+        data_source: Literal[
+            "ALL",
+            "AI_BOTS",
+            "AI_GATEWAY",
+            "BGP",
+            "BOTS",
+            "CONNECTION_ANOMALY",
+            "CT",
+            "DNS",
+            "DNS_MAGNITUDE",
+            "DNS_AS112",
+            "DOS",
+            "EMAIL_ROUTING",
+            "EMAIL_SECURITY",
+            "FW",
+            "FW_PG",
+            "HTTP",
+            "HTTP_CONTROL",
+            "HTTP_CRAWLER_REFERER",
+            "HTTP_ORIGINS",
+            "IQI",
+            "LEAKED_CREDENTIALS",
+            "NET",
+            "ROBOTS_TXT",
+            "SPEED",
+            "WORKERS_AI",
+        ]
+        | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_range: str | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
@@ -205,6 +264,8 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
         Args:
           asn: Filters results by Autonomous System. Specify a single Autonomous System Number
               (ASN) as integer.
+
+          data_source: Filters results by data source.
 
           date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
               with `dateStart`.
@@ -251,6 +312,7 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "asn": asn,
+                        "data_source": data_source,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,

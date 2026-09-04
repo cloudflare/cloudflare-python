@@ -33,8 +33,14 @@ class Dataset(BaseModel):
     dataset_id: str
     """Unique dataset ID."""
 
+    deletion_protection: bool
+    """Whether deletion is blocked. Set to `false` before deleting the dataset."""
+
     enabled: bool
     """Whether log ingest is currently active for this dataset."""
+
+    fields: List[Field]
+    """The field configuration for this dataset."""
 
     object_id: str
     """Public ID of the account or zone that owns this dataset."""
@@ -45,5 +51,8 @@ class Dataset(BaseModel):
     updated_at: datetime
     """RFC3339 timestamp recording when the API last updated this dataset."""
 
-    fields: Optional[List[Field]] = None
-    """The field configuration for this dataset."""
+    filter: Optional[str] = None
+    """The Logpush filter predicate applied to this dataset.
+
+    Omitted when no filter is set.
+    """

@@ -19,8 +19,8 @@ class UsagePaygoParams(TypedDict, total=False):
     """Start date for the usage query (ISO 8601).
 
     The provided time range must include the subscription billing cycle anchor day,
-    otherwise no usage data is returned. Subscription anchor days are provided on
-    the response of the /accounts/{account_id}/paygo-usage-info endpoint.
+    otherwise no usage data is returned. Use the info endpoint to retrieve the
+    subscription anchor day.
     """
 
     to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]

@@ -1,0 +1,59 @@
+stages:
+  - lint
+  - build
+  - test
+  - review
+
+include:
+  - component: $CI_SERVER_FQDN/cloudflare/ci/ai/opencode@~latest
+    inputs:
+      runOnMR: true
+
+default:
+  image: $IMAGE_PYTHON
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH !~ /^(integrated\/|stl-preview-head\/|stl-preview-base\/|generated|codegen\/)/
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH =~ /^codegen\/stl\//
+
+lint:
+  stage: lint
+  timeout: 20 minutes
+  rules:
+    - if: $CI_COMMIT_TITLE == "codegen metadata"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_MERGE_REQUEST_SOURCE_PROJECT_PATH != $CI_PROJECT_PATH
+  script:
+    - uv sync --all-extras
+    - ./scripts/lint
+
+build:
+  stage: build
+  timeout: 20 minutes
+  rules:
+    - if: $CI_COMMIT_TITLE == "codegen metadata"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_MERGE_REQUEST_SOURCE_PROJECT_PATH != $CI_PROJECT_PATH
+  script:
+    - uv sync --all-extras
+    - uv build
+
+test:
+  stage: test
+  image: $IMAGE_NODE_TRIXIE
+  timeout: 20 minutes
+  allow_failure: true
+  rules:
+    - if: $CI_COMMIT_TITLE == "codegen metadata"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_MERGE_REQUEST_SOURCE_PROJECT_PATH != $CI_PROJECT_PATH
+  script:
+    - curl -LsSf https://astral.sh/uv/install.sh | sh
+    - export PATH="$HOME/.local/bin:$PATH"
+    - uv sync --all-extras
+    - ./scripts/test -n auto

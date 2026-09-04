@@ -8,6 +8,14 @@ from .ct import (
     CTResourceWithStreamingResponse,
     AsyncCTResourceWithStreamingResponse,
 )
+from .nel import (
+    NELResource,
+    AsyncNELResource,
+    NELResourceWithRawResponse,
+    AsyncNELResourceWithRawResponse,
+    NELResourceWithStreamingResponse,
+    AsyncNELResourceWithStreamingResponse,
+)
 from .holds import (
     HoldsResource,
     AsyncHoldsResource,
@@ -80,6 +88,22 @@ from .custom_nameservers import (
     CustomNameserversResourceWithStreamingResponse,
     AsyncCustomNameserversResourceWithStreamingResponse,
 )
+from .transformations_c2pa import (
+    TransformationsC2paResource,
+    AsyncTransformationsC2paResource,
+    TransformationsC2paResourceWithRawResponse,
+    AsyncTransformationsC2paResourceWithRawResponse,
+    TransformationsC2paResourceWithStreamingResponse,
+    AsyncTransformationsC2paResourceWithStreamingResponse,
+)
+from .transformations_allowed_origins import (
+    TransformationsAllowedOriginsResource,
+    AsyncTransformationsAllowedOriginsResource,
+    TransformationsAllowedOriginsResourceWithRawResponse,
+    AsyncTransformationsAllowedOriginsResourceWithRawResponse,
+    TransformationsAllowedOriginsResourceWithStreamingResponse,
+    AsyncTransformationsAllowedOriginsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ActivationCheckResource",
@@ -94,6 +118,24 @@ __all__ = [
     "AsyncSettingsResourceWithRawResponse",
     "SettingsResourceWithStreamingResponse",
     "AsyncSettingsResourceWithStreamingResponse",
+    "TransformationsAllowedOriginsResource",
+    "AsyncTransformationsAllowedOriginsResource",
+    "TransformationsAllowedOriginsResourceWithRawResponse",
+    "AsyncTransformationsAllowedOriginsResourceWithRawResponse",
+    "TransformationsAllowedOriginsResourceWithStreamingResponse",
+    "AsyncTransformationsAllowedOriginsResourceWithStreamingResponse",
+    "TransformationsC2paResource",
+    "AsyncTransformationsC2paResource",
+    "TransformationsC2paResourceWithRawResponse",
+    "AsyncTransformationsC2paResourceWithRawResponse",
+    "TransformationsC2paResourceWithStreamingResponse",
+    "AsyncTransformationsC2paResourceWithStreamingResponse",
+    "NELResource",
+    "AsyncNELResource",
+    "NELResourceWithRawResponse",
+    "AsyncNELResourceWithRawResponse",
+    "NELResourceWithStreamingResponse",
+    "AsyncNELResourceWithStreamingResponse",
     "EnvironmentsResource",
     "AsyncEnvironmentsResource",
     "EnvironmentsResourceWithRawResponse",

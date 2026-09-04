@@ -21,8 +21,12 @@ class ZoneTagGetParams(TypedDict, total=False):
             "custom_certificate",
             "custom_hostname",
             "dns_record",
+            "healthcheck",
+            "load_balancer",
             "managed_client_certificate",
+            "worker_route",
             "zone",
+            "zone_ruleset",
         ]
     ]
     """The type of the resource."""

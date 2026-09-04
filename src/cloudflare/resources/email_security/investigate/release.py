@@ -54,9 +54,9 @@ class ReleaseResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ReleaseBulkResponse]:
         """
-        Releases one or more quarantined messages, delivering them to the intended
-        recipients. Use when a message was incorrectly quarantined. Returns delivery
-        status for each recipient.
+        Delivers one or more quarantined messages to their intended recipients, for
+        cases where a message was incorrectly quarantined. The response includes
+        delivery status for each recipient.
 
         Args:
           account_id: Identifier.
@@ -116,9 +116,9 @@ class AsyncReleaseResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ReleaseBulkResponse, AsyncSinglePage[ReleaseBulkResponse]]:
         """
-        Releases one or more quarantined messages, delivering them to the intended
-        recipients. Use when a message was incorrectly quarantined. Returns delivery
-        status for each recipient.
+        Delivers one or more quarantined messages to their intended recipients, for
+        cases where a message was incorrectly quarantined. The response includes
+        delivery status for each recipient.
 
         Args:
           account_id: Identifier.

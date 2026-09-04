@@ -29,7 +29,10 @@ class TestResourceTagging:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         resource_tagging = client.resource_tagging.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id=["023e105f4ecef8ad9ca31a8372d0c353"],
+            case_insensitive=True,
             cursor="eyJhY2NvdW50X2lkIjoxMjM0NTY3ODkwfQ",
+            name="name",
             tag=["production", "env=prod", "env=prod,staging", "!archived", "region!=us-west-1"],
             type=["zone"],
         )
@@ -87,7 +90,10 @@ class TestAsyncResourceTagging:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         resource_tagging = await async_client.resource_tagging.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id=["023e105f4ecef8ad9ca31a8372d0c353"],
+            case_insensitive=True,
             cursor="eyJhY2NvdW50X2lkIjoxMjM0NTY3ODkwfQ",
+            name="name",
             tag=["production", "env=prod", "env=prod,staging", "!archived", "region!=us-west-1"],
             type=["zone"],
         )

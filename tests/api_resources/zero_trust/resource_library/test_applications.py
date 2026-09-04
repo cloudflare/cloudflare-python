@@ -13,6 +13,8 @@ from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.resource_library import (
     ApplicationGetResponse,
     ApplicationListResponse,
+    ApplicationCreateResponse,
+    ApplicationUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -20,6 +22,124 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestApplications:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    def test_method_create(self, client: Cloudflare) -> None:
+        application = client.zero_trust.resource_library.applications.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            category_id=12,
+            human_id="HR",
+            name="HR",
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        application = client.zero_trust.resource_library.applications.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            category_id=12,
+            human_id="HR",
+            name="HR",
+            hostnames=["example.com", "foo.com"],
+            ip_subnets=["192.168.1.0/24", "10.0.0.0/8"],
+            port_protocols=["tcp/80", "tcp/443"],
+            support_domains=["example.com", "foo.com"],
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.zero_trust.resource_library.applications.with_raw_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            category_id=12,
+            human_id="HR",
+            name="HR",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.zero_trust.resource_library.applications.with_streaming_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            category_id=12,
+            human_id="HR",
+            name="HR",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.resource_library.applications.with_raw_response.create(
+                account_id="",
+                category_id=12,
+                human_id="HR",
+                name="HR",
+            )
+
+    @parametrize
+    def test_method_update(self, client: Cloudflare) -> None:
+        application = client.zero_trust.resource_library.applications.update(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        application = client.zero_trust.resource_library.applications.update(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostnames=["example.com", "foo.com"],
+            ip_subnets=["192.168.1.0/24", "10.0.0.0/8"],
+            port_protocols=["tcp/80", "tcp/443"],
+            support_domains=["example.com", "foo.com"],
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.zero_trust.resource_library.applications.with_raw_response.update(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.zero_trust.resource_library.applications.with_streaming_response.update(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.resource_library.applications.with_raw_response.update(
+                id=498,
+                account_id="",
+            )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
@@ -32,6 +152,7 @@ class TestApplications:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.resource_library.applications.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            fields="fields",
             filter="filter",
             limit=0,
             offset=0,
@@ -72,9 +193,51 @@ class TestApplications:
             )
 
     @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        application = client.zero_trust.resource_library.applications.delete(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(object, application, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.zero_trust.resource_library.applications.with_raw_response.delete(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = response.parse()
+        assert_matches_type(object, application, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.zero_trust.resource_library.applications.with_streaming_response.delete(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = response.parse()
+            assert_matches_type(object, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.resource_library.applications.with_raw_response.delete(
+                id=498,
+                account_id="",
+            )
+
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         application = client.zero_trust.resource_library.applications.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=498,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
@@ -82,7 +245,7 @@ class TestApplications:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.resource_library.applications.with_raw_response.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=498,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -94,7 +257,7 @@ class TestApplications:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.resource_library.applications.with_streaming_response.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=498,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -109,14 +272,8 @@ class TestApplications:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.resource_library.applications.with_raw_response.get(
-                id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+                id=498,
                 account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.zero_trust.resource_library.applications.with_raw_response.get(
-                id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -124,6 +281,124 @@ class TestAsyncApplications:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
+
+    @parametrize
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.resource_library.applications.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            category_id=12,
+            human_id="HR",
+            name="HR",
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.resource_library.applications.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            category_id=12,
+            human_id="HR",
+            name="HR",
+            hostnames=["example.com", "foo.com"],
+            ip_subnets=["192.168.1.0/24", "10.0.0.0/8"],
+            port_protocols=["tcp/80", "tcp/443"],
+            support_domains=["example.com", "foo.com"],
+        )
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.resource_library.applications.with_raw_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            category_id=12,
+            human_id="HR",
+            name="HR",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.resource_library.applications.with_streaming_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            category_id=12,
+            human_id="HR",
+            name="HR",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.resource_library.applications.with_raw_response.create(
+                account_id="",
+                category_id=12,
+                human_id="HR",
+                name="HR",
+            )
+
+    @parametrize
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.resource_library.applications.update(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.resource_library.applications.update(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostnames=["example.com", "foo.com"],
+            ip_subnets=["192.168.1.0/24", "10.0.0.0/8"],
+            port_protocols=["tcp/80", "tcp/443"],
+            support_domains=["example.com", "foo.com"],
+        )
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.resource_library.applications.with_raw_response.update(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.resource_library.applications.with_streaming_response.update(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.resource_library.applications.with_raw_response.update(
+                id=498,
+                account_id="",
+            )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
@@ -136,6 +411,7 @@ class TestAsyncApplications:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.resource_library.applications.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            fields="fields",
             filter="filter",
             limit=0,
             offset=0,
@@ -176,9 +452,51 @@ class TestAsyncApplications:
             )
 
     @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        application = await async_client.zero_trust.resource_library.applications.delete(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(object, application, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.resource_library.applications.with_raw_response.delete(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        application = await response.parse()
+        assert_matches_type(object, application, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.resource_library.applications.with_streaming_response.delete(
+            id=498,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            application = await response.parse()
+            assert_matches_type(object, application, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.resource_library.applications.with_raw_response.delete(
+                id=498,
+                account_id="",
+            )
+
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.resource_library.applications.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=498,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
@@ -186,7 +504,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.resource_library.applications.with_raw_response.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=498,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -198,7 +516,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.resource_library.applications.with_streaming_response.get(
-            id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+            id=498,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -213,12 +531,6 @@ class TestAsyncApplications:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.resource_library.applications.with_raw_response.get(
-                id="0b63249c-95bf-4cc0-a7cc-d7faaaf1dac0",
+                id=498,
                 account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.zero_trust.resource_library.applications.with_raw_response.get(
-                id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

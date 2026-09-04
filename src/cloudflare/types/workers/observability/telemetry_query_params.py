@@ -13,6 +13,8 @@ __all__ = [
     "Timeframe",
     "Parameters",
     "ParametersCalculation",
+    "ParametersCalculationUnionMember0",
+    "ParametersCalculationUnionMember1",
     "ParametersFilter",
     "ParametersFilterUnionMember0",
     "ParametersFilterUnionMember0Filter",
@@ -40,16 +42,37 @@ class TelemetryQueryParams(TypedDict, total=False):
     timeframe: Required[Timeframe]
     """Timeframe for the query using Unix timestamps in milliseconds.
 
-    Narrower timeframes produce faster responses and more specific results.
+    'from' must be earlier than 'to'. Narrower timeframes produce faster responses
+    and more specific results.
     """
 
     chart: bool
     """When true, includes time-series data in the response."""
 
+    chart_type: Annotated[
+        Literal["timeseries_and_aggregate", "timeseries", "aggregate", "distribution"], PropertyInfo(alias="chartType")
+    ]
+    """Controls the SQL shape and response payload for the 'calculations' view.
+
+    Omitted or 'timeseries_and_aggregate': current behaviour — both the time-series
+    and aggregate queries. 'timeseries': time-series only. 'aggregate': aggregate
+    only. 'distribution': a bucketed 2D histogram (time × value buckets) returned in
+    'distribution' instead of 'calculations'. 'distribution' is not compatible with
+    'compare' — combining them returns a 400.
+    """
+
     compare: bool
     """
     When true, includes a comparison dataset from the previous time period of equal
     length.
+    """
+
+    distribution_scale: Annotated[Literal["log", "linear"], PropertyInfo(alias="distributionScale")]
+    """Value-axis bucketing for chartType 'distribution'.
+
+    Omitted or 'log': geometric buckets, best for heavy-tailed latency. 'linear':
+    fixed-width buckets, clearer for narrow or additive ranges. Ignored for other
+    chartTypes. The response echoes the scheme used in distribution.bucketMode.
     """
 
     dry: bool
@@ -78,9 +101,10 @@ class TelemetryQueryParams(TypedDict, total=False):
     """
 
     offset: str
-    """Cursor for pagination in event, trace, and invocation views.
+    """Cursor for pagination in event, trace, invocation, and agent views.
 
-    Pass the $metadata.id of the last returned item to fetch the next page.
+    Pass the $metadata.id of the last event, the trace cursor, or AgentRun.id to
+    fetch the next page.
     """
 
     offset_by: Annotated[float, PropertyInfo(alias="offsetBy")]
@@ -106,14 +130,14 @@ class TelemetryQueryParams(TypedDict, total=False):
     'events': individual log lines matching the query. 'calculations': aggregated
     metrics (count, avg, p99, etc.) with optional group-by breakdowns and
     time-series. 'invocations': events grouped by request ID. 'traces': distributed
-    trace summaries. 'agents': Durable Object agent summaries.
+    trace summaries. 'agents': agent-specific trace summaries.
     """
 
 
 _TimeframeReservedKeywords = TypedDict(
     "_TimeframeReservedKeywords",
     {
-        "from": float,
+        "from": int,
     },
     total=False,
 )
@@ -122,18 +146,52 @@ _TimeframeReservedKeywords = TypedDict(
 class Timeframe(_TimeframeReservedKeywords, total=False):
     """Timeframe for the query using Unix timestamps in milliseconds.
 
-    Narrower timeframes produce faster responses and more specific results.
+    'from' must be earlier than 'to'. Narrower timeframes produce faster responses and more specific results.
     """
 
-    to: Required[float]
-    """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
+    to: Required[int]
+    """End timestamp for the query timeframe. Unix timestamp in milliseconds"""
 
 
-class ParametersCalculation(TypedDict, total=False):
+class ParametersCalculationUnionMember0(TypedDict, total=False):
+    operator: Required[Literal["count", "COUNT"]]
+    """Aggregation operator to apply.
+
+    Examples: count, avg, sum, min, max, median, p90, p95, p99, uniq, stddev,
+    variance.
+    """
+
+    alias: str
+    """Custom label for this calculation in the results.
+
+    Useful for distinguishing multiple calculations.
+    """
+
+    key: str
+    """Field name to calculate over.
+
+    Must exist in the data. Verify with the keys endpoint. Required for every
+    operator except `count`, which aggregates whole rows and may omit it.
+    """
+
+    key_type: Annotated[Literal["string", "number", "boolean"], PropertyInfo(alias="keyType")]
+    """Data type of the key.
+
+    Required when key is provided to ensure correct aggregation.
+    """
+
+
+class ParametersCalculationUnionMember1(TypedDict, total=False):
+    key: Required[str]
+    """Field name to calculate over.
+
+    Must exist in the data. Verify with the keys endpoint. Required for every
+    operator except `count`, which aggregates whole rows and may omit it.
+    """
+
     operator: Required[
         Literal[
             "uniq",
-            "count",
             "max",
             "min",
             "sum",
@@ -152,7 +210,6 @@ class ParametersCalculation(TypedDict, total=False):
             "stddev",
             "variance",
             "COUNT_DISTINCT",
-            "COUNT",
             "MAX",
             "MIN",
             "SUM",
@@ -184,18 +241,14 @@ class ParametersCalculation(TypedDict, total=False):
     Useful for distinguishing multiple calculations.
     """
 
-    key: str
-    """Field name to calculate over.
-
-    Must exist in the data — verify with the keys endpoint. Omit for operators that
-    don't require a key (e.g. count).
-    """
-
     key_type: Annotated[Literal["string", "number", "boolean"], PropertyInfo(alias="keyType")]
     """Data type of the key.
 
     Required when key is provided to ensure correct aggregation.
     """
+
+
+ParametersCalculation: TypeAlias = Union[ParametersCalculationUnionMember0, ParametersCalculationUnionMember1]
 
 
 class ParametersFilterUnionMember0FilterUnionMember0(TypedDict, total=False):

@@ -15,12 +15,18 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.realtime_kit import preset_get_params, preset_create_params, preset_update_params
+from ...types.realtime_kit import (
+    preset_get_params,
+    preset_create_params,
+    preset_update_params,
+    preset_replace_preset_by_id_params,
+)
 from ...types.realtime_kit.preset_get_response import PresetGetResponse
 from ...types.realtime_kit.preset_create_response import PresetCreateResponse
 from ...types.realtime_kit.preset_delete_response import PresetDeleteResponse
 from ...types.realtime_kit.preset_update_response import PresetUpdateResponse
 from ...types.realtime_kit.preset_get_preset_by_id_response import PresetGetPresetByIDResponse
+from ...types.realtime_kit.preset_replace_preset_by_id_response import PresetReplacePresetByIDResponse
 
 __all__ = ["PresetsResource", "AsyncPresetsResource"]
 
@@ -319,6 +325,69 @@ class PresetsResource(SyncAPIResource):
             cast_to=PresetGetPresetByIDResponse,
         )
 
+    def replace_preset_by_id(
+        self,
+        preset_id: str,
+        *,
+        account_id: str,
+        app_id: str,
+        config: preset_replace_preset_by_id_params.Config,
+        name: str,
+        permissions: preset_replace_preset_by_id_params.Permissions,
+        ui: preset_replace_preset_by_id_params.UI,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PresetReplacePresetByIDResponse:
+        """
+        Replace all details for the preset using the provided preset ID.
+
+        Args:
+          account_id: The account identifier tag.
+
+          app_id: The app identifier tag.
+
+          name: Name of the preset
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not preset_id:
+            raise ValueError(f"Expected a non-empty value for `preset_id` but received {preset_id!r}")
+        return self._put(
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/presets/{preset_id}",
+                account_id=account_id,
+                app_id=app_id,
+                preset_id=preset_id,
+            ),
+            body=maybe_transform(
+                {
+                    "config": config,
+                    "name": name,
+                    "permissions": permissions,
+                    "ui": ui,
+                },
+                preset_replace_preset_by_id_params.PresetReplacePresetByIDParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PresetReplacePresetByIDResponse,
+        )
+
 
 class AsyncPresetsResource(AsyncAPIResource):
     @cached_property
@@ -614,6 +683,69 @@ class AsyncPresetsResource(AsyncAPIResource):
             cast_to=PresetGetPresetByIDResponse,
         )
 
+    async def replace_preset_by_id(
+        self,
+        preset_id: str,
+        *,
+        account_id: str,
+        app_id: str,
+        config: preset_replace_preset_by_id_params.Config,
+        name: str,
+        permissions: preset_replace_preset_by_id_params.Permissions,
+        ui: preset_replace_preset_by_id_params.UI,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PresetReplacePresetByIDResponse:
+        """
+        Replace all details for the preset using the provided preset ID.
+
+        Args:
+          account_id: The account identifier tag.
+
+          app_id: The app identifier tag.
+
+          name: Name of the preset
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not preset_id:
+            raise ValueError(f"Expected a non-empty value for `preset_id` but received {preset_id!r}")
+        return await self._put(
+            path_template(
+                "/accounts/{account_id}/realtime/kit/{app_id}/presets/{preset_id}",
+                account_id=account_id,
+                app_id=app_id,
+                preset_id=preset_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "config": config,
+                    "name": name,
+                    "permissions": permissions,
+                    "ui": ui,
+                },
+                preset_replace_preset_by_id_params.PresetReplacePresetByIDParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PresetReplacePresetByIDResponse,
+        )
+
 
 class PresetsResourceWithRawResponse:
     def __init__(self, presets: PresetsResource) -> None:
@@ -633,6 +765,9 @@ class PresetsResourceWithRawResponse:
         )
         self.get_preset_by_id = to_raw_response_wrapper(
             presets.get_preset_by_id,
+        )
+        self.replace_preset_by_id = to_raw_response_wrapper(
+            presets.replace_preset_by_id,
         )
 
 
@@ -655,6 +790,9 @@ class AsyncPresetsResourceWithRawResponse:
         self.get_preset_by_id = async_to_raw_response_wrapper(
             presets.get_preset_by_id,
         )
+        self.replace_preset_by_id = async_to_raw_response_wrapper(
+            presets.replace_preset_by_id,
+        )
 
 
 class PresetsResourceWithStreamingResponse:
@@ -676,6 +814,9 @@ class PresetsResourceWithStreamingResponse:
         self.get_preset_by_id = to_streamed_response_wrapper(
             presets.get_preset_by_id,
         )
+        self.replace_preset_by_id = to_streamed_response_wrapper(
+            presets.replace_preset_by_id,
+        )
 
 
 class AsyncPresetsResourceWithStreamingResponse:
@@ -696,4 +837,7 @@ class AsyncPresetsResourceWithStreamingResponse:
         )
         self.get_preset_by_id = async_to_streamed_response_wrapper(
             presets.get_preset_by_id,
+        )
+        self.replace_preset_by_id = async_to_streamed_response_wrapper(
+            presets.replace_preset_by_id,
         )

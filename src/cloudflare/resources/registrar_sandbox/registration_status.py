@@ -99,12 +99,12 @@ class RegistrationStatusResource(SyncAPIResource):
         ```
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           extra_headers: Send extra headers
 
@@ -211,12 +211,12 @@ class AsyncRegistrationStatusResource(AsyncAPIResource):
         ```
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain_name: Fully qualified domain name (FQDN) including the extension (e.g., `example.com`,
-              `mybrand.app`). The domain name uniquely identifies a registration — the same
-              domain cannot be registered twice, making it a natural idempotency key for
-              registration requests.
+          domain_name: Provides a fully qualified domain name (FQDN), including the extension (e.g.,
+              `example.com`, `mybrand.app`). The domain name uniquely identifies a
+              registration. Cloudflare permits only one registration per domain, making the
+              domain name a natural idempotency key for registration requests.
 
           extra_headers: Send extra headers
 

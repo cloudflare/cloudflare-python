@@ -98,7 +98,7 @@ class CategoriesResource(SyncAPIResource):
 
     def get(
         self,
-        id: str,
+        id: int,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -112,6 +112,8 @@ class CategoriesResource(SyncAPIResource):
         Get application category by ID.
 
         Args:
+          id: Returns the category ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -122,8 +124,6 @@ class CategoriesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             path_template("/accounts/{account_id}/resource-library/categories/{id}", account_id=account_id, id=id),
             options=make_request_options(
@@ -209,7 +209,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: str,
+        id: int,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -223,6 +223,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
         Get application category by ID.
 
         Args:
+          id: Returns the category ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -233,8 +235,6 @@ class AsyncCategoriesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             path_template("/accounts/{account_id}/resource-library/categories/{id}", account_id=account_id, id=id),
             options=make_request_options(

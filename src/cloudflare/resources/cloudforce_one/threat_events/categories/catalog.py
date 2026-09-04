@@ -52,7 +52,7 @@ class CatalogResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogListResponse:
         """
-        List all categories stored in the account catalog.
+        Lists categories
 
         Args:
           account_id: Account ID.
@@ -108,7 +108,7 @@ class AsyncCatalogResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogListResponse:
         """
-        List all categories stored in the account catalog.
+        Lists categories
 
         Args:
           account_id: Account ID.

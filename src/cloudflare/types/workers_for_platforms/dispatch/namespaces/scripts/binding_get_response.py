@@ -13,6 +13,7 @@ __all__ = [
     "WorkersBindingKindAI",
     "WorkersBindingKindAISearch",
     "WorkersBindingKindAISearchNamespace",
+    "WorkersBindingKindMessaging",
     "WorkersBindingKindAnalyticsEngine",
     "WorkersBindingKindAssets",
     "WorkersBindingKindBrowser",
@@ -96,6 +97,17 @@ class WorkersBindingKindAISearchNamespace(BaseModel):
     """
 
     type: Literal["ai_search_namespace"]
+    """The kind of resource that the binding provides."""
+
+
+class WorkersBindingKindMessaging(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    namespace: str
+    """The Messaging namespace to bind to."""
+
+    type: Literal["messaging"]
     """The kind of resource that the binding provides."""
 
 
@@ -381,7 +393,7 @@ class WorkersBindingKindR2Bucket(BaseModel):
     type: Literal["r2_bucket"]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Optional[Literal["eu", "fedramp", "fedramp-high"]] = None
+    jurisdiction: Optional[Literal["eu", "fedramp", "fedramp-high", "us"]] = None
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -570,6 +582,12 @@ class WorkersBindingKindVPCNetwork(BaseModel):
     type: Literal["vpc_network"]
     """The kind of resource that the binding provides."""
 
+    identity: Optional[Literal["runtime-email-alpha"]] = None
+    """Enables Gateway identity for the binding.
+
+    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id.
+    """
+
     network_id: Optional[str] = None
     """Identifier of the network to bind to.
 
@@ -585,6 +603,7 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindAI,
         WorkersBindingKindAISearch,
         WorkersBindingKindAISearchNamespace,
+        WorkersBindingKindMessaging,
         WorkersBindingKindAnalyticsEngine,
         WorkersBindingKindAssets,
         WorkersBindingKindBrowser,

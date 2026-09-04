@@ -75,3 +75,15 @@ Methods:
 - <code title="get /zones/{zone_id}/spectrum/apps">client.spectrum.apps.<a href="./src/cloudflare/resources/spectrum/apps.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/spectrum/app_list_params.py">params</a>) -> <a href="./src/cloudflare/types/spectrum/app_list_response.py">SyncV4PagePaginationArray[AppListResponse]</a></code>
 - <code title="delete /zones/{zone_id}/spectrum/apps/{app_id}">client.spectrum.apps.<a href="./src/cloudflare/resources/spectrum/apps.py">delete</a>(app_id, \*, zone_id) -> <a href="./src/cloudflare/types/spectrum/app_delete_response.py">Optional[AppDeleteResponse]</a></code>
 - <code title="get /zones/{zone_id}/spectrum/apps/{app_id}">client.spectrum.apps.<a href="./src/cloudflare/resources/spectrum/apps.py">get</a>(app_id, \*, zone_id) -> <a href="./src/cloudflare/types/spectrum/app_get_response.py">Optional[AppGetResponse]</a></code>
+
+## Protocols
+
+Types:
+
+```python
+from cloudflare.types.spectrum import ProtocolListResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/spectrum/protocols">client.spectrum.protocols.<a href="./src/cloudflare/resources/spectrum/protocols.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/spectrum/protocol_list_response.py">SyncSinglePage[ProtocolListResponse]</a></code>

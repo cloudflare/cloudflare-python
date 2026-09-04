@@ -17,6 +17,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from .suppressions import (
+    SuppressionsResource,
+    AsyncSuppressionsResource,
+    SuppressionsResourceWithRawResponse,
+    AsyncSuppressionsResourceWithRawResponse,
+    SuppressionsResourceWithStreamingResponse,
+    AsyncSuppressionsResourceWithStreamingResponse,
+)
 from ..._base_client import make_request_options
 from ...types.email_sending import email_sending_send_params, email_sending_send_raw_params
 from .subdomains.subdomains import (
@@ -34,6 +42,10 @@ __all__ = ["EmailSendingResource", "AsyncEmailSendingResource"]
 
 
 class EmailSendingResource(SyncAPIResource):
+    @cached_property
+    def suppressions(self) -> SuppressionsResource:
+        return SuppressionsResource(self._client)
+
     @cached_property
     def subdomains(self) -> SubdomainsResource:
         return SubdomainsResource(self._client)
@@ -93,11 +105,11 @@ class EmailSendingResource(SyncAPIResource):
 
           attachments: File attachments and inline images.
 
-          bcc: BCC recipient(s). A single email string, a named address object, or an array of
-              either.
+          bcc: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
-          cc: CC recipient(s). A single email string, a named address object, or an array of
-              either.
+          cc: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
           headers: Custom email headers as key-value pairs.
 
@@ -211,6 +223,10 @@ class EmailSendingResource(SyncAPIResource):
 
 class AsyncEmailSendingResource(AsyncAPIResource):
     @cached_property
+    def suppressions(self) -> AsyncSuppressionsResource:
+        return AsyncSuppressionsResource(self._client)
+
+    @cached_property
     def subdomains(self) -> AsyncSubdomainsResource:
         return AsyncSubdomainsResource(self._client)
 
@@ -269,11 +285,11 @@ class AsyncEmailSendingResource(AsyncAPIResource):
 
           attachments: File attachments and inline images.
 
-          bcc: BCC recipient(s). A single email string, a named address object, or an array of
-              either.
+          bcc: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
-          cc: CC recipient(s). A single email string, a named address object, or an array of
-              either.
+          cc: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
 
           headers: Custom email headers as key-value pairs.
 
@@ -397,6 +413,10 @@ class EmailSendingResourceWithRawResponse:
         )
 
     @cached_property
+    def suppressions(self) -> SuppressionsResourceWithRawResponse:
+        return SuppressionsResourceWithRawResponse(self._email_sending.suppressions)
+
+    @cached_property
     def subdomains(self) -> SubdomainsResourceWithRawResponse:
         return SubdomainsResourceWithRawResponse(self._email_sending.subdomains)
 
@@ -411,6 +431,10 @@ class AsyncEmailSendingResourceWithRawResponse:
         self.send_raw = async_to_raw_response_wrapper(
             email_sending.send_raw,
         )
+
+    @cached_property
+    def suppressions(self) -> AsyncSuppressionsResourceWithRawResponse:
+        return AsyncSuppressionsResourceWithRawResponse(self._email_sending.suppressions)
 
     @cached_property
     def subdomains(self) -> AsyncSubdomainsResourceWithRawResponse:
@@ -429,6 +453,10 @@ class EmailSendingResourceWithStreamingResponse:
         )
 
     @cached_property
+    def suppressions(self) -> SuppressionsResourceWithStreamingResponse:
+        return SuppressionsResourceWithStreamingResponse(self._email_sending.suppressions)
+
+    @cached_property
     def subdomains(self) -> SubdomainsResourceWithStreamingResponse:
         return SubdomainsResourceWithStreamingResponse(self._email_sending.subdomains)
 
@@ -443,6 +471,10 @@ class AsyncEmailSendingResourceWithStreamingResponse:
         self.send_raw = async_to_streamed_response_wrapper(
             email_sending.send_raw,
         )
+
+    @cached_property
+    def suppressions(self) -> AsyncSuppressionsResourceWithStreamingResponse:
+        return AsyncSuppressionsResourceWithStreamingResponse(self._email_sending.suppressions)
 
     @cached_property
     def subdomains(self) -> AsyncSubdomainsResourceWithStreamingResponse:

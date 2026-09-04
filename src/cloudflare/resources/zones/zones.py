@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .nel import (
+    NELResource,
+    AsyncNELResource,
+    NELResourceWithRawResponse,
+    AsyncNELResourceWithRawResponse,
+    NELResourceWithStreamingResponse,
+    AsyncNELResourceWithStreamingResponse,
+)
 from .ct.ct import (
     CTResource,
     AsyncCTResource,
@@ -95,6 +103,22 @@ from .custom_nameservers import (
     CustomNameserversResourceWithStreamingResponse,
     AsyncCustomNameserversResourceWithStreamingResponse,
 )
+from .transformations_c2pa import (
+    TransformationsC2paResource,
+    AsyncTransformationsC2paResource,
+    TransformationsC2paResourceWithRawResponse,
+    AsyncTransformationsC2paResourceWithRawResponse,
+    TransformationsC2paResourceWithStreamingResponse,
+    AsyncTransformationsC2paResourceWithStreamingResponse,
+)
+from .transformations_allowed_origins import (
+    TransformationsAllowedOriginsResource,
+    AsyncTransformationsAllowedOriginsResource,
+    TransformationsAllowedOriginsResourceWithRawResponse,
+    AsyncTransformationsAllowedOriginsResourceWithRawResponse,
+    TransformationsAllowedOriginsResourceWithStreamingResponse,
+    AsyncTransformationsAllowedOriginsResourceWithStreamingResponse,
+)
 from ...types.zones.zone_delete_response import ZoneDeleteResponse
 
 __all__ = ["ZonesResource", "AsyncZonesResource"]
@@ -108,6 +132,18 @@ class ZonesResource(SyncAPIResource):
     @cached_property
     def settings(self) -> SettingsResource:
         return SettingsResource(self._client)
+
+    @cached_property
+    def transformations_allowed_origins(self) -> TransformationsAllowedOriginsResource:
+        return TransformationsAllowedOriginsResource(self._client)
+
+    @cached_property
+    def transformations_c2pa(self) -> TransformationsC2paResource:
+        return TransformationsC2paResource(self._client)
+
+    @cached_property
+    def nel(self) -> NELResource:
+        return NELResource(self._client)
 
     @cached_property
     def environments(self) -> EnvironmentsResource:
@@ -451,6 +487,18 @@ class AsyncZonesResource(AsyncAPIResource):
     @cached_property
     def settings(self) -> AsyncSettingsResource:
         return AsyncSettingsResource(self._client)
+
+    @cached_property
+    def transformations_allowed_origins(self) -> AsyncTransformationsAllowedOriginsResource:
+        return AsyncTransformationsAllowedOriginsResource(self._client)
+
+    @cached_property
+    def transformations_c2pa(self) -> AsyncTransformationsC2paResource:
+        return AsyncTransformationsC2paResource(self._client)
+
+    @cached_property
+    def nel(self) -> AsyncNELResource:
+        return AsyncNELResource(self._client)
 
     @cached_property
     def environments(self) -> AsyncEnvironmentsResource:
@@ -815,6 +863,18 @@ class ZonesResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._zones.settings)
 
     @cached_property
+    def transformations_allowed_origins(self) -> TransformationsAllowedOriginsResourceWithRawResponse:
+        return TransformationsAllowedOriginsResourceWithRawResponse(self._zones.transformations_allowed_origins)
+
+    @cached_property
+    def transformations_c2pa(self) -> TransformationsC2paResourceWithRawResponse:
+        return TransformationsC2paResourceWithRawResponse(self._zones.transformations_c2pa)
+
+    @cached_property
+    def nel(self) -> NELResourceWithRawResponse:
+        return NELResourceWithRawResponse(self._zones.nel)
+
+    @cached_property
     def environments(self) -> EnvironmentsResourceWithRawResponse:
         return EnvironmentsResourceWithRawResponse(self._zones.environments)
 
@@ -870,6 +930,18 @@ class AsyncZonesResourceWithRawResponse:
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
         return AsyncSettingsResourceWithRawResponse(self._zones.settings)
+
+    @cached_property
+    def transformations_allowed_origins(self) -> AsyncTransformationsAllowedOriginsResourceWithRawResponse:
+        return AsyncTransformationsAllowedOriginsResourceWithRawResponse(self._zones.transformations_allowed_origins)
+
+    @cached_property
+    def transformations_c2pa(self) -> AsyncTransformationsC2paResourceWithRawResponse:
+        return AsyncTransformationsC2paResourceWithRawResponse(self._zones.transformations_c2pa)
+
+    @cached_property
+    def nel(self) -> AsyncNELResourceWithRawResponse:
+        return AsyncNELResourceWithRawResponse(self._zones.nel)
 
     @cached_property
     def environments(self) -> AsyncEnvironmentsResourceWithRawResponse:
@@ -929,6 +1001,18 @@ class ZonesResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._zones.settings)
 
     @cached_property
+    def transformations_allowed_origins(self) -> TransformationsAllowedOriginsResourceWithStreamingResponse:
+        return TransformationsAllowedOriginsResourceWithStreamingResponse(self._zones.transformations_allowed_origins)
+
+    @cached_property
+    def transformations_c2pa(self) -> TransformationsC2paResourceWithStreamingResponse:
+        return TransformationsC2paResourceWithStreamingResponse(self._zones.transformations_c2pa)
+
+    @cached_property
+    def nel(self) -> NELResourceWithStreamingResponse:
+        return NELResourceWithStreamingResponse(self._zones.nel)
+
+    @cached_property
     def environments(self) -> EnvironmentsResourceWithStreamingResponse:
         return EnvironmentsResourceWithStreamingResponse(self._zones.environments)
 
@@ -984,6 +1068,20 @@ class AsyncZonesResourceWithStreamingResponse:
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
         return AsyncSettingsResourceWithStreamingResponse(self._zones.settings)
+
+    @cached_property
+    def transformations_allowed_origins(self) -> AsyncTransformationsAllowedOriginsResourceWithStreamingResponse:
+        return AsyncTransformationsAllowedOriginsResourceWithStreamingResponse(
+            self._zones.transformations_allowed_origins
+        )
+
+    @cached_property
+    def transformations_c2pa(self) -> AsyncTransformationsC2paResourceWithStreamingResponse:
+        return AsyncTransformationsC2paResourceWithStreamingResponse(self._zones.transformations_c2pa)
+
+    @cached_property
+    def nel(self) -> AsyncNELResourceWithStreamingResponse:
+        return AsyncNELResourceWithStreamingResponse(self._zones.nel)
 
     @cached_property
     def environments(self) -> AsyncEnvironmentsResourceWithStreamingResponse:

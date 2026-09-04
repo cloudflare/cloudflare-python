@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -76,30 +76,28 @@ class TagsResource(SyncAPIResource):
         *,
         account_id: str,
         value: str,
-        active_duration: str | Omit = omit,
-        actor_category: str | Omit = omit,
-        actor_category_confidence: int | Omit = omit,
+        active_duration: tag_create_params.ActiveDuration | Omit = omit,
+        actor_category: tag_create_params.ActorCategory | Omit = omit,
         aliases: Iterable[tag_create_params.Alias] | Omit = omit,
         alias_group_names: SequenceNotStr[str] | Omit = omit,
         alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
-        analytic_priority: float | Omit = omit,
-        attribution_confidence: str | Omit = omit,
-        attribution_confidence_score: int | Omit = omit,
-        attribution_organization: str | Omit = omit,
+        attribution_organization: tag_create_params.AttributionOrganization | Omit = omit,
         category_uuid: str | Omit = omit,
+        confidence: int | Omit = omit,
         date_of_discovery: str | Omit = omit,
+        description: str | Omit = omit,
         external_reference_links: SequenceNotStr[str] | Omit = omit,
         external_references: Iterable[tag_create_params.ExternalReference] | Omit = omit,
         internal_aliases: Iterable[tag_create_params.InternalAlias] | Omit = omit,
         internal_description: str | Omit = omit,
-        motive: str | Omit = omit,
-        motive_confidence: int | Omit = omit,
-        opsec_level: str | Omit = omit,
-        origin_country_confidence: int | Omit = omit,
-        origin_country_iso: str | Omit = omit,
-        origin_country_tlp: Literal["red", "amber", "green", "white"] | Omit = omit,
-        priority: float | Omit = omit,
-        sophistication_level: str | Omit = omit,
+        last_seen: str | Omit = omit,
+        motive: tag_create_params.Motive | Omit = omit,
+        opsec_level: tag_create_params.OpsecLevel | Omit = omit,
+        origin_country_iso: tag_create_params.OriginCountryISO | Omit = omit,
+        priority: tag_create_params.Priority | Omit = omit,
+        properties: Dict[str, object] | Omit = omit,
+        sophistication_level: tag_create_params.SophisticationLevel | Omit = omit,
+        tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -113,17 +111,17 @@ class TagsResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
-          actor_category: Actor variety. Allowed values: Activist, Competitor, Customer, Crime Syndicate,
-              Former Employee, Nation State, Organized Crime, Nation State Affiliated,
-              Terrorist, Unaffiliated.
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). Public: returned to all
+              accounts with per-entry TLP filtering (entries with tlp: purple are removed for
+              non-CFONE accounts).
 
-          actor_category_confidence: Confidence (1-10) in the actor variety (actorCategory). CFONE-only: stripped
-              from responses to non-CFONE accounts.
+          category_uuid: Tag type (category) UUID. Optional — when present, `properties` is validated
+              against this category's schema. When absent, the tag is typeless and properties
+              are accepted free-form.
 
-          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          confidence: Overall tag confidence (1-10). Optional.
 
-          date_of_discovery: Date the actor was discovered (ISO YYYY-MM-DD).
+          date_of_discovery: Date of discovery (ISO YYYY-MM-DD). Optional.
 
           external_references: Structured external references ({ url, description }). Public: returned to all
               accounts.
@@ -131,17 +129,12 @@ class TagsResource(SyncAPIResource):
           internal_aliases: Internal structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: never
               returned to non-CFONE accounts.
 
-          motive: Actor motive. Allowed values: Convenience, Fear, Fun, Financial, Grudge,
-              Ideology, Espionage.
+          properties: Structured metadata blob. Optional. When `categoryUuid` is given, validated
+              against this category's schema on write. When typeless, accepted free-form. Use
+              `{}` for a tag with no custom data.
 
-          motive_confidence: Confidence (1-10) in the actor motive. CFONE-only: stripped from responses to
-              non-CFONE accounts.
-
-          origin_country_confidence: Confidence (1-10) in the origin-country attribution. CFONE-only: stripped from
-              responses to non-CFONE accounts.
-
-          origin_country_tlp: TLP marking for the origin-country attribution. CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          tlp: Tag-level TLP handling marking. Optional. Allowed values: red, amber,
+              amber-strict, green, clear, purple, amber+strict.
 
           extra_headers: Send extra headers
 
@@ -160,28 +153,26 @@ class TagsResource(SyncAPIResource):
                     "value": value,
                     "active_duration": active_duration,
                     "actor_category": actor_category,
-                    "actor_category_confidence": actor_category_confidence,
                     "aliases": aliases,
                     "alias_group_names": alias_group_names,
                     "alias_group_names_internal": alias_group_names_internal,
-                    "analytic_priority": analytic_priority,
-                    "attribution_confidence": attribution_confidence,
-                    "attribution_confidence_score": attribution_confidence_score,
                     "attribution_organization": attribution_organization,
                     "category_uuid": category_uuid,
+                    "confidence": confidence,
                     "date_of_discovery": date_of_discovery,
+                    "description": description,
                     "external_reference_links": external_reference_links,
                     "external_references": external_references,
                     "internal_aliases": internal_aliases,
                     "internal_description": internal_description,
+                    "last_seen": last_seen,
                     "motive": motive,
-                    "motive_confidence": motive_confidence,
                     "opsec_level": opsec_level,
-                    "origin_country_confidence": origin_country_confidence,
                     "origin_country_iso": origin_country_iso,
-                    "origin_country_tlp": origin_country_tlp,
                     "priority": priority,
+                    "properties": properties,
                     "sophistication_level": sophistication_level,
+                    "tlp": tlp,
                 },
                 tag_create_params.TagCreateParams,
             ),
@@ -223,12 +214,12 @@ class TagsResource(SyncAPIResource):
               all requested UUIDs are cached; falls back to normal path on partial/zero hit.
 
           filters: Structured filters as a JSON array of {field, op, value} objects. Searchable
-              fields: uuid, value, actorCategory, actorCategoryConfidence, aliasGroupNames,
-              attributionConfidence, attributionConfidenceScore, attributionOrganization,
-              categoryName, motive, motiveConfidence, opsecLevel, originCountryISO,
-              originCountryConfidence, sophisticationLevel, priority, analyticPriority.
-              Operators: equals, not, contains, startsWith, endsWith, gt, lt, gte, lte, like,
-              in, find. Use 'in' for bulk OR within a single field, e.g.
+              fields: uuid, value, categoryName, description, dateOfDiscovery, tlp,
+              confidence, actorCategory, motive, attributionOrganization, originCountryISO,
+              aliases, externalReferences, opsecLevel, sophisticationLevel, activeDuration,
+              priority, lastSeen, aliasGroupNames. Operators: equals, not, contains,
+              startsWith, endsWith, gt, lt, gte, lte, like, in, find. Use 'in' for bulk OR
+              within a single field, e.g.
               filters=[{"field":"originCountryISO","op":"in","value":["IR","CN"]}]. Multiple
               entries are AND-joined. Max 10 entries per request, max 100 values per 'in'.
               Per-field notes: `uuid` accepts only 'equals' and 'in' (other operators throw
@@ -243,7 +234,11 @@ class TagsResource(SyncAPIResource):
               on the JSON-encoded text, so substrings can cross alias boundaries (a search for
               "apt28" will also match "apt280" if both appear in the same tag's alias list).
 
-          search: Legacy free-text substring match on tag value.
+          search: Free-text substring match on tag value AND custom-field properties. Searches
+              case-insensitively inside both `Tag.value` and the serialized `Tag.properties`
+              JSON blob (keys, values, and annotation metadata like confidence/tlp are all
+              searchable). Same serialized-text tradeoff as `aliasGroupNames` — substrings can
+              cross JSON boundaries.
 
           extra_headers: Send extra headers
 
@@ -324,30 +319,28 @@ class TagsResource(SyncAPIResource):
         tag_uuid: str,
         *,
         account_id: str,
-        active_duration: str | Omit = omit,
-        actor_category: str | Omit = omit,
-        actor_category_confidence: int | Omit = omit,
+        active_duration: tag_edit_params.ActiveDuration | Omit = omit,
+        actor_category: tag_edit_params.ActorCategory | Omit = omit,
         aliases: Iterable[tag_edit_params.Alias] | Omit = omit,
         alias_group_names: SequenceNotStr[str] | Omit = omit,
         alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
-        analytic_priority: float | Omit = omit,
-        attribution_confidence: str | Omit = omit,
-        attribution_confidence_score: int | Omit = omit,
-        attribution_organization: str | Omit = omit,
+        attribution_organization: tag_edit_params.AttributionOrganization | Omit = omit,
         category_uuid: str | Omit = omit,
+        confidence: int | Omit = omit,
         date_of_discovery: str | Omit = omit,
+        description: str | Omit = omit,
         external_reference_links: SequenceNotStr[str] | Omit = omit,
         external_references: Iterable[tag_edit_params.ExternalReference] | Omit = omit,
         internal_aliases: Iterable[tag_edit_params.InternalAlias] | Omit = omit,
         internal_description: str | Omit = omit,
-        motive: str | Omit = omit,
-        motive_confidence: int | Omit = omit,
-        opsec_level: str | Omit = omit,
-        origin_country_confidence: int | Omit = omit,
-        origin_country_iso: str | Omit = omit,
-        origin_country_tlp: Literal["red", "amber", "green", "white"] | Omit = omit,
-        priority: float | Omit = omit,
-        sophistication_level: str | Omit = omit,
+        last_seen: str | Omit = omit,
+        motive: tag_edit_params.Motive | Omit = omit,
+        opsec_level: tag_edit_params.OpsecLevel | Omit = omit,
+        origin_country_iso: tag_edit_params.OriginCountryISO | Omit = omit,
+        priority: tag_edit_params.Priority | Omit = omit,
+        properties: Dict[str, object] | Omit = omit,
+        sophistication_level: tag_edit_params.SophisticationLevel | Omit = omit,
+        tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"] | Omit = omit,
         value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -364,17 +357,17 @@ class TagsResource(SyncAPIResource):
 
           tag_uuid: Tag UUID.
 
-          actor_category: Actor variety. Allowed values: Activist, Competitor, Customer, Crime Syndicate,
-              Former Employee, Nation State, Organized Crime, Nation State Affiliated,
-              Terrorist, Unaffiliated.
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). Public: returned to all
+              accounts with per-entry TLP filtering (entries with tlp: purple are removed for
+              non-CFONE accounts).
 
-          actor_category_confidence: Confidence (1-10) in the actor variety (actorCategory). CFONE-only: stripped
-              from responses to non-CFONE accounts.
+          category_uuid: Tag type (category) UUID. When changed, existing `properties` are re-validated
+              against the new category's schema (400 on mismatch). Set to null to unlink
+              (typeless; properties stop being validated).
 
-          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          confidence: Overall tag confidence (1-10). Omit to preserve existing.
 
-          date_of_discovery: Date the actor was discovered (ISO YYYY-MM-DD).
+          date_of_discovery: Date of discovery (ISO YYYY-MM-DD). Omit to preserve existing.
 
           external_references: Structured external references ({ url, description }). Public: returned to all
               accounts.
@@ -382,17 +375,13 @@ class TagsResource(SyncAPIResource):
           internal_aliases: Internal structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: never
               returned to non-CFONE accounts.
 
-          motive: Actor motive. Allowed values: Convenience, Fear, Fun, Financial, Grudge,
-              Ideology, Espionage.
+          properties: Custom field values blob. When omitted, the existing value is preserved. When
+              provided, performs a shallow per-key merge over the stored value (unmentioned
+              keys are retained). Setting an individual key to null deletes that key.
+              Validation runs against the merged result, so a partial update may omit a
+              schema-required key if the stored value supplies it.
 
-          motive_confidence: Confidence (1-10) in the actor motive. CFONE-only: stripped from responses to
-              non-CFONE accounts.
-
-          origin_country_confidence: Confidence (1-10) in the origin-country attribution. CFONE-only: stripped from
-              responses to non-CFONE accounts.
-
-          origin_country_tlp: TLP marking for the origin-country attribution. CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          tlp: Tag-level TLP marking. Omit to preserve existing. Cannot be cleared to null.
 
           extra_headers: Send extra headers
 
@@ -414,28 +403,26 @@ class TagsResource(SyncAPIResource):
                 {
                     "active_duration": active_duration,
                     "actor_category": actor_category,
-                    "actor_category_confidence": actor_category_confidence,
                     "aliases": aliases,
                     "alias_group_names": alias_group_names,
                     "alias_group_names_internal": alias_group_names_internal,
-                    "analytic_priority": analytic_priority,
-                    "attribution_confidence": attribution_confidence,
-                    "attribution_confidence_score": attribution_confidence_score,
                     "attribution_organization": attribution_organization,
                     "category_uuid": category_uuid,
+                    "confidence": confidence,
                     "date_of_discovery": date_of_discovery,
+                    "description": description,
                     "external_reference_links": external_reference_links,
                     "external_references": external_references,
                     "internal_aliases": internal_aliases,
                     "internal_description": internal_description,
+                    "last_seen": last_seen,
                     "motive": motive,
-                    "motive_confidence": motive_confidence,
                     "opsec_level": opsec_level,
-                    "origin_country_confidence": origin_country_confidence,
                     "origin_country_iso": origin_country_iso,
-                    "origin_country_tlp": origin_country_tlp,
                     "priority": priority,
+                    "properties": properties,
                     "sophistication_level": sophistication_level,
+                    "tlp": tlp,
                     "value": value,
                 },
                 tag_edit_params.TagEditParams,
@@ -480,30 +467,28 @@ class AsyncTagsResource(AsyncAPIResource):
         *,
         account_id: str,
         value: str,
-        active_duration: str | Omit = omit,
-        actor_category: str | Omit = omit,
-        actor_category_confidence: int | Omit = omit,
+        active_duration: tag_create_params.ActiveDuration | Omit = omit,
+        actor_category: tag_create_params.ActorCategory | Omit = omit,
         aliases: Iterable[tag_create_params.Alias] | Omit = omit,
         alias_group_names: SequenceNotStr[str] | Omit = omit,
         alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
-        analytic_priority: float | Omit = omit,
-        attribution_confidence: str | Omit = omit,
-        attribution_confidence_score: int | Omit = omit,
-        attribution_organization: str | Omit = omit,
+        attribution_organization: tag_create_params.AttributionOrganization | Omit = omit,
         category_uuid: str | Omit = omit,
+        confidence: int | Omit = omit,
         date_of_discovery: str | Omit = omit,
+        description: str | Omit = omit,
         external_reference_links: SequenceNotStr[str] | Omit = omit,
         external_references: Iterable[tag_create_params.ExternalReference] | Omit = omit,
         internal_aliases: Iterable[tag_create_params.InternalAlias] | Omit = omit,
         internal_description: str | Omit = omit,
-        motive: str | Omit = omit,
-        motive_confidence: int | Omit = omit,
-        opsec_level: str | Omit = omit,
-        origin_country_confidence: int | Omit = omit,
-        origin_country_iso: str | Omit = omit,
-        origin_country_tlp: Literal["red", "amber", "green", "white"] | Omit = omit,
-        priority: float | Omit = omit,
-        sophistication_level: str | Omit = omit,
+        last_seen: str | Omit = omit,
+        motive: tag_create_params.Motive | Omit = omit,
+        opsec_level: tag_create_params.OpsecLevel | Omit = omit,
+        origin_country_iso: tag_create_params.OriginCountryISO | Omit = omit,
+        priority: tag_create_params.Priority | Omit = omit,
+        properties: Dict[str, object] | Omit = omit,
+        sophistication_level: tag_create_params.SophisticationLevel | Omit = omit,
+        tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -517,17 +502,17 @@ class AsyncTagsResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
-          actor_category: Actor variety. Allowed values: Activist, Competitor, Customer, Crime Syndicate,
-              Former Employee, Nation State, Organized Crime, Nation State Affiliated,
-              Terrorist, Unaffiliated.
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). Public: returned to all
+              accounts with per-entry TLP filtering (entries with tlp: purple are removed for
+              non-CFONE accounts).
 
-          actor_category_confidence: Confidence (1-10) in the actor variety (actorCategory). CFONE-only: stripped
-              from responses to non-CFONE accounts.
+          category_uuid: Tag type (category) UUID. Optional — when present, `properties` is validated
+              against this category's schema. When absent, the tag is typeless and properties
+              are accepted free-form.
 
-          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          confidence: Overall tag confidence (1-10). Optional.
 
-          date_of_discovery: Date the actor was discovered (ISO YYYY-MM-DD).
+          date_of_discovery: Date of discovery (ISO YYYY-MM-DD). Optional.
 
           external_references: Structured external references ({ url, description }). Public: returned to all
               accounts.
@@ -535,17 +520,12 @@ class AsyncTagsResource(AsyncAPIResource):
           internal_aliases: Internal structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: never
               returned to non-CFONE accounts.
 
-          motive: Actor motive. Allowed values: Convenience, Fear, Fun, Financial, Grudge,
-              Ideology, Espionage.
+          properties: Structured metadata blob. Optional. When `categoryUuid` is given, validated
+              against this category's schema on write. When typeless, accepted free-form. Use
+              `{}` for a tag with no custom data.
 
-          motive_confidence: Confidence (1-10) in the actor motive. CFONE-only: stripped from responses to
-              non-CFONE accounts.
-
-          origin_country_confidence: Confidence (1-10) in the origin-country attribution. CFONE-only: stripped from
-              responses to non-CFONE accounts.
-
-          origin_country_tlp: TLP marking for the origin-country attribution. CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          tlp: Tag-level TLP handling marking. Optional. Allowed values: red, amber,
+              amber-strict, green, clear, purple, amber+strict.
 
           extra_headers: Send extra headers
 
@@ -564,28 +544,26 @@ class AsyncTagsResource(AsyncAPIResource):
                     "value": value,
                     "active_duration": active_duration,
                     "actor_category": actor_category,
-                    "actor_category_confidence": actor_category_confidence,
                     "aliases": aliases,
                     "alias_group_names": alias_group_names,
                     "alias_group_names_internal": alias_group_names_internal,
-                    "analytic_priority": analytic_priority,
-                    "attribution_confidence": attribution_confidence,
-                    "attribution_confidence_score": attribution_confidence_score,
                     "attribution_organization": attribution_organization,
                     "category_uuid": category_uuid,
+                    "confidence": confidence,
                     "date_of_discovery": date_of_discovery,
+                    "description": description,
                     "external_reference_links": external_reference_links,
                     "external_references": external_references,
                     "internal_aliases": internal_aliases,
                     "internal_description": internal_description,
+                    "last_seen": last_seen,
                     "motive": motive,
-                    "motive_confidence": motive_confidence,
                     "opsec_level": opsec_level,
-                    "origin_country_confidence": origin_country_confidence,
                     "origin_country_iso": origin_country_iso,
-                    "origin_country_tlp": origin_country_tlp,
                     "priority": priority,
+                    "properties": properties,
                     "sophistication_level": sophistication_level,
+                    "tlp": tlp,
                 },
                 tag_create_params.TagCreateParams,
             ),
@@ -627,12 +605,12 @@ class AsyncTagsResource(AsyncAPIResource):
               all requested UUIDs are cached; falls back to normal path on partial/zero hit.
 
           filters: Structured filters as a JSON array of {field, op, value} objects. Searchable
-              fields: uuid, value, actorCategory, actorCategoryConfidence, aliasGroupNames,
-              attributionConfidence, attributionConfidenceScore, attributionOrganization,
-              categoryName, motive, motiveConfidence, opsecLevel, originCountryISO,
-              originCountryConfidence, sophisticationLevel, priority, analyticPriority.
-              Operators: equals, not, contains, startsWith, endsWith, gt, lt, gte, lte, like,
-              in, find. Use 'in' for bulk OR within a single field, e.g.
+              fields: uuid, value, categoryName, description, dateOfDiscovery, tlp,
+              confidence, actorCategory, motive, attributionOrganization, originCountryISO,
+              aliases, externalReferences, opsecLevel, sophisticationLevel, activeDuration,
+              priority, lastSeen, aliasGroupNames. Operators: equals, not, contains,
+              startsWith, endsWith, gt, lt, gte, lte, like, in, find. Use 'in' for bulk OR
+              within a single field, e.g.
               filters=[{"field":"originCountryISO","op":"in","value":["IR","CN"]}]. Multiple
               entries are AND-joined. Max 10 entries per request, max 100 values per 'in'.
               Per-field notes: `uuid` accepts only 'equals' and 'in' (other operators throw
@@ -647,7 +625,11 @@ class AsyncTagsResource(AsyncAPIResource):
               on the JSON-encoded text, so substrings can cross alias boundaries (a search for
               "apt28" will also match "apt280" if both appear in the same tag's alias list).
 
-          search: Legacy free-text substring match on tag value.
+          search: Free-text substring match on tag value AND custom-field properties. Searches
+              case-insensitively inside both `Tag.value` and the serialized `Tag.properties`
+              JSON blob (keys, values, and annotation metadata like confidence/tlp are all
+              searchable). Same serialized-text tradeoff as `aliasGroupNames` — substrings can
+              cross JSON boundaries.
 
           extra_headers: Send extra headers
 
@@ -728,30 +710,28 @@ class AsyncTagsResource(AsyncAPIResource):
         tag_uuid: str,
         *,
         account_id: str,
-        active_duration: str | Omit = omit,
-        actor_category: str | Omit = omit,
-        actor_category_confidence: int | Omit = omit,
+        active_duration: tag_edit_params.ActiveDuration | Omit = omit,
+        actor_category: tag_edit_params.ActorCategory | Omit = omit,
         aliases: Iterable[tag_edit_params.Alias] | Omit = omit,
         alias_group_names: SequenceNotStr[str] | Omit = omit,
         alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
-        analytic_priority: float | Omit = omit,
-        attribution_confidence: str | Omit = omit,
-        attribution_confidence_score: int | Omit = omit,
-        attribution_organization: str | Omit = omit,
+        attribution_organization: tag_edit_params.AttributionOrganization | Omit = omit,
         category_uuid: str | Omit = omit,
+        confidence: int | Omit = omit,
         date_of_discovery: str | Omit = omit,
+        description: str | Omit = omit,
         external_reference_links: SequenceNotStr[str] | Omit = omit,
         external_references: Iterable[tag_edit_params.ExternalReference] | Omit = omit,
         internal_aliases: Iterable[tag_edit_params.InternalAlias] | Omit = omit,
         internal_description: str | Omit = omit,
-        motive: str | Omit = omit,
-        motive_confidence: int | Omit = omit,
-        opsec_level: str | Omit = omit,
-        origin_country_confidence: int | Omit = omit,
-        origin_country_iso: str | Omit = omit,
-        origin_country_tlp: Literal["red", "amber", "green", "white"] | Omit = omit,
-        priority: float | Omit = omit,
-        sophistication_level: str | Omit = omit,
+        last_seen: str | Omit = omit,
+        motive: tag_edit_params.Motive | Omit = omit,
+        opsec_level: tag_edit_params.OpsecLevel | Omit = omit,
+        origin_country_iso: tag_edit_params.OriginCountryISO | Omit = omit,
+        priority: tag_edit_params.Priority | Omit = omit,
+        properties: Dict[str, object] | Omit = omit,
+        sophistication_level: tag_edit_params.SophisticationLevel | Omit = omit,
+        tlp: Literal["red", "amber", "amber-strict", "green", "clear", "purple", "amber+strict"] | Omit = omit,
         value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -768,17 +748,17 @@ class AsyncTagsResource(AsyncAPIResource):
 
           tag_uuid: Tag UUID.
 
-          actor_category: Actor variety. Allowed values: Activist, Competitor, Customer, Crime Syndicate,
-              Former Employee, Nation State, Organized Crime, Nation State Affiliated,
-              Terrorist, Unaffiliated.
+          aliases: Structured aliases ({ value, confidence 1-10, tlp }). Public: returned to all
+              accounts with per-entry TLP filtering (entries with tlp: purple are removed for
+              non-CFONE accounts).
 
-          actor_category_confidence: Confidence (1-10) in the actor variety (actorCategory). CFONE-only: stripped
-              from responses to non-CFONE accounts.
+          category_uuid: Tag type (category) UUID. When changed, existing `properties` are re-validated
+              against the new category's schema (400 on mismatch). Set to null to unlink
+              (typeless; properties stop being validated).
 
-          aliases: Structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          confidence: Overall tag confidence (1-10). Omit to preserve existing.
 
-          date_of_discovery: Date the actor was discovered (ISO YYYY-MM-DD).
+          date_of_discovery: Date of discovery (ISO YYYY-MM-DD). Omit to preserve existing.
 
           external_references: Structured external references ({ url, description }). Public: returned to all
               accounts.
@@ -786,17 +766,13 @@ class AsyncTagsResource(AsyncAPIResource):
           internal_aliases: Internal structured aliases ({ value, confidence 1-10, tlp }). CFONE-only: never
               returned to non-CFONE accounts.
 
-          motive: Actor motive. Allowed values: Convenience, Fear, Fun, Financial, Grudge,
-              Ideology, Espionage.
+          properties: Custom field values blob. When omitted, the existing value is preserved. When
+              provided, performs a shallow per-key merge over the stored value (unmentioned
+              keys are retained). Setting an individual key to null deletes that key.
+              Validation runs against the merged result, so a partial update may omit a
+              schema-required key if the stored value supplies it.
 
-          motive_confidence: Confidence (1-10) in the actor motive. CFONE-only: stripped from responses to
-              non-CFONE accounts.
-
-          origin_country_confidence: Confidence (1-10) in the origin-country attribution. CFONE-only: stripped from
-              responses to non-CFONE accounts.
-
-          origin_country_tlp: TLP marking for the origin-country attribution. CFONE-only: stripped from
-              responses to non-CFONE accounts.
+          tlp: Tag-level TLP marking. Omit to preserve existing. Cannot be cleared to null.
 
           extra_headers: Send extra headers
 
@@ -818,28 +794,26 @@ class AsyncTagsResource(AsyncAPIResource):
                 {
                     "active_duration": active_duration,
                     "actor_category": actor_category,
-                    "actor_category_confidence": actor_category_confidence,
                     "aliases": aliases,
                     "alias_group_names": alias_group_names,
                     "alias_group_names_internal": alias_group_names_internal,
-                    "analytic_priority": analytic_priority,
-                    "attribution_confidence": attribution_confidence,
-                    "attribution_confidence_score": attribution_confidence_score,
                     "attribution_organization": attribution_organization,
                     "category_uuid": category_uuid,
+                    "confidence": confidence,
                     "date_of_discovery": date_of_discovery,
+                    "description": description,
                     "external_reference_links": external_reference_links,
                     "external_references": external_references,
                     "internal_aliases": internal_aliases,
                     "internal_description": internal_description,
+                    "last_seen": last_seen,
                     "motive": motive,
-                    "motive_confidence": motive_confidence,
                     "opsec_level": opsec_level,
-                    "origin_country_confidence": origin_country_confidence,
                     "origin_country_iso": origin_country_iso,
-                    "origin_country_tlp": origin_country_tlp,
                     "priority": priority,
+                    "properties": properties,
                     "sophistication_level": sophistication_level,
+                    "tlp": tlp,
                     "value": value,
                 },
                 tag_edit_params.TagEditParams,

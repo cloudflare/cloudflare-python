@@ -58,8 +58,6 @@ class QuotaResource(SyncAPIResource):
         Lists the number of secrets used in the account.
 
         Args:
-          account_id: Account Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -118,8 +116,6 @@ class AsyncQuotaResource(AsyncAPIResource):
         Lists the number of secrets used in the account.
 
         Args:
-          account_id: Account Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

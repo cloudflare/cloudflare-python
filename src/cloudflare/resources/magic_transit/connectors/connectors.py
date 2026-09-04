@@ -120,8 +120,6 @@ class ConnectorsResource(SyncAPIResource):
         Creates a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           device: Exactly one of id, serial_number, or provision_license must be provided.
 
           interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
@@ -196,8 +194,6 @@ class ConnectorsResource(SyncAPIResource):
         license key.
 
         Args:
-          account_id: Account identifier
-
           interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
 
           interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
@@ -263,8 +259,6 @@ class ConnectorsResource(SyncAPIResource):
         Lists Magic WAN Connectors.
 
         Args:
-          account_id: Account identifier
-
           device_type: Filter connectors by device type.
 
           extra_headers: Send extra headers
@@ -306,8 +300,6 @@ class ConnectorsResource(SyncAPIResource):
         Deletes a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -367,8 +359,6 @@ class ConnectorsResource(SyncAPIResource):
         key.
 
         Args:
-          account_id: Account identifier
-
           interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
 
           interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
@@ -434,8 +424,6 @@ class ConnectorsResource(SyncAPIResource):
         Gets a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -525,8 +513,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Creates a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           device: Exactly one of id, serial_number, or provision_license must be provided.
 
           interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
@@ -601,8 +587,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         license key.
 
         Args:
-          account_id: Account identifier
-
           interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
 
           interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
@@ -668,8 +652,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Lists Magic WAN Connectors.
 
         Args:
-          account_id: Account identifier
-
           device_type: Filter connectors by device type.
 
           extra_headers: Send extra headers
@@ -711,8 +693,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Deletes a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -772,8 +752,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         key.
 
         Args:
-          account_id: Account identifier
-
           interrupt_window_days_of_week: Allowed days of the week for upgrades. Default is all days.
 
           interrupt_window_embargo_dates: List of dates (YYYY-MM-DD) when upgrades are blocked.
@@ -839,8 +817,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Gets a Magic WAN Connector.
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

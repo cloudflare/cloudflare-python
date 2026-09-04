@@ -39,6 +39,24 @@ class TestNamespaces:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="name",
             description="Production environment",
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
+                "custom_domains": ["search.example.com"],
+                "default_domain_enabled": True,
+                "enabled": True,
+                "instances_allowed": ["docs", "blog"],
+                "mcp": {
+                    "description": "description",
+                    "disabled": True,
+                },
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+                "search_endpoint": {"disabled": True},
+            },
         )
         assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
 
@@ -90,6 +108,24 @@ class TestNamespaces:
             name="production",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             description="Production environment",
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
+                "custom_domains": ["search.example.com"],
+                "default_domain_enabled": True,
+                "enabled": True,
+                "instances_allowed": ["docs", "blog"],
+                "mcp": {
+                    "description": "description",
+                    "disabled": True,
+                },
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+                "search_endpoint": {"disabled": True},
+            },
         )
         assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
 
@@ -257,13 +293,13 @@ class TestNamespaces:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [
@@ -288,7 +324,7 @@ class TestNamespaces:
                     "role": "system",
                 }
             ],
-            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            model="model",
             stream=True,
         )
         assert_matches_type(NamespaceChatCompletionsResponse, namespace, path=["response"])
@@ -431,13 +467,13 @@ class TestNamespaces:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [
@@ -530,6 +566,24 @@ class TestAsyncNamespaces:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             name="name",
             description="Production environment",
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
+                "custom_domains": ["search.example.com"],
+                "default_domain_enabled": True,
+                "enabled": True,
+                "instances_allowed": ["docs", "blog"],
+                "mcp": {
+                    "description": "description",
+                    "disabled": True,
+                },
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+                "search_endpoint": {"disabled": True},
+            },
         )
         assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
 
@@ -581,6 +635,24 @@ class TestAsyncNamespaces:
             name="production",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             description="Production environment",
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
+                "custom_domains": ["search.example.com"],
+                "default_domain_enabled": True,
+                "enabled": True,
+                "instances_allowed": ["docs", "blog"],
+                "mcp": {
+                    "description": "description",
+                    "disabled": True,
+                },
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+                "search_endpoint": {"disabled": True},
+            },
         )
         assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
 
@@ -748,13 +820,13 @@ class TestAsyncNamespaces:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [
@@ -779,7 +851,7 @@ class TestAsyncNamespaces:
                     "role": "system",
                 }
             ],
-            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            model="model",
             stream=True,
         )
         assert_matches_type(NamespaceChatCompletionsResponse, namespace, path=["response"])
@@ -922,13 +994,13 @@ class TestAsyncNamespaces:
                 },
                 "query_rewrite": {
                     "enabled": True,
-                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "model": "model",
                     "rewrite_prompt": "rewrite_prompt",
                 },
                 "reranking": {
                     "enabled": True,
                     "match_threshold": 0,
-                    "model": "@cf/baai/bge-reranker-base",
+                    "model": "model",
                 },
                 "retrieval": {
                     "boost_by": [

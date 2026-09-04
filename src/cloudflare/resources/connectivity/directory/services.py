@@ -68,7 +68,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceCreateResponse]:
         """
-        Create Workers VPC connectivity service
+        Creates a new Workers VPC connectivity service in the account.
 
         Args:
           account_id: Account identifier
@@ -106,7 +106,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceCreateResponse]:
         """
-        Create Workers VPC connectivity service
+        Creates a new Workers VPC connectivity service in the account.
 
         Args:
           account_id: Account identifier
@@ -199,7 +199,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceUpdateResponse]:
         """
-        Update Workers VPC connectivity service
+        Updates an existing Workers VPC connectivity service by its ID.
 
         Args:
           tls_settings: TLS settings for a connectivity service.
@@ -236,7 +236,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceUpdateResponse]:
         """
-        Update Workers VPC connectivity service
+        Updates an existing Workers VPC connectivity service by its ID.
 
         Args:
           tls_settings: TLS settings for a connectivity service.
@@ -329,7 +329,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ServiceListResponse]:
         """
-        List Workers VPC connectivity services
+        Lists the Workers VPC connectivity services in the account.
 
         Args:
           account_id: Account identifier
@@ -381,7 +381,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete Workers VPC connectivity service
+        Removes a single Workers VPC connectivity service by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -422,7 +422,7 @@ class ServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceGetResponse]:
         """
-        Get Workers VPC connectivity service
+        Fetches a single Workers VPC connectivity service by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -498,7 +498,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceCreateResponse]:
         """
-        Create Workers VPC connectivity service
+        Creates a new Workers VPC connectivity service in the account.
 
         Args:
           account_id: Account identifier
@@ -536,7 +536,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceCreateResponse]:
         """
-        Create Workers VPC connectivity service
+        Creates a new Workers VPC connectivity service in the account.
 
         Args:
           account_id: Account identifier
@@ -629,7 +629,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceUpdateResponse]:
         """
-        Update Workers VPC connectivity service
+        Updates an existing Workers VPC connectivity service by its ID.
 
         Args:
           tls_settings: TLS settings for a connectivity service.
@@ -666,7 +666,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceUpdateResponse]:
         """
-        Update Workers VPC connectivity service
+        Updates an existing Workers VPC connectivity service by its ID.
 
         Args:
           tls_settings: TLS settings for a connectivity service.
@@ -759,7 +759,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ServiceListResponse, AsyncV4PagePaginationArray[ServiceListResponse]]:
         """
-        List Workers VPC connectivity services
+        Lists the Workers VPC connectivity services in the account.
 
         Args:
           account_id: Account identifier
@@ -811,7 +811,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete Workers VPC connectivity service
+        Removes a single Workers VPC connectivity service by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -852,7 +852,7 @@ class AsyncServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ServiceGetResponse]:
         """
-        Get Workers VPC connectivity service
+        Fetches a single Workers VPC connectivity service by its ID.
 
         Args:
           extra_headers: Send extra headers

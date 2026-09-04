@@ -19,7 +19,6 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.magic_transit import cf_interconnect_update_params, cf_interconnect_bulk_update_params
-from ...types.magic_transit.health_check_param import HealthCheckParam
 from ...types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
 from ...types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
 from ...types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
@@ -54,9 +53,10 @@ class CfInterconnectsResource(SyncAPIResource):
         *,
         account_id: str,
         automatic_return_routing: bool | Omit = omit,
+        bgp: cf_interconnect_update_params.BGP | Omit = omit,
         description: str | Omit = omit,
         gre: cf_interconnect_update_params.GRE | Omit = omit,
-        health_check: HealthCheckParam | Omit = omit,
+        health_check: cf_interconnect_update_params.HealthCheck | Omit = omit,
         interface_address: str | Omit = omit,
         interface_address6: str | Omit = omit,
         mtu: int | Omit = omit,
@@ -86,11 +86,13 @@ class CfInterconnectsResource(SyncAPIResource):
 
           description: An optional description of the interconnect.
 
-          gre: The configuration specific to GRE interconnects.
+          gre: Not configurable for version 1.5 interconnects; supplying it returns an error.
 
-          interface_address: A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
-              of the tunnel. Select the subnet from the following private IP space:
-              10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+          interface_address: The IPv4 interface address for the interconnect. For MPLS Interconnects, use a
+              /30 or /31 prefix. For GRE Interconnects, a /30 or /31 prefix may be used.
+              Version 1.5 interconnects require a /31 prefix and may also use a prefix from
+              the account's authorized prefixes; otherwise, select the subnet from RFC 1918 or
+              the approved link-local ranges.
 
           interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
               address being the first IP of the subnet and not same as the address of
@@ -133,6 +135,7 @@ class CfInterconnectsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "automatic_return_routing": automatic_return_routing,
+                    "bgp": bgp,
                     "description": description,
                     "gre": gre,
                     "health_check": health_check,
@@ -344,9 +347,10 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         *,
         account_id: str,
         automatic_return_routing: bool | Omit = omit,
+        bgp: cf_interconnect_update_params.BGP | Omit = omit,
         description: str | Omit = omit,
         gre: cf_interconnect_update_params.GRE | Omit = omit,
-        health_check: HealthCheckParam | Omit = omit,
+        health_check: cf_interconnect_update_params.HealthCheck | Omit = omit,
         interface_address: str | Omit = omit,
         interface_address6: str | Omit = omit,
         mtu: int | Omit = omit,
@@ -376,11 +380,13 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
 
           description: An optional description of the interconnect.
 
-          gre: The configuration specific to GRE interconnects.
+          gre: Not configurable for version 1.5 interconnects; supplying it returns an error.
 
-          interface_address: A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
-              of the tunnel. Select the subnet from the following private IP space:
-              10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+          interface_address: The IPv4 interface address for the interconnect. For MPLS Interconnects, use a
+              /30 or /31 prefix. For GRE Interconnects, a /30 or /31 prefix may be used.
+              Version 1.5 interconnects require a /31 prefix and may also use a prefix from
+              the account's authorized prefixes; otherwise, select the subnet from RFC 1918 or
+              the approved link-local ranges.
 
           interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
               address being the first IP of the subnet and not same as the address of
@@ -423,6 +429,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "automatic_return_routing": automatic_return_routing,
+                    "bgp": bgp,
                     "description": description,
                     "gre": gre,
                     "health_check": health_check,

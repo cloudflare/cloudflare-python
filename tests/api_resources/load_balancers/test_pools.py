@@ -143,6 +143,7 @@ class TestPools:
             check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
+            health_sources=["regional", "global"],
             latitude=0,
             load_shedding={
                 "default_percent": 0,
@@ -378,6 +379,7 @@ class TestPools:
             check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
+            health_sources=["regional", "global"],
             latitude=0,
             load_shedding={
                 "default_percent": 0,
@@ -633,6 +635,7 @@ class TestAsyncPools:
             check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
+            health_sources=["regional", "global"],
             latitude=0,
             load_shedding={
                 "default_percent": 0,
@@ -868,6 +871,7 @@ class TestAsyncPools:
             check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
+            health_sources=["regional", "global"],
             latitude=0,
             load_shedding={
                 "default_percent": 0,

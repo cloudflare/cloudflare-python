@@ -47,6 +47,7 @@ class TestWorkers:
                     "invocation_logs": True,
                     "persist": True,
                 },
+                "redact_query_string": True,
                 "traces": {
                     "destinations": ["string"],
                     "enabled": True,
@@ -129,6 +130,7 @@ class TestWorkers:
                     "invocation_logs": True,
                     "persist": True,
                 },
+                "redact_query_string": True,
                 "traces": {
                     "destinations": ["string"],
                     "enabled": True,
@@ -321,6 +323,7 @@ class TestWorkers:
                     "invocation_logs": True,
                     "persist": True,
                 },
+                "redact_query_string": True,
                 "traces": {
                     "destinations": ["string"],
                     "enabled": True,
@@ -482,6 +485,7 @@ class TestAsyncWorkers:
                     "invocation_logs": True,
                     "persist": True,
                 },
+                "redact_query_string": True,
                 "traces": {
                     "destinations": ["string"],
                     "enabled": True,
@@ -564,6 +568,7 @@ class TestAsyncWorkers:
                     "invocation_logs": True,
                     "persist": True,
                 },
+                "redact_query_string": True,
                 "traces": {
                     "destinations": ["string"],
                     "enabled": True,
@@ -756,6 +761,7 @@ class TestAsyncWorkers:
                     "invocation_logs": True,
                     "persist": True,
                 },
+                "redact_query_string": True,
                 "traces": {
                     "destinations": ["string"],
                     "enabled": True,

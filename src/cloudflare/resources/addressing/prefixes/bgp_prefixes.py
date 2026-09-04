@@ -21,6 +21,7 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.addressing.prefixes import bgp_prefix_edit_params, bgp_prefix_create_params
 from ....types.addressing.prefixes.bgp_prefix import BGPPrefix
+from ....types.addressing.prefixes.bgp_prefix_delete_response import BGPPrefixDeleteResponse
 
 __all__ = ["BGPPrefixesResource", "AsyncBGPPrefixesResource"]
 
@@ -146,6 +147,58 @@ class BGPPrefixesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             model=BGPPrefix,
+        )
+
+    def delete(
+        self,
+        bgp_prefix_id: str,
+        *,
+        account_id: str,
+        prefix_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BGPPrefixDeleteResponse:
+        """Delete a BGP Prefix associated with the specified IP Prefix.
+
+        A BGP Prefix must
+        be withdrawn before it can be deleted.
+
+        Args:
+          account_id: Identifier of a Cloudflare account.
+
+          prefix_id: Identifier of an IP Prefix.
+
+          bgp_prefix_id: Identifier of BGP Prefix.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not prefix_id:
+            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
+        if not bgp_prefix_id:
+            raise ValueError(f"Expected a non-empty value for `bgp_prefix_id` but received {bgp_prefix_id!r}")
+        return self._delete(
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}",
+                account_id=account_id,
+                prefix_id=prefix_id,
+                bgp_prefix_id=bgp_prefix_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BGPPrefixDeleteResponse,
         )
 
     def edit(
@@ -399,6 +452,58 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
             model=BGPPrefix,
         )
 
+    async def delete(
+        self,
+        bgp_prefix_id: str,
+        *,
+        account_id: str,
+        prefix_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BGPPrefixDeleteResponse:
+        """Delete a BGP Prefix associated with the specified IP Prefix.
+
+        A BGP Prefix must
+        be withdrawn before it can be deleted.
+
+        Args:
+          account_id: Identifier of a Cloudflare account.
+
+          prefix_id: Identifier of an IP Prefix.
+
+          bgp_prefix_id: Identifier of BGP Prefix.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not prefix_id:
+            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
+        if not bgp_prefix_id:
+            raise ValueError(f"Expected a non-empty value for `bgp_prefix_id` but received {bgp_prefix_id!r}")
+        return await self._delete(
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}",
+                account_id=account_id,
+                prefix_id=prefix_id,
+                bgp_prefix_id=bgp_prefix_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BGPPrefixDeleteResponse,
+        )
+
     async def edit(
         self,
         bgp_prefix_id: str,
@@ -537,6 +642,9 @@ class BGPPrefixesResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             bgp_prefixes.list,
         )
+        self.delete = to_raw_response_wrapper(
+            bgp_prefixes.delete,
+        )
         self.edit = to_raw_response_wrapper(
             bgp_prefixes.edit,
         )
@@ -554,6 +662,9 @@ class AsyncBGPPrefixesResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             bgp_prefixes.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            bgp_prefixes.delete,
         )
         self.edit = async_to_raw_response_wrapper(
             bgp_prefixes.edit,
@@ -573,6 +684,9 @@ class BGPPrefixesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             bgp_prefixes.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            bgp_prefixes.delete,
+        )
         self.edit = to_streamed_response_wrapper(
             bgp_prefixes.edit,
         )
@@ -590,6 +704,9 @@ class AsyncBGPPrefixesResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             bgp_prefixes.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            bgp_prefixes.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             bgp_prefixes.edit,

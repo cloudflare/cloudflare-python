@@ -9,7 +9,6 @@ __all__ = ["StoreCreateParams"]
 
 class StoreCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account Identifier"""
 
     name: Required[str]
-    """The name of the store"""
+    """The name of the store."""

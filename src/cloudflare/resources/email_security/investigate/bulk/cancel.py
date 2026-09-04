@@ -55,10 +55,9 @@ class CancelResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CancelCreateResponse:
-        """Marks the job as cancelled and stops any pending message processing.
-
-        The job
-        record remains visible in list and detail endpoints.
+        """
+        Cancels the job, marking it as cancelled and stopping any pending message
+        processing. The job record remains visible in list and detail endpoints.
 
         Args:
           account_id: Identifier.
@@ -124,10 +123,9 @@ class AsyncCancelResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CancelCreateResponse:
-        """Marks the job as cancelled and stops any pending message processing.
-
-        The job
-        record remains visible in list and detail endpoints.
+        """
+        Cancels the job, marking it as cancelled and stopping any pending message
+        processing. The job record remains visible in list and detail endpoints.
 
         Args:
           account_id: Identifier.

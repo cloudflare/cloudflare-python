@@ -8,6 +8,7 @@ from .service_binding import ServiceBinding as ServiceBinding
 from .bgp_prefix_edit_params import BGPPrefixEditParams as BGPPrefixEditParams
 from .bgp_prefix_create_params import BGPPrefixCreateParams as BGPPrefixCreateParams
 from .delegation_create_params import DelegationCreateParams as DelegationCreateParams
+from .bgp_prefix_delete_response import BGPPrefixDeleteResponse as BGPPrefixDeleteResponse
 from .delegation_delete_response import DelegationDeleteResponse as DelegationDeleteResponse
 from .service_binding_create_params import ServiceBindingCreateParams as ServiceBindingCreateParams
 from .service_binding_delete_response import ServiceBindingDeleteResponse as ServiceBindingDeleteResponse

@@ -18,10 +18,11 @@ from ..._response import (
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.content_scanning import payload_create_params
+from ...types.content_scanning import payload_create_params, payload_update_params
 from ...types.content_scanning.payload_list_response import PayloadListResponse
 from ...types.content_scanning.payload_create_response import PayloadCreateResponse
 from ...types.content_scanning.payload_delete_response import PayloadDeleteResponse
+from ...types.content_scanning.payload_update_response import PayloadUpdateResponse
 
 __all__ = ["PayloadsResource", "AsyncPayloadsResource"]
 
@@ -59,7 +60,10 @@ class PayloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PayloadCreateResponse]:
         """
-        Add custom scan expressions for Content Scanning.
+        Create one or more Content Scanning custom expressions, appending them to the
+        existing list of the zone, and return the updated list. Each expression reaches
+        content objects the scanner cannot find automatically, for example
+        `lookup_json_string(http.request.body.raw, "file")`.
 
         Args:
           zone_id: Defines an identifier.
@@ -85,6 +89,58 @@ class PayloadsResource(SyncAPIResource):
             method="post",
         )
 
+    def update(
+        self,
+        expression_id: str,
+        *,
+        zone_id: str,
+        payload: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[PayloadUpdateResponse]:
+        """
+        Update the Content Scanning custom expression with the given identifier and
+        return the updated list of expressions.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          expression_id: Defines the unique ID for this Content Scanning custom expression.
+
+          payload: Defines the custom content extraction expression used to reach content objects
+              in the request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not expression_id:
+            raise ValueError(f"Expected a non-empty value for `expression_id` but received {expression_id!r}")
+        return self._get_api_list(
+            path_template(
+                "/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
+                zone_id=zone_id,
+                expression_id=expression_id,
+            ),
+            page=SyncSinglePage[PayloadUpdateResponse],
+            body=maybe_transform({"payload": payload}, payload_update_params.PayloadUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=PayloadUpdateResponse,
+            method="patch",
+        )
+
     def list(
         self,
         *,
@@ -97,7 +153,10 @@ class PayloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PayloadListResponse]:
         """
-        Get a list of existing custom scan expressions for Content Scanning.
+        List the Content Scanning custom expressions configured for the zone, each with
+        its own identifier. A custom expression tells the scanner how to reach content
+        objects in a request it cannot parse on its own, such as files Base64-encoded
+        inside a JSON body.
 
         Args:
           zone_id: Defines an identifier.
@@ -134,12 +193,14 @@ class PayloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PayloadDeleteResponse]:
         """
-        Delete a Content Scan Custom Expression.
+        Delete the Content Scanning custom expression with the given identifier and
+        return the expressions that remain. Content objects reached only by the deleted
+        expression are no longer scanned.
 
         Args:
           zone_id: Defines an identifier.
 
-          expression_id: defines the unique ID for this custom scan expression.
+          expression_id: Defines the unique ID for this Content Scanning custom expression.
 
           extra_headers: Send extra headers
 
@@ -201,7 +262,10 @@ class AsyncPayloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PayloadCreateResponse, AsyncSinglePage[PayloadCreateResponse]]:
         """
-        Add custom scan expressions for Content Scanning.
+        Create one or more Content Scanning custom expressions, appending them to the
+        existing list of the zone, and return the updated list. Each expression reaches
+        content objects the scanner cannot find automatically, for example
+        `lookup_json_string(http.request.body.raw, "file")`.
 
         Args:
           zone_id: Defines an identifier.
@@ -227,6 +291,58 @@ class AsyncPayloadsResource(AsyncAPIResource):
             method="post",
         )
 
+    def update(
+        self,
+        expression_id: str,
+        *,
+        zone_id: str,
+        payload: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[PayloadUpdateResponse, AsyncSinglePage[PayloadUpdateResponse]]:
+        """
+        Update the Content Scanning custom expression with the given identifier and
+        return the updated list of expressions.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          expression_id: Defines the unique ID for this Content Scanning custom expression.
+
+          payload: Defines the custom content extraction expression used to reach content objects
+              in the request.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not expression_id:
+            raise ValueError(f"Expected a non-empty value for `expression_id` but received {expression_id!r}")
+        return self._get_api_list(
+            path_template(
+                "/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
+                zone_id=zone_id,
+                expression_id=expression_id,
+            ),
+            page=AsyncSinglePage[PayloadUpdateResponse],
+            body=maybe_transform({"payload": payload}, payload_update_params.PayloadUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=PayloadUpdateResponse,
+            method="patch",
+        )
+
     def list(
         self,
         *,
@@ -239,7 +355,10 @@ class AsyncPayloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PayloadListResponse, AsyncSinglePage[PayloadListResponse]]:
         """
-        Get a list of existing custom scan expressions for Content Scanning.
+        List the Content Scanning custom expressions configured for the zone, each with
+        its own identifier. A custom expression tells the scanner how to reach content
+        objects in a request it cannot parse on its own, such as files Base64-encoded
+        inside a JSON body.
 
         Args:
           zone_id: Defines an identifier.
@@ -276,12 +395,14 @@ class AsyncPayloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PayloadDeleteResponse, AsyncSinglePage[PayloadDeleteResponse]]:
         """
-        Delete a Content Scan Custom Expression.
+        Delete the Content Scanning custom expression with the given identifier and
+        return the expressions that remain. Content objects reached only by the deleted
+        expression are no longer scanned.
 
         Args:
           zone_id: Defines an identifier.
 
-          expression_id: defines the unique ID for this custom scan expression.
+          expression_id: Defines the unique ID for this Content Scanning custom expression.
 
           extra_headers: Send extra headers
 
@@ -317,6 +438,9 @@ class PayloadsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             payloads.create,
         )
+        self.update = to_raw_response_wrapper(
+            payloads.update,
+        )
         self.list = to_raw_response_wrapper(
             payloads.list,
         )
@@ -331,6 +455,9 @@ class AsyncPayloadsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             payloads.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            payloads.update,
         )
         self.list = async_to_raw_response_wrapper(
             payloads.list,
@@ -347,6 +474,9 @@ class PayloadsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             payloads.create,
         )
+        self.update = to_streamed_response_wrapper(
+            payloads.update,
+        )
         self.list = to_streamed_response_wrapper(
             payloads.list,
         )
@@ -361,6 +491,9 @@ class AsyncPayloadsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             payloads.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            payloads.update,
         )
         self.list = async_to_streamed_response_wrapper(
             payloads.list,

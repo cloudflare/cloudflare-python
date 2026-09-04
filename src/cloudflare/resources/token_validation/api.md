@@ -25,12 +25,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.token_validation.configuration import CredentialUpdateResponse
+from cloudflare.types.token_validation.configuration import (
+    CredentialUpdateResponse,
+    CredentialEditResponse,
+)
 ```
 
 Methods:
 
 - <code title="put /zones/{zone_id}/token_validation/config/{config_id}/credentials">client.token_validation.configuration.credentials.<a href="./src/cloudflare/resources/token_validation/configuration/credentials.py">update</a>(config_id, \*, zone_id, \*\*<a href="src/cloudflare/types/token_validation/configuration/credential_update_params.py">params</a>) -> <a href="./src/cloudflare/types/token_validation/configuration/credential_update_response.py">CredentialUpdateResponse</a></code>
+- <code title="patch /zones/{zone_id}/token_validation/config/{config_id}/credentials">client.token_validation.configuration.credentials.<a href="./src/cloudflare/resources/token_validation/configuration/credentials.py">edit</a>(config_id, \*, zone_id, \*\*<a href="src/cloudflare/types/token_validation/configuration/credential_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/token_validation/configuration/credential_edit_response.py">CredentialEditResponse</a></code>
 
 ## Rules
 

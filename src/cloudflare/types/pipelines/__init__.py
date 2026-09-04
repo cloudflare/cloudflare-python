@@ -5,14 +5,12 @@ from __future__ import annotations
 from .sink_list_params import SinkListParams as SinkListParams
 from .sink_get_response import SinkGetResponse as SinkGetResponse
 from .sink_create_params import SinkCreateParams as SinkCreateParams
-from .sink_delete_params import SinkDeleteParams as SinkDeleteParams
 from .sink_list_response import SinkListResponse as SinkListResponse
 from .stream_list_params import StreamListParams as StreamListParams
 from .stream_get_response import StreamGetResponse as StreamGetResponse
 from .pipeline_list_params import PipelineListParams as PipelineListParams
 from .sink_create_response import SinkCreateResponse as SinkCreateResponse
 from .stream_create_params import StreamCreateParams as StreamCreateParams
-from .stream_delete_params import StreamDeleteParams as StreamDeleteParams
 from .stream_list_response import StreamListResponse as StreamListResponse
 from .stream_update_params import StreamUpdateParams as StreamUpdateParams
 from .pipeline_get_response import PipelineGetResponse as PipelineGetResponse

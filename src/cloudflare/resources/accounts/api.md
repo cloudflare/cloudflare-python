@@ -47,8 +47,10 @@ from cloudflare.types.accounts import SubscriptionDeleteResponse
 
 Methods:
 
+- <code title="post /{accounts_or_zones}/{account_or_zone_id}/subscriptions">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/accounts/subscription_create_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/subscription.py">Subscription</a></code>
 - <code title="put /accounts/{account_id}/subscriptions/{subscription_identifier}">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">update</a>(subscription_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/subscription_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/subscription.py">Subscription</a></code>
 - <code title="delete /accounts/{account_id}/subscriptions/{subscription_identifier}">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">delete</a>(subscription_identifier, \*, account_id) -> <a href="./src/cloudflare/types/accounts/subscription_delete_response.py">SubscriptionDeleteResponse</a></code>
+- <code title="get /{accounts_or_zones}/{account_or_zone_id}/subscriptions">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">get</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/shared/subscription.py">SyncSinglePage[Subscription]</a></code>
 
 ## Tokens
 
@@ -105,3 +107,17 @@ Methods:
 - <code title="get /accounts/{account_id}/logs/audit">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/logs/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/logs/audit_list_response.py">SyncCursorPaginationAfter[AuditListResponse]</a></code>
 - <code title="get /accounts/{account_id}/logs/audit/{id}/history">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">history</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/logs/audit_history_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/logs/audit_history_response.py">AuditHistoryResponse</a></code>
 - <code title="get /accounts/{account_id}/logs/audit/product_categories">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">product_categories</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/logs/audit_product_categories_response.py">SyncSinglePage[AuditProductCategoriesResponse]</a></code>
+
+## SpeedSettings
+
+### Transformations
+
+Types:
+
+```python
+from cloudflare.types.accounts.speed_settings import TransformationsConfig
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/settings/transformations">client.accounts.speed_settings.transformations.<a href="./src/cloudflare/resources/accounts/speed_settings/transformations.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/speed_settings/transformations_config.py">SyncSinglePage[TransformationsConfig]</a></code>

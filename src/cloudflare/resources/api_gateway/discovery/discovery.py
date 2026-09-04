@@ -67,8 +67,8 @@ class DiscoveryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DiscoveryGetResponse:
         """
-        Retrieve the most up to date view of discovered operations, rendered as OpenAPI
-        schemas
+        Returns the latest API operations discovered from zone traffic, rendered as
+        OpenAPI schemas.
 
         Args:
           zone_id: Identifier.
@@ -132,8 +132,8 @@ class AsyncDiscoveryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DiscoveryGetResponse:
         """
-        Retrieve the most up to date view of discovered operations, rendered as OpenAPI
-        schemas
+        Returns the latest API operations discovered from zone traffic, rendered as
+        OpenAPI schemas.
 
         Args:
           zone_id: Identifier.

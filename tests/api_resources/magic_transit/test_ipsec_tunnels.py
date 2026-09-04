@@ -430,7 +430,6 @@ class TestIPSECTunnels:
         ipsec_tunnel = client.magic_transit.ipsec_tunnels.psk_generate(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=["response"])
 
@@ -439,7 +438,6 @@ class TestIPSECTunnels:
         response = client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -452,7 +450,6 @@ class TestIPSECTunnels:
         with client.magic_transit.ipsec_tunnels.with_streaming_response.psk_generate(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -468,14 +465,12 @@ class TestIPSECTunnels:
             client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
                 ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
                 ipsec_tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @parametrize
@@ -964,7 +959,6 @@ class TestAsyncIPSECTunnels:
         ipsec_tunnel = await async_client.magic_transit.ipsec_tunnels.psk_generate(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=["response"])
 
@@ -973,7 +967,6 @@ class TestAsyncIPSECTunnels:
         response = await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -986,7 +979,6 @@ class TestAsyncIPSECTunnels:
         async with async_client.magic_transit.ipsec_tunnels.with_streaming_response.psk_generate(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1002,14 +994,12 @@ class TestAsyncIPSECTunnels:
             await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
                 ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
                 ipsec_tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @parametrize

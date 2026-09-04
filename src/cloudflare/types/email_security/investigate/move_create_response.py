@@ -10,28 +10,28 @@ __all__ = ["MoveCreateResponse"]
 
 class MoveCreateResponse(BaseModel):
     success: bool
-    """Whether the operation succeeded"""
+    """Whether the operation succeeded."""
 
     completed_at: Optional[datetime] = None
-    """When the move operation completed (UTC)"""
+    """When the move operation completed (UTC)."""
 
     completed_timestamp: Optional[datetime] = None
     """Deprecated, use `completed_at` instead. End of life: November 1, 2026."""
 
     destination: Optional[str] = None
-    """Destination folder for the message"""
+    """Destination folder for the message."""
 
     item_count: Optional[int] = None
     """Number of items moved. End of life: November 1, 2026."""
 
     message_id: Optional[str] = None
-    """Message identifier"""
+    """Message identifier."""
 
     operation: Optional[str] = None
-    """Type of operation performed"""
+    """Type of operation performed."""
 
     recipient: Optional[str] = None
-    """Recipient email address"""
+    """Recipient email address."""
 
     status: Optional[str] = None
-    """Operation status"""
+    """Operation status."""

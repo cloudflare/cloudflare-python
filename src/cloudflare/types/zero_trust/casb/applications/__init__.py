@@ -2,4 +2,5 @@
 
 from __future__ import annotations
 
+from .auth_method_list_params import AuthMethodListParams as AuthMethodListParams
 from .auth_method_list_response import AuthMethodListResponse as AuthMethodListResponse

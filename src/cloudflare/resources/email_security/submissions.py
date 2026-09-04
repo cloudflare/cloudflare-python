@@ -50,8 +50,18 @@ class SubmissionsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        direction: Literal["asc", "desc"] | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
         escalated_from_user: bool | Omit = omit,
+        order: Literal[
+            "submission_id",
+            "subject",
+            "original_disposition",
+            "requested_disposition",
+            "outcome_disposition",
+            "requested_at",
+        ]
+        | Omit = omit,
         original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         page: int | Omit = omit,
@@ -78,11 +88,15 @@ class SubmissionsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          direction: The sorting direction.
+
           end: The end of the search date range. Defaults to `now`.
 
           escalated_from_user: When true, return only submissions that were escalated by an end user (vs. by
               the security team). When false, return only submissions that were not escalated
               by an end user. When omitted, no filter is applied.
+
+          order: Field to sort by.
 
           page: Current page within paginated list of results.
 
@@ -110,8 +124,10 @@ class SubmissionsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "direction": direction,
                         "end": end,
                         "escalated_from_user": escalated_from_user,
+                        "order": order,
                         "original_disposition": original_disposition,
                         "outcome_disposition": outcome_disposition,
                         "page": page,
@@ -154,8 +170,18 @@ class AsyncSubmissionsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        direction: Literal["asc", "desc"] | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
         escalated_from_user: bool | Omit = omit,
+        order: Literal[
+            "submission_id",
+            "subject",
+            "original_disposition",
+            "requested_disposition",
+            "outcome_disposition",
+            "requested_at",
+        ]
+        | Omit = omit,
         original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | Omit = omit,
         page: int | Omit = omit,
@@ -182,11 +208,15 @@ class AsyncSubmissionsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          direction: The sorting direction.
+
           end: The end of the search date range. Defaults to `now`.
 
           escalated_from_user: When true, return only submissions that were escalated by an end user (vs. by
               the security team). When false, return only submissions that were not escalated
               by an end user. When omitted, no filter is applied.
+
+          order: Field to sort by.
 
           page: Current page within paginated list of results.
 
@@ -214,8 +244,10 @@ class AsyncSubmissionsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "direction": direction,
                         "end": end,
                         "escalated_from_user": escalated_from_user,
+                        "order": order,
                         "original_disposition": original_disposition,
                         "outcome_disposition": outcome_disposition,
                         "page": page,

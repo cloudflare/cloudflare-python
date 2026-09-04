@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.casb import (
     IntegrationGetResponse,
+    IntegrationListResponse,
     IntegrationPauseResponse,
     IntegrationCreateResponse,
     IntegrationResumeResponse,
@@ -156,7 +158,7 @@ class TestIntegrations:
         integration = client.zero_trust.casb.integrations.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, integration, path=["response"])
+        assert_matches_type(SyncSinglePage[IntegrationListResponse], integration, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -172,7 +174,7 @@ class TestIntegrations:
             status="Healthy",
             use_cases="use_cases",
         )
-        assert_matches_type(object, integration, path=["response"])
+        assert_matches_type(SyncSinglePage[IntegrationListResponse], integration, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -183,7 +185,7 @@ class TestIntegrations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = response.parse()
-        assert_matches_type(object, integration, path=["response"])
+        assert_matches_type(SyncSinglePage[IntegrationListResponse], integration, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -194,7 +196,7 @@ class TestIntegrations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = response.parse()
-            assert_matches_type(object, integration, path=["response"])
+            assert_matches_type(SyncSinglePage[IntegrationListResponse], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -536,7 +538,7 @@ class TestAsyncIntegrations:
         integration = await async_client.zero_trust.casb.integrations.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, integration, path=["response"])
+        assert_matches_type(AsyncSinglePage[IntegrationListResponse], integration, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -552,7 +554,7 @@ class TestAsyncIntegrations:
             status="Healthy",
             use_cases="use_cases",
         )
-        assert_matches_type(object, integration, path=["response"])
+        assert_matches_type(AsyncSinglePage[IntegrationListResponse], integration, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -563,7 +565,7 @@ class TestAsyncIntegrations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = await response.parse()
-        assert_matches_type(object, integration, path=["response"])
+        assert_matches_type(AsyncSinglePage[IntegrationListResponse], integration, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -574,7 +576,7 @@ class TestAsyncIntegrations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = await response.parse()
-            assert_matches_type(object, integration, path=["response"])
+            assert_matches_type(AsyncSinglePage[IntegrationListResponse], integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

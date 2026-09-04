@@ -68,7 +68,7 @@ class PoliciesResource(SyncAPIResource):
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
-        session_duration: str | Omit = omit,
+        session_duration: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,7 +175,7 @@ class PoliciesResource(SyncAPIResource):
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
-        session_duration: str | Omit = omit,
+        session_duration: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -452,7 +452,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
-        session_duration: str | Omit = omit,
+        session_duration: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -559,7 +559,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
-        session_duration: str | Omit = omit,
+        session_duration: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

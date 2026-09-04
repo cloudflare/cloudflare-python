@@ -29,7 +29,7 @@ class TestPortals:
         portal = client.zero_trust.access.ai_controls.mcp.portals.create(
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
         )
         assert_matches_type(PortalCreateResponse, portal, path=["response"])
@@ -39,9 +39,10 @@ class TestPortals:
         portal = client.zero_trust.access.ai_controls.mcp.portals.create(
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
             allow_code_mode=True,
+            code_mode="opt_in",
             description="This is my custom MCP Portal",
             secure_web_gateway=False,
             servers=[
@@ -75,7 +76,7 @@ class TestPortals:
         response = client.zero_trust.access.ai_controls.mcp.portals.with_raw_response.create(
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
         )
 
@@ -89,7 +90,7 @@ class TestPortals:
         with client.zero_trust.access.ai_controls.mcp.portals.with_streaming_response.create(
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
         ) as response:
             assert not response.is_closed
@@ -106,7 +107,7 @@ class TestPortals:
             client.zero_trust.access.ai_controls.mcp.portals.with_raw_response.create(
                 account_id="",
                 id="my-mcp-portal",
-                hostname="exmaple.com",
+                hostname="example.com",
                 name="My MCP Portal",
             )
 
@@ -124,8 +125,9 @@ class TestPortals:
             id="my-mcp-portal",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             allow_code_mode=True,
+            code_mode="opt_in",
             description="This is my custom MCP Portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
             secure_web_gateway=False,
             servers=[
@@ -349,7 +351,7 @@ class TestAsyncPortals:
         portal = await async_client.zero_trust.access.ai_controls.mcp.portals.create(
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
         )
         assert_matches_type(PortalCreateResponse, portal, path=["response"])
@@ -359,9 +361,10 @@ class TestAsyncPortals:
         portal = await async_client.zero_trust.access.ai_controls.mcp.portals.create(
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
             allow_code_mode=True,
+            code_mode="opt_in",
             description="This is my custom MCP Portal",
             secure_web_gateway=False,
             servers=[
@@ -395,7 +398,7 @@ class TestAsyncPortals:
         response = await async_client.zero_trust.access.ai_controls.mcp.portals.with_raw_response.create(
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
         )
 
@@ -409,7 +412,7 @@ class TestAsyncPortals:
         async with async_client.zero_trust.access.ai_controls.mcp.portals.with_streaming_response.create(
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             id="my-mcp-portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
         ) as response:
             assert not response.is_closed
@@ -426,7 +429,7 @@ class TestAsyncPortals:
             await async_client.zero_trust.access.ai_controls.mcp.portals.with_raw_response.create(
                 account_id="",
                 id="my-mcp-portal",
-                hostname="exmaple.com",
+                hostname="example.com",
                 name="My MCP Portal",
             )
 
@@ -444,8 +447,9 @@ class TestAsyncPortals:
             id="my-mcp-portal",
             account_id="a86a8f5c339544d7bdc89926de14fb8c",
             allow_code_mode=True,
+            code_mode="opt_in",
             description="This is my custom MCP Portal",
-            hostname="exmaple.com",
+            hostname="example.com",
             name="My MCP Portal",
             secure_web_gateway=False,
             servers=[

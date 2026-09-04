@@ -331,7 +331,6 @@ class ThreatEventsResource(SyncAPIResource):
         page: float | Omit = omit,
         page_size: float | Omit = omit,
         search: Iterable[threat_event_list_params.Search] | Omit = omit,
-        source: Literal["do", "r2catalog"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -340,9 +339,12 @@ class ThreatEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
-        Use `datasetId=all` or `datasetId=*` to query all event datasets for the account
-        (limited to 50). When `datasetId` is unspecified, events are listed from the
-        default Cloudforce One Threat Events dataset. To list existing datasets, use the
+        Use `datasetId=all` or `datasetId=*` for the legacy all-datasets scope,
+        `datasetId=analytics` for datasets with `isAnalytics=true`, or
+        `datasetId=operational` for datasets with `isAnalytics=false` (limited to 50).
+        Scope values must be used alone. When `datasetId` is unspecified, events are
+        listed from the default Cloudforce One Threat Events dataset. To list existing
+        datasets, use the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
         endpoint.
 
@@ -357,18 +359,15 @@ class ThreatEventsResource(SyncAPIResource):
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
 
-          dataset_id: Dataset IDs to query events from (array of UUIDs), or special value 'all' or
-              '\\**' to query all event datasets for the account. If not provided, uses the
-              default dataset.
+          dataset_id: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for the legacy
+              all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
+              'operational' for isAnalytics=false datasets. If not provided, uses the default
+              dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.
 
           page_size: Number of results per page. Maximum 25,000.
-
-          source: Read backend. 'do' (default) reads Durable Object storage. 'r2catalog' reads R2
-              Data Catalog (admin-only, experimental; supports a subset of search fields — no
-              'tags').
 
           extra_headers: Send extra headers
 
@@ -399,7 +398,6 @@ class ThreatEventsResource(SyncAPIResource):
                         "page": page,
                         "page_size": page_size,
                         "search": search,
-                        "source": source,
                     },
                     threat_event_list_params.ThreatEventListParams,
                 ),
@@ -535,7 +533,8 @@ class ThreatEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventEditResponse:
         """
-        Update an existing event by its identifier.
+        Partially updates a threat event in Cloudforce One, modifying specific fields
+        without replacing the entire event.
 
         Args:
           account_id: Account ID.
@@ -805,7 +804,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         page: float | Omit = omit,
         page_size: float | Omit = omit,
         search: Iterable[threat_event_list_params.Search] | Omit = omit,
-        source: Literal["do", "r2catalog"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -814,9 +812,12 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
-        Use `datasetId=all` or `datasetId=*` to query all event datasets for the account
-        (limited to 50). When `datasetId` is unspecified, events are listed from the
-        default Cloudforce One Threat Events dataset. To list existing datasets, use the
+        Use `datasetId=all` or `datasetId=*` for the legacy all-datasets scope,
+        `datasetId=analytics` for datasets with `isAnalytics=true`, or
+        `datasetId=operational` for datasets with `isAnalytics=false` (limited to 50).
+        Scope values must be used alone. When `datasetId` is unspecified, events are
+        listed from the default Cloudforce One Threat Events dataset. To list existing
+        datasets, use the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
         endpoint.
 
@@ -831,18 +832,15 @@ class AsyncThreatEventsResource(AsyncAPIResource):
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
 
-          dataset_id: Dataset IDs to query events from (array of UUIDs), or special value 'all' or
-              '\\**' to query all event datasets for the account. If not provided, uses the
-              default dataset.
+          dataset_id: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for the legacy
+              all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
+              'operational' for isAnalytics=false datasets. If not provided, uses the default
+              dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.
 
           page_size: Number of results per page. Maximum 25,000.
-
-          source: Read backend. 'do' (default) reads Durable Object storage. 'r2catalog' reads R2
-              Data Catalog (admin-only, experimental; supports a subset of search fields — no
-              'tags').
 
           extra_headers: Send extra headers
 
@@ -873,7 +871,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                         "page": page,
                         "page_size": page_size,
                         "search": search,
-                        "source": source,
                     },
                     threat_event_list_params.ThreatEventListParams,
                 ),
@@ -1009,7 +1006,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventEditResponse:
         """
-        Update an existing event by its identifier.
+        Partially updates a threat event in Cloudforce One, modifying specific fields
+        without replacing the entire event.
 
         Args:
           account_id: Account ID.

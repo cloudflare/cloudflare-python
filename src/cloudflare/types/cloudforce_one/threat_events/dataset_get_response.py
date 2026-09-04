@@ -1,7 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
@@ -10,10 +8,10 @@ __all__ = ["DatasetGetResponse"]
 
 
 class DatasetGetResponse(BaseModel):
+    is_analytics: bool = FieldInfo(alias="isAnalytics")
+
     is_public: bool = FieldInfo(alias="isPublic")
 
     name: str
 
     uuid: str
-
-    deleted_at: Optional[str] = FieldInfo(alias="deletedAt", default=None)

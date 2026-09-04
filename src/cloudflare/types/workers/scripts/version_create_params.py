@@ -16,6 +16,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindAI",
     "MetadataBindingWorkersBindingKindAISearch",
     "MetadataBindingWorkersBindingKindAISearchNamespace",
+    "MetadataBindingWorkersBindingKindMessaging",
     "MetadataBindingWorkersBindingKindAnalyticsEngine",
     "MetadataBindingWorkersBindingKindAssets",
     "MetadataBindingWorkersBindingKindBrowser",
@@ -95,8 +96,38 @@ class MetadataAnnotations(TypedDict, total=False):
     workers_alias: Annotated[str, PropertyInfo(alias="workers/alias")]
     """Associated alias for a version."""
 
+    workers_commit_sha: Annotated[str, PropertyInfo(alias="workers/commit_sha")]
+    """Full commit SHA associated with the version, detected from the CI environment.
+
+    Maximum 64 bytes.
+    """
+
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
     """Human-readable message about the version. Truncated to 1000 bytes if longer."""
+
+    workers_pull_request_number: Annotated[str, PropertyInfo(alias="workers/pull_request_number")]
+    """
+    Number of the pull or merge request associated with the version, detected from
+    the CI environment. Maximum 20 bytes.
+    """
+
+    workers_pull_request_title: Annotated[str, PropertyInfo(alias="workers/pull_request_title")]
+    """
+    Title of the pull or merge request associated with the version, detected from
+    the CI environment. Maximum 512 bytes.
+    """
+
+    workers_pull_request_url: Annotated[str, PropertyInfo(alias="workers/pull_request_url")]
+    """
+    URL of the pull or merge request associated with the version, detected from the
+    CI environment. Maximum 512 bytes.
+    """
+
+    workers_repository_url: Annotated[str, PropertyInfo(alias="workers/repository_url")]
+    """
+    URL of the source repository the version was built from, detected from the CI
+    environment. Maximum 512 bytes.
+    """
 
     workers_tag: Annotated[str, PropertyInfo(alias="workers/tag")]
     """User-provided identifier for the version. Maximum 100 bytes."""
@@ -146,6 +177,17 @@ class MetadataBindingWorkersBindingKindAISearchNamespace(TypedDict, total=False)
     """
 
     type: Required[Literal["ai_search_namespace"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindMessaging(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace: Required[str]
+    """The Messaging namespace to bind to."""
+
+    type: Required[Literal["messaging"]]
     """The kind of resource that the binding provides."""
 
 
@@ -431,7 +473,7 @@ class MetadataBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Literal["eu", "fedramp", "fedramp-high"]
+    jurisdiction: Literal["eu", "fedramp", "fedramp-high", "us"]
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -635,6 +677,12 @@ class MetadataBindingWorkersBindingKindVPCNetwork(TypedDict, total=False):
     type: Required[Literal["vpc_network"]]
     """The kind of resource that the binding provides."""
 
+    identity: Literal["runtime-email-alpha"]
+    """Enables Gateway identity for the binding.
+
+    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id.
+    """
+
     network_id: str
     """Identifier of the network to bind to.
 
@@ -649,6 +697,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
     MetadataBindingWorkersBindingKindAISearch,
     MetadataBindingWorkersBindingKindAISearchNamespace,
+    MetadataBindingWorkersBindingKindMessaging,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
     MetadataBindingWorkersBindingKindAssets,
     MetadataBindingWorkersBindingKindBrowser,

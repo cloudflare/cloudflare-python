@@ -59,3 +59,15 @@ Methods:
 
 - <code title="put /zones/{zone_id}/custom_hostnames/{custom_hostname_id}/certificate_pack/{certificate_pack_id}/certificates/{certificate_id}">client.custom_hostnames.certificate_pack.certificates.<a href="./src/cloudflare/resources/custom_hostnames/certificate_pack/certificates.py">update</a>(certificate_id, \*, zone_id, custom_hostname_id, certificate_pack_id, \*\*<a href="src/cloudflare/types/custom_hostnames/certificate_pack/certificate_update_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/certificate_pack/certificate_update_response.py">Optional[CertificateUpdateResponse]</a></code>
 - <code title="delete /zones/{zone_id}/custom_hostnames/{custom_hostname_id}/certificate_pack/{certificate_pack_id}/certificates/{certificate_id}">client.custom_hostnames.certificate_pack.certificates.<a href="./src/cloudflare/resources/custom_hostnames/certificate_pack/certificates.py">delete</a>(certificate_id, \*, zone_id, custom_hostname_id, certificate_pack_id) -> <a href="./src/cloudflare/types/custom_hostnames/certificate_pack/certificate_delete_response.py">CertificateDeleteResponse</a></code>
+
+## Quota
+
+Types:
+
+```python
+from cloudflare.types.custom_hostnames import QuotaGetResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/custom_hostnames/quota">client.custom_hostnames.quota.<a href="./src/cloudflare/resources/custom_hostnames/quota.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/quota_get_response.py">Optional[QuotaGetResponse]</a></code>

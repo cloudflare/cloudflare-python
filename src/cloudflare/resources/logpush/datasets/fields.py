@@ -19,6 +19,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
+from ....types.logpush.datasets.field_get_response import FieldGetResponse
 
 __all__ = ["FieldsResource", "AsyncFieldsResource"]
 
@@ -47,6 +48,7 @@ class FieldsResource(SyncAPIResource):
         self,
         dataset_id: Literal[
             "access_requests",
+            "account_abuse_protection_events",
             "audit_logs",
             "audit_logs_v2",
             "biso_user_actions",
@@ -65,6 +67,7 @@ class FieldsResource(SyncAPIResource):
             "gateway_network",
             "http_requests",
             "ipsec_logs",
+            "magic_bgp_logs",
             "magic_ids_detections",
             "mcp_portal_logs",
             "mnm_flow_logs",
@@ -91,7 +94,7 @@ class FieldsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> Optional[FieldGetResponse]:
         """Lists all fields available for a dataset.
 
         The response result is. an object with
@@ -139,9 +142,9 @@ class FieldsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FieldGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[FieldGetResponse]], ResultWrapper[FieldGetResponse]),
         )
 
 
@@ -169,6 +172,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         self,
         dataset_id: Literal[
             "access_requests",
+            "account_abuse_protection_events",
             "audit_logs",
             "audit_logs_v2",
             "biso_user_actions",
@@ -187,6 +191,7 @@ class AsyncFieldsResource(AsyncAPIResource):
             "gateway_network",
             "http_requests",
             "ipsec_logs",
+            "magic_bgp_logs",
             "magic_ids_detections",
             "mcp_portal_logs",
             "mnm_flow_logs",
@@ -213,7 +218,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> Optional[FieldGetResponse]:
         """Lists all fields available for a dataset.
 
         The response result is. an object with
@@ -261,9 +266,9 @@ class AsyncFieldsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FieldGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[FieldGetResponse]], ResultWrapper[FieldGetResponse]),
         )
 
 

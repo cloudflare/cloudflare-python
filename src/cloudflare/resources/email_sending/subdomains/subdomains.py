@@ -14,7 +14,7 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
-from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -27,8 +27,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_sending import subdomain_create_params
+from ....types.email_sending import subdomain_edit_params, subdomain_create_params
 from ....types.email_sending.subdomain_get_response import SubdomainGetResponse
+from ....types.email_sending.subdomain_edit_response import SubdomainEditResponse
 from ....types.email_sending.subdomain_list_response import SubdomainListResponse
 from ....types.email_sending.subdomain_create_response import SubdomainCreateResponse
 from ....types.email_sending.subdomain_delete_response import SubdomainDeleteResponse
@@ -75,12 +76,17 @@ class SubdomainsResource(SyncAPIResource):
         """
         Creates a new sending subdomain or re-enables sending on an existing subdomain
         that had it disabled. If zone-level Email Sending has not been enabled yet, the
-        zone flag is automatically set when the entitlement is present.
+        zone flag is automatically set when the entitlement is present. A leftmost
+        wildcard such as `*.example.com` is accepted only for accounts with wildcard
+        Email Sending enabled. Wildcard senders share the base domain's DKIM signing
+        identity and `cf-bounce.<base>` return path.
 
         Args:
           zone_id: Identifier.
 
-          name: The subdomain name. Must be within the zone.
+          name: The domain name within the zone. A wildcard is allowed only as the complete
+              leftmost label (`*.example.com`) and requires the account wildcard Email Sending
+              entitlement.
 
           extra_headers: Send extra headers
 
@@ -185,6 +191,67 @@ class SubdomainsResource(SyncAPIResource):
             cast_to=SubdomainDeleteResponse,
         )
 
+    def edit(
+        self,
+        subdomain_id: str,
+        *,
+        zone_id: str,
+        drop_suppressed_recipients: bool | Omit = omit,
+        preview_enabled: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SubdomainEditResponse]:
+        """
+        Updates the activity-log preview preference for a sending subdomain.
+
+        Args:
+          zone_id: Identifier.
+
+          subdomain_id: Sending subdomain identifier.
+
+          drop_suppressed_recipients: Whether a send request that includes a recipient suppressed on this subdomain
+              drops that recipient and still delivers to the rest, instead of failing the
+              entire request.
+
+          preview_enabled: Whether sent messages from this subdomain can be previewed in the activity log.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not subdomain_id:
+            raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
+        return self._patch(
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
+            ),
+            body=maybe_transform(
+                {
+                    "drop_suppressed_recipients": drop_suppressed_recipients,
+                    "preview_enabled": preview_enabled,
+                },
+                subdomain_edit_params.SubdomainEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SubdomainEditResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SubdomainEditResponse]], ResultWrapper[SubdomainEditResponse]),
+        )
+
     def get(
         self,
         subdomain_id: str,
@@ -271,12 +338,17 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         """
         Creates a new sending subdomain or re-enables sending on an existing subdomain
         that had it disabled. If zone-level Email Sending has not been enabled yet, the
-        zone flag is automatically set when the entitlement is present.
+        zone flag is automatically set when the entitlement is present. A leftmost
+        wildcard such as `*.example.com` is accepted only for accounts with wildcard
+        Email Sending enabled. Wildcard senders share the base domain's DKIM signing
+        identity and `cf-bounce.<base>` return path.
 
         Args:
           zone_id: Identifier.
 
-          name: The subdomain name. Must be within the zone.
+          name: The domain name within the zone. A wildcard is allowed only as the complete
+              leftmost label (`*.example.com`) and requires the account wildcard Email Sending
+              entitlement.
 
           extra_headers: Send extra headers
 
@@ -381,6 +453,67 @@ class AsyncSubdomainsResource(AsyncAPIResource):
             cast_to=SubdomainDeleteResponse,
         )
 
+    async def edit(
+        self,
+        subdomain_id: str,
+        *,
+        zone_id: str,
+        drop_suppressed_recipients: bool | Omit = omit,
+        preview_enabled: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SubdomainEditResponse]:
+        """
+        Updates the activity-log preview preference for a sending subdomain.
+
+        Args:
+          zone_id: Identifier.
+
+          subdomain_id: Sending subdomain identifier.
+
+          drop_suppressed_recipients: Whether a send request that includes a recipient suppressed on this subdomain
+              drops that recipient and still delivers to the rest, instead of failing the
+              entire request.
+
+          preview_enabled: Whether sent messages from this subdomain can be previewed in the activity log.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not subdomain_id:
+            raise ValueError(f"Expected a non-empty value for `subdomain_id` but received {subdomain_id!r}")
+        return await self._patch(
+            path_template(
+                "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}", zone_id=zone_id, subdomain_id=subdomain_id
+            ),
+            body=await async_maybe_transform(
+                {
+                    "drop_suppressed_recipients": drop_suppressed_recipients,
+                    "preview_enabled": preview_enabled,
+                },
+                subdomain_edit_params.SubdomainEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SubdomainEditResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SubdomainEditResponse]], ResultWrapper[SubdomainEditResponse]),
+        )
+
     async def get(
         self,
         subdomain_id: str,
@@ -441,6 +574,9 @@ class SubdomainsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             subdomains.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            subdomains.edit,
+        )
         self.get = to_raw_response_wrapper(
             subdomains.get,
         )
@@ -462,6 +598,9 @@ class AsyncSubdomainsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             subdomains.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            subdomains.edit,
         )
         self.get = async_to_raw_response_wrapper(
             subdomains.get,
@@ -485,6 +624,9 @@ class SubdomainsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             subdomains.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            subdomains.edit,
+        )
         self.get = to_streamed_response_wrapper(
             subdomains.get,
         )
@@ -506,6 +648,9 @@ class AsyncSubdomainsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             subdomains.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            subdomains.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             subdomains.get,

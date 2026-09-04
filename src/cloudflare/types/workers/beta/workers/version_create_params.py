@@ -20,6 +20,7 @@ __all__ = [
     "BindingWorkersBindingKindAI",
     "BindingWorkersBindingKindAISearch",
     "BindingWorkersBindingKindAISearchNamespace",
+    "BindingWorkersBindingKindMessaging",
     "BindingWorkersBindingKindAnalyticsEngine",
     "BindingWorkersBindingKindAssets",
     "BindingWorkersBindingKindBrowser",
@@ -289,6 +290,17 @@ class BindingWorkersBindingKindAISearchNamespace(TypedDict, total=False):
     """
 
     type: Required[Literal["ai_search_namespace"]]
+    """The kind of resource that the binding provides."""
+
+
+class BindingWorkersBindingKindMessaging(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace: Required[str]
+    """The Messaging namespace to bind to."""
+
+    type: Required[Literal["messaging"]]
     """The kind of resource that the binding provides."""
 
 
@@ -574,7 +586,7 @@ class BindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Literal["eu", "fedramp", "fedramp-high"]
+    jurisdiction: Literal["eu", "fedramp", "fedramp-high", "us"]
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -778,6 +790,12 @@ class BindingWorkersBindingKindVPCNetwork(TypedDict, total=False):
     type: Required[Literal["vpc_network"]]
     """The kind of resource that the binding provides."""
 
+    identity: Literal["runtime-email-alpha"]
+    """Enables Gateway identity for the binding.
+
+    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id.
+    """
+
     network_id: str
     """Identifier of the network to bind to.
 
@@ -792,6 +810,7 @@ Binding: TypeAlias = Union[
     BindingWorkersBindingKindAI,
     BindingWorkersBindingKindAISearch,
     BindingWorkersBindingKindAISearchNamespace,
+    BindingWorkersBindingKindMessaging,
     BindingWorkersBindingKindAnalyticsEngine,
     BindingWorkersBindingKindAssets,
     BindingWorkersBindingKindBrowser,

@@ -19,8 +19,8 @@ __all__ = [
     "ConfigCloudflarePipelinesR2DataCatalogTablePublic",
     "ConfigCloudflarePipelinesR2DataCatalogTablePublicRollingPolicy",
     "Format",
-    "FormatJson",
-    "FormatParquet",
+    "FormatCloudflarePipelinesSinkJsonFormat",
+    "FormatCloudflarePipelinesSinkParquetFormat",
     "Schema",
     "SchemaField",
     "SchemaFieldInt32",
@@ -34,9 +34,6 @@ __all__ = [
     "SchemaFieldJson",
     "SchemaFieldStruct",
     "SchemaFieldList",
-    "SchemaFormat",
-    "SchemaFormatJson",
-    "SchemaFormatParquet",
 ]
 
 
@@ -133,8 +130,11 @@ class ConfigCloudflarePipelinesR2DataCatalogTablePublic(BaseModel):
 Config: TypeAlias = Union[ConfigCloudflarePipelinesR2TablePublic, ConfigCloudflarePipelinesR2DataCatalogTablePublic]
 
 
-class FormatJson(BaseModel):
+class FormatCloudflarePipelinesSinkJsonFormat(BaseModel):
     type: Literal["json"]
+
+    compression: Optional[Literal["uncompressed", "gzip"]] = None
+    """Specifies the compression applied to JSON sink output."""
 
     decimal_encoding: Optional[Literal["number", "string", "bytes"]] = None
 
@@ -143,7 +143,7 @@ class FormatJson(BaseModel):
     unstructured: Optional[bool] = None
 
 
-class FormatParquet(BaseModel):
+class FormatCloudflarePipelinesSinkParquetFormat(BaseModel):
     type: Literal["parquet"]
 
     compression: Optional[Literal["uncompressed", "snappy", "gzip", "zstd", "lz4"]] = None
@@ -151,7 +151,10 @@ class FormatParquet(BaseModel):
     row_group_bytes: Optional[int] = None
 
 
-Format: TypeAlias = Annotated[Union[FormatJson, FormatParquet], PropertyInfo(discriminator="type")]
+Format: TypeAlias = Annotated[
+    Union[FormatCloudflarePipelinesSinkJsonFormat, FormatCloudflarePipelinesSinkParquetFormat],
+    PropertyInfo(discriminator="type"),
+]
 
 
 class SchemaFieldInt32(BaseModel):
@@ -290,31 +293,10 @@ SchemaField: TypeAlias = Annotated[
 ]
 
 
-class SchemaFormatJson(BaseModel):
-    type: Literal["json"]
-
-    decimal_encoding: Optional[Literal["number", "string", "bytes"]] = None
-
-    timestamp_format: Optional[Literal["rfc3339", "unix_millis"]] = None
-
-    unstructured: Optional[bool] = None
-
-
-class SchemaFormatParquet(BaseModel):
-    type: Literal["parquet"]
-
-    compression: Optional[Literal["uncompressed", "snappy", "gzip", "zstd", "lz4"]] = None
-
-    row_group_bytes: Optional[int] = None
-
-
-SchemaFormat: TypeAlias = Annotated[Union[SchemaFormatJson, SchemaFormatParquet], PropertyInfo(discriminator="type")]
-
-
 class Schema(BaseModel):
-    fields: Optional[List[SchemaField]] = None
+    """Defines the schema of the events in the data stream."""
 
-    format: Optional[SchemaFormat] = None
+    fields: Optional[List[SchemaField]] = None
 
     inferred: Optional[bool] = None
 
@@ -337,5 +319,7 @@ class SinkGetResponse(BaseModel):
     """Defines the configuration of the R2 Sink."""
 
     format: Optional[Format] = None
+    """Defines the output data format of a sink."""
 
     schema_: Optional[Schema] = FieldInfo(alias="schema", default=None)
+    """Defines the schema of the events in the data stream."""

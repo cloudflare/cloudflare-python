@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.page_shield import Script, ScriptGetResponse
+from cloudflare.types.page_shield import ScriptGetResponse, ScriptListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestScripts:
         script = client.page_shield.scripts.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[Script], script, path=["response"])
+        assert_matches_type(SyncSinglePage[ScriptListResponse], script, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -43,7 +43,7 @@ class TestScripts:
             status="active,inactive",
             urls="blog.cloudflare.com,www.example",
         )
-        assert_matches_type(SyncSinglePage[Script], script, path=["response"])
+        assert_matches_type(SyncSinglePage[ScriptListResponse], script, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -54,7 +54,7 @@ class TestScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = response.parse()
-        assert_matches_type(SyncSinglePage[Script], script, path=["response"])
+        assert_matches_type(SyncSinglePage[ScriptListResponse], script, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -65,7 +65,7 @@ class TestScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = response.parse()
-            assert_matches_type(SyncSinglePage[Script], script, path=["response"])
+            assert_matches_type(SyncSinglePage[ScriptListResponse], script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -135,7 +135,7 @@ class TestAsyncScripts:
         script = await async_client.page_shield.scripts.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[Script], script, path=["response"])
+        assert_matches_type(AsyncSinglePage[ScriptListResponse], script, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -155,7 +155,7 @@ class TestAsyncScripts:
             status="active,inactive",
             urls="blog.cloudflare.com,www.example",
         )
-        assert_matches_type(AsyncSinglePage[Script], script, path=["response"])
+        assert_matches_type(AsyncSinglePage[ScriptListResponse], script, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -166,7 +166,7 @@ class TestAsyncScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = await response.parse()
-        assert_matches_type(AsyncSinglePage[Script], script, path=["response"])
+        assert_matches_type(AsyncSinglePage[ScriptListResponse], script, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -177,7 +177,7 @@ class TestAsyncScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = await response.parse()
-            assert_matches_type(AsyncSinglePage[Script], script, path=["response"])
+            assert_matches_type(AsyncSinglePage[ScriptListResponse], script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

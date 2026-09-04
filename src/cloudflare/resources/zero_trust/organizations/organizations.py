@@ -81,6 +81,7 @@ class OrganizationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
         user_seat_expiration_inactive_time: str | Omit = omit,
+        warp_auth_non_browser_401: bool | Omit = omit,
         warp_auth_session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -127,9 +128,9 @@ class OrganizationsResource(SyncAPIResource):
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
-              session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'piv_key' if the organization has any non-infrastructure applications because
-              PIV keys are only compatible with infrastructure apps.
+              session duration configured. Note: 'allowed_authenticators' cannot contain only
+              the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if the
+              organization has any non-infrastructure applications.
 
           session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m,
@@ -142,6 +143,9 @@ class OrganizationsResource(SyncAPIResource):
               longer counts against your Teams seat count. Minimum value for this setting is 1
               month (730h). Must be in the format `300ms` or `2h45m`. Valid time units are:
               `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`.
+
+          warp_auth_non_browser_401: When enabled, unsuccessful WARP authentication requests with a non-HTML Accept
+              header return a 401 response instead of redirecting to the login page.
 
           warp_auth_session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `30m` or `2h45m`. Valid time units are: m, h.
@@ -188,6 +192,7 @@ class OrganizationsResource(SyncAPIResource):
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,
                     "user_seat_expiration_inactive_time": user_seat_expiration_inactive_time,
+                    "warp_auth_non_browser_401": warp_auth_non_browser_401,
                     "warp_auth_session_duration": warp_auth_session_duration,
                 },
                 organization_create_params.OrganizationCreateParams,
@@ -222,6 +227,7 @@ class OrganizationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
         user_seat_expiration_inactive_time: str | Omit = omit,
+        warp_auth_non_browser_401: bool | Omit = omit,
         warp_auth_session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -266,9 +272,9 @@ class OrganizationsResource(SyncAPIResource):
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
-              session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'piv_key' if the organization has any non-infrastructure applications because
-              PIV keys are only compatible with infrastructure apps.
+              session duration configured. Note: 'allowed_authenticators' cannot contain only
+              the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if the
+              organization has any non-infrastructure applications.
 
           name: The name of your Zero Trust organization.
 
@@ -283,6 +289,9 @@ class OrganizationsResource(SyncAPIResource):
               longer counts against your Teams seat count. Minimum value for this setting is 1
               month (730h). Must be in the format `300ms` or `2h45m`. Valid time units are:
               `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`.
+
+          warp_auth_non_browser_401: When enabled, unsuccessful WARP authentication requests with a non-HTML Accept
+              header return a 401 response instead of redirecting to the login page.
 
           warp_auth_session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `30m` or `2h45m`. Valid time units are: m, h.
@@ -330,6 +339,7 @@ class OrganizationsResource(SyncAPIResource):
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,
                     "user_seat_expiration_inactive_time": user_seat_expiration_inactive_time,
+                    "warp_auth_non_browser_401": warp_auth_non_browser_401,
                     "warp_auth_session_duration": warp_auth_session_duration,
                 },
                 organization_update_params.OrganizationUpdateParams,
@@ -531,6 +541,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
         user_seat_expiration_inactive_time: str | Omit = omit,
+        warp_auth_non_browser_401: bool | Omit = omit,
         warp_auth_session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -577,9 +588,9 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
-              session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'piv_key' if the organization has any non-infrastructure applications because
-              PIV keys are only compatible with infrastructure apps.
+              session duration configured. Note: 'allowed_authenticators' cannot contain only
+              the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if the
+              organization has any non-infrastructure applications.
 
           session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m,
@@ -592,6 +603,9 @@ class AsyncOrganizationsResource(AsyncAPIResource):
               longer counts against your Teams seat count. Minimum value for this setting is 1
               month (730h). Must be in the format `300ms` or `2h45m`. Valid time units are:
               `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`.
+
+          warp_auth_non_browser_401: When enabled, unsuccessful WARP authentication requests with a non-HTML Accept
+              header return a 401 response instead of redirecting to the login page.
 
           warp_auth_session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `30m` or `2h45m`. Valid time units are: m, h.
@@ -638,6 +652,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,
                     "user_seat_expiration_inactive_time": user_seat_expiration_inactive_time,
+                    "warp_auth_non_browser_401": warp_auth_non_browser_401,
                     "warp_auth_session_duration": warp_auth_session_duration,
                 },
                 organization_create_params.OrganizationCreateParams,
@@ -672,6 +687,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         ui_read_only_toggle_reason: str | Omit = omit,
         user_seat_expiration_inactive_time: str | Omit = omit,
+        warp_auth_non_browser_401: bool | Omit = omit,
         warp_auth_session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -716,9 +732,9 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           mfa_required_for_all_apps: Determines whether global MFA settings apply to applications by default. The
               organization must have MFA enabled with at least one authentication method and a
-              session duration configured. Note: 'allowed_authenticators' cannot only contain
-              'piv_key' if the organization has any non-infrastructure applications because
-              PIV keys are only compatible with infrastructure apps.
+              session duration configured. Note: 'allowed_authenticators' cannot contain only
+              the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if the
+              organization has any non-infrastructure applications.
 
           name: The name of your Zero Trust organization.
 
@@ -733,6 +749,9 @@ class AsyncOrganizationsResource(AsyncAPIResource):
               longer counts against your Teams seat count. Minimum value for this setting is 1
               month (730h). Must be in the format `300ms` or `2h45m`. Valid time units are:
               `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`.
+
+          warp_auth_non_browser_401: When enabled, unsuccessful WARP authentication requests with a non-HTML Accept
+              header return a 401 response instead of redirecting to the login page.
 
           warp_auth_session_duration: The amount of time that tokens issued for applications will be valid. Must be in
               the format `30m` or `2h45m`. Valid time units are: m, h.
@@ -780,6 +799,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     "session_duration": session_duration,
                     "ui_read_only_toggle_reason": ui_read_only_toggle_reason,
                     "user_seat_expiration_inactive_time": user_seat_expiration_inactive_time,
+                    "warp_auth_non_browser_401": warp_auth_non_browser_401,
                     "warp_auth_session_duration": warp_auth_session_duration,
                 },
                 organization_update_params.OrganizationUpdateParams,

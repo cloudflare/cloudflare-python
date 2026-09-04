@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._utils import PropertyInfo
@@ -34,38 +34,11 @@ class InstanceChatCompletionsParams(TypedDict, total=False):
 
     aisearch_options: Annotated[AISearchOptions, PropertyInfo(alias="ai_search_options")]
 
-    model: Literal[
-        "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-        "@cf/zai-org/glm-4.7-flash",
-        "@cf/meta/llama-3.1-8b-instruct-fast",
-        "@cf/meta/llama-3.1-8b-instruct-fp8",
-        "@cf/meta/llama-4-scout-17b-16e-instruct",
-        "@cf/qwen/qwen3-30b-a3b-fp8",
-        "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-        "@cf/moonshotai/kimi-k2-instruct",
-        "@cf/google/gemma-3-12b-it",
-        "@cf/google/gemma-4-26b-a4b-it",
-        "@cf/moonshotai/kimi-k2.5",
-        "anthropic/claude-3-7-sonnet",
-        "anthropic/claude-sonnet-4",
-        "anthropic/claude-opus-4",
-        "anthropic/claude-3-5-haiku",
-        "cerebras/qwen-3-235b-a22b-instruct",
-        "cerebras/qwen-3-235b-a22b-thinking",
-        "cerebras/llama-3.3-70b",
-        "cerebras/llama-4-maverick-17b-128e-instruct",
-        "cerebras/llama-4-scout-17b-16e-instruct",
-        "cerebras/gpt-oss-120b",
-        "google-ai-studio/gemini-2.5-flash",
-        "google-ai-studio/gemini-2.5-pro",
-        "grok/grok-4",
-        "groq/llama-3.3-70b-versatile",
-        "groq/llama-3.1-8b-instant",
-        "openai/gpt-5",
-        "openai/gpt-5-mini",
-        "openai/gpt-5-nano",
-        "",
-    ]
+    model: str
+    """
+    A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+    Completions API. An empty string uses the configured or default model.
+    """
 
     stream: bool
 
@@ -107,8 +80,12 @@ MessageContentUnionMember1: TypeAlias = Union[
 ]
 
 
-class Message(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
-    content: Required[Union[str, Iterable[MessageContentUnionMember1], None]]
+class Message(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
+    content: Required[Union[str, Iterable[MessageContentUnionMember1], Optional[str]]]
 
     role: Required[Literal["system", "developer", "user", "assistant", "tool"]]
 
@@ -122,38 +99,11 @@ class AISearchOptionsCache(TypedDict, total=False):
 class AISearchOptionsQueryRewrite(TypedDict, total=False):
     enabled: bool
 
-    model: Literal[
-        "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-        "@cf/zai-org/glm-4.7-flash",
-        "@cf/meta/llama-3.1-8b-instruct-fast",
-        "@cf/meta/llama-3.1-8b-instruct-fp8",
-        "@cf/meta/llama-4-scout-17b-16e-instruct",
-        "@cf/qwen/qwen3-30b-a3b-fp8",
-        "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-        "@cf/moonshotai/kimi-k2-instruct",
-        "@cf/google/gemma-3-12b-it",
-        "@cf/google/gemma-4-26b-a4b-it",
-        "@cf/moonshotai/kimi-k2.5",
-        "anthropic/claude-3-7-sonnet",
-        "anthropic/claude-sonnet-4",
-        "anthropic/claude-opus-4",
-        "anthropic/claude-3-5-haiku",
-        "cerebras/qwen-3-235b-a22b-instruct",
-        "cerebras/qwen-3-235b-a22b-thinking",
-        "cerebras/llama-3.3-70b",
-        "cerebras/llama-4-maverick-17b-128e-instruct",
-        "cerebras/llama-4-scout-17b-16e-instruct",
-        "cerebras/gpt-oss-120b",
-        "google-ai-studio/gemini-2.5-flash",
-        "google-ai-studio/gemini-2.5-pro",
-        "grok/grok-4",
-        "groq/llama-3.3-70b-versatile",
-        "groq/llama-3.1-8b-instant",
-        "openai/gpt-5",
-        "openai/gpt-5-mini",
-        "openai/gpt-5-nano",
-        "",
-    ]
+    model: str
+    """
+    A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+    Completions API. An empty string uses the configured or default model.
+    """
 
     rewrite_prompt: str
 
@@ -163,7 +113,7 @@ class AISearchOptionsReranking(TypedDict, total=False):
 
     match_threshold: float
 
-    model: Literal["@cf/baai/bge-reranker-base", ""]
+    model: str
 
 
 class AISearchOptionsRetrievalBoostBy(TypedDict, total=False):

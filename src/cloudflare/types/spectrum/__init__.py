@@ -18,3 +18,4 @@ from .origin_port_param import OriginPortParam as OriginPortParam
 from .app_create_response import AppCreateResponse as AppCreateResponse
 from .app_delete_response import AppDeleteResponse as AppDeleteResponse
 from .app_update_response import AppUpdateResponse as AppUpdateResponse
+from .protocol_list_response import ProtocolListResponse as ProtocolListResponse

@@ -16,6 +16,7 @@ __all__ = [
     "BindingWorkersBindingKindAI",
     "BindingWorkersBindingKindAISearch",
     "BindingWorkersBindingKindAISearchNamespace",
+    "BindingWorkersBindingKindMessaging",
     "BindingWorkersBindingKindAnalyticsEngine",
     "BindingWorkersBindingKindAssets",
     "BindingWorkersBindingKindBrowser",
@@ -133,6 +134,17 @@ class BindingWorkersBindingKindAISearchNamespace(BaseModel):
     """
 
     type: Literal["ai_search_namespace"]
+    """The kind of resource that the binding provides."""
+
+
+class BindingWorkersBindingKindMessaging(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    namespace: str
+    """The Messaging namespace to bind to."""
+
+    type: Literal["messaging"]
     """The kind of resource that the binding provides."""
 
 
@@ -418,7 +430,7 @@ class BindingWorkersBindingKindR2Bucket(BaseModel):
     type: Literal["r2_bucket"]
     """The kind of resource that the binding provides."""
 
-    jurisdiction: Optional[Literal["eu", "fedramp", "fedramp-high"]] = None
+    jurisdiction: Optional[Literal["eu", "fedramp", "fedramp-high", "us"]] = None
     """
     The
     [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
@@ -607,6 +619,12 @@ class BindingWorkersBindingKindVPCNetwork(BaseModel):
     type: Literal["vpc_network"]
     """The kind of resource that the binding provides."""
 
+    identity: Optional[Literal["runtime-email-alpha"]] = None
+    """Enables Gateway identity for the binding.
+
+    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id.
+    """
+
     network_id: Optional[str] = None
     """Identifier of the network to bind to.
 
@@ -622,6 +640,7 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindAI,
         BindingWorkersBindingKindAISearch,
         BindingWorkersBindingKindAISearchNamespace,
+        BindingWorkersBindingKindMessaging,
         BindingWorkersBindingKindAnalyticsEngine,
         BindingWorkersBindingKindAssets,
         BindingWorkersBindingKindBrowser,
@@ -1111,10 +1130,10 @@ class ObservabilityTraces(BaseModel):
     propagation_policy: Optional[Literal["authenticated", "accept"]] = None
     """
     Controls how inbound trace context (traceparent/tracestate) headers on incoming
-    requests are handled. "authenticated" (default) honors inbound trace context
-    only when accompanied by a valid trace auth token. "accept" unconditionally
-    accepts inbound trace context. Requires the trace propagation feature to be
-    enabled.
+    requests are handled. "authenticated" honors inbound trace context only when
+    accompanied by a valid trace auth token. "accept" unconditionally accepts
+    inbound trace context. Requires the trace propagation feature to be enabled.
+    Returns null when the trace propagation feature is not enabled for the account.
     """
 
 
@@ -1132,6 +1151,9 @@ class Observability(BaseModel):
 
     logs: Optional[ObservabilityLogs] = None
     """Log settings for the Worker."""
+
+    redact_query_string: Optional[bool] = None
+    """Whether query strings are removed from request URLs in logs and traces."""
 
     traces: Optional[ObservabilityTraces] = None
     """Trace settings for the Worker."""

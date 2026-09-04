@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -23,11 +23,13 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.settings import (
     allow_policy_edit_params,
     allow_policy_list_params,
+    allow_policy_batch_params,
     allow_policy_create_params,
 )
 from ....types.email_security.settings.allow_policy_get_response import AllowPolicyGetResponse
 from ....types.email_security.settings.allow_policy_edit_response import AllowPolicyEditResponse
 from ....types.email_security.settings.allow_policy_list_response import AllowPolicyListResponse
+from ....types.email_security.settings.allow_policy_batch_response import AllowPolicyBatchResponse
 from ....types.email_security.settings.allow_policy_create_response import AllowPolicyCreateResponse
 from ....types.email_security.settings.allow_policy_delete_response import AllowPolicyDeleteResponse
 
@@ -85,31 +87,31 @@ class AllowPoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note - This will not exempt messages with Malicious or Suspicious
-              dispositions.
+          is_acceptable_sender: Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
+              Malicious and Suspicious dispositions still apply.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections
+          is_exempt_recipient: Bypasses all detections for messages to this recipient.
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following
+          is_trusted_sender: Bypasses all detections and link following for messages from this sender.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 or IPv6 address or CIDR block for IP (e.g.
+              `1.2.3.4`, `1.2.3.0/24`, `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the
+              API rejects private or unique-local, loopback, link-local, unspecified, and IPv4
+              broadcast addresses, including their IPv4-mapped IPv6 equivalents.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -214,10 +216,13 @@ class AllowPoliciesResource(SyncAPIResource):
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           per_page: The number of results per page. Maximum value is 1000.
 
@@ -283,7 +288,7 @@ class AllowPoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
           extra_headers: Send extra headers
 
@@ -311,6 +316,61 @@ class AllowPoliciesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[AllowPolicyDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AllowPolicyDeleteResponse]], ResultWrapper[AllowPolicyDeleteResponse]),
+        )
+
+    def batch(
+        self,
+        *,
+        account_id: str,
+        deletes: Iterable[allow_policy_batch_params.Delete],
+        patches: Iterable[allow_policy_batch_params.Patch],
+        posts: Iterable[allow_policy_batch_params.Post],
+        puts: Iterable[allow_policy_batch_params.Put],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[AllowPolicyBatchResponse]:
+        """Executes multiple operations atomically.
+
+        All four operation arrays (deletes,
+        patches, puts, posts) are required and executed in order. Send empty arrays for
+        unused operations.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies/batch", account_id=account_id),
+            body=maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                allow_policy_batch_params.AllowPolicyBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AllowPolicyBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[AllowPolicyBatchResponse]], ResultWrapper[AllowPolicyBatchResponse]),
         )
 
     def edit(
@@ -344,13 +404,12 @@ class AllowPoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
-          is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note - This will not exempt messages with Malicious or Suspicious
-              dispositions.
+          is_acceptable_sender: Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
+              Malicious and Suspicious dispositions still apply.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections
+          is_exempt_recipient: Bypasses all detections for messages to this recipient.
 
           is_recipient:
               Deprecated as of July 1, 2025. Use `is_exempt_recipient` instead. End of life:
@@ -364,25 +423,26 @@ class AllowPoliciesResource(SyncAPIResource):
               Deprecated as of July 1, 2025. Use `is_acceptable_sender` instead. End of life:
               July 1, 2026.
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following
+          is_trusted_sender: Bypasses all detections and link following for messages from this sender.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 or IPv6 address or CIDR block for IP (e.g.
+              `1.2.3.4`, `1.2.3.0/24`, `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the
+              API rejects private or unique-local, loopback, link-local, unspecified, and IPv4
+              broadcast addresses, including their IPv4-mapped IPv6 equivalents.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -450,7 +510,7 @@ class AllowPoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
           extra_headers: Send extra headers
 
@@ -532,31 +592,31 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note - This will not exempt messages with Malicious or Suspicious
-              dispositions.
+          is_acceptable_sender: Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
+              Malicious and Suspicious dispositions still apply.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections
+          is_exempt_recipient: Bypasses all detections for messages to this recipient.
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following
+          is_trusted_sender: Bypasses all detections and link following for messages from this sender.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 or IPv6 address or CIDR block for IP (e.g.
+              `1.2.3.4`, `1.2.3.0/24`, `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the
+              API rejects private or unique-local, loopback, link-local, unspecified, and IPv4
+              broadcast addresses, including their IPv4-mapped IPv6 equivalents.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -661,10 +721,13 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           per_page: The number of results per page. Maximum value is 1000.
 
@@ -730,7 +793,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
           extra_headers: Send extra headers
 
@@ -758,6 +821,61 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
                 post_parser=ResultWrapper[Optional[AllowPolicyDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AllowPolicyDeleteResponse]], ResultWrapper[AllowPolicyDeleteResponse]),
+        )
+
+    async def batch(
+        self,
+        *,
+        account_id: str,
+        deletes: Iterable[allow_policy_batch_params.Delete],
+        patches: Iterable[allow_policy_batch_params.Patch],
+        posts: Iterable[allow_policy_batch_params.Post],
+        puts: Iterable[allow_policy_batch_params.Put],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[AllowPolicyBatchResponse]:
+        """Executes multiple operations atomically.
+
+        All four operation arrays (deletes,
+        patches, puts, posts) are required and executed in order. Send empty arrays for
+        unused operations.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template("/accounts/{account_id}/email-security/settings/allow_policies/batch", account_id=account_id),
+            body=await async_maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                allow_policy_batch_params.AllowPolicyBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AllowPolicyBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[AllowPolicyBatchResponse]], ResultWrapper[AllowPolicyBatchResponse]),
         )
 
     async def edit(
@@ -791,13 +909,12 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
-          is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
-              dispositions. Note - This will not exempt messages with Malicious or Suspicious
-              dispositions.
+          is_acceptable_sender: Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
+              Malicious and Suspicious dispositions still apply.
 
-          is_exempt_recipient: Messages to this recipient will bypass all detections
+          is_exempt_recipient: Bypasses all detections for messages to this recipient.
 
           is_recipient:
               Deprecated as of July 1, 2025. Use `is_exempt_recipient` instead. End of life:
@@ -811,25 +928,26 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
               Deprecated as of July 1, 2025. Use `is_acceptable_sender` instead. End of life:
               July 1, 2026.
 
-          is_trusted_sender: Messages from this sender will bypass all detections and link following
+          is_trusted_sender: Bypasses all detections and link following for messages from this sender.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 or IPv6 address or CIDR block for IP (e.g.
+              `1.2.3.4`, `1.2.3.0/24`, `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the
+              API rejects private or unique-local, loopback, link-local, unspecified, and IPv4
+              broadcast addresses, including their IPv4-mapped IPv6 equivalents.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           verify_sender: Enforce DMARC, SPF or DKIM authentication. When on, Email Security only honors
               policies that pass authentication.
@@ -897,7 +1015,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          policy_id: Allow policy identifier
+          policy_id: Allow policy identifier.
 
           extra_headers: Send extra headers
 
@@ -941,6 +1059,9 @@ class AllowPoliciesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             allow_policies.delete,
         )
+        self.batch = to_raw_response_wrapper(
+            allow_policies.batch,
+        )
         self.edit = to_raw_response_wrapper(
             allow_policies.edit,
         )
@@ -961,6 +1082,9 @@ class AsyncAllowPoliciesResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             allow_policies.delete,
+        )
+        self.batch = async_to_raw_response_wrapper(
+            allow_policies.batch,
         )
         self.edit = async_to_raw_response_wrapper(
             allow_policies.edit,
@@ -983,6 +1107,9 @@ class AllowPoliciesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             allow_policies.delete,
         )
+        self.batch = to_streamed_response_wrapper(
+            allow_policies.batch,
+        )
         self.edit = to_streamed_response_wrapper(
             allow_policies.edit,
         )
@@ -1003,6 +1130,9 @@ class AsyncAllowPoliciesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             allow_policies.delete,
+        )
+        self.batch = async_to_streamed_response_wrapper(
+            allow_policies.batch,
         )
         self.edit = async_to_streamed_response_wrapper(
             allow_policies.edit,

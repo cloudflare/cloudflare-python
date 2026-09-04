@@ -99,7 +99,7 @@ class TestCAs:
         ca = client.zero_trust.access.applications.cas.list(
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(SyncV4PagePaginationArray[CA], ca, path=["response"])
 
@@ -363,7 +363,7 @@ class TestAsyncCAs:
         ca = await async_client.zero_trust.access.applications.cas.list(
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(AsyncV4PagePaginationArray[CA], ca, path=["response"])
 

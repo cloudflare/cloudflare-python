@@ -111,7 +111,8 @@ class ConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Client]:
         """
-        Fetches connection details for a Cloudflare Tunnel.
+        Lists the connections for a Cloudflare Tunnel, including connector IDs,
+        cloudflared versions, and Cloudflare locations.
 
         Args:
           account_id: Cloudflare account ID
@@ -230,7 +231,8 @@ class AsyncConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Client, AsyncSinglePage[Client]]:
         """
-        Fetches connection details for a Cloudflare Tunnel.
+        Lists the connections for a Cloudflare Tunnel, including connector IDs,
+        cloudflared versions, and Cloudflare locations.
 
         Args:
           account_id: Cloudflare account ID

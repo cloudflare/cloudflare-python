@@ -23,6 +23,7 @@ __all__ = [
     "RetrievalOptionsBoostBy",
     "SourceParams",
     "SourceParamsWebCrawler",
+    "SourceParamsWebCrawlerDiscoverOptions",
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerParseOptionsContentSelector",
 ]
@@ -158,6 +159,36 @@ class RetrievalOptions(BaseModel):
     """
 
 
+class SourceParamsWebCrawlerDiscoverOptions(BaseModel):
+    """
+    Options for parse_type 'discover', where Browser Run discovers URLs by link following and sitemaps. Ignored for 'sitemap'.
+    """
+
+    depth: Optional[float] = None
+    """Maximum link-follow depth from the seed URL."""
+
+    include_external_links: Optional[bool] = None
+    """Follow links that point outside the source domain.
+
+    Must stay `false` — discover crawls are restricted to the zone you own.
+    """
+
+    include_subdomains: Optional[bool] = None
+    """Follow links to subdomains of the source host."""
+
+    limit: Optional[float] = None
+    """Maximum number of pages to crawl (1-100000)."""
+
+    max_age: Optional[float] = None
+    """Maximum content age in seconds to accept (0–604800)."""
+
+    source: Optional[Literal["all", "sitemaps", "links"]] = None
+    """
+    Where the crawler looks for URLs: 'sitemaps' reads sitemap XML only, 'links'
+    follows page links only, 'all' does both.
+    """
+
+
 class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
     path: str
     """Glob pattern to match against the page URL path.
@@ -203,9 +234,20 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
 
 
 class SourceParamsWebCrawler(BaseModel):
+    discover_options: Optional[SourceParamsWebCrawlerDiscoverOptions] = None
+    """
+    Options for parse_type 'discover', where Browser Run discovers URLs by link
+    following and sitemaps. Ignored for 'sitemap'.
+    """
+
     parse_options: Optional[SourceParamsWebCrawlerParseOptions] = None
 
-    parse_type: Optional[Literal["sitemap", "crawl"]] = None
+    parse_type: Optional[Literal["sitemap", "discover"]] = None
+    """How URLs are discovered.
+
+    'sitemap' reads XML sitemaps; 'discover' follows links recursively and requires
+    the source to be a Verified zone on this account.
+    """
 
 
 class SourceParams(BaseModel):
@@ -214,14 +256,16 @@ class SourceParams(BaseModel):
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
     path segments (e.g., /admin/** matches /admin/users and
-    /admin/settings/advanced)
+    /admin/settings/advanced). Most accounts are limited to 10 rules; contact
+    support to raise it.
     """
 
     include_items: Optional[List[str]] = None
     """List of path patterns to include.
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
-    path segments (e.g., /blog/** matches /blog/post and /blog/2024/post)
+    path segments (e.g., /blog/** matches /blog/post and /blog/2024/post). Most
+    accounts are limited to 10 rules; contact support to raise it.
     """
 
     prefix: Optional[str] = None
@@ -241,40 +285,11 @@ class InstanceCreateResponse(BaseModel):
 
     ai_gateway_id: Optional[str] = None
 
-    aisearch_model: Optional[
-        Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "@cf/google/gemma-4-26b-a4b-it",
-            "@cf/moonshotai/kimi-k2.5",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-    ] = FieldInfo(alias="ai_search_model", default=None)
+    aisearch_model: Optional[str] = FieldInfo(alias="ai_search_model", default=None)
+    """
+    A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+    Completions API. An empty string uses the configured or default model.
+    """
 
     cache: Optional[bool] = None
 
@@ -295,21 +310,7 @@ class InstanceCreateResponse(BaseModel):
 
     custom_metadata: Optional[List[CustomMetadata]] = None
 
-    embedding_model: Optional[
-        Literal[
-            "@cf/qwen/qwen3-embedding-0.6b",
-            "@cf/qwen/qwen3-vl-embedding-2b",
-            "@cf/baai/bge-m3",
-            "@cf/baai/bge-large-en-v1.5",
-            "@cf/google/embeddinggemma-300m",
-            "google-ai-studio/gemini-embedding-001",
-            "google-ai-studio/gemini-embedding-2-preview",
-            "google-ai-studio/gemini-embedding-2",
-            "openai/text-embedding-3-small",
-            "openai/text-embedding-3-large",
-            "",
-        ]
-    ] = None
+    embedding_model: Optional[str] = None
 
     enable: Optional[bool] = None
 
@@ -346,44 +347,15 @@ class InstanceCreateResponse(BaseModel):
 
     reranking: Optional[bool] = None
 
-    reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] = None
+    reranking_model: Optional[str] = None
 
     retrieval_options: Optional[RetrievalOptions] = None
 
-    rewrite_model: Optional[
-        Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "@cf/google/gemma-4-26b-a4b-it",
-            "@cf/moonshotai/kimi-k2.5",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-    ] = None
+    rewrite_model: Optional[str] = None
+    """
+    A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+    Completions API. An empty string uses the configured or default model.
+    """
 
     rewrite_query: Optional[bool] = None
 

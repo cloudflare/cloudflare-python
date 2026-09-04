@@ -55,7 +55,7 @@ class OperationsResource(SyncAPIResource):
         *,
         zone_id: str,
         endpoint: str | Omit = omit,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         method: SequenceNotStr[str] | Omit = omit,
         operation_status: Literal["new", "existing"] | Omit = omit,
@@ -71,7 +71,8 @@ class OperationsResource(SyncAPIResource):
         """Retrieves all operations from the schema.
 
         Operations that already exist in API
-        Shield Endpoint Management will be returned as full operations.
+        Shield Endpoint Management will be returned as full operations. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/{schema_id}/operations` instead.
 
         Args:
           zone_id: Identifier.
@@ -163,7 +164,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         *,
         zone_id: str,
         endpoint: str | Omit = omit,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]] | Omit = omit,
         host: SequenceNotStr[str] | Omit = omit,
         method: SequenceNotStr[str] | Omit = omit,
         operation_status: Literal["new", "existing"] | Omit = omit,
@@ -179,7 +180,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         """Retrieves all operations from the schema.
 
         Operations that already exist in API
-        Shield Endpoint Management will be returned as full operations.
+        Shield Endpoint Management will be returned as full operations. Deprecated; use
+        `/zones/{zone_id}/schema_validation/schemas/{schema_id}/operations` instead.
 
         Args:
           zone_id: Identifier.

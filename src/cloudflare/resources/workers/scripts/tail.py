@@ -7,7 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -18,7 +18,6 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.workers.scripts import tail_create_params
 from ....types.workers.scripts.tail_get_response import TailGetResponse
 from ....types.workers.scripts.tail_create_response import TailCreateResponse
 from ....types.workers.scripts.tail_delete_response import TailDeleteResponse
@@ -51,7 +50,6 @@ class TailResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,7 +83,6 @@ class TailResource(SyncAPIResource):
                 account_id=account_id,
                 script_name=script_name,
             ),
-            body=maybe_transform(body, tail_create_params.TailCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -220,7 +217,6 @@ class AsyncTailResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -254,7 +250,6 @@ class AsyncTailResource(AsyncAPIResource):
                 account_id=account_id,
                 script_name=script_name,
             ),
-            body=await async_maybe_transform(body, tail_create_params.TailCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

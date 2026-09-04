@@ -51,7 +51,7 @@ from .connections import (
 )
 from ..._base_client import make_request_options
 from ...types.page_shield import page_shield_update_params
-from ...types.page_shield.setting import Setting
+from ...types.page_shield.page_shield_get_response import PageShieldGetResponse
 from ...types.page_shield.page_shield_update_response import PageShieldUpdateResponse
 
 __all__ = ["PageShieldResource", "AsyncPageShieldResource"]
@@ -108,12 +108,12 @@ class PageShieldResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageShieldUpdateResponse]:
         """
-        Updates Page Shield settings.
+        Updates client-side security enablement and reporting behaviors for the zone.
 
         Args:
           zone_id: Identifier
 
-          enabled: When true, indicates that Page Shield is enabled.
+          enabled: When true, indicates that Client-Side Security is enabled.
 
           use_cloudflare_reporting_endpoint: When true, CSP reports will be sent to
               https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report
@@ -160,9 +160,10 @@ class PageShieldResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[Setting]:
+    ) -> Optional[PageShieldGetResponse]:
         """
-        Fetches the Page Shield settings.
+        Returns the client-side security product enablement status and reporting
+        behaviors.
 
         Args:
           zone_id: Identifier
@@ -184,9 +185,9 @@ class PageShieldResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageShieldGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
+            cast_to=cast(Type[Optional[PageShieldGetResponse]], ResultWrapper[PageShieldGetResponse]),
         )
 
 
@@ -241,12 +242,12 @@ class AsyncPageShieldResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageShieldUpdateResponse]:
         """
-        Updates Page Shield settings.
+        Updates client-side security enablement and reporting behaviors for the zone.
 
         Args:
           zone_id: Identifier
 
-          enabled: When true, indicates that Page Shield is enabled.
+          enabled: When true, indicates that Client-Side Security is enabled.
 
           use_cloudflare_reporting_endpoint: When true, CSP reports will be sent to
               https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report
@@ -293,9 +294,10 @@ class AsyncPageShieldResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[Setting]:
+    ) -> Optional[PageShieldGetResponse]:
         """
-        Fetches the Page Shield settings.
+        Returns the client-side security product enablement status and reporting
+        behaviors.
 
         Args:
           zone_id: Identifier
@@ -317,9 +319,9 @@ class AsyncPageShieldResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageShieldGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
+            cast_to=cast(Type[Optional[PageShieldGetResponse]], ResultWrapper[PageShieldGetResponse]),
         )
 
 

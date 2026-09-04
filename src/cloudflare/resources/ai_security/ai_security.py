@@ -70,9 +70,10 @@ class AISecurityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AISecurityUpdateResponse:
         """
-        Enable or disable AI Security for Apps for a zone.
-
-        Changes can take up to a minute to propagate to the zone.
+        Update the AI Security for Apps status for the zone, enabling or disabling the
+        detection. The detection results are exposed as `cf.llm.prompt.*` fields for use
+        in custom rules and rate limiting rules; changes can take up to a minute to
+        propagate.
 
         Args:
           zone_id: Defines the zone.
@@ -113,8 +114,11 @@ class AISecurityResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AISecurityGetResponse:
-        """
-        Get whether AI Security for Apps is enabled or disabled for a zone.
+        """Get the current AI Security for Apps status for the zone.
+
+        While enabled,
+        Cloudflare scans prompts sent to endpoints labeled `cf-llm` for personally
+        identifiable information, unsafe topics, and prompt injection attempts.
 
         Args:
           zone_id: Defines the zone.
@@ -179,9 +183,10 @@ class AsyncAISecurityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AISecurityUpdateResponse:
         """
-        Enable or disable AI Security for Apps for a zone.
-
-        Changes can take up to a minute to propagate to the zone.
+        Update the AI Security for Apps status for the zone, enabling or disabling the
+        detection. The detection results are exposed as `cf.llm.prompt.*` fields for use
+        in custom rules and rate limiting rules; changes can take up to a minute to
+        propagate.
 
         Args:
           zone_id: Defines the zone.
@@ -222,8 +227,11 @@ class AsyncAISecurityResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AISecurityGetResponse:
-        """
-        Get whether AI Security for Apps is enabled or disabled for a zone.
+        """Get the current AI Security for Apps status for the zone.
+
+        While enabled,
+        Cloudflare scans prompts sent to endpoints labeled `cf-llm` for personally
+        identifiable information, unsafe topics, and prompt injection attempts.
 
         Args:
           zone_id: Defines the zone.

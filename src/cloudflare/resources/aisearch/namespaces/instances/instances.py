@@ -90,41 +90,7 @@ class InstancesResource(SyncAPIResource):
         account_id: str,
         id: str,
         ai_gateway_id: Optional[str] | Omit = omit,
-        aisearch_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        aisearch_model: Optional[str] | Omit = omit,
         cache: bool | Omit = omit,
         cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
@@ -133,22 +99,7 @@ class InstancesResource(SyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         custom_metadata: Iterable[instance_create_params.CustomMetadata] | Omit = omit,
-        embedding_model: Optional[
-            Literal[
-                "@cf/qwen/qwen3-embedding-0.6b",
-                "@cf/qwen/qwen3-vl-embedding-2b",
-                "@cf/baai/bge-m3",
-                "@cf/baai/bge-large-en-v1.5",
-                "@cf/google/embeddinggemma-300m",
-                "google-ai-studio/gemini-embedding-001",
-                "google-ai-studio/gemini-embedding-2-preview",
-                "google-ai-studio/gemini-embedding-2",
-                "openai/text-embedding-3-small",
-                "openai/text-embedding-3-large",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        embedding_model: Optional[str] | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
         index_method: instance_create_params.IndexMethod | Omit = omit,
@@ -157,43 +108,9 @@ class InstancesResource(SyncAPIResource):
         metadata: instance_create_params.Metadata | Omit = omit,
         public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
-        reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] | Omit = omit,
+        reranking_model: Optional[str] | Omit = omit,
         retrieval_options: Optional[instance_create_params.RetrievalOptions] | Omit = omit,
-        rewrite_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        rewrite_model: Optional[str] | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
         source: Optional[str] | Omit = omit,
@@ -214,6 +131,9 @@ class InstancesResource(SyncAPIResource):
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
+          aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
@@ -222,6 +142,9 @@ class InstancesResource(SyncAPIResource):
 
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
+
+          rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
@@ -293,41 +216,7 @@ class InstancesResource(SyncAPIResource):
         account_id: str,
         name: str,
         ai_gateway_id: Optional[str] | Omit = omit,
-        aisearch_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        aisearch_model: Optional[str] | Omit = omit,
         cache: bool | Omit = omit,
         cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
@@ -336,22 +225,7 @@ class InstancesResource(SyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         custom_metadata: Iterable[instance_update_params.CustomMetadata] | Omit = omit,
-        embedding_model: Optional[
-            Literal[
-                "@cf/qwen/qwen3-embedding-0.6b",
-                "@cf/qwen/qwen3-vl-embedding-2b",
-                "@cf/baai/bge-m3",
-                "@cf/baai/bge-large-en-v1.5",
-                "@cf/google/embeddinggemma-300m",
-                "google-ai-studio/gemini-embedding-001",
-                "google-ai-studio/gemini-embedding-2-preview",
-                "google-ai-studio/gemini-embedding-2",
-                "openai/text-embedding-3-small",
-                "openai/text-embedding-3-large",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        embedding_model: Optional[str] | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
         index_method: instance_update_params.IndexMethod | Omit = omit,
         indexing_options: Optional[instance_update_params.IndexingOptions] | Omit = omit,
@@ -360,83 +234,15 @@ class InstancesResource(SyncAPIResource):
         paused: bool | Omit = omit,
         public_endpoint_params: instance_update_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
-        reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] | Omit = omit,
+        reranking_model: Optional[str] | Omit = omit,
         retrieval_options: Optional[instance_update_params.RetrievalOptions] | Omit = omit,
-        rewrite_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        rewrite_model: Optional[str] | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
         source: Optional[str] | Omit = omit,
         source_params: Optional[instance_update_params.SourceParams] | Omit = omit,
         summarization: bool | Omit = omit,
-        summarization_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        summarization_model: Optional[str] | Omit = omit,
         sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         system_prompt_aisearch: Optional[str] | Omit = omit,
         system_prompt_index_summarization: Optional[str] | Omit = omit,
@@ -453,12 +259,18 @@ class InstancesResource(SyncAPIResource):
         Update the configuration of an AI Search instance.
 
         Args:
+          aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
+
+          rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
@@ -658,39 +470,7 @@ class InstancesResource(SyncAPIResource):
         name: str,
         messages: Iterable[instance_chat_completions_params.Message],
         aisearch_options: instance_chat_completions_params.AISearchOptions | Omit = omit,
-        model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "@cf/google/gemma-4-26b-a4b-it",
-            "@cf/moonshotai/kimi-k2.5",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-        | Omit = omit,
+        model: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -705,6 +485,9 @@ class InstancesResource(SyncAPIResource):
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
+
+          model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           extra_headers: Send extra headers
 
@@ -947,41 +730,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         account_id: str,
         id: str,
         ai_gateway_id: Optional[str] | Omit = omit,
-        aisearch_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        aisearch_model: Optional[str] | Omit = omit,
         cache: bool | Omit = omit,
         cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
@@ -990,22 +739,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         custom_metadata: Iterable[instance_create_params.CustomMetadata] | Omit = omit,
-        embedding_model: Optional[
-            Literal[
-                "@cf/qwen/qwen3-embedding-0.6b",
-                "@cf/qwen/qwen3-vl-embedding-2b",
-                "@cf/baai/bge-m3",
-                "@cf/baai/bge-large-en-v1.5",
-                "@cf/google/embeddinggemma-300m",
-                "google-ai-studio/gemini-embedding-001",
-                "google-ai-studio/gemini-embedding-2-preview",
-                "google-ai-studio/gemini-embedding-2",
-                "openai/text-embedding-3-small",
-                "openai/text-embedding-3-large",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        embedding_model: Optional[str] | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
         hybrid_search_enabled: bool | Omit = omit,
         index_method: instance_create_params.IndexMethod | Omit = omit,
@@ -1014,43 +748,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         metadata: instance_create_params.Metadata | Omit = omit,
         public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
-        reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] | Omit = omit,
+        reranking_model: Optional[str] | Omit = omit,
         retrieval_options: Optional[instance_create_params.RetrievalOptions] | Omit = omit,
-        rewrite_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        rewrite_model: Optional[str] | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
         source: Optional[str] | Omit = omit,
@@ -1071,6 +771,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
+          aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
@@ -1079,6 +782,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
+
+          rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
@@ -1150,41 +856,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         account_id: str,
         name: str,
         ai_gateway_id: Optional[str] | Omit = omit,
-        aisearch_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        aisearch_model: Optional[str] | Omit = omit,
         cache: bool | Omit = omit,
         cache_threshold: Literal["super_strict_match", "close_enough", "flexible_friend", "anything_goes"]
         | Omit = omit,
@@ -1193,22 +865,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         custom_metadata: Iterable[instance_update_params.CustomMetadata] | Omit = omit,
-        embedding_model: Optional[
-            Literal[
-                "@cf/qwen/qwen3-embedding-0.6b",
-                "@cf/qwen/qwen3-vl-embedding-2b",
-                "@cf/baai/bge-m3",
-                "@cf/baai/bge-large-en-v1.5",
-                "@cf/google/embeddinggemma-300m",
-                "google-ai-studio/gemini-embedding-001",
-                "google-ai-studio/gemini-embedding-2-preview",
-                "google-ai-studio/gemini-embedding-2",
-                "openai/text-embedding-3-small",
-                "openai/text-embedding-3-large",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        embedding_model: Optional[str] | Omit = omit,
         fusion_method: Literal["max", "rrf"] | Omit = omit,
         index_method: instance_update_params.IndexMethod | Omit = omit,
         indexing_options: Optional[instance_update_params.IndexingOptions] | Omit = omit,
@@ -1217,83 +874,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         paused: bool | Omit = omit,
         public_endpoint_params: instance_update_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
-        reranking_model: Optional[Literal["@cf/baai/bge-reranker-base", ""]] | Omit = omit,
+        reranking_model: Optional[str] | Omit = omit,
         retrieval_options: Optional[instance_update_params.RetrievalOptions] | Omit = omit,
-        rewrite_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        rewrite_model: Optional[str] | Omit = omit,
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
         source: Optional[str] | Omit = omit,
         source_params: Optional[instance_update_params.SourceParams] | Omit = omit,
         summarization: bool | Omit = omit,
-        summarization_model: Optional[
-            Literal[
-                "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-                "@cf/zai-org/glm-4.7-flash",
-                "@cf/meta/llama-3.1-8b-instruct-fast",
-                "@cf/meta/llama-3.1-8b-instruct-fp8",
-                "@cf/meta/llama-4-scout-17b-16e-instruct",
-                "@cf/qwen/qwen3-30b-a3b-fp8",
-                "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-                "@cf/moonshotai/kimi-k2-instruct",
-                "@cf/google/gemma-3-12b-it",
-                "@cf/google/gemma-4-26b-a4b-it",
-                "@cf/moonshotai/kimi-k2.5",
-                "anthropic/claude-3-7-sonnet",
-                "anthropic/claude-sonnet-4",
-                "anthropic/claude-opus-4",
-                "anthropic/claude-3-5-haiku",
-                "cerebras/qwen-3-235b-a22b-instruct",
-                "cerebras/qwen-3-235b-a22b-thinking",
-                "cerebras/llama-3.3-70b",
-                "cerebras/llama-4-maverick-17b-128e-instruct",
-                "cerebras/llama-4-scout-17b-16e-instruct",
-                "cerebras/gpt-oss-120b",
-                "google-ai-studio/gemini-2.5-flash",
-                "google-ai-studio/gemini-2.5-pro",
-                "grok/grok-4",
-                "groq/llama-3.3-70b-versatile",
-                "groq/llama-3.1-8b-instant",
-                "openai/gpt-5",
-                "openai/gpt-5-mini",
-                "openai/gpt-5-nano",
-                "",
-            ]
-        ]
-        | Omit = omit,
+        summarization_model: Optional[str] | Omit = omit,
         sync_interval: Literal[900, 1800, 3600, 7200, 14400, 21600, 43200, 86400] | Omit = omit,
         system_prompt_aisearch: Optional[str] | Omit = omit,
         system_prompt_index_summarization: Optional[str] | Omit = omit,
@@ -1310,12 +899,18 @@ class AsyncInstancesResource(AsyncAPIResource):
         Update the configuration of an AI Search instance.
 
         Args:
+          aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           cache_ttl: Cache entry TTL in seconds. Allowed values: 600 (10min), 1800 (30min), 3600
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
           index_method: Controls which storage backends are used during indexing. Defaults to
               vector-only.
+
+          rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
@@ -1515,39 +1110,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         name: str,
         messages: Iterable[instance_chat_completions_params.Message],
         aisearch_options: instance_chat_completions_params.AISearchOptions | Omit = omit,
-        model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "@cf/google/gemma-4-26b-a4b-it",
-            "@cf/moonshotai/kimi-k2.5",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-        | Omit = omit,
+        model: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1562,6 +1125,9 @@ class AsyncInstancesResource(AsyncAPIResource):
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
+
+          model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
 
           extra_headers: Send extra headers
 

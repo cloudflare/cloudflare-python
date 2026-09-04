@@ -26,6 +26,7 @@ class ResourceTaggingSetTagsRequestAccountLevelWorkerVersion(TypedDict, total=Fa
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -35,12 +36,17 @@ class ResourceTaggingSetTagsRequestAccountLevelWorkerVersion(TypedDict, total=Fa
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
             "worker_version",
         ]
@@ -54,7 +60,11 @@ class ResourceTaggingSetTagsRequestAccountLevelWorkerVersion(TypedDict, total=Fa
     """Worker ID is required only for worker_version resources"""
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
+    """
 
     if_match: Annotated[str, PropertyInfo(alias="If-Match")]
 
@@ -71,6 +81,7 @@ class ResourceTaggingSetTagsRequestAccountLevelBase(TypedDict, total=False):
             "access_application",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -80,12 +91,17 @@ class ResourceTaggingSetTagsRequestAccountLevelBase(TypedDict, total=False):
             "gateway_list",
             "gateway_rule",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer_monitor",
+            "load_balancer_pool",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
         ]
     ]
@@ -95,7 +111,11 @@ class ResourceTaggingSetTagsRequestAccountLevelBase(TypedDict, total=False):
     """
 
     tags: Dict[str, str]
-    """Contains key-value pairs of tags."""
+    """Contains key-value pairs of tags.
+
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
+    """
 
     if_match: Annotated[str, PropertyInfo(alias="If-Match")]
 

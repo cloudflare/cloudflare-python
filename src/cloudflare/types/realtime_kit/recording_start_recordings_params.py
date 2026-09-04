@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Union, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "RecordingStartRecordingsParams",
@@ -12,6 +12,10 @@ __all__ = [
     "RealtimekitBucketConfig",
     "RtmpOutConfig",
     "StorageConfig",
+    "StorageConfigUnionMember0",
+    "StorageConfigUnionMember1",
+    "StorageConfigUnionMember2",
+    "StorageConfigUnionMember3",
     "VideoConfig",
     "VideoConfigWatermark",
     "VideoConfigWatermarkSize",
@@ -107,10 +111,7 @@ class RtmpOutConfig(TypedDict, total=False):
     """RTMP URL to stream to"""
 
 
-class StorageConfig(TypedDict, total=False):
-    type: Required[Literal["aws", "azure", "digitalocean", "gcs", "sftp"]]
-    """Type of storage media."""
-
+class StorageConfigUnionMember0(TypedDict, total=False):
     access_key: str
     """Access key of the storage medium.
 
@@ -156,8 +157,164 @@ class StorageConfig(TypedDict, total=False):
     Similar to `access_key`, it is only writeable by clients, not readable.
     """
 
+    type: Literal["gcs"]
+
     username: str
     """SSH destination server username for SFTP type storage medium"""
+
+
+class StorageConfigUnionMember1(TypedDict, total=False):
+    access_key: Required[object]
+
+    region: Required[object]
+
+    auth_method: Literal["KEY", "PASSWORD"]
+    """Authentication method used for "sftp" type storage medium"""
+
+    bucket: str
+    """Name of the storage medium's bucket."""
+
+    host: str
+    """SSH destination server host for SFTP type storage medium"""
+
+    password: str
+    """
+    SSH destination server password for SFTP type storage medium when auth_method is
+    "PASSWORD". If auth_method is "KEY", this specifies the password for the ssh
+    private key.
+    """
+
+    path: str
+    """Path relative to the bucket root at which the recording will be placed."""
+
+    port: float
+    """SSH destination server port for SFTP type storage medium"""
+
+    private_key: str
+    """
+    Private key used to login to destination SSH server for SFTP type storage
+    medium, when auth_method used is "KEY"
+    """
+
+    secret: str
+    """Secret key of the storage medium.
+
+    Similar to `access_key`, it is only writeable by clients, not readable.
+    """
+
+    type: Literal["aws", "azure", "digitalocean"]
+
+    username: str
+    """SSH destination server username for SFTP type storage medium"""
+
+
+class StorageConfigUnionMember2(TypedDict, total=False):
+    private_key: Required[str]
+    """
+    Private key used to login to destination SSH server for SFTP type storage
+    medium, when auth_method used is "KEY"
+    """
+
+    access_key: str
+    """Access key of the storage medium.
+
+    Access key is not required for the `gcs` storage media type.
+
+    Note that this field is not readable by clients, only writeable.
+    """
+
+    auth_method: Literal["KEY"]
+
+    bucket: str
+    """Name of the storage medium's bucket."""
+
+    host: str
+    """SSH destination server host for SFTP type storage medium"""
+
+    password: str
+    """
+    SSH destination server password for SFTP type storage medium when auth_method is
+    "PASSWORD". If auth_method is "KEY", this specifies the password for the ssh
+    private key.
+    """
+
+    path: str
+    """Path relative to the bucket root at which the recording will be placed."""
+
+    port: float
+    """SSH destination server port for SFTP type storage medium"""
+
+    region: str
+    """Region of the storage medium."""
+
+    secret: str
+    """Secret key of the storage medium.
+
+    Similar to `access_key`, it is only writeable by clients, not readable.
+    """
+
+    type: Literal["aws", "azure", "digitalocean", "gcs", "sftp"]
+    """Type of storage media."""
+
+    username: str
+    """SSH destination server username for SFTP type storage medium"""
+
+
+class StorageConfigUnionMember3(TypedDict, total=False):
+    password: Required[str]
+    """
+    SSH destination server password for SFTP type storage medium when auth_method is
+    "PASSWORD". If auth_method is "KEY", this specifies the password for the ssh
+    private key.
+    """
+
+    access_key: str
+    """Access key of the storage medium.
+
+    Access key is not required for the `gcs` storage media type.
+
+    Note that this field is not readable by clients, only writeable.
+    """
+
+    auth_method: Literal["PASSWORD"]
+
+    bucket: str
+    """Name of the storage medium's bucket."""
+
+    host: str
+    """SSH destination server host for SFTP type storage medium"""
+
+    path: str
+    """Path relative to the bucket root at which the recording will be placed."""
+
+    port: float
+    """SSH destination server port for SFTP type storage medium"""
+
+    private_key: str
+    """
+    Private key used to login to destination SSH server for SFTP type storage
+    medium, when auth_method used is "KEY"
+    """
+
+    region: str
+    """Region of the storage medium."""
+
+    secret: str
+    """Secret key of the storage medium.
+
+    Similar to `access_key`, it is only writeable by clients, not readable.
+    """
+
+    type: Literal["aws", "azure", "digitalocean", "gcs", "sftp"]
+    """Type of storage media."""
+
+    username: str
+    """SSH destination server username for SFTP type storage medium"""
+
+
+StorageConfig: TypeAlias = Union[
+    StorageConfigUnionMember0, StorageConfigUnionMember1, StorageConfigUnionMember2, StorageConfigUnionMember3
+]
 
 
 class VideoConfigWatermarkSize(TypedDict, total=False):
@@ -184,7 +341,7 @@ class VideoConfigWatermark(TypedDict, total=False):
 
 
 class VideoConfig(TypedDict, total=False):
-    codec: Literal["H264", "VP8"]
+    codec: Literal["H264", "VP8", "VP9"]
     """Codec using which the recording will be encoded."""
 
     export_file: bool

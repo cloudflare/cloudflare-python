@@ -240,7 +240,9 @@ class TestTelemetry:
                 "to": 0,
             },
             chart=True,
+            chart_type="timeseries_and_aggregate",
             compare=True,
+            distribution_scale="log",
             dry=True,
             granularity=0,
             ignore_series=True,
@@ -251,7 +253,7 @@ class TestTelemetry:
             parameters={
                 "calculations": [
                     {
-                        "operator": "uniq",
+                        "operator": "count",
                         "alias": "alias",
                         "key": "key",
                         "key_type": "string",
@@ -676,7 +678,9 @@ class TestAsyncTelemetry:
                 "to": 0,
             },
             chart=True,
+            chart_type="timeseries_and_aggregate",
             compare=True,
+            distribution_scale="log",
             dry=True,
             granularity=0,
             ignore_series=True,
@@ -687,7 +691,7 @@ class TestAsyncTelemetry:
             parameters={
                 "calculations": [
                     {
-                        "operator": "uniq",
+                        "operator": "count",
                         "alias": "alias",
                         "key": "key",
                         "key_type": "string",

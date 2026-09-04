@@ -23,7 +23,6 @@ from ...types.magic_transit import (
     ipsec_tunnel_update_params,
     ipsec_tunnel_psk_set_params,
     ipsec_tunnel_bulk_update_params,
-    ipsec_tunnel_psk_generate_params,
 )
 from ...types.magic_transit.ipsec_tunnel_get_response import IPSECTunnelGetResponse
 from ...types.magic_transit.ipsec_tunnel_list_response import IPSECTunnelListResponse
@@ -514,7 +513,6 @@ class IPSECTunnelsResource(SyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -552,7 +550,6 @@ class IPSECTunnelsResource(SyncAPIResource):
                 account_id=account_id,
                 ipsec_tunnel_id=ipsec_tunnel_id,
             ),
-            body=maybe_transform(body, ipsec_tunnel_psk_generate_params.IPSECTunnelPSKGenerateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1095,7 +1092,6 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1133,7 +1129,6 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                 account_id=account_id,
                 ipsec_tunnel_id=ipsec_tunnel_id,
             ),
-            body=await async_maybe_transform(body, ipsec_tunnel_psk_generate_params.IPSECTunnelPSKGenerateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

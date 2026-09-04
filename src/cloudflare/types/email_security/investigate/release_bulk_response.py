@@ -9,7 +9,7 @@ __all__ = ["ReleaseBulkResponse"]
 
 class ReleaseBulkResponse(BaseModel):
     id: str
-    """Unique identifier for a message retrieved from investigation"""
+    """Unique identifier for a message retrieved from investigation."""
 
     delivered: Optional[List[str]] = None
 

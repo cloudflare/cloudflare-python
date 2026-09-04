@@ -57,7 +57,10 @@ class Variant0(TypedDict, total=False):
     """
 
     allow_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowRequestPattern")]
-    """Only allow requests that match the provided regex patterns, eg. '/^.\\**\\..(css)'."""
+    """Only allow requests that match the provided regex patterns, eg.
+
+    '/^.\\**\\..(css)'. Reject rules are applied first.
+    """
 
     allow_resource_types: Annotated[
         List[
@@ -86,7 +89,7 @@ class Variant0(TypedDict, total=False):
     ]
     """Only allow requests that match the provided resource types, eg.
 
-    'image' or 'script'.
+    'image' or 'script'. Reject rules are applied first.
     """
 
     authenticate: Variant0Authenticate
@@ -94,6 +97,14 @@ class Variant0(TypedDict, total=False):
 
     best_attempt: Annotated[bool, PropertyInfo(alias="bestAttempt")]
     """Attempt to proceed when 'awaited' events fail or timeout."""
+
+    content_use: Annotated[Literal["reference", "full"], PropertyInfo(alias="contentUse")]
+    """
+    Intended content use level to respect the `use` Content-Signal directive in
+    robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
+    disallowed when the publisher's declared `use` level is lower than this intent.
+    Learn more: https://contentsignals.org/. Default: 'full'.
+    """
 
     cookies: Iterable[Variant0Cookie]
     """Check [options](https://pptr.dev/api/puppeteer.page.setcookie)."""
@@ -296,7 +307,7 @@ class Variant0JsonOptionsCustomAI(TypedDict, total=False):
 class Variant0JsonOptionsResponseFormat(TypedDict, total=False):
     type: Required[str]
 
-    json_schema: Optional[Dict[str, Union[str, float, bool, SequenceNotStr[str], object]]]
+    json_schema: Optional[Dict[str, object]]
     """Schema for the response format.
 
     More information here: https://developers.cloudflare.com/workers-ai/json-mode/
@@ -392,6 +403,14 @@ class Variant1(TypedDict, total=False):
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
     """Cache TTL default is 5s. Set to 0 to disable."""
 
+    content_use: Annotated[Literal["reference", "full"], PropertyInfo(alias="contentUse")]
+    """
+    Intended content use level to respect the `use` Content-Signal directive in
+    robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
+    disallowed when the publisher's declared `use` level is lower than this intent.
+    Learn more: https://contentsignals.org/. Default: 'full'.
+    """
+
     crawl_purposes: Annotated[List[Literal["search", "ai-input", "ai-train"]], PropertyInfo(alias="crawlPurposes")]
     """List of crawl purposes to respect Content-Signal directives in robots.txt.
 
@@ -457,7 +476,7 @@ class Variant1JsonOptionsCustomAI(TypedDict, total=False):
 class Variant1JsonOptionsResponseFormat(TypedDict, total=False):
     type: Required[str]
 
-    json_schema: Optional[Dict[str, Union[str, float, bool, SequenceNotStr[str], object]]]
+    json_schema: Optional[Dict[str, object]]
     """Schema for the response format.
 
     More information here: https://developers.cloudflare.com/workers-ai/json-mode/

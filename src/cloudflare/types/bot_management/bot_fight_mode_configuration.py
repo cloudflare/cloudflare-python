@@ -42,6 +42,13 @@ class BotFightModeConfiguration(BaseModel):
     ai_bots_protection: Optional[Literal["block", "disabled", "only_on_ad_pages"]] = None
     """Enable rule to block AI Scrapers and Crawlers."""
 
+    bot_preference_sync_enabled: Optional[bool] = None
+    """Enable Bot Preference Sync for this zone.
+
+    When enabled, Cloudflare can serve robots.txt content derived from the zone's AI
+    Search, AI User, and AI Training preferences.
+    """
+
     cf_robots_variant: Optional[Literal["off", "policy_only"]] = None
     """Specifies the Robots Access Control License variant to use."""
 

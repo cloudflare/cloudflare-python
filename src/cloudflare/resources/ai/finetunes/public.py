@@ -60,11 +60,11 @@ class PublicResource(SyncAPIResource):
         Lists publicly available fine-tuned models that can be used with Workers AI.
 
         Args:
-          limit: Pagination Limit
+          limit: Pagination Limit.
 
-          offset: Pagination Offset
+          offset: Pagination Offset.
 
-          order_by: Order By Column Name
+          order_by: Order By Column Name.
 
           extra_headers: Send extra headers
 
@@ -135,11 +135,11 @@ class AsyncPublicResource(AsyncAPIResource):
         Lists publicly available fine-tuned models that can be used with Workers AI.
 
         Args:
-          limit: Pagination Limit
+          limit: Pagination Limit.
 
-          offset: Pagination Offset
+          offset: Pagination Offset.
 
-          order_by: Order By Column Name
+          order_by: Order By Column Name.
 
           extra_headers: Send extra headers
 

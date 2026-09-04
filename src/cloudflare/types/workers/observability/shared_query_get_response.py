@@ -1,10 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from datetime import datetime
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
+from ...._utils import PropertyInfo
 from ...._models import BaseModel
 
 __all__ = [
@@ -13,6 +15,8 @@ __all__ = [
     "RunQuery",
     "RunQueryParameters",
     "RunQueryParametersCalculation",
+    "RunQueryParametersCalculationUnionMember0",
+    "RunQueryParametersCalculationUnionMember1",
     "RunQueryParametersFilter",
     "RunQueryParametersFilterUnionMember0",
     "RunQueryParametersFilterWorkersObservabilityFilterLeaf",
@@ -37,6 +41,7 @@ __all__ = [
     "CompareSeries",
     "CompareSeriesData",
     "CompareSeriesDataGroup",
+    "Distribution",
     "Events",
     "EventsEvent",
     "EventsEventMetadata",
@@ -66,10 +71,21 @@ __all__ = [
 ]
 
 
-class RunQueryParametersCalculation(BaseModel):
+class RunQueryParametersCalculationUnionMember0(BaseModel):
+    operator: Literal["count", "COUNT"]
+
+    alias: Optional[str] = None
+
+    key: Optional[str] = None
+
+    key_type: Optional[Literal["string", "number", "boolean"]] = FieldInfo(alias="keyType", default=None)
+
+
+class RunQueryParametersCalculationUnionMember1(BaseModel):
+    key: str
+
     operator: Literal[
         "uniq",
-        "count",
         "max",
         "min",
         "sum",
@@ -88,7 +104,6 @@ class RunQueryParametersCalculation(BaseModel):
         "stddev",
         "variance",
         "COUNT_DISTINCT",
-        "COUNT",
         "MAX",
         "MIN",
         "SUM",
@@ -110,9 +125,13 @@ class RunQueryParametersCalculation(BaseModel):
 
     alias: Optional[str] = None
 
-    key: Optional[str] = None
-
     key_type: Optional[Literal["string", "number", "boolean"]] = FieldInfo(alias="keyType", default=None)
+
+
+RunQueryParametersCalculation: TypeAlias = Annotated[
+    Union[RunQueryParametersCalculationUnionMember0, RunQueryParametersCalculationUnionMember1],
+    PropertyInfo(discriminator="operator"),
+]
 
 
 class RunQueryParametersFilterUnionMember0(BaseModel):
@@ -283,7 +302,7 @@ class RunQuery(BaseModel):
     adhoc: bool
     """If the query wasn't explcitly saved"""
 
-    created: str
+    created: Union[str, datetime]
 
     created_by: str = FieldInfo(alias="createdBy")
 
@@ -294,19 +313,22 @@ class RunQuery(BaseModel):
 
     parameters: RunQueryParameters
 
-    updated: str
+    updated: Union[str, datetime]
 
     updated_by: str = FieldInfo(alias="updatedBy")
 
 
 class RunTimeframe(BaseModel):
-    """Time range for the query execution"""
+    """Time range for the query execution.
 
-    from_: float = FieldInfo(alias="from")
-    """Start timestamp for the query timeframe (Unix timestamp in milliseconds)"""
+    'from' must be earlier than 'to'. No fractional milliseconds.
+    """
 
-    to: float
-    """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
+    from_: int = FieldInfo(alias="from")
+    """Start timestamp for the query timeframe. Unix timestamp in milliseconds"""
+
+    to: int
+    """End timestamp for the query timeframe. Unix timestamp in milliseconds"""
 
 
 class RunStatistics(BaseModel):
@@ -360,7 +382,10 @@ class Run(BaseModel):
     """Current execution status of the query run."""
 
     timeframe: RunTimeframe
-    """Time range for the query execution"""
+    """Time range for the query execution.
+
+    'from' must be earlier than 'to'. No fractional milliseconds.
+    """
 
     user_id: str = FieldInfo(alias="userId")
     """ID of the user who initiated the query run."""
@@ -401,32 +426,59 @@ class Statistics(BaseModel):
 
 
 class Agent(BaseModel):
-    agent_class: str = FieldInfo(alias="agentClass")
-    """Class name of the Durable Object agent."""
+    id: str
+    """Stable pagination cursor for this agent run."""
 
-    event_type_counts: Dict[str, float] = FieldInfo(alias="eventTypeCounts")
-    """Breakdown of event counts by event type."""
+    errors: List[str]
+    """Distinct errors reported by spans in the run."""
 
-    first_event_ms: float = FieldInfo(alias="firstEventMs")
+    models: List[str]
+    """Distinct models reported by chat spans across the run's trace."""
+
+    providers: List[str]
+    """Distinct GenAI providers reported by chat spans in the run."""
+
+    services: List[str]
+    """Worker services represented in the run's trace."""
+
+    spans: float
+    """Number of spans in the run's trace."""
+
+    status: Literal["completed", "error"]
+    """Observed run status."""
+
+    trace_duration_ms: float = FieldInfo(alias="traceDurationMs")
+    """Total trace duration in milliseconds."""
+
+    trace_end_ms: float = FieldInfo(alias="traceEndMs")
+    """End of the run's trace as a Unix epoch in milliseconds."""
+
+    trace_id: str = FieldInfo(alias="traceId")
+    """Trace identifier for this agent run."""
+
+    trace_start_ms: float = FieldInfo(alias="traceStartMs")
+    """Start of the run's trace as a Unix epoch in milliseconds."""
+
+    agent_id: Optional[str] = FieldInfo(alias="agentId", default=None)
+    """ID from the earliest agent invocation that provides one."""
+
+    agent_name: Optional[str] = FieldInfo(alias="agentName", default=None)
+    """Name from the earliest agent invocation that provides one."""
+
+    conversation_id: Optional[str] = FieldInfo(alias="conversationId", default=None)
+    """Conversation ID from the earliest invocation that provides one."""
+
+    input_tokens: Optional[float] = FieldInfo(alias="inputTokens", default=None)
     """
-    Timestamp of the earliest event from this agent in the queried window (Unix
-    epoch ms).
+    Input tokens summed across chat spans in the run's trace; informational, not
+    billing data.
     """
 
-    has_errors: bool = FieldInfo(alias="hasErrors")
-    """Whether the agent emitted any error events in the queried window."""
-
-    last_event_ms: float = FieldInfo(alias="lastEventMs")
-    """Timestamp of the most recent event from this agent (Unix epoch ms)."""
-
-    namespace: str
-    """Durable Object namespace the agent belongs to."""
-
-    service: str
-    """Worker service name that hosts this agent."""
-
-    total_events: float = FieldInfo(alias="totalEvents")
-    """Total number of events emitted by this agent in the queried window."""
+    output_tokens: Optional[float] = FieldInfo(alias="outputTokens", default=None)
+    """
+    Output tokens summed across chat spans in the run's trace; informational, not
+    billing data.
+    """
 
 
 class CalculationAggregateGroup(BaseModel):
@@ -541,6 +593,38 @@ class Compare(BaseModel):
     alias: Optional[str] = None
 
 
+class Distribution(BaseModel):
+    """Bucketed 2D histogram of a numeric field over time.
+
+    Present when chartType is 'distribution'.
+    """
+
+    bins: List[str]
+    """Time-bucket labels (ISO-8601 strings), one per matrix column."""
+
+    bucket_boundaries: List[float] = FieldInfo(alias="bucketBoundaries")
+    """Raw bucket edges in the value's native unit, length buckets.length + 1.
+
+    Used for the colour scale and percentile mapping.
+    """
+
+    bucket_mode: Literal["log", "linear"] = FieldInfo(alias="bucketMode")
+    """Bucketing scheme used to derive the boundaries.
+
+    'log' produces geometric edges; 'linear' produces fixed-width edges.
+    """
+
+    buckets: List[str]
+    """Value-range labels, one per matrix row (e.g. '50–100ms')."""
+
+    matrix: List[List[float]]
+    """Sampling-corrected counts.
+
+    matrix[bucketIdx][binIdx] is the estimated number of events in value-bucket
+    'bucketIdx' during time-bin 'binIdx'.
+    """
+
+
 class EventsEventMetadata(BaseModel):
     """Structured metadata extracted from the event.
 
@@ -596,6 +680,12 @@ class EventsEventMetadata(BaseModel):
 
     provider: Optional[str] = None
     """Infrastructure provider identifier."""
+
+    rayid: Optional[str] = FieldInfo(alias="rayId", default=None)
+    """
+    Cloudflare Ray ID from the `cf-ray` header of the request that triggered the
+    invocation.
+    """
 
     region: Optional[str] = None
     """Cloudflare data center / region that handled the request."""
@@ -937,6 +1027,12 @@ class InvocationMetadata(BaseModel):
     provider: Optional[str] = None
     """Infrastructure provider identifier."""
 
+    rayid: Optional[str] = FieldInfo(alias="rayId", default=None)
+    """
+    Cloudflare Ray ID from the `cf-ray` header of the request that triggered the
+    invocation.
+    """
+
     region: Optional[str] = None
     """Cloudflare data center / region that handled the request."""
 
@@ -1204,10 +1300,10 @@ class SharedQueryGetResponse(BaseModel):
     """
 
     agents: Optional[List[Agent]] = None
-    """Durable Object agent summaries.
+    """Agent run summaries.
 
-    Present when the query view is 'agents'. Each entry represents an agent with its
-    event counts and status.
+    Present when the query view is 'agents'. Each entry represents one trace
+    containing at least one agent invocation.
     """
 
     calculations: Optional[List[Calculation]] = None
@@ -1221,6 +1317,12 @@ class SharedQueryGetResponse(BaseModel):
     """Comparison calculation results from the previous time period.
 
     Present when the compare option is enabled. Same structure as calculations.
+    """
+
+    distribution: Optional[Distribution] = None
+    """Bucketed 2D histogram of a numeric field over time.
+
+    Present when chartType is 'distribution'.
     """
 
     events: Optional[Events] = None

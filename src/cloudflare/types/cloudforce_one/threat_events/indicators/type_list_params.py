@@ -15,7 +15,8 @@ class TypeListParams(TypedDict, total=False):
     """Account ID."""
 
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]
-    """Array of dataset IDs to query indicator types from.
-
-    If not provided, queries all datasets for the account.
+    """
+    Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**', 'analytics'
+    for isAnalytics=true datasets, or 'operational' for isAnalytics=false datasets.
+    If not provided, queries all accessible datasets.
     """

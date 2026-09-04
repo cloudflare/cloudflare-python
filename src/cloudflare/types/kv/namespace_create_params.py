@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["NamespaceCreateParams"]
 
@@ -13,3 +13,9 @@ class NamespaceCreateParams(TypedDict, total=False):
 
     title: Required[str]
     """A human-readable string name for a Namespace."""
+
+    jurisdiction: Literal["eu", "fedramp", "us"]
+    """
+    Specify the jurisdiction to restrict the KV namespace to durably store data
+    within. Can only be set at namespace creation time.
+    """

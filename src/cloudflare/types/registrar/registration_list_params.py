@@ -9,7 +9,7 @@ __all__ = ["RegistrationListParams"]
 
 class RegistrationListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     cursor: str
     """

@@ -79,6 +79,8 @@ class WorkflowsResource(SyncAPIResource):
         account_id: str,
         class_name: str,
         script_name: str,
+        concurrency: workflow_update_params.Concurrency | Omit = omit,
+        default_retention: workflow_update_params.DefaultRetention | Omit = omit,
         limits: workflow_update_params.Limits | Omit = omit,
         schedules: Iterable[workflow_update_params.Schedule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -92,6 +94,9 @@ class WorkflowsResource(SyncAPIResource):
         Creates a new workflow or updates an existing workflow definition.
 
         Args:
+          default_retention: Default retention applied to instances of this version when they do not set
+              their own retention.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -112,6 +117,8 @@ class WorkflowsResource(SyncAPIResource):
                 {
                     "class_name": class_name,
                     "script_name": script_name,
+                    "concurrency": concurrency,
+                    "default_retention": default_retention,
                     "limits": limits,
                     "schedules": schedules,
                 },
@@ -299,6 +306,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         account_id: str,
         class_name: str,
         script_name: str,
+        concurrency: workflow_update_params.Concurrency | Omit = omit,
+        default_retention: workflow_update_params.DefaultRetention | Omit = omit,
         limits: workflow_update_params.Limits | Omit = omit,
         schedules: Iterable[workflow_update_params.Schedule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -312,6 +321,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         Creates a new workflow or updates an existing workflow definition.
 
         Args:
+          default_retention: Default retention applied to instances of this version when they do not set
+              their own retention.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -332,6 +344,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 {
                     "class_name": class_name,
                     "script_name": script_name,
+                    "concurrency": concurrency,
+                    "default_retention": default_retention,
                     "limits": limits,
                     "schedules": schedules,
                 },

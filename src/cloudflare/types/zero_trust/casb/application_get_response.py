@@ -105,7 +105,7 @@ class UseCase(BaseModel):
 
 
 class ApplicationGetResponse(BaseModel):
-    """Full application detail for onboarding UI."""
+    """The requested item."""
 
     id: Literal[
         "ANTHROPIC",

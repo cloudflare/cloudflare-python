@@ -65,10 +65,10 @@ class RateLimitsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RateLimit:
-        """Creates a new rate limit for a zone.
+        """**Deprecated**: This endpoint returns 410 Gone.
 
-        Refer to the object definition for a list
-        of required attributes.
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.
@@ -132,8 +132,10 @@ class RateLimitsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[RateLimit]:
-        """
-        Fetches the rate limits for a zone.
+        """**Deprecated**: This endpoint returns 410 Gone.
+
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.
@@ -187,8 +189,10 @@ class RateLimitsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RateLimitDeleteResponse:
-        """
-        Deletes an existing rate limit.
+        """**Deprecated**: This endpoint returns 410 Gone.
+
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.
@@ -238,8 +242,10 @@ class RateLimitsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RateLimit:
-        """
-        Updates an existing rate limit.
+        """**Deprecated**: This endpoint returns 410 Gone.
+
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.
@@ -306,8 +312,10 @@ class RateLimitsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RateLimit:
-        """
-        Fetches the details of a rate limit.
+        """**Deprecated**: This endpoint returns 410 Gone.
+
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.
@@ -377,10 +385,10 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RateLimit:
-        """Creates a new rate limit for a zone.
+        """**Deprecated**: This endpoint returns 410 Gone.
 
-        Refer to the object definition for a list
-        of required attributes.
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.
@@ -444,8 +452,10 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RateLimit, AsyncV4PagePaginationArray[RateLimit]]:
-        """
-        Fetches the rate limits for a zone.
+        """**Deprecated**: This endpoint returns 410 Gone.
+
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.
@@ -499,8 +509,10 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RateLimitDeleteResponse:
-        """
-        Deletes an existing rate limit.
+        """**Deprecated**: This endpoint returns 410 Gone.
+
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.
@@ -550,8 +562,10 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RateLimit:
-        """
-        Updates an existing rate limit.
+        """**Deprecated**: This endpoint returns 410 Gone.
+
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.
@@ -618,8 +632,10 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RateLimit:
-        """
-        Fetches the details of a rate limit.
+        """**Deprecated**: This endpoint returns 410 Gone.
+
+        Please use the Rulesets API
+        instead.
 
         Args:
           zone_id: Defines an identifier.

@@ -9,20 +9,19 @@ __all__ = ["RegistrarCheckResponse", "Domain", "DomainPricing"]
 
 
 class DomainPricing(BaseModel):
-    """Annual pricing information for a registrable domain.
+    """Provides annual pricing information for a registrable domain.
 
-    This object is only
-    present when `registrable` is `true`. All prices are per year and returned
-    as strings to preserve decimal precision.
+    This object
+    appears only when `registrable` is `true`. The API returns all per-year
+    prices as strings to preserve decimal precision.
 
-    `registration_cost` and `renewal_cost` are frequently the same value, but
-    may differ — especially for premium domains where registries set different
-    rates for initial registration vs. renewal. For a multi-year registration
-    (e.g., 4 years), the first year is charged at `registration_cost` and each
-    subsequent year at `renewal_cost`. Registry pricing may change over time;
-    the values returned here reflect the current registry rate. Premium pricing
-    may be surfaced by Search and Check, but premium registration is not currently
-    supported by this API.
+    `registration_cost` and `renewal_cost` frequently have the same value, but
+    may differ, especially when registries set different premium rates for
+    initial registration and renewal. For a multi-year registration (e.g., 4
+    years), `registration_cost` applies to the first year and `renewal_cost`
+    applies to each subsequent year. The values reflect the current registry
+    rate, which may change over time. Search and Check may surface premium
+    pricing, but this API currently supports standard registrations only.
     """
 
     currency: str
@@ -31,10 +30,9 @@ class DomainPricing(BaseModel):
     registration_cost: str
     """The first-year cost to register this domain.
 
-    For premium domains (`tier: premium`), this price is set by the registry and may
-    be significantly higher than standard pricing. For multi-year registrations,
-    this cost applies to the first year only; subsequent years are charged at
-    `renewal_cost`.
+    For premium domains (`tier: premium`), the registry sets this price, which may
+    significantly exceed standard pricing. For multi-year registrations, this cost
+    applies to the first year only; `renewal_cost` applies to subsequent years.
     """
 
     renewal_cost: str
@@ -49,7 +47,7 @@ class DomainPricing(BaseModel):
 
 class Domain(BaseModel):
     """
-    Represents a single authoritative domain availability result returned by the Check endpoint. Check results reflect current registry status and should be used immediately before registration.
+    Describes a single authoritative domain availability result from the Check endpoint. Check results reflect current registry status; use them immediately before registration.
     """
 
     name: str
@@ -60,28 +58,28 @@ class Domain(BaseModel):
 
     registrable: bool
     """
-    Indicates whether this domain can be registered programmatically through this
-    API based on a real-time registry check.
+    Indicates programmatic registration eligibility according to a real-time
+    registry check.
 
-    - `true`: Domain is available for registration. The `pricing` object will be
-      included.
-    - `false`: Domain is not available. See the `reason` field for why. `tier` may
-      still be present on some non-registrable results, such as premium domains.
+    - `true`: The domain is available for registration. The response includes the
+      `pricing` object.
+    - `false`: A restriction prevents registration. See the `reason` field for
+      details. Some results, such as premium domains, may still include `tier`.
     """
 
     pricing: Optional[DomainPricing] = None
-    """Annual pricing information for a registrable domain.
+    """Provides annual pricing information for a registrable domain.
 
-    This object is only present when `registrable` is `true`. All prices are per
-    year and returned as strings to preserve decimal precision.
+    This object appears only when `registrable` is `true`. The API returns all
+    per-year prices as strings to preserve decimal precision.
 
-    `registration_cost` and `renewal_cost` are frequently the same value, but may
-    differ — especially for premium domains where registries set different rates for
-    initial registration vs. renewal. For a multi-year registration (e.g., 4 years),
-    the first year is charged at `registration_cost` and each subsequent year at
-    `renewal_cost`. Registry pricing may change over time; the values returned here
-    reflect the current registry rate. Premium pricing may be surfaced by Search and
-    Check, but premium registration is not currently supported by this API.
+    `registration_cost` and `renewal_cost` frequently have the same value, but may
+    differ, especially when registries set different premium rates for initial
+    registration and renewal. For a multi-year registration (e.g., 4 years),
+    `registration_cost` applies to the first year and `renewal_cost` applies to each
+    subsequent year. The values reflect the current registry rate, which may change
+    over time. Search and Check may surface premium pricing, but this API currently
+    supports standard registrations only.
     """
 
     reason: Optional[
@@ -93,33 +91,31 @@ class Domain(BaseModel):
             "domain_unavailable",
         ]
     ] = None
-    """Present only when `registrable` is `false`.
-
-    Explains why the domain cannot be registered via this API.
+    """Appears only when `registrable` is `false` and explains the result.
 
     - `extension_not_supported_via_api`: Cloudflare Registrar supports this
-      extension in the dashboard but it is not yet available for programmatic
-      registration via this API. The user can register via
+      extension in the dashboard but currently excludes it from programmatic
+      registration through this API. The user can register via
       `https://dash.cloudflare.com/{account_id}/domains/registrations`.
-    - `extension_not_supported`: This extension is not supported by Cloudflare
-      Registrar at all.
-    - `extension_disallows_registration`: The extension's registry has temporarily
-      or permanently frozen new registrations. No registrar can register domains on
-      this extension at this time.
-    - `domain_premium`: The domain is premium priced. Premium registration is not
-      currently supported by this API.
-    - `domain_unavailable`: The domain is already registered, reserved, or otherwise
-      not available on a supported extension.
+    - `extension_not_supported`: Cloudflare Registrar excludes this extension
+      entirely.
+    - `extension_disallows_registration`: The extension's registry temporarily or
+      permanently freezes new registrations. Registrars currently cannot register
+      domains on this extension.
+    - `domain_premium`: The domain carries premium pricing. This API currently
+      supports standard registrations only.
+    - `domain_unavailable`: An existing registration, reservation, or other registry
+      restriction makes the domain unavailable on a supported extension.
     """
 
     tier: Optional[Literal["standard", "premium"]] = None
     """The pricing tier for this domain.
 
-    Always present when `registrable` is `true`; defaults to `standard` for most
-    domains. May be absent when `registrable` is `false`.
+    A `registrable` value of `true` always includes this field, which defaults to
+    `standard` for most domains. A `registrable` value of `false` may omit it.
 
-    - `standard`: Standard registry pricing
-    - `premium`: Premium domain with higher pricing set by the registry
+    - `standard`: Standard registry pricing.
+    - `premium`: Premium domain with higher pricing from the registry.
     """
 
 
@@ -129,6 +125,6 @@ class RegistrarCheckResponse(BaseModel):
     domains: List[Domain]
     """Array of domain availability results.
 
-    Domains on unsupported extensions are included with `registrable: false` and a
-    `reason` field. Malformed domain names may be omitted.
+    Results for unsupported extensions contain `registrable: false` and a `reason`
+    field. The response may omit malformed domain names.
     """

@@ -20,7 +20,8 @@ class IndicatorListParams(TypedDict, total=False):
     """Cache strategy.
 
     'from-graph' serves results from the graph-node KV cache when all requested
-    UUIDs are cached; falls back to normal path on partial/zero hit.
+    UUIDs are cached; falls back to normal path on partial/zero hit. Cannot be
+    combined with `cursor`.
     """
 
     created_after: Annotated[Union[str, datetime], PropertyInfo(alias="createdAfter", format="iso8601")]
@@ -35,10 +36,24 @@ class IndicatorListParams(TypedDict, total=False):
     Must use ISO 8601 format (e.g., '2024-12-31T23:59:59Z').
     """
 
+    cursor: str
+    """Opaque cursor from a previous response's `pagination.cursor`.
+
+    When provided, all filters, datasetIds, page, `pageSize`, `includeTags` and
+    `relatedEventsLimit` come from the cursor — do not resend them. Sending any
+    filter, `page`, `pageSize`, `includeTags`, `relatedEventsLimit`,
+    `includeTotalCount=true`, or `cache=from-graph` alongside a cursor yields a 400
+    `CursorFilterConflictError`. A cursor issued for a different entity, an
+    unsupported version, or a dataset that has since been reconfigured as
+    analytics-only yields a 400 `InvalidCursorError`.
+    """
+
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]
     """
-    Dataset IDs to query indicators from (array of UUIDs), or special value 'all' or
-    '\\**' to query all datasets. If not provided, uses the default dataset.
+    Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for legacy
+    all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
+    'operational' for isAnalytics=false datasets. If not provided, uses the default
+    dataset.
     """
 
     format: Literal["json", "stix2", "taxii"]
@@ -53,9 +68,10 @@ class IndicatorListParams(TypedDict, total=False):
     """Whether to include full tag details for each indicator. Defaults to true."""
 
     include_total_count: Annotated[bool, PropertyInfo(alias="includeTotalCount")]
-    """Whether to compute accurate total count via COUNT(\\**).
+    """Whether to compute total count via COUNT(\\**).
 
-    Defaults to false for performance. When false, total_count is an approximation.
+    Defaults to false for performance. total_count is null unless this is true and
+    the complete fan-out succeeds.
     """
 
     indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]
@@ -88,13 +104,6 @@ class IndicatorListParams(TypedDict, total=False):
     request, e.g.
     search=[{"field":"value","op":"in","value":["evil.com","bad.org"]}]. Multiple
     conditions are AND'd together. Max 10 conditions per request.
-    """
-
-    source: Literal["do", "r2catalog"]
-    """Read backend.
-
-    'do' (default) reads Durable Object storage. 'r2catalog' reads R2 Data Catalog
-    (admin-only, experimental; supports a subset of search fields).
     """
 
     tags: SequenceNotStr[str]

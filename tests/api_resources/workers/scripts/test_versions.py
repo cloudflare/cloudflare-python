@@ -42,7 +42,12 @@ class TestVersions:
                 "main_module": "worker.js",
                 "annotations": {
                     "workers_alias": "staging",
+                    "workers_commit_sha": "8b6aeb38455e2f92e170deb46313b90166ccc1e5",
                     "workers_message": "Fixed worker code.",
+                    "workers_pull_request_number": "14966",
+                    "workers_pull_request_title": "Add a cool new feature",
+                    "workers_pull_request_url": "https://github.com/cloudflare/workers-sdk/pull/14966",
+                    "workers_repository_url": "https://github.com/cloudflare/workers-sdk",
                     "workers_tag": "any-identifier-from-external-system",
                 },
                 "bindings": [
@@ -56,7 +61,7 @@ class TestVersions:
                     "enabled": True,
                     "cross_version_cache": True,
                 },
-                "compatibility_date": "2021-01-01",
+                "compatibility_date": "2021-01-01T00:00:00Z",
                 "compatibility_flags": ["nodejs_compat"],
                 "exports": {
                     "Admin": {
@@ -288,7 +293,12 @@ class TestAsyncVersions:
                 "main_module": "worker.js",
                 "annotations": {
                     "workers_alias": "staging",
+                    "workers_commit_sha": "8b6aeb38455e2f92e170deb46313b90166ccc1e5",
                     "workers_message": "Fixed worker code.",
+                    "workers_pull_request_number": "14966",
+                    "workers_pull_request_title": "Add a cool new feature",
+                    "workers_pull_request_url": "https://github.com/cloudflare/workers-sdk/pull/14966",
+                    "workers_repository_url": "https://github.com/cloudflare/workers-sdk",
                     "workers_tag": "any-identifier-from-external-system",
                 },
                 "bindings": [
@@ -302,7 +312,7 @@ class TestAsyncVersions:
                     "enabled": True,
                     "cross_version_cache": True,
                 },
-                "compatibility_date": "2021-01-01",
+                "compatibility_date": "2021-01-01T00:00:00Z",
                 "compatibility_flags": ["nodejs_compat"],
                 "exports": {
                     "Admin": {

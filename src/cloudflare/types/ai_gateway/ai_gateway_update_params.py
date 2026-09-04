@@ -49,6 +49,8 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     guardrails: Optional[Guardrails]
 
+    log_classification: bool
+
     log_management: Optional[int]
 
     log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]]
@@ -76,10 +78,12 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     stripe: Optional[Stripe]
 
-    workers_ai_billing_mode: Literal["postpaid"]
+    workers_ai_billing_mode: Literal["postpaid", "unified"]
     """Controls how Workers AI inference calls routed through this gateway are billed.
 
-    Only 'postpaid' is currently supported.
+    'postpaid' bills the account directly through Workers AI; 'unified' deducts
+    credits via AI Gateway using neuron-based pricing and delegates billing to AI
+    Gateway.
     """
 
     zdr: bool

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -23,11 +23,13 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.settings import (
     block_sender_edit_params,
     block_sender_list_params,
+    block_sender_batch_params,
     block_sender_create_params,
 )
 from ....types.email_security.settings.block_sender_get_response import BlockSenderGetResponse
 from ....types.email_security.settings.block_sender_edit_response import BlockSenderEditResponse
 from ....types.email_security.settings.block_sender_list_response import BlockSenderListResponse
+from ....types.email_security.settings.block_sender_batch_response import BlockSenderBatchResponse
 from ....types.email_security.settings.block_sender_create_response import BlockSenderCreateResponse
 from ....types.email_security.settings.block_sender_delete_response import BlockSenderDeleteResponse
 
@@ -78,23 +80,24 @@ class BlockSendersResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 or IPv6 address or CIDR block for IP (e.g.
+              `1.2.3.4`, `1.2.3.0/24`, `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the
+              API rejects private or unique-local, loopback, link-local, unspecified, and IPv4
+              broadcast addresses, including their IPv4-mapped IPv6 equivalents.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           extra_headers: Send extra headers
 
@@ -222,7 +225,7 @@ class BlockSendersResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: Blocked sender pattern identifier
+          pattern_id: Blocked sender pattern identifier.
 
           extra_headers: Send extra headers
 
@@ -252,6 +255,61 @@ class BlockSendersResource(SyncAPIResource):
             cast_to=cast(Type[Optional[BlockSenderDeleteResponse]], ResultWrapper[BlockSenderDeleteResponse]),
         )
 
+    def batch(
+        self,
+        *,
+        account_id: str,
+        deletes: Iterable[block_sender_batch_params.Delete],
+        patches: Iterable[block_sender_batch_params.Patch],
+        posts: Iterable[block_sender_batch_params.Post],
+        puts: Iterable[block_sender_batch_params.Put],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[BlockSenderBatchResponse]:
+        """Executes multiple operations atomically.
+
+        All four operation arrays (deletes,
+        patches, puts, posts) are required and executed in order. Send empty arrays for
+        unused operations.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template("/accounts/{account_id}/email-security/settings/block_senders/batch", account_id=account_id),
+            body=maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                block_sender_batch_params.BlockSenderBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BlockSenderBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[BlockSenderBatchResponse]], ResultWrapper[BlockSenderBatchResponse]),
+        )
+
     def edit(
         self,
         pattern_id: str,
@@ -276,25 +334,26 @@ class BlockSendersResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: Blocked sender pattern identifier
+          pattern_id: Blocked sender pattern identifier.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 or IPv6 address or CIDR block for IP (e.g.
+              `1.2.3.4`, `1.2.3.0/24`, `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the
+              API rejects private or unique-local, loopback, link-local, unspecified, and IPv4
+              broadcast addresses, including their IPv4-mapped IPv6 equivalents.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           extra_headers: Send extra headers
 
@@ -352,7 +411,7 @@ class BlockSendersResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: Blocked sender pattern identifier
+          pattern_id: Blocked sender pattern identifier.
 
           extra_headers: Send extra headers
 
@@ -427,23 +486,24 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 or IPv6 address or CIDR block for IP (e.g.
+              `1.2.3.4`, `1.2.3.0/24`, `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the
+              API rejects private or unique-local, loopback, link-local, unspecified, and IPv4
+              broadcast addresses, including their IPv4-mapped IPv6 equivalents.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           extra_headers: Send extra headers
 
@@ -571,7 +631,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: Blocked sender pattern identifier
+          pattern_id: Blocked sender pattern identifier.
 
           extra_headers: Send extra headers
 
@@ -601,6 +661,61 @@ class AsyncBlockSendersResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[BlockSenderDeleteResponse]], ResultWrapper[BlockSenderDeleteResponse]),
         )
 
+    async def batch(
+        self,
+        *,
+        account_id: str,
+        deletes: Iterable[block_sender_batch_params.Delete],
+        patches: Iterable[block_sender_batch_params.Patch],
+        posts: Iterable[block_sender_batch_params.Post],
+        puts: Iterable[block_sender_batch_params.Put],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[BlockSenderBatchResponse]:
+        """Executes multiple operations atomically.
+
+        All four operation arrays (deletes,
+        patches, puts, posts) are required and executed in order. Send empty arrays for
+        unused operations.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template("/accounts/{account_id}/email-security/settings/block_senders/batch", account_id=account_id),
+            body=await async_maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                block_sender_batch_params.BlockSenderBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BlockSenderBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[BlockSenderBatchResponse]], ResultWrapper[BlockSenderBatchResponse]),
+        )
+
     async def edit(
         self,
         pattern_id: str,
@@ -625,25 +740,26 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: Blocked sender pattern identifier
+          pattern_id: Blocked sender pattern identifier.
 
-          pattern:
-              The pattern value to match against. Format depends on `pattern_type`:
-
-              - EMAIL: a valid email address, e.g. `user@example.com`
-              - DOMAIN: a valid domain name, e.g. `example.com`
-              - IP: a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted; private,
-                loopback, link-local, and unspecified addresses are rejected.
+          pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
+              address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
+              (e.g. `example.com`), or a plain IPv4 or IPv6 address or CIDR block for IP (e.g.
+              `1.2.3.4`, `1.2.3.0/24`, `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the
+              API rejects private or unique-local, loopback, link-local, unspecified, and IPv4
+              broadcast addresses, including their IPv4-mapped IPv6 equivalents.
 
           pattern_type: Type of pattern matching.
 
               - EMAIL: matches a full email address (e.g. `user@example.com`)
               - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 address (e.g. `1.2.3.4`) or an IPv4 CIDR block (e.g.
-                `1.2.3.0/24`). Only globally reachable addresses are accepted.
-              - UNKNOWN: deprecated, cannot be used when creating or updating policies, but
-                may be returned for existing entries.
+              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
+                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
+                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
+                link-local, unspecified, and IPv4 broadcast addresses, including their
+                IPv4-mapped IPv6 equivalents.
+              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
+                but it may appear on existing entries.
 
           extra_headers: Send extra headers
 
@@ -701,7 +817,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          pattern_id: Blocked sender pattern identifier
+          pattern_id: Blocked sender pattern identifier.
 
           extra_headers: Send extra headers
 
@@ -745,6 +861,9 @@ class BlockSendersResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             block_senders.delete,
         )
+        self.batch = to_raw_response_wrapper(
+            block_senders.batch,
+        )
         self.edit = to_raw_response_wrapper(
             block_senders.edit,
         )
@@ -765,6 +884,9 @@ class AsyncBlockSendersResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             block_senders.delete,
+        )
+        self.batch = async_to_raw_response_wrapper(
+            block_senders.batch,
         )
         self.edit = async_to_raw_response_wrapper(
             block_senders.edit,
@@ -787,6 +909,9 @@ class BlockSendersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             block_senders.delete,
         )
+        self.batch = to_streamed_response_wrapper(
+            block_senders.batch,
+        )
         self.edit = to_streamed_response_wrapper(
             block_senders.edit,
         )
@@ -807,6 +932,9 @@ class AsyncBlockSendersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             block_senders.delete,
+        )
+        self.batch = async_to_streamed_response_wrapper(
+            block_senders.batch,
         )
         self.edit = async_to_streamed_response_wrapper(
             block_senders.edit,

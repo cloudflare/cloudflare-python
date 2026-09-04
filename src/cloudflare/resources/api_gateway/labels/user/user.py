@@ -77,7 +77,7 @@ class UserResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserUpdateResponse:
         """
-        Update all fields on a label
+        Replaces all editable fields on a user-defined label.
 
         Args:
           zone_id: Identifier.
@@ -132,7 +132,8 @@ class UserResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserDeleteResponse:
         """
-        Delete user label
+        Deletes a user-defined label and removes its associations with web and API
+        operations.
 
         Args:
           zone_id: Identifier.
@@ -176,7 +177,7 @@ class UserResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[UserBulkCreateResponse]:
         """
-        Create user labels
+        Creates one or more user-defined labels for classifying web and API operations.
 
         Args:
           zone_id: Identifier.
@@ -214,7 +215,8 @@ class UserResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[UserBulkDeleteResponse]:
         """
-        Delete user labels
+        Deletes one or more user-defined labels and removes their associations with web
+        and API operations.
 
         Args:
           zone_id: Identifier.
@@ -254,7 +256,7 @@ class UserResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserEditResponse:
         """
-        Update certain fields on a label
+        Updates only the supplied fields on a user-defined label.
 
         Args:
           zone_id: Identifier.
@@ -310,7 +312,7 @@ class UserResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserGetResponse:
         """
-        Retrieve user label
+        Returns a user-defined label and the web and API operations associated with it.
 
         Args:
           zone_id: Identifier.
@@ -386,7 +388,7 @@ class AsyncUserResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserUpdateResponse:
         """
-        Update all fields on a label
+        Replaces all editable fields on a user-defined label.
 
         Args:
           zone_id: Identifier.
@@ -441,7 +443,8 @@ class AsyncUserResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserDeleteResponse:
         """
-        Delete user label
+        Deletes a user-defined label and removes its associations with web and API
+        operations.
 
         Args:
           zone_id: Identifier.
@@ -485,7 +488,7 @@ class AsyncUserResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[UserBulkCreateResponse, AsyncSinglePage[UserBulkCreateResponse]]:
         """
-        Create user labels
+        Creates one or more user-defined labels for classifying web and API operations.
 
         Args:
           zone_id: Identifier.
@@ -523,7 +526,8 @@ class AsyncUserResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[UserBulkDeleteResponse, AsyncSinglePage[UserBulkDeleteResponse]]:
         """
-        Delete user labels
+        Deletes one or more user-defined labels and removes their associations with web
+        and API operations.
 
         Args:
           zone_id: Identifier.
@@ -563,7 +567,7 @@ class AsyncUserResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserEditResponse:
         """
-        Update certain fields on a label
+        Updates only the supplied fields on a user-defined label.
 
         Args:
           zone_id: Identifier.
@@ -619,7 +623,7 @@ class AsyncUserResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserGetResponse:
         """
-        Retrieve user label
+        Returns a user-defined label and the web and API operations associated with it.
 
         Args:
           zone_id: Identifier.

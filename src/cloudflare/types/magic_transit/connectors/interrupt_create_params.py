@@ -9,7 +9,6 @@ __all__ = ["InterruptCreateParams", "Reboot", "Restart", "Shutdown"]
 
 class InterruptCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account identifier"""
 
     reboot: Reboot
 

@@ -230,7 +230,7 @@ class TestPolicies:
         policy = client.zero_trust.access.policies.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(SyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 
@@ -573,7 +573,7 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.policies.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
-            per_page=0,
+            per_page=1000,
         )
         assert_matches_type(AsyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 

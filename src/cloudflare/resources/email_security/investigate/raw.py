@@ -61,7 +61,7 @@ class RawResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           extra_headers: Send extra headers
 
@@ -130,7 +130,7 @@ class AsyncRawResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           extra_headers: Send extra headers
 

@@ -27,9 +27,6 @@ class AvailableRatePlan(BaseModel):
     is_subscribed: Optional[bool] = None
     """Indicates whether you are currently subscribed to this plan."""
 
-    legacy_discount: Optional[bool] = None
-    """Indicates whether this plan has a legacy discount applied."""
-
     legacy_id: Optional[str] = None
     """The legacy identifier for this rate plan, if any."""
 

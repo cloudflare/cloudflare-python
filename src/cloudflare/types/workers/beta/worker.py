@@ -63,10 +63,10 @@ class ObservabilityTraces(BaseModel):
     propagation_policy: Optional[Literal["authenticated", "accept"]] = None
     """
     Controls how inbound trace context (traceparent/tracestate) headers on incoming
-    requests are handled. "authenticated" (default) honors inbound trace context
-    only when accompanied by a valid trace auth token. "accept" unconditionally
-    accepts inbound trace context. Requires the trace propagation feature to be
-    enabled.
+    requests are handled. "authenticated" honors inbound trace context only when
+    accompanied by a valid trace auth token. "accept" unconditionally accepts
+    inbound trace context. Requires the trace propagation feature to be enabled.
+    Returns null when the trace propagation feature is not enabled for the account.
     """
 
 
@@ -81,6 +81,9 @@ class Observability(BaseModel):
 
     logs: Optional[ObservabilityLogs] = None
     """Log settings for the Worker."""
+
+    redact_query_string: Optional[bool] = None
+    """Whether query strings are removed from request URLs in logs and traces."""
 
     traces: Optional[ObservabilityTraces] = None
     """Trace settings for the Worker."""
@@ -180,11 +183,31 @@ class Subdomain(BaseModel):
     enabled: Optional[bool] = None
     """Whether the \\**.workers.dev subdomain is enabled for the Worker."""
 
+    preview_url_suffix: Optional[str] = None
+    """
+    Prepend a version or preview prefix to this host suffix to form the
+    \\**.workers.dev
+    [preview URL](https://developers.cloudflare.com/workers/configuration/previews/)
+    the Worker would serve on once previews are enabled, e.g.
+    `https://<prefix>-my-worker.my-subdomain.workers.dev`. Present whenever the
+    account owns a workers.dev subdomain, regardless of whether `previews_enabled`
+    is true, so presence does not imply preview URLs are currently live. Absent only
+    when the account owns no workers.dev subdomain.
+    """
+
     previews_enabled: Optional[bool] = None
     """
     Whether
     [preview URLs](https://developers.cloudflare.com/workers/configuration/previews/)
     are enabled for the Worker.
+    """
+
+    url: Optional[str] = None
+    """
+    The address the Worker would serve on once its \\**.workers.dev subdomain is
+    enabled. Present whenever the account owns a workers.dev subdomain, regardless
+    of whether `enabled` is true, so presence does not imply the Worker is currently
+    live at this URL. Absent only when the account owns no workers.dev subdomain.
     """
 
 

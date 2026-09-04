@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -57,6 +58,7 @@ class PortalsResource(SyncAPIResource):
         hostname: str,
         name: str,
         allow_code_mode: bool | Omit = omit,
+        code_mode: Literal["off", "opt_in", "default_on", "enforced"] | Omit = omit,
         description: str | Omit = omit,
         secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_create_params.Server] | Omit = omit,
@@ -71,11 +73,29 @@ class PortalsResource(SyncAPIResource):
         Creates a new MCP portal for managing AI tool access through Cloudflare Access.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
-          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
+          hostname: Hostname where the MCP portal is available.
 
-          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
+          name: Display name for the MCP portal.
+
+          allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
+              Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
+              they must be consistent or the request returns a 400.
+
+          code_mode: Code Mode policy for this portal. `off`: Code Mode is unavailable; query
+              parameters are ignored. `opt_in`: Code Mode is off by default; clients turn it
+              on with `?codemode=search_and_execute`. `default_on`: Code Mode is on by
+              default; clients can opt out with `?codemode=off`. `enforced`: Code Mode is
+              always on; query parameters are ignored. Defaults to `opt_in` when omitted on
+              create. If both `code_mode` and `allow_code_mode` are sent, they must be
+              consistent or the request returns a 400.
+
+          description: Optional description of the MCP portal.
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway.
+
+          servers: MCP servers attached to the portal and their portal-specific settings.
 
           extra_headers: Send extra headers
 
@@ -95,6 +115,7 @@ class PortalsResource(SyncAPIResource):
                     "hostname": hostname,
                     "name": name,
                     "allow_code_mode": allow_code_mode,
+                    "code_mode": code_mode,
                     "description": description,
                     "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
@@ -117,6 +138,7 @@ class PortalsResource(SyncAPIResource):
         *,
         account_id: str,
         allow_code_mode: bool | Omit = omit,
+        code_mode: Literal["off", "opt_in", "default_on", "enforced"] | Omit = omit,
         description: str | Omit = omit,
         hostname: str | Omit = omit,
         name: str | Omit = omit,
@@ -133,11 +155,29 @@ class PortalsResource(SyncAPIResource):
         Updates an MCP portal configuration.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
-          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
+          allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
+              Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
+              they must be consistent or the request returns a 400.
 
-          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
+          code_mode: Code Mode policy for this portal. `off`: Code Mode is unavailable; query
+              parameters are ignored. `opt_in`: Code Mode is off by default; clients turn it
+              on with `?codemode=search_and_execute`. `default_on`: Code Mode is on by
+              default; clients can opt out with `?codemode=off`. `enforced`: Code Mode is
+              always on; query parameters are ignored. Defaults to `opt_in` when omitted on
+              create. If both `code_mode` and `allow_code_mode` are sent, they must be
+              consistent or the request returns a 400.
+
+          description: Optional description of the MCP portal.
+
+          hostname: Hostname where the MCP portal is available.
+
+          name: Display name for the MCP portal.
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway.
+
+          servers: MCP servers attached to the portal and their portal-specific settings.
 
           extra_headers: Send extra headers
 
@@ -156,6 +196,7 @@ class PortalsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "allow_code_mode": allow_code_mode,
+                    "code_mode": code_mode,
                     "description": description,
                     "hostname": hostname,
                     "name": name,
@@ -240,7 +281,7 @@ class PortalsResource(SyncAPIResource):
         Deletes an MCP portal from the account.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           extra_headers: Send extra headers
 
@@ -282,7 +323,7 @@ class PortalsResource(SyncAPIResource):
         Read the details of a single MCP Portal, including its configured servers.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           extra_headers: Send extra headers
 
@@ -337,6 +378,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         hostname: str,
         name: str,
         allow_code_mode: bool | Omit = omit,
+        code_mode: Literal["off", "opt_in", "default_on", "enforced"] | Omit = omit,
         description: str | Omit = omit,
         secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_create_params.Server] | Omit = omit,
@@ -351,11 +393,29 @@ class AsyncPortalsResource(AsyncAPIResource):
         Creates a new MCP portal for managing AI tool access through Cloudflare Access.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
-          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
+          hostname: Hostname where the MCP portal is available.
 
-          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
+          name: Display name for the MCP portal.
+
+          allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
+              Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
+              they must be consistent or the request returns a 400.
+
+          code_mode: Code Mode policy for this portal. `off`: Code Mode is unavailable; query
+              parameters are ignored. `opt_in`: Code Mode is off by default; clients turn it
+              on with `?codemode=search_and_execute`. `default_on`: Code Mode is on by
+              default; clients can opt out with `?codemode=off`. `enforced`: Code Mode is
+              always on; query parameters are ignored. Defaults to `opt_in` when omitted on
+              create. If both `code_mode` and `allow_code_mode` are sent, they must be
+              consistent or the request returns a 400.
+
+          description: Optional description of the MCP portal.
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway.
+
+          servers: MCP servers attached to the portal and their portal-specific settings.
 
           extra_headers: Send extra headers
 
@@ -375,6 +435,7 @@ class AsyncPortalsResource(AsyncAPIResource):
                     "hostname": hostname,
                     "name": name,
                     "allow_code_mode": allow_code_mode,
+                    "code_mode": code_mode,
                     "description": description,
                     "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
@@ -397,6 +458,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         *,
         account_id: str,
         allow_code_mode: bool | Omit = omit,
+        code_mode: Literal["off", "opt_in", "default_on", "enforced"] | Omit = omit,
         description: str | Omit = omit,
         hostname: str | Omit = omit,
         name: str | Omit = omit,
@@ -413,11 +475,29 @@ class AsyncPortalsResource(AsyncAPIResource):
         Updates an MCP portal configuration.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
-          allow_code_mode: Allow remote code execution in Dynamic Workers (beta)
+          allow_code_mode: Deprecated: use `code_mode` for new integrations. `true` maps to any non-off
+              Code Mode policy; `false` maps to `code_mode: off`. If both fields are sent,
+              they must be consistent or the request returns a 400.
 
-          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
+          code_mode: Code Mode policy for this portal. `off`: Code Mode is unavailable; query
+              parameters are ignored. `opt_in`: Code Mode is off by default; clients turn it
+              on with `?codemode=search_and_execute`. `default_on`: Code Mode is on by
+              default; clients can opt out with `?codemode=off`. `enforced`: Code Mode is
+              always on; query parameters are ignored. Defaults to `opt_in` when omitted on
+              create. If both `code_mode` and `allow_code_mode` are sent, they must be
+              consistent or the request returns a 400.
+
+          description: Optional description of the MCP portal.
+
+          hostname: Hostname where the MCP portal is available.
+
+          name: Display name for the MCP portal.
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway.
+
+          servers: MCP servers attached to the portal and their portal-specific settings.
 
           extra_headers: Send extra headers
 
@@ -436,6 +516,7 @@ class AsyncPortalsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "allow_code_mode": allow_code_mode,
+                    "code_mode": code_mode,
                     "description": description,
                     "hostname": hostname,
                     "name": name,
@@ -520,7 +601,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         Deletes an MCP portal from the account.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           extra_headers: Send extra headers
 
@@ -562,7 +643,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         Read the details of a single MCP Portal, including its configured servers.
 
         Args:
-          id: portal id
+          id: Unique identifier for the MCP portal.
 
           extra_headers: Send extra headers
 

@@ -27,7 +27,7 @@ class EmailsProcessed(BaseModel):
 
 class DomainListResponse(BaseModel):
     id: Optional[str] = None
-    """Domain identifier"""
+    """Domain identifier."""
 
     allowed_delivery_modes: Optional[List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]]] = None
 
@@ -83,6 +83,6 @@ class DomainListResponse(BaseModel):
 
     spf_status: Optional[Literal["none", "good", "neutral", "open", "invalid"]] = None
 
-    status: Optional[Literal["pending", "active", "failed", "timeout"]] = None
+    status: Optional[Literal["PENDING", "ACTIVE", "FAILED", "TIMEOUT"]] = None
 
     transport: Optional[str] = None

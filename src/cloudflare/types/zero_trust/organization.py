@@ -23,8 +23,14 @@ class CustomPages(BaseModel):
 class MfaConfig(BaseModel):
     """Configures multi-factor authentication (MFA) settings for an organization."""
 
-    allowed_authenticators: Optional[List[Literal["totp", "biometrics", "security_key", "piv_key"]]] = None
-    """Lists the MFA methods that users can authenticate with."""
+    allowed_authenticators: Optional[
+        List[Literal["totp", "biometrics", "security_key", "piv_key", "ssh_fido2_key"]]
+    ] = None
+    """Lists the MFA methods that users can authenticate with.
+
+    The `piv_key` and `ssh_fido2_key` values are supported only for infrastructure
+    applications.
+    """
 
     amr_matching_session_duration: Optional[str] = None
     """
@@ -135,9 +141,9 @@ class Organization(BaseModel):
     """Determines whether global MFA settings apply to applications by default.
 
     The organization must have MFA enabled with at least one authentication method
-    and a session duration configured. Note: 'allowed_authenticators' cannot only
-    contain 'piv_key' if the organization has any non-infrastructure applications
-    because PIV keys are only compatible with infrastructure apps.
+    and a session duration configured. Note: 'allowed_authenticators' cannot contain
+    only the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if
+    the organization has any non-infrastructure applications.
     """
 
     name: Optional[str] = None
@@ -160,6 +166,12 @@ class Organization(BaseModel):
     active seat and no longer counts against your Teams seat count. Minimum value
     for this setting is 1 month (730h). Must be in the format `300ms` or `2h45m`.
     Valid time units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`.
+    """
+
+    warp_auth_non_browser_401: Optional[bool] = None
+    """
+    When enabled, unsuccessful WARP authentication requests with a non-HTML Accept
+    header return a 401 response instead of redirecting to the login page.
     """
 
     warp_auth_session_duration: Optional[str] = None

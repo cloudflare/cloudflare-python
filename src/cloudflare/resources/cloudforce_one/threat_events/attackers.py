@@ -54,7 +54,7 @@ class AttackersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttackerListResponse:
         """
-        List attacker names referenced in events across one or more datasets.
+        Lists known threat attackers tracked in Cloudforce One threat intelligence.
 
         Args:
           account_id: Account ID.
@@ -118,7 +118,7 @@ class AsyncAttackersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttackerListResponse:
         """
-        List attacker names referenced in events across one or more datasets.
+        Lists known threat attackers tracked in Cloudforce One threat intelligence.
 
         Args:
           account_id: Account ID.

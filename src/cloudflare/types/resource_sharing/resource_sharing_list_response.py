@@ -35,6 +35,7 @@ class Resource(BaseModel):
         "gateway-block-page-settings",
         "gateway-extended-email-matching",
         "idp-federation-grant",
+        "trust-grant",
     ]
     """Resource Type."""
 

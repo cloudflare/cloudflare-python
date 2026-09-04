@@ -17,8 +17,11 @@ class IndicatorListParams(TypedDict, total=False):
 
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]
     """
-    Dataset UUIDs to scope to (repeat the param for multiple), or 'all' / '\\**' for
-    every readable indicator dataset. Omit to search all readable datasets.
+    Dataset UUIDs to scope to (repeat the param for multiple), or one standalone
+    scope: 'all'/'\\**', 'analytics' for isAnalytics=true datasets, or 'operational'
+    for isAnalytics=false datasets. Analytics datasets do not expose tag
+    associations, so 'analytics' returns an empty result. Omit to search all
+    readable datasets.
     """
 
     indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]

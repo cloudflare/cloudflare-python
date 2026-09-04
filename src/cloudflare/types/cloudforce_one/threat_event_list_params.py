@@ -3,12 +3,21 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["ThreatEventListParams", "Search"]
+__all__ = [
+    "ThreatEventListParams",
+    "Search",
+    "SearchUnionMember0",
+    "SearchUnionMember1",
+    "SearchUnionMember2",
+    "SearchUnionMember3",
+    "SearchUnionMember4",
+    "SearchUnionMember5",
+]
 
 
 class ThreatEventListParams(TypedDict, total=False):
@@ -33,9 +42,10 @@ class ThreatEventListParams(TypedDict, total=False):
 
     dataset_id: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetId")]
     """
-    Dataset IDs to query events from (array of UUIDs), or special value 'all' or
-    '\\**' to query all event datasets for the account. If not provided, uses the
-    default dataset.
+    Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for the legacy
+    all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
+    'operational' for isAnalytics=false datasets. If not provided, uses the default
+    dataset.
     """
 
     force_refresh: Annotated[bool, PropertyInfo(alias="forceRefresh")]
@@ -58,32 +68,98 @@ class ThreatEventListParams(TypedDict, total=False):
 
     search: Iterable[Search]
 
-    source: Literal["do", "r2catalog"]
-    """Read backend.
 
-    'do' (default) reads Durable Object storage. 'r2catalog' reads R2 Data Catalog
-    (admin-only, experimental; supports a subset of search fields — no 'tags').
-    """
+class SearchUnionMember0(TypedDict, total=False):
+    field: Required[
+        Literal[
+            "attacker",
+            "attackerCountry",
+            "category",
+            "createdAt",
+            "date",
+            "event",
+            "indicator",
+            "indicatorType",
+            "mitreAttack",
+            "mitreCapec",
+            "tags",
+            "targetCountry",
+            "targetIndustry",
+            "tlp",
+            "uuid",
+        ]
+    ]
+
+    op: Required[
+        Literal["equals", "not", "gt", "gte", "lt", "lte", "like", "contains", "startsWith", "endsWith", "find"]
+    ]
+
+    value: Required[str]
 
 
-class Search(TypedDict, total=False):
-    field: str
-    """Event field to search on.
+class SearchUnionMember1(TypedDict, total=False):
+    field: Required[
+        Literal[
+            "attacker",
+            "attackerCountry",
+            "category",
+            "createdAt",
+            "date",
+            "event",
+            "indicator",
+            "indicatorType",
+            "mitreAttack",
+            "mitreCapec",
+            "tags",
+            "targetCountry",
+            "targetIndustry",
+            "tlp",
+            "uuid",
+        ]
+    ]
 
-    Allowed: attacker, attackerCountry, category, createdAt, date, event, indicator,
-    indicatorType, killChain, mitreAttack, tags, targetCountry, targetIndustry, tlp,
-    uuid.
-    """
+    op: Required[Literal["in"]]
 
-    op: Literal["equals", "not", "gt", "gte", "lt", "lte", "like", "contains", "startsWith", "endsWith", "in", "find"]
-    """Search operator.
+    value: Required[SequenceNotStr[str]]
 
-    Use 'in' for bulk lookup of up to 100 values at once, e.g. {field:'tags',
-    op:'in', value:['malware','apt']}.
-    """
 
-    value: Union[str, float, SequenceNotStr[Union[str, float]]]
-    """Search value.
+class SearchUnionMember2(TypedDict, total=False):
+    field: Required[Literal["killChain"]]
 
-    String or number for most operators. Array for 'in' operator (max 100 items).
-    """
+    op: Required[Literal["equals", "not", "gt", "gte", "lt", "lte"]]
+
+    value: Required[Union[float, str]]
+
+
+class SearchUnionMember3(TypedDict, total=False):
+    field: Required[Literal["killChain"]]
+
+    op: Required[Literal["in"]]
+
+    value: Required[SequenceNotStr[Union[float, str]]]
+
+
+class SearchUnionMember4(TypedDict, total=False):
+    field: Required[Literal["hasChildren"]]
+
+    op: Required[Literal["equals", "not", "gt", "gte", "lt", "lte"]]
+
+    value: Required[Union[bool, object]]
+
+
+class SearchUnionMember5(TypedDict, total=False):
+    field: Required[Literal["hasChildren"]]
+
+    op: Required[Literal["in"]]
+
+    value: Required[Iterable[Union[bool, object]]]
+
+
+Search: TypeAlias = Union[
+    SearchUnionMember0,
+    SearchUnionMember1,
+    SearchUnionMember2,
+    SearchUnionMember3,
+    SearchUnionMember4,
+    SearchUnionMember5,
+]

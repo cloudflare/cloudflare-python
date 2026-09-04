@@ -19,7 +19,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.pipelines import stream_list_params, stream_create_params, stream_delete_params, stream_update_params
+from ...types.pipelines import stream_list_params, stream_create_params, stream_update_params
 from ...types.pipelines.stream_get_response import StreamGetResponse
 from ...types.pipelines.stream_list_response import StreamListResponse
 from ...types.pipelines.stream_create_response import StreamCreateResponse
@@ -71,6 +71,10 @@ class StreamsResource(SyncAPIResource):
           account_id: Specifies the public ID of the account.
 
           name: Specifies the name of the Stream.
+
+          format: Defines the data format of the events.
+
+          schema: Defines the schema of the events in the data stream.
 
           extra_headers: Send extra headers
 
@@ -220,7 +224,6 @@ class StreamsResource(SyncAPIResource):
         stream_id: str,
         *,
         account_id: str,
-        force: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -235,9 +238,6 @@ class StreamsResource(SyncAPIResource):
           account_id: Specifies the public ID of the account.
 
           stream_id: Specifies the public ID of the stream.
-
-          force: Deprecated: Delete stream forcefully, including deleting any dependent
-              pipelines.
 
           extra_headers: Send extra headers
 
@@ -260,7 +260,6 @@ class StreamsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"force": force}, stream_delete_params.StreamDeleteParams),
                 post_parser=ResultWrapper[object]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
@@ -356,6 +355,10 @@ class AsyncStreamsResource(AsyncAPIResource):
           account_id: Specifies the public ID of the account.
 
           name: Specifies the name of the Stream.
+
+          format: Defines the data format of the events.
+
+          schema: Defines the schema of the events in the data stream.
 
           extra_headers: Send extra headers
 
@@ -505,7 +508,6 @@ class AsyncStreamsResource(AsyncAPIResource):
         stream_id: str,
         *,
         account_id: str,
-        force: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -520,9 +522,6 @@ class AsyncStreamsResource(AsyncAPIResource):
           account_id: Specifies the public ID of the account.
 
           stream_id: Specifies the public ID of the stream.
-
-          force: Deprecated: Delete stream forcefully, including deleting any dependent
-              pipelines.
 
           extra_headers: Send extra headers
 
@@ -545,7 +544,6 @@ class AsyncStreamsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"force": force}, stream_delete_params.StreamDeleteParams),
                 post_parser=ResultWrapper[object]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),

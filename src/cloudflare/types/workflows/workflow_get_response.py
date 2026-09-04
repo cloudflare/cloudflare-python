@@ -1,33 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
-
-from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["WorkflowGetResponse", "Instances", "Schedule"]
-
-
-class Instances(BaseModel):
-    complete: Optional[float] = None
-
-    errored: Optional[float] = None
-
-    paused: Optional[float] = None
-
-    queued: Optional[float] = None
-
-    rolling_back: Optional[float] = FieldInfo(alias="rollingBack", default=None)
-
-    running: Optional[float] = None
-
-    terminated: Optional[float] = None
-
-    waiting: Optional[float] = None
-
-    waiting_for_pause: Optional[float] = FieldInfo(alias="waitingForPause", default=None)
+__all__ = ["WorkflowGetResponse", "Schedule"]
 
 
 class Schedule(BaseModel):
@@ -43,7 +21,7 @@ class WorkflowGetResponse(BaseModel):
 
     created_on: datetime
 
-    instances: Instances
+    instances: Dict[str, float]
 
     modified_on: datetime
 

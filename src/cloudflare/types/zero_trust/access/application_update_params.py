@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .decision import Decision
@@ -146,6 +146,7 @@ __all__ = [
     "BookmarkApplicationPolicyUnionMember2MfaConfig",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
+    "InfrastructureApplicationMfaConfig",
     "InfrastructureApplicationPolicy",
     "InfrastructureApplicationPolicyConnectionRules",
     "InfrastructureApplicationPolicyConnectionRulesSSH",
@@ -606,6 +607,9 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -697,7 +701,7 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -875,6 +879,9 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -966,7 +973,7 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -1478,6 +1485,9 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -1569,7 +1579,7 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -2081,6 +2091,9 @@ class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -2172,7 +2185,7 @@ class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -2408,6 +2421,9 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -2499,7 +2515,7 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -2572,6 +2588,9 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2664,7 +2683,7 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -2739,6 +2758,9 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -2831,7 +2853,7 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -2915,6 +2937,9 @@ class GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink(TypedDict
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -3007,7 +3032,7 @@ class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2(TypedDict, total
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -3064,6 +3089,9 @@ class BookmarkApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     id: str
     """The UUID of the policy"""
+
+    account_id: str
+    """Identifier."""
 
     precedence: int
     """The order of execution for this policy.
@@ -3156,7 +3184,7 @@ class BookmarkApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -3181,6 +3209,12 @@ class InfrastructureApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
+    mfa_config: InfrastructureApplicationMfaConfig
+    """
+    Configures multi-factor authentication (MFA) settings for infrastructure
+    applications.
+    """
+
     name: str
     """The name of the application."""
 
@@ -3200,6 +3234,32 @@ class InfrastructureApplicationTargetCriterion(TypedDict, total=False):
 
     target_attributes: Required[Dict[str, SequenceNotStr[str]]]
     """Contains a map of target attribute keys to target attribute values."""
+
+
+class InfrastructureApplicationMfaConfig(TypedDict, total=False):
+    """
+    Configures multi-factor authentication (MFA) settings for infrastructure applications.
+    """
+
+    allowed_authenticators: List[Literal["piv_key", "ssh_fido2_key"]]
+    """Lists the MFA methods that users can authenticate with.
+
+    For infrastructure applications, supported values are `piv_key` and
+    `ssh_fido2_key`.
+    """
+
+    mfa_disabled: bool
+    """Indicates whether to disable MFA for this resource.
+
+    This option is available at the application and policy level.
+    """
+
+    session_duration: str
+    """Defines the duration of an MFA session.
+
+    Must be in minutes (m) or hours (h). Minimum: 0m. Maximum: 720h (30 days).
+    Examples: `5m` or `24h`.
+    """
 
 
 class InfrastructureApplicationPolicyConnectionRulesSSH(TypedDict, total=False):
@@ -3231,10 +3291,11 @@ class InfrastructureApplicationPolicyMfaConfig(TypedDict, total=False):
     Configures multi-factor authentication (MFA) settings for infrastructure applications.
     """
 
-    allowed_authenticators: List[Literal["piv_key"]]
+    allowed_authenticators: List[Literal["piv_key", "ssh_fido2_key"]]
     """Lists the MFA methods that users can authenticate with.
 
-    For infrastructure applications, only `piv_key` is supported.
+    For infrastructure applications, supported values are `piv_key` and
+    `ssh_fido2_key`.
     """
 
     mfa_disabled: bool
@@ -3690,6 +3751,9 @@ class BrowserRDPApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -3781,7 +3845,7 @@ class BrowserRDPApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -4186,6 +4250,9 @@ class McpServerApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -4277,7 +4344,7 @@ class McpServerApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
@@ -4688,6 +4755,9 @@ class McpServerPortalApplicationPolicyAccessAppPolicyLink(TypedDict, total=False
     id: str
     """The UUID of the policy"""
 
+    account_id: str
+    """Identifier."""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -4779,7 +4849,7 @@ class McpServerPortalApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    session_duration: str
+    session_duration: Optional[str]
     """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),

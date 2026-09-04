@@ -1,0 +1,25 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Required, TypedDict
+
+__all__ = ["TransformerUpdateParams"]
+
+
+class TransformerUpdateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier."""
+
+    name: Required[str]
+    """Customer-provided name for identification."""
+
+    code: str
+    """The SQL transformer query.
+
+    Maximum 32 KB. The query must contain a FROM clause referencing a valid logpush
+    dataset.
+    """
+
+    description: str
+    """Optional customer-provided description."""

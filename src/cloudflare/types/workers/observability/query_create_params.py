@@ -12,6 +12,8 @@ __all__ = [
     "QueryCreateParams",
     "Parameters",
     "ParametersCalculation",
+    "ParametersCalculationUnionMember0",
+    "ParametersCalculationUnionMember1",
     "ParametersFilter",
     "ParametersFilterUnionMember0",
     "ParametersFilterWorkersObservabilityFilterLeaf",
@@ -33,11 +35,22 @@ class QueryCreateParams(TypedDict, total=False):
     parameters: Required[Parameters]
 
 
-class ParametersCalculation(TypedDict, total=False):
+class ParametersCalculationUnionMember0(TypedDict, total=False):
+    operator: Required[Literal["count", "COUNT"]]
+
+    alias: str
+
+    key: str
+
+    key_type: Annotated[Literal["string", "number", "boolean"], PropertyInfo(alias="keyType")]
+
+
+class ParametersCalculationUnionMember1(TypedDict, total=False):
+    key: Required[str]
+
     operator: Required[
         Literal[
             "uniq",
-            "count",
             "max",
             "min",
             "sum",
@@ -56,7 +69,6 @@ class ParametersCalculation(TypedDict, total=False):
             "stddev",
             "variance",
             "COUNT_DISTINCT",
-            "COUNT",
             "MAX",
             "MIN",
             "SUM",
@@ -79,9 +91,10 @@ class ParametersCalculation(TypedDict, total=False):
 
     alias: str
 
-    key: str
-
     key_type: Annotated[Literal["string", "number", "boolean"], PropertyInfo(alias="keyType")]
+
+
+ParametersCalculation: TypeAlias = Union[ParametersCalculationUnionMember0, ParametersCalculationUnionMember1]
 
 
 class ParametersFilterUnionMember0(TypedDict, total=False):

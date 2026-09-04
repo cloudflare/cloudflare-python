@@ -36,6 +36,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="block",
             action_parameters={
@@ -132,6 +133,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="challenge",
             action_parameters={},
@@ -222,6 +224,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="compress_response",
             action_parameters={"algorithms": [{"name": "none"}]},
@@ -312,6 +315,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="ddos_dynamic",
             action_parameters={},
@@ -402,6 +406,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="execute",
             action_parameters={
@@ -517,6 +522,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="force_connection_close",
             action_parameters={},
@@ -607,6 +613,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="js_challenge",
             action_parameters={},
@@ -697,6 +704,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="log",
             action_parameters={},
@@ -787,6 +795,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="log_custom_field",
             action_parameters={
@@ -893,6 +902,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="managed_challenge",
             action_parameters={},
@@ -983,6 +993,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="redirect",
             action_parameters={
@@ -1086,6 +1097,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="rewrite",
             action_parameters={
@@ -1189,6 +1201,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="route",
             action_parameters={
@@ -1286,6 +1299,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="score",
             action_parameters={"increment": 3},
@@ -1376,6 +1390,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="serve_error",
             action_parameters={
@@ -1470,6 +1485,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_control",
             action_parameters={
@@ -1619,6 +1635,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
@@ -1681,6 +1698,7 @@ class TestRules:
                 },
                 "origin_cache_control": True,
                 "origin_error_page_passthru": True,
+                "origin_range_requests": {"mode": "on"},
                 "read_timeout": 900,
                 "respect_strong_etags": True,
                 "serve_stale": {"disable_stale_while_updating": True},
@@ -1786,6 +1804,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_tags",
             action_parameters={
@@ -1879,6 +1898,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_config",
             action_parameters={
@@ -1996,6 +2016,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
@@ -2093,6 +2114,7 @@ class TestRules:
         rule = client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="transform_response_html",
             action_parameters={"link_maze": {}},
@@ -2185,6 +2207,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
 
@@ -2266,6 +2289,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="block",
             action_parameters={
@@ -2376,6 +2400,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="challenge",
             action_parameters={},
@@ -2480,6 +2505,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="compress_response",
             action_parameters={"algorithms": [{"name": "none"}]},
@@ -2584,6 +2610,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="ddos_dynamic",
             action_parameters={},
@@ -2688,6 +2715,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="execute",
             action_parameters={
@@ -2817,6 +2845,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="force_connection_close",
             action_parameters={},
@@ -2921,6 +2950,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="js_challenge",
             action_parameters={},
@@ -3025,6 +3055,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="log",
             action_parameters={},
@@ -3129,6 +3160,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="log_custom_field",
             action_parameters={
@@ -3249,6 +3281,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="managed_challenge",
             action_parameters={},
@@ -3353,6 +3386,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="redirect",
             action_parameters={
@@ -3470,6 +3504,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="rewrite",
             action_parameters={
@@ -3587,6 +3622,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="route",
             action_parameters={
@@ -3698,6 +3734,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="score",
             action_parameters={"increment": 3},
@@ -3802,6 +3839,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="serve_error",
             action_parameters={
@@ -3910,6 +3948,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_control",
             action_parameters={
@@ -4073,6 +4112,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
@@ -4135,6 +4175,7 @@ class TestRules:
                 },
                 "origin_cache_control": True,
                 "origin_error_page_passthru": True,
+                "origin_range_requests": {"mode": "on"},
                 "read_timeout": 900,
                 "respect_strong_etags": True,
                 "serve_stale": {"disable_stale_while_updating": True},
@@ -4254,6 +4295,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_tags",
             action_parameters={
@@ -4361,6 +4403,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_config",
             action_parameters={
@@ -4492,6 +4535,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
@@ -4603,6 +4647,7 @@ class TestRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="transform_response_html",
             action_parameters={"link_maze": {}},
@@ -4711,6 +4756,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="block",
             action_parameters={
@@ -4807,6 +4853,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="challenge",
             action_parameters={},
@@ -4897,6 +4944,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="compress_response",
             action_parameters={"algorithms": [{"name": "none"}]},
@@ -4987,6 +5035,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="ddos_dynamic",
             action_parameters={},
@@ -5077,6 +5126,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="execute",
             action_parameters={
@@ -5192,6 +5242,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="force_connection_close",
             action_parameters={},
@@ -5282,6 +5333,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="js_challenge",
             action_parameters={},
@@ -5372,6 +5424,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="log",
             action_parameters={},
@@ -5462,6 +5515,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="log_custom_field",
             action_parameters={
@@ -5568,6 +5622,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="managed_challenge",
             action_parameters={},
@@ -5658,6 +5713,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="redirect",
             action_parameters={
@@ -5761,6 +5817,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="rewrite",
             action_parameters={
@@ -5864,6 +5921,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="route",
             action_parameters={
@@ -5961,6 +6019,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="score",
             action_parameters={"increment": 3},
@@ -6051,6 +6110,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="serve_error",
             action_parameters={
@@ -6145,6 +6205,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_control",
             action_parameters={
@@ -6294,6 +6355,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
@@ -6356,6 +6418,7 @@ class TestAsyncRules:
                 },
                 "origin_cache_control": True,
                 "origin_error_page_passthru": True,
+                "origin_range_requests": {"mode": "on"},
                 "read_timeout": 900,
                 "respect_strong_etags": True,
                 "serve_stale": {"disable_stale_while_updating": True},
@@ -6461,6 +6524,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_tags",
             action_parameters={
@@ -6554,6 +6618,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_config",
             action_parameters={
@@ -6671,6 +6736,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
@@ -6768,6 +6834,7 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="transform_response_html",
             action_parameters={"link_maze": {}},
@@ -6860,6 +6927,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
 
@@ -6941,6 +7009,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="block",
             action_parameters={
@@ -7051,6 +7120,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="challenge",
             action_parameters={},
@@ -7155,6 +7225,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="compress_response",
             action_parameters={"algorithms": [{"name": "none"}]},
@@ -7259,6 +7330,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="ddos_dynamic",
             action_parameters={},
@@ -7363,6 +7435,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="execute",
             action_parameters={
@@ -7492,6 +7565,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="force_connection_close",
             action_parameters={},
@@ -7596,6 +7670,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="js_challenge",
             action_parameters={},
@@ -7700,6 +7775,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="log",
             action_parameters={},
@@ -7804,6 +7880,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="log_custom_field",
             action_parameters={
@@ -7924,6 +8001,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="managed_challenge",
             action_parameters={},
@@ -8028,6 +8106,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="redirect",
             action_parameters={
@@ -8145,6 +8224,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="rewrite",
             action_parameters={
@@ -8262,6 +8342,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="route",
             action_parameters={
@@ -8373,6 +8454,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="score",
             action_parameters={"increment": 3},
@@ -8477,6 +8559,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="serve_error",
             action_parameters={
@@ -8585,6 +8668,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_control",
             action_parameters={
@@ -8748,6 +8832,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
@@ -8810,6 +8895,7 @@ class TestAsyncRules:
                 },
                 "origin_cache_control": True,
                 "origin_error_page_passthru": True,
+                "origin_range_requests": {"mode": "on"},
                 "read_timeout": 900,
                 "respect_strong_etags": True,
                 "serve_stale": {"disable_stale_while_updating": True},
@@ -8929,6 +9015,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_tags",
             action_parameters={
@@ -9036,6 +9123,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_config",
             action_parameters={
@@ -9167,6 +9255,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
@@ -9278,6 +9367,7 @@ class TestAsyncRules:
             rule_id="3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
             id="3a03d665bac047339bb530ecb439a90d",
             action="transform_response_html",
             action_parameters={"link_maze": {}},

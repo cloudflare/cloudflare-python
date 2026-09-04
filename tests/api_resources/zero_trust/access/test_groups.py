@@ -193,7 +193,7 @@ class TestGroups:
             account_id="account_id",
             name="name",
             page=0,
-            per_page=0,
+            per_page=1000,
             search="search",
         )
         assert_matches_type(SyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
@@ -546,7 +546,7 @@ class TestAsyncGroups:
             account_id="account_id",
             name="name",
             page=0,
-            per_page=0,
+            per_page=1000,
             search="search",
         )
         assert_matches_type(AsyncV4PagePaginationArray[GroupListResponse], group, path=["response"])

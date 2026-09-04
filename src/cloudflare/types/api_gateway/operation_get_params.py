@@ -12,7 +12,7 @@ class OperationGetParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]]
+    feature: List[Literal["thresholds", "parameter_schemas", "schema_info", "confidence_intervals"]]
     """Add feature(s) to the results.
 
     The feature name that is given here corresponds to the resulting feature object.

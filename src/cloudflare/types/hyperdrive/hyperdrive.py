@@ -155,6 +155,14 @@ class Hyperdrive(BaseModel):
     the origin database.
 
     Maximum allowed: 20 for free tier accounts, 100 for paid tier accounts. If not
-    specified, defaults to 20 for free tier and 60 for paid tier. Contact Cloudflare
+    specified, defaults to 20 for free tier and 60 for paid tier. Certain
+    Cloudflare-managed origins may be permitted a higher limit. Contact Cloudflare
     if you need a higher limit.
+    """
+
+    restarted_on: Optional[datetime] = None
+    """
+    Defines the last time the Hyperdrive connection pool was explicitly restarted
+    via the restart endpoint. Omitted if the pool has never been explicitly
+    restarted.
     """

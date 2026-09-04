@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -51,14 +51,170 @@ class OutagesResource(SyncAPIResource):
         self,
         *,
         asn: int | Omit = omit,
+        bot: str | Omit = omit,
+        ca: str | Omit = omit,
+        data_source: Literal[
+            "ALL",
+            "AI_BOTS",
+            "AI_GATEWAY",
+            "BGP",
+            "BOTS",
+            "CONNECTION_ANOMALY",
+            "CT",
+            "DNS",
+            "DNS_MAGNITUDE",
+            "DNS_AS112",
+            "DOS",
+            "EMAIL_ROUTING",
+            "EMAIL_SECURITY",
+            "FW",
+            "FW_PG",
+            "HTTP",
+            "HTTP_CONTROL",
+            "HTTP_CRAWLER_REFERER",
+            "HTTP_ORIGINS",
+            "IQI",
+            "LEAKED_CREDENTIALS",
+            "NET",
+            "ROBOTS_TXT",
+            "SPEED",
+            "WORKERS_AI",
+        ]
+        | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_range: str | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: str | Omit = omit,
         limit: int | Omit = omit,
         location: str | Omit = omit,
+        log: str | Omit = omit,
         offset: int | Omit = omit,
         origin: str | Omit = omit,
+        outage_cause: Literal[
+            "BLOCKING",
+            "CABLE_CUT",
+            "CYBERATTACK",
+            "DNS",
+            "FIRE",
+            "GOVERNMENT_DIRECTED",
+            "MAINTENANCE",
+            "MECHANICAL",
+            "MILITARY_ACTION",
+            "MISCONFIGURATION",
+            "NATURAL_DISASTER",
+            "NETWORK_PROBLEM",
+            "POWER_OUTAGE",
+            "SOFTWARE",
+            "TECHNICAL_PROBLEM",
+            "UNKNOWN",
+            "WEATHER",
+        ]
+        | Omit = omit,
+        outage_type: Literal["NATIONWIDE", "REGIONAL", "NETWORK", "PLATFORM"] | Omit = omit,
+        query: str | Omit = omit,
+        tags: List[
+            Literal[
+                "ADM1",
+                "ADM2",
+                "API_TRAFFIC",
+                "ARC",
+                "AS",
+                "ASN",
+                "ATTACKS",
+                "AUTHOR",
+                "BANDWIDTH",
+                "BITRATE",
+                "BOT",
+                "BOT_CATEGORY",
+                "BOT_CLASS",
+                "BOT_KIND",
+                "BOT_OPERATOR",
+                "BROWSER",
+                "BROWSER_FAMILY",
+                "BYTES",
+                "CA",
+                "CACHE_HIT",
+                "CA_OWNER",
+                "CHECK_RESULT",
+                "CLIENT_TYPE",
+                "COMPROMISED",
+                "CONTENT_TYPE",
+                "CRAWL_PURPOSE",
+                "CRAWL_REFER_RATIO",
+                "DEVICE_TYPE",
+                "DKIM",
+                "DMARC",
+                "DNS",
+                "DNSSEC",
+                "DNSSEC_AWARE",
+                "DNSSEC_E2E",
+                "DOMAIN_CATEGORY",
+                "DURATION",
+                "EDNS",
+                "ENCRYPTED",
+                "ENTRY_TYPE",
+                "EXPIRATION_STATUS",
+                "HAS_IPS",
+                "HAS_MATCHING_ANSWER",
+                "HAS_WILDCARDS",
+                "HTTP_METHOD",
+                "HTTP_PROTOCOL",
+                "HTTP_VERSION",
+                "INDUSTRY",
+                "IP_VERSION",
+                "JITTER",
+                "KEY_AGREEMENT",
+                "LATENCY",
+                "LOCATION",
+                "LOCATION_LATENCY",
+                "LOG",
+                "LOG_API",
+                "LOG_OPERATOR",
+                "MALICIOUS",
+                "MANAGED_RULES",
+                "MITIGATION_PRODUCT",
+                "MODEL",
+                "NAMESERVER_LATENCY",
+                "ORIGIN",
+                "ORIGIN_AS",
+                "ORIGIN_LOCATION",
+                "ORIGIN_TARGET_LOCATION_PAIR",
+                "OS",
+                "PERCENTILE",
+                "POST_QUANTUM",
+                "PREFIX",
+                "PRODUCT",
+                "PROTOCOL",
+                "PROVIDER",
+                "PUBLIC_KEY_ALGORITHM",
+                "QUERY_TYPE",
+                "REFERER",
+                "REGION",
+                "RESPONSE_CODE",
+                "RESPONSE_STATUS",
+                "RESPONSE_STATUS_CATEGORY",
+                "RESPONSE_TTL",
+                "SIGNATURE_ALGORITHM",
+                "SPAM",
+                "SPF",
+                "SPOOF",
+                "SUCCESS_RATE",
+                "TARGET_LOCATION",
+                "TASK",
+                "THREAT_CATEGORY",
+                "TLD",
+                "TLD_DNS_MAGNITUDE",
+                "TLS_VERSION",
+                "UPDATE_TYPE",
+                "USER_AGENT",
+                "VALIDATION_LEVEL",
+                "VECTOR",
+                "VERTICAL",
+            ]
+        ]
+        | Omit = omit,
+        tld: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -72,6 +228,12 @@ class OutagesResource(SyncAPIResource):
         Args:
           asn: Filters results by Autonomous System. Specify a single Autonomous System Number
               (ASN) as integer.
+
+          bot: Filters results by bot.
+
+          ca: Filters results by certificate authority.
+
+          data_source: Filters results by data source.
 
           date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
               with `dateStart`.
@@ -90,13 +252,30 @@ class OutagesResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by geolocation. Refer to
+              [GeoNames](https://download.geonames.org/export/dump/readme.txt).
+
           limit: Limits the number of objects returned in the response.
 
           location: Filters results by location. Specify an alpha-2 location code.
 
+          log: Filters results by certificate log.
+
           offset: Skips the specified number of objects before fetching the results.
 
           origin: Filters results by origin.
+
+          outage_cause: Filters results by outage cause.
+
+          outage_type: Filters results by outage type.
+
+          query: Filters results by a free-text match on the annotation description, id, or
+              linked entities (location, ASN, origin).
+
+          tags: Filters results by annotation tag. Matches annotations carrying at least one of
+              the given tags.
+
+          tld: Filters results by top-level domain.
 
           extra_headers: Send extra headers
 
@@ -116,14 +295,24 @@ class OutagesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "bot": bot,
+                        "ca": ca,
+                        "data_source": data_source,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "limit": limit,
                         "location": location,
+                        "log": log,
                         "offset": offset,
                         "origin": origin,
+                        "outage_cause": outage_cause,
+                        "outage_type": outage_type,
+                        "query": query,
+                        "tags": tags,
+                        "tld": tld,
                     },
                     outage_get_params.OutageGetParams,
                 ),
@@ -225,14 +414,170 @@ class AsyncOutagesResource(AsyncAPIResource):
         self,
         *,
         asn: int | Omit = omit,
+        bot: str | Omit = omit,
+        ca: str | Omit = omit,
+        data_source: Literal[
+            "ALL",
+            "AI_BOTS",
+            "AI_GATEWAY",
+            "BGP",
+            "BOTS",
+            "CONNECTION_ANOMALY",
+            "CT",
+            "DNS",
+            "DNS_MAGNITUDE",
+            "DNS_AS112",
+            "DOS",
+            "EMAIL_ROUTING",
+            "EMAIL_SECURITY",
+            "FW",
+            "FW_PG",
+            "HTTP",
+            "HTTP_CONTROL",
+            "HTTP_CRAWLER_REFERER",
+            "HTTP_ORIGINS",
+            "IQI",
+            "LEAKED_CREDENTIALS",
+            "NET",
+            "ROBOTS_TXT",
+            "SPEED",
+            "WORKERS_AI",
+        ]
+        | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_range: str | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: str | Omit = omit,
         limit: int | Omit = omit,
         location: str | Omit = omit,
+        log: str | Omit = omit,
         offset: int | Omit = omit,
         origin: str | Omit = omit,
+        outage_cause: Literal[
+            "BLOCKING",
+            "CABLE_CUT",
+            "CYBERATTACK",
+            "DNS",
+            "FIRE",
+            "GOVERNMENT_DIRECTED",
+            "MAINTENANCE",
+            "MECHANICAL",
+            "MILITARY_ACTION",
+            "MISCONFIGURATION",
+            "NATURAL_DISASTER",
+            "NETWORK_PROBLEM",
+            "POWER_OUTAGE",
+            "SOFTWARE",
+            "TECHNICAL_PROBLEM",
+            "UNKNOWN",
+            "WEATHER",
+        ]
+        | Omit = omit,
+        outage_type: Literal["NATIONWIDE", "REGIONAL", "NETWORK", "PLATFORM"] | Omit = omit,
+        query: str | Omit = omit,
+        tags: List[
+            Literal[
+                "ADM1",
+                "ADM2",
+                "API_TRAFFIC",
+                "ARC",
+                "AS",
+                "ASN",
+                "ATTACKS",
+                "AUTHOR",
+                "BANDWIDTH",
+                "BITRATE",
+                "BOT",
+                "BOT_CATEGORY",
+                "BOT_CLASS",
+                "BOT_KIND",
+                "BOT_OPERATOR",
+                "BROWSER",
+                "BROWSER_FAMILY",
+                "BYTES",
+                "CA",
+                "CACHE_HIT",
+                "CA_OWNER",
+                "CHECK_RESULT",
+                "CLIENT_TYPE",
+                "COMPROMISED",
+                "CONTENT_TYPE",
+                "CRAWL_PURPOSE",
+                "CRAWL_REFER_RATIO",
+                "DEVICE_TYPE",
+                "DKIM",
+                "DMARC",
+                "DNS",
+                "DNSSEC",
+                "DNSSEC_AWARE",
+                "DNSSEC_E2E",
+                "DOMAIN_CATEGORY",
+                "DURATION",
+                "EDNS",
+                "ENCRYPTED",
+                "ENTRY_TYPE",
+                "EXPIRATION_STATUS",
+                "HAS_IPS",
+                "HAS_MATCHING_ANSWER",
+                "HAS_WILDCARDS",
+                "HTTP_METHOD",
+                "HTTP_PROTOCOL",
+                "HTTP_VERSION",
+                "INDUSTRY",
+                "IP_VERSION",
+                "JITTER",
+                "KEY_AGREEMENT",
+                "LATENCY",
+                "LOCATION",
+                "LOCATION_LATENCY",
+                "LOG",
+                "LOG_API",
+                "LOG_OPERATOR",
+                "MALICIOUS",
+                "MANAGED_RULES",
+                "MITIGATION_PRODUCT",
+                "MODEL",
+                "NAMESERVER_LATENCY",
+                "ORIGIN",
+                "ORIGIN_AS",
+                "ORIGIN_LOCATION",
+                "ORIGIN_TARGET_LOCATION_PAIR",
+                "OS",
+                "PERCENTILE",
+                "POST_QUANTUM",
+                "PREFIX",
+                "PRODUCT",
+                "PROTOCOL",
+                "PROVIDER",
+                "PUBLIC_KEY_ALGORITHM",
+                "QUERY_TYPE",
+                "REFERER",
+                "REGION",
+                "RESPONSE_CODE",
+                "RESPONSE_STATUS",
+                "RESPONSE_STATUS_CATEGORY",
+                "RESPONSE_TTL",
+                "SIGNATURE_ALGORITHM",
+                "SPAM",
+                "SPF",
+                "SPOOF",
+                "SUCCESS_RATE",
+                "TARGET_LOCATION",
+                "TASK",
+                "THREAT_CATEGORY",
+                "TLD",
+                "TLD_DNS_MAGNITUDE",
+                "TLS_VERSION",
+                "UPDATE_TYPE",
+                "USER_AGENT",
+                "VALIDATION_LEVEL",
+                "VECTOR",
+                "VERTICAL",
+            ]
+        ]
+        | Omit = omit,
+        tld: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,6 +591,12 @@ class AsyncOutagesResource(AsyncAPIResource):
         Args:
           asn: Filters results by Autonomous System. Specify a single Autonomous System Number
               (ASN) as integer.
+
+          bot: Filters results by bot.
+
+          ca: Filters results by certificate authority.
+
+          data_source: Filters results by data source.
 
           date_end: End of the date range (inclusive). Alternative to `dateRange`; provide together
               with `dateStart`.
@@ -264,13 +615,30 @@ class AsyncOutagesResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by geolocation. Refer to
+              [GeoNames](https://download.geonames.org/export/dump/readme.txt).
+
           limit: Limits the number of objects returned in the response.
 
           location: Filters results by location. Specify an alpha-2 location code.
 
+          log: Filters results by certificate log.
+
           offset: Skips the specified number of objects before fetching the results.
 
           origin: Filters results by origin.
+
+          outage_cause: Filters results by outage cause.
+
+          outage_type: Filters results by outage type.
+
+          query: Filters results by a free-text match on the annotation description, id, or
+              linked entities (location, ASN, origin).
+
+          tags: Filters results by annotation tag. Matches annotations carrying at least one of
+              the given tags.
+
+          tld: Filters results by top-level domain.
 
           extra_headers: Send extra headers
 
@@ -290,14 +658,24 @@ class AsyncOutagesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "asn": asn,
+                        "bot": bot,
+                        "ca": ca,
+                        "data_source": data_source,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "limit": limit,
                         "location": location,
+                        "log": log,
                         "offset": offset,
                         "origin": origin,
+                        "outage_cause": outage_cause,
+                        "outage_type": outage_type,
+                        "query": query,
+                        "tags": tags,
+                        "tld": tld,
                     },
                     outage_get_params.OutageGetParams,
                 ),

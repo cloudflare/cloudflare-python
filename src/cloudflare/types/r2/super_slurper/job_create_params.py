@@ -87,7 +87,7 @@ class SourceR2SlurperR2SourceSchema(TypedDict, total=False):
 
     vendor: Required[Provider]
 
-    jurisdiction: Literal["default", "eu", "fedramp"]
+    jurisdiction: Literal["default", "eu", "us", "fedramp"]
 
     keys: Optional[SequenceNotStr[str]]
 
@@ -110,4 +110,4 @@ class Target(TypedDict, total=False):
 
     vendor: Required[Provider]
 
-    jurisdiction: Literal["default", "eu", "fedramp"]
+    jurisdiction: Literal["default", "eu", "us", "fedramp"]

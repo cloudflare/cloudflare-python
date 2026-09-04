@@ -68,7 +68,7 @@ class StepUnionMember0ConfigRetries(BaseModel):
     delay: Union[str, float]
     """Specifies the delay duration.
 
-    '[dynamic]' indicates the delay is computed by a user-supplied function.
+    The value '[dynamic]' means that a user-supplied function computes the delay.
     """
 
     limit: float
@@ -155,6 +155,8 @@ class StepUnionMember3(BaseModel):
     start: datetime
 
     type: Literal["waitForEvent"]
+
+    event_type: Optional[str] = None
 
     output: Optional[str] = None
 

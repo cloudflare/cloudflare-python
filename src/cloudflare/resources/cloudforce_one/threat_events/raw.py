@@ -59,7 +59,8 @@ class RawResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawEditResponse:
         """
-        Update raw data for a specific event.
+        Partially updates raw threat event data in Cloudforce One, modifying specific
+        fields of the event.
 
         Args:
           account_id: Account ID.
@@ -117,7 +118,7 @@ class RawResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawGetResponse:
         """
-        Retrieve raw data for a specific event.
+        Retrieves raw threat event data for a specific event in Cloudforce One.
 
         Args:
           account_id: Account ID.
@@ -191,7 +192,8 @@ class AsyncRawResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawEditResponse:
         """
-        Update raw data for a specific event.
+        Partially updates raw threat event data in Cloudforce One, modifying specific
+        fields of the event.
 
         Args:
           account_id: Account ID.
@@ -249,7 +251,7 @@ class AsyncRawResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawGetResponse:
         """
-        Retrieve raw data for a specific event.
+        Retrieves raw threat event data for a specific event in Cloudforce One.
 
         Args:
           account_id: Account ID.

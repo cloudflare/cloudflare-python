@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["BrowserConnectParams"]
 
@@ -18,3 +20,6 @@ class BrowserConnectParams(TypedDict, total=False):
     """Use experimental browser."""
 
     recording: bool
+
+    cf_brapi_guardrails: Annotated[str, PropertyInfo(alias="cf-brapi-guardrails")]
+    """Optional base64url-encoded JSON connection guardrails (mode)"""

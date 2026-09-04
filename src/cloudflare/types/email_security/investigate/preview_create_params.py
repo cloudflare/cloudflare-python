@@ -12,4 +12,4 @@ class PreviewCreateParams(TypedDict, total=False):
     """Identifier."""
 
     postfix_id: Required[str]
-    """The identifier of the message"""
+    """The identifier of the message."""

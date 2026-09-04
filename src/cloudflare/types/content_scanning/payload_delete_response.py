@@ -8,10 +8,13 @@ __all__ = ["PayloadDeleteResponse"]
 
 
 class PayloadDeleteResponse(BaseModel):
-    """Defines a custom scan expression to match Content Scanning on."""
+    """Defines a Content Scanning custom expression."""
 
     id: Optional[str] = None
-    """defines the unique ID for this custom scan expression."""
+    """Defines the unique ID for this Content Scanning custom expression."""
 
     payload: Optional[str] = None
-    """Defines the ruleset expression to use in matching content objects."""
+    """
+    Defines the custom content extraction expression used to reach content objects
+    in the request.
+    """

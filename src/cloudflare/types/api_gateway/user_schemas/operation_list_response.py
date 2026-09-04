@@ -191,9 +191,6 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoAct
 
     created_at: Optional[datetime] = None
 
-    is_learned: Optional[bool] = None
-    """True if schema is Cloudflare-provided."""
-
     name: Optional[str] = None
     """Schema file name."""
 
@@ -201,9 +198,6 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoAct
 class APIShieldOperationFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo(BaseModel):
     active_schema: Optional[APIShieldOperationFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema] = None
     """Schema active on endpoint."""
-
-    learned_available: Optional[bool] = None
-    """Deprecated. Always false."""
 
     mitigation_action: Optional[Literal["none", "log", "block"]] = None
     """Action taken on requests failing validation."""

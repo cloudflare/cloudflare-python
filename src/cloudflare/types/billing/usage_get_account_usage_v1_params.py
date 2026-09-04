@@ -1,0 +1,27 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Union
+from datetime import date
+from typing_extensions import Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
+
+__all__ = ["UsageGetAccountUsageV1Params"]
+
+
+class UsageGetAccountUsageV1Params(TypedDict, total=False):
+    account_id: Required[str]
+    """Represents a Cloudflare resource identifier tag."""
+
+    from_: Annotated[Union[str, date], PropertyInfo(alias="from", format="iso8601")]
+    """Start date for the usage query (ISO 8601).
+
+    The provided time range must include the subscription billing cycle anchor day,
+    otherwise no usage data is returned. Use the info endpoint to retrieve the
+    subscription anchor day.
+    """
+
+    to: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    """End date for the usage query (ISO 8601)."""

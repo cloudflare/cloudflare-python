@@ -42,8 +42,8 @@ class ListsListItemHostnameFull(BaseModel):
 
     hostname: Hostname
     """
-    Valid characters for hostnames are ASCII(7) letters from a to z, the digits from
-    0 to 9, wildcards (\\**), and the hyphen (-).
+    Hostnames support ASCII(7) letters from a to z, the digits from 0 to 9,
+    wildcards (\\**), and the hyphen (-).
     """
 
     modified_on: str

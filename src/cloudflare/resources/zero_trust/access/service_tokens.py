@@ -61,6 +61,7 @@ class ServiceTokensResource(SyncAPIResource):
         zone_id: str | Omit = omit,
         client_secret_version: float | Omit = omit,
         duration: str | Omit = omit,
+        enabled: bool | Omit = omit,
         previous_client_secret_expires_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -91,6 +92,11 @@ class ServiceTokensResource(SyncAPIResource):
               `300ms` or `2h45m`, or the special value `forever` for non-expiring tokens.
               Valid time units are: ns, us (or µs), ms, s, m, h. The default is 1 year in
               hours (8760h).
+
+          enabled: Whether the service token is enabled. A disabled service token cannot be used to
+              authenticate; both its current and previous `client_secret` stop being accepted,
+              but the token itself is preserved and can be re-enabled at any time. Defaults to
+              enabled when omitted on create.
 
           previous_client_secret_expires_at: The expiration of the previous `client_secret`. This can be modified at any
               point after a rotation. For example, you may extend it further into the future
@@ -128,6 +134,7 @@ class ServiceTokensResource(SyncAPIResource):
                     "name": name,
                     "client_secret_version": client_secret_version,
                     "duration": duration,
+                    "enabled": enabled,
                     "previous_client_secret_expires_at": previous_client_secret_expires_at,
                 },
                 service_token_create_params.ServiceTokenCreateParams,
@@ -150,6 +157,7 @@ class ServiceTokensResource(SyncAPIResource):
         zone_id: str | Omit = omit,
         client_secret_version: float | Omit = omit,
         duration: str | Omit = omit,
+        enabled: bool | Omit = omit,
         name: str | Omit = omit,
         previous_client_secret_expires_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -178,6 +186,11 @@ class ServiceTokensResource(SyncAPIResource):
               `300ms` or `2h45m`, or the special value `forever` for non-expiring tokens.
               Valid time units are: ns, us (or µs), ms, s, m, h. The default is 1 year in
               hours (8760h).
+
+          enabled: Whether the service token is enabled. A disabled service token cannot be used to
+              authenticate; both its current and previous `client_secret` stop being accepted,
+              but the token itself is preserved and can be re-enabled at any time. Defaults to
+              enabled when omitted on create.
 
           name: The name of the service token.
 
@@ -219,6 +232,7 @@ class ServiceTokensResource(SyncAPIResource):
                 {
                     "client_secret_version": client_secret_version,
                     "duration": duration,
+                    "enabled": enabled,
                     "name": name,
                     "previous_client_secret_expires_at": previous_client_secret_expires_at,
                 },
@@ -568,6 +582,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         zone_id: str | Omit = omit,
         client_secret_version: float | Omit = omit,
         duration: str | Omit = omit,
+        enabled: bool | Omit = omit,
         previous_client_secret_expires_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -598,6 +613,11 @@ class AsyncServiceTokensResource(AsyncAPIResource):
               `300ms` or `2h45m`, or the special value `forever` for non-expiring tokens.
               Valid time units are: ns, us (or µs), ms, s, m, h. The default is 1 year in
               hours (8760h).
+
+          enabled: Whether the service token is enabled. A disabled service token cannot be used to
+              authenticate; both its current and previous `client_secret` stop being accepted,
+              but the token itself is preserved and can be re-enabled at any time. Defaults to
+              enabled when omitted on create.
 
           previous_client_secret_expires_at: The expiration of the previous `client_secret`. This can be modified at any
               point after a rotation. For example, you may extend it further into the future
@@ -635,6 +655,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
                     "name": name,
                     "client_secret_version": client_secret_version,
                     "duration": duration,
+                    "enabled": enabled,
                     "previous_client_secret_expires_at": previous_client_secret_expires_at,
                 },
                 service_token_create_params.ServiceTokenCreateParams,
@@ -657,6 +678,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         zone_id: str | Omit = omit,
         client_secret_version: float | Omit = omit,
         duration: str | Omit = omit,
+        enabled: bool | Omit = omit,
         name: str | Omit = omit,
         previous_client_secret_expires_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -685,6 +707,11 @@ class AsyncServiceTokensResource(AsyncAPIResource):
               `300ms` or `2h45m`, or the special value `forever` for non-expiring tokens.
               Valid time units are: ns, us (or µs), ms, s, m, h. The default is 1 year in
               hours (8760h).
+
+          enabled: Whether the service token is enabled. A disabled service token cannot be used to
+              authenticate; both its current and previous `client_secret` stop being accepted,
+              but the token itself is preserved and can be re-enabled at any time. Defaults to
+              enabled when omitted on create.
 
           name: The name of the service token.
 
@@ -726,6 +753,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
                 {
                     "client_secret_version": client_secret_version,
                     "duration": duration,
+                    "enabled": enabled,
                     "name": name,
                     "previous_client_secret_expires_at": previous_client_secret_expires_at,
                 },

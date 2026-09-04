@@ -32,5 +32,5 @@ class CustomUpdateParams(TypedDict, total=False):
     If not set, defaults to previous value.
     """
 
-    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    jurisdiction: Annotated[Literal["default", "eu", "us", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
     """Jurisdiction where objects in this bucket are guaranteed to be stored."""

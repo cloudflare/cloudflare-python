@@ -65,7 +65,7 @@ class TenantCustomNameserversResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TenantCustomNameserverCreateResponse]:
         """
-        Add Tenant Custom Nameserver
+        Adds a custom nameserver for a tenant.
 
         Args:
           tenant_tag: Tenant identifier tag.
@@ -119,7 +119,7 @@ class TenantCustomNameserversResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TenantCustomNameserverDeleteResponse]:
         """
-        Delete Tenant Custom Nameserver
+        Deletes a tenant's custom nameserver.
 
         Args:
           tenant_tag: Tenant identifier tag.
@@ -162,7 +162,7 @@ class TenantCustomNameserversResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TenantCustomNameserverGetResponse]:
         """
-        List a tenant's custom nameservers.
+        Lists a tenant's custom nameservers.
 
         Args:
           tenant_tag: Tenant identifier tag.
@@ -221,7 +221,7 @@ class AsyncTenantCustomNameserversResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TenantCustomNameserverCreateResponse]:
         """
-        Add Tenant Custom Nameserver
+        Adds a custom nameserver for a tenant.
 
         Args:
           tenant_tag: Tenant identifier tag.
@@ -275,7 +275,7 @@ class AsyncTenantCustomNameserversResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TenantCustomNameserverDeleteResponse, AsyncSinglePage[TenantCustomNameserverDeleteResponse]]:
         """
-        Delete Tenant Custom Nameserver
+        Deletes a tenant's custom nameserver.
 
         Args:
           tenant_tag: Tenant identifier tag.
@@ -318,7 +318,7 @@ class AsyncTenantCustomNameserversResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TenantCustomNameserverGetResponse, AsyncSinglePage[TenantCustomNameserverGetResponse]]:
         """
-        List a tenant's custom nameservers.
+        Lists a tenant's custom nameservers.
 
         Args:
           tenant_tag: Tenant identifier tag.

@@ -45,10 +45,14 @@ class AIGatewayCreateParams(TypedDict, total=False):
     retry_max_attempts: Optional[int]
     """Maximum number of retry attempts for failed requests (1-5)"""
 
-    workers_ai_billing_mode: Literal["postpaid"]
+    store_id: Optional[str]
+
+    workers_ai_billing_mode: Literal["postpaid", "unified"]
     """Controls how Workers AI inference calls routed through this gateway are billed.
 
-    Only 'postpaid' is currently supported.
+    'postpaid' bills the account directly through Workers AI; 'unified' deducts
+    credits via AI Gateway using neuron-based pricing and delegates billing to AI
+    Gateway.
     """
 
     zdr: bool

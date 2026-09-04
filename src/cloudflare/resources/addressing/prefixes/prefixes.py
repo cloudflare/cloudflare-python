@@ -333,6 +333,56 @@ class PrefixesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
         )
 
+    def validate(
+        self,
+        prefix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Prefix]:
+        """Triggers a new prefix validation.
+
+        The checks are run asynchronously and include
+        IRR, RPKI, and prefix ownership.
+
+        Args:
+          account_id: Identifier of a Cloudflare account.
+
+          prefix_id: Identifier of an IP Prefix.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not prefix_id:
+            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
+        return self._post(
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/validate",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Prefix]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
+        )
+
 
 class AsyncPrefixesResource(AsyncAPIResource):
     @cached_property
@@ -609,6 +659,56 @@ class AsyncPrefixesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
         )
 
+    async def validate(
+        self,
+        prefix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[Prefix]:
+        """Triggers a new prefix validation.
+
+        The checks are run asynchronously and include
+        IRR, RPKI, and prefix ownership.
+
+        Args:
+          account_id: Identifier of a Cloudflare account.
+
+          prefix_id: Identifier of an IP Prefix.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not prefix_id:
+            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
+        return await self._post(
+            path_template(
+                "/accounts/{account_id}/addressing/prefixes/{prefix_id}/validate",
+                account_id=account_id,
+                prefix_id=prefix_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Prefix]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
+        )
+
 
 class PrefixesResourceWithRawResponse:
     def __init__(self, prefixes: PrefixesResource) -> None:
@@ -628,6 +728,9 @@ class PrefixesResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             prefixes.get,
+        )
+        self.validate = to_raw_response_wrapper(
+            prefixes.validate,
         )
 
     @cached_property
@@ -666,6 +769,9 @@ class AsyncPrefixesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             prefixes.get,
         )
+        self.validate = async_to_raw_response_wrapper(
+            prefixes.validate,
+        )
 
     @cached_property
     def service_bindings(self) -> AsyncServiceBindingsResourceWithRawResponse:
@@ -703,6 +809,9 @@ class PrefixesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             prefixes.get,
         )
+        self.validate = to_streamed_response_wrapper(
+            prefixes.validate,
+        )
 
     @cached_property
     def service_bindings(self) -> ServiceBindingsResourceWithStreamingResponse:
@@ -739,6 +848,9 @@ class AsyncPrefixesResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             prefixes.get,
+        )
+        self.validate = async_to_streamed_response_wrapper(
+            prefixes.validate,
         )
 
     @cached_property

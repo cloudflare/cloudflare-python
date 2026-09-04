@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, Optional, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -75,6 +74,7 @@ class NamespacesResource(SyncAPIResource):
         account_id: str,
         name: str,
         description: Optional[str] | Omit = omit,
+        public_endpoint_params: namespace_create_params.PublicEndpointParams | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -104,6 +104,7 @@ class NamespacesResource(SyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "public_endpoint_params": public_endpoint_params,
                 },
                 namespace_create_params.NamespaceCreateParams,
             ),
@@ -123,6 +124,7 @@ class NamespacesResource(SyncAPIResource):
         *,
         account_id: str,
         description: Optional[str] | Omit = omit,
+        public_endpoint_params: Optional[namespace_update_params.PublicEndpointParams] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,10 +132,10 @@ class NamespacesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceUpdateResponse:
-        """Update the description of an existing namespace.
-
-        The default namespace cannot be
-        modified.
+        """
+        Update the description and/or the public endpoint configuration of an existing
+        namespace. The default namespace's description cannot be modified, but its
+        public endpoint can.
 
         Args:
           description: Optional description for the namespace. Max 256 characters.
@@ -152,7 +154,13 @@ class NamespacesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
         return self._put(
             path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
-            body=maybe_transform({"description": description}, namespace_update_params.NamespaceUpdateParams),
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "public_endpoint_params": public_endpoint_params,
+                },
+                namespace_update_params.NamespaceUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -267,39 +275,7 @@ class NamespacesResource(SyncAPIResource):
         account_id: str,
         aisearch_options: namespace_chat_completions_params.AISearchOptions,
         messages: Iterable[namespace_chat_completions_params.Message],
-        model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "@cf/google/gemma-4-26b-a4b-it",
-            "@cf/moonshotai/kimi-k2.5",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-        | Omit = omit,
+        model: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -313,6 +289,9 @@ class NamespacesResource(SyncAPIResource):
         parallel, merging retrieved content as context for generating a response.
 
         Args:
+          model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -478,6 +457,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         account_id: str,
         name: str,
         description: Optional[str] | Omit = omit,
+        public_endpoint_params: namespace_create_params.PublicEndpointParams | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -507,6 +487,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "public_endpoint_params": public_endpoint_params,
                 },
                 namespace_create_params.NamespaceCreateParams,
             ),
@@ -526,6 +507,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         *,
         account_id: str,
         description: Optional[str] | Omit = omit,
+        public_endpoint_params: Optional[namespace_update_params.PublicEndpointParams] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -533,10 +515,10 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceUpdateResponse:
-        """Update the description of an existing namespace.
-
-        The default namespace cannot be
-        modified.
+        """
+        Update the description and/or the public endpoint configuration of an existing
+        namespace. The default namespace's description cannot be modified, but its
+        public endpoint can.
 
         Args:
           description: Optional description for the namespace. Max 256 characters.
@@ -556,7 +538,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         return await self._put(
             path_template("/accounts/{account_id}/ai-search/namespaces/{name}", account_id=account_id, name=name),
             body=await async_maybe_transform(
-                {"description": description}, namespace_update_params.NamespaceUpdateParams
+                {
+                    "description": description,
+                    "public_endpoint_params": public_endpoint_params,
+                },
+                namespace_update_params.NamespaceUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -672,39 +658,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         account_id: str,
         aisearch_options: namespace_chat_completions_params.AISearchOptions,
         messages: Iterable[namespace_chat_completions_params.Message],
-        model: Literal[
-            "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-            "@cf/zai-org/glm-4.7-flash",
-            "@cf/meta/llama-3.1-8b-instruct-fast",
-            "@cf/meta/llama-3.1-8b-instruct-fp8",
-            "@cf/meta/llama-4-scout-17b-16e-instruct",
-            "@cf/qwen/qwen3-30b-a3b-fp8",
-            "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
-            "@cf/moonshotai/kimi-k2-instruct",
-            "@cf/google/gemma-3-12b-it",
-            "@cf/google/gemma-4-26b-a4b-it",
-            "@cf/moonshotai/kimi-k2.5",
-            "anthropic/claude-3-7-sonnet",
-            "anthropic/claude-sonnet-4",
-            "anthropic/claude-opus-4",
-            "anthropic/claude-3-5-haiku",
-            "cerebras/qwen-3-235b-a22b-instruct",
-            "cerebras/qwen-3-235b-a22b-thinking",
-            "cerebras/llama-3.3-70b",
-            "cerebras/llama-4-maverick-17b-128e-instruct",
-            "cerebras/llama-4-scout-17b-16e-instruct",
-            "cerebras/gpt-oss-120b",
-            "google-ai-studio/gemini-2.5-flash",
-            "google-ai-studio/gemini-2.5-pro",
-            "grok/grok-4",
-            "groq/llama-3.3-70b-versatile",
-            "groq/llama-3.1-8b-instant",
-            "openai/gpt-5",
-            "openai/gpt-5-mini",
-            "openai/gpt-5-nano",
-            "",
-        ]
-        | Omit = omit,
+        model: str | Omit = omit,
         stream: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -718,6 +672,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
         parallel, merging retrieved content as context for generating a response.
 
         Args:
+          model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
+              Completions API. An empty string uses the configured or default model.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

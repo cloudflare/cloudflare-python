@@ -291,6 +291,15 @@ class TestInterconnects:
         assert interconnect is None
 
     @parametrize
+    def test_method_loa_with_all_params(self, client: Cloudflare) -> None:
+        interconnect = client.network_interconnects.interconnects.loa(
+            icon="icon",
+            account_id="account_id",
+            name="name",
+        )
+        assert interconnect is None
+
+    @parametrize
     def test_raw_response_loa(self, client: Cloudflare) -> None:
         response = client.network_interconnects.interconnects.with_raw_response.loa(
             icon="icon",
@@ -649,6 +658,15 @@ class TestAsyncInterconnects:
         interconnect = await async_client.network_interconnects.interconnects.loa(
             icon="icon",
             account_id="account_id",
+        )
+        assert interconnect is None
+
+    @parametrize
+    async def test_method_loa_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        interconnect = await async_client.network_interconnects.interconnects.loa(
+            icon="icon",
+            account_id="account_id",
+            name="name",
         )
         assert interconnect is None
 

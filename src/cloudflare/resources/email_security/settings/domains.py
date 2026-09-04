@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import List, Type, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,11 +21,20 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_security.settings import domain_edit_params, domain_list_params
+from ....types.email_security.settings import (
+    domain_edit_params,
+    domain_list_params,
+    domain_batch_params,
+    domain_create_params,
+    domain_update_params,
+)
 from ....types.email_security.settings.domain_get_response import DomainGetResponse
 from ....types.email_security.settings.domain_edit_response import DomainEditResponse
 from ....types.email_security.settings.domain_list_response import DomainListResponse
+from ....types.email_security.settings.domain_batch_response import DomainBatchResponse
+from ....types.email_security.settings.domain_create_response import DomainCreateResponse
 from ....types.email_security.settings.domain_delete_response import DomainDeleteResponse
+from ....types.email_security.settings.domain_update_response import DomainUpdateResponse
 from ....types.email_security.settings.domain_bulk_delete_response import DomainBulkDeleteResponse
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
@@ -51,6 +60,175 @@ class DomainsResource(SyncAPIResource):
         """
         return DomainsResourceWithStreamingResponse(self)
 
+    def create(
+        self,
+        *,
+        account_id: str,
+        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]],
+        domain: str,
+        drop_dispositions: List[
+            Literal[
+                "MALICIOUS",
+                "MALICIOUS-BEC",
+                "SUSPICIOUS",
+                "SPOOF",
+                "SPAM",
+                "BULK",
+                "ENCRYPTED",
+                "EXTERNAL",
+                "UNKNOWN",
+                "NONE",
+            ]
+        ],
+        ip_restrictions: SequenceNotStr[str],
+        regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]],
+        folder: Optional[Literal["AllItems", "Inbox"]] | Omit = omit,
+        integration_id: Optional[str] | Omit = omit,
+        lookback_hops: Optional[int] | Omit = omit,
+        require_tls_inbound: Optional[bool] | Omit = omit,
+        require_tls_outbound: Optional[bool] | Omit = omit,
+        transport: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DomainCreateResponse]:
+        """Protects a new email domain by adding it to Email Security.
+
+        Accepts a flat
+        configuration object covering all delivery modes. Returns the newly created
+        domain configuration.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template("/accounts/{account_id}/email-security/settings/domains", account_id=account_id),
+            body=maybe_transform(
+                {
+                    "allowed_delivery_modes": allowed_delivery_modes,
+                    "domain": domain,
+                    "drop_dispositions": drop_dispositions,
+                    "ip_restrictions": ip_restrictions,
+                    "regions": regions,
+                    "folder": folder,
+                    "integration_id": integration_id,
+                    "lookback_hops": lookback_hops,
+                    "require_tls_inbound": require_tls_inbound,
+                    "require_tls_outbound": require_tls_outbound,
+                    "transport": transport,
+                },
+                domain_create_params.DomainCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DomainCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DomainCreateResponse]], ResultWrapper[DomainCreateResponse]),
+        )
+
+    def update(
+        self,
+        domain_id: str,
+        *,
+        account_id: str,
+        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]],
+        drop_dispositions: List[
+            Literal[
+                "MALICIOUS",
+                "MALICIOUS-BEC",
+                "SUSPICIOUS",
+                "SPOOF",
+                "SPAM",
+                "BULK",
+                "ENCRYPTED",
+                "EXTERNAL",
+                "UNKNOWN",
+                "NONE",
+            ]
+        ],
+        ip_restrictions: SequenceNotStr[str],
+        regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]],
+        folder: Optional[Literal["AllItems", "Inbox"]] | Omit = omit,
+        integration_id: Optional[str] | Omit = omit,
+        lookback_hops: Optional[int] | Omit = omit,
+        require_tls_inbound: Optional[bool] | Omit = omit,
+        require_tls_outbound: Optional[bool] | Omit = omit,
+        transport: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DomainUpdateResponse]:
+        """
+        Replaces all mutable fields of a protected email domain in a single atomic
+        operation. Unlike PATCH, all non-computed fields are required.
+
+        Args:
+          account_id: Identifier.
+
+          domain_id: Domain identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
+        return self._put(
+            path_template(
+                "/accounts/{account_id}/email-security/settings/domains/{domain_id}",
+                account_id=account_id,
+                domain_id=domain_id,
+            ),
+            body=maybe_transform(
+                {
+                    "allowed_delivery_modes": allowed_delivery_modes,
+                    "drop_dispositions": drop_dispositions,
+                    "ip_restrictions": ip_restrictions,
+                    "regions": regions,
+                    "folder": folder,
+                    "integration_id": integration_id,
+                    "lookback_hops": lookback_hops,
+                    "require_tls_inbound": require_tls_inbound,
+                    "require_tls_outbound": require_tls_outbound,
+                    "transport": transport,
+                },
+                domain_update_params.DomainUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DomainUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DomainUpdateResponse]], ResultWrapper[DomainUpdateResponse]),
+        )
+
     def list(
         self,
         *,
@@ -64,7 +242,7 @@ class DomainsResource(SyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
-        status: Optional[Literal["pending", "active", "failed", "timeout"]] | Omit = omit,
+        status: Optional[Literal["PENDING", "ACTIVE", "FAILED", "TIMEOUT"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,7 +337,7 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -189,7 +367,64 @@ class DomainsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[DomainDeleteResponse]], ResultWrapper[DomainDeleteResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    def batch(
+        self,
+        *,
+        account_id: str,
+        deletes: Iterable[domain_batch_params.Delete],
+        patches: Iterable[domain_batch_params.Patch],
+        posts: Iterable[domain_batch_params.Post],
+        puts: Iterable[domain_batch_params.Put],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DomainBatchResponse]:
+        """Executes multiple domain operations in a single request.
+
+        All four operation
+        arrays (deletes, patches, puts, posts) are required and executed in order. Send
+        empty arrays for unused operations.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template("/accounts/{account_id}/email-security/settings/domains/batch", account_id=account_id),
+            body=maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                domain_batch_params.DomainBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DomainBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DomainBatchResponse]], ResultWrapper[DomainBatchResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "This endpoint is deprecated. Use POST /accounts/{account_id}/email-security/settings/domains/batch instead."
+    )
     def bulk_delete(
         self,
         *,
@@ -201,9 +436,10 @@ class DomainsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DomainBulkDeleteResponse]:
-        """Deprecated.
+        """Removes protection from multiple email domains.
 
-        Use the batch endpoint instead.
+        Deprecated; use the batch
+        endpoint instead.
 
         Args:
           account_id: Identifier.
@@ -234,7 +470,6 @@ class DomainsResource(SyncAPIResource):
         *,
         account_id: str,
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | Omit = omit,
-        domain: str | Omit = omit,
         drop_dispositions: List[
             Literal[
                 "MALICIOUS",
@@ -274,7 +509,7 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -297,7 +532,6 @@ class DomainsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "allowed_delivery_modes": allowed_delivery_modes,
-                    "domain": domain,
                     "drop_dispositions": drop_dispositions,
                     "folder": folder,
                     "integration_id": integration_id,
@@ -339,7 +573,7 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -390,6 +624,175 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         return AsyncDomainsResourceWithStreamingResponse(self)
 
+    async def create(
+        self,
+        *,
+        account_id: str,
+        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]],
+        domain: str,
+        drop_dispositions: List[
+            Literal[
+                "MALICIOUS",
+                "MALICIOUS-BEC",
+                "SUSPICIOUS",
+                "SPOOF",
+                "SPAM",
+                "BULK",
+                "ENCRYPTED",
+                "EXTERNAL",
+                "UNKNOWN",
+                "NONE",
+            ]
+        ],
+        ip_restrictions: SequenceNotStr[str],
+        regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]],
+        folder: Optional[Literal["AllItems", "Inbox"]] | Omit = omit,
+        integration_id: Optional[str] | Omit = omit,
+        lookback_hops: Optional[int] | Omit = omit,
+        require_tls_inbound: Optional[bool] | Omit = omit,
+        require_tls_outbound: Optional[bool] | Omit = omit,
+        transport: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DomainCreateResponse]:
+        """Protects a new email domain by adding it to Email Security.
+
+        Accepts a flat
+        configuration object covering all delivery modes. Returns the newly created
+        domain configuration.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template("/accounts/{account_id}/email-security/settings/domains", account_id=account_id),
+            body=await async_maybe_transform(
+                {
+                    "allowed_delivery_modes": allowed_delivery_modes,
+                    "domain": domain,
+                    "drop_dispositions": drop_dispositions,
+                    "ip_restrictions": ip_restrictions,
+                    "regions": regions,
+                    "folder": folder,
+                    "integration_id": integration_id,
+                    "lookback_hops": lookback_hops,
+                    "require_tls_inbound": require_tls_inbound,
+                    "require_tls_outbound": require_tls_outbound,
+                    "transport": transport,
+                },
+                domain_create_params.DomainCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DomainCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DomainCreateResponse]], ResultWrapper[DomainCreateResponse]),
+        )
+
+    async def update(
+        self,
+        domain_id: str,
+        *,
+        account_id: str,
+        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]],
+        drop_dispositions: List[
+            Literal[
+                "MALICIOUS",
+                "MALICIOUS-BEC",
+                "SUSPICIOUS",
+                "SPOOF",
+                "SPAM",
+                "BULK",
+                "ENCRYPTED",
+                "EXTERNAL",
+                "UNKNOWN",
+                "NONE",
+            ]
+        ],
+        ip_restrictions: SequenceNotStr[str],
+        regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]],
+        folder: Optional[Literal["AllItems", "Inbox"]] | Omit = omit,
+        integration_id: Optional[str] | Omit = omit,
+        lookback_hops: Optional[int] | Omit = omit,
+        require_tls_inbound: Optional[bool] | Omit = omit,
+        require_tls_outbound: Optional[bool] | Omit = omit,
+        transport: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DomainUpdateResponse]:
+        """
+        Replaces all mutable fields of a protected email domain in a single atomic
+        operation. Unlike PATCH, all non-computed fields are required.
+
+        Args:
+          account_id: Identifier.
+
+          domain_id: Domain identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not domain_id:
+            raise ValueError(f"Expected a non-empty value for `domain_id` but received {domain_id!r}")
+        return await self._put(
+            path_template(
+                "/accounts/{account_id}/email-security/settings/domains/{domain_id}",
+                account_id=account_id,
+                domain_id=domain_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "allowed_delivery_modes": allowed_delivery_modes,
+                    "drop_dispositions": drop_dispositions,
+                    "ip_restrictions": ip_restrictions,
+                    "regions": regions,
+                    "folder": folder,
+                    "integration_id": integration_id,
+                    "lookback_hops": lookback_hops,
+                    "require_tls_inbound": require_tls_inbound,
+                    "require_tls_outbound": require_tls_outbound,
+                    "transport": transport,
+                },
+                domain_update_params.DomainUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DomainUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DomainUpdateResponse]], ResultWrapper[DomainUpdateResponse]),
+        )
+
     def list(
         self,
         *,
@@ -403,7 +806,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
-        status: Optional[Literal["pending", "active", "failed", "timeout"]] | Omit = omit,
+        status: Optional[Literal["PENDING", "ACTIVE", "FAILED", "TIMEOUT"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -498,7 +901,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -528,7 +931,64 @@ class AsyncDomainsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[DomainDeleteResponse]], ResultWrapper[DomainDeleteResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    async def batch(
+        self,
+        *,
+        account_id: str,
+        deletes: Iterable[domain_batch_params.Delete],
+        patches: Iterable[domain_batch_params.Patch],
+        posts: Iterable[domain_batch_params.Post],
+        puts: Iterable[domain_batch_params.Put],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[DomainBatchResponse]:
+        """Executes multiple domain operations in a single request.
+
+        All four operation
+        arrays (deletes, patches, puts, posts) are required and executed in order. Send
+        empty arrays for unused operations.
+
+        Args:
+          account_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template("/accounts/{account_id}/email-security/settings/domains/batch", account_id=account_id),
+            body=await async_maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                domain_batch_params.DomainBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DomainBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DomainBatchResponse]], ResultWrapper[DomainBatchResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "This endpoint is deprecated. Use POST /accounts/{account_id}/email-security/settings/domains/batch instead."
+    )
     def bulk_delete(
         self,
         *,
@@ -540,9 +1000,10 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DomainBulkDeleteResponse, AsyncSinglePage[DomainBulkDeleteResponse]]:
-        """Deprecated.
+        """Removes protection from multiple email domains.
 
-        Use the batch endpoint instead.
+        Deprecated; use the batch
+        endpoint instead.
 
         Args:
           account_id: Identifier.
@@ -573,7 +1034,6 @@ class AsyncDomainsResource(AsyncAPIResource):
         *,
         account_id: str,
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | Omit = omit,
-        domain: str | Omit = omit,
         drop_dispositions: List[
             Literal[
                 "MALICIOUS",
@@ -613,7 +1073,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -636,7 +1096,6 @@ class AsyncDomainsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "allowed_delivery_modes": allowed_delivery_modes,
-                    "domain": domain,
                     "drop_dispositions": drop_dispositions,
                     "folder": folder,
                     "integration_id": integration_id,
@@ -678,7 +1137,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          domain_id: Domain identifier
+          domain_id: Domain identifier.
 
           extra_headers: Send extra headers
 
@@ -713,11 +1172,20 @@ class DomainsResourceWithRawResponse:
     def __init__(self, domains: DomainsResource) -> None:
         self._domains = domains
 
+        self.create = to_raw_response_wrapper(
+            domains.create,
+        )
+        self.update = to_raw_response_wrapper(
+            domains.update,
+        )
         self.list = to_raw_response_wrapper(
             domains.list,
         )
         self.delete = to_raw_response_wrapper(
             domains.delete,
+        )
+        self.batch = to_raw_response_wrapper(
+            domains.batch,
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -736,11 +1204,20 @@ class AsyncDomainsResourceWithRawResponse:
     def __init__(self, domains: AsyncDomainsResource) -> None:
         self._domains = domains
 
+        self.create = async_to_raw_response_wrapper(
+            domains.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            domains.update,
+        )
         self.list = async_to_raw_response_wrapper(
             domains.list,
         )
         self.delete = async_to_raw_response_wrapper(
             domains.delete,
+        )
+        self.batch = async_to_raw_response_wrapper(
+            domains.batch,
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -759,11 +1236,20 @@ class DomainsResourceWithStreamingResponse:
     def __init__(self, domains: DomainsResource) -> None:
         self._domains = domains
 
+        self.create = to_streamed_response_wrapper(
+            domains.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            domains.update,
+        )
         self.list = to_streamed_response_wrapper(
             domains.list,
         )
         self.delete = to_streamed_response_wrapper(
             domains.delete,
+        )
+        self.batch = to_streamed_response_wrapper(
+            domains.batch,
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -782,11 +1268,20 @@ class AsyncDomainsResourceWithStreamingResponse:
     def __init__(self, domains: AsyncDomainsResource) -> None:
         self._domains = domains
 
+        self.create = async_to_streamed_response_wrapper(
+            domains.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            domains.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             domains.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             domains.delete,
+        )
+        self.batch = async_to_streamed_response_wrapper(
+            domains.batch,
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(

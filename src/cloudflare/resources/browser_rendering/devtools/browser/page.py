@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from ....._utils import path_template
+from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ....._utils import path_template, strip_not_given
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -45,6 +45,7 @@ class PageResource(SyncAPIResource):
         *,
         account_id: str,
         session_id: str,
+        cf_brapi_guardrails: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,6 +63,8 @@ class PageResource(SyncAPIResource):
 
           target_id: Target ID, e.g. page ID.
 
+          cf_brapi_guardrails: Optional base64url-encoded JSON connection guardrails (mode)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -77,6 +80,7 @@ class PageResource(SyncAPIResource):
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"cf-brapi-guardrails": cf_brapi_guardrails}), **(extra_headers or {})}
         return self._get(
             path_template(
                 "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/page/{target_id}",
@@ -117,6 +121,7 @@ class AsyncPageResource(AsyncAPIResource):
         *,
         account_id: str,
         session_id: str,
+        cf_brapi_guardrails: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -134,6 +139,8 @@ class AsyncPageResource(AsyncAPIResource):
 
           target_id: Target ID, e.g. page ID.
 
+          cf_brapi_guardrails: Optional base64url-encoded JSON connection guardrails (mode)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -149,6 +156,7 @@ class AsyncPageResource(AsyncAPIResource):
         if not target_id:
             raise ValueError(f"Expected a non-empty value for `target_id` but received {target_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"cf-brapi-guardrails": cf_brapi_guardrails}), **(extra_headers or {})}
         return await self._get(
             path_template(
                 "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/page/{target_id}",

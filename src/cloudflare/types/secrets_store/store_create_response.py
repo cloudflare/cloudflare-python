@@ -10,16 +10,16 @@ __all__ = ["StoreCreateResponse"]
 
 class StoreCreateResponse(BaseModel):
     id: str
-    """Store Identifier"""
+    """Store Identifier."""
 
     created: datetime
-    """Whenthe secret was created."""
+    """When the secret was created."""
 
     modified: datetime
     """When the secret was modified."""
 
     name: str
-    """The name of the store"""
+    """The name of the store."""
 
     account_id: Optional[str] = None
-    """Account Identifier"""
+    """Account Identifier."""

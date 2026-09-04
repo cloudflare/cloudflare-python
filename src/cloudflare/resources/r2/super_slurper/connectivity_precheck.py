@@ -122,7 +122,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
         vendor: Provider,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -160,7 +160,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         region: Optional[str] | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -204,7 +204,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         bucket: str,
         secret: connectivity_precheck_target_params.Secret,
         vendor: Provider,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -344,7 +344,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         bucket: str,
         secret: connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret,
         vendor: Provider,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -382,7 +382,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         keys: Optional[SequenceNotStr[str]] | Omit = omit,
         path_prefix: Optional[str] | Omit = omit,
         region: Optional[str] | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -426,7 +426,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         bucket: str,
         secret: connectivity_precheck_target_params.Secret,
         vendor: Provider,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

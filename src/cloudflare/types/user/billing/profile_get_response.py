@@ -34,8 +34,6 @@ class ProfileGetResponse(BaseModel):
 
     created_on: Optional[datetime] = None
 
-    device_data: Optional[str] = None
-
     edited_on: Optional[datetime] = None
 
     enterprise_billing_email: Optional[str] = None
@@ -62,11 +60,7 @@ class ProfileGetResponse(BaseModel):
 
     payment_first_name: Optional[str] = None
 
-    payment_gateway: Optional[str] = None
-
     payment_last_name: Optional[str] = None
-
-    payment_nonce: Optional[str] = None
 
     payment_state: Optional[str] = None
 
@@ -79,8 +73,6 @@ class ProfileGetResponse(BaseModel):
     tax_id_type: Optional[str] = None
 
     telephone: Optional[str] = None
-
-    use_legacy: Optional[bool] = None
 
     validation_code: Optional[str] = None
 

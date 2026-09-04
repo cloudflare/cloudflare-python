@@ -62,9 +62,9 @@ class JobsResource(SyncAPIResource):
         webhooks.
 
         Args:
-          finding_instance_ids: Array of finding instance IDs to send to the webhooks
+          finding_instance_ids: Array of finding instance IDs to send to the webhooks.
 
-          webhook_ids: Array of webhook IDs to trigger jobs for
+          webhook_ids: Array of webhook IDs to trigger jobs for.
 
           extra_headers: Send extra headers
 
@@ -134,9 +134,9 @@ class AsyncJobsResource(AsyncAPIResource):
         webhooks.
 
         Args:
-          finding_instance_ids: Array of finding instance IDs to send to the webhooks
+          finding_instance_ids: Array of finding instance IDs to send to the webhooks.
 
-          webhook_ids: Array of webhook IDs to trigger jobs for
+          webhook_ids: Array of webhook IDs to trigger jobs for.
 
           extra_headers: Send extra headers
 

@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .projects.projects import (
@@ -20,6 +28,10 @@ class PagesResource(SyncAPIResource):
     @cached_property
     def projects(self) -> ProjectsResource:
         return ProjectsResource(self._client)
+
+    @cached_property
+    def assets(self) -> AssetsResource:
+        return AssetsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> PagesResourceWithRawResponse:
@@ -45,6 +57,10 @@ class AsyncPagesResource(AsyncAPIResource):
     @cached_property
     def projects(self) -> AsyncProjectsResource:
         return AsyncProjectsResource(self._client)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResource:
+        return AsyncAssetsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncPagesResourceWithRawResponse:
@@ -74,6 +90,10 @@ class PagesResourceWithRawResponse:
     def projects(self) -> ProjectsResourceWithRawResponse:
         return ProjectsResourceWithRawResponse(self._pages.projects)
 
+    @cached_property
+    def assets(self) -> AssetsResourceWithRawResponse:
+        return AssetsResourceWithRawResponse(self._pages.assets)
+
 
 class AsyncPagesResourceWithRawResponse:
     def __init__(self, pages: AsyncPagesResource) -> None:
@@ -82,6 +102,10 @@ class AsyncPagesResourceWithRawResponse:
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithRawResponse:
         return AsyncProjectsResourceWithRawResponse(self._pages.projects)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithRawResponse:
+        return AsyncAssetsResourceWithRawResponse(self._pages.assets)
 
 
 class PagesResourceWithStreamingResponse:
@@ -92,6 +116,10 @@ class PagesResourceWithStreamingResponse:
     def projects(self) -> ProjectsResourceWithStreamingResponse:
         return ProjectsResourceWithStreamingResponse(self._pages.projects)
 
+    @cached_property
+    def assets(self) -> AssetsResourceWithStreamingResponse:
+        return AssetsResourceWithStreamingResponse(self._pages.assets)
+
 
 class AsyncPagesResourceWithStreamingResponse:
     def __init__(self, pages: AsyncPagesResource) -> None:
@@ -100,3 +128,7 @@ class AsyncPagesResourceWithStreamingResponse:
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithStreamingResponse:
         return AsyncProjectsResourceWithStreamingResponse(self._pages.projects)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
+        return AsyncAssetsResourceWithStreamingResponse(self._pages.assets)

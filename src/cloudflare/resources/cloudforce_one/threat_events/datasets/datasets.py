@@ -72,7 +72,8 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
-        Create a new dataset in the account.
+        Creates a new threat event dataset in Cloudforce One for organizing related
+        threat events.
 
         Args:
           account_id: Account ID.
@@ -120,7 +121,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
         """
-        List all datasets accessible to the account.
+        Lists all threat event datasets configured in Cloudforce One.
 
         Args:
           account_id: Account ID.
@@ -209,7 +210,8 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetEditResponse:
         """
-        Update an existing dataset by its identifier.
+        Partially updates a threat event dataset in Cloudforce One, modifying specific
+        fields without replacing the entire dataset configuration.
 
         Args:
           account_id: Account ID.
@@ -265,7 +267,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
-        Retrieve metadata for a specific dataset.
+        Retrieves details for a specific threat event dataset.
 
         Args:
           account_id: Account ID.
@@ -387,7 +389,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
-        Create a new dataset in the account.
+        Creates a new threat event dataset in Cloudforce One for organizing related
+        threat events.
 
         Args:
           account_id: Account ID.
@@ -435,7 +438,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
         """
-        List all datasets accessible to the account.
+        Lists all threat event datasets configured in Cloudforce One.
 
         Args:
           account_id: Account ID.
@@ -526,7 +529,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetEditResponse:
         """
-        Update an existing dataset by its identifier.
+        Partially updates a threat event dataset in Cloudforce One, modifying specific
+        fields without replacing the entire dataset configuration.
 
         Args:
           account_id: Account ID.
@@ -582,7 +586,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
-        Retrieve metadata for a specific dataset.
+        Retrieves details for a specific threat event dataset.
 
         Args:
           account_id: Account ID.

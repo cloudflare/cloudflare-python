@@ -58,10 +58,9 @@ class ManagementResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """Gets a management token used to access the management resources (i.e.
-
-        Streaming
-        Logs) of a tunnel.
+        """
+        Creates a short-lived management token for the requested Tunnel management
+        resources, such as streaming logs. Treat the token as a secret.
 
         Args:
           account_id: Cloudflare account ID
@@ -129,10 +128,9 @@ class AsyncManagementResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """Gets a management token used to access the management resources (i.e.
-
-        Streaming
-        Logs) of a tunnel.
+        """
+        Creates a short-lived management token for the requested Tunnel management
+        resources, such as streaming logs. Treat the token as a secret.
 
         Args:
           account_id: Cloudflare account ID

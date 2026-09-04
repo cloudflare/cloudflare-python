@@ -57,7 +57,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingUpdateResponse:
         """
-        Update the current settings for the active account
+        Updates configuration settings for the specified resource or service.
 
         Args:
           extra_headers: Send extra headers
@@ -91,7 +91,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingGetResponse:
         """
-        Get the current settings for the active account
+        Retrieves current settings configuration for the specified resource or service.
 
         Args:
           extra_headers: Send extra headers
@@ -146,7 +146,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingUpdateResponse:
         """
-        Update the current settings for the active account
+        Updates configuration settings for the specified resource or service.
 
         Args:
           extra_headers: Send extra headers
@@ -180,7 +180,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingGetResponse:
         """
-        Get the current settings for the active account
+        Retrieves current settings configuration for the specified resource or service.
 
         Args:
           extra_headers: Send extra headers

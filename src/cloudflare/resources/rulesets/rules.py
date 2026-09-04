@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Any, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -19,7 +19,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.rulesets import rule_edit_params, rule_create_params
+from ...types.rulesets import rule_edit_params, rule_create_params, rule_delete_params
 from ...types.rulesets.logging_param import LoggingParam
 from ...types.rulesets.rule_edit_response import RuleEditResponse
 from ...types.rulesets.rule_create_response import RuleCreateResponse
@@ -55,6 +55,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["block"] | Omit = omit,
         action_parameters: rule_create_params.BlockRuleActionParameters | Omit = omit,
@@ -85,6 +86,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -124,6 +129,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -154,6 +160,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -193,6 +203,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["compress_response"] | Omit = omit,
         action_parameters: rule_create_params.ResponseCompressionRuleActionParameters | Omit = omit,
@@ -223,6 +234,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -262,6 +277,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["ddos_dynamic"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -292,6 +308,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -331,6 +351,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["execute"] | Omit = omit,
         action_parameters: rule_create_params.ExecuteRuleActionParameters | Omit = omit,
@@ -361,6 +382,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -400,6 +425,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["force_connection_close"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -430,6 +456,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -469,6 +499,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["js_challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -499,6 +530,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -538,6 +573,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["log"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -568,6 +604,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -607,6 +647,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["log_custom_field"] | Omit = omit,
         action_parameters: rule_create_params.LogCustomFieldRuleActionParameters | Omit = omit,
@@ -637,6 +678,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -676,6 +721,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["managed_challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -706,6 +752,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -745,6 +795,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["redirect"] | Omit = omit,
         action_parameters: rule_create_params.RedirectRuleActionParameters | Omit = omit,
@@ -775,6 +826,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -814,6 +869,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["rewrite"] | Omit = omit,
         action_parameters: rule_create_params.RewriteRuleActionParameters | Omit = omit,
@@ -844,6 +900,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -883,6 +943,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["route"] | Omit = omit,
         action_parameters: rule_create_params.RouteRuleActionParameters | Omit = omit,
@@ -913,6 +974,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -952,6 +1017,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["score"] | Omit = omit,
         action_parameters: rule_create_params.ScoreRuleActionParameters | Omit = omit,
@@ -982,6 +1048,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1021,6 +1091,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["serve_error"] | Omit = omit,
         action_parameters: rule_create_params.ServeErrorRuleActionParameters | Omit = omit,
@@ -1051,6 +1122,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1090,6 +1165,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_control"] | Omit = omit,
         action_parameters: rule_create_params.SetCacheControlRuleActionParameters | Omit = omit,
@@ -1120,6 +1196,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1159,6 +1239,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_settings"] | Omit = omit,
         action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | Omit = omit,
@@ -1189,6 +1270,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1228,6 +1313,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_tags"] | Omit = omit,
         action_parameters: rule_create_params.SetCacheTagsRuleActionParameters | Omit = omit,
@@ -1258,6 +1344,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1297,6 +1387,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_config"] | Omit = omit,
         action_parameters: rule_create_params.SetConfigurationRuleActionParameters | Omit = omit,
@@ -1327,6 +1418,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1366,6 +1461,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["skip"] | Omit = omit,
         action_parameters: rule_create_params.SkipRuleActionParameters | Omit = omit,
@@ -1396,6 +1492,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1435,6 +1535,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["transform_response_html"] | Omit = omit,
         action_parameters: rule_create_params.TransformResponseHTMLRuleActionParameters | Omit = omit,
@@ -1464,6 +1565,10 @@ class RulesResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           id: The unique ID of the rule.
 
@@ -1503,6 +1608,7 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["block"]
         | Literal["challenge"]
@@ -1635,37 +1741,43 @@ class RulesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._post(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules",
-                ruleset_id=ruleset_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RuleCreateResponse,
+            self._post(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules",
+                    ruleset_id=ruleset_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=maybe_transform(
+                    {
+                        "id": id,
+                        "action": action,
+                        "action_parameters": action_parameters,
+                        "description": description,
+                        "enabled": enabled,
+                        "exposed_credential_check": exposed_credential_check,
+                        "expression": expression,
+                        "logging": logging,
+                        "position": position,
+                        "ratelimit": ratelimit,
+                        "ref": ref,
+                    },
+                    rule_create_params.RuleCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform({"dry_run": dry_run}, rule_create_params.RuleCreateParams),
+                    post_parser=ResultWrapper[RuleCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "action": action,
-                    "action_parameters": action_parameters,
-                    "description": description,
-                    "enabled": enabled,
-                    "exposed_credential_check": exposed_credential_check,
-                    "expression": expression,
-                    "logging": logging,
-                    "position": position,
-                    "ratelimit": ratelimit,
-                    "ref": ref,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RuleCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
         )
 
     def delete(
@@ -1675,6 +1787,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1693,6 +1806,10 @@ class RulesResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           extra_headers: Send extra headers
 
@@ -1718,22 +1835,28 @@ class RulesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._delete(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
-                ruleset_id=ruleset_id,
-                rule_id=rule_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RuleDeleteResponse,
+            self._delete(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
+                    ruleset_id=ruleset_id,
+                    rule_id=rule_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform({"dry_run": dry_run}, rule_delete_params.RuleDeleteParams),
+                    post_parser=ResultWrapper[RuleDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RuleDeleteResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RuleDeleteResponse], ResultWrapper[RuleDeleteResponse]),
         )
 
     @overload
@@ -1744,6 +1867,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["block"] | Omit = omit,
         action_parameters: rule_edit_params.BlockRuleActionParameters | Omit = omit,
@@ -1774,6 +1898,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1814,6 +1942,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -1844,6 +1973,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1884,6 +2017,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["compress_response"] | Omit = omit,
         action_parameters: rule_edit_params.ResponseCompressionRuleActionParameters | Omit = omit,
@@ -1914,6 +2048,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -1954,6 +2092,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["ddos_dynamic"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -1984,6 +2123,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2024,6 +2167,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["execute"] | Omit = omit,
         action_parameters: rule_edit_params.ExecuteRuleActionParameters | Omit = omit,
@@ -2054,6 +2198,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2094,6 +2242,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["force_connection_close"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -2124,6 +2273,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2164,6 +2317,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["js_challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -2194,6 +2348,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2234,6 +2392,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["log"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -2264,6 +2423,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2304,6 +2467,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["log_custom_field"] | Omit = omit,
         action_parameters: rule_edit_params.LogCustomFieldRuleActionParameters | Omit = omit,
@@ -2334,6 +2498,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2374,6 +2542,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["managed_challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -2404,6 +2573,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2444,6 +2617,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["redirect"] | Omit = omit,
         action_parameters: rule_edit_params.RedirectRuleActionParameters | Omit = omit,
@@ -2474,6 +2648,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2514,6 +2692,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["rewrite"] | Omit = omit,
         action_parameters: rule_edit_params.RewriteRuleActionParameters | Omit = omit,
@@ -2544,6 +2723,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2584,6 +2767,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["route"] | Omit = omit,
         action_parameters: rule_edit_params.RouteRuleActionParameters | Omit = omit,
@@ -2614,6 +2798,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2654,6 +2842,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["score"] | Omit = omit,
         action_parameters: rule_edit_params.ScoreRuleActionParameters | Omit = omit,
@@ -2684,6 +2873,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2724,6 +2917,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["serve_error"] | Omit = omit,
         action_parameters: rule_edit_params.ServeErrorRuleActionParameters | Omit = omit,
@@ -2754,6 +2948,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2794,6 +2992,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_control"] | Omit = omit,
         action_parameters: rule_edit_params.SetCacheControlRuleActionParameters | Omit = omit,
@@ -2824,6 +3023,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2864,6 +3067,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_settings"] | Omit = omit,
         action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | Omit = omit,
@@ -2894,6 +3098,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -2934,6 +3142,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_tags"] | Omit = omit,
         action_parameters: rule_edit_params.SetCacheTagsRuleActionParameters | Omit = omit,
@@ -2964,6 +3173,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3004,6 +3217,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_config"] | Omit = omit,
         action_parameters: rule_edit_params.SetConfigurationRuleActionParameters | Omit = omit,
@@ -3034,6 +3248,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3074,6 +3292,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["skip"] | Omit = omit,
         action_parameters: rule_edit_params.SkipRuleActionParameters | Omit = omit,
@@ -3104,6 +3323,10 @@ class RulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3144,6 +3367,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["transform_response_html"] | Omit = omit,
         action_parameters: rule_edit_params.TransformResponseHTMLRuleActionParameters | Omit = omit,
@@ -3173,6 +3397,10 @@ class RulesResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           id: The unique ID of the rule.
 
@@ -3214,6 +3442,7 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["block"]
         | Literal["challenge"]
@@ -3348,38 +3577,44 @@ class RulesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._patch(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
-                ruleset_id=ruleset_id,
-                rule_id=rule_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RuleEditResponse,
+            self._patch(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
+                    ruleset_id=ruleset_id,
+                    rule_id=rule_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=maybe_transform(
+                    {
+                        "id": id,
+                        "action": action,
+                        "action_parameters": action_parameters,
+                        "description": description,
+                        "enabled": enabled,
+                        "exposed_credential_check": exposed_credential_check,
+                        "expression": expression,
+                        "logging": logging,
+                        "position": position,
+                        "ratelimit": ratelimit,
+                        "ref": ref,
+                    },
+                    rule_edit_params.RuleEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform({"dry_run": dry_run}, rule_edit_params.RuleEditParams),
+                    post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "action": action,
-                    "action_parameters": action_parameters,
-                    "description": description,
-                    "enabled": enabled,
-                    "exposed_credential_check": exposed_credential_check,
-                    "expression": expression,
-                    "logging": logging,
-                    "position": position,
-                    "ratelimit": ratelimit,
-                    "ref": ref,
-                },
-                rule_edit_params.RuleEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RuleEditResponse], ResultWrapper[RuleEditResponse]),
         )
 
 
@@ -3410,6 +3645,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["block"] | Omit = omit,
         action_parameters: rule_create_params.BlockRuleActionParameters | Omit = omit,
@@ -3440,6 +3676,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3479,6 +3719,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -3509,6 +3750,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3548,6 +3793,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["compress_response"] | Omit = omit,
         action_parameters: rule_create_params.ResponseCompressionRuleActionParameters | Omit = omit,
@@ -3578,6 +3824,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3617,6 +3867,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["ddos_dynamic"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -3647,6 +3898,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3686,6 +3941,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["execute"] | Omit = omit,
         action_parameters: rule_create_params.ExecuteRuleActionParameters | Omit = omit,
@@ -3716,6 +3972,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3755,6 +4015,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["force_connection_close"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -3785,6 +4046,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3824,6 +4089,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["js_challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -3854,6 +4120,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3893,6 +4163,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["log"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -3923,6 +4194,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -3962,6 +4237,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["log_custom_field"] | Omit = omit,
         action_parameters: rule_create_params.LogCustomFieldRuleActionParameters | Omit = omit,
@@ -3992,6 +4268,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4031,6 +4311,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["managed_challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -4061,6 +4342,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4100,6 +4385,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["redirect"] | Omit = omit,
         action_parameters: rule_create_params.RedirectRuleActionParameters | Omit = omit,
@@ -4130,6 +4416,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4169,6 +4459,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["rewrite"] | Omit = omit,
         action_parameters: rule_create_params.RewriteRuleActionParameters | Omit = omit,
@@ -4199,6 +4490,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4238,6 +4533,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["route"] | Omit = omit,
         action_parameters: rule_create_params.RouteRuleActionParameters | Omit = omit,
@@ -4268,6 +4564,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4307,6 +4607,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["score"] | Omit = omit,
         action_parameters: rule_create_params.ScoreRuleActionParameters | Omit = omit,
@@ -4337,6 +4638,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4376,6 +4681,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["serve_error"] | Omit = omit,
         action_parameters: rule_create_params.ServeErrorRuleActionParameters | Omit = omit,
@@ -4406,6 +4712,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4445,6 +4755,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_control"] | Omit = omit,
         action_parameters: rule_create_params.SetCacheControlRuleActionParameters | Omit = omit,
@@ -4475,6 +4786,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4514,6 +4829,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_settings"] | Omit = omit,
         action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | Omit = omit,
@@ -4544,6 +4860,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4583,6 +4903,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_tags"] | Omit = omit,
         action_parameters: rule_create_params.SetCacheTagsRuleActionParameters | Omit = omit,
@@ -4613,6 +4934,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4652,6 +4977,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_config"] | Omit = omit,
         action_parameters: rule_create_params.SetConfigurationRuleActionParameters | Omit = omit,
@@ -4682,6 +5008,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4721,6 +5051,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["skip"] | Omit = omit,
         action_parameters: rule_create_params.SkipRuleActionParameters | Omit = omit,
@@ -4751,6 +5082,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -4790,6 +5125,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["transform_response_html"] | Omit = omit,
         action_parameters: rule_create_params.TransformResponseHTMLRuleActionParameters | Omit = omit,
@@ -4819,6 +5155,10 @@ class AsyncRulesResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           id: The unique ID of the rule.
 
@@ -4858,6 +5198,7 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["block"]
         | Literal["challenge"]
@@ -4990,37 +5331,43 @@ class AsyncRulesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._post(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules",
-                ruleset_id=ruleset_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RuleCreateResponse,
+            await self._post(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules",
+                    ruleset_id=ruleset_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=await async_maybe_transform(
+                    {
+                        "id": id,
+                        "action": action,
+                        "action_parameters": action_parameters,
+                        "description": description,
+                        "enabled": enabled,
+                        "exposed_credential_check": exposed_credential_check,
+                        "expression": expression,
+                        "logging": logging,
+                        "position": position,
+                        "ratelimit": ratelimit,
+                        "ref": ref,
+                    },
+                    rule_create_params.RuleCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform({"dry_run": dry_run}, rule_create_params.RuleCreateParams),
+                    post_parser=ResultWrapper[RuleCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "action": action,
-                    "action_parameters": action_parameters,
-                    "description": description,
-                    "enabled": enabled,
-                    "exposed_credential_check": exposed_credential_check,
-                    "expression": expression,
-                    "logging": logging,
-                    "position": position,
-                    "ratelimit": ratelimit,
-                    "ref": ref,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RuleCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
         )
 
     async def delete(
@@ -5030,6 +5377,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5048,6 +5396,10 @@ class AsyncRulesResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           extra_headers: Send extra headers
 
@@ -5073,22 +5425,28 @@ class AsyncRulesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._delete(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
-                ruleset_id=ruleset_id,
-                rule_id=rule_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RuleDeleteResponse,
+            await self._delete(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
+                    ruleset_id=ruleset_id,
+                    rule_id=rule_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform({"dry_run": dry_run}, rule_delete_params.RuleDeleteParams),
+                    post_parser=ResultWrapper[RuleDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RuleDeleteResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RuleDeleteResponse], ResultWrapper[RuleDeleteResponse]),
         )
 
     @overload
@@ -5099,6 +5457,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["block"] | Omit = omit,
         action_parameters: rule_edit_params.BlockRuleActionParameters | Omit = omit,
@@ -5129,6 +5488,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5169,6 +5532,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -5199,6 +5563,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5239,6 +5607,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["compress_response"] | Omit = omit,
         action_parameters: rule_edit_params.ResponseCompressionRuleActionParameters | Omit = omit,
@@ -5269,6 +5638,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5309,6 +5682,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["ddos_dynamic"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -5339,6 +5713,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5379,6 +5757,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["execute"] | Omit = omit,
         action_parameters: rule_edit_params.ExecuteRuleActionParameters | Omit = omit,
@@ -5409,6 +5788,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5449,6 +5832,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["force_connection_close"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -5479,6 +5863,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5519,6 +5907,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["js_challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -5549,6 +5938,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5589,6 +5982,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["log"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -5619,6 +6013,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5659,6 +6057,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["log_custom_field"] | Omit = omit,
         action_parameters: rule_edit_params.LogCustomFieldRuleActionParameters | Omit = omit,
@@ -5689,6 +6088,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5729,6 +6132,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["managed_challenge"] | Omit = omit,
         action_parameters: object | Omit = omit,
@@ -5759,6 +6163,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5799,6 +6207,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["redirect"] | Omit = omit,
         action_parameters: rule_edit_params.RedirectRuleActionParameters | Omit = omit,
@@ -5829,6 +6238,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5869,6 +6282,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["rewrite"] | Omit = omit,
         action_parameters: rule_edit_params.RewriteRuleActionParameters | Omit = omit,
@@ -5899,6 +6313,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -5939,6 +6357,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["route"] | Omit = omit,
         action_parameters: rule_edit_params.RouteRuleActionParameters | Omit = omit,
@@ -5969,6 +6388,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -6009,6 +6432,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["score"] | Omit = omit,
         action_parameters: rule_edit_params.ScoreRuleActionParameters | Omit = omit,
@@ -6039,6 +6463,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -6079,6 +6507,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["serve_error"] | Omit = omit,
         action_parameters: rule_edit_params.ServeErrorRuleActionParameters | Omit = omit,
@@ -6109,6 +6538,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -6149,6 +6582,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_control"] | Omit = omit,
         action_parameters: rule_edit_params.SetCacheControlRuleActionParameters | Omit = omit,
@@ -6179,6 +6613,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -6219,6 +6657,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_settings"] | Omit = omit,
         action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | Omit = omit,
@@ -6249,6 +6688,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -6289,6 +6732,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_cache_tags"] | Omit = omit,
         action_parameters: rule_edit_params.SetCacheTagsRuleActionParameters | Omit = omit,
@@ -6319,6 +6763,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -6359,6 +6807,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["set_config"] | Omit = omit,
         action_parameters: rule_edit_params.SetConfigurationRuleActionParameters | Omit = omit,
@@ -6389,6 +6838,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -6429,6 +6882,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["skip"] | Omit = omit,
         action_parameters: rule_edit_params.SkipRuleActionParameters | Omit = omit,
@@ -6459,6 +6913,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
+
           id: The unique ID of the rule.
 
           action: The action to perform when the rule matches.
@@ -6499,6 +6957,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["transform_response_html"] | Omit = omit,
         action_parameters: rule_edit_params.TransformResponseHTMLRuleActionParameters | Omit = omit,
@@ -6528,6 +6987,10 @@ class AsyncRulesResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          dry_run: Validates the request without persisting changes when set to `true`. Responses
+              that normally return 200 return `result: null`; endpoints that normally return
+              204 continue to return 204.
 
           id: The unique ID of the rule.
 
@@ -6569,6 +7032,7 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        dry_run: bool | Omit = omit,
         id: str | Omit = omit,
         action: Literal["block"]
         | Literal["challenge"]
@@ -6703,38 +7167,44 @@ class AsyncRulesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._patch(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
-                ruleset_id=ruleset_id,
-                rule_id=rule_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RuleEditResponse,
+            await self._patch(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/rules/{rule_id}",
+                    ruleset_id=ruleset_id,
+                    rule_id=rule_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                body=await async_maybe_transform(
+                    {
+                        "id": id,
+                        "action": action,
+                        "action_parameters": action_parameters,
+                        "description": description,
+                        "enabled": enabled,
+                        "exposed_credential_check": exposed_credential_check,
+                        "expression": expression,
+                        "logging": logging,
+                        "position": position,
+                        "ratelimit": ratelimit,
+                        "ref": ref,
+                    },
+                    rule_edit_params.RuleEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform({"dry_run": dry_run}, rule_edit_params.RuleEditParams),
+                    post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "action": action,
-                    "action_parameters": action_parameters,
-                    "description": description,
-                    "enabled": enabled,
-                    "exposed_credential_check": exposed_credential_check,
-                    "expression": expression,
-                    "logging": logging,
-                    "position": position,
-                    "ratelimit": ratelimit,
-                    "ref": ref,
-                },
-                rule_edit_params.RuleEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RuleEditResponse], ResultWrapper[RuleEditResponse]),
         )
 
 

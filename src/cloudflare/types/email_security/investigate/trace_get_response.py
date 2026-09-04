@@ -10,7 +10,7 @@ __all__ = ["TraceGetResponse", "Inbound", "InboundLine", "Outbound", "OutboundLi
 
 class InboundLine(BaseModel):
     lineno: Optional[int] = None
-    """Line number in the trace log"""
+    """Line number in the trace log."""
 
     logged_at: Optional[datetime] = None
 
@@ -28,7 +28,7 @@ class Inbound(BaseModel):
 
 class OutboundLine(BaseModel):
     lineno: Optional[int] = None
-    """Line number in the trace log"""
+    """Line number in the trace log."""
 
     logged_at: Optional[datetime] = None
 

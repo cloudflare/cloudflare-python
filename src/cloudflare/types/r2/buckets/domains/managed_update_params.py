@@ -16,5 +16,5 @@ class ManagedUpdateParams(TypedDict, total=False):
     enabled: Required[bool]
     """Whether to enable public bucket access at the r2.dev domain."""
 
-    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    jurisdiction: Annotated[Literal["default", "eu", "us", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
     """Jurisdiction where objects in this bucket are guaranteed to be stored."""

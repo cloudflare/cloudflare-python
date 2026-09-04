@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Iterable
+
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -54,6 +56,7 @@ class CategoriesResource(SyncAPIResource):
         account_id: str,
         name: str,
         description: str | Omit = omit,
+        schema: Iterable[category_create_params.Schema] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,6 +69,9 @@ class CategoriesResource(SyncAPIResource):
 
         Args:
           account_id: Account ID.
+
+          schema: Optional array of FieldDefinition objects defining custom fields for tags in
+              this category. Persisted as JSON; returned as a parsed array.
 
           extra_headers: Send extra headers
 
@@ -83,6 +89,7 @@ class CategoriesResource(SyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "schema": schema,
                 },
                 category_create_params.CategoryCreateParams,
             ),
@@ -183,6 +190,7 @@ class CategoriesResource(SyncAPIResource):
         account_id: str,
         description: str | Omit = omit,
         name: str | Omit = omit,
+        schema: Iterable[category_edit_params.Schema] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,6 +205,9 @@ class CategoriesResource(SyncAPIResource):
           account_id: Account ID.
 
           category_uuid: Tag Category UUID.
+
+          schema: Optional array of FieldDefinition objects. When provided, replaces the existing
+              field schema. When omitted, the existing schema is preserved.
 
           extra_headers: Send extra headers
 
@@ -220,6 +231,7 @@ class CategoriesResource(SyncAPIResource):
                 {
                     "description": description,
                     "name": name,
+                    "schema": schema,
                 },
                 category_edit_params.CategoryEditParams,
             ),
@@ -256,6 +268,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         account_id: str,
         name: str,
         description: str | Omit = omit,
+        schema: Iterable[category_create_params.Schema] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,6 +281,9 @@ class AsyncCategoriesResource(AsyncAPIResource):
 
         Args:
           account_id: Account ID.
+
+          schema: Optional array of FieldDefinition objects defining custom fields for tags in
+              this category. Persisted as JSON; returned as a parsed array.
 
           extra_headers: Send extra headers
 
@@ -285,6 +301,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "schema": schema,
                 },
                 category_create_params.CategoryCreateParams,
             ),
@@ -385,6 +402,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         account_id: str,
         description: str | Omit = omit,
         name: str | Omit = omit,
+        schema: Iterable[category_edit_params.Schema] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -399,6 +417,9 @@ class AsyncCategoriesResource(AsyncAPIResource):
           account_id: Account ID.
 
           category_uuid: Tag Category UUID.
+
+          schema: Optional array of FieldDefinition objects. When provided, replaces the existing
+              field schema. When omitted, the existing schema is preserved.
 
           extra_headers: Send extra headers
 
@@ -422,6 +443,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
                 {
                     "description": description,
                     "name": name,
+                    "schema": schema,
                 },
                 category_edit_params.CategoryEditParams,
             ),

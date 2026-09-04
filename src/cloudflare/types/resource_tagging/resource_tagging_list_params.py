@@ -14,8 +14,28 @@ class ResourceTaggingListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
+    id: SequenceNotStr[str]
+    """Filter by resource ID.
+
+    Can be repeated up to 50 times to filter by multiple IDs. Example:
+    ?id=abc&id=def
+    """
+
+    case_insensitive: bool
+    """Match `tag` keys and values case-insensitively.
+
+    Stored casing is unchanged. Example:
+    ?tag=environment=production&case_insensitive=true
+    """
+
     cursor: str
     """Cursor for pagination."""
+
+    name: str
+    """Filter by resource name.
+
+    Performs a case-insensitive substring match. Example: ?name=my-zone
+    """
 
     tag: SequenceNotStr[str]
     """Filter resources by tag criteria.
@@ -45,6 +65,7 @@ class ResourceTaggingListParams(TypedDict, total=False):
             "access_application_policy",
             "access_group",
             "account",
+            "account_ruleset",
             "ai_gateway",
             "alerting_policy",
             "alerting_webhook",
@@ -57,17 +78,26 @@ class ResourceTaggingListParams(TypedDict, total=False):
             "durable_object_namespace",
             "gateway_list",
             "gateway_rule",
+            "healthcheck",
             "image",
+            "infrastructure_target",
             "kv_namespace",
+            "load_balancer",
+            "load_balancer_monitor",
+            "load_balancer_pool",
             "managed_client_certificate",
+            "pages_project",
             "queue",
             "r2_bucket",
             "resource_share",
             "stream_live_input",
             "stream_video",
+            "vectorize_index",
             "worker",
+            "worker_route",
             "worker_version",
             "zone",
+            "zone_ruleset",
         ]
     ]
     """Filter by resource type.

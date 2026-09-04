@@ -84,7 +84,9 @@ class ContentScanningResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContentScanningCreateResponse:
         """
-        Update the Content Scanning status.
+        Update the Content Scanning status by setting the status value to `enabled` or
+        `disabled`. This is equivalent to calling the dedicated enable and disable
+        endpoints.
 
         Args:
           zone_id: Defines an identifier.
@@ -127,7 +129,9 @@ class ContentScanningResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContentScanningUpdateResponse:
         """
-        Update the Content Scanning status.
+        Update the Content Scanning status by setting the status value to `enabled` or
+        `disabled`. This is equivalent to calling the dedicated enable and disable
+        endpoints.
 
         Args:
           zone_id: Defines an identifier.
@@ -168,8 +172,10 @@ class ContentScanningResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Disable Content Scanning.
+        """Disable Content Scanning for a zone.
+
+        The `cf.waf.content_scan.*` fields are no
+        longer populated, so rules that reference them stop matching.
 
         Args:
           zone_id: Defines an identifier.
@@ -208,7 +214,10 @@ class ContentScanningResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Enable Content Scanning.
+        Enable Content Scanning for a zone, so that Cloudflare inspects content objects
+        uploaded to the zone and checks them for malware. Scan results populate the
+        `cf.waf.content_scan.*` fields, which you can reference in custom rules and rate
+        limiting rules.
 
         Args:
           zone_id: Defines an identifier.
@@ -247,7 +256,8 @@ class ContentScanningResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContentScanningGetResponse:
         """
-        Retrieve the current status of Content Scanning.
+        Get the current Content Scanning status for the zone, together with the date the
+        status was last modified.
 
         Args:
           zone_id: Defines an identifier.
@@ -316,7 +326,9 @@ class AsyncContentScanningResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContentScanningCreateResponse:
         """
-        Update the Content Scanning status.
+        Update the Content Scanning status by setting the status value to `enabled` or
+        `disabled`. This is equivalent to calling the dedicated enable and disable
+        endpoints.
 
         Args:
           zone_id: Defines an identifier.
@@ -361,7 +373,9 @@ class AsyncContentScanningResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContentScanningUpdateResponse:
         """
-        Update the Content Scanning status.
+        Update the Content Scanning status by setting the status value to `enabled` or
+        `disabled`. This is equivalent to calling the dedicated enable and disable
+        endpoints.
 
         Args:
           zone_id: Defines an identifier.
@@ -404,8 +418,10 @@ class AsyncContentScanningResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Disable Content Scanning.
+        """Disable Content Scanning for a zone.
+
+        The `cf.waf.content_scan.*` fields are no
+        longer populated, so rules that reference them stop matching.
 
         Args:
           zone_id: Defines an identifier.
@@ -444,7 +460,10 @@ class AsyncContentScanningResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Enable Content Scanning.
+        Enable Content Scanning for a zone, so that Cloudflare inspects content objects
+        uploaded to the zone and checks them for malware. Scan results populate the
+        `cf.waf.content_scan.*` fields, which you can reference in custom rules and rate
+        limiting rules.
 
         Args:
           zone_id: Defines an identifier.
@@ -483,7 +502,8 @@ class AsyncContentScanningResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ContentScanningGetResponse:
         """
-        Retrieve the current status of Content Scanning.
+        Get the current Content Scanning status for the zone, together with the date the
+        status was last modified.
 
         Args:
           zone_id: Defines an identifier.

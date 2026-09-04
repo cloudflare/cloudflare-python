@@ -47,6 +47,7 @@ class MatchesResource(SyncAPIResource):
         *,
         account_id: str,
         id: str | Omit = omit,
+        include_dismissed: bool | Omit = omit,
         include_domain_id: bool | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -81,6 +82,7 @@ class MatchesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "id": id,
+                        "include_dismissed": include_dismissed,
                         "include_domain_id": include_domain_id,
                         "limit": limit,
                         "offset": offset,
@@ -96,6 +98,7 @@ class MatchesResource(SyncAPIResource):
         *,
         account_id: str,
         id: str | Omit = omit,
+        include_dismissed: bool | Omit = omit,
         include_domain_id: bool | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -130,6 +133,7 @@ class MatchesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "id": id,
+                        "include_dismissed": include_dismissed,
                         "include_domain_id": include_domain_id,
                         "limit": limit,
                         "offset": offset,
@@ -166,6 +170,7 @@ class AsyncMatchesResource(AsyncAPIResource):
         *,
         account_id: str,
         id: str | Omit = omit,
+        include_dismissed: bool | Omit = omit,
         include_domain_id: bool | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -200,6 +205,7 @@ class AsyncMatchesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "id": id,
+                        "include_dismissed": include_dismissed,
                         "include_domain_id": include_domain_id,
                         "limit": limit,
                         "offset": offset,
@@ -215,6 +221,7 @@ class AsyncMatchesResource(AsyncAPIResource):
         *,
         account_id: str,
         id: str | Omit = omit,
+        include_dismissed: bool | Omit = omit,
         include_domain_id: bool | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -249,6 +256,7 @@ class AsyncMatchesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "id": id,
+                        "include_dismissed": include_dismissed,
                         "include_domain_id": include_domain_id,
                         "limit": limit,
                         "offset": offset,

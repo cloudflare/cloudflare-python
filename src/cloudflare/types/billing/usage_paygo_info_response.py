@@ -27,7 +27,7 @@ class Subscription(BaseModel):
 
 
 class UsagePaygoInfoResponse(BaseModel):
-    """Contains the paygo usage info."""
+    """Contains the usage info."""
 
     covered: bool
     """Indicates whether the account is covered."""

@@ -14,6 +14,7 @@ from cloudflare.types.email_security.settings import (
     AllowPolicyGetResponse,
     AllowPolicyEditResponse,
     AllowPolicyListResponse,
+    AllowPolicyBatchResponse,
     AllowPolicyCreateResponse,
     AllowPolicyDeleteResponse,
 )
@@ -210,6 +211,100 @@ class TestAllowPolicies:
             client.email_security.settings.allow_policies.with_raw_response.delete(
                 policy_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    def test_method_batch(self, client: Cloudflare) -> None:
+        allow_policy = client.email_security.settings.allow_policies.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{}],
+            posts=[
+                {
+                    "is_acceptable_sender": False,
+                    "is_exempt_recipient": False,
+                    "is_regex": False,
+                    "is_trusted_sender": True,
+                    "pattern": "test@example.com",
+                    "pattern_type": "EMAIL",
+                    "verify_sender": True,
+                }
+            ],
+            puts=[{}],
+        )
+        assert_matches_type(Optional[AllowPolicyBatchResponse], allow_policy, path=["response"])
+
+    @parametrize
+    def test_raw_response_batch(self, client: Cloudflare) -> None:
+        response = client.email_security.settings.allow_policies.with_raw_response.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{}],
+            posts=[
+                {
+                    "is_acceptable_sender": False,
+                    "is_exempt_recipient": False,
+                    "is_regex": False,
+                    "is_trusted_sender": True,
+                    "pattern": "test@example.com",
+                    "pattern_type": "EMAIL",
+                    "verify_sender": True,
+                }
+            ],
+            puts=[{}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        allow_policy = response.parse()
+        assert_matches_type(Optional[AllowPolicyBatchResponse], allow_policy, path=["response"])
+
+    @parametrize
+    def test_streaming_response_batch(self, client: Cloudflare) -> None:
+        with client.email_security.settings.allow_policies.with_streaming_response.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{}],
+            posts=[
+                {
+                    "is_acceptable_sender": False,
+                    "is_exempt_recipient": False,
+                    "is_regex": False,
+                    "is_trusted_sender": True,
+                    "pattern": "test@example.com",
+                    "pattern_type": "EMAIL",
+                    "verify_sender": True,
+                }
+            ],
+            puts=[{}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            allow_policy = response.parse()
+            assert_matches_type(Optional[AllowPolicyBatchResponse], allow_policy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_batch(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.email_security.settings.allow_policies.with_raw_response.batch(
+                account_id="",
+                deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+                patches=[{}],
+                posts=[
+                    {
+                        "is_acceptable_sender": False,
+                        "is_exempt_recipient": False,
+                        "is_regex": False,
+                        "is_trusted_sender": True,
+                        "pattern": "test@example.com",
+                        "pattern_type": "EMAIL",
+                        "verify_sender": True,
+                    }
+                ],
+                puts=[{}],
             )
 
     @pytest.mark.skip(reason="HTTP 422 error from prism")
@@ -524,6 +619,100 @@ class TestAsyncAllowPolicies:
             await async_client.email_security.settings.allow_policies.with_raw_response.delete(
                 policy_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_batch(self, async_client: AsyncCloudflare) -> None:
+        allow_policy = await async_client.email_security.settings.allow_policies.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{}],
+            posts=[
+                {
+                    "is_acceptable_sender": False,
+                    "is_exempt_recipient": False,
+                    "is_regex": False,
+                    "is_trusted_sender": True,
+                    "pattern": "test@example.com",
+                    "pattern_type": "EMAIL",
+                    "verify_sender": True,
+                }
+            ],
+            puts=[{}],
+        )
+        assert_matches_type(Optional[AllowPolicyBatchResponse], allow_policy, path=["response"])
+
+    @parametrize
+    async def test_raw_response_batch(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.email_security.settings.allow_policies.with_raw_response.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{}],
+            posts=[
+                {
+                    "is_acceptable_sender": False,
+                    "is_exempt_recipient": False,
+                    "is_regex": False,
+                    "is_trusted_sender": True,
+                    "pattern": "test@example.com",
+                    "pattern_type": "EMAIL",
+                    "verify_sender": True,
+                }
+            ],
+            puts=[{}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        allow_policy = await response.parse()
+        assert_matches_type(Optional[AllowPolicyBatchResponse], allow_policy, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_batch(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.email_security.settings.allow_policies.with_streaming_response.batch(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+            patches=[{}],
+            posts=[
+                {
+                    "is_acceptable_sender": False,
+                    "is_exempt_recipient": False,
+                    "is_regex": False,
+                    "is_trusted_sender": True,
+                    "pattern": "test@example.com",
+                    "pattern_type": "EMAIL",
+                    "verify_sender": True,
+                }
+            ],
+            puts=[{}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            allow_policy = await response.parse()
+            assert_matches_type(Optional[AllowPolicyBatchResponse], allow_policy, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_batch(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.email_security.settings.allow_policies.with_raw_response.batch(
+                account_id="",
+                deletes=[{"id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"}],
+                patches=[{}],
+                posts=[
+                    {
+                        "is_acceptable_sender": False,
+                        "is_exempt_recipient": False,
+                        "is_regex": False,
+                        "is_trusted_sender": True,
+                        "pattern": "test@example.com",
+                        "pattern_type": "EMAIL",
+                        "verify_sender": True,
+                    }
+                ],
+                puts=[{}],
             )
 
     @pytest.mark.skip(reason="HTTP 422 error from prism")

@@ -65,7 +65,7 @@ class PreviewResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          postfix_id: The identifier of the message
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -109,7 +109,7 @@ class PreviewResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           extra_headers: Send extra headers
 
@@ -180,7 +180,7 @@ class AsyncPreviewResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          postfix_id: The identifier of the message
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -224,7 +224,7 @@ class AsyncPreviewResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          investigate_id: Unique identifier for a message retrieved from investigation
+          investigate_id: Unique identifier for a message retrieved from investigation.
 
           extra_headers: Send extra headers
 

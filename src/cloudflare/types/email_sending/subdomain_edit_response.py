@@ -1,0 +1,47 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from typing import Optional
+from datetime import datetime
+
+from ..._models import BaseModel
+
+__all__ = ["SubdomainEditResponse"]
+
+
+class SubdomainEditResponse(BaseModel):
+    enabled: bool
+    """Whether Email Sending is enabled on this subdomain."""
+
+    name: str
+    """The exact domain name or a leftmost wildcard such as `*.example.com`."""
+
+    tag: str
+    """Sending subdomain identifier."""
+
+    created: Optional[datetime] = None
+    """The date and time the destination address has been created."""
+
+    dkim_selector: Optional[str] = None
+    """The DKIM selector used for email signing.
+
+    Wildcard rows publish the selector and sign with `d=<base>`.
+    """
+
+    drop_suppressed_recipients: Optional[bool] = None
+    """
+    Whether a send request that includes a recipient suppressed on this subdomain
+    drops that recipient and still delivers to the rest, instead of failing the
+    entire request.
+    """
+
+    modified: Optional[datetime] = None
+    """The date and time the destination address was last modified."""
+
+    preview_enabled: Optional[bool] = None
+    """Whether sent messages from this subdomain can be previewed in the activity log."""
+
+    return_path_domain: Optional[str] = None
+    """The return-path domain used for bounce handling.
+
+    Wildcard rows use `cf-bounce.<base>`.
+    """

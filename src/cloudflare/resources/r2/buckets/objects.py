@@ -79,7 +79,7 @@ class ObjectsResource(SyncAPIResource):
         per_page: int | Omit = omit,
         prefix: str | Omit = omit,
         start_after: str | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -167,7 +167,7 @@ class ObjectsResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -236,7 +236,7 @@ class ObjectsResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         if_modified_since: str | Omit = omit,
         if_none_match: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -318,7 +318,7 @@ class ObjectsResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         cf_r2_storage_class: Literal["Standard", "InfrequentAccess"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -427,7 +427,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         per_page: int | Omit = omit,
         prefix: str | Omit = omit,
         start_after: str | Omit = omit,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -515,7 +515,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -584,7 +584,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         if_modified_since: str | Omit = omit,
         if_none_match: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -666,7 +666,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
+        jurisdiction: Literal["default", "eu", "us", "fedramp"] | Omit = omit,
         cf_r2_storage_class: Literal["Standard", "InfrequentAccess"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

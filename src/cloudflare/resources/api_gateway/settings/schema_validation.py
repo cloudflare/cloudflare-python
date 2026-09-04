@@ -61,8 +61,10 @@ class SchemaValidationResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Settings:
-        """
-        Updates zone level schema validation settings on the zone
+        """Updates zone level schema validation settings on the zone.
+
+        Deprecated; use
+        `/zones/{zone_id}/schema_validation/settings` instead.
 
         Args:
           zone_id: Identifier.
@@ -126,8 +128,10 @@ class SchemaValidationResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Settings:
-        """
-        Updates zone level schema validation settings on the zone
+        """Updates zone level schema validation settings on the zone.
+
+        Deprecated; use
+        `/zones/{zone_id}/schema_validation/settings` instead.
 
         Args:
           zone_id: Identifier.
@@ -191,7 +195,8 @@ class SchemaValidationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Settings:
         """
-        Retrieves zone level schema validation settings currently set on the zone
+        Retrieves zone level schema validation settings currently set on the zone.
+        Deprecated; use `/zones/{zone_id}/schema_validation/settings` instead.
 
         Args:
           zone_id: Identifier.
@@ -251,8 +256,10 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Settings:
-        """
-        Updates zone level schema validation settings on the zone
+        """Updates zone level schema validation settings on the zone.
+
+        Deprecated; use
+        `/zones/{zone_id}/schema_validation/settings` instead.
 
         Args:
           zone_id: Identifier.
@@ -316,8 +323,10 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Settings:
-        """
-        Updates zone level schema validation settings on the zone
+        """Updates zone level schema validation settings on the zone.
+
+        Deprecated; use
+        `/zones/{zone_id}/schema_validation/settings` instead.
 
         Args:
           zone_id: Identifier.
@@ -381,7 +390,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Settings:
         """
-        Retrieves zone level schema validation settings currently set on the zone
+        Retrieves zone level schema validation settings currently set on the zone.
+        Deprecated; use `/zones/{zone_id}/schema_validation/settings` instead.
 
         Args:
           zone_id: Identifier.

@@ -467,7 +467,7 @@ class PipelinesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineGetV1Response:
         """
-        Get Pipelines Details.
+        Get Pipeline details.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -567,7 +567,7 @@ class PipelinesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineValidateSqlResponse:
         """
-        Validate Arroyo SQL.
+        Validates that the Pipelines SQL is correct.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -1009,7 +1009,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineGetV1Response:
         """
-        Get Pipelines Details.
+        Get Pipeline details.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -1109,7 +1109,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineValidateSqlResponse:
         """
-        Validate Arroyo SQL.
+        Validates that the Pipelines SQL is correct.
 
         Args:
           account_id: Specifies the public ID of the account.

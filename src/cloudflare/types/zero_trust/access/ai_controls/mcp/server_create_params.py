@@ -12,15 +12,26 @@ class ServerCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     id: Required[str]
-    """server id"""
+    """Unique identifier for the MCP server."""
 
     auth_type: Required[Literal["oauth", "bearer", "unauthenticated"]]
+    """Authentication method used to connect to the upstream MCP server."""
 
     hostname: Required[str]
+    """URL of the upstream MCP endpoint."""
 
     name: Required[str]
+    """Display name for the MCP server."""
 
     auth_credentials: str
+    """Static credential for the upstream MCP server.
+
+    For auth_type "bearer", either a raw token string (e.g. "sk-abc123"), which is
+    wrapped server-side as `Authorization: Bearer <token>`, or a JSON-encoded object
+    of the form `{"headers":{"Header-Name":"value",...}}` for custom or multiple
+    static headers (e.g. Cloudflare Access service tokens:
+    `{"headers":{"cf-access-client-id":"...","cf-access-client-secret":"..."}}`).
+    """
 
     client_secret: str
     """Pre-registered OAuth client_secret.
@@ -31,39 +42,51 @@ class ServerCreateParams(TypedDict, total=False):
     """
 
     description: Optional[str]
+    """Optional description of the MCP server."""
 
     is_shared_oauth_callback_enabled: bool
     """
     When true, the gateway worker uses the shared Cloudflare-owned OAuth callback
     endpoint as the redirect_uri for upstream on-behalf OAuth, instead of the
     customer portal hostname. Defaults to false (off); opt in per server by setting
-    true. Effective behavior is gated by the gateway worker's per-env rollout mode
-    KV key.
+    true.
     """
 
     secure_web_gateway: bool
-    """Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway"""
+    """
+    Route outbound traffic to this MCP server through Zero Trust Secure Web Gateway.
+    """
 
     updated_prompts: Iterable[UpdatedPrompt]
+    """Server-wide prompt capability overrides."""
 
     updated_tools: Iterable[UpdatedTool]
+    """Server-wide tool capability overrides."""
 
 
 class UpdatedPrompt(TypedDict, total=False):
     name: Required[str]
+    """Name of the tool or prompt capability to override."""
 
     alias: str
+    """Custom name exposed for the capability."""
 
     description: str
+    """Custom description exposed for the capability."""
 
     enabled: bool
+    """Whether the capability is available through the MCP server."""
 
 
 class UpdatedTool(TypedDict, total=False):
     name: Required[str]
+    """Name of the tool or prompt capability to override."""
 
     alias: str
+    """Custom name exposed for the capability."""
 
     description: str
+    """Custom description exposed for the capability."""
 
     enabled: bool
+    """Whether the capability is available through the MCP server."""

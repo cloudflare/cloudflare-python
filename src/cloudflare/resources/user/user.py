@@ -77,6 +77,14 @@ from .billing.billing import (
 )
 from ...types.user.user_get_response import UserGetResponse
 from ...types.user.user_edit_response import UserEditResponse
+from .spectrum_analytics.spectrum_analytics import (
+    SpectrumAnalyticsResource,
+    AsyncSpectrumAnalyticsResource,
+    SpectrumAnalyticsResourceWithRawResponse,
+    AsyncSpectrumAnalyticsResourceWithRawResponse,
+    SpectrumAnalyticsResourceWithStreamingResponse,
+    AsyncSpectrumAnalyticsResourceWithStreamingResponse,
+)
 
 __all__ = ["UserResource", "AsyncUserResource"]
 
@@ -97,6 +105,10 @@ class UserResource(SyncAPIResource):
     @cached_property
     def organizations(self) -> OrganizationsResource:
         return OrganizationsResource(self._client)
+
+    @cached_property
+    def spectrum_analytics(self) -> SpectrumAnalyticsResource:
+        return SpectrumAnalyticsResource(self._client)
 
     @cached_property
     def subscriptions(self) -> SubscriptionsResource:
@@ -231,6 +243,10 @@ class AsyncUserResource(AsyncAPIResource):
     @cached_property
     def organizations(self) -> AsyncOrganizationsResource:
         return AsyncOrganizationsResource(self._client)
+
+    @cached_property
+    def spectrum_analytics(self) -> AsyncSpectrumAnalyticsResource:
+        return AsyncSpectrumAnalyticsResource(self._client)
 
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResource:
@@ -377,6 +393,10 @@ class UserResourceWithRawResponse:
         return OrganizationsResourceWithRawResponse(self._user.organizations)
 
     @cached_property
+    def spectrum_analytics(self) -> SpectrumAnalyticsResourceWithRawResponse:
+        return SpectrumAnalyticsResourceWithRawResponse(self._user.spectrum_analytics)
+
+    @cached_property
     def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
         return SubscriptionsResourceWithRawResponse(self._user.subscriptions)
 
@@ -415,6 +435,10 @@ class AsyncUserResourceWithRawResponse:
     @cached_property
     def organizations(self) -> AsyncOrganizationsResourceWithRawResponse:
         return AsyncOrganizationsResourceWithRawResponse(self._user.organizations)
+
+    @cached_property
+    def spectrum_analytics(self) -> AsyncSpectrumAnalyticsResourceWithRawResponse:
+        return AsyncSpectrumAnalyticsResourceWithRawResponse(self._user.spectrum_analytics)
 
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
@@ -457,6 +481,10 @@ class UserResourceWithStreamingResponse:
         return OrganizationsResourceWithStreamingResponse(self._user.organizations)
 
     @cached_property
+    def spectrum_analytics(self) -> SpectrumAnalyticsResourceWithStreamingResponse:
+        return SpectrumAnalyticsResourceWithStreamingResponse(self._user.spectrum_analytics)
+
+    @cached_property
     def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
         return SubscriptionsResourceWithStreamingResponse(self._user.subscriptions)
 
@@ -495,6 +523,10 @@ class AsyncUserResourceWithStreamingResponse:
     @cached_property
     def organizations(self) -> AsyncOrganizationsResourceWithStreamingResponse:
         return AsyncOrganizationsResourceWithStreamingResponse(self._user.organizations)
+
+    @cached_property
+    def spectrum_analytics(self) -> AsyncSpectrumAnalyticsResourceWithStreamingResponse:
+        return AsyncSpectrumAnalyticsResourceWithStreamingResponse(self._user.spectrum_analytics)
 
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:

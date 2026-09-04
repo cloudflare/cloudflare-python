@@ -994,6 +994,7 @@ class TestIdentityProviders:
                 ],
                 "idp_public_certs": ["string"],
                 "issuer_url": "https://whoami.com",
+                "max_sso_url_length": 8192,
                 "sign_request": True,
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
@@ -2443,6 +2444,7 @@ class TestIdentityProviders:
                 ],
                 "idp_public_certs": ["string"],
                 "issuer_url": "https://whoami.com",
+                "max_sso_url_length": 8192,
                 "sign_request": True,
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
@@ -2827,7 +2829,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.list(
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
             scim_enabled="scim_enabled",
         )
         assert_matches_type(
@@ -3989,6 +3991,7 @@ class TestAsyncIdentityProviders:
                 ],
                 "idp_public_certs": ["string"],
                 "issuer_url": "https://whoami.com",
+                "max_sso_url_length": 8192,
                 "sign_request": True,
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
@@ -5438,6 +5441,7 @@ class TestAsyncIdentityProviders:
                 ],
                 "idp_public_certs": ["string"],
                 "issuer_url": "https://whoami.com",
+                "max_sso_url_length": 8192,
                 "sign_request": True,
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
@@ -5822,7 +5826,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.list(
             account_id="account_id",
             page=0,
-            per_page=0,
+            per_page=1000,
             scim_enabled="scim_enabled",
         )
         assert_matches_type(

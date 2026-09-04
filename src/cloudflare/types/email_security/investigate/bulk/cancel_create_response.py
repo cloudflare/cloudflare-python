@@ -48,7 +48,7 @@ class SearchParams(BaseModel):
     alert_id: Optional[str] = None
 
     delivery_status: Optional[
-        Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+        Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"]
     ] = None
     """Delivery status of the message."""
 
@@ -57,7 +57,7 @@ class SearchParams(BaseModel):
     domain: Optional[str] = None
 
     end: Optional[datetime] = None
-    """End of search date range"""
+    """End of search date range."""
 
     exact_subject: Optional[str] = None
 
@@ -88,8 +88,11 @@ class SearchParams(BaseModel):
 
     sender: Optional[str] = None
 
+    smtp_helo_ip: Optional[str] = None
+    """Matches messages whose SMTP HELO server IP address equals this value."""
+
     start: Optional[datetime] = None
-    """Beginning of search date range"""
+    """Beginning of search date range."""
 
     subject: Optional[str] = None
 

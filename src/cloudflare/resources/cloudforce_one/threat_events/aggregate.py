@@ -69,8 +69,10 @@ class AggregateResource(SyncAPIResource):
           aggregate_by: Column(s) to aggregate by - single column or comma-separated list (e.g.,
               'attacker', 'targetIndustry', 'attacker,targetIndustry')
 
-          dataset_id: Dataset ID(s) to filter by. Can be a single dataset ID, comma-separated list, or
-              array. If not provided, uses default dataset
+          dataset_id: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
+              accessible non-analytics event datasets (analytics datasets are silently
+              excluded), 'analytics' for isAnalytics=true datasets, or 'operational' for
+              isAnalytics=false datasets. If not provided, uses the default dataset.
 
           end_date: End date for filtering (ISO 8601 format, e.g., '2024-12-31')
 
@@ -161,8 +163,10 @@ class AsyncAggregateResource(AsyncAPIResource):
           aggregate_by: Column(s) to aggregate by - single column or comma-separated list (e.g.,
               'attacker', 'targetIndustry', 'attacker,targetIndustry')
 
-          dataset_id: Dataset ID(s) to filter by. Can be a single dataset ID, comma-separated list, or
-              array. If not provided, uses default dataset
+          dataset_id: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
+              accessible non-analytics event datasets (analytics datasets are silently
+              excluded), 'analytics' for isAnalytics=true datasets, or 'operational' for
+              isAnalytics=false datasets. If not provided, uses the default dataset.
 
           end_date: End date for filtering (ISO 8601 format, e.g., '2024-12-31')
 

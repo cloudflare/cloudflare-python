@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Union, Optional, cast
 from datetime import datetime
 
@@ -57,6 +58,9 @@ class ReportsResource(SyncAPIResource):
         """
         return ReportsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "This endpoint is deprecated. See [the API deprecation notice](https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#2025-12-09)."
+    )
     def get(
         self,
         *,
@@ -159,6 +163,9 @@ class AsyncReportsResource(AsyncAPIResource):
         """
         return AsyncReportsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "This endpoint is deprecated. See [the API deprecation notice](https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#2025-12-09)."
+    )
     async def get(
         self,
         *,
@@ -241,8 +248,10 @@ class ReportsResourceWithRawResponse:
     def __init__(self, reports: ReportsResource) -> None:
         self._reports = reports
 
-        self.get = to_raw_response_wrapper(
-            reports.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                reports.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -254,8 +263,10 @@ class AsyncReportsResourceWithRawResponse:
     def __init__(self, reports: AsyncReportsResource) -> None:
         self._reports = reports
 
-        self.get = async_to_raw_response_wrapper(
-            reports.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                reports.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -267,8 +278,10 @@ class ReportsResourceWithStreamingResponse:
     def __init__(self, reports: ReportsResource) -> None:
         self._reports = reports
 
-        self.get = to_streamed_response_wrapper(
-            reports.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                reports.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -280,8 +293,10 @@ class AsyncReportsResourceWithStreamingResponse:
     def __init__(self, reports: AsyncReportsResource) -> None:
         self._reports = reports
 
-        self.get = async_to_streamed_response_wrapper(
-            reports.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                reports.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

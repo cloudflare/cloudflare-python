@@ -12,6 +12,8 @@ class MatchDownloadParams(TypedDict, total=False):
 
     id: str
 
+    include_dismissed: bool
+
     include_domain_id: bool
 
     limit: int

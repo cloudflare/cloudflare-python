@@ -46,7 +46,10 @@ class JsonCreateParams(TypedDict, total=False):
     """
 
     allow_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowRequestPattern")]
-    """Only allow requests that match the provided regex patterns, eg. '/^.\\**\\..(css)'."""
+    """Only allow requests that match the provided regex patterns, eg.
+
+    '/^.\\**\\..(css)'. Reject rules are applied first.
+    """
 
     allow_resource_types: Annotated[
         List[
@@ -75,7 +78,7 @@ class JsonCreateParams(TypedDict, total=False):
     ]
     """Only allow requests that match the provided resource types, eg.
 
-    'image' or 'script'.
+    'image' or 'script'. Reject rules are applied first.
     """
 
     authenticate: Authenticate
@@ -258,7 +261,7 @@ class GotoOptions(TypedDict, total=False):
 class ResponseFormat(TypedDict, total=False):
     type: Required[str]
 
-    json_schema: Optional[Dict[str, Union[str, float, bool, SequenceNotStr[str], object]]]
+    json_schema: Optional[Dict[str, object]]
     """Schema for the response format.
 
     More information here: https://developers.cloudflare.com/workers-ai/json-mode/

@@ -13,7 +13,7 @@ class DatabaseListResponse(BaseModel):
     created_at: Optional[datetime] = None
     """Specifies the timestamp the resource was created as an ISO8601 string."""
 
-    jurisdiction: Optional[Literal["eu", "fedramp"]] = None
+    jurisdiction: Optional[Literal["eu", "fedramp", "us"]] = None
     """Specify the location to restrict the D1 database to run and store data.
 
     If this option is present, the location hint is ignored.

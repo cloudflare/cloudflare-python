@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from ...._types import SequenceNotStr
@@ -71,13 +71,13 @@ class ObservabilityTraces(TypedDict, total=False):
     persist: bool
     """Whether trace persistence is enabled for the Worker."""
 
-    propagation_policy: Literal["authenticated", "accept"]
+    propagation_policy: Optional[Literal["authenticated", "accept"]]
     """
     Controls how inbound trace context (traceparent/tracestate) headers on incoming
-    requests are handled. "authenticated" (default) honors inbound trace context
-    only when accompanied by a valid trace auth token. "accept" unconditionally
-    accepts inbound trace context. Requires the trace propagation feature to be
-    enabled.
+    requests are handled. "authenticated" honors inbound trace context only when
+    accompanied by a valid trace auth token. "accept" unconditionally accepts
+    inbound trace context. Requires the trace propagation feature to be enabled.
+    Returns null when the trace propagation feature is not enabled for the account.
     """
 
 
@@ -92,6 +92,9 @@ class Observability(TypedDict, total=False):
 
     logs: ObservabilityLogs
     """Log settings for the Worker."""
+
+    redact_query_string: bool
+    """Whether query strings are removed from request URLs in logs and traces."""
 
     traces: ObservabilityTraces
     """Trace settings for the Worker."""

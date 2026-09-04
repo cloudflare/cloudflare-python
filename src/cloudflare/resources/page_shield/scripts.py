@@ -21,8 +21,8 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.page_shield import script_list_params
-from ...types.page_shield.script import Script
 from ...types.page_shield.script_get_response import ScriptGetResponse
+from ...types.page_shield.script_list_response import ScriptListResponse
 
 __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
@@ -70,9 +70,9 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[Script]:
+    ) -> SyncSinglePage[ScriptListResponse]:
         """
-        Lists all scripts detected by Page Shield.
+        Lists scripts detected on webpages in the zone, with filtering and pagination.
 
         Args:
           zone_id: Identifier
@@ -137,7 +137,7 @@ class ScriptsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             path_template("/zones/{zone_id}/page_shield/scripts", zone_id=zone_id),
-            page=SyncSinglePage[Script],
+            page=SyncSinglePage[ScriptListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -162,7 +162,7 @@ class ScriptsResource(SyncAPIResource):
                     script_list_params.ScriptListParams,
                 ),
             ),
-            model=Script,
+            model=ScriptListResponse,
         )
 
     def get(
@@ -178,7 +178,7 @@ class ScriptsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ScriptGetResponse]:
         """
-        Fetches a script detected by Page Shield by script ID.
+        Returns a script detected on the zone by script ID.
 
         Args:
           zone_id: Identifier
@@ -253,9 +253,9 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Script, AsyncSinglePage[Script]]:
+    ) -> AsyncPaginator[ScriptListResponse, AsyncSinglePage[ScriptListResponse]]:
         """
-        Lists all scripts detected by Page Shield.
+        Lists scripts detected on webpages in the zone, with filtering and pagination.
 
         Args:
           zone_id: Identifier
@@ -320,7 +320,7 @@ class AsyncScriptsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             path_template("/zones/{zone_id}/page_shield/scripts", zone_id=zone_id),
-            page=AsyncSinglePage[Script],
+            page=AsyncSinglePage[ScriptListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -345,7 +345,7 @@ class AsyncScriptsResource(AsyncAPIResource):
                     script_list_params.ScriptListParams,
                 ),
             ),
-            model=Script,
+            model=ScriptListResponse,
         )
 
     async def get(
@@ -361,7 +361,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ScriptGetResponse]:
         """
-        Fetches a script detected by Page Shield by script ID.
+        Returns a script detected on the zone by script ID.
 
         Args:
           zone_id: Identifier

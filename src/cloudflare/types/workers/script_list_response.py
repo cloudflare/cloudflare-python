@@ -277,10 +277,10 @@ class ObservabilityTraces(BaseModel):
     propagation_policy: Optional[Literal["authenticated", "accept"]] = None
     """
     Controls how inbound trace context (traceparent/tracestate) headers on incoming
-    requests are handled. "authenticated" (default) honors inbound trace context
-    only when accompanied by a valid trace auth token. "accept" unconditionally
-    accepts inbound trace context. Requires the trace propagation feature to be
-    enabled.
+    requests are handled. "authenticated" honors inbound trace context only when
+    accompanied by a valid trace auth token. "accept" unconditionally accepts
+    inbound trace context. Requires the trace propagation feature to be enabled.
+    Returns null when the trace propagation feature is not enabled for the account.
     """
 
 
@@ -298,6 +298,9 @@ class Observability(BaseModel):
 
     logs: Optional[ObservabilityLogs] = None
     """Log settings for the Worker."""
+
+    redact_query_string: Optional[bool] = None
+    """Whether query strings are removed from request URLs in logs and traces."""
 
     traces: Optional[ObservabilityTraces] = None
     """Trace settings for the Worker."""

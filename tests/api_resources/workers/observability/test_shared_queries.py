@@ -44,7 +44,9 @@ class TestSharedQueries:
                 "to": 0,
             },
             chart=True,
+            chart_type="timeseries_and_aggregate",
             compare=True,
+            distribution_scale="log",
             dry=True,
             granularity=0,
             ignore_series=True,
@@ -55,7 +57,7 @@ class TestSharedQueries:
             parameters={
                 "calculations": [
                     {
-                        "operator": "uniq",
+                        "operator": "count",
                         "alias": "alias",
                         "key": "key",
                         "key_type": "string",
@@ -240,7 +242,9 @@ class TestAsyncSharedQueries:
                 "to": 0,
             },
             chart=True,
+            chart_type="timeseries_and_aggregate",
             compare=True,
+            distribution_scale="log",
             dry=True,
             granularity=0,
             ignore_series=True,
@@ -251,7 +255,7 @@ class TestAsyncSharedQueries:
             parameters={
                 "calculations": [
                     {
-                        "operator": "uniq",
+                        "operator": "count",
                         "alias": "alias",
                         "key": "key",
                         "key_type": "string",

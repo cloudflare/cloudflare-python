@@ -41,6 +41,7 @@ class TestSettings:
                     "head_sampling_rate": 0.1,
                     "persist": True,
                 },
+                "redact_query_string": False,
                 "traces": {
                     "destinations": ["cloudflare"],
                     "enabled": True,
@@ -178,6 +179,7 @@ class TestAsyncSettings:
                     "head_sampling_rate": 0.1,
                     "persist": True,
                 },
+                "redact_query_string": False,
                 "traces": {
                     "destinations": ["cloudflare"],
                     "enabled": True,

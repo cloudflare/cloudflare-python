@@ -11,5 +11,4 @@ from .schema_create_params import SchemaCreateParams as SchemaCreateParams
 from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
-from .schema_delete_response import SchemaDeleteResponse as SchemaDeleteResponse
 from .setting_update_response import SettingUpdateResponse as SettingUpdateResponse

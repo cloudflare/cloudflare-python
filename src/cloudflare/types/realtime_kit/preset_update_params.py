@@ -194,7 +194,11 @@ class PermissionsMedia(TypedDict, total=False):
     """Video permissions"""
 
 
-class PermissionsPluginsConfig(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class PermissionsPluginsConfig(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     access_control: Literal["FULL_ACCESS", "VIEW_ONLY"]
 
     handles_view_only: bool

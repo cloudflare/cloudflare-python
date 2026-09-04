@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._types import SequenceNotStr
@@ -20,31 +22,40 @@ class AggregateListParams(TypedDict, total=False):
     'indicatorType', 'value', 'indicatorType,value')
     """
 
-    created_after: Annotated[str, PropertyInfo(alias="createdAfter")]
-    """Filter indicators created after this date (ISO 8601 format, e.g., '2024-01-01')"""
-
-    created_before: Annotated[str, PropertyInfo(alias="createdBefore")]
+    created_after: Annotated[Union[Union[str, datetime], str], PropertyInfo(alias="createdAfter", format="iso8601")]
     """
-    Filter indicators created before this date (ISO 8601 format, e.g., '2024-12-31')
+    Filter indicators created after this date/datetime (ISO 8601, e.g., '2024-01-01'
+    or '2024-01-01T00:00:00Z')
+    """
+
+    created_before: Annotated[Union[Union[str, datetime], str], PropertyInfo(alias="createdBefore", format="iso8601")]
+    """
+    Filter indicators created before this date/datetime (ISO 8601, e.g.,
+    '2024-12-31' or '2024-12-31T23:59:59Z')
     """
 
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]
-    """Dataset ID(s) to filter by.
-
-    Can be a single dataset ID or comma-separated list. If not provided, aggregates
-    across all accessible datasets
+    """
+    Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
+    accessible datasets, 'analytics' for isAnalytics=true datasets, or 'operational'
+    for isAnalytics=false datasets. If not provided, aggregates across all
+    accessible datasets.
     """
 
     event_date_after: Annotated[str, PropertyInfo(alias="eventDateAfter")]
     """
-    For measure=relationships: only count event links whose eventDate is on/after
-    this date (ISO 8601). Use to bound 'top indicator' to recent activity.
+    For measure=relationships: only count indicator→event links whose relationship
+    was created/observed on or after this date (ISO 8601). Bounds the activity view
+    to recently-observed links. Note: this filters by the relationship's createdAt
+    (link-observation time), not the underlying event's business date.
     """
 
     event_date_before: Annotated[str, PropertyInfo(alias="eventDateBefore")]
     """
-    For measure=relationships: only count event links whose eventDate is on/before
-    this date (ISO 8601).
+    For measure=relationships: only count indicator→event links whose relationship
+    was created/observed on or before this date (ISO 8601). Bounds the activity view
+    by the relationship's createdAt (link-observation time), not the underlying
+    event's business date.
     """
 
     limit: float

@@ -37,7 +37,9 @@ class SearchParams(TypedDict, total=False):
 
     alert_id: Optional[str]
 
-    delivery_status: Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued"]
+    delivery_status: Literal[
+        "delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"
+    ]
     """Delivery status of the message."""
 
     detections_only: bool
@@ -45,7 +47,7 @@ class SearchParams(TypedDict, total=False):
     domain: Optional[str]
 
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """End of search date range"""
+    """End of search date range."""
 
     exact_subject: Optional[str]
 
@@ -65,8 +67,11 @@ class SearchParams(TypedDict, total=False):
 
     sender: Optional[str]
 
+    smtp_helo_ip: Optional[str]
+    """Matches messages whose SMTP HELO server IP address equals this value."""
+
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Beginning of search date range"""
+    """Beginning of search date range."""
 
     subject: Optional[str]
 

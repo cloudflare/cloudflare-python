@@ -102,6 +102,7 @@ class TestVersions:
             ruleset_version="1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
         )
         assert version is None
 
@@ -337,6 +338,7 @@ class TestAsyncVersions:
             ruleset_version="1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
+            dry_run=True,
         )
         assert version is None
 

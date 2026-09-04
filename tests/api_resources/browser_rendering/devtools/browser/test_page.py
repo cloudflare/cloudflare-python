@@ -27,6 +27,17 @@ class TestPage:
 
     @pytest.mark.skip(reason="HTTP 101 error from prism")
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        page = client.browser_rendering.devtools.browser.page.get(
+            target_id="target_id",
+            account_id="account_id",
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            cf_brapi_guardrails="eyJtb2RlIjoicmVhZG9ubHkifQ",
+        )
+        assert page is None
+
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.browser_rendering.devtools.browser.page.with_raw_response.get(
             target_id="target_id",
@@ -92,6 +103,17 @@ class TestAsyncPage:
             target_id="target_id",
             account_id="account_id",
             session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert page is None
+
+    @pytest.mark.skip(reason="HTTP 101 error from prism")
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        page = await async_client.browser_rendering.devtools.browser.page.get(
+            target_id="target_id",
+            account_id="account_id",
+            session_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            cf_brapi_guardrails="eyJtb2RlIjoicmVhZG9ubHkifQ",
         )
         assert page is None
 

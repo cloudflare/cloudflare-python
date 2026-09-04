@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from .extension_list_params import ExtensionListParams as ExtensionListParams
+from .extension_get_response import ExtensionGetResponse as ExtensionGetResponse
+from .extension_list_response import ExtensionListResponse as ExtensionListResponse
 from .registration_edit_params import RegistrationEditParams as RegistrationEditParams
 from .registration_list_params import RegistrationListParams as RegistrationListParams
 from .registration_get_response import RegistrationGetResponse as RegistrationGetResponse
