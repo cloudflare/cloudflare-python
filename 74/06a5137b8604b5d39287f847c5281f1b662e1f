@@ -1,0 +1,26 @@
+src/cloudflare/resources/accounts/subscriptions.py
+  s_bbc72941708565::t_fca143b944e304 21-23
+  s_bbc72941708565::t_5b93ffd7f97496 553-555,568-570,583-585,598-600
+src/cloudflare/types/aisearch/namespaces/instance_list_response.py
+  s_bbc72941708565::t_eda883d00e3d7d 309
+tests/api_resources/accounts/test_subscriptions.py
+  s_bbc72941708565::t_e54eede4d0fd36 12
+src/cloudflare/types/aisearch/instance_list_response.py
+  s_bbc72941708565::t_697ef3939d6183 309
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "7406a5137b8604b5d39287f847c5281f1b662e1f",
+  "prompts": {},
+  "sessions": {
+    "s_bbc72941708565": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f91baf392ffe4d3eHmx6tvnKiC",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Musa Jundi <musa@cloudflare.com>"
+    }
+  }
+}
