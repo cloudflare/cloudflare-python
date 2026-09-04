@@ -67,11 +67,6 @@ class TestThreatEvents:
             ],
             indicator_type="domain",
             insight="This domain was likely registered for phishing purposes",
-            source={
-                "resource_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "resource_type": "article",
-                "system": "threat-signals",
-            },
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",
@@ -584,11 +579,6 @@ class TestAsyncThreatEvents:
             ],
             indicator_type="domain",
             insight="This domain was likely registered for phishing purposes",
-            source={
-                "resource_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "resource_type": "article",
-                "system": "threat-signals",
-            },
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",

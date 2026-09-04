@@ -11,9 +11,6 @@ class DevicePosture(TypedDict, total=False):
     integration_uid: Required[str]
     """The ID of a device posture integration."""
 
-    account_id: str
-    """The ID of the account that owns the device posture integration."""
-
 
 class AccessDevicePostureRuleParam(TypedDict, total=False):
     """Enforces a device posture rule has run successfully"""

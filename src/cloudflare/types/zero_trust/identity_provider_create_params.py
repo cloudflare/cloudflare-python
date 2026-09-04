@@ -382,9 +382,6 @@ class AccessGoogleAppsConfig(TypedDict, total=False):
     email_claim_name: str
     """The claim name for email in the id_token response."""
 
-    prompt: Literal["select_account"]
-    """Configures the Google account chooser prompt."""
-
 
 class AccessLinkedin(TypedDict, total=False):
     config: Required[GenericOAuthConfigParam]
@@ -762,9 +759,6 @@ class AccessSAMLConfig(TypedDict, total=False):
 
     Note: Requires `saml_certificate_set_id` to be set when `true`.
     """
-
-    force_authn: bool
-    """Asks the IdP to reauthenticate the user for each SAML authentication request."""
 
     header_attributes: Iterable[AccessSAMLConfigHeaderAttribute]
     """

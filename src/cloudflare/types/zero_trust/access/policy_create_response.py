@@ -59,9 +59,6 @@ class PolicyCreateResponse(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
-    account_id: Optional[str] = None
-    """Identifier."""
-
     app_count: Optional[int] = None
     """Number of access applications currently using this policy."""
 

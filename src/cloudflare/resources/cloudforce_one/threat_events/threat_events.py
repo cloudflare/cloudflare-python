@@ -256,7 +256,6 @@ class ThreatEventsResource(SyncAPIResource):
         indicators: Iterable[threat_event_create_params.Indicator] | Omit = omit,
         indicator_type: str | Omit = omit,
         insight: str | Omit = omit,
-        source: threat_event_create_params.Source | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         target_country: str | Omit = omit,
         target_industry: str | Omit = omit,
@@ -278,9 +277,6 @@ class ThreatEventsResource(SyncAPIResource):
 
           indicators: Array of indicators for this event. Supports multiple indicators per event for
               complex scenarios.
-
-          source: Controlled provenance for an event and its indicators derived from a Threat
-              Signals article.
 
           extra_headers: Send extra headers
 
@@ -309,7 +305,6 @@ class ThreatEventsResource(SyncAPIResource):
                     "indicators": indicators,
                     "indicator_type": indicator_type,
                     "insight": insight,
-                    "source": source,
                     "tags": tags,
                     "target_country": target_country,
                     "target_industry": target_industry,
@@ -734,7 +729,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         indicators: Iterable[threat_event_create_params.Indicator] | Omit = omit,
         indicator_type: str | Omit = omit,
         insight: str | Omit = omit,
-        source: threat_event_create_params.Source | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         target_country: str | Omit = omit,
         target_industry: str | Omit = omit,
@@ -756,9 +750,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           indicators: Array of indicators for this event. Supports multiple indicators per event for
               complex scenarios.
-
-          source: Controlled provenance for an event and its indicators derived from a Threat
-              Signals article.
 
           extra_headers: Send extra headers
 
@@ -787,7 +778,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                     "indicators": indicators,
                     "indicator_type": indicator_type,
                     "insight": insight,
-                    "source": source,
                     "tags": tags,
                     "target_country": target_country,
                     "target_industry": target_industry,
