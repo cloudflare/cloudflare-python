@@ -18,8 +18,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.accounts import subscription_update_params
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.accounts import subscription_create_params, subscription_update_params
 from ...types.shared.subscription import Subscription
 from ...types.shared_params.rate_plan import RatePlan
 from ...types.accounts.subscription_delete_response import SubscriptionDeleteResponse
@@ -549,6 +550,9 @@ class SubscriptionsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             subscriptions.delete,
         )
+        self.get = to_raw_response_wrapper(
+            subscriptions.get,
+        )
 
 
 class AsyncSubscriptionsResourceWithRawResponse:
@@ -560,6 +564,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             subscriptions.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            subscriptions.get,
         )
 
 
@@ -573,6 +580,9 @@ class SubscriptionsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             subscriptions.delete,
         )
+        self.get = to_streamed_response_wrapper(
+            subscriptions.get,
+        )
 
 
 class AsyncSubscriptionsResourceWithStreamingResponse:
@@ -584,4 +594,7 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             subscriptions.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            subscriptions.get,
         )

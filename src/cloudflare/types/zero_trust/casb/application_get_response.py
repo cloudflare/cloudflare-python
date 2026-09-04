@@ -109,42 +109,6 @@ class ApplicationGetResponse(BaseModel):
 
     id: Literal[
         "ANTHROPIC",
-        "AWS",
-        "BITBUCKET",
-        "BOX",
-        "CONFLUENCE",
-        "DROPBOX",
-        "GITHUB",
-        "GOOGLE_CLOUD_PLATFORM",
-        "GOOGLE_WORKSPACE",
-        "JIRA",
-        "MICROSOFT_INTERNAL",
-        "OPENAI",
-        "SALESFORCE",
-        "SERVICENOW",
-        "SLACK",
-    ]
-    """Vendor identifier.
-
-    - `ANTHROPIC` - ANTHROPIC
-    - `AWS` - AWS
-    - `BITBUCKET` - BITBUCKET
-    - `BOX` - BOX
-    - `CONFLUENCE` - CONFLUENCE
-    - `DROPBOX` - DROPBOX
-    - `GITHUB` - GITHUB
-    - `GOOGLE_CLOUD_PLATFORM` - GOOGLE_CLOUD_PLATFORM
-    - `GOOGLE_WORKSPACE` - GOOGLE_WORKSPACE
-    - `JIRA` - JIRA
-    - `MICROSOFT_INTERNAL` - MICROSOFT_INTERNAL
-    - `OPENAI` - OPENAI
-    - `SALESFORCE` - SALESFORCE
-    - `SERVICENOW` - SERVICENOW
-    - `SLACK` - SLACK
-    """
-
-    id: Literal[
-        "ANTHROPIC",
         "BITBUCKET",
         "BOX",
         "CONFLUENCE",

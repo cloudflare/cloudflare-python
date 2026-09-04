@@ -772,9 +772,6 @@ class UsageResourceWithRawResponse:
                 usage.paygo_info,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.paygo_info = to_raw_response_wrapper(
-            usage.paygo_info,
-        )
 
 
 class AsyncUsageResourceWithRawResponse:
@@ -804,9 +801,6 @@ class AsyncUsageResourceWithRawResponse:
             async_to_raw_response_wrapper(
                 usage.paygo_info,  # pyright: ignore[reportDeprecated],
             )
-        )
-        self.paygo_info = async_to_raw_response_wrapper(
-            usage.paygo_info,
         )
 
 
@@ -838,9 +832,6 @@ class UsageResourceWithStreamingResponse:
                 usage.paygo_info,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.paygo_info = to_streamed_response_wrapper(
-            usage.paygo_info,
-        )
 
 
 class AsyncUsageResourceWithStreamingResponse:
@@ -870,7 +861,4 @@ class AsyncUsageResourceWithStreamingResponse:
             async_to_streamed_response_wrapper(
                 usage.paygo_info,  # pyright: ignore[reportDeprecated],
             )
-        )
-        self.paygo_info = async_to_streamed_response_wrapper(
-            usage.paygo_info,
         )
