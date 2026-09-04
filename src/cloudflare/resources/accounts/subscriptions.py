@@ -544,6 +544,9 @@ class SubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
+        self.create = to_raw_response_wrapper(
+            subscriptions.create,
+        )
         self.update = to_raw_response_wrapper(
             subscriptions.update,
         )
@@ -559,6 +562,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
+        self.create = async_to_raw_response_wrapper(
+            subscriptions.create,
+        )
         self.update = async_to_raw_response_wrapper(
             subscriptions.update,
         )
@@ -574,6 +580,9 @@ class SubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
+        self.create = to_streamed_response_wrapper(
+            subscriptions.create,
+        )
         self.update = to_streamed_response_wrapper(
             subscriptions.update,
         )
@@ -589,6 +598,9 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
+        self.create = async_to_streamed_response_wrapper(
+            subscriptions.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             subscriptions.update,
         )
