@@ -1,0 +1,117 @@
+.github/ISSUE_TEMPLATE/bug_report.yml
+  s_6f99efbe25c9de::t_4837a8d99504d3 1-60
+.github/ISSUE_TEMPLATE/config.yml
+  s_6f99efbe25c9de::t_aa01df32ffbf39 1-7
+.github/labels.yml
+  s_6f99efbe25c9de::t_2d8f987cb3a341 1-208
+.github/pull_request_template.md
+  s_6f99efbe25c9de::t_59e5881712b010 1-10
+.gitlab-ci.yml
+  s_6f99efbe25c9de::t_c73a14bb7f5ffc 5-10,13,45,47-49,53-54,56-57,59
+CHANGELOG-v5.1.0.md
+  s_6f99efbe25c9de::t_45a39e580bad8c 1-60
+README.md
+  s_6f99efbe25c9de::t_d7b04375f8361a 460
+SECURITY.md
+  s_6f99efbe25c9de::t_94a14823277165 1,3
+docs/migration-guides/v5.0.0-migration-guide.md
+  s_6f99efbe25c9de::t_17fcd1d69b683c 1-2271
+docs/v5-migration-guide.md
+  s_6f99efbe25c9de::t_7b8524ed3665bc 1-2230
+src/cloudflare/_base_client.py
+  s_6f99efbe25c9de::t_862fc845b446b1 17,59,61,67,370,382,391,465-467,540-557,611-626,896,927,1410,1414,1481,1510,1990,1994,2007,2033-2035
+src/cloudflare/_client.py
+  s_6f99efbe25c9de::t_defea4aec1b0be 6,30,39-40,365,413-420,432,1383-1391,1458,1496,1558,1606-1613,1625,2576-2584,2651,2689
+src/cloudflare/_compat.py
+  s_6f99efbe25c9de::t_6317407461ea01 21
+src/cloudflare/_models.py
+  s_6f99efbe25c9de::t_724b9957edcd6b 50,294,367,889,903
+src/cloudflare/_types.py
+  s_6f99efbe25c9de::t_cdb776e57e333b 97-98,128
+src/cloudflare/_version.py
+  s_6f99efbe25c9de::t_21f063a0fb25a4 3-5
+src/cloudflare/resources/ai/to_markdown.py
+  s_6f99efbe25c9de::t_4903b32bc07ca4 115,119,214,218
+src/cloudflare/resources/d1/database/database.py
+  s_6f99efbe25c9de::t_7791f4683bc648 1753,1756,1833,1836
+src/cloudflare/resources/email_security/investigate/investigate.py
+  s_6f99efbe25c9de::t_39855eb2981d33 184-185,394-395
+src/cloudflare/resources/kv/namespaces/values.py
+  s_6f99efbe25c9de::t_ae97f847978fc5 149,382
+src/cloudflare/resources/radar/ai/to_markdown.py
+  s_6f99efbe25c9de::t_954547d9ad7b10 92,96,160,164
+src/cloudflare/resources/snippets/snippets.py
+  s_6f99efbe25c9de::t_a78fefbb056da9 121,343
+src/cloudflare/resources/workers/scripts/content.py
+  s_6f99efbe25c9de::t_f08980f796c831 146,298
+src/cloudflare/resources/workers/scripts/script_and_version_settings.py
+  s_6f99efbe25c9de::t_3b4c78e5d91f3a 99,225
+src/cloudflare/resources/workers/scripts/scripts.py
+  s_6f99efbe25c9de::t_bd359267c4ccb5 5,62,240,257,589,606
+src/cloudflare/resources/workers/scripts/versions.py
+  s_6f99efbe25c9de::t_db3fec2d2da1fe 5,22,120-121,139,345,363
+src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content.py
+  s_6f99efbe25c9de::t_797438f2082f38 153,318
+src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/scripts.py
+  s_6f99efbe25c9de::t_927998b3373609 5,62,195,215,446,466
+src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/settings.py
+  s_6f99efbe25c9de::t_e365ebf5c0ea8f 107,247
+src/cloudflare/types/organizations/organization_profile_get_params.py
+  s_6f99efbe25c9de::t_3fe23f79e528b3 1-11
+src/cloudflare/types/pipelines/sink_create_params.py
+  s_6f99efbe25c9de::t_8a4c8852573921 293,297
+src/cloudflare/types/pipelines/sink_create_response.py
+  s_6f99efbe25c9de::t_f9559e7a512486 279,283
+src/cloudflare/types/pipelines/sink_get_response.py
+  s_6f99efbe25c9de::t_9e3c0fc400223a 267,271
+src/cloudflare/types/pipelines/sink_list_response.py
+  s_6f99efbe25c9de::t_1f0c45992f15ea 267,271
+src/cloudflare/types/pipelines/stream_create_params.py
+  s_6f99efbe25c9de::t_6fb09c212c96e8 201,205
+src/cloudflare/types/pipelines/stream_create_response.py
+  s_6f99efbe25c9de::t_3df1cf849c43b3 192,196
+src/cloudflare/types/pipelines/stream_get_response.py
+  s_6f99efbe25c9de::t_c7e18a25a9bbde 192,196
+src/cloudflare/types/pipelines/stream_list_response.py
+  s_6f99efbe25c9de::t_0e4fcfda7beb61 192,196
+src/cloudflare/types/workers/observability/telemetry_query_response.py
+  s_6f99efbe25c9de::t_182555e1b2d906 238-239
+src/cloudflare/types/zero_trust/dlp/profile.py
+  s_6f99efbe25c9de::t_d0c9209642d566 3-4,9-11,1121-1172
+test-failure-analysis.md
+  s_6f99efbe25c9de::t_403ef389b1ba28 1-118
+tests/api_resources/request_tracers/test_traces.py
+  s_6f99efbe25c9de::t_24efe5de87a24e 20,30,72,86,117,127,169,183
+tests/api_resources/security_center/insights/test_audit_logs.py
+  s_6f99efbe25c9de::t_cb10c075f63658 131,203,265
+tests/api_resources/security_center/insights/test_classification.py
+  s_6f99efbe25c9de::t_49cfc81491c70b 64,135
+tests/api_resources/test_custom_certificates.py
+  s_6f99efbe25c9de::t_d231de92ed7a0c 183,207,220,462,486,499
+tests/api_resources/test_snippets.py
+  s_6f99efbe25c9de::t_cdb13ad5dc7426 129,138,151,338,347,360
+tests/api_resources/workers/test_script_upload.py
+  s_6f99efbe25c9de::t_43c8da32df82fe 1-536
+tests/api_resources/workers/test_scripts.py
+  s_6f99efbe25c9de::t_21095a5a94b3ca 210,218,227,239,606,614,623,635
+tests/test_client.py
+  s_6f99efbe25c9de::t_cb00009fbbfc9c 465-499,674-763,1605-1639
+uv.lock
+  s_6f99efbe25c9de::t_5a5ed79a1b2822 29,39-162,191-193,195-197,204-223,235,237,239,253,255,257,262,265-266,270,285-287,291,305,544,552-564,567,569-578,580,610-611,636,638,640,647-649,651,658-675,747,752-898,966,968,970,975,977,979,1168,1183,1185,1190,1195-1315,1320,1322,1324,1363,1380,1382,1414,1429,1450,1455,1457,1462,1469,1471,1476-1496,1712-1761,1789-1791,1793-1795,1930-2075,2078,2080,2082
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "47fc5acf2bb9731dae5a0c667132fa5cbb5e73a9",
+  "prompts": {},
+  "sessions": {
+    "s_6f99efbe25c9de": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fdad454b1ffexxbUMzQW3Fcdcj",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Sarah Sicard <ssicard@cloudflare.com>"
+    }
+  }
+}
