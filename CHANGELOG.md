@@ -1,5 +1,159 @@
 # Changelog
 
+## 5.7.0 (2026-09-03)
+
+Full Changelog: [v5.6.0...v5.7.0](https://github.com/cloudflare/cloudflare-python/compare/v5.6.0...v5.7.0)
+
+### Breaking Changes
+
+* **realtime_kit:** The `create_independent_livestream()` method has been removed from `client.realtime_kit.livestreams`. The `LivestreamCreateIndependentLivestreamParams` and `LivestreamCreateIndependentLivestreamResponse` types are no longer available.
+* **intel:** The deprecated `dismiss()` method has been removed from `client.intel.attack_surface_report.issues`. The `IssueDismissResponse` and `IssueDismissParams` types are no longer available.
+* **page_shield:** The `Setting` type has been removed from `cloudflare.types.page_shield`. The `get()` method now returns `Optional[PageShieldGetResponse]` and the `update()` method returns `PageShieldUpdateResponse`. The `Connection` type has been replaced by `ConnectionGetResponse` and `ConnectionListResponse`. The `Script` type has been replaced by `ScriptListResponse`. The `Policy` type has been replaced by per-method response types.
+* **schema_validation:** The `schemas.delete()` method return type changed from `SchemaDeleteResponse` to `object`. The `SchemaDeleteResponse` type has been removed from `cloudflare.types.schema_validation`.
+* **magic_transit:** The `HealthCheckParam` type has been removed from `cloudflare.types.magic_transit`. The `IPSECTunnelPSKGenerateParams` type has been removed from `cloudflare.types.magic_transit`.
+
+### Features
+
+* **email_security:** add `client.email_security.settings.content_policies` resource with `create()`, `list()`, `delete()`, `batch()`, `edit()`, and `get()` methods
+* **email_sending:** add `client.email_sending.suppressions` resource with `create()`, `list()`, `delete()`, `edit()`, `get()`, and `import_()` methods; add `edit()` to `client.email_sending.subdomains`
+* **logpush:** add `client.logpush.transformers` resource with `create()`, `update()`, `list()`, `delete()`, `get()`, and `preview()` methods; add `client.logpush.transformers.content` and `client.logpush.transformers.versions` sub-resources
+* **spectrum:** add `client.spectrum.protocols` resource with `list()` method
+* **zones:** add `client.zones.nel` resource with `edit()` and `get()` methods
+* **ssl:** add `client.ssl.recommendations` resource with `get()` method
+* **user:** add `client.user.spectrum_analytics.zones.reports` resource with `get()` method
+* **browser_rendering:** add `client.browser_rendering.devtools.browser.live_view` resource with `create()` method
+* **precursor:** add top-level `client.precursor` resource with `update()` and `get()` methods
+* **email_security:** add `batch()` to `client.email_security.settings.allow_policies`, `client.email_security.settings.block_senders`, and `client.email_security.settings.trusted_domains`; add `create()`, `update()`, and `batch()` to `client.email_security.settings.domains`
+* **addressing:** add `delete()` to `client.addressing.prefixes.bgp_prefixes`
+* **r2_data_catalog:** add `delete()` to `client.r2_data_catalog`
+* **zero_trust:** add `create()`, `update()`, and `delete()` to `client.zero_trust.resource_library.applications`
+* **realtime_kit:** add `replace_preset_by_id()` to `client.realtime_kit.presets`
+* **content_scanning:** add `update()` to `client.content_scanning.payloads`
+* **token_validation:** add `edit()` to `client.token_validation.configuration.credentials`
+
+#### New Resources
+
+**Logpush Transformers** (`client.logpush.transformers`)
+
+- `create(*, account_id, **params) -> Optional[TransformerCreateResponse]`
+- `update(transformer_id, *, account_id, **params) -> Optional[TransformerUpdateResponse]`
+- `list(*, account_id) -> SyncSinglePage[TransformerListResponse]`
+- `delete(transformer_id, *, account_id) -> Optional[TransformerDeleteResponse]`
+- `get(transformer_id, *, account_id) -> Optional[TransformerGetResponse]`
+- `preview(*, account_id, **params) -> SyncSinglePage[TransformerPreviewResponse]`
+
+New types:
+```python
+from cloudflare.types.logpush import (
+    TransformerCreateResponse,
+    TransformerUpdateResponse,
+    TransformerListResponse,
+    TransformerDeleteResponse,
+    TransformerGetResponse,
+    TransformerPreviewResponse,
+)
+```
+
+**Logpush Transformer Content** (`client.logpush.transformers.content`)
+
+- `get(transformer_id, *, account_id) -> ContentGetResponse`
+
+**Logpush Transformer Versions** (`client.logpush.transformers.versions`)
+
+- `list(transformer_id, *, account_id, **params) -> SyncSinglePage[VersionListResponse]`
+
+**Email Security Content Policies** (`client.email_security.settings.content_policies`)
+
+- `create(*, account_id, **params) -> Optional[ContentPolicyCreateResponse]`
+- `list(*, account_id, **params) -> SyncV4PagePaginationArray[ContentPolicyListResponse]`
+- `delete(policy_id, *, account_id) -> Optional[ContentPolicyDeleteResponse]`
+- `batch(*, account_id, **params) -> Optional[ContentPolicyBatchResponse]`
+- `edit(policy_id, *, account_id, **params) -> Optional[ContentPolicyEditResponse]`
+- `get(policy_id, *, account_id) -> Optional[ContentPolicyGetResponse]`
+
+New types:
+```python
+from cloudflare.types.email_security.settings import (
+    ContentPolicyCreateResponse,
+    ContentPolicyListResponse,
+    ContentPolicyDeleteResponse,
+    ContentPolicyBatchResponse,
+    ContentPolicyEditResponse,
+    ContentPolicyGetResponse,
+)
+```
+
+**Email Sending Suppressions** (`client.email_sending.suppressions`)
+
+- `create(*, account_id, **params) -> SuppressionCreateResponse`
+- `list(*, account_id, **params) -> SyncCursorPagination[SuppressionListResponse]`
+- `delete(suppression_id, *, account_id) -> SuppressionDeleteResponse`
+- `edit(suppression_id, *, account_id, **params) -> SuppressionEditResponse`
+- `get(suppression_id, *, account_id) -> SuppressionGetResponse`
+- `import_(*, account_id, **params) -> SuppressionImportResponse`
+
+New types:
+```python
+from cloudflare.types.email_sending import (
+    SuppressionCreateResponse,
+    SuppressionListResponse,
+    SuppressionDeleteResponse,
+    SuppressionEditResponse,
+    SuppressionGetResponse,
+    SuppressionImportResponse,
+)
+```
+
+**Zones NEL** (`client.zones.nel`)
+
+- `edit(*, zone_id, **params) -> Setting`
+- `get(*, zone_id) -> Setting`
+
+**Spectrum Protocols** (`client.spectrum.protocols`)
+
+- `list(*, zone_id) -> SyncSinglePage[ProtocolListResponse]`
+
+New types:
+```python
+from cloudflare.types.spectrum import ProtocolListResponse
+```
+
+**SSL Recommendations** (`client.ssl.recommendations`)
+
+- `get(*, zone_id) -> RecommendationGetResponse`
+
+New types:
+```python
+from cloudflare.types.ssl import RecommendationGetResponse
+```
+
+**User Spectrum Analytics Zone Reports** (`client.user.spectrum_analytics.zones.reports`)
+
+- `get(*, **params) -> ReportGetResponse`
+
+New types:
+```python
+from cloudflare.types.user.spectrum_analytics.zones import ReportGetResponse
+```
+
+**Browser Rendering Live View** (`client.browser_rendering.devtools.browser.live_view`)
+
+- `create(browser_session_id, *, account_id, **params) -> LiveViewCreateResponse`
+
+**Precursor** (`client.precursor`)
+
+Top-level resource for precursor configuration management.
+
+- `update(*, account_id, **params) -> Optional[PrecursorConfig]`
+- `get(*, account_id) -> Optional[PrecursorConfig]`
+
+New types:
+```python
+from cloudflare.types.precursor import PrecursorConfig
+```
+
+---
+
 ## 5.6.0 (2026-07-22)
 
 Full Changelog: [v5.5.0...v5.6.0](https://github.com/cloudflare/cloudflare-python/compare/v5.5.0...v5.6.0)
