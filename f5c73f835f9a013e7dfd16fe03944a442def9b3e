@@ -1,0 +1,19 @@
+CHANGELOG.md
+  s_1d043f8a429b9f::t_908cdc9d5ae07f 3-156
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "f5c73f835f9a013e7dfd16fe03944a442def9b3e",
+  "prompts": {},
+  "sessions": {
+    "s_1d043f8a429b9f": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f97963deaffemJPkicCUaP87g0",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Musa Jundi <musa@cloudflare.com>"
+    }
+  }
+}
