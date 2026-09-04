@@ -1,0 +1,19 @@
+src/cloudflare/resources/accounts/subscriptions.py
+  s_bbc72941708565::t_ea981c6b858e8f 547-549,565-567,583-585,601-603
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "a4472136983fe38af99cf7e69ea272d309887b88",
+  "prompts": {},
+  "sessions": {
+    "s_bbc72941708565": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f91baf392ffe4d3eHmx6tvnKiC",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Musa Jundi <musa@cloudflare.com>"
+    }
+  }
+}
