@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["ThreatEventCreateParams", "Raw", "Indicator"]
+__all__ = ["ThreatEventCreateParams", "Raw", "Indicator", "Source"]
 
 
 class ThreatEventCreateParams(TypedDict, total=False):
@@ -46,6 +46,12 @@ class ThreatEventCreateParams(TypedDict, total=False):
 
     insight: str
 
+    source: Source
+    """
+    Controlled provenance for an event and its indicators derived from a Threat
+    Signals article.
+    """
+
     tags: SequenceNotStr[str]
 
     target_country: Annotated[str, PropertyInfo(alias="targetCountry")]
@@ -67,3 +73,15 @@ class Indicator(TypedDict, total=False):
 
     value: Required[str]
     """The indicator value (e.g., domain name, IP address, hash)"""
+
+
+class Source(TypedDict, total=False):
+    """
+    Controlled provenance for an event and its indicators derived from a Threat Signals article.
+    """
+
+    resource_id: Required[Annotated[str, PropertyInfo(alias="resourceId")]]
+
+    resource_type: Required[Annotated[Literal["article"], PropertyInfo(alias="resourceType")]]
+
+    system: Required[Literal["threat-signals"]]

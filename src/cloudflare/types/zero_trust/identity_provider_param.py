@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 from .azure_ad_param import AzureADParam
@@ -237,6 +237,9 @@ class AccessGoogleAppsConfig(TypedDict, total=False):
 
     email_claim_name: str
     """The claim name for email in the id_token response."""
+
+    prompt: Literal["select_account"]
+    """Configures the Google account chooser prompt."""
 
 
 class AccessGoogleApps(TypedDict, total=False):
@@ -579,6 +582,9 @@ class AccessSAMLConfig(TypedDict, total=False):
 
     Note: Requires `saml_certificate_set_id` to be set when `true`.
     """
+
+    force_authn: bool
+    """Asks the IdP to reauthenticate the user for each SAML authentication request."""
 
     header_attributes: Iterable[AccessSAMLConfigHeaderAttribute]
     """

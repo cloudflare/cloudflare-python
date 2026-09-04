@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from typing_extensions import Literal
 
 from ....._models import BaseModel
@@ -37,3 +38,6 @@ class FindingTypeListResponse(BaseModel):
 
     vendor: str
     """The SaaS/Cloud vendor of the platform with which the finding is associated."""
+
+    description: Optional[str] = None
+    """Detailed description of the finding."""
