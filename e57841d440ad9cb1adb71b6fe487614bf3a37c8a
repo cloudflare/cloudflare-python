@@ -1,0 +1,19 @@
+src/cloudflare/resources/billing/usage.py
+  s_d742d6afb9a5db::t_17388d9427527f 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e57841d440ad9cb1adb71b6fe487614bf3a37c8a",
+  "prompts": {},
+  "sessions": {
+    "s_d742d6afb9a5db": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f9299fc71ffe5FPOs8VaA70fI6",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Musa Jundi <musa@cloudflare.com>"
+    }
+  }
+}

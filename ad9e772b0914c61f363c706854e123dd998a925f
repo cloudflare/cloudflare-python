@@ -1,0 +1,56 @@
+src/cloudflare/resources/registrar/registrations.py
+  s_1d043f8a429b9f::t_6d53bfa487de43 533
+  s_1d043f8a429b9f::t_9e879accd143d2 136-139,530-532
+requirements-dev.lock
+  s_1d043f8a429b9f::t_7cb23cd44b162c 4-52
+src/cloudflare/resources/accounts/subscriptions.py
+  s_1d043f8a429b9f::t_28def2daad72b3 21-22
+src/cloudflare/resources/billing/usage.py
+  s_1d043f8a429b9f::t_86daa6c3aaa909 11,775-777,808-810,841-843,874-876
+src/cloudflare/resources/dls/regional_services/prefix_bindings.py
+  s_1d043f8a429b9f::t_7792b570605bc7 71-74,129,179-182,227-230,281,352-355,410,460-463,508-511,564
+src/cloudflare/resources/dls/regions.py
+  s_1d043f8a429b9f::t_291391356b6986 65,118,185,238
+src/cloudflare/resources/zero_trust/access/ai_controls/mcp/servers.py
+  s_1d043f8a429b9f::t_2aef2ea09e5f72 101-104,193-196,494-497,586-589
+src/cloudflare/types/aisearch/instance_list_response.py
+  s_1d043f8a429b9f::t_00c804dd2d6d83 320-331
+src/cloudflare/types/aisearch/namespaces/instance_list_response.py
+  s_1d043f8a429b9f::t_5d5f7eb22274ab 320-331
+src/cloudflare/types/billing/usage_get_params.py
+  s_1d043f8a429b9f::t_d02365ead0aae4 9
+src/cloudflare/types/dls/regional_services/prefix_binding_delete_response.py
+  s_1d043f8a429b9f::t_4394a97d9ed4e3 7-31,35,39
+src/cloudflare/types/pages/asset_check_missing_response.py
+  s_1d043f8a429b9f::t_f1086d890204b4 3
+src/cloudflare/types/registrar/registration_create_params.py
+  s_1d043f8a429b9f::t_0356ce0830b447 47-53
+src/cloudflare/types/turnstile/widget.py
+  s_1d043f8a429b9f::t_2ad39b328dcbf6 3,60-73
+src/cloudflare/types/turnstile/widget_list_response.py
+  s_1d043f8a429b9f::t_82352da43cfd26 3,57-70
+src/cloudflare/types/zero_trust/access/ai_controls/mcp/server_create_params.py
+  s_1d043f8a429b9f::t_aefab4982417f2 44-51
+src/cloudflare/types/zero_trust/access/ai_controls/mcp/server_update_params.py
+  s_1d043f8a429b9f::t_d27bcf64ed2c7c 32-39
+src/cloudflare/types/zero_trust/casb/application_get_response.py
+  s_1d043f8a429b9f::t_5b5b8ed45991ff 146-177
+uv.lock
+  s_1d043f8a429b9f::t_6b239471bf51b9 262
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ad9e772b0914c61f363c706854e123dd998a925f",
+  "prompts": {},
+  "sessions": {
+    "s_1d043f8a429b9f": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f97963deaffemJPkicCUaP87g0",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Musa Jundi <musa@cloudflare.com>"
+    }
+  }
+}
