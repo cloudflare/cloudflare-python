@@ -13,12 +13,16 @@ from cloudflare.types.workers.observability import (
     SharedQueryGetResponse,
     SharedQueryCreateResponse,
 )
+from cloudflare.types.workers.observability.shared_query_get_response import RunQueryParametersNeedle
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestSharedQueries:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    def test_run_query_parameters_needle_schema_rebuilds(self) -> None:
+        assert RunQueryParametersNeedle.model_rebuild(force=True) is True
 
     @pytest.mark.skip(reason="HTTP 400 error from prism")
     @parametrize
