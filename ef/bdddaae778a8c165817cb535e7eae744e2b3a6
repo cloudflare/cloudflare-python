@@ -1,0 +1,21 @@
+CHANGELOG.md
+  s_2932280550c0d4::t_cdbb1d29aeb2c1 20-21,23-26,28-34,36,42,44-63,80-84,86-95
+docs/migration-guides/v5.8.0-migration-guide.md
+  s_2932280550c0d4::t_4bcdece1974d0f 16,60-62,101-103,116,151,153,157-160,165-166,170,177-178,180-260,264-270
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "efbdddaae778a8c165817cb535e7eae744e2b3a6",
+  "prompts": {},
+  "sessions": {
+    "s_2932280550c0d4": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f271f54f7ffe30BpWXLUEgCNtJ",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Sarah Sicard <ssicard@cloudflare.com>"
+    }
+  }
+}
