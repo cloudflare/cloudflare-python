@@ -1,0 +1,19 @@
+docs/migration-guides/v5.8.0-migration-guide.md
+  s_2932280550c0d4::t_d8d9440878f052 250
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "588aa3ec828e4ddac921eeaa77e8b946fee9f170",
+  "prompts": {},
+  "sessions": {
+    "s_2932280550c0d4": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f271f54f7ffe30BpWXLUEgCNtJ",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Sarah Sicard <ssicard@cloudflare.com>"
+    }
+  }
+}
