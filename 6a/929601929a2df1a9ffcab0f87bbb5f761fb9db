@@ -1,0 +1,29 @@
+CHANGELOG.md
+  s_2932280550c0d4::t_0ced2ea7106ce5 3-93
+docs/migration-guides/v5.8.0-migration-guide.md
+  s_2932280550c0d4::t_4a200b77cb635a 1-180
+.release-please-manifest.json
+  s_2932280550c0d4::t_7ae231a5b71660 2-3
+pyproject.toml
+  s_2932280550c0d4::t_7ae231a5b71660 3
+src/cloudflare/_version.py
+  s_2932280550c0d4::t_7ae231a5b71660 4
+uv.lock
+  s_2932280550c0d4::t_4cadd50bcd101d 262
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "6a929601929a2df1a9ffcab0f87bbb5f761fb9db",
+  "prompts": {},
+  "sessions": {
+    "s_2932280550c0d4": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f271f54f7ffe30BpWXLUEgCNtJ",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Sarah Sicard <ssicard@cloudflare.com>"
+    }
+  }
+}
