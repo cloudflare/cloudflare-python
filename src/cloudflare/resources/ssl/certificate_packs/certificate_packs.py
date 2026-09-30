@@ -213,7 +213,7 @@ class CertificatePacksResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: The unique identifier for a certificate_pack.
 
           extra_headers: Send extra headers
 
@@ -266,7 +266,7 @@ class CertificatePacksResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: The unique identifier for a certificate_pack.
 
           cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add a
               subdomain of sni.cloudflaressl.com as the Common Name if set to true.
@@ -322,7 +322,7 @@ class CertificatePacksResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: The unique identifier for a certificate_pack.
 
           extra_headers: Send extra headers
 
@@ -529,7 +529,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: The unique identifier for a certificate_pack.
 
           extra_headers: Send extra headers
 
@@ -582,7 +582,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: The unique identifier for a certificate_pack.
 
           cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add a
               subdomain of sni.cloudflaressl.com as the Common Name if set to true.
@@ -638,7 +638,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: The unique identifier for a certificate_pack.
 
           extra_headers: Send extra headers
 

@@ -59,11 +59,14 @@ class CORSResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Set the CORS policy for a bucket.
+        """Replaces the Cross-Origin Resource Sharing (CORS) rules for an R2 bucket.
+
+        Rules
+        specify which origins, methods, and headers are allowed for browser requests to
+        objects in the bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -117,7 +120,7 @@ class CORSResource(SyncAPIResource):
         Delete the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -170,7 +173,7 @@ class CORSResource(SyncAPIResource):
         Get the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -241,11 +244,14 @@ class AsyncCORSResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Set the CORS policy for a bucket.
+        """Replaces the Cross-Origin Resource Sharing (CORS) rules for an R2 bucket.
+
+        Rules
+        specify which origins, methods, and headers are allowed for browser requests to
+        objects in the bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -299,7 +305,7 @@ class AsyncCORSResource(AsyncAPIResource):
         Delete the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -352,7 +358,7 @@ class AsyncCORSResource(AsyncAPIResource):
         Get the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 

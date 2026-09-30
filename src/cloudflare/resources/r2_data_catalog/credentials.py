@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -43,6 +44,7 @@ class CredentialsResource(SyncAPIResource):
         """
         return CredentialsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("Use `POST /accounts/{account_id}/basin-catalog/{bucket_name}/credential` instead.")
     def create(
         self,
         bucket_name: str,
@@ -118,6 +120,7 @@ class AsyncCredentialsResource(AsyncAPIResource):
         """
         return AsyncCredentialsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("Use `POST /accounts/{account_id}/basin-catalog/{bucket_name}/credential` instead.")
     async def create(
         self,
         bucket_name: str,
@@ -177,8 +180,10 @@ class CredentialsResourceWithRawResponse:
     def __init__(self, credentials: CredentialsResource) -> None:
         self._credentials = credentials
 
-        self.create = to_raw_response_wrapper(
-            credentials.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                credentials.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -186,8 +191,10 @@ class AsyncCredentialsResourceWithRawResponse:
     def __init__(self, credentials: AsyncCredentialsResource) -> None:
         self._credentials = credentials
 
-        self.create = async_to_raw_response_wrapper(
-            credentials.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                credentials.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -195,8 +202,10 @@ class CredentialsResourceWithStreamingResponse:
     def __init__(self, credentials: CredentialsResource) -> None:
         self._credentials = credentials
 
-        self.create = to_streamed_response_wrapper(
-            credentials.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                credentials.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -204,6 +213,8 @@ class AsyncCredentialsResourceWithStreamingResponse:
     def __init__(self, credentials: AsyncCredentialsResource) -> None:
         self._credentials = credentials
 
-        self.create = async_to_streamed_response_wrapper(
-            credentials.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                credentials.create,  # pyright: ignore[reportDeprecated],
+            )
         )

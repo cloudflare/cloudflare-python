@@ -57,14 +57,16 @@ class LogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogGetResponse:
         """
-        Fetch deployment logs for a project.
+        Retrieve the build logs for a Cloudflare Pages deployment.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           extra_headers: Send extra headers
 
@@ -132,14 +134,16 @@ class AsyncLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogGetResponse:
         """
-        Fetch deployment logs for a project.
+        Retrieve the build logs for a Cloudflare Pages deployment.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           extra_headers: Send extra headers
 

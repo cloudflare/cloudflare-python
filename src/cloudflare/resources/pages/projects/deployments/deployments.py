@@ -96,15 +96,16 @@ class DeploymentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Deployment:
-        """Start a new deployment from production.
+        """Create a Cloudflare Pages deployment from a Git branch or Direct Upload
+        manifest.
 
-        The repository and account must have
-        already been authorized on the Cloudflare Pages dashboard.
+        Git repositories must already be authorized in Cloudflare Pages.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           _headers: Headers configuration file for the deployment.
 
@@ -119,19 +120,20 @@ class DeploymentsResource(SyncAPIResource):
           _worker_js: Worker JavaScript file. Mutually exclusive with `_worker.bundle`. Cannot specify
               both `_worker.js` and `_worker.bundle` in the same request.
 
-          branch: The branch to build the new deployment from. The `HEAD` of the branch will be
-              used. If omitted, the production branch will be used by default.
+          branch: Git branch to deploy. Uses the branch's `HEAD`; defaults to the project's
+              production branch.
 
-          commit_dirty: Boolean string indicating if the working directory has uncommitted changes.
+          commit_dirty: Whether the associated Git working tree has uncommitted changes. Provide `true`
+              or `false`.
 
-          commit_hash: Git commit SHA associated with this deployment.
+          commit_hash: Git commit SHA associated with the deployment.
 
-          commit_message: Git commit message associated with this deployment.
+          commit_message: Git commit message associated with the deployment.
 
           functions_filepath_routing_config_json: Functions routing configuration file.
 
-          manifest: JSON string containing a manifest of files to deploy. Maps file paths to their
-              content hashes. Required for direct upload deployments. Maximum 20,000 entries.
+          manifest: JSON-encoded object mapping deployment file paths to their uploaded content
+              hashes. Required for Direct Upload deployments. Maximum 20,000 entries.
 
           pages_build_output_dir: The build output directory path.
 
@@ -223,18 +225,19 @@ class DeploymentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Deployment]:
         """
-        Fetch a list of project deployments.
+        List the production or preview deployments for a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          env: What type of deployments to fetch.
+          env: Deployment environment to return. Valid values are `production` and `preview`.
 
-          page: Which page of deployments to fetch.
+          page: Page number of results to return.
 
-          per_page: How many deployments to return per page.
+          per_page: Number of results to return per page.
 
           extra_headers: Send extra headers
 
@@ -287,17 +290,18 @@ class DeploymentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a deployment.
+        Remove a deployment from a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
-          force: Allow deletion of aliased non-production deployments when a normal delete would
-              be rejected.
+          force: Allow deletion when a non-production deployment has an active alias.
 
           extra_headers: Send extra headers
 
@@ -345,14 +349,16 @@ class DeploymentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Deployment:
         """
-        Fetch information about a deployment.
+        Retrieve the status and details of a Cloudflare Pages deployment.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           extra_headers: Send extra headers
 
@@ -399,14 +405,16 @@ class DeploymentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Deployment:
         """
-        Retry a previous deployment.
+        Retry a previous Cloudflare Pages deployment.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           extra_headers: Send extra headers
 
@@ -452,17 +460,17 @@ class DeploymentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Deployment:
-        """Rollback the production deployment to a previous deployment.
-
-        You can only
-        rollback to succesful builds on production.
+        """
+        Roll back production to a previous successful Cloudflare Pages deployment.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           extra_headers: Send extra headers
 
@@ -549,15 +557,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Deployment:
-        """Start a new deployment from production.
+        """Create a Cloudflare Pages deployment from a Git branch or Direct Upload
+        manifest.
 
-        The repository and account must have
-        already been authorized on the Cloudflare Pages dashboard.
+        Git repositories must already be authorized in Cloudflare Pages.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           _headers: Headers configuration file for the deployment.
 
@@ -572,19 +581,20 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           _worker_js: Worker JavaScript file. Mutually exclusive with `_worker.bundle`. Cannot specify
               both `_worker.js` and `_worker.bundle` in the same request.
 
-          branch: The branch to build the new deployment from. The `HEAD` of the branch will be
-              used. If omitted, the production branch will be used by default.
+          branch: Git branch to deploy. Uses the branch's `HEAD`; defaults to the project's
+              production branch.
 
-          commit_dirty: Boolean string indicating if the working directory has uncommitted changes.
+          commit_dirty: Whether the associated Git working tree has uncommitted changes. Provide `true`
+              or `false`.
 
-          commit_hash: Git commit SHA associated with this deployment.
+          commit_hash: Git commit SHA associated with the deployment.
 
-          commit_message: Git commit message associated with this deployment.
+          commit_message: Git commit message associated with the deployment.
 
           functions_filepath_routing_config_json: Functions routing configuration file.
 
-          manifest: JSON string containing a manifest of files to deploy. Maps file paths to their
-              content hashes. Required for direct upload deployments. Maximum 20,000 entries.
+          manifest: JSON-encoded object mapping deployment file paths to their uploaded content
+              hashes. Required for Direct Upload deployments. Maximum 20,000 entries.
 
           pages_build_output_dir: The build output directory path.
 
@@ -676,18 +686,19 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Deployment, AsyncV4PagePaginationArray[Deployment]]:
         """
-        Fetch a list of project deployments.
+        List the production or preview deployments for a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          env: What type of deployments to fetch.
+          env: Deployment environment to return. Valid values are `production` and `preview`.
 
-          page: Which page of deployments to fetch.
+          page: Page number of results to return.
 
-          per_page: How many deployments to return per page.
+          per_page: Number of results to return per page.
 
           extra_headers: Send extra headers
 
@@ -740,17 +751,18 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a deployment.
+        Remove a deployment from a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
-          force: Allow deletion of aliased non-production deployments when a normal delete would
-              be rejected.
+          force: Allow deletion when a non-production deployment has an active alias.
 
           extra_headers: Send extra headers
 
@@ -798,14 +810,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Deployment:
         """
-        Fetch information about a deployment.
+        Retrieve the status and details of a Cloudflare Pages deployment.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           extra_headers: Send extra headers
 
@@ -852,14 +866,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Deployment:
         """
-        Retry a previous deployment.
+        Retry a previous Cloudflare Pages deployment.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           extra_headers: Send extra headers
 
@@ -905,17 +921,17 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Deployment:
-        """Rollback the production deployment to a previous deployment.
-
-        You can only
-        rollback to succesful builds on production.
+        """
+        Roll back production to a previous successful Cloudflare Pages deployment.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           extra_headers: Send extra headers
 

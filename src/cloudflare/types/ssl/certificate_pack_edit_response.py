@@ -153,7 +153,7 @@ class CertificatePackEditResponse(BaseModel):
     """A certificate pack with all its properties."""
 
     id: str
-    """Identifier."""
+    """The unique identifier for a certificate_pack."""
 
     certificates: List[Certificate]
     """Array of certificates in this pack."""

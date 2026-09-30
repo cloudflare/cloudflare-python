@@ -57,7 +57,11 @@ class ProjectCreateParams(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """Name of the project."""
+    """Name for the Pages project.
+
+    Must begin with a lowercase letter or digit and contain only lowercase letters,
+    digits, and hyphens.
+    """
 
     production_branch: Required[str]
     """Production branch of the project. Used to identify production deployments."""

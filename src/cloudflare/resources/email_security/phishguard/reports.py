@@ -17,7 +17,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.phishguard import report_list_params
 from ....types.email_security.phishguard.report_list_response import ReportListResponse
@@ -51,6 +51,8 @@ class ReportsResource(SyncAPIResource):
         account_id: str,
         end: Union[str, datetime] | Omit = omit,
         from_date: Union[str, date] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
         to_date: Union[str, date] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -59,7 +61,7 @@ class ReportsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[ReportListResponse]:
+    ) -> SyncV4PagePaginationArray[ReportListResponse]:
         """Retrieves PhishGuard security alert reports for a specified date range.
 
         Reports
@@ -72,6 +74,10 @@ class ReportsResource(SyncAPIResource):
           end: End of the time range (RFC3339). Takes precedence over to_date.
 
           from_date: Deprecated, use `start` instead. Start date in YYYY-MM-DD format.
+
+          page: Current page within paginated list of results.
+
+          per_page: The number of results per page. Maximum value is 1000.
 
           start: Start of the time range (RFC3339). Takes precedence over from_date.
 
@@ -89,7 +95,7 @@ class ReportsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/email-security/phishguard/reports", account_id=account_id),
-            page=SyncSinglePage[ReportListResponse],
+            page=SyncV4PagePaginationArray[ReportListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -99,6 +105,8 @@ class ReportsResource(SyncAPIResource):
                     {
                         "end": end,
                         "from_date": from_date,
+                        "page": page,
+                        "per_page": per_page,
                         "start": start,
                         "to_date": to_date,
                     },
@@ -135,6 +143,8 @@ class AsyncReportsResource(AsyncAPIResource):
         account_id: str,
         end: Union[str, datetime] | Omit = omit,
         from_date: Union[str, date] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         start: Union[str, datetime] | Omit = omit,
         to_date: Union[str, date] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -143,7 +153,7 @@ class AsyncReportsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ReportListResponse, AsyncSinglePage[ReportListResponse]]:
+    ) -> AsyncPaginator[ReportListResponse, AsyncV4PagePaginationArray[ReportListResponse]]:
         """Retrieves PhishGuard security alert reports for a specified date range.
 
         Reports
@@ -156,6 +166,10 @@ class AsyncReportsResource(AsyncAPIResource):
           end: End of the time range (RFC3339). Takes precedence over to_date.
 
           from_date: Deprecated, use `start` instead. Start date in YYYY-MM-DD format.
+
+          page: Current page within paginated list of results.
+
+          per_page: The number of results per page. Maximum value is 1000.
 
           start: Start of the time range (RFC3339). Takes precedence over from_date.
 
@@ -173,7 +187,7 @@ class AsyncReportsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/email-security/phishguard/reports", account_id=account_id),
-            page=AsyncSinglePage[ReportListResponse],
+            page=AsyncV4PagePaginationArray[ReportListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,6 +197,8 @@ class AsyncReportsResource(AsyncAPIResource):
                     {
                         "end": end,
                         "from_date": from_date,
+                        "page": page,
+                        "per_page": per_page,
                         "start": start,
                         "to_date": to_date,
                     },

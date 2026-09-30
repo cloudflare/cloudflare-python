@@ -80,6 +80,8 @@ class BlockSendersResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          is_regex: Whether `pattern` is a regular expression instead of a literal value.
+
           pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
               address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
               (e.g. `example.com`), or a plain IPv4 or IPv6 address or CIDR block for IP (e.g.
@@ -270,14 +272,24 @@ class BlockSendersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BlockSenderBatchResponse]:
-        """Executes multiple operations atomically.
-
-        All four operation arrays (deletes,
-        patches, puts, posts) are required and executed in order. Send empty arrays for
-        unused operations.
+        """
+        Executes multiple blocked sender operations atomically: delete, partially
+        update, replace, and create blocked sender patterns in a single request. All
+        four operation arrays (deletes, patches, puts, posts) are required and executed
+        in order. Send empty arrays for unused operations.
 
         Args:
           account_id: Identifier.
+
+          deletes: IDs of the blocked sender patterns to delete.
+
+          patches: Partial updates to apply — each entry carries the pattern's ID and only the
+              fields to change.
+
+          posts: Blocked sender patterns to create.
+
+          puts: Full replacements to apply — each entry carries the pattern's ID and every field
+              of its new value.
 
           extra_headers: Send extra headers
 
@@ -335,6 +347,8 @@ class BlockSendersResource(SyncAPIResource):
           account_id: Identifier.
 
           pattern_id: Blocked sender pattern identifier.
+
+          is_regex: Whether `pattern` is a regular expression instead of a literal value.
 
           pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
               address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
@@ -485,6 +499,8 @@ class AsyncBlockSendersResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          is_regex: Whether `pattern` is a regular expression instead of a literal value.
 
           pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
               address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN
@@ -676,14 +692,24 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BlockSenderBatchResponse]:
-        """Executes multiple operations atomically.
-
-        All four operation arrays (deletes,
-        patches, puts, posts) are required and executed in order. Send empty arrays for
-        unused operations.
+        """
+        Executes multiple blocked sender operations atomically: delete, partially
+        update, replace, and create blocked sender patterns in a single request. All
+        four operation arrays (deletes, patches, puts, posts) are required and executed
+        in order. Send empty arrays for unused operations.
 
         Args:
           account_id: Identifier.
+
+          deletes: IDs of the blocked sender patterns to delete.
+
+          patches: Partial updates to apply — each entry carries the pattern's ID and only the
+              fields to change.
+
+          posts: Blocked sender patterns to create.
+
+          puts: Full replacements to apply — each entry carries the pattern's ID and every field
+              of its new value.
 
           extra_headers: Send extra headers
 
@@ -741,6 +767,8 @@ class AsyncBlockSendersResource(AsyncAPIResource):
           account_id: Identifier.
 
           pattern_id: Blocked sender pattern identifier.
+
+          is_regex: Whether `pattern` is a regular expression instead of a literal value.
 
           pattern: The pattern value to match. The format depends on `pattern_type`: a valid email
               address for EMAIL (e.g. `user@example.com`), a valid domain name for DOMAIN

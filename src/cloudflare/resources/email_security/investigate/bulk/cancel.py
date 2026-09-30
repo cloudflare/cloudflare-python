@@ -62,6 +62,8 @@ class CancelResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          job_id: Bulk action job identifier.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -129,6 +131,8 @@ class AsyncCancelResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          job_id: Bulk action job identifier.
 
           extra_headers: Send extra headers
 

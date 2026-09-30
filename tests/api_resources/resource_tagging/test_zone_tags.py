@@ -86,7 +86,7 @@ class TestZoneTags:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="zone",
+            resource_type="access_application_policy",
         )
         assert_matches_type(Optional[ZoneTagUpdateResponse], zone_tag, path=["response"])
 
@@ -96,7 +96,7 @@ class TestZoneTags:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="zone",
+            resource_type="access_application_policy",
             tags={
                 "environment": "production",
                 "team": "engineering",
@@ -111,7 +111,7 @@ class TestZoneTags:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="zone",
+            resource_type="access_application_policy",
         )
 
         assert response.is_closed is True
@@ -125,7 +125,7 @@ class TestZoneTags:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="zone",
+            resource_type="access_application_policy",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -142,7 +142,7 @@ class TestZoneTags:
                 zone_id="",
                 access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-                resource_type="zone",
+                resource_type="access_application_policy",
             )
 
     @parametrize
@@ -319,7 +319,7 @@ class TestAsyncZoneTags:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="zone",
+            resource_type="access_application_policy",
         )
         assert_matches_type(Optional[ZoneTagUpdateResponse], zone_tag, path=["response"])
 
@@ -329,7 +329,7 @@ class TestAsyncZoneTags:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="zone",
+            resource_type="access_application_policy",
             tags={
                 "environment": "production",
                 "team": "engineering",
@@ -344,7 +344,7 @@ class TestAsyncZoneTags:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="zone",
+            resource_type="access_application_policy",
         )
 
         assert response.is_closed is True
@@ -358,7 +358,7 @@ class TestAsyncZoneTags:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="zone",
+            resource_type="access_application_policy",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -375,7 +375,7 @@ class TestAsyncZoneTags:
                 zone_id="",
                 access_application_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-                resource_type="zone",
+                resource_type="access_application_policy",
             )
 
     @parametrize

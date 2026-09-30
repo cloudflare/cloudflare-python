@@ -21,6 +21,12 @@ class LANEditParams(TypedDict, total=False):
 
     bond_id: int
 
+    ha_link: bool
+    """mark true to use this LAN for HA probing.
+
+    only works for site with HA turned on. only one LAN can be set as the ha_link.
+    """
+
     is_breakout: bool
     """mark true to use this LAN for source-based breakout traffic"""
 

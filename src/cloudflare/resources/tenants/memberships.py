@@ -53,7 +53,7 @@ class MembershipsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TenantMembership]:
         """
-        List of active members (Cloudflare users) for the Tenant.
+        Lists active Cloudflare users with memberships in this tenant.
 
         Args:
           extra_headers: Send extra headers
@@ -108,7 +108,7 @@ class AsyncMembershipsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TenantMembership, AsyncSinglePage[TenantMembership]]:
         """
-        List of active members (Cloudflare users) for the Tenant.
+        Lists active Cloudflare users with memberships in this tenant.
 
         Args:
           extra_headers: Send extra headers

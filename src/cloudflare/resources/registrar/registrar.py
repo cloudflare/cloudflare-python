@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -58,7 +58,7 @@ from .update_status import (
     AsyncUpdateStatusResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
-from ...types.registrar import registrar_check_params, registrar_search_params
+from ...types.registrar import registrar_check_params, registrar_search_params, registrar_transfer_check_params
 from .transfer_in_status import (
     TransferInStatusResource,
     AsyncTransferInStatusResource,
@@ -77,6 +77,7 @@ from .registration_status import (
 )
 from ...types.registrar.registrar_check_response import RegistrarCheckResponse
 from ...types.registrar.registrar_search_response import RegistrarSearchResponse
+from ...types.registrar.registrar_transfer_check_response import RegistrarTransferCheckResponse
 
 __all__ = ["RegistrarResource", "AsyncRegistrarResource"]
 
@@ -414,6 +415,79 @@ class RegistrarResource(SyncAPIResource):
             cast_to=cast(Type[RegistrarSearchResponse], ResultWrapper[RegistrarSearchResponse]),
         )
 
+    def transfer_check(
+        self,
+        *,
+        account_id: str,
+        domains: Iterable[registrar_transfer_check_params.Domain],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RegistrarTransferCheckResponse:
+        """
+        Performs real-time, authoritative eligibility checks directly against needed
+        requirements. Use this endpoint to verify a domain is available before
+        attempting a transfer via `POST /registrations/:domain_name/transfer-in`.
+
+        **Note:** This endpoint uses POST to accept a list of domains in the request
+        body. It is a read-only operation — it does not create, modify, or reserve any
+        domains.
+
+        ### Behavior
+
+        - Maximum 10 domains per request
+        - Pricing is only returned for domains where `transferable: true`
+        - Results are not cached; each request queries the registry & other needed
+          upstreams
+
+        ## Extension Support
+
+        All `.uk` extensions (`.uk`, `.co.uk`, etc) do not support auth codes. As such,
+        Cloudflare will ignore the `auth_code` section of this request for `.uk`
+        domains.
+
+        This means that a `.uk` domain depends on public data to obtain domain
+        information, so it might be a few minutes outdated.
+
+        ### Workflow
+
+        1. Call this endpoint with domains the user wants to transfer.
+        2. For each domain where `transferable: true`, present pricing to the user.
+        3. For each domain where `transferable: false`, present reasons to the user
+        4. Proceed to `POST /registrations/:domain_name/transfer-in` only for the
+           `transferable: true` domains.
+
+        Args:
+          account_id: Identifier.
+
+          domains: List of domain objects to evaluate for transfer eligibility.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template("/accounts/{account_id}/registrar/domain-transfer-check", account_id=account_id),
+            body=maybe_transform({"domains": domains}, registrar_transfer_check_params.RegistrarTransferCheckParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RegistrarTransferCheckResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RegistrarTransferCheckResponse], ResultWrapper[RegistrarTransferCheckResponse]),
+        )
+
 
 class AsyncRegistrarResource(AsyncAPIResource):
     """
@@ -748,6 +822,81 @@ class AsyncRegistrarResource(AsyncAPIResource):
             cast_to=cast(Type[RegistrarSearchResponse], ResultWrapper[RegistrarSearchResponse]),
         )
 
+    async def transfer_check(
+        self,
+        *,
+        account_id: str,
+        domains: Iterable[registrar_transfer_check_params.Domain],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RegistrarTransferCheckResponse:
+        """
+        Performs real-time, authoritative eligibility checks directly against needed
+        requirements. Use this endpoint to verify a domain is available before
+        attempting a transfer via `POST /registrations/:domain_name/transfer-in`.
+
+        **Note:** This endpoint uses POST to accept a list of domains in the request
+        body. It is a read-only operation — it does not create, modify, or reserve any
+        domains.
+
+        ### Behavior
+
+        - Maximum 10 domains per request
+        - Pricing is only returned for domains where `transferable: true`
+        - Results are not cached; each request queries the registry & other needed
+          upstreams
+
+        ## Extension Support
+
+        All `.uk` extensions (`.uk`, `.co.uk`, etc) do not support auth codes. As such,
+        Cloudflare will ignore the `auth_code` section of this request for `.uk`
+        domains.
+
+        This means that a `.uk` domain depends on public data to obtain domain
+        information, so it might be a few minutes outdated.
+
+        ### Workflow
+
+        1. Call this endpoint with domains the user wants to transfer.
+        2. For each domain where `transferable: true`, present pricing to the user.
+        3. For each domain where `transferable: false`, present reasons to the user
+        4. Proceed to `POST /registrations/:domain_name/transfer-in` only for the
+           `transferable: true` domains.
+
+        Args:
+          account_id: Identifier.
+
+          domains: List of domain objects to evaluate for transfer eligibility.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template("/accounts/{account_id}/registrar/domain-transfer-check", account_id=account_id),
+            body=await async_maybe_transform(
+                {"domains": domains}, registrar_transfer_check_params.RegistrarTransferCheckParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RegistrarTransferCheckResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RegistrarTransferCheckResponse], ResultWrapper[RegistrarTransferCheckResponse]),
+        )
+
 
 class RegistrarResourceWithRawResponse:
     def __init__(self, registrar: RegistrarResource) -> None:
@@ -758,6 +907,9 @@ class RegistrarResourceWithRawResponse:
         )
         self.search = to_raw_response_wrapper(
             registrar.search,
+        )
+        self.transfer_check = to_raw_response_wrapper(
+            registrar.transfer_check,
         )
 
     @cached_property
@@ -799,6 +951,9 @@ class AsyncRegistrarResourceWithRawResponse:
         self.search = async_to_raw_response_wrapper(
             registrar.search,
         )
+        self.transfer_check = async_to_raw_response_wrapper(
+            registrar.transfer_check,
+        )
 
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithRawResponse:
@@ -839,6 +994,9 @@ class RegistrarResourceWithStreamingResponse:
         self.search = to_streamed_response_wrapper(
             registrar.search,
         )
+        self.transfer_check = to_streamed_response_wrapper(
+            registrar.transfer_check,
+        )
 
     @cached_property
     def domains(self) -> DomainsResourceWithStreamingResponse:
@@ -878,6 +1036,9 @@ class AsyncRegistrarResourceWithStreamingResponse:
         )
         self.search = async_to_streamed_response_wrapper(
             registrar.search,
+        )
+        self.transfer_check = async_to_streamed_response_wrapper(
+            registrar.transfer_check,
         )
 
     @cached_property

@@ -45,7 +45,7 @@ class Dataset(BaseModel):
     filters: List[DatasetFilter]
 
     gateway_id: str
-    """gateway id"""
+    """Unique identifier of the AI Gateway within the account."""
 
     modified_at: datetime
 
@@ -80,7 +80,7 @@ class EvaluationCreateResponse(BaseModel):
     datasets: List[Dataset]
 
     gateway_id: str
-    """gateway id"""
+    """Unique identifier of the AI Gateway within the account."""
 
     modified_at: datetime
 

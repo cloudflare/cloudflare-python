@@ -212,17 +212,9 @@ class AllowPoliciesResource(SyncAPIResource):
 
           page: Current page within paginated list of results.
 
-          pattern_type: Type of pattern matching.
+          pattern: Filter by exact pattern value.
 
-              - EMAIL: matches a full email address (e.g. `user@example.com`)
-              - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
-                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
-                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
-                link-local, unspecified, and IPv4 broadcast addresses, including their
-                IPv4-mapped IPv6 equivalents.
-              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
-                but it may appear on existing entries.
+          pattern_type: Filter by pattern type.
 
           per_page: The number of results per page. Maximum value is 1000.
 
@@ -333,14 +325,24 @@ class AllowPoliciesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AllowPolicyBatchResponse]:
-        """Executes multiple operations atomically.
-
-        All four operation arrays (deletes,
-        patches, puts, posts) are required and executed in order. Send empty arrays for
-        unused operations.
+        """
+        Executes multiple allow policy operations atomically: delete, partially update,
+        replace, and create allow policies in a single request. All four operation
+        arrays (deletes, patches, puts, posts) are required and executed in order. Send
+        empty arrays for unused operations.
 
         Args:
           account_id: Identifier.
+
+          deletes: IDs of the allow policies to delete.
+
+          patches: Partial updates to apply — each entry carries the policy's ID and only the
+              fields to change.
+
+          posts: Allow policies to create.
+
+          puts: Full replacements to apply — each entry carries the policy's ID and every field
+              of its new value.
 
           extra_headers: Send extra headers
 
@@ -717,17 +719,9 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
           page: Current page within paginated list of results.
 
-          pattern_type: Type of pattern matching.
+          pattern: Filter by exact pattern value.
 
-              - EMAIL: matches a full email address (e.g. `user@example.com`)
-              - DOMAIN: matches a domain name (e.g. `example.com`)
-              - IP: matches a plain IPv4 or IPv6 address (e.g. `1.2.3.4` or
-                `2606:4700:4700::1111`) or CIDR block (e.g. `1.2.3.0/24` or
-                `2606:4700:4700::/48`). The API rejects private or unique-local, loopback,
-                link-local, unspecified, and IPv4 broadcast addresses, including their
-                IPv4-mapped IPv6 equivalents.
-              - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
-                but it may appear on existing entries.
+          pattern_type: Filter by pattern type.
 
           per_page: The number of results per page. Maximum value is 1000.
 
@@ -838,14 +832,24 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AllowPolicyBatchResponse]:
-        """Executes multiple operations atomically.
-
-        All four operation arrays (deletes,
-        patches, puts, posts) are required and executed in order. Send empty arrays for
-        unused operations.
+        """
+        Executes multiple allow policy operations atomically: delete, partially update,
+        replace, and create allow policies in a single request. All four operation
+        arrays (deletes, patches, puts, posts) are required and executed in order. Send
+        empty arrays for unused operations.
 
         Args:
           account_id: Identifier.
+
+          deletes: IDs of the allow policies to delete.
+
+          patches: Partial updates to apply — each entry carries the policy's ID and only the
+              fields to change.
+
+          posts: Allow policies to create.
+
+          puts: Full replacements to apply — each entry carries the policy's ID and every field
+              of its new value.
 
           extra_headers: Send extra headers
 

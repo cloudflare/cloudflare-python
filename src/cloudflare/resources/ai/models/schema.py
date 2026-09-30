@@ -56,11 +56,16 @@ class SchemaResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaGetResponse:
-        """
-        Retrieves the input and output JSON schema definition for a Workers AI model.
+        """Retrieves the input and output JSON Schema definitions for an AI model.
+
+        Use
+        these definitions to determine the model-specific request fields and response
+        format.
 
         Args:
-          model: Model Name
+          account_id: Cloudflare account ID used for this AI model request.
+
+          model: AI model identifier, including its namespace and model name.
 
           extra_headers: Send extra headers
 
@@ -118,11 +123,16 @@ class AsyncSchemaResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaGetResponse:
-        """
-        Retrieves the input and output JSON schema definition for a Workers AI model.
+        """Retrieves the input and output JSON Schema definitions for an AI model.
+
+        Use
+        these definitions to determine the model-specific request fields and response
+        format.
 
         Args:
-          model: Model Name
+          account_id: Cloudflare account ID used for this AI model request.
+
+          model: AI model identifier, including its namespace and model name.
 
           extra_headers: Send extra headers
 

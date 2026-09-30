@@ -22,6 +22,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindAISearchNamespace",
     "MetadataBindingWorkersBindingKindMessaging",
     "MetadataBindingWorkersBindingKindAnalyticsEngine",
+    "MetadataBindingWorkersBindingKindArtifacts",
     "MetadataBindingWorkersBindingKindAssets",
     "MetadataBindingWorkersBindingKindBrowser",
     "MetadataBindingWorkersBindingKindD1",
@@ -244,6 +245,22 @@ class MetadataBindingWorkersBindingKindAnalyticsEngine(TypedDict, total=False):
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["analytics_engine"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindArtifacts(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace: Required[str]
+    """The Artifacts namespace exposed to the Worker in the Worker's account.
+
+    Must be 2-63 characters, start with an ASCII alphanumeric character, contain
+    only ASCII alphanumeric characters, dots, underscores, and hyphens, and must not
+    end with a hyphen. The namespace does not need to be created before binding it.
+    """
+
+    type: Required[Literal["artifacts"]]
     """The kind of resource that the binding provides."""
 
 
@@ -757,6 +774,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAISearchNamespace,
     MetadataBindingWorkersBindingKindMessaging,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
+    MetadataBindingWorkersBindingKindArtifacts,
     MetadataBindingWorkersBindingKindAssets,
     MetadataBindingWorkersBindingKindBrowser,
     MetadataBindingWorkersBindingKindD1,

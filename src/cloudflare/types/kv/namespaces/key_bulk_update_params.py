@@ -10,7 +10,7 @@ __all__ = ["KeyBulkUpdateParams", "Body"]
 
 class KeyBulkUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """ID of the Cloudflare account that owns the Workers KV namespaces."""
 
     body: Required[Iterable[Body]]
 
@@ -40,7 +40,10 @@ class Body(TypedDict, total=False):
     """
 
     expiration_ttl: float
-    """Expires the key after a number of seconds. Must be at least 60."""
+    """Number of seconds until the key expires.
+
+    Must be at least 60. Takes precedence over `expiration` when both are specified.
+    """
 
     metadata: object
     """Arbitrary JSON that is associated with a key."""

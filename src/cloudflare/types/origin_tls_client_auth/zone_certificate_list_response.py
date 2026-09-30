@@ -9,7 +9,7 @@ __all__ = ["ZoneCertificateListResponse"]
 
 class ZoneCertificateListResponse(ZoneAuthenticatedOriginPull):
     id: Optional[str] = None  # type: ignore
-    """Identifier."""
+    """Certificate identifier tag."""
 
     certificate: Optional[str] = None  # type: ignore
     """The zone's leaf certificate."""

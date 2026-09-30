@@ -67,15 +67,16 @@ class TemporaryCredentialsResource(SyncAPIResource):
         to prefixes or objects.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket: Name of the R2 bucket.
 
-          parent_access_key_id: The parent access key id to use for signing.
+          parent_access_key_id: Access key ID of the parent R2 API token. The temporary credentials cannot
+              exceed this token's permissions.
 
           permission: Permissions allowed on the credentials.
 
-          ttl_seconds: How long the credentials will live for in seconds.
+          ttl_seconds: Lifetime of the temporary credentials in seconds, up to 604800 seconds (7 days).
 
           objects: Optional object paths to scope the credentials to.
 
@@ -157,15 +158,16 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
         to prefixes or objects.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket: Name of the R2 bucket.
 
-          parent_access_key_id: The parent access key id to use for signing.
+          parent_access_key_id: Access key ID of the parent R2 API token. The temporary credentials cannot
+              exceed this token's permissions.
 
           permission: Permissions allowed on the credentials.
 
-          ttl_seconds: How long the credentials will live for in seconds.
+          ttl_seconds: Lifetime of the temporary credentials in seconds, up to 604800 seconds (7 days).
 
           objects: Optional object paths to scope the credentials to.
 

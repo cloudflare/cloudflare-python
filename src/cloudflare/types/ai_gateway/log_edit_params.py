@@ -12,7 +12,7 @@ class LogEditParams(TypedDict, total=False):
     account_id: Required[str]
 
     gateway_id: Required[str]
-    """gateway id"""
+    """Unique identifier of the AI Gateway within the account."""
 
     feedback: Optional[float]
 

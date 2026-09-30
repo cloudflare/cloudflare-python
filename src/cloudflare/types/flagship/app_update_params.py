@@ -9,6 +9,7 @@ __all__ = ["AppUpdateParams"]
 
 class AppUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Cloudflare account ID."""
+    """Cloudflare account ID that owns the Flagship app."""
 
     name: str
+    """Name of the Flagship app (1–64 letters, numbers, hyphens, or underscores)."""

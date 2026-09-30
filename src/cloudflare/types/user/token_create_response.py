@@ -35,6 +35,12 @@ class TokenCreateResponse(BaseModel):
 
     condition: Optional[Condition] = None
 
+    creator_email_at_creation: Optional[str] = None
+    """The email address of the user who created the token at the time of creation.
+
+    Only present for Account Owned API Tokens when a creator email was available.
+    """
+
     expires_on: Optional[datetime] = None
     """
     The expiration time on or after which the JWT MUST NOT be accepted for
@@ -58,6 +64,19 @@ class TokenCreateResponse(BaseModel):
 
     policies: Optional[List[TokenPolicy]] = None
     """List of access policies assigned to the token."""
+
+    provisioner_id: Optional[str] = None
+    """The identifier of the service that provisioned the token.
+
+    For an OAuth-provisioned token, this is the OAuth client identifier. Present
+    when `provisioner_type` is present and null when the identifier is unavailable.
+    """
+
+    provisioner_type: Optional[str] = None
+    """The type of service that provisioned the token.
+
+    Only present for provisioned Account Owned API Tokens.
+    """
 
     status: Optional[Literal["active", "disabled", "expired"]] = None
     """Status of the token."""

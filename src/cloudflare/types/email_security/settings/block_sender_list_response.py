@@ -20,6 +20,7 @@ class BlockSenderListResponse(BaseModel):
     created_at: Optional[datetime] = None
 
     is_regex: Optional[bool] = None
+    """Whether `pattern` is a regular expression instead of a literal value."""
 
     last_modified: Optional[datetime] = None
     """Deprecated, use `modified_at` instead. End of life: November 1, 2026."""

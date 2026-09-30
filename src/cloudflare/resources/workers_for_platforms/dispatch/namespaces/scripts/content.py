@@ -90,7 +90,7 @@ class ContentResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
@@ -179,7 +179,7 @@ class ContentResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -256,7 +256,7 @@ class AsyncContentResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
@@ -345,7 +345,7 @@ class AsyncContentResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 

@@ -20,7 +20,7 @@ class TestTails:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         tail = client.pages.projects.deployments.tails.create(
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -29,7 +29,7 @@ class TestTails:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         tail = client.pages.projects.deployments.tails.create(
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             filters=[{"outcome": "bar"}],
@@ -39,7 +39,7 @@ class TestTails:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.tails.with_raw_response.create(
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -52,7 +52,7 @@ class TestTails:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.pages.projects.deployments.tails.with_streaming_response.create(
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -68,14 +68,14 @@ class TestTails:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.deployments.tails.with_raw_response.create(
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.deployments.tails.with_raw_response.create(
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
@@ -93,7 +93,7 @@ class TestTails:
             tail_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
         )
         assert_matches_type(object, tail, path=["response"])
 
@@ -103,7 +103,7 @@ class TestTails:
             tail_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
         )
 
         assert response.is_closed is True
@@ -117,7 +117,7 @@ class TestTails:
             tail_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -134,7 +134,7 @@ class TestTails:
                 tail_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -142,7 +142,7 @@ class TestTails:
                 tail_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
@@ -158,7 +158,7 @@ class TestTails:
                 tail_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             )
 
 
@@ -170,7 +170,7 @@ class TestAsyncTails:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         tail = await async_client.pages.projects.deployments.tails.create(
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -179,7 +179,7 @@ class TestAsyncTails:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         tail = await async_client.pages.projects.deployments.tails.create(
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             filters=[{"outcome": "bar"}],
@@ -189,7 +189,7 @@ class TestAsyncTails:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.deployments.tails.with_raw_response.create(
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -202,7 +202,7 @@ class TestAsyncTails:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.deployments.tails.with_streaming_response.create(
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -218,14 +218,14 @@ class TestAsyncTails:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.deployments.tails.with_raw_response.create(
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.deployments.tails.with_raw_response.create(
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
@@ -243,7 +243,7 @@ class TestAsyncTails:
             tail_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
         )
         assert_matches_type(object, tail, path=["response"])
 
@@ -253,7 +253,7 @@ class TestAsyncTails:
             tail_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
         )
 
         assert response.is_closed is True
@@ -267,7 +267,7 @@ class TestAsyncTails:
             tail_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -284,7 +284,7 @@ class TestAsyncTails:
                 tail_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -292,7 +292,7 @@ class TestAsyncTails:
                 tail_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
@@ -308,5 +308,5 @@ class TestAsyncTails:
                 tail_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="f64788e9-fccd-4d4a-a28a-cb84f88f6e12",
             )

@@ -38,6 +38,7 @@ class ReportListResponse(BaseModel):
     disposition: Literal[
         "MALICIOUS", "MALICIOUS-BEC", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "ENCRYPTED", "EXTERNAL", "UNKNOWN", "NONE"
     ]
+    """The verdict Email Security assigns to a message."""
 
     fields: Fields
 

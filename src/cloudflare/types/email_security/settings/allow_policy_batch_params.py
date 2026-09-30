@@ -13,12 +13,22 @@ class AllowPolicyBatchParams(TypedDict, total=False):
     """Identifier."""
 
     deletes: Required[Iterable[Delete]]
+    """IDs of the allow policies to delete."""
 
     patches: Required[Iterable[Patch]]
+    """
+    Partial updates to apply — each entry carries the policy's ID and only the
+    fields to change.
+    """
 
     posts: Required[Iterable[Post]]
+    """Allow policies to create."""
 
     puts: Required[Iterable[Put]]
+    """
+    Full replacements to apply — each entry carries the policy's ID and every field
+    of its new value.
+    """
 
 
 class Delete(TypedDict, total=False):

@@ -9,4 +9,4 @@ __all__ = ["CustomTrustStoreDeleteResponse"]
 
 class CustomTrustStoreDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier."""
+    """Certificate identifier tag."""

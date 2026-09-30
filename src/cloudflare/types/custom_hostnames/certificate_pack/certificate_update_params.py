@@ -12,10 +12,10 @@ class CertificateUpdateParams(TypedDict, total=False):
     """Identifier."""
 
     custom_hostname_id: Required[str]
-    """Identifier."""
+    """Custom hostname identifier tag."""
 
     certificate_pack_id: Required[str]
-    """Identifier."""
+    """Custom hostname identifier tag."""
 
     custom_certificate: Required[str]
     """If a custom uploaded certificate is used."""

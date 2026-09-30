@@ -24,8 +24,21 @@ class TestEmailSending:
     def test_method_send(self, client: Cloudflare) -> None:
         email_sending = client.email_sending.send(
             account_id="account_id",
-            from_="sender@example.com",
-            subject="Monthly Report",
+            body={
+                "attachments": [
+                    {
+                        "content": "JVBERi0xLjQK...",
+                        "disposition": "attachment",
+                        "filename": "report.pdf",
+                        "type": "application/pdf",
+                    }
+                ],
+                "from": "sender@example.com",
+                "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                "subject": "Monthly Report",
+                "text": "Hello\n\nPlease find your report attached.",
+                "to": ["recipient@example.com"],
+            },
         )
         assert_matches_type(EmailSendingSendResponse, email_sending, path=["response"])
 
@@ -33,23 +46,25 @@ class TestEmailSending:
     def test_method_send_with_all_params(self, client: Cloudflare) -> None:
         email_sending = client.email_sending.send(
             account_id="account_id",
-            from_="sender@example.com",
-            subject="Monthly Report",
-            attachments=[
-                {
-                    "content": "JVBERi0xLjQK...",
-                    "disposition": "attachment",
-                    "filename": "report.pdf",
-                    "type": "application/pdf",
-                }
-            ],
-            bcc=["bcc-recipient@example.com"],
-            cc=["cc-recipient@example.com"],
-            headers={"X-Custom-Header": "value"},
-            html="<h1>Hello</h1><p>Please find your report attached.</p>",
-            reply_to="replies@example.com",
-            text="Hello\n\nPlease find your report attached.",
-            to=["recipient@example.com"],
+            body={
+                "attachments": [
+                    {
+                        "content": "JVBERi0xLjQK...",
+                        "disposition": "attachment",
+                        "filename": "report.pdf",
+                        "type": "application/pdf",
+                    }
+                ],
+                "from": "sender@example.com",
+                "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                "subject": "Monthly Report",
+                "text": "Hello\n\nPlease find your report attached.",
+                "to": ["recipient@example.com"],
+                "bcc": ["bcc-recipient@example.com"],
+                "cc": ["cc-recipient@example.com"],
+                "headers": {"X-Custom-Header": "value"},
+                "reply_to": "replies@example.com",
+            },
         )
         assert_matches_type(EmailSendingSendResponse, email_sending, path=["response"])
 
@@ -57,8 +72,21 @@ class TestEmailSending:
     def test_raw_response_send(self, client: Cloudflare) -> None:
         response = client.email_sending.with_raw_response.send(
             account_id="account_id",
-            from_="sender@example.com",
-            subject="Monthly Report",
+            body={
+                "attachments": [
+                    {
+                        "content": "JVBERi0xLjQK...",
+                        "disposition": "attachment",
+                        "filename": "report.pdf",
+                        "type": "application/pdf",
+                    }
+                ],
+                "from": "sender@example.com",
+                "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                "subject": "Monthly Report",
+                "text": "Hello\n\nPlease find your report attached.",
+                "to": ["recipient@example.com"],
+            },
         )
 
         assert response.is_closed is True
@@ -70,8 +98,21 @@ class TestEmailSending:
     def test_streaming_response_send(self, client: Cloudflare) -> None:
         with client.email_sending.with_streaming_response.send(
             account_id="account_id",
-            from_="sender@example.com",
-            subject="Monthly Report",
+            body={
+                "attachments": [
+                    {
+                        "content": "JVBERi0xLjQK...",
+                        "disposition": "attachment",
+                        "filename": "report.pdf",
+                        "type": "application/pdf",
+                    }
+                ],
+                "from": "sender@example.com",
+                "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                "subject": "Monthly Report",
+                "text": "Hello\n\nPlease find your report attached.",
+                "to": ["recipient@example.com"],
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -86,8 +127,21 @@ class TestEmailSending:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_sending.with_raw_response.send(
                 account_id="",
-                from_="sender@example.com",
-                subject="Monthly Report",
+                body={
+                    "attachments": [
+                        {
+                            "content": "JVBERi0xLjQK...",
+                            "disposition": "attachment",
+                            "filename": "report.pdf",
+                            "type": "application/pdf",
+                        }
+                    ],
+                    "from": "sender@example.com",
+                    "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                    "subject": "Monthly Report",
+                    "text": "Hello\n\nPlease find your report attached.",
+                    "to": ["recipient@example.com"],
+                },
             )
 
     @parametrize
@@ -150,8 +204,21 @@ class TestAsyncEmailSending:
     async def test_method_send(self, async_client: AsyncCloudflare) -> None:
         email_sending = await async_client.email_sending.send(
             account_id="account_id",
-            from_="sender@example.com",
-            subject="Monthly Report",
+            body={
+                "attachments": [
+                    {
+                        "content": "JVBERi0xLjQK...",
+                        "disposition": "attachment",
+                        "filename": "report.pdf",
+                        "type": "application/pdf",
+                    }
+                ],
+                "from": "sender@example.com",
+                "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                "subject": "Monthly Report",
+                "text": "Hello\n\nPlease find your report attached.",
+                "to": ["recipient@example.com"],
+            },
         )
         assert_matches_type(EmailSendingSendResponse, email_sending, path=["response"])
 
@@ -159,23 +226,25 @@ class TestAsyncEmailSending:
     async def test_method_send_with_all_params(self, async_client: AsyncCloudflare) -> None:
         email_sending = await async_client.email_sending.send(
             account_id="account_id",
-            from_="sender@example.com",
-            subject="Monthly Report",
-            attachments=[
-                {
-                    "content": "JVBERi0xLjQK...",
-                    "disposition": "attachment",
-                    "filename": "report.pdf",
-                    "type": "application/pdf",
-                }
-            ],
-            bcc=["bcc-recipient@example.com"],
-            cc=["cc-recipient@example.com"],
-            headers={"X-Custom-Header": "value"},
-            html="<h1>Hello</h1><p>Please find your report attached.</p>",
-            reply_to="replies@example.com",
-            text="Hello\n\nPlease find your report attached.",
-            to=["recipient@example.com"],
+            body={
+                "attachments": [
+                    {
+                        "content": "JVBERi0xLjQK...",
+                        "disposition": "attachment",
+                        "filename": "report.pdf",
+                        "type": "application/pdf",
+                    }
+                ],
+                "from": "sender@example.com",
+                "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                "subject": "Monthly Report",
+                "text": "Hello\n\nPlease find your report attached.",
+                "to": ["recipient@example.com"],
+                "bcc": ["bcc-recipient@example.com"],
+                "cc": ["cc-recipient@example.com"],
+                "headers": {"X-Custom-Header": "value"},
+                "reply_to": "replies@example.com",
+            },
         )
         assert_matches_type(EmailSendingSendResponse, email_sending, path=["response"])
 
@@ -183,8 +252,21 @@ class TestAsyncEmailSending:
     async def test_raw_response_send(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_sending.with_raw_response.send(
             account_id="account_id",
-            from_="sender@example.com",
-            subject="Monthly Report",
+            body={
+                "attachments": [
+                    {
+                        "content": "JVBERi0xLjQK...",
+                        "disposition": "attachment",
+                        "filename": "report.pdf",
+                        "type": "application/pdf",
+                    }
+                ],
+                "from": "sender@example.com",
+                "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                "subject": "Monthly Report",
+                "text": "Hello\n\nPlease find your report attached.",
+                "to": ["recipient@example.com"],
+            },
         )
 
         assert response.is_closed is True
@@ -196,8 +278,21 @@ class TestAsyncEmailSending:
     async def test_streaming_response_send(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_sending.with_streaming_response.send(
             account_id="account_id",
-            from_="sender@example.com",
-            subject="Monthly Report",
+            body={
+                "attachments": [
+                    {
+                        "content": "JVBERi0xLjQK...",
+                        "disposition": "attachment",
+                        "filename": "report.pdf",
+                        "type": "application/pdf",
+                    }
+                ],
+                "from": "sender@example.com",
+                "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                "subject": "Monthly Report",
+                "text": "Hello\n\nPlease find your report attached.",
+                "to": ["recipient@example.com"],
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -212,8 +307,21 @@ class TestAsyncEmailSending:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_sending.with_raw_response.send(
                 account_id="",
-                from_="sender@example.com",
-                subject="Monthly Report",
+                body={
+                    "attachments": [
+                        {
+                            "content": "JVBERi0xLjQK...",
+                            "disposition": "attachment",
+                            "filename": "report.pdf",
+                            "type": "application/pdf",
+                        }
+                    ],
+                    "from": "sender@example.com",
+                    "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+                    "subject": "Monthly Report",
+                    "text": "Hello\n\nPlease find your report attached.",
+                    "to": ["recipient@example.com"],
+                },
             )
 
     @parametrize

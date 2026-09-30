@@ -178,7 +178,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          keyless_certificate_id: Identifier.
+          keyless_certificate_id: Keyless certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -237,7 +237,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          keyless_certificate_id: Identifier.
+          keyless_certificate_id: Keyless certificate identifier tag.
 
           enabled: Whether or not the Keyless SSL is on or off.
 
@@ -308,7 +308,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          keyless_certificate_id: Identifier.
+          keyless_certificate_id: Keyless certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -490,7 +490,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          keyless_certificate_id: Identifier.
+          keyless_certificate_id: Keyless certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -549,7 +549,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          keyless_certificate_id: Identifier.
+          keyless_certificate_id: Keyless certificate identifier tag.
 
           enabled: Whether or not the Keyless SSL is on or off.
 
@@ -620,7 +620,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          keyless_certificate_id: Identifier.
+          keyless_certificate_id: Keyless certificate identifier tag.
 
           extra_headers: Send extra headers
 

@@ -36,7 +36,7 @@ class DomainEditResponse(BaseModel):
     domain_id: str
 
     name: str
-    """The domain name."""
+    """Fully qualified domain name for the Pages project, such as `example.com`."""
 
     status: Literal["initializing", "pending", "active", "deactivated", "blocked", "error"]
 

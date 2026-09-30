@@ -96,13 +96,13 @@ class RulesetsResource(SyncAPIResource):
     def create(
         self,
         *,
-        kind: Kind,
-        name: str,
-        phase: Phase,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
         dry_run: bool | Omit = omit,
         description: str | Omit = omit,
+        kind: Kind | Omit = omit,
+        name: str | Omit = omit,
+        phase: Phase | Omit = omit,
         rules: Iterable[ruleset_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -111,17 +111,12 @@ class RulesetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RulesetCreateResponse:
-        """
-        Creates a ruleset.
+        """Creates a ruleset.
 
         Args:
-          kind: The kind of the ruleset.
+          account_id: The Account ID to use for this endpoint.
 
-          name: The human-readable name of the ruleset.
-
-          phase: The phase of the ruleset.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+        Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
@@ -130,6 +125,12 @@ class RulesetsResource(SyncAPIResource):
               204 continue to return 204.
 
           description: An informative description of the ruleset.
+
+          kind: The kind of the ruleset.
+
+          name: The human-readable name of the ruleset.
+
+          phase: The phase of the ruleset.
 
           rules: The list of rules in the ruleset.
 
@@ -163,10 +164,10 @@ class RulesetsResource(SyncAPIResource):
                 ),
                 body=maybe_transform(
                     {
+                        "description": description,
                         "kind": kind,
                         "name": name,
                         "phase": phase,
-                        "description": description,
                         "rules": rules,
                     },
                     ruleset_create_params.RulesetCreateParams,
@@ -518,13 +519,13 @@ class AsyncRulesetsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        kind: Kind,
-        name: str,
-        phase: Phase,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
         dry_run: bool | Omit = omit,
         description: str | Omit = omit,
+        kind: Kind | Omit = omit,
+        name: str | Omit = omit,
+        phase: Phase | Omit = omit,
         rules: Iterable[ruleset_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -533,17 +534,12 @@ class AsyncRulesetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RulesetCreateResponse:
-        """
-        Creates a ruleset.
+        """Creates a ruleset.
 
         Args:
-          kind: The kind of the ruleset.
+          account_id: The Account ID to use for this endpoint.
 
-          name: The human-readable name of the ruleset.
-
-          phase: The phase of the ruleset.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+        Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
@@ -552,6 +548,12 @@ class AsyncRulesetsResource(AsyncAPIResource):
               204 continue to return 204.
 
           description: An informative description of the ruleset.
+
+          kind: The kind of the ruleset.
+
+          name: The human-readable name of the ruleset.
+
+          phase: The phase of the ruleset.
 
           rules: The list of rules in the ruleset.
 
@@ -585,10 +587,10 @@ class AsyncRulesetsResource(AsyncAPIResource):
                 ),
                 body=await async_maybe_transform(
                     {
+                        "description": description,
                         "kind": kind,
                         "name": name,
                         "phase": phase,
-                        "description": description,
                         "rules": rules,
                     },
                     ruleset_create_params.RulesetCreateParams,

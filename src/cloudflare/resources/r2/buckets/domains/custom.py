@@ -71,7 +71,7 @@ class CustomResource(SyncAPIResource):
         Register a new custom domain for an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -153,7 +153,7 @@ class CustomResource(SyncAPIResource):
         Edit the configuration for a custom domain on an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -229,7 +229,7 @@ class CustomResource(SyncAPIResource):
         Gets a list of all custom domains registered with an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -282,10 +282,12 @@ class CustomResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomDeleteResponse:
         """
-        Remove custom domain registration from an existing R2 bucket.
+        Disconnects a custom domain from an R2 bucket and removes its configuration.
+        Access through other enabled custom domains or the bucket's r2.dev domain is
+        unaffected.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -346,7 +348,7 @@ class CustomResource(SyncAPIResource):
         Get the configuration for a custom domain on an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -432,7 +434,7 @@ class AsyncCustomResource(AsyncAPIResource):
         Register a new custom domain for an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -514,7 +516,7 @@ class AsyncCustomResource(AsyncAPIResource):
         Edit the configuration for a custom domain on an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -590,7 +592,7 @@ class AsyncCustomResource(AsyncAPIResource):
         Gets a list of all custom domains registered with an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -643,10 +645,12 @@ class AsyncCustomResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomDeleteResponse:
         """
-        Remove custom domain registration from an existing R2 bucket.
+        Disconnects a custom domain from an R2 bucket and removes its configuration.
+        Access through other enabled custom domains or the bucket's r2.dev domain is
+        unaffected.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -707,7 +711,7 @@ class AsyncCustomResource(AsyncAPIResource):
         Get the configuration for a custom domain on an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 

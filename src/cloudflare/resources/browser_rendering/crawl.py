@@ -83,6 +83,7 @@ class CrawlResource(SyncAPIResource):
         | Omit = omit,
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         content_use: Literal["reference", "full"] | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
@@ -163,6 +164,9 @@ class CrawlResource(SyncAPIResource):
           authenticate: Provide credentials for HTTP authentication.
 
           best_attempt: Attempt to proceed when 'awaited' events fail or timeout.
+
+          browser: Rendering backend for this crawl. Set to `kitesurf` to render pages with
+              Kitesurf (beta). Only valid when `render` is `true`.
 
           content_use: Intended content use level to respect the `use` Content-Signal directive in
               robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
@@ -346,6 +350,7 @@ class CrawlResource(SyncAPIResource):
         | Omit = omit,
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         content_use: Literal["reference", "full"] | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
@@ -410,6 +415,7 @@ class CrawlResource(SyncAPIResource):
                     "allow_resource_types": allow_resource_types,
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
+                    "browser": browser,
                     "content_use": content_use,
                     "cookies": cookies,
                     "crawl_purposes": crawl_purposes,
@@ -616,6 +622,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         | Omit = omit,
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         content_use: Literal["reference", "full"] | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
@@ -696,6 +703,9 @@ class AsyncCrawlResource(AsyncAPIResource):
           authenticate: Provide credentials for HTTP authentication.
 
           best_attempt: Attempt to proceed when 'awaited' events fail or timeout.
+
+          browser: Rendering backend for this crawl. Set to `kitesurf` to render pages with
+              Kitesurf (beta). Only valid when `render` is `true`.
 
           content_use: Intended content use level to respect the `use` Content-Signal directive in
               robots.txt. Levels (least to most permissive): 'reference', 'full'. A URL is
@@ -879,6 +889,7 @@ class AsyncCrawlResource(AsyncAPIResource):
         | Omit = omit,
         authenticate: crawl_create_params.Variant0Authenticate | Omit = omit,
         best_attempt: bool | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         content_use: Literal["reference", "full"] | Omit = omit,
         cookies: Iterable[crawl_create_params.Variant0Cookie] | Omit = omit,
         crawl_purposes: List[Literal["search", "ai-input", "ai-train"]] | Omit = omit,
@@ -943,6 +954,7 @@ class AsyncCrawlResource(AsyncAPIResource):
                     "allow_resource_types": allow_resource_types,
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
+                    "browser": browser,
                     "content_use": content_use,
                     "cookies": cookies,
                     "crawl_purposes": crawl_purposes,

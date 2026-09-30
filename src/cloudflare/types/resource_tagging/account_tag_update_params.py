@@ -21,44 +21,8 @@ class ResourceTaggingSetTagsRequestAccountLevelWorkerVersion(TypedDict, total=Fa
     resource_id: Required[str]
     """Identifies the unique resource."""
 
-    resource_type: Required[
-        Literal[
-            "access_application",
-            "access_group",
-            "account",
-            "account_ruleset",
-            "ai_gateway",
-            "alerting_policy",
-            "alerting_webhook",
-            "cloudflared_tunnel",
-            "cws_deployment",
-            "cws_policy",
-            "cws_policy_set",
-            "cws_workload",
-            "d1_database",
-            "durable_object_namespace",
-            "gateway_list",
-            "gateway_rule",
-            "image",
-            "infrastructure_target",
-            "kv_namespace",
-            "load_balancer_monitor",
-            "load_balancer_pool",
-            "pages_project",
-            "queue",
-            "r2_bucket",
-            "resource_share",
-            "stream_live_input",
-            "stream_video",
-            "vectorize_index",
-            "worker",
-            "worker_version",
-        ]
-    ]
-    """
-    Enum for base account-level resource types (those with no extra required
-    fields).
-    """
+    resource_type: Required[Literal["worker_version"]]
+    """Enum for worker_version resource type."""
 
     worker_id: Required[str]
     """Worker ID is required only for worker_version resources"""

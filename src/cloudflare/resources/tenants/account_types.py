@@ -53,7 +53,7 @@ class AccountTypesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[AccountTypeListResponse]:
         """
-        List of account types available for the Tenant to provision accounts.
+        Lists the account types this tenant is allowed to provision.
 
         Args:
           extra_headers: Send extra headers
@@ -108,7 +108,7 @@ class AsyncAccountTypesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AccountTypeListResponse, AsyncSinglePage[AccountTypeListResponse]]:
         """
-        List of account types available for the Tenant to provision accounts.
+        Lists the account types this tenant is allowed to provision.
 
         Args:
           extra_headers: Send extra headers

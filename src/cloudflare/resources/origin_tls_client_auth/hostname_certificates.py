@@ -163,7 +163,7 @@ class HostnameCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_id: Identifier.
+          certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -213,7 +213,7 @@ class HostnameCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_id: Identifier.
+          certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -379,7 +379,7 @@ class AsyncHostnameCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_id: Identifier.
+          certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -429,7 +429,7 @@ class AsyncHostnameCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_id: Identifier.
+          certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 

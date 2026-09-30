@@ -13,7 +13,11 @@ class TailCreateParams(TypedDict, total=False):
     """Identifier."""
 
     project_name: Required[str]
-    """Name of the project."""
+    """Name of the Pages project.
+
+    Must begin with a lowercase letter or digit and contain only lowercase letters,
+    digits, and hyphens.
+    """
 
     filters: Iterable[Dict[str, object]]
     """Filters to apply to the tail session."""

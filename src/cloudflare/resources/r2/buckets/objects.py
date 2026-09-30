@@ -98,7 +98,7 @@ class ObjectsResource(SyncAPIResource):
         instead.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -184,7 +184,7 @@ class ObjectsResource(SyncAPIResource):
         instead.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -257,7 +257,7 @@ class ObjectsResource(SyncAPIResource):
         instead.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -337,7 +337,7 @@ class ObjectsResource(SyncAPIResource):
         instead.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -442,7 +442,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         instead.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -528,7 +528,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         instead.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -601,7 +601,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         instead.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -681,7 +681,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         instead.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 

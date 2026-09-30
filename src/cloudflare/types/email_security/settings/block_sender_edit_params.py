@@ -15,6 +15,7 @@ class BlockSenderEditParams(TypedDict, total=False):
     comments: Optional[str]
 
     is_regex: bool
+    """Whether `pattern` is a regular expression instead of a literal value."""
 
     pattern: str
     """The pattern value to match.

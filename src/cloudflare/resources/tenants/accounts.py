@@ -53,7 +53,7 @@ class AccountsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TenantAccount]:
         """
-        List of accounts for the Tenant.
+        Lists the Cloudflare accounts associated with this tenant.
 
         Args:
           extra_headers: Send extra headers
@@ -108,7 +108,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TenantAccount, AsyncSinglePage[TenantAccount]]:
         """
-        List of accounts for the Tenant.
+        Lists the Cloudflare accounts associated with this tenant.
 
         Args:
           extra_headers: Send extra headers

@@ -56,7 +56,7 @@ class Widget(BaseModel):
     """Secret key for this widget."""
 
     sitekey: str
-    """Widget item identifier tag."""
+    """Unique identifier for a Turnstile widget."""
 
     deployed_via: Optional[Literal["wrangler", "dashboard", "spin", "api", "unknown"]] = None
     """

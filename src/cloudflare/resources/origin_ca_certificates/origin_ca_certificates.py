@@ -194,7 +194,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         endpoint ([see above](#requests)).
 
         Args:
-          certificate_id: Identifier.
+          certificate_id: The x509 serial number of the Origin CA certificate.
 
           extra_headers: Send extra headers
 
@@ -238,7 +238,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         endpoint ([see above](#requests)).
 
         Args:
-          certificate_id: Identifier.
+          certificate_id: The x509 serial number of the Origin CA certificate.
 
           extra_headers: Send extra headers
 
@@ -428,7 +428,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         endpoint ([see above](#requests)).
 
         Args:
-          certificate_id: Identifier.
+          certificate_id: The x509 serial number of the Origin CA certificate.
 
           extra_headers: Send extra headers
 
@@ -472,7 +472,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         endpoint ([see above](#requests)).
 
         Args:
-          certificate_id: Identifier.
+          certificate_id: The x509 serial number of the Origin CA certificate.
 
           extra_headers: Send extra headers
 

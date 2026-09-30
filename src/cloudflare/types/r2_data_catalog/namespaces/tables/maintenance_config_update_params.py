@@ -43,4 +43,4 @@ class SnapshotExpiration(TypedDict, total=False):
     """Updates the minimum number of snapshots to retain optionally."""
 
     state: Literal["enabled", "disabled"]
-    """Updates the state optionally."""
+    """Specifies the state of maintenance operations."""

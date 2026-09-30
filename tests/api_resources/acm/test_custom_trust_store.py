@@ -115,7 +115,7 @@ class TestCustomTrustStore:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         custom_trust_store = client.acm.custom_trust_store.delete(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomTrustStoreDeleteResponse], custom_trust_store, path=["response"])
@@ -123,7 +123,7 @@ class TestCustomTrustStore:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.acm.custom_trust_store.with_raw_response.delete(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -135,7 +135,7 @@ class TestCustomTrustStore:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.acm.custom_trust_store.with_streaming_response.delete(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -150,7 +150,7 @@ class TestCustomTrustStore:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.acm.custom_trust_store.with_raw_response.delete(
-                custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="",
             )
 
@@ -165,7 +165,7 @@ class TestCustomTrustStore:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         custom_trust_store = client.acm.custom_trust_store.get(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomTrustStore], custom_trust_store, path=["response"])
@@ -173,7 +173,7 @@ class TestCustomTrustStore:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.acm.custom_trust_store.with_raw_response.get(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -185,7 +185,7 @@ class TestCustomTrustStore:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.acm.custom_trust_store.with_streaming_response.get(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -200,7 +200,7 @@ class TestCustomTrustStore:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.acm.custom_trust_store.with_raw_response.get(
-                custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="",
             )
 
@@ -312,7 +312,7 @@ class TestAsyncCustomTrustStore:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         custom_trust_store = await async_client.acm.custom_trust_store.delete(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomTrustStoreDeleteResponse], custom_trust_store, path=["response"])
@@ -320,7 +320,7 @@ class TestAsyncCustomTrustStore:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.acm.custom_trust_store.with_raw_response.delete(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -332,7 +332,7 @@ class TestAsyncCustomTrustStore:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.acm.custom_trust_store.with_streaming_response.delete(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -347,7 +347,7 @@ class TestAsyncCustomTrustStore:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.acm.custom_trust_store.with_raw_response.delete(
-                custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="",
             )
 
@@ -362,7 +362,7 @@ class TestAsyncCustomTrustStore:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         custom_trust_store = await async_client.acm.custom_trust_store.get(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomTrustStore], custom_trust_store, path=["response"])
@@ -370,7 +370,7 @@ class TestAsyncCustomTrustStore:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.acm.custom_trust_store.with_raw_response.get(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -382,7 +382,7 @@ class TestAsyncCustomTrustStore:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.acm.custom_trust_store.with_streaming_response.get(
-            custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -397,7 +397,7 @@ class TestAsyncCustomTrustStore:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.acm.custom_trust_store.with_raw_response.get(
-                custom_origin_trust_store_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_origin_trust_store_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="",
             )
 

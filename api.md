@@ -157,6 +157,8 @@ Methods:
 
 # [DurableObjects](src/cloudflare/resources/durable_objects/api.md)
 
+# [Containers](src/cloudflare/resources/containers/api.md)
+
 # [Queues](src/cloudflare/resources/queues/api.md)
 
 # [APIGateway](src/cloudflare/resources/api_gateway/api.md)

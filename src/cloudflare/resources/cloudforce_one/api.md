@@ -1,38 +1,5 @@
 # CloudforceOne
 
-## Scans
-
-### Results
-
-Types:
-
-```python
-from cloudflare.types.cloudforce_one.scans import ScanResult, ResultGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/cloudforce-one/scans/results/{config_id}">client.cloudforce_one.scans.results.<a href="./src/cloudflare/resources/cloudforce_one/scans/results.py">get</a>(config_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/result_get_response.py">ResultGetResponse</a></code>
-
-### Config
-
-Types:
-
-```python
-from cloudflare.types.cloudforce_one.scans import (
-    ConfigCreateResponse,
-    ConfigListResponse,
-    ConfigEditResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/scans/config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_create_response.py">Optional[ConfigCreateResponse]</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_list_response.py">SyncSinglePage[ConfigListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/cloudforce-one/scans/config/{config_id}">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">delete</a>(config_id, \*, account_id) -> object</code>
-- <code title="patch /accounts/{account_id}/cloudforce-one/scans/config/{config_id}">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">edit</a>(config_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/scans/config_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_edit_response.py">Optional[ConfigEditResponse]</a></code>
-
 ## BinaryStorage
 
 Types:
@@ -128,6 +95,39 @@ Methods:
 - <code title="put /accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}">client.cloudforce_one.requests.assets.<a href="./src/cloudflare/resources/cloudforce_one/requests/assets.py">update</a>(asset_id, \*, account_id, request_id, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/asset_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/asset_update_response.py">Optional[AssetUpdateResponse]</a></code>
 - <code title="delete /accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}">client.cloudforce_one.requests.assets.<a href="./src/cloudflare/resources/cloudforce_one/requests/assets.py">delete</a>(asset_id, \*, account_id, request_id) -> <a href="./src/cloudflare/types/cloudforce_one/requests/asset_delete_response.py">AssetDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}">client.cloudforce_one.requests.assets.<a href="./src/cloudflare/resources/cloudforce_one/requests/assets.py">get</a>(asset_id, \*, account_id, request_id) -> <a href="./src/cloudflare/types/cloudforce_one/requests/asset_get_response.py">SyncSinglePage[AssetGetResponse]</a></code>
+
+## Scans
+
+### Results
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.scans import ScanResult, ResultGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/scans/results/{config_id}">client.cloudforce_one.scans.results.<a href="./src/cloudflare/resources/cloudforce_one/scans/results.py">get</a>(config_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/result_get_response.py">ResultGetResponse</a></code>
+
+### Config
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.scans import (
+    ConfigCreateResponse,
+    ConfigListResponse,
+    ConfigEditResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/scans/config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_create_response.py">Optional[ConfigCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_list_response.py">SyncSinglePage[ConfigListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/scans/config/{config_id}">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">delete</a>(config_id, \*, account_id) -> object</code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/scans/config/{config_id}">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">edit</a>(config_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/scans/config_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_edit_response.py">Optional[ConfigEditResponse]</a></code>
 
 ## ThreatEvents
 
@@ -520,3 +520,191 @@ from cloudflare.types.cloudforce_one.threat_events.target_industries import Cata
 Methods:
 
 - <code title="get /accounts/{account_id}/cloudforce-one/events/targetIndustries/catalog">client.cloudforce_one.threat_events.target_industries.catalog.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/target_industries/catalog.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/target_industries/catalog_list_response.py">CatalogListResponse</a></code>
+
+## ThreatSignals
+
+### Search
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals import SearchSearchResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/search">client.cloudforce_one.threat_signals.search.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/search.py">search</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/search_search_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/search_search_response.py">SearchSearchResponse</a></code>
+
+### Categories
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals import CategoryListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/categories">client.cloudforce_one.threat_signals.categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/categories.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/category_list_response.py">CategoryListResponse</a></code>
+
+### Feeds
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals import (
+    FeedCreateResponse,
+    FeedListResponse,
+    FeedDeleteResponse,
+    FeedEditResponse,
+    FeedPollResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/v2/threat-signals/feeds">client.cloudforce_one.threat_signals.feeds.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/feeds/feeds.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/feed_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/feed_create_response.py">FeedCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/feeds">client.cloudforce_one.threat_signals.feeds.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/feeds/feeds.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/feed_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/feed_list_response.py">SyncV4PagePagination[FeedListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/v2/threat-signals/feeds/{feed_id}">client.cloudforce_one.threat_signals.feeds.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/feeds/feeds.py">delete</a>(feed_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/feed_delete_response.py">FeedDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/v2/threat-signals/feeds/{feed_id}">client.cloudforce_one.threat_signals.feeds.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/feeds/feeds.py">edit</a>(feed_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/feed_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/feed_edit_response.py">FeedEditResponse</a></code>
+- <code title="post /accounts/{account_id}/cloudforce-one/v2/threat-signals/feeds/poll">client.cloudforce_one.threat_signals.feeds.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/feeds/feeds.py">poll</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/feed_poll_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/feed_poll_response.py">FeedPollResponse</a></code>
+
+#### Raw
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals.feeds import RawGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/feeds/{feed_id}/raw">client.cloudforce_one.threat_signals.feeds.raw.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/feeds/raw.py">get</a>(feed_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/feeds/raw_get_params.py">params</a>) -> str</code>
+
+#### Skills
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals.feeds import (
+    SkillUpdateResponse,
+    SkillGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/cloudforce-one/v2/threat-signals/feeds/{feed_id}/skills">client.cloudforce_one.threat_signals.feeds.skills.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/feeds/skills.py">update</a>(feed_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/feeds/skill_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/feeds/skill_update_response.py">SkillUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/feeds/{feed_id}/skills">client.cloudforce_one.threat_signals.feeds.skills.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/feeds/skills.py">get</a>(feed_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/feeds/skill_get_response.py">SkillGetResponse</a></code>
+
+### Articles
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals import (
+    ArticleListResponse,
+    ArticleBulkEditResponse,
+    ArticleEditResponse,
+    ArticleGetResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/articles">client.cloudforce_one.threat_signals.articles.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/articles/articles.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/article_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/article_list_response.py">ArticleListResponse</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/v2/threat-signals/articles">client.cloudforce_one.threat_signals.articles.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/articles/articles.py">bulk_edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/article_bulk_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/article_bulk_edit_response.py">ArticleBulkEditResponse</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/v2/threat-signals/articles/{article_id}">client.cloudforce_one.threat_signals.articles.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/articles/articles.py">edit</a>(article_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/article_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/article_edit_response.py">ArticleEditResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/articles/{article_id}">client.cloudforce_one.threat_signals.articles.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/articles/articles.py">get</a>(article_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/article_get_response.py">ArticleGetResponse</a></code>
+
+#### Content
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals.articles import ContentGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/articles/{article_id}/content">client.cloudforce_one.threat_signals.articles.content.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/articles/content.py">get</a>(article_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/articles/content_get_params.py">params</a>) -> str</code>
+
+#### Tags
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals.articles import (
+    TagCreateResponse,
+    TagDeleteResponse,
+    TagGenerateResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/v2/threat-signals/articles/{article_id}/tags">client.cloudforce_one.threat_signals.articles.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/articles/tags.py">create</a>(article_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/articles/tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/articles/tag_create_response.py">TagCreateResponse</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/v2/threat-signals/articles/{article_id}/tags/{tag_id}">client.cloudforce_one.threat_signals.articles.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/articles/tags.py">delete</a>(tag_id, \*, account_id, article_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/articles/tag_delete_response.py">TagDeleteResponse</a></code>
+- <code title="post /accounts/{account_id}/cloudforce-one/v2/threat-signals/articles/{article_id}/tag">client.cloudforce_one.threat_signals.articles.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/articles/tags.py">generate</a>(article_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/articles/tag_generate_response.py">TagGenerateResponse</a></code>
+
+#### SkillOutputs
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals.articles import SkillOutputGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/articles/{article_id}/skills/{skill_id}/output">client.cloudforce_one.threat_signals.articles.skill_outputs.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/articles/skill_outputs.py">get</a>(skill_id, \*, account_id, article_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/articles/skill_output_get_response.py">SkillOutputGetResponse</a></code>
+
+### Indicators
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals import IndicatorListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/indicators">client.cloudforce_one.threat_signals.indicators.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/indicators.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/indicator_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/indicator_list_response.py">IndicatorListResponse</a></code>
+
+### Skills
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals import (
+    SkillCreateResponse,
+    SkillListResponse,
+    SkillDeleteResponse,
+    SkillEditResponse,
+    SkillGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/v2/threat-signals/skills">client.cloudforce_one.threat_signals.skills.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/skills/skills.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/skill_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/skill_create_response.py">SkillCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/skills">client.cloudforce_one.threat_signals.skills.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/skills/skills.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/skill_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/skill_list_response.py">SyncV4PagePagination[SkillListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/v2/threat-signals/skills/{skill_id}">client.cloudforce_one.threat_signals.skills.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/skills/skills.py">delete</a>(skill_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/skill_delete_response.py">SkillDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/v2/threat-signals/skills/{skill_id}">client.cloudforce_one.threat_signals.skills.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/skills/skills.py">edit</a>(skill_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/skill_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/skill_edit_response.py">SkillEditResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/skills/{skill_id}">client.cloudforce_one.threat_signals.skills.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/skills/skills.py">get</a>(skill_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/skill_get_response.py">SkillGetResponse</a></code>
+
+#### TagCategories
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_signals.skills import (
+    TagCategoryUpdateResponse,
+    TagCategoryGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/cloudforce-one/v2/threat-signals/skills/{skill_id}/tag-categories">client.cloudforce_one.threat_signals.skills.tag_categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/skills/tag_categories.py">update</a>(skill_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_signals/skills/tag_category_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/skills/tag_category_update_response.py">TagCategoryUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/v2/threat-signals/skills/{skill_id}/tag-categories">client.cloudforce_one.threat_signals.skills.tag_categories.<a href="./src/cloudflare/resources/cloudforce_one/threat_signals/skills/tag_categories.py">get</a>(skill_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_signals/skills/tag_category_get_response.py">TagCategoryGetResponse</a></code>

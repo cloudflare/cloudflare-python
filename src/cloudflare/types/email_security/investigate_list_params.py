@@ -16,8 +16,10 @@ class InvestigateListParams(TypedDict, total=False):
     """Identifier."""
 
     alert_id: str
+    """Filter by alert ID."""
 
     cursor: str
+    """Pagination cursor from the previous response's `result_info`."""
 
     delivery_status: Literal[
         "delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"
@@ -28,7 +30,10 @@ class InvestigateListParams(TypedDict, total=False):
     """Whether to include only detections in search results."""
 
     domain: str
-    """Sender domains to filter by."""
+    """
+    Filter by a domain found in the email — sender domain, recipient domain, or a
+    domain in a link.
+    """
 
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The end of the search date range. Defaults to `now`."""
@@ -40,8 +45,10 @@ class InvestigateListParams(TypedDict, total=False):
     """Message actions to filter by."""
 
     message_id: str
+    """Filter by the RFC 5322 Message-ID header."""
 
     metric: str
+    """Metric to aggregate the results by."""
 
     page: Optional[int]
     """Deprecated: Use cursor pagination instead. End of life: November 1, 2026."""
@@ -50,11 +57,16 @@ class InvestigateListParams(TypedDict, total=False):
     """The number of results per page. Maximum value is 1000."""
 
     query: str
-    """Space-delimited search term. Case-insensitive."""
+    """
+    Space-delimited term matched case-insensitively against message metadata —
+    sender, recipient, subject, attachment names and hashes, and message ID.
+    """
 
     recipient: str
+    """Filter by recipient. Matches an email address or a domain."""
 
     sender: str
+    """Filter by sender. Matches an email address or a domain."""
 
     smtp_helo_ip: str
     """Matches messages whose SMTP HELO server IP address equals this value."""
@@ -66,3 +78,7 @@ class InvestigateListParams(TypedDict, total=False):
     """
 
     subject: str
+    """
+    Search for messages containing individual keywords in any order within the
+    subject.
+    """

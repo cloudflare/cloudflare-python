@@ -9,7 +9,10 @@ __all__ = ["KeyBulkUpdateResponse"]
 
 class KeyBulkUpdateResponse(BaseModel):
     successful_key_count: Optional[float] = None
-    """Number of keys successfully updated."""
+    """Number of keys successfully written or deleted by the bulk operation."""
 
     unsuccessful_keys: Optional[List[str]] = None
-    """Name of the keys that failed to be fully updated. They should be retried."""
+    """Names of keys that failed to be written or deleted.
+
+    Retry the operation for these keys.
+    """

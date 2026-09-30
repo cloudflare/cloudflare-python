@@ -18,13 +18,18 @@ class ContentPolicyListResponse(BaseModel):
     created_at: Optional[datetime] = None
 
     enabled: Optional[bool] = None
+    """Whether the policy is active."""
 
     modified_at: Optional[datetime] = None
 
     name: Optional[str] = None
+    """Human-readable name of the policy."""
 
     notes: Optional[str] = None
+    """Optional note describing the purpose of the policy."""
 
     pattern: Optional[str] = None
+    """Regular expression the policy matches against."""
 
     targets: Optional[List[Literal["SUBJECT", "BODY"]]] = None
+    """Parts of the email the pattern is matched against."""

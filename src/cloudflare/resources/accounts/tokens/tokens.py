@@ -225,11 +225,12 @@ class TokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Token]:
-        """List all Account Owned API tokens created for this account.
+        """List Account Owned API tokens created for this account.
 
-        Results include
-        active, disabled, and recently-expired tokens when include_expired is set to
-        true.
+        Callers with
+        `com.cloudflare.api.account.token.list_self` permission only receive tokens they
+        created. Results include active, disabled, and recently-expired tokens when
+        `include_expired` is set to true.
 
         Args:
           account_id: Account identifier tag.
@@ -579,11 +580,12 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Token, AsyncV4PagePaginationArray[Token]]:
-        """List all Account Owned API tokens created for this account.
+        """List Account Owned API tokens created for this account.
 
-        Results include
-        active, disabled, and recently-expired tokens when include_expired is set to
-        true.
+        Callers with
+        `com.cloudflare.api.account.token.list_self` permission only receive tokens they
+        created. Results include active, disabled, and recently-expired tokens when
+        `include_expired` is set to true.
 
         Args:
           account_id: Account identifier tag.

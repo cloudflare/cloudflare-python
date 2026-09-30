@@ -23,10 +23,10 @@ class TestCertificates:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         certificate = client.custom_hostnames.certificate_pack.certificates.update(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
             custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
         )
@@ -35,10 +35,10 @@ class TestCertificates:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
             custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
         )
@@ -51,10 +51,10 @@ class TestCertificates:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.custom_hostnames.certificate_pack.certificates.with_streaming_response.update(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
             custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
         ) as response:
@@ -70,29 +70,29 @@ class TestCertificates:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
                 custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_hostname_id` but received ''"):
             client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 custom_hostname_id="",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
                 custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 certificate_pack_id="",
                 custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
                 custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
@@ -102,8 +102,8 @@ class TestCertificates:
             client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
                 certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
                 custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
             )
@@ -111,20 +111,20 @@ class TestCertificates:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         certificate = client.custom_hostnames.certificate_pack.certificates.delete(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
         )
         assert_matches_type(CertificateDeleteResponse, certificate, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
         )
 
         assert response.is_closed is True
@@ -135,10 +135,10 @@ class TestCertificates:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.custom_hostnames.certificate_pack.certificates.with_streaming_response.delete(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -152,25 +152,25 @@ class TestCertificates:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_hostname_id` but received ''"):
             client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 custom_hostname_id="",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 certificate_pack_id="",
             )
 
@@ -178,8 +178,8 @@ class TestCertificates:
             client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
                 certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             )
 
 
@@ -191,10 +191,10 @@ class TestAsyncCertificates:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.custom_hostnames.certificate_pack.certificates.update(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
             custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
         )
@@ -203,10 +203,10 @@ class TestAsyncCertificates:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
             custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
         )
@@ -219,10 +219,10 @@ class TestAsyncCertificates:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_hostnames.certificate_pack.certificates.with_streaming_response.update(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
             custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
         ) as response:
@@ -238,29 +238,29 @@ class TestAsyncCertificates:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
                 custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_hostname_id` but received ''"):
             await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 custom_hostname_id="",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
                 custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 certificate_pack_id="",
                 custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
                 custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
@@ -270,8 +270,8 @@ class TestAsyncCertificates:
             await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.update(
                 certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 custom_certificate="-----BEGIN CERTIFICATE-----\nMIIDdjCCAl6gAwIBAgIJAPnMg0Fs+/B0MA0GCSqGSIb3DQEBCwUAMFsx...\n-----END CERTIFICATE-----\n",
                 custom_key="-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/SCB5...\n-----END PRIVATE KEY-----\n",
             )
@@ -279,20 +279,20 @@ class TestAsyncCertificates:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.custom_hostnames.certificate_pack.certificates.delete(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
         )
         assert_matches_type(CertificateDeleteResponse, certificate, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
         )
 
         assert response.is_closed is True
@@ -303,10 +303,10 @@ class TestAsyncCertificates:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_hostnames.certificate_pack.certificates.with_streaming_response.delete(
-            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+            certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -320,25 +320,25 @@ class TestAsyncCertificates:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_hostname_id` but received ''"):
             await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 custom_hostname_id="",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 certificate_pack_id="",
             )
 
@@ -346,6 +346,6 @@ class TestAsyncCertificates:
             await async_client.custom_hostnames.certificate_pack.certificates.with_raw_response.delete(
                 certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
-                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+                certificate_pack_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             )

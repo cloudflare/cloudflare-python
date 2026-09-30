@@ -16,6 +16,7 @@ from ...._response import (
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
+from ....types.email_security.investigate import release_bulk_params
 from ....types.email_security.investigate.release_bulk_response import ReleaseBulkResponse
 
 __all__ = ["ReleaseResource", "AsyncReleaseResource"]
@@ -45,7 +46,7 @@ class ReleaseResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: SequenceNotStr[str],
+        ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -55,11 +56,14 @@ class ReleaseResource(SyncAPIResource):
     ) -> SyncSinglePage[ReleaseBulkResponse]:
         """
         Delivers one or more quarantined messages to their intended recipients, for
-        cases where a message was incorrectly quarantined. The response includes
-        delivery status for each recipient.
+        cases where a message was incorrectly quarantined. Operates on an explicit list
+        of messages; to release all messages matching a search, create a bulk action job
+        instead. The response includes delivery status for each recipient.
 
         Args:
           account_id: Identifier.
+
+          ids: Investigate IDs of the messages to release.
 
           extra_headers: Send extra headers
 
@@ -74,7 +78,7 @@ class ReleaseResource(SyncAPIResource):
         return self._get_api_list(
             path_template("/accounts/{account_id}/email-security/investigate/release", account_id=account_id),
             page=SyncSinglePage[ReleaseBulkResponse],
-            body=maybe_transform(body, SequenceNotStr[str]),
+            body=maybe_transform({"ids": ids}, release_bulk_params.ReleaseBulkParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -107,7 +111,7 @@ class AsyncReleaseResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: SequenceNotStr[str],
+        ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,11 +121,14 @@ class AsyncReleaseResource(AsyncAPIResource):
     ) -> AsyncPaginator[ReleaseBulkResponse, AsyncSinglePage[ReleaseBulkResponse]]:
         """
         Delivers one or more quarantined messages to their intended recipients, for
-        cases where a message was incorrectly quarantined. The response includes
-        delivery status for each recipient.
+        cases where a message was incorrectly quarantined. Operates on an explicit list
+        of messages; to release all messages matching a search, create a bulk action job
+        instead. The response includes delivery status for each recipient.
 
         Args:
           account_id: Identifier.
+
+          ids: Investigate IDs of the messages to release.
 
           extra_headers: Send extra headers
 
@@ -136,7 +143,7 @@ class AsyncReleaseResource(AsyncAPIResource):
         return self._get_api_list(
             path_template("/accounts/{account_id}/email-security/investigate/release", account_id=account_id),
             page=AsyncSinglePage[ReleaseBulkResponse],
-            body=maybe_transform(body, SequenceNotStr[str]),
+            body=maybe_transform({"ids": ids}, release_bulk_params.ReleaseBulkParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

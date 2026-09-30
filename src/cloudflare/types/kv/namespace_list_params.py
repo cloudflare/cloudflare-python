@@ -9,13 +9,13 @@ __all__ = ["NamespaceListParams"]
 
 class NamespaceListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """ID of the Cloudflare account that owns the Workers KV namespaces."""
 
     direction: Literal["asc", "desc"]
-    """Direction to order namespaces."""
+    """Sort namespaces in ascending (`asc`) or descending (`desc`) order."""
 
     order: Literal["id", "title"]
-    """Field to order results by."""
+    """Namespace field to sort by (`id` or `title`)."""
 
     page: float
     """Page number of paginated results."""

@@ -85,7 +85,7 @@ class SecretsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           name: A JavaScript variable name for the binding.
 
@@ -138,7 +138,7 @@ class SecretsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           algorithm: Algorithm-specific key parameters.
               [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
@@ -258,7 +258,7 @@ class SecretsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -315,7 +315,7 @@ class SecretsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secret_name: A JavaScript variable name for the secret binding.
 
@@ -388,7 +388,7 @@ class SecretsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secrets:
               Map of secret names to secret values:
@@ -461,7 +461,7 @@ class SecretsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secret_name: A JavaScript variable name for the secret binding.
 
@@ -557,7 +557,7 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           name: A JavaScript variable name for the binding.
 
@@ -610,7 +610,7 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           algorithm: Algorithm-specific key parameters.
               [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
@@ -730,7 +730,7 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -787,7 +787,7 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secret_name: A JavaScript variable name for the secret binding.
 
@@ -862,7 +862,7 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secrets:
               Map of secret names to secret values:
@@ -935,7 +935,7 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secret_name: A JavaScript variable name for the secret binding.
 

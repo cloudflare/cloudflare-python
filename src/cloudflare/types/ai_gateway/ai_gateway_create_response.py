@@ -198,7 +198,7 @@ class Stripe(BaseModel):
 
 class AIGatewayCreateResponse(BaseModel):
     id: str
-    """gateway id"""
+    """Unique identifier of the AI Gateway within the account."""
 
     cache_invalidate_on_update: bool
 

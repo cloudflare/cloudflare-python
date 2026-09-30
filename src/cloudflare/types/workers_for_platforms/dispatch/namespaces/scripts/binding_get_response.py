@@ -15,6 +15,7 @@ __all__ = [
     "WorkersBindingKindAISearchNamespace",
     "WorkersBindingKindMessaging",
     "WorkersBindingKindAnalyticsEngine",
+    "WorkersBindingKindArtifacts",
     "WorkersBindingKindAssets",
     "WorkersBindingKindBrowser",
     "WorkersBindingKindD1",
@@ -120,6 +121,22 @@ class WorkersBindingKindAnalyticsEngine(BaseModel):
     """A JavaScript variable name for the binding."""
 
     type: Literal["analytics_engine"]
+    """The kind of resource that the binding provides."""
+
+
+class WorkersBindingKindArtifacts(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    namespace: str
+    """The Artifacts namespace exposed to the Worker in the Worker's account.
+
+    Must be 2-63 characters, start with an ASCII alphanumeric character, contain
+    only ASCII alphanumeric characters, dots, underscores, and hyphens, and must not
+    end with a hyphen. The namespace does not need to be created before binding it.
+    """
+
+    type: Literal["artifacts"]
     """The kind of resource that the binding provides."""
 
 
@@ -619,6 +636,7 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindAISearchNamespace,
         WorkersBindingKindMessaging,
         WorkersBindingKindAnalyticsEngine,
+        WorkersBindingKindArtifacts,
         WorkersBindingKindAssets,
         WorkersBindingKindBrowser,
         WorkersBindingKindD1,

@@ -30,6 +30,7 @@ class Patch(BaseModel):
     """
 
     is_regex: Optional[bool] = None
+    """Whether `pattern` is a regular expression instead of a literal domain."""
 
     is_similarity: Optional[bool] = None
     """
@@ -43,6 +44,7 @@ class Patch(BaseModel):
     modified_at: Optional[datetime] = None
 
     pattern: Optional[str] = None
+    """The domain pattern to trust, e.g. `example.com`."""
 
 
 class Post(BaseModel):
@@ -62,6 +64,7 @@ class Post(BaseModel):
     """
 
     is_regex: Optional[bool] = None
+    """Whether `pattern` is a regular expression instead of a literal domain."""
 
     is_similarity: Optional[bool] = None
     """
@@ -75,6 +78,7 @@ class Post(BaseModel):
     modified_at: Optional[datetime] = None
 
     pattern: Optional[str] = None
+    """The domain pattern to trust, e.g. `example.com`."""
 
 
 class Put(BaseModel):
@@ -94,6 +98,7 @@ class Put(BaseModel):
     """
 
     is_regex: Optional[bool] = None
+    """Whether `pattern` is a regular expression instead of a literal domain."""
 
     is_similarity: Optional[bool] = None
     """
@@ -107,6 +112,7 @@ class Put(BaseModel):
     modified_at: Optional[datetime] = None
 
     pattern: Optional[str] = None
+    """The domain pattern to trust, e.g. `example.com`."""
 
 
 class TrustedDomainBatchResponse(BaseModel):

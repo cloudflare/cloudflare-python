@@ -19,6 +19,8 @@ class WAN(BaseModel):
     The default value is `mid`.
     """
 
+    load_balance_inner_flows: Optional[bool] = None
+
     name: Optional[str] = None
 
     physport: Optional[int] = None

@@ -111,8 +111,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -222,8 +222,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -318,8 +318,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -419,8 +419,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -511,8 +511,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -604,8 +604,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -690,8 +690,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -773,8 +773,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -1023,7 +1023,9 @@ class AbuseReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[Optional[AbuseReportListResponse]]:
         """
-        List the abuse reports for a given account
+        List abuse reports made against domains or other content associated with the
+        account. To list reports that the account submitted, use the submitted abuse
+        reports endpoint instead.
 
         Args:
           created_after: Returns reports created after the specified date
@@ -1093,7 +1095,9 @@ class AbuseReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AbuseReportGetResponse:
         """
-        Retrieve the details of an abuse report.
+        Retrieve the details of an abuse report made against a domain or other content
+        associated with the account. To retrieve a report that the account submitted,
+        use the submitted abuse report endpoint instead.
 
         Args:
           extra_headers: Send extra headers
@@ -1190,8 +1194,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -1301,8 +1305,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -1397,8 +1401,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -1498,8 +1502,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -1590,8 +1594,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -1683,8 +1687,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -1769,8 +1773,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -1852,8 +1856,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Requires the abuse-reports entitlement on the account (Enterprise accounts have
         it by default; other accounts must request access) and an API token with the
-        `Account > Abuse Reports > Edit` permission. If the account is not entitled, the
-        request is rejected with an HTTP `401` response (see below).
+        `Trust and Safety Write` permission. If the account is not entitled, the request
+        is rejected with an HTTP `401` response (see below).
 
         Args:
           report_param: The report type for submitted reports.
@@ -2102,7 +2106,9 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[AbuseReportListResponse], AsyncV4PagePagination[Optional[AbuseReportListResponse]]]:
         """
-        List the abuse reports for a given account
+        List abuse reports made against domains or other content associated with the
+        account. To list reports that the account submitted, use the submitted abuse
+        reports endpoint instead.
 
         Args:
           created_after: Returns reports created after the specified date
@@ -2172,7 +2178,9 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AbuseReportGetResponse:
         """
-        Retrieve the details of an abuse report.
+        Retrieve the details of an abuse report made against a domain or other content
+        associated with the account. To retrieve a report that the account submitted,
+        use the submitted abuse report endpoint instead.
 
         Args:
           extra_headers: Send extra headers

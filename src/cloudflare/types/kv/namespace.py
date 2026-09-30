@@ -10,10 +10,10 @@ __all__ = ["Namespace"]
 
 class Namespace(BaseModel):
     id: str
-    """Namespace identifier tag."""
+    """ID of the Workers KV namespace."""
 
     title: str
-    """A human-readable string name for a Namespace."""
+    """Human-readable string name for a Workers KV namespace."""
 
     jurisdiction: Optional[Literal["eu", "fedramp", "us"]] = None
     """

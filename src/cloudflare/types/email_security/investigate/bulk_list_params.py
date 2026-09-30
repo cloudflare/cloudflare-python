@@ -12,6 +12,7 @@ class BulkListParams(TypedDict, total=False):
     """Identifier."""
 
     action_type: Literal["MOVE", "RELEASE"]
+    """Filter jobs by the action they perform."""
 
     page: int
     """Current page within paginated list of results."""
@@ -20,4 +21,4 @@ class BulkListParams(TypedDict, total=False):
     """The number of results per page. Maximum value is 1000."""
 
     status: Literal["PENDING", "DISCOVERING", "PROCESSING", "COMPLETED", "FAILED", "CANCELLED"]
-    """Filter by job status."""
+    """Filter jobs by their processing status."""

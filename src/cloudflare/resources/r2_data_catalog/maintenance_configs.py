@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -45,6 +46,9 @@ class MaintenanceConfigsResource(SyncAPIResource):
         """
         return MaintenanceConfigsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use `POST /accounts/{account_id}/basin-catalog/{bucket_name}/maintenance-configs` instead."
+    )
     def update(
         self,
         bucket_name: str,
@@ -110,6 +114,9 @@ class MaintenanceConfigsResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "Use `GET /accounts/{account_id}/basin-catalog/{bucket_name}/maintenance-configs` instead."
+    )
     def get(
         self,
         bucket_name: str,
@@ -180,6 +187,9 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
         """
         return AsyncMaintenanceConfigsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use `POST /accounts/{account_id}/basin-catalog/{bucket_name}/maintenance-configs` instead."
+    )
     async def update(
         self,
         bucket_name: str,
@@ -245,6 +255,9 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "Use `GET /accounts/{account_id}/basin-catalog/{bucket_name}/maintenance-configs` instead."
+    )
     async def get(
         self,
         bucket_name: str,
@@ -299,11 +312,15 @@ class MaintenanceConfigsResourceWithRawResponse:
     def __init__(self, maintenance_configs: MaintenanceConfigsResource) -> None:
         self._maintenance_configs = maintenance_configs
 
-        self.update = to_raw_response_wrapper(
-            maintenance_configs.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                maintenance_configs.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            maintenance_configs.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                maintenance_configs.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -311,11 +328,15 @@ class AsyncMaintenanceConfigsResourceWithRawResponse:
     def __init__(self, maintenance_configs: AsyncMaintenanceConfigsResource) -> None:
         self._maintenance_configs = maintenance_configs
 
-        self.update = async_to_raw_response_wrapper(
-            maintenance_configs.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                maintenance_configs.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            maintenance_configs.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                maintenance_configs.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -323,11 +344,15 @@ class MaintenanceConfigsResourceWithStreamingResponse:
     def __init__(self, maintenance_configs: MaintenanceConfigsResource) -> None:
         self._maintenance_configs = maintenance_configs
 
-        self.update = to_streamed_response_wrapper(
-            maintenance_configs.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                maintenance_configs.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            maintenance_configs.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                maintenance_configs.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -335,9 +360,13 @@ class AsyncMaintenanceConfigsResourceWithStreamingResponse:
     def __init__(self, maintenance_configs: AsyncMaintenanceConfigsResource) -> None:
         self._maintenance_configs = maintenance_configs
 
-        self.update = async_to_streamed_response_wrapper(
-            maintenance_configs.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                maintenance_configs.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            maintenance_configs.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                maintenance_configs.get,  # pyright: ignore[reportDeprecated],
+            )
         )

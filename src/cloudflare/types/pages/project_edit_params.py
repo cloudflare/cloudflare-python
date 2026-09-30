@@ -63,7 +63,11 @@ class ProjectEditParams(TypedDict, total=False):
     """Configs for deployments in a project."""
 
     name: str
-    """Name of the project."""
+    """Name for the Pages project.
+
+    Must begin with a lowercase letter or digit and contain only lowercase letters,
+    digits, and hyphens.
+    """
 
     production_branch: str
     """Production branch of the project. Used to identify production deployments."""

@@ -8,14 +8,6 @@ from .ips import (
     IPsResourceWithStreamingResponse,
     AsyncIPsResourceWithStreamingResponse,
 )
-from .zones import (
-    ZonesResource,
-    AsyncZonesResource,
-    ZonesResourceWithRawResponse,
-    AsyncZonesResourceWithRawResponse,
-    ZonesResourceWithStreamingResponse,
-    AsyncZonesResourceWithStreamingResponse,
-)
 from .accounts import (
     AccountsResource,
     AsyncAccountsResource,
@@ -46,12 +38,6 @@ __all__ = [
     "AsyncIPsResourceWithRawResponse",
     "IPsResourceWithStreamingResponse",
     "AsyncIPsResourceWithStreamingResponse",
-    "ZonesResource",
-    "AsyncZonesResource",
-    "ZonesResourceWithRawResponse",
-    "AsyncZonesResourceWithRawResponse",
-    "ZonesResourceWithStreamingResponse",
-    "AsyncZonesResourceWithStreamingResponse",
     "AddressMapsResource",
     "AsyncAddressMapsResource",
     "AddressMapsResourceWithRawResponse",

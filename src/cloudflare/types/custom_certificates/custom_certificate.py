@@ -14,7 +14,7 @@ __all__ = ["CustomCertificate"]
 
 class CustomCertificate(BaseModel):
     id: str
-    """Identifier."""
+    """Custom certificate identifier tag."""
 
     zone_id: str
     """Identifier."""

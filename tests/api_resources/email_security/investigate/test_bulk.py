@@ -153,7 +153,7 @@ class TestBulk:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         bulk = client.email_security.investigate.bulk.delete(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
@@ -161,7 +161,7 @@ class TestBulk:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.email_security.investigate.bulk.with_raw_response.delete(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -173,7 +173,7 @@ class TestBulk:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.email_security.investigate.bulk.with_streaming_response.delete(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -188,7 +188,7 @@ class TestBulk:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.investigate.bulk.with_raw_response.delete(
-                job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
@@ -201,7 +201,7 @@ class TestBulk:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         bulk = client.email_security.investigate.bulk.get(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(BulkGetResponse, bulk, path=["response"])
@@ -209,7 +209,7 @@ class TestBulk:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.email_security.investigate.bulk.with_raw_response.get(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -221,7 +221,7 @@ class TestBulk:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.email_security.investigate.bulk.with_streaming_response.get(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -236,7 +236,7 @@ class TestBulk:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.investigate.bulk.with_raw_response.get(
-                job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
@@ -381,7 +381,7 @@ class TestAsyncBulk:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         bulk = await async_client.email_security.investigate.bulk.delete(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
@@ -389,7 +389,7 @@ class TestAsyncBulk:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.investigate.bulk.with_raw_response.delete(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -401,7 +401,7 @@ class TestAsyncBulk:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.investigate.bulk.with_streaming_response.delete(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -416,7 +416,7 @@ class TestAsyncBulk:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.investigate.bulk.with_raw_response.delete(
-                job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
@@ -429,7 +429,7 @@ class TestAsyncBulk:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         bulk = await async_client.email_security.investigate.bulk.get(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(BulkGetResponse, bulk, path=["response"])
@@ -437,7 +437,7 @@ class TestAsyncBulk:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.investigate.bulk.with_raw_response.get(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -449,7 +449,7 @@ class TestAsyncBulk:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.investigate.bulk.with_streaming_response.get(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -464,7 +464,7 @@ class TestAsyncBulk:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.investigate.bulk.with_raw_response.get(
-                job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 

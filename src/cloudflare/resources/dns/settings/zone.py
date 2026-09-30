@@ -83,7 +83,7 @@ class ZoneResource(SyncAPIResource):
               zone even when non-Cloudflare NS records exist, and to respect NS records at the
               zone apex during outbound zone transfers.
 
-          nameservers: Settings determining the nameservers through which the zone should be available.
+          nameservers: Controls the nameservers through which the zone is available.
 
           ns_ttl: The time to live (TTL) of the zone's nameserver (NS) records.
 
@@ -227,7 +227,7 @@ class AsyncZoneResource(AsyncAPIResource):
               zone even when non-Cloudflare NS records exist, and to respect NS records at the
               zone apex during outbound zone transfers.
 
-          nameservers: Settings determining the nameservers through which the zone should be available.
+          nameservers: Controls the nameservers through which the zone is available.
 
           ns_ttl: The time to live (TTL) of the zone's nameserver (NS) records.
 

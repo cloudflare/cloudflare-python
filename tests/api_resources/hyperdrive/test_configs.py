@@ -140,8 +140,8 @@ class TestConfigs:
             integration={
                 "database_branch_name": "x",
                 "database_name": "x",
-                "integration": "planetscale",
                 "organization_name": "x",
+                "provider": "planetscale",
                 "scheme": "postgres",
             },
             name="example-hyperdrive",
@@ -156,8 +156,8 @@ class TestConfigs:
             integration={
                 "database_branch_name": "x",
                 "database_name": "x",
-                "integration": "planetscale",
                 "organization_name": "x",
+                "provider": "planetscale",
                 "scheme": "postgres",
                 "custom_database_name": "custom_database_name",
             },
@@ -185,8 +185,8 @@ class TestConfigs:
             integration={
                 "database_branch_name": "x",
                 "database_name": "x",
-                "integration": "planetscale",
                 "organization_name": "x",
+                "provider": "planetscale",
                 "scheme": "postgres",
             },
             name="example-hyperdrive",
@@ -205,8 +205,8 @@ class TestConfigs:
             integration={
                 "database_branch_name": "x",
                 "database_name": "x",
-                "integration": "planetscale",
                 "organization_name": "x",
+                "provider": "planetscale",
                 "scheme": "postgres",
             },
             name="example-hyperdrive",
@@ -228,8 +228,8 @@ class TestConfigs:
                 integration={
                     "database_branch_name": "x",
                     "database_name": "x",
-                    "integration": "planetscale",
                     "organization_name": "x",
+                    "provider": "planetscale",
                     "scheme": "postgres",
                 },
                 name="example-hyperdrive",
@@ -744,8 +744,8 @@ class TestAsyncConfigs:
             integration={
                 "database_branch_name": "x",
                 "database_name": "x",
-                "integration": "planetscale",
                 "organization_name": "x",
+                "provider": "planetscale",
                 "scheme": "postgres",
             },
             name="example-hyperdrive",
@@ -760,8 +760,8 @@ class TestAsyncConfigs:
             integration={
                 "database_branch_name": "x",
                 "database_name": "x",
-                "integration": "planetscale",
                 "organization_name": "x",
+                "provider": "planetscale",
                 "scheme": "postgres",
                 "custom_database_name": "custom_database_name",
             },
@@ -789,8 +789,8 @@ class TestAsyncConfigs:
             integration={
                 "database_branch_name": "x",
                 "database_name": "x",
-                "integration": "planetscale",
                 "organization_name": "x",
+                "provider": "planetscale",
                 "scheme": "postgres",
             },
             name="example-hyperdrive",
@@ -809,8 +809,8 @@ class TestAsyncConfigs:
             integration={
                 "database_branch_name": "x",
                 "database_name": "x",
-                "integration": "planetscale",
                 "organization_name": "x",
+                "provider": "planetscale",
                 "scheme": "postgres",
             },
             name="example-hyperdrive",
@@ -832,8 +832,8 @@ class TestAsyncConfigs:
                 integration={
                     "database_branch_name": "x",
                     "database_name": "x",
-                    "integration": "planetscale",
                     "organization_name": "x",
+                    "provider": "planetscale",
                     "scheme": "postgres",
                 },
                 name="example-hyperdrive",

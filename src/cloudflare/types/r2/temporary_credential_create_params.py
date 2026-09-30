@@ -12,19 +12,24 @@ __all__ = ["TemporaryCredentialCreateParams"]
 
 class TemporaryCredentialCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID."""
+    """Cloudflare account ID that owns the R2 resource."""
 
     bucket: Required[str]
     """Name of the R2 bucket."""
 
     parent_access_key_id: Required[Annotated[str, PropertyInfo(alias="parentAccessKeyId")]]
-    """The parent access key id to use for signing."""
+    """Access key ID of the parent R2 API token.
+
+    The temporary credentials cannot exceed this token's permissions.
+    """
 
     permission: Required[Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"]]
     """Permissions allowed on the credentials."""
 
     ttl_seconds: Required[Annotated[float, PropertyInfo(alias="ttlSeconds")]]
-    """How long the credentials will live for in seconds."""
+    """
+    Lifetime of the temporary credentials in seconds, up to 604800 seconds (7 days).
+    """
 
     objects: SequenceNotStr[str]
     """Optional object paths to scope the credentials to."""

@@ -38,20 +38,22 @@ class DeploymentCreateParams(TypedDict, total=False):
     """
 
     branch: str
-    """The branch to build the new deployment from.
+    """Git branch to deploy.
 
-    The `HEAD` of the branch will be used. If omitted, the production branch will be
-    used by default.
+    Uses the branch's `HEAD`; defaults to the project's production branch.
     """
 
     commit_dirty: Literal["true", "false"]
-    """Boolean string indicating if the working directory has uncommitted changes."""
+    """Whether the associated Git working tree has uncommitted changes.
+
+    Provide `true` or `false`.
+    """
 
     commit_hash: str
-    """Git commit SHA associated with this deployment."""
+    """Git commit SHA associated with the deployment."""
 
     commit_message: str
-    """Git commit message associated with this deployment."""
+    """Git commit message associated with the deployment."""
 
     functions_filepath_routing_config_json: Annotated[
         FileTypes, PropertyInfo(alias="functions-filepath-routing-config.json")
@@ -59,10 +61,9 @@ class DeploymentCreateParams(TypedDict, total=False):
     """Functions routing configuration file."""
 
     manifest: str
-    """JSON string containing a manifest of files to deploy.
-
-    Maps file paths to their content hashes. Required for direct upload deployments.
-    Maximum 20,000 entries.
+    """
+    JSON-encoded object mapping deployment file paths to their uploaded content
+    hashes. Required for Direct Upload deployments. Maximum 20,000 entries.
     """
 
     pages_build_output_dir: str

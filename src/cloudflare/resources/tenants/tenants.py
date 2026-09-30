@@ -103,7 +103,8 @@ class TenantsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tenant:
         """
-        Retrieves a Tenant by Tenant ID.
+        Retrieves a tenant's identity, status, metadata, contacts, and organizational
+        units.
 
         Args:
           extra_headers: Send extra headers
@@ -177,7 +178,8 @@ class AsyncTenantsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tenant:
         """
-        Retrieves a Tenant by Tenant ID.
+        Retrieves a tenant's identity, status, metadata, contacts, and organizational
+        units.
 
         Args:
           extra_headers: Send extra headers

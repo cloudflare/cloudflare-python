@@ -9,7 +9,7 @@ __all__ = ["NamespaceUpdateParams"]
 
 class NamespaceUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """ID of the Cloudflare account that owns the Workers KV namespaces."""
 
     title: Required[str]
-    """A human-readable string name for a Namespace."""
+    """Human-readable string name for a Workers KV namespace."""

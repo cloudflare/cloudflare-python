@@ -11,7 +11,7 @@ __all__ = ["ObjectListParams"]
 
 class ObjectListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID."""
+    """Cloudflare account ID that owns the R2 resource."""
 
     cursor: str
     """Pagination cursor received from a previous List Objects call.

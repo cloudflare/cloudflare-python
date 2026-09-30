@@ -9,10 +9,10 @@ __all__ = ["HostnameUpdateResponse"]
 
 class HostnameUpdateResponse(AuthenticatedOriginPull):
     id: Optional[str] = None
-    """Identifier."""
+    """Certificate identifier tag."""
 
     cert_id: Optional[str] = None  # type: ignore
-    """Identifier."""
+    """Certificate identifier tag."""
 
     certificate: Optional[str] = None  # type: ignore
     """The hostname certificate."""

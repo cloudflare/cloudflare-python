@@ -91,7 +91,9 @@ class AppsResource(SyncAPIResource):
         evaluation requests.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
+
+          name: Name of the Flagship app (1–64 letters, numbers, hyphens, or underscores).
 
           extra_headers: Send extra headers
 
@@ -134,9 +136,11 @@ class AppsResource(SyncAPIResource):
         Only `name` is mutable.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
+
+          name: Name of the Flagship app (1–64 letters, numbers, hyphens, or underscores).
 
           extra_headers: Send extra headers
 
@@ -174,13 +178,13 @@ class AppsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[AppListResponse]:
-        """Lists all apps in the account.
+        """Lists all Flagship apps in the account.
 
-        Returns identity and audit fields only — flag
-        definitions are not included.
+        Returns identity and audit fields only;
+        flag definitions are not included.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
           extra_headers: Send extra headers
 
@@ -219,9 +223,9 @@ class AppsResource(SyncAPIResource):
         Worker still references this app via a Flagship binding.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
 
           extra_headers: Send extra headers
 
@@ -264,9 +268,9 @@ class AppsResource(SyncAPIResource):
         Flag definitions are not included.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
 
           extra_headers: Send extra headers
 
@@ -339,7 +343,9 @@ class AsyncAppsResource(AsyncAPIResource):
         evaluation requests.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
+
+          name: Name of the Flagship app (1–64 letters, numbers, hyphens, or underscores).
 
           extra_headers: Send extra headers
 
@@ -382,9 +388,11 @@ class AsyncAppsResource(AsyncAPIResource):
         Only `name` is mutable.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
+
+          name: Name of the Flagship app (1–64 letters, numbers, hyphens, or underscores).
 
           extra_headers: Send extra headers
 
@@ -422,13 +430,13 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AppListResponse, AsyncSinglePage[AppListResponse]]:
-        """Lists all apps in the account.
+        """Lists all Flagship apps in the account.
 
-        Returns identity and audit fields only — flag
-        definitions are not included.
+        Returns identity and audit fields only;
+        flag definitions are not included.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
           extra_headers: Send extra headers
 
@@ -467,9 +475,9 @@ class AsyncAppsResource(AsyncAPIResource):
         Worker still references this app via a Flagship binding.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
 
           extra_headers: Send extra headers
 
@@ -512,9 +520,9 @@ class AsyncAppsResource(AsyncAPIResource):
         Flag definitions are not included.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
 
           extra_headers: Send extra headers
 

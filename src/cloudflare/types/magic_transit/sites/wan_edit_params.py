@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Optional
+from typing_extensions import Literal, Required, TypedDict
 
 from .wan_static_addressing_param import WANStaticAddressingParam
 
@@ -15,6 +16,11 @@ class WANEditParams(TypedDict, total=False):
 
     site_id: Required[str]
     """Identifier"""
+
+    health_check_rate: Literal["low", "mid", "high"]
+    """Magic WAN health check rate for tunnels created on this link."""
+
+    load_balance_inner_flows: Optional[bool]
 
     name: str
 

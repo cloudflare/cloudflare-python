@@ -70,9 +70,15 @@ class ToMarkdownResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ToMarkdownCreateResponse]:
         """
-        Converts uploaded files into Markdown format using Workers AI.
+        Converts files uploaded as multipart form data into Markdown using Workers AI.
+        Returns a conversion result for each file. Use the supported-formats endpoint to
+        check accepted file types.
 
         Args:
+          account_id: Cloudflare account ID used for this AI model request.
+
+          files: Files to convert, supplied as multipart file uploads.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -138,9 +144,15 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ToMarkdownCreateResponse, AsyncSinglePage[ToMarkdownCreateResponse]]:
         """
-        Converts uploaded files into Markdown format using Workers AI.
+        Converts files uploaded as multipart form data into Markdown using Workers AI.
+        Returns a conversion result for each file. Use the supported-formats endpoint to
+        check accepted file types.
 
         Args:
+          account_id: Cloudflare account ID used for this AI model request.
+
+          files: Files to convert, supplied as multipart file uploads.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

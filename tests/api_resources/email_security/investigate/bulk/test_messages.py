@@ -21,7 +21,7 @@ class TestMessages:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         message = client.email_security.investigate.bulk.messages.list(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[MessageListResponse], message, path=["response"])
@@ -29,7 +29,7 @@ class TestMessages:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         message = client.email_security.investigate.bulk.messages.list(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=1,
             per_page=20,
@@ -40,7 +40,7 @@ class TestMessages:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.email_security.investigate.bulk.messages.with_raw_response.list(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -52,7 +52,7 @@ class TestMessages:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.email_security.investigate.bulk.messages.with_streaming_response.list(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -67,7 +67,7 @@ class TestMessages:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.investigate.bulk.messages.with_raw_response.list(
-                job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
@@ -86,7 +86,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.email_security.investigate.bulk.messages.list(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[MessageListResponse], message, path=["response"])
@@ -94,7 +94,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.email_security.investigate.bulk.messages.list(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=1,
             per_page=20,
@@ -105,7 +105,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.investigate.bulk.messages.with_raw_response.list(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -117,7 +117,7 @@ class TestAsyncMessages:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.investigate.bulk.messages.with_streaming_response.list(
-            job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -132,7 +132,7 @@ class TestAsyncMessages:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.investigate.bulk.messages.with_raw_response.list(
-                job_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                job_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 

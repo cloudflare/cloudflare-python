@@ -43,6 +43,7 @@ class TestDatasets:
                 }
             ],
             filter="filter",
+            filter_attack_traffic=True,
         )
         assert_matches_type(Optional[Dataset], dataset, path=["response"])
 
@@ -114,6 +115,7 @@ class TestDatasets:
                 }
             ],
             filter="filter",
+            filter_attack_traffic=True,
         )
         assert_matches_type(Optional[Dataset], dataset, path=["response"])
 
@@ -389,6 +391,7 @@ class TestAsyncDatasets:
                 }
             ],
             filter="filter",
+            filter_attack_traffic=True,
         )
         assert_matches_type(Optional[Dataset], dataset, path=["response"])
 
@@ -460,6 +463,7 @@ class TestAsyncDatasets:
                 }
             ],
             filter="filter",
+            filter_attack_traffic=True,
         )
         assert_matches_type(Optional[Dataset], dataset, path=["response"])
 

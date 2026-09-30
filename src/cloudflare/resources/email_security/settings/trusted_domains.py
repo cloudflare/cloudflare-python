@@ -84,8 +84,12 @@ class TrustedDomainsResource(SyncAPIResource):
           is_recent: Select to prevent recently registered domains from triggering a Suspicious or
               Malicious disposition.
 
+          is_regex: Whether `pattern` is a regular expression instead of a literal domain.
+
           is_similarity: Select for partner or other approved domains that have similar spelling to your
               connected domains. Prevents listed domains from triggering a Spoof disposition.
+
+          pattern: The domain pattern to trust, e.g. `example.com`.
 
           extra_headers: Send extra headers
 
@@ -263,14 +267,24 @@ class TrustedDomainsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TrustedDomainBatchResponse]:
-        """Executes multiple operations atomically.
-
-        All four operation arrays (deletes,
-        patches, puts, posts) are required and executed in order. Send empty arrays for
-        unused operations.
+        """
+        Executes multiple trusted domain operations atomically: delete, partially
+        update, replace, and create trusted domain patterns in a single request. All
+        four operation arrays (deletes, patches, puts, posts) are required and executed
+        in order. Send empty arrays for unused operations.
 
         Args:
           account_id: Identifier.
+
+          deletes: IDs of the trusted domain patterns to delete.
+
+          patches: Partial updates to apply — each entry carries the pattern's ID and only the
+              fields to change.
+
+          posts: Trusted domain patterns to create.
+
+          puts: Full replacements to apply — each entry carries the pattern's ID and every field
+              of its new value.
 
           extra_headers: Send extra headers
 
@@ -335,8 +349,12 @@ class TrustedDomainsResource(SyncAPIResource):
           is_recent: Select to prevent recently registered domains from triggering a Suspicious or
               Malicious disposition.
 
+          is_regex: Whether `pattern` is a regular expression instead of a literal domain.
+
           is_similarity: Select for partner or other approved domains that have similar spelling to your
               connected domains. Prevents listed domains from triggering a Spoof disposition.
+
+          pattern: The domain pattern to trust, e.g. `example.com`.
 
           extra_headers: Send extra headers
 
@@ -474,8 +492,12 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
           is_recent: Select to prevent recently registered domains from triggering a Suspicious or
               Malicious disposition.
 
+          is_regex: Whether `pattern` is a regular expression instead of a literal domain.
+
           is_similarity: Select for partner or other approved domains that have similar spelling to your
               connected domains. Prevents listed domains from triggering a Spoof disposition.
+
+          pattern: The domain pattern to trust, e.g. `example.com`.
 
           extra_headers: Send extra headers
 
@@ -653,14 +675,24 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TrustedDomainBatchResponse]:
-        """Executes multiple operations atomically.
-
-        All four operation arrays (deletes,
-        patches, puts, posts) are required and executed in order. Send empty arrays for
-        unused operations.
+        """
+        Executes multiple trusted domain operations atomically: delete, partially
+        update, replace, and create trusted domain patterns in a single request. All
+        four operation arrays (deletes, patches, puts, posts) are required and executed
+        in order. Send empty arrays for unused operations.
 
         Args:
           account_id: Identifier.
+
+          deletes: IDs of the trusted domain patterns to delete.
+
+          patches: Partial updates to apply — each entry carries the pattern's ID and only the
+              fields to change.
+
+          posts: Trusted domain patterns to create.
+
+          puts: Full replacements to apply — each entry carries the pattern's ID and every field
+              of its new value.
 
           extra_headers: Send extra headers
 
@@ -725,8 +757,12 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
           is_recent: Select to prevent recently registered domains from triggering a Suspicious or
               Malicious disposition.
 
+          is_regex: Whether `pattern` is a regular expression instead of a literal domain.
+
           is_similarity: Select for partner or other approved domains that have similar spelling to your
               connected domains. Prevents listed domains from triggering a Spoof disposition.
+
+          pattern: The domain pattern to trust, e.g. `example.com`.
 
           extra_headers: Send extra headers
 

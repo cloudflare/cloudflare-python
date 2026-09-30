@@ -98,6 +98,13 @@ class Variant0(TypedDict, total=False):
     best_attempt: Annotated[bool, PropertyInfo(alias="bestAttempt")]
     """Attempt to proceed when 'awaited' events fail or timeout."""
 
+    browser: Literal["kitesurf"]
+    """Rendering backend for this crawl.
+
+    Set to `kitesurf` to render pages with Kitesurf (beta). Only valid when `render`
+    is `true`.
+    """
+
     content_use: Annotated[Literal["reference", "full"], PropertyInfo(alias="contentUse")]
     """
     Intended content use level to respect the `use` Content-Signal directive in

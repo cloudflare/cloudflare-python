@@ -20,7 +20,7 @@ class ScriptSearchResponseItem(BaseModel):
     """When the script was last modified."""
 
     script_name: str
-    """Name of the script, used in URLs and route configuration."""
+    """Name of the script."""
 
     environment_is_default: Optional[bool] = None
     """Whether the environment is the default environment."""

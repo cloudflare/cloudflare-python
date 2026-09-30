@@ -17,6 +17,10 @@ class MoveBulkParams(TypedDict, total=False):
     destination: Required[
         Literal["Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"]
     ]
+    """The mailbox folder to move messages to."""
+
+    ids: Required[SequenceNotStr[str]]
+    """List of message IDs to move."""
 
     expected_disposition: Optional[
         Literal[
@@ -33,9 +37,6 @@ class MoveBulkParams(TypedDict, total=False):
         ]
     ]
     """Nonfunctional field. End of life: December 1, 2026."""
-
-    ids: SequenceNotStr[str]
-    """List of message IDs to move."""
 
     postfix_ids: SequenceNotStr[str]
     """Deprecated, use `ids` instead. End of life: November 1, 2026."""

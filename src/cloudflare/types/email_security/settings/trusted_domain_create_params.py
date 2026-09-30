@@ -19,6 +19,7 @@ class TrustedDomainCreateParams(TypedDict, total=False):
     """
 
     is_regex: Required[bool]
+    """Whether `pattern` is a regular expression instead of a literal domain."""
 
     is_similarity: Required[bool]
     """
@@ -27,5 +28,6 @@ class TrustedDomainCreateParams(TypedDict, total=False):
     """
 
     pattern: Required[str]
+    """The domain pattern to trust, e.g. `example.com`."""
 
     comments: Optional[str]

@@ -93,6 +93,7 @@ class TestSites:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="ac60d3d0435248289d446cedd870bcf4",
             description="description",
+            ha_mode=True,
             location={
                 "lat": "37.6192",
                 "lon": "122.3816",
@@ -251,6 +252,7 @@ class TestSites:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="ac60d3d0435248289d446cedd870bcf4",
             description="description",
+            ha_mode=True,
             location={
                 "lat": "37.6192",
                 "lon": "122.3816",
@@ -436,6 +438,7 @@ class TestAsyncSites:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="ac60d3d0435248289d446cedd870bcf4",
             description="description",
+            ha_mode=True,
             location={
                 "lat": "37.6192",
                 "lon": "122.3816",
@@ -594,6 +597,7 @@ class TestAsyncSites:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="ac60d3d0435248289d446cedd870bcf4",
             description="description",
+            ha_mode=True,
             location={
                 "lat": "37.6192",
                 "lon": "122.3816",

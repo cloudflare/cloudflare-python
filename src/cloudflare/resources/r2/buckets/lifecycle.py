@@ -59,11 +59,14 @@ class LifecycleResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Set the object lifecycle rules for a bucket.
+        """Replaces the object lifecycle rules for an R2 bucket.
+
+        Rules match object-key
+        prefixes and can expire objects, abort incomplete multipart uploads, or
+        transition objects to Infrequent Access storage.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -119,7 +122,7 @@ class LifecycleResource(SyncAPIResource):
         Get object lifecycle rules for a bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -192,11 +195,14 @@ class AsyncLifecycleResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Set the object lifecycle rules for a bucket.
+        """Replaces the object lifecycle rules for an R2 bucket.
+
+        Rules match object-key
+        prefixes and can expire objects, abort incomplete multipart uploads, or
+        transition objects to Infrequent Access storage.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -252,7 +258,7 @@ class AsyncLifecycleResource(AsyncAPIResource):
         Get object lifecycle rules for a bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 

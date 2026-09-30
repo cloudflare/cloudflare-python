@@ -66,7 +66,7 @@ class UploadResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           manifest: A manifest ([path]: {hash, size}) map of files to upload. As an example,
               `/blog/hello-world.html` would be a valid path key.
@@ -143,7 +143,7 @@ class AsyncUploadResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           manifest: A manifest ([path]: {hash, size}) map of files to upload. As an example,
               `/blog/hello-world.html` would be a valid path key.

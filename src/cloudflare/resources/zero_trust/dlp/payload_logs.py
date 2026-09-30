@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 from typing_extensions import Literal
 
@@ -46,6 +47,7 @@ class PayloadLogsResource(SyncAPIResource):
         """
         return PayloadLogsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         *,
@@ -115,6 +117,7 @@ class PayloadLogsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[PayloadLogUpdateResponse]], ResultWrapper[PayloadLogUpdateResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         *,
@@ -174,6 +177,7 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         """
         return AsyncPayloadLogsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         *,
@@ -243,6 +247,7 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[PayloadLogUpdateResponse]], ResultWrapper[PayloadLogUpdateResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         *,
@@ -286,11 +291,15 @@ class PayloadLogsResourceWithRawResponse:
     def __init__(self, payload_logs: PayloadLogsResource) -> None:
         self._payload_logs = payload_logs
 
-        self.update = to_raw_response_wrapper(
-            payload_logs.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                payload_logs.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            payload_logs.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                payload_logs.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -298,11 +307,15 @@ class AsyncPayloadLogsResourceWithRawResponse:
     def __init__(self, payload_logs: AsyncPayloadLogsResource) -> None:
         self._payload_logs = payload_logs
 
-        self.update = async_to_raw_response_wrapper(
-            payload_logs.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                payload_logs.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            payload_logs.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                payload_logs.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -310,11 +323,15 @@ class PayloadLogsResourceWithStreamingResponse:
     def __init__(self, payload_logs: PayloadLogsResource) -> None:
         self._payload_logs = payload_logs
 
-        self.update = to_streamed_response_wrapper(
-            payload_logs.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                payload_logs.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            payload_logs.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                payload_logs.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -322,9 +339,13 @@ class AsyncPayloadLogsResourceWithStreamingResponse:
     def __init__(self, payload_logs: AsyncPayloadLogsResource) -> None:
         self._payload_logs = payload_logs
 
-        self.update = async_to_streamed_response_wrapper(
-            payload_logs.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                payload_logs.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            payload_logs.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                payload_logs.get,  # pyright: ignore[reportDeprecated],
+            )
         )

@@ -161,6 +161,7 @@ class SitesResource(SyncAPIResource):
         account_id: str,
         connector_id: str | Omit = omit,
         description: str | Omit = omit,
+        ha_mode: bool | Omit = omit,
         location: SiteLocationParam | Omit = omit,
         name: str | Omit = omit,
         secondary_connector_id: str | Omit = omit,
@@ -180,6 +181,9 @@ class SitesResource(SyncAPIResource):
           site_id: Identifier
 
           connector_id: Magic Connector identifier tag.
+
+          ha_mode: Site high availability mode. If set to true, the site can have two connectors
+              and runs in high availability mode.
 
           location: Location of site in latitude and longitude.
 
@@ -205,6 +209,7 @@ class SitesResource(SyncAPIResource):
                 {
                     "connector_id": connector_id,
                     "description": description,
+                    "ha_mode": ha_mode,
                     "location": location,
                     "name": name,
                     "secondary_connector_id": secondary_connector_id,
@@ -318,6 +323,7 @@ class SitesResource(SyncAPIResource):
         account_id: str,
         connector_id: str | Omit = omit,
         description: str | Omit = omit,
+        ha_mode: bool | Omit = omit,
         location: SiteLocationParam | Omit = omit,
         name: str | Omit = omit,
         secondary_connector_id: str | Omit = omit,
@@ -337,6 +343,9 @@ class SitesResource(SyncAPIResource):
           site_id: Identifier
 
           connector_id: Magic Connector identifier tag.
+
+          ha_mode: Site high availability mode. If set to true, the site can have two connectors
+              and runs in high availability mode.
 
           location: Location of site in latitude and longitude.
 
@@ -362,6 +371,7 @@ class SitesResource(SyncAPIResource):
                 {
                     "connector_id": connector_id,
                     "description": description,
+                    "ha_mode": ha_mode,
                     "location": location,
                     "name": name,
                     "secondary_connector_id": secondary_connector_id,
@@ -540,6 +550,7 @@ class AsyncSitesResource(AsyncAPIResource):
         account_id: str,
         connector_id: str | Omit = omit,
         description: str | Omit = omit,
+        ha_mode: bool | Omit = omit,
         location: SiteLocationParam | Omit = omit,
         name: str | Omit = omit,
         secondary_connector_id: str | Omit = omit,
@@ -559,6 +570,9 @@ class AsyncSitesResource(AsyncAPIResource):
           site_id: Identifier
 
           connector_id: Magic Connector identifier tag.
+
+          ha_mode: Site high availability mode. If set to true, the site can have two connectors
+              and runs in high availability mode.
 
           location: Location of site in latitude and longitude.
 
@@ -584,6 +598,7 @@ class AsyncSitesResource(AsyncAPIResource):
                 {
                     "connector_id": connector_id,
                     "description": description,
+                    "ha_mode": ha_mode,
                     "location": location,
                     "name": name,
                     "secondary_connector_id": secondary_connector_id,
@@ -697,6 +712,7 @@ class AsyncSitesResource(AsyncAPIResource):
         account_id: str,
         connector_id: str | Omit = omit,
         description: str | Omit = omit,
+        ha_mode: bool | Omit = omit,
         location: SiteLocationParam | Omit = omit,
         name: str | Omit = omit,
         secondary_connector_id: str | Omit = omit,
@@ -716,6 +732,9 @@ class AsyncSitesResource(AsyncAPIResource):
           site_id: Identifier
 
           connector_id: Magic Connector identifier tag.
+
+          ha_mode: Site high availability mode. If set to true, the site can have two connectors
+              and runs in high availability mode.
 
           location: Location of site in latitude and longitude.
 
@@ -741,6 +760,7 @@ class AsyncSitesResource(AsyncAPIResource):
                 {
                     "connector_id": connector_id,
                     "description": description,
+                    "ha_mode": ha_mode,
                     "location": location,
                     "name": name,
                     "secondary_connector_id": secondary_connector_id,

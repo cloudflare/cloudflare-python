@@ -45,6 +45,8 @@ class RuleConditionUnionMember0(BaseModel):
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -65,6 +67,8 @@ class RuleConditionUnionMember1ClauseUnionMember0(BaseModel):
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -85,6 +89,8 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0(BaseModel):
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -105,6 +111,8 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -125,6 +133,8 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -147,6 +157,8 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -226,10 +238,10 @@ RuleCondition: TypeAlias = Union[RuleConditionUnionMember0, RuleConditionUnionMe
 
 class RuleRollout(BaseModel):
     percentage: float
-    """Percentage of matching traffic (0–100) served this variation.
-
-    For multi-way splits, use cumulative upper bounds across rules (e.g. 30, 70,
-    100).
+    """
+    Percentage of matching traffic (0–100, up to 2 decimal places) served this
+    variation. For multi-way splits, use cumulative upper bounds across rules (e.g.
+    30, 70, 100).
     """
 
     attribute: Optional[str] = None
@@ -292,6 +304,7 @@ class FlagUpdateResponse(BaseModel):
     """
 
     description: Optional[str] = None
+    """Optional operator-facing description. It does not affect flag evaluation."""
 
     updated_at: Optional[str] = None
 

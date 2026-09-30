@@ -11,6 +11,6 @@ __all__ = ["NamespaceBulkDeleteParams"]
 
 class NamespaceBulkDeleteParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """ID of the Cloudflare account that owns the Workers KV namespaces."""
 
     body: Required[SequenceNotStr[str]]

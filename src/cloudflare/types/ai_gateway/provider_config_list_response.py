@@ -16,7 +16,7 @@ class ProviderConfigListResponse(BaseModel):
     default_config: bool
 
     gateway_id: str
-    """gateway id"""
+    """Unique identifier of the AI Gateway within the account."""
 
     modified_at: datetime
 

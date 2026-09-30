@@ -64,9 +64,11 @@ class TailsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           filters: Filters to apply to the tail session.
 
@@ -122,9 +124,11 @@ class TailsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           tail_id: Identifier.
 
@@ -203,9 +207,11 @@ class AsyncTailsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           filters: Filters to apply to the tail session.
 
@@ -261,9 +267,11 @@ class AsyncTailsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          deployment_id: Identifier.
+          deployment_id: UUID of the Pages deployment, as returned by deployment list or create
+              operations.
 
           tail_id: Identifier.
 

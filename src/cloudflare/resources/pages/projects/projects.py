@@ -87,12 +87,14 @@ class ProjectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
-        Create a new project.
+        Create a Cloudflare Pages project for configuring and deploying a site or
+        application.
 
         Args:
           account_id: Identifier.
 
-          name: Name of the project.
+          name: Name for the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           production_branch: Production branch of the project. Used to identify production deployments.
 
@@ -148,14 +150,14 @@ class ProjectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Project]:
         """
-        Fetch a list of all user projects.
+        List the Cloudflare Pages projects in an account.
 
         Args:
           account_id: Identifier.
 
-          page: Which page of projects to fetch.
+          page: Page number of results to return.
 
-          per_page: How many projects to return per page.
+          per_page: Number of results to return per page.
 
           extra_headers: Send extra headers
 
@@ -199,12 +201,13 @@ class ProjectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a project by name.
+        Permanently delete a Cloudflare Pages project and its deployments.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 
@@ -249,21 +252,22 @@ class ProjectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """Set new attributes for an existing project.
-
-        Modify environment variables. To
-        delete an environment variable, set the key to null.
+        """
+        Update the build, deployment, source, or environment settings for a Cloudflare
+        Pages project. To delete an environment variable, set its key to `null`.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           build_config: Configs for the project build process.
 
           deployment_configs: Configs for deployments in a project.
 
-          name: Name of the project.
+          name: Name for the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           production_branch: Production branch of the project. Used to identify production deployments.
 
@@ -318,12 +322,14 @@ class ProjectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
-        Fetch a project by name.
+        Retrieve the configuration and deployment settings for a Cloudflare Pages
+        project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 
@@ -369,7 +375,8 @@ class ProjectsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 
@@ -412,12 +419,14 @@ class ProjectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Purge all cached build artifacts for a Pages project
+        Remove cached build artifacts so subsequent builds run without the project's
+        existing build cache.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 
@@ -493,12 +502,14 @@ class AsyncProjectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
-        Create a new project.
+        Create a Cloudflare Pages project for configuring and deploying a site or
+        application.
 
         Args:
           account_id: Identifier.
 
-          name: Name of the project.
+          name: Name for the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           production_branch: Production branch of the project. Used to identify production deployments.
 
@@ -554,14 +565,14 @@ class AsyncProjectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Project, AsyncV4PagePaginationArray[Project]]:
         """
-        Fetch a list of all user projects.
+        List the Cloudflare Pages projects in an account.
 
         Args:
           account_id: Identifier.
 
-          page: Which page of projects to fetch.
+          page: Page number of results to return.
 
-          per_page: How many projects to return per page.
+          per_page: Number of results to return per page.
 
           extra_headers: Send extra headers
 
@@ -605,12 +616,13 @@ class AsyncProjectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a project by name.
+        Permanently delete a Cloudflare Pages project and its deployments.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 
@@ -655,21 +667,22 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
-        """Set new attributes for an existing project.
-
-        Modify environment variables. To
-        delete an environment variable, set the key to null.
+        """
+        Update the build, deployment, source, or environment settings for a Cloudflare
+        Pages project. To delete an environment variable, set its key to `null`.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           build_config: Configs for the project build process.
 
           deployment_configs: Configs for deployments in a project.
 
-          name: Name of the project.
+          name: Name for the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           production_branch: Production branch of the project. Used to identify production deployments.
 
@@ -724,12 +737,14 @@ class AsyncProjectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
-        Fetch a project by name.
+        Retrieve the configuration and deployment settings for a Cloudflare Pages
+        project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 
@@ -775,7 +790,8 @@ class AsyncProjectsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 
@@ -818,12 +834,14 @@ class AsyncProjectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Purge all cached build artifacts for a Pages project
+        Remove cached build artifacts so subsequent builds run without the project's
+        existing build cache.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 

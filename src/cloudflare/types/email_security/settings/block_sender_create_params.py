@@ -13,6 +13,7 @@ class BlockSenderCreateParams(TypedDict, total=False):
     """Identifier."""
 
     is_regex: Required[bool]
+    """Whether `pattern` is a regular expression instead of a literal value."""
 
     pattern: Required[str]
     """The pattern value to match.

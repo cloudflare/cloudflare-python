@@ -108,10 +108,15 @@ class BulkResource(SyncAPIResource):
     ) -> BulkCreateResponse:
         """
         Creates a new bulk action job to move or release messages that match the
-        provided search parameters.
+        provided search parameters. To move or release an explicit list of known
+        messages instead of a search, use the move or release endpoints.
 
         Args:
           account_id: Identifier.
+
+          action: The action the job performs on every message matching the search parameters.
+
+          comment: Optional note describing the job.
 
           destination: Required when action is 'MOVE'.
 
@@ -170,11 +175,13 @@ class BulkResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          action_type: Filter jobs by the action they perform.
+
           page: Current page within paginated list of results.
 
           per_page: The number of results per page. Maximum value is 1000.
 
-          status: Filter by job status.
+          status: Filter jobs by their processing status.
 
           extra_headers: Send extra headers
 
@@ -228,6 +235,8 @@ class BulkResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          job_id: Bulk action job identifier.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -271,6 +280,8 @@ class BulkResource(SyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          job_id: Bulk action job identifier.
 
           extra_headers: Send extra headers
 
@@ -362,10 +373,15 @@ class AsyncBulkResource(AsyncAPIResource):
     ) -> BulkCreateResponse:
         """
         Creates a new bulk action job to move or release messages that match the
-        provided search parameters.
+        provided search parameters. To move or release an explicit list of known
+        messages instead of a search, use the move or release endpoints.
 
         Args:
           account_id: Identifier.
+
+          action: The action the job performs on every message matching the search parameters.
+
+          comment: Optional note describing the job.
 
           destination: Required when action is 'MOVE'.
 
@@ -424,11 +440,13 @@ class AsyncBulkResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          action_type: Filter jobs by the action they perform.
+
           page: Current page within paginated list of results.
 
           per_page: The number of results per page. Maximum value is 1000.
 
-          status: Filter by job status.
+          status: Filter jobs by their processing status.
 
           extra_headers: Send extra headers
 
@@ -482,6 +500,8 @@ class AsyncBulkResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          job_id: Bulk action job identifier.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -525,6 +545,8 @@ class AsyncBulkResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          job_id: Bulk action job identifier.
 
           extra_headers: Send extra headers
 

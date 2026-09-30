@@ -66,7 +66,7 @@ class ItemsResource(SyncAPIResource):
 
         This operation is asynchronous.
 
-        To get current the operation status, invoke the
+        To get the current operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         There is a limit of 1 pending bulk operation per account. If an outstanding bulk
@@ -119,7 +119,7 @@ class ItemsResource(SyncAPIResource):
         Removes all existing items from the list and adds the provided items to the
         list.
 
-        This operation is asynchronous. To get current the operation status, invoke the
+        This operation is asynchronous. To get the current operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         There is a limit of 1 pending bulk operation per account. If an outstanding bulk
@@ -240,7 +240,7 @@ class ItemsResource(SyncAPIResource):
 
         This operation is asynchronous.
 
-        To get current the operation status, invoke the
+        To get the current operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         There is a limit of 1 pending bulk operation per account. If an outstanding bulk
@@ -250,6 +250,8 @@ class ItemsResource(SyncAPIResource):
           account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
+
+          items: The list items to delete, identified by their unique IDs.
 
           extra_headers: Send extra headers
 
@@ -373,7 +375,7 @@ class AsyncItemsResource(AsyncAPIResource):
 
         This operation is asynchronous.
 
-        To get current the operation status, invoke the
+        To get the current operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         There is a limit of 1 pending bulk operation per account. If an outstanding bulk
@@ -426,7 +428,7 @@ class AsyncItemsResource(AsyncAPIResource):
         Removes all existing items from the list and adds the provided items to the
         list.
 
-        This operation is asynchronous. To get current the operation status, invoke the
+        This operation is asynchronous. To get the current operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         There is a limit of 1 pending bulk operation per account. If an outstanding bulk
@@ -547,7 +549,7 @@ class AsyncItemsResource(AsyncAPIResource):
 
         This operation is asynchronous.
 
-        To get current the operation status, invoke the
+        To get the current operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         There is a limit of 1 pending bulk operation per account. If an outstanding bulk
@@ -557,6 +559,8 @@ class AsyncItemsResource(AsyncAPIResource):
           account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
+
+          items: The list items to delete, identified by their unique IDs.
 
           extra_headers: Send extra headers
 

@@ -61,10 +61,12 @@ class ManagedResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedUpdateResponse:
         """
-        Updates state of public access over the bucket's R2-managed (r2.dev) domain.
+        Enables or disables public access to the R2 bucket through its managed r2.dev
+        domain. Custom domain access is unaffected. The r2.dev domain is rate-limited
+        and intended for development use.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -119,10 +121,11 @@ class ManagedResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedListResponse:
         """
-        Gets state of public access over the bucket's R2-managed (r2.dev) domain.
+        Gets the R2 bucket's managed r2.dev domain and whether public access is enabled.
+        The r2.dev domain is rate-limited and intended for development use.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -196,10 +199,12 @@ class AsyncManagedResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedUpdateResponse:
         """
-        Updates state of public access over the bucket's R2-managed (r2.dev) domain.
+        Enables or disables public access to the R2 bucket through its managed r2.dev
+        domain. Custom domain access is unaffected. The r2.dev domain is rate-limited
+        and intended for development use.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -254,10 +259,11 @@ class AsyncManagedResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ManagedListResponse:
         """
-        Gets state of public access over the bucket's R2-managed (r2.dev) domain.
+        Gets the R2 bucket's managed r2.dev domain and whether public access is enabled.
+        The r2.dev domain is rate-limited and intended for development use.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 

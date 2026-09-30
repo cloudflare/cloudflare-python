@@ -21,7 +21,7 @@ class TestSchema:
     def test_method_get(self, client: Cloudflare) -> None:
         schema = client.ai.models.schema.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            model="model",
+            model="@cf/meta/llama-3.1-8b-instruct",
         )
         assert_matches_type(SchemaGetResponse, schema, path=["response"])
 
@@ -29,7 +29,7 @@ class TestSchema:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.ai.models.schema.with_raw_response.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            model="model",
+            model="@cf/meta/llama-3.1-8b-instruct",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestSchema:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.ai.models.schema.with_streaming_response.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            model="model",
+            model="@cf/meta/llama-3.1-8b-instruct",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,7 +56,7 @@ class TestSchema:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.models.schema.with_raw_response.get(
                 account_id="",
-                model="model",
+                model="@cf/meta/llama-3.1-8b-instruct",
             )
 
 
@@ -69,7 +69,7 @@ class TestAsyncSchema:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         schema = await async_client.ai.models.schema.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            model="model",
+            model="@cf/meta/llama-3.1-8b-instruct",
         )
         assert_matches_type(SchemaGetResponse, schema, path=["response"])
 
@@ -77,7 +77,7 @@ class TestAsyncSchema:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.models.schema.with_raw_response.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            model="model",
+            model="@cf/meta/llama-3.1-8b-instruct",
         )
 
         assert response.is_closed is True
@@ -89,7 +89,7 @@ class TestAsyncSchema:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.models.schema.with_streaming_response.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            model="model",
+            model="@cf/meta/llama-3.1-8b-instruct",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -104,5 +104,5 @@ class TestAsyncSchema:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.models.schema.with_raw_response.get(
                 account_id="",
-                model="model",
+                model="@cf/meta/llama-3.1-8b-instruct",
             )

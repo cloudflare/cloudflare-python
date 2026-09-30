@@ -244,7 +244,7 @@ class CustomCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_certificate_id: Identifier.
+          custom_certificate_id: Custom certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -306,7 +306,7 @@ class CustomCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_certificate_id: Identifier.
+          custom_certificate_id: Custom certificate identifier tag.
 
           bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
               even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -404,7 +404,7 @@ class CustomCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_certificate_id: Identifier.
+          custom_certificate_id: Custom certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -639,7 +639,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_certificate_id: Identifier.
+          custom_certificate_id: Custom certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -701,7 +701,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_certificate_id: Identifier.
+          custom_certificate_id: Custom certificate identifier tag.
 
           bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
               even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -799,7 +799,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_certificate_id: Identifier.
+          custom_certificate_id: Custom certificate identifier tag.
 
           extra_headers: Send extra headers
 

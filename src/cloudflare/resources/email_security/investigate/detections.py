@@ -57,7 +57,7 @@ class DetectionsResource(SyncAPIResource):
     ) -> DetectionGetResponse:
         """
         Returns detection details such as threat categories and sender information for
-        non-benign messages.
+        messages with a detection.
 
         Args:
           account_id: Identifier.
@@ -127,7 +127,7 @@ class AsyncDetectionsResource(AsyncAPIResource):
     ) -> DetectionGetResponse:
         """
         Returns detection details such as threat categories and sender information for
-        non-benign messages.
+        messages with a detection.
 
         Args:
           account_id: Identifier.

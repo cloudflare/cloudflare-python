@@ -21,5 +21,5 @@ class Stage(BaseModel):
     started_on: Optional[datetime] = None
     """When the stage started."""
 
-    status: Literal["success", "idle", "active", "failure", "canceled"]
+    status: Literal["success", "idle", "active", "failure", "canceled", "skipped"]
     """State of the current stage."""

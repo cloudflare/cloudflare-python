@@ -21,7 +21,7 @@ class TestAssociations:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         association = client.mtls_certificates.associations.get(
-            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[CertificateAsssociation], association, path=["response"])
@@ -29,7 +29,7 @@ class TestAssociations:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.mtls_certificates.associations.with_raw_response.get(
-            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -41,7 +41,7 @@ class TestAssociations:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.mtls_certificates.associations.with_streaming_response.get(
-            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -56,7 +56,7 @@ class TestAssociations:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.mtls_certificates.associations.with_raw_response.get(
-                mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                mtls_certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 account_id="",
             )
 
@@ -75,7 +75,7 @@ class TestAsyncAssociations:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         association = await async_client.mtls_certificates.associations.get(
-            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[CertificateAsssociation], association, path=["response"])
@@ -83,7 +83,7 @@ class TestAsyncAssociations:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.mtls_certificates.associations.with_raw_response.get(
-            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -95,7 +95,7 @@ class TestAsyncAssociations:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.mtls_certificates.associations.with_streaming_response.get(
-            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -110,7 +110,7 @@ class TestAsyncAssociations:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.mtls_certificates.associations.with_raw_response.get(
-                mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                mtls_certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 account_id="",
             )
 

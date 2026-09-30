@@ -70,7 +70,7 @@ class AssetUploadResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           manifest: A manifest ([path]: {hash, size}) map of files to upload. As an example,
               `/blog/hello-world.html` would be a valid path key.
@@ -152,7 +152,7 @@ class AsyncAssetUploadResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           manifest: A manifest ([path]: {hash, size}) map of files to upload. As an example,
               `/blog/hello-world.html` would be a valid path key.

@@ -11,5 +11,5 @@ class PreviewCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    postfix_id: Required[str]
-    """The identifier of the message."""
+    id: Required[str]
+    """Unique identifier for a message retrieved from investigation."""

@@ -22,10 +22,10 @@ class Compaction(TypedDict, total=False):
     """Updates compaction configuration (all fields optional)."""
 
     state: Literal["enabled", "disabled"]
-    """Updates the state optionally."""
+    """Specifies the state of maintenance operations."""
 
     target_size_mb: Literal["64", "128", "256", "512"]
-    """Updates the target file size optionally."""
+    """Sets the target file size for compaction in megabytes. Defaults to "128"."""
 
 
 class SnapshotExpiration(TypedDict, total=False):
@@ -38,4 +38,4 @@ class SnapshotExpiration(TypedDict, total=False):
     """Updates the minimum number of snapshots to retain optionally."""
 
     state: Literal["enabled", "disabled"]
-    """Updates the state optionally."""
+    """Specifies the state of maintenance operations."""

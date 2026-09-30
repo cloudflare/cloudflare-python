@@ -26,11 +26,11 @@ class ViewListParams(TypedDict, total=False):
     order: Literal["name", "created_on", "modified_on"]
     """Field to order DNS views by."""
 
-    page: float
+    page: int
     """Page number of paginated results."""
 
-    per_page: float
-    """Number of DNS views per page."""
+    per_page: int
+    """Number of results per page."""
 
     zone_id: str
     """A zone ID that exists in the zones list for the view."""

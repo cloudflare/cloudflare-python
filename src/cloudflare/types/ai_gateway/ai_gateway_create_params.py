@@ -2,17 +2,39 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, List, Union, Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
-__all__ = ["AIGatewayCreateParams"]
+from ..._types import SequenceNotStr
+from ..._utils import PropertyInfo
+
+__all__ = [
+    "AIGatewayCreateParams",
+    "DLP",
+    "DLPUnionMember0",
+    "DLPUnionMember1",
+    "DLPUnionMember1Policy",
+    "Guardrails",
+    "GuardrailsPrompt",
+    "GuardrailsResponse",
+    "Otel",
+    "SpendLimits",
+    "SpendLimitsRule",
+    "SpendLimitsRuleMetadata",
+    "SpendLimitsRuleMetadataMode",
+    "SpendLimitsRuleMetadataUnionMember1",
+    "SpendLimitsRuleModel",
+    "SpendLimitsRuleProvider",
+    "Stripe",
+    "StripeUsageEvent",
+]
 
 
 class AIGatewayCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     id: Required[str]
-    """gateway id"""
+    """Unique identifier of the AI Gateway within the account."""
 
     cache_invalidate_on_update: Required[bool]
 
@@ -32,6 +54,12 @@ class AIGatewayCreateParams(TypedDict, total=False):
     Billing.
     """
 
+    dlp: DLP
+
+    guardrails: Optional[Guardrails]
+
+    log_classification: bool
+
     log_management: Optional[int]
 
     log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]]
@@ -39,6 +67,8 @@ class AIGatewayCreateParams(TypedDict, total=False):
     logpush: bool
 
     logpush_public_key: Optional[str]
+
+    otel: Optional[Iterable[Otel]]
 
     rate_limiting_technique: Optional[Literal["fixed", "sliding"]]
 
@@ -51,7 +81,11 @@ class AIGatewayCreateParams(TypedDict, total=False):
     retry_max_attempts: Optional[int]
     """Maximum number of retry attempts for failed requests (1-5)"""
 
+    spend_limits: Optional[SpendLimits]
+
     store_id: Optional[str]
+
+    stripe: Optional[Stripe]
 
     workers_ai_billing_mode: Literal["postpaid", "unified"]
     """Controls how Workers AI inference calls routed through this gateway are billed.
@@ -62,3 +96,169 @@ class AIGatewayCreateParams(TypedDict, total=False):
     """
 
     zdr: bool
+
+
+class DLPUnionMember0(TypedDict, total=False):
+    action: Required[Literal["BLOCK", "FLAG"]]
+
+    enabled: Required[bool]
+
+    profiles: Required[SequenceNotStr[str]]
+
+
+class DLPUnionMember1Policy(TypedDict, total=False):
+    id: Required[str]
+
+    action: Required[Literal["FLAG", "BLOCK"]]
+
+    check: Required[List[Literal["REQUEST", "RESPONSE"]]]
+
+    enabled: Required[bool]
+
+    profiles: Required[SequenceNotStr[str]]
+
+
+class DLPUnionMember1(TypedDict, total=False):
+    enabled: Required[bool]
+
+    policies: Required[Iterable[DLPUnionMember1Policy]]
+
+
+DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
+
+
+class GuardrailsPrompt(TypedDict, total=False):
+    p1: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="P1")]
+
+    s1: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S1")]
+
+    s10: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S10")]
+
+    s11: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S11")]
+
+    s12: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S12")]
+
+    s13: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S13")]
+
+    s2: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S2")]
+
+    s3: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S3")]
+
+    s4: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S4")]
+
+    s5: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S5")]
+
+    s6: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S6")]
+
+    s7: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S7")]
+
+    s8: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S8")]
+
+    s9: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S9")]
+
+
+class GuardrailsResponse(TypedDict, total=False):
+    p1: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="P1")]
+
+    s1: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S1")]
+
+    s10: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S10")]
+
+    s11: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S11")]
+
+    s12: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S12")]
+
+    s13: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S13")]
+
+    s2: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S2")]
+
+    s3: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S3")]
+
+    s4: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S4")]
+
+    s5: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S5")]
+
+    s6: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S6")]
+
+    s7: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S7")]
+
+    s8: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S8")]
+
+    s9: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S9")]
+
+
+class Guardrails(TypedDict, total=False):
+    prompt: Required[GuardrailsPrompt]
+
+    response: Required[GuardrailsResponse]
+
+
+class Otel(TypedDict, total=False):
+    headers: Required[Dict[str, str]]
+
+    url: Required[str]
+
+    authorization: str
+
+    content_type: Literal["json", "protobuf"]
+
+
+class SpendLimitsRuleMetadataMode(TypedDict, total=False):
+    mode: Required[Literal["partition"]]
+
+
+class SpendLimitsRuleMetadataUnionMember1(TypedDict, total=False):
+    mode: Required[Literal["filter"]]
+
+    values: Required[SequenceNotStr[str]]
+
+
+SpendLimitsRuleMetadata: TypeAlias = Union[SpendLimitsRuleMetadataMode, SpendLimitsRuleMetadataUnionMember1]
+
+
+class SpendLimitsRuleModel(TypedDict, total=False):
+    mode: Required[Literal["filter"]]
+
+    values: Required[SequenceNotStr[str]]
+
+
+class SpendLimitsRuleProvider(TypedDict, total=False):
+    mode: Required[Literal["filter"]]
+
+    values: Required[SequenceNotStr[str]]
+
+
+class SpendLimitsRule(TypedDict, total=False):
+    limit: Required[float]
+
+    limit_type: Required[Annotated[Literal["cost"], PropertyInfo(alias="limitType")]]
+
+    window: Required[int]
+
+    id: str
+
+    enabled: bool
+
+    metadata: Dict[str, SpendLimitsRuleMetadata]
+
+    model: SpendLimitsRuleModel
+
+    provider: SpendLimitsRuleProvider
+
+    technique: Literal["fixed", "sliding"]
+
+
+class SpendLimits(TypedDict, total=False):
+    enabled: bool
+
+    rules: Iterable[SpendLimitsRule]
+
+
+class StripeUsageEvent(TypedDict, total=False):
+    payload: Required[str]
+
+
+class Stripe(TypedDict, total=False):
+    authorization: Required[str]
+
+    usage_events: Required[Iterable[StripeUsageEvent]]

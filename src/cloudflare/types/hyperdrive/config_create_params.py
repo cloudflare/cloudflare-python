@@ -260,11 +260,11 @@ class HyperdriveHyperdriveConfigCreateWithIntegrationIntegration(TypedDict, tota
     database_name: Required[str]
     """The name of the PlanetScale database."""
 
-    integration: Required[Literal["planetscale"]]
-    """The database integration used by this operation."""
-
     organization_name: Required[str]
     """The name of the PlanetScale organization."""
+
+    provider: Required[Literal["planetscale"]]
+    """The database integration provider used by this operation."""
 
     scheme: Required[Literal["postgres", "postgresql", "mysql"]]
     """Specifies the URL scheme used to connect to your origin database."""

@@ -57,22 +57,8 @@ class ResourceTaggingSetTagsRequestZoneLevelAccessApplicationPolicy(TypedDict, t
     resource_id: Required[str]
     """Identifies the unique resource."""
 
-    resource_type: Required[
-        Literal[
-            "api_gateway_operation",
-            "custom_certificate",
-            "custom_hostname",
-            "dns_record",
-            "healthcheck",
-            "load_balancer",
-            "managed_client_certificate",
-            "worker_route",
-            "zone",
-            "zone_ruleset",
-            "access_application_policy",
-        ]
-    ]
-    """Enum for base zone-level resource types (those with no extra required fields)."""
+    resource_type: Required[Literal["access_application_policy"]]
+    """Enum for access_application_policy resource type."""
 
     tags: Dict[str, str]
     """Contains key-value pairs of tags.

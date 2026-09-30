@@ -51,7 +51,7 @@ class ChangelogResource(SyncAPIResource):
         account_id: str,
         app_id: str,
         cursor: str | Omit = omit,
-        limit: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,11 +66,11 @@ class ChangelogResource(SyncAPIResource):
         field-level diff. Capped at 200 entries per flag.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
 
-          flag_key: Flag key (slug).
+          flag_key: Case-sensitive key identifying the flag within the app.
 
           cursor: Pagination cursor from a previous response.
 
@@ -142,7 +142,7 @@ class AsyncChangelogResource(AsyncAPIResource):
         account_id: str,
         app_id: str,
         cursor: str | Omit = omit,
-        limit: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -157,11 +157,11 @@ class AsyncChangelogResource(AsyncAPIResource):
         field-level diff. Capped at 200 entries per flag.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
 
-          flag_key: Flag key (slug).
+          flag_key: Case-sensitive key identifying the flag within the app.
 
           cursor: Pagination cursor from a previous response.
 

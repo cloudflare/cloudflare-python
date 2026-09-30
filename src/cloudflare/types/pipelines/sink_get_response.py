@@ -166,7 +166,7 @@ class SinkGetResponse(BaseModel):
     name: str
     """Defines the name of the Sink."""
 
-    type: Literal["r2", "r2_data_catalog"]
+    type: Literal["r2", "r2_data_catalog", "basin_catalog"]
     """Specifies the type of sink."""
 
     config: Optional[Config] = None
