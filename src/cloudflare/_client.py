@@ -113,6 +113,7 @@ if TYPE_CHECKING:
         realtime_kit,
         security_txt,
         abuse_reports,
+        basin_catalog,
         email_routing,
         email_sending,
         magic_transit,
@@ -238,6 +239,7 @@ if TYPE_CHECKING:
     from .resources.realtime_kit.realtime_kit import RealtimeKitResource, AsyncRealtimeKitResource
     from .resources.security_txt.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
     from .resources.abuse_reports.abuse_reports import AbuseReportsResource, AsyncAbuseReportsResource
+    from .resources.basin_catalog.basin_catalog import BasinCatalogResource, AsyncBasinCatalogResource
     from .resources.email_routing.email_routing import EmailRoutingResource, AsyncEmailRoutingResource
     from .resources.email_sending.email_sending import EmailSendingResource, AsyncEmailSendingResource
     from .resources.magic_transit.magic_transit import MagicTransitResource, AsyncMagicTransitResource
@@ -1074,6 +1076,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.r2_data_catalog import R2DataCatalogResource
 
         return R2DataCatalogResource(self)
+
+    @cached_property
+    def basin_catalog(self) -> BasinCatalogResource:
+        from .resources.basin_catalog import BasinCatalogResource
+
+        return BasinCatalogResource(self)
 
     @cached_property
     def workers_for_platforms(self) -> WorkersForPlatformsResource:
@@ -2282,6 +2290,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncR2DataCatalogResource(self)
 
     @cached_property
+    def basin_catalog(self) -> AsyncBasinCatalogResource:
+        from .resources.basin_catalog import AsyncBasinCatalogResource
+
+        return AsyncBasinCatalogResource(self)
+
+    @cached_property
     def workers_for_platforms(self) -> AsyncWorkersForPlatformsResource:
         from .resources.workers_for_platforms import AsyncWorkersForPlatformsResource
 
@@ -3408,6 +3422,12 @@ class CloudflareWithRawResponse:
         return R2DataCatalogResourceWithRawResponse(self._client.r2_data_catalog)
 
     @cached_property
+    def basin_catalog(self) -> basin_catalog.BasinCatalogResourceWithRawResponse:
+        from .resources.basin_catalog import BasinCatalogResourceWithRawResponse
+
+        return BasinCatalogResourceWithRawResponse(self._client.basin_catalog)
+
+    @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.WorkersForPlatformsResourceWithRawResponse:
         from .resources.workers_for_platforms import WorkersForPlatformsResourceWithRawResponse
 
@@ -4365,6 +4385,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncR2DataCatalogResourceWithRawResponse(self._client.r2_data_catalog)
 
     @cached_property
+    def basin_catalog(self) -> basin_catalog.AsyncBasinCatalogResourceWithRawResponse:
+        from .resources.basin_catalog import AsyncBasinCatalogResourceWithRawResponse
+
+        return AsyncBasinCatalogResourceWithRawResponse(self._client.basin_catalog)
+
+    @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.AsyncWorkersForPlatformsResourceWithRawResponse:
         from .resources.workers_for_platforms import AsyncWorkersForPlatformsResourceWithRawResponse
 
@@ -5320,6 +5346,12 @@ class CloudflareWithStreamedResponse:
         from .resources.r2_data_catalog import R2DataCatalogResourceWithStreamingResponse
 
         return R2DataCatalogResourceWithStreamingResponse(self._client.r2_data_catalog)
+
+    @cached_property
+    def basin_catalog(self) -> basin_catalog.BasinCatalogResourceWithStreamingResponse:
+        from .resources.basin_catalog import BasinCatalogResourceWithStreamingResponse
+
+        return BasinCatalogResourceWithStreamingResponse(self._client.basin_catalog)
 
     @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.WorkersForPlatformsResourceWithStreamingResponse:
@@ -6281,6 +6313,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.r2_data_catalog import AsyncR2DataCatalogResourceWithStreamingResponse
 
         return AsyncR2DataCatalogResourceWithStreamingResponse(self._client.r2_data_catalog)
+
+    @cached_property
+    def basin_catalog(self) -> basin_catalog.AsyncBasinCatalogResourceWithStreamingResponse:
+        from .resources.basin_catalog import AsyncBasinCatalogResourceWithStreamingResponse
+
+        return AsyncBasinCatalogResourceWithStreamingResponse(self._client.basin_catalog)
 
     @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.AsyncWorkersForPlatformsResourceWithStreamingResponse:

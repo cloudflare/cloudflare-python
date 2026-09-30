@@ -221,6 +221,8 @@ Methods:
 
 # [R2DataCatalog](src/cloudflare/resources/r2_data_catalog/api.md)
 
+# [BasinCatalog](src/cloudflare/resources/basin_catalog/api.md)
+
 # [WorkersForPlatforms](src/cloudflare/resources/workers_for_platforms/api.md)
 
 # [ZeroTrust](src/cloudflare/resources/zero_trust/api.md)
