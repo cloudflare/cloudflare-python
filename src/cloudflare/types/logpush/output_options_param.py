@@ -42,7 +42,8 @@ class OutputOptionsParam(TypedDict, total=False):
     merge_subrequests: Optional[bool]
     """If set to true, subrequests will be merged into the parent request.
 
-    Only supported for the `http_requests` dataset.
+    Only supported for the `http_requests` dataset. Not supported for account-scoped
+    jobs.
     """
 
     output_type: Literal["ndjson", "csv"]

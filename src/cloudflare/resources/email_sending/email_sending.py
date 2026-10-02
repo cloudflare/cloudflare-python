@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Dict, Type, Iterable, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -73,7 +73,16 @@ class EmailSendingResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: email_sending_send_params.Body,
+        from_: email_sending_send_params.From,
+        subject: str,
+        attachments: Iterable[email_sending_send_params.Attachment] | Omit = omit,
+        bcc: email_sending_send_params.Bcc | Omit = omit,
+        cc: email_sending_send_params.Cc | Omit = omit,
+        headers: Dict[str, str] | Omit = omit,
+        html: str | Omit = omit,
+        reply_to: email_sending_send_params.ReplyTo | Omit = omit,
+        text: str | Omit = omit,
+        to: email_sending_send_params.To | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -90,6 +99,29 @@ class EmailSendingResource(SyncAPIResource):
         Args:
           account_id: Identifier of the account.
 
+          from_: Sender email address. Either a plain string or an object with address and name.
+
+          subject: Email subject line.
+
+          attachments: File attachments and inline images.
+
+          bcc: Blind carbon copy recipient(s). Optional. A single email string, a named address
+              object, or an array of either.
+
+          cc: Carbon copy recipient(s). Optional. A single email string, a named address
+              object, or an array of either.
+
+          headers: Custom email headers as key-value pairs.
+
+          html: HTML body of the email. Provide at least one of text or html (non-empty).
+
+          reply_to: Reply-to address. Either a plain string or an object with address and name.
+
+          text: Plain text body of the email. Provide at least one of text or html (non-empty).
+
+          to: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -102,7 +134,21 @@ class EmailSendingResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             path_template("/accounts/{account_id}/email/sending/send", account_id=account_id),
-            body=maybe_transform(body, email_sending_send_params.EmailSendingSendParams),
+            body=maybe_transform(
+                {
+                    "from_": from_,
+                    "subject": subject,
+                    "attachments": attachments,
+                    "bcc": bcc,
+                    "cc": cc,
+                    "headers": headers,
+                    "html": html,
+                    "reply_to": reply_to,
+                    "text": text,
+                    "to": to,
+                },
+                email_sending_send_params.EmailSendingSendParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -207,7 +253,16 @@ class AsyncEmailSendingResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: email_sending_send_params.Body,
+        from_: email_sending_send_params.From,
+        subject: str,
+        attachments: Iterable[email_sending_send_params.Attachment] | Omit = omit,
+        bcc: email_sending_send_params.Bcc | Omit = omit,
+        cc: email_sending_send_params.Cc | Omit = omit,
+        headers: Dict[str, str] | Omit = omit,
+        html: str | Omit = omit,
+        reply_to: email_sending_send_params.ReplyTo | Omit = omit,
+        text: str | Omit = omit,
+        to: email_sending_send_params.To | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -224,6 +279,29 @@ class AsyncEmailSendingResource(AsyncAPIResource):
         Args:
           account_id: Identifier of the account.
 
+          from_: Sender email address. Either a plain string or an object with address and name.
+
+          subject: Email subject line.
+
+          attachments: File attachments and inline images.
+
+          bcc: Blind carbon copy recipient(s). Optional. A single email string, a named address
+              object, or an array of either.
+
+          cc: Carbon copy recipient(s). Optional. A single email string, a named address
+              object, or an array of either.
+
+          headers: Custom email headers as key-value pairs.
+
+          html: HTML body of the email. Provide at least one of text or html (non-empty).
+
+          reply_to: Reply-to address. Either a plain string or an object with address and name.
+
+          text: Plain text body of the email. Provide at least one of text or html (non-empty).
+
+          to: Recipient(s). Optional if cc or bcc is provided. A single email string, a named
+              address object, or an array of either.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -236,7 +314,21 @@ class AsyncEmailSendingResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             path_template("/accounts/{account_id}/email/sending/send", account_id=account_id),
-            body=await async_maybe_transform(body, email_sending_send_params.EmailSendingSendParams),
+            body=await async_maybe_transform(
+                {
+                    "from_": from_,
+                    "subject": subject,
+                    "attachments": attachments,
+                    "bcc": bcc,
+                    "cc": cc,
+                    "headers": headers,
+                    "html": html,
+                    "reply_to": reply_to,
+                    "text": text,
+                    "to": to,
+                },
+                email_sending_send_params.EmailSendingSendParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
