@@ -12,10 +12,10 @@ class DeploymentListParams(TypedDict, total=False):
     """Identifier."""
 
     env: Literal["production", "preview"]
-    """What type of deployments to fetch."""
+    """Deployment environment to return. Valid values are `production` and `preview`."""
 
     page: int
-    """Which page of deployments to fetch."""
+    """Page number of results to return."""
 
     per_page: int
-    """How many deployments to return per page."""
+    """Number of results to return per page."""

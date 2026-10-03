@@ -62,11 +62,14 @@ class SippyResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        """
-        Sets configuration for Sippy for an existing R2 bucket.
+        """Configures and enables Sippy on-demand migration for an R2 bucket.
+
+        When a
+        requested object is missing from R2, Sippy serves it from the configured source
+        storage provider and copies it to R2.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -100,11 +103,14 @@ class SippyResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        """
-        Sets configuration for Sippy for an existing R2 bucket.
+        """Configures and enables Sippy on-demand migration for an R2 bucket.
+
+        When a
+        requested object is missing from R2, Sippy serves it from the configured source
+        storage provider and copies it to R2.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -138,11 +144,14 @@ class SippyResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        """
-        Sets configuration for Sippy for an existing R2 bucket.
+        """Configures and enables Sippy on-demand migration for an R2 bucket.
+
+        When a
+        requested object is missing from R2, Sippy serves it from the configured source
+        storage provider and copies it to R2.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -176,11 +185,14 @@ class SippyResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        """
-        Sets configuration for Sippy for an existing R2 bucket.
+        """Configures and enables Sippy on-demand migration for an R2 bucket.
+
+        When a
+        requested object is missing from R2, Sippy serves it from the configured source
+        storage provider and copies it to R2.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -266,11 +278,14 @@ class SippyResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SippyDeleteResponse:
-        """
-        Disables Sippy on this bucket.
+        """Disables Sippy on-demand migration for an R2 bucket.
+
+        Requests no longer fetch
+        missing objects from the source storage provider. Objects already copied to R2
+        remain in the bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -323,7 +338,7 @@ class SippyResource(SyncAPIResource):
         Gets configuration for Sippy for an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -396,11 +411,14 @@ class AsyncSippyResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        """
-        Sets configuration for Sippy for an existing R2 bucket.
+        """Configures and enables Sippy on-demand migration for an R2 bucket.
+
+        When a
+        requested object is missing from R2, Sippy serves it from the configured source
+        storage provider and copies it to R2.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -434,11 +452,14 @@ class AsyncSippyResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        """
-        Sets configuration for Sippy for an existing R2 bucket.
+        """Configures and enables Sippy on-demand migration for an R2 bucket.
+
+        When a
+        requested object is missing from R2, Sippy serves it from the configured source
+        storage provider and copies it to R2.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -472,11 +493,14 @@ class AsyncSippyResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        """
-        Sets configuration for Sippy for an existing R2 bucket.
+        """Configures and enables Sippy on-demand migration for an R2 bucket.
+
+        When a
+        requested object is missing from R2, Sippy serves it from the configured source
+        storage provider and copies it to R2.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -510,11 +534,14 @@ class AsyncSippyResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sippy:
-        """
-        Sets configuration for Sippy for an existing R2 bucket.
+        """Configures and enables Sippy on-demand migration for an R2 bucket.
+
+        When a
+        requested object is missing from R2, Sippy serves it from the configured source
+        storage provider and copies it to R2.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -600,11 +627,14 @@ class AsyncSippyResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SippyDeleteResponse:
-        """
-        Disables Sippy on this bucket.
+        """Disables Sippy on-demand migration for an R2 bucket.
+
+        Requests no longer fetch
+        missing objects from the source storage provider. Objects already copied to R2
+        remain in the bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -657,7 +687,7 @@ class AsyncSippyResource(AsyncAPIResource):
         Gets configuration for Sippy for an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 

@@ -94,6 +94,8 @@ class UnionMember0AfterRuleConditionUnionMember0(BaseModel):
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -114,6 +116,8 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember0(BaseModel):
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -134,6 +138,8 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -154,6 +160,8 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -176,6 +184,8 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -198,6 +208,8 @@ class UnionMember0AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -284,10 +296,10 @@ UnionMember0AfterRuleCondition: TypeAlias = Union[
 
 class UnionMember0AfterRuleRollout(BaseModel):
     percentage: float
-    """Percentage of matching traffic (0–100) served this variation.
-
-    For multi-way splits, use cumulative upper bounds across rules (e.g. 30, 70,
-    100).
+    """
+    Percentage of matching traffic (0–100, up to 2 decimal places) served this
+    variation. For multi-way splits, use cumulative upper bounds across rules (e.g.
+    30, 70, 100).
     """
 
     attribute: Optional[str] = None
@@ -350,6 +362,7 @@ class UnionMember0After(BaseModel):
     """
 
     description: Optional[str] = None
+    """Optional operator-facing description. It does not affect flag evaluation."""
 
     updated_at: Optional[str] = None
 
@@ -379,6 +392,8 @@ class UnionMember1AfterRuleConditionUnionMember0(BaseModel):
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -399,6 +414,8 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember0(BaseModel):
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -419,6 +436,8 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -439,6 +458,8 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -461,6 +482,8 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -483,6 +506,8 @@ class UnionMember1AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -569,10 +594,10 @@ UnionMember1AfterRuleCondition: TypeAlias = Union[
 
 class UnionMember1AfterRuleRollout(BaseModel):
     percentage: float
-    """Percentage of matching traffic (0–100) served this variation.
-
-    For multi-way splits, use cumulative upper bounds across rules (e.g. 30, 70,
-    100).
+    """
+    Percentage of matching traffic (0–100, up to 2 decimal places) served this
+    variation. For multi-way splits, use cumulative upper bounds across rules (e.g.
+    30, 70, 100).
     """
 
     attribute: Optional[str] = None
@@ -635,6 +660,7 @@ class UnionMember1After(BaseModel):
     """
 
     description: Optional[str] = None
+    """Optional operator-facing description. It does not affect flag evaluation."""
 
     updated_at: Optional[str] = None
 
@@ -664,6 +690,8 @@ class UnionMember2AfterRuleConditionUnionMember0(BaseModel):
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -684,6 +712,8 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember0(BaseModel):
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -704,6 +734,8 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -724,6 +756,8 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -746,6 +780,8 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -768,6 +804,8 @@ class UnionMember2AfterRuleConditionUnionMember1ClauseUnionMember1ClauseUnionMem
         "ends_with",
         "in",
         "not_in",
+        "has",
+        "not_has",
     ]
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object]]
@@ -854,10 +892,10 @@ UnionMember2AfterRuleCondition: TypeAlias = Union[
 
 class UnionMember2AfterRuleRollout(BaseModel):
     percentage: float
-    """Percentage of matching traffic (0–100) served this variation.
-
-    For multi-way splits, use cumulative upper bounds across rules (e.g. 30, 70,
-    100).
+    """
+    Percentage of matching traffic (0–100, up to 2 decimal places) served this
+    variation. For multi-way splits, use cumulative upper bounds across rules (e.g.
+    30, 70, 100).
     """
 
     attribute: Optional[str] = None
@@ -920,6 +958,7 @@ class UnionMember2After(BaseModel):
     """
 
     description: Optional[str] = None
+    """Optional operator-facing description. It does not affect flag evaluation."""
 
     updated_at: Optional[str] = None
 

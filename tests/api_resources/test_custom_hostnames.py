@@ -167,7 +167,7 @@ class TestCustomHostnames:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         custom_hostname = client.custom_hostnames.delete(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CustomHostnameDeleteResponse, custom_hostname, path=["response"])
@@ -175,7 +175,7 @@ class TestCustomHostnames:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.custom_hostnames.with_raw_response.delete(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -187,7 +187,7 @@ class TestCustomHostnames:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.custom_hostnames.with_streaming_response.delete(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -202,7 +202,7 @@ class TestCustomHostnames:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.custom_hostnames.with_raw_response.delete(
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
             )
 
@@ -215,7 +215,7 @@ class TestCustomHostnames:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         custom_hostname = client.custom_hostnames.edit(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
@@ -223,7 +223,7 @@ class TestCustomHostnames:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         custom_hostname = client.custom_hostnames.edit(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_metadata={"foo": "string"},
             custom_origin_server="origin2.example.com",
@@ -258,7 +258,7 @@ class TestCustomHostnames:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.custom_hostnames.with_raw_response.edit(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -270,7 +270,7 @@ class TestCustomHostnames:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.custom_hostnames.with_streaming_response.edit(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -285,7 +285,7 @@ class TestCustomHostnames:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.custom_hostnames.with_raw_response.edit(
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
             )
 
@@ -298,7 +298,7 @@ class TestCustomHostnames:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         custom_hostname = client.custom_hostnames.get(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomHostnameGetResponse], custom_hostname, path=["response"])
@@ -306,7 +306,7 @@ class TestCustomHostnames:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.custom_hostnames.with_raw_response.get(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -318,7 +318,7 @@ class TestCustomHostnames:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.custom_hostnames.with_streaming_response.get(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -333,7 +333,7 @@ class TestCustomHostnames:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.custom_hostnames.with_raw_response.get(
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
             )
 
@@ -492,7 +492,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         custom_hostname = await async_client.custom_hostnames.delete(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CustomHostnameDeleteResponse, custom_hostname, path=["response"])
@@ -500,7 +500,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_hostnames.with_raw_response.delete(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -512,7 +512,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_hostnames.with_streaming_response.delete(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -527,7 +527,7 @@ class TestAsyncCustomHostnames:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.custom_hostnames.with_raw_response.delete(
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
             )
 
@@ -540,7 +540,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         custom_hostname = await async_client.custom_hostnames.edit(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
@@ -548,7 +548,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom_hostname = await async_client.custom_hostnames.edit(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_metadata={"foo": "string"},
             custom_origin_server="origin2.example.com",
@@ -583,7 +583,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_hostnames.with_raw_response.edit(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -595,7 +595,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_hostnames.with_streaming_response.edit(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -610,7 +610,7 @@ class TestAsyncCustomHostnames:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.custom_hostnames.with_raw_response.edit(
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
             )
 
@@ -623,7 +623,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         custom_hostname = await async_client.custom_hostnames.get(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomHostnameGetResponse], custom_hostname, path=["response"])
@@ -631,7 +631,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_hostnames.with_raw_response.get(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -643,7 +643,7 @@ class TestAsyncCustomHostnames:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_hostnames.with_streaming_response.get(
-            custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+            custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -658,7 +658,7 @@ class TestAsyncCustomHostnames:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.custom_hostnames.with_raw_response.get(
-                custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
+                custom_hostname_id="0d89c70d-ad9f-4843-b99f-6cc0252067e9",
                 zone_id="",
             )
 

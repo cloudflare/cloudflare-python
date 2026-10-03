@@ -55,16 +55,15 @@ class MetadataResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Returns the metadata associated with the given key in the given namespace.
-
-        Use
-        URL-encoding to use special characters (for example, `:`, `!`, `%`) in the key
-        name.
+        """
+        Returns the JSON metadata associated with the specified key in the Workers KV
+        namespace, without retrieving its value. Use URL-encoding for special characters
+        (for example, `:`, `!`, `%`) in the key name when constructing the request URL.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
           key_name: A key's name. The name may be at most 512 bytes. All printable, non-whitespace
               characters are valid. Use percent-encoding to define key names as part of a URL.
@@ -134,16 +133,15 @@ class AsyncMetadataResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Returns the metadata associated with the given key in the given namespace.
-
-        Use
-        URL-encoding to use special characters (for example, `:`, `!`, `%`) in the key
-        name.
+        """
+        Returns the JSON metadata associated with the specified key in the Workers KV
+        namespace, without retrieving its value. Use URL-encoding for special characters
+        (for example, `:`, `!`, `%`) in the key name when constructing the request URL.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
           key_name: A key's name. The name may be at most 512 bytes. All printable, non-whitespace
               characters are valid. Use percent-encoding to define key names as part of a URL.

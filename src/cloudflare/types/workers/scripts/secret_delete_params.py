@@ -12,7 +12,7 @@ class SecretDeleteParams(TypedDict, total=False):
     """Identifier."""
 
     script_name: Required[str]
-    """Name of the script, used in URLs and route configuration."""
+    """Name of the script."""
 
     url_encoded: bool
     """Flag that indicates whether the secret name is URL encoded."""

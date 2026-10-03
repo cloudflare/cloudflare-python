@@ -29,7 +29,7 @@ class SinkCreateParams(TypedDict, total=False):
     name: Required[str]
     """Defines the name of the Sink."""
 
-    type: Required[Literal["r2", "r2_data_catalog"]]
+    type: Required[Literal["r2", "r2_data_catalog", "basin_catalog"]]
     """Specifies the type of sink."""
 
     config: Config

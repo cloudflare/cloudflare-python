@@ -84,6 +84,23 @@ class ImpersonationRegistryResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          email: Email address (or pattern) of the protected identity.
+
+          is_email_regex: Whether `email` is a regular expression instead of a literal address.
+
+          name: Display name of the protected identity.
+
+          comments: Optional note describing the entry.
+
+          directory_id: Identifier of the directory the entry was synced from, when directory-synced.
+
+          directory_node_id: Identifier of the directory node the entry was synced from, when
+              directory-synced.
+
+          external_directory_node_id: Deprecated. External identifier of the directory node.
+
+          provenance: Source the entry was created from.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -282,6 +299,23 @@ class ImpersonationRegistryResource(SyncAPIResource):
 
           impersonation_registry_id: Impersonation registry entry identifier.
 
+          comments: Optional note describing the entry.
+
+          directory_id: Identifier of the directory the entry was synced from, when directory-synced.
+
+          directory_node_id: Identifier of the directory node the entry was synced from, when
+              directory-synced.
+
+          email: Email address (or pattern) of the protected identity.
+
+          external_directory_node_id: Deprecated. External identifier of the directory node.
+
+          is_email_regex: Whether `email` is a regular expression instead of a literal address.
+
+          name: Display name of the protected identity.
+
+          provenance: Source the entry was created from.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -431,6 +465,23 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          email: Email address (or pattern) of the protected identity.
+
+          is_email_regex: Whether `email` is a regular expression instead of a literal address.
+
+          name: Display name of the protected identity.
+
+          comments: Optional note describing the entry.
+
+          directory_id: Identifier of the directory the entry was synced from, when directory-synced.
+
+          directory_node_id: Identifier of the directory node the entry was synced from, when
+              directory-synced.
+
+          external_directory_node_id: Deprecated. External identifier of the directory node.
+
+          provenance: Source the entry was created from.
 
           extra_headers: Send extra headers
 
@@ -631,6 +682,23 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
           account_id: Identifier.
 
           impersonation_registry_id: Impersonation registry entry identifier.
+
+          comments: Optional note describing the entry.
+
+          directory_id: Identifier of the directory the entry was synced from, when directory-synced.
+
+          directory_node_id: Identifier of the directory node the entry was synced from, when
+              directory-synced.
+
+          email: Email address (or pattern) of the protected identity.
+
+          external_directory_node_id: Deprecated. External identifier of the directory node.
+
+          is_email_regex: Whether `email` is a regular expression instead of a literal address.
+
+          name: Display name of the protected identity.
+
+          provenance: Source the entry was created from.
 
           extra_headers: Send extra headers
 

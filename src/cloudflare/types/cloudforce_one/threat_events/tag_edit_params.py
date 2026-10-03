@@ -78,9 +78,10 @@ class TagEditParams(TypedDict, total=False):
     """
 
     internal_aliases: Annotated[Iterable[InternalAlias], PropertyInfo(alias="internalAliases")]
-    """Internal structured aliases ({ value, confidence 1-10, tlp }).
+    """Owner-private structured aliases ({ value, confidence 1-10, tlp }).
 
-    CFONE-only: never returned to non-CFONE accounts.
+    Returned to the owning account and omitted from shared-catalog non-owner
+    responses.
     """
 
     internal_description: Annotated[str, PropertyInfo(alias="internalDescription")]

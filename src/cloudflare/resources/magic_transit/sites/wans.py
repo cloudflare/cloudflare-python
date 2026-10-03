@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -52,6 +53,8 @@ class WANsResource(SyncAPIResource):
         *,
         account_id: str,
         physport: int,
+        health_check_rate: Literal["low", "mid", "high"] | Omit = omit,
+        load_balance_inner_flows: bool | Omit = omit,
         name: str | Omit = omit,
         priority: int | Omit = omit,
         static_addressing: WANStaticAddressingParam | Omit = omit,
@@ -70,6 +73,9 @@ class WANsResource(SyncAPIResource):
           account_id: Identifier
 
           site_id: Identifier
+
+          health_check_rate: Magic WAN health check rate for tunnels created on this link. The default value
+              is `mid`.
 
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
@@ -94,6 +100,8 @@ class WANsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "physport": physport,
+                    "health_check_rate": health_check_rate,
+                    "load_balance_inner_flows": load_balance_inner_flows,
                     "name": name,
                     "priority": priority,
                     "static_addressing": static_addressing,
@@ -114,6 +122,8 @@ class WANsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        health_check_rate: Literal["low", "mid", "high"] | Omit = omit,
+        load_balance_inner_flows: Optional[bool] | Omit = omit,
         name: str | Omit = omit,
         physport: int | Omit = omit,
         priority: int | Omit = omit,
@@ -135,6 +145,8 @@ class WANsResource(SyncAPIResource):
           site_id: Identifier
 
           wan_id: Identifier
+
+          health_check_rate: Magic WAN health check rate for tunnels created on this link.
 
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
@@ -164,6 +176,8 @@ class WANsResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
+                    "health_check_rate": health_check_rate,
+                    "load_balance_inner_flows": load_balance_inner_flows,
                     "name": name,
                     "physport": physport,
                     "priority": priority,
@@ -283,6 +297,8 @@ class WANsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        health_check_rate: Literal["low", "mid", "high"] | Omit = omit,
+        load_balance_inner_flows: Optional[bool] | Omit = omit,
         name: str | Omit = omit,
         physport: int | Omit = omit,
         priority: int | Omit = omit,
@@ -304,6 +320,8 @@ class WANsResource(SyncAPIResource):
           site_id: Identifier
 
           wan_id: Identifier
+
+          health_check_rate: Magic WAN health check rate for tunnels created on this link.
 
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
@@ -333,6 +351,8 @@ class WANsResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
+                    "health_check_rate": health_check_rate,
+                    "load_balance_inner_flows": load_balance_inner_flows,
                     "name": name,
                     "physport": physport,
                     "priority": priority,
@@ -432,6 +452,8 @@ class AsyncWANsResource(AsyncAPIResource):
         *,
         account_id: str,
         physport: int,
+        health_check_rate: Literal["low", "mid", "high"] | Omit = omit,
+        load_balance_inner_flows: bool | Omit = omit,
         name: str | Omit = omit,
         priority: int | Omit = omit,
         static_addressing: WANStaticAddressingParam | Omit = omit,
@@ -450,6 +472,9 @@ class AsyncWANsResource(AsyncAPIResource):
           account_id: Identifier
 
           site_id: Identifier
+
+          health_check_rate: Magic WAN health check rate for tunnels created on this link. The default value
+              is `mid`.
 
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
@@ -474,6 +499,8 @@ class AsyncWANsResource(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "physport": physport,
+                    "health_check_rate": health_check_rate,
+                    "load_balance_inner_flows": load_balance_inner_flows,
                     "name": name,
                     "priority": priority,
                     "static_addressing": static_addressing,
@@ -494,6 +521,8 @@ class AsyncWANsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        health_check_rate: Literal["low", "mid", "high"] | Omit = omit,
+        load_balance_inner_flows: Optional[bool] | Omit = omit,
         name: str | Omit = omit,
         physport: int | Omit = omit,
         priority: int | Omit = omit,
@@ -515,6 +544,8 @@ class AsyncWANsResource(AsyncAPIResource):
           site_id: Identifier
 
           wan_id: Identifier
+
+          health_check_rate: Magic WAN health check rate for tunnels created on this link.
 
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
@@ -544,6 +575,8 @@ class AsyncWANsResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
+                    "health_check_rate": health_check_rate,
+                    "load_balance_inner_flows": load_balance_inner_flows,
                     "name": name,
                     "physport": physport,
                     "priority": priority,
@@ -663,6 +696,8 @@ class AsyncWANsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        health_check_rate: Literal["low", "mid", "high"] | Omit = omit,
+        load_balance_inner_flows: Optional[bool] | Omit = omit,
         name: str | Omit = omit,
         physport: int | Omit = omit,
         priority: int | Omit = omit,
@@ -684,6 +719,8 @@ class AsyncWANsResource(AsyncAPIResource):
           site_id: Identifier
 
           wan_id: Identifier
+
+          health_check_rate: Magic WAN health check rate for tunnels created on this link.
 
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
@@ -713,6 +750,8 @@ class AsyncWANsResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
+                    "health_check_rate": health_check_rate,
+                    "load_balance_inner_flows": load_balance_inner_flows,
                     "name": name,
                     "physport": physport,
                     "priority": priority,

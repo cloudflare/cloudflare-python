@@ -53,7 +53,7 @@ class WidgetListResponse(BaseModel):
     """Region where this widget can be used. This cannot be changed after creation."""
 
     sitekey: str
-    """Widget item identifier tag."""
+    """Unique identifier for a Turnstile widget."""
 
     deployed_via: Optional[Literal["wrangler", "dashboard", "spin", "api", "unknown"]] = None
     """

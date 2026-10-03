@@ -49,7 +49,7 @@ class PreviewResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        postfix_id: str,
+        id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,15 +57,18 @@ class PreviewResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreviewCreateResponse:
-        """
-        Generates a preview image for a message that was not flagged as a detection.
-        Useful for investigating benign messages. Returns a base64-encoded PNG
-        screenshot of the email body.
+        """Generates a preview image for a message that was not flagged as a detection.
+
+        The
+        message is rendered from the copy in the recipient's mailbox, so this requires
+        an active integration and only works while the message is still in the
+        recipient's inbox. Returns a base64-encoded PNG screenshot of the email body.
+        For messages with a detection, use the detection preview endpoint instead.
 
         Args:
           account_id: Identifier.
 
-          postfix_id: The identifier of the message.
+          id: Unique identifier for a message retrieved from investigation.
 
           extra_headers: Send extra headers
 
@@ -79,7 +82,7 @@ class PreviewResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             path_template("/accounts/{account_id}/email-security/investigate/preview", account_id=account_id),
-            body=maybe_transform({"postfix_id": postfix_id}, preview_create_params.PreviewCreateParams),
+            body=maybe_transform({"id": id}, preview_create_params.PreviewCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -103,8 +106,9 @@ class PreviewResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreviewGetResponse:
         """
-        Returns a preview of the message body as a base64 encoded PNG image for
-        non-benign messages.
+        Returns a preview of the message body as a base64-encoded PNG image for any
+        message with a detection. For messages without a detection, use the
+        non-detection preview endpoint instead.
 
         Args:
           account_id: Identifier.
@@ -164,7 +168,7 @@ class AsyncPreviewResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        postfix_id: str,
+        id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -172,15 +176,18 @@ class AsyncPreviewResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreviewCreateResponse:
-        """
-        Generates a preview image for a message that was not flagged as a detection.
-        Useful for investigating benign messages. Returns a base64-encoded PNG
-        screenshot of the email body.
+        """Generates a preview image for a message that was not flagged as a detection.
+
+        The
+        message is rendered from the copy in the recipient's mailbox, so this requires
+        an active integration and only works while the message is still in the
+        recipient's inbox. Returns a base64-encoded PNG screenshot of the email body.
+        For messages with a detection, use the detection preview endpoint instead.
 
         Args:
           account_id: Identifier.
 
-          postfix_id: The identifier of the message.
+          id: Unique identifier for a message retrieved from investigation.
 
           extra_headers: Send extra headers
 
@@ -194,7 +201,7 @@ class AsyncPreviewResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             path_template("/accounts/{account_id}/email-security/investigate/preview", account_id=account_id),
-            body=await async_maybe_transform({"postfix_id": postfix_id}, preview_create_params.PreviewCreateParams),
+            body=await async_maybe_transform({"id": id}, preview_create_params.PreviewCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -218,8 +225,9 @@ class AsyncPreviewResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PreviewGetResponse:
         """
-        Returns a preview of the message body as a base64 encoded PNG image for
-        non-benign messages.
+        Returns a preview of the message body as a base64-encoded PNG image for any
+        message with a detection. For messages without a detection, use the
+        non-detection preview endpoint instead.
 
         Args:
           account_id: Identifier.

@@ -25,6 +25,10 @@ class CustomProviderCreateParams(TypedDict, total=False):
     enable: bool
 
     headers: str
+    """JSON object of extra HTTP headers that AI Gateway sends to the provider.
+
+    Values can contain credentials.
+    """
 
     js_example: str
 

@@ -78,7 +78,7 @@ class WidgetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
-        Lists challenge widgets.
+        Creates a Turnstile widget for an account.
 
         Args:
           account_id: Identifier
@@ -91,9 +91,8 @@ class WidgetsResource(SyncAPIResource):
 
           direction: Direction to order widgets.
 
-          filter:
-              Filter widgets by field using case-insensitive substring matching. Format:
-              `field:value`
+          filter: Filter widgets by field. The `name` field uses case-insensitive substring
+              matching; `sitekey` uses exact matching. Format: `field:value`
 
               Supported fields:
 
@@ -187,12 +186,12 @@ class WidgetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
-        Update the configuration of a widget.
+        Updates the configuration of a Turnstile widget.
 
         Args:
           account_id: Identifier
 
-          sitekey: Widget item identifier tag.
+          sitekey: Unique identifier for a Turnstile widget.
 
           mode: Widget Mode
 
@@ -268,16 +267,15 @@ class WidgetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[WidgetListResponse]:
         """
-        Lists all turnstile widgets of an account.
+        Lists Turnstile widgets for an account.
 
         Args:
           account_id: Identifier
 
           direction: Direction to order widgets.
 
-          filter:
-              Filter widgets by field using case-insensitive substring matching. Format:
-              `field:value`
+          filter: Filter widgets by field. The `name` field uses case-insensitive substring
+              matching; `sitekey` uses exact matching. Format: `field:value`
 
               Supported fields:
 
@@ -338,12 +336,12 @@ class WidgetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
-        Destroy a Turnstile Widget.
+        Deletes a Turnstile widget from an account.
 
         Args:
           account_id: Identifier
 
-          sitekey: Widget item identifier tag.
+          sitekey: Unique identifier for a Turnstile widget.
 
           extra_headers: Send extra headers
 
@@ -384,12 +382,12 @@ class WidgetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
-        Show a single challenge widget configuration.
+        Returns the configuration of a Turnstile widget.
 
         Args:
           account_id: Identifier
 
-          sitekey: Widget item identifier tag.
+          sitekey: Unique identifier for a Turnstile widget.
 
           extra_headers: Send extra headers
 
@@ -430,17 +428,17 @@ class WidgetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
-        """Generate a new secret key for this widget.
+        """Generates a new secret key for this widget.
 
-        If `invalidate_immediately` is set to
-        `false`, the previous secret remains valid for 2 hours.
+        If `invalidate_immediately` is set
+        to `false`, the previous secret remains valid for 2 hours.
 
         Note that secrets cannot be rotated again during the grace period.
 
         Args:
           account_id: Identifier
 
-          sitekey: Widget item identifier tag.
+          sitekey: Unique identifier for a Turnstile widget.
 
           invalidate_immediately: If `invalidate_immediately` is set to `false`, the previous secret will remain
               valid for two hours. Otherwise, the secret is immediately invalidated, and
@@ -523,7 +521,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
-        Lists challenge widgets.
+        Creates a Turnstile widget for an account.
 
         Args:
           account_id: Identifier
@@ -536,9 +534,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
 
           direction: Direction to order widgets.
 
-          filter:
-              Filter widgets by field using case-insensitive substring matching. Format:
-              `field:value`
+          filter: Filter widgets by field. The `name` field uses case-insensitive substring
+              matching; `sitekey` uses exact matching. Format: `field:value`
 
               Supported fields:
 
@@ -632,12 +629,12 @@ class AsyncWidgetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
-        Update the configuration of a widget.
+        Updates the configuration of a Turnstile widget.
 
         Args:
           account_id: Identifier
 
-          sitekey: Widget item identifier tag.
+          sitekey: Unique identifier for a Turnstile widget.
 
           mode: Widget Mode
 
@@ -713,16 +710,15 @@ class AsyncWidgetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WidgetListResponse, AsyncV4PagePaginationArray[WidgetListResponse]]:
         """
-        Lists all turnstile widgets of an account.
+        Lists Turnstile widgets for an account.
 
         Args:
           account_id: Identifier
 
           direction: Direction to order widgets.
 
-          filter:
-              Filter widgets by field using case-insensitive substring matching. Format:
-              `field:value`
+          filter: Filter widgets by field. The `name` field uses case-insensitive substring
+              matching; `sitekey` uses exact matching. Format: `field:value`
 
               Supported fields:
 
@@ -783,12 +779,12 @@ class AsyncWidgetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
-        Destroy a Turnstile Widget.
+        Deletes a Turnstile widget from an account.
 
         Args:
           account_id: Identifier
 
-          sitekey: Widget item identifier tag.
+          sitekey: Unique identifier for a Turnstile widget.
 
           extra_headers: Send extra headers
 
@@ -829,12 +825,12 @@ class AsyncWidgetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
-        Show a single challenge widget configuration.
+        Returns the configuration of a Turnstile widget.
 
         Args:
           account_id: Identifier
 
-          sitekey: Widget item identifier tag.
+          sitekey: Unique identifier for a Turnstile widget.
 
           extra_headers: Send extra headers
 
@@ -875,17 +871,17 @@ class AsyncWidgetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
-        """Generate a new secret key for this widget.
+        """Generates a new secret key for this widget.
 
-        If `invalidate_immediately` is set to
-        `false`, the previous secret remains valid for 2 hours.
+        If `invalidate_immediately` is set
+        to `false`, the previous secret remains valid for 2 hours.
 
         Note that secrets cannot be rotated again during the grace period.
 
         Args:
           account_id: Identifier
 
-          sitekey: Widget item identifier tag.
+          sitekey: Unique identifier for a Turnstile widget.
 
           invalidate_immediately: If `invalidate_immediately` is set to `false`, the previous secret will remain
               valid for two hours. Otherwise, the secret is immediately invalidated, and

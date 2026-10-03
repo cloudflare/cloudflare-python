@@ -1,11 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
+from typing import Union, Optional
+from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 
-__all__ = ["ZoneEditResponse", "InternalDNS", "Nameservers", "SOA"]
+__all__ = [
+    "ZoneEditResponse",
+    "InternalDNS",
+    "Nameservers",
+    "NameserversDNSSettingsZoneNameserversCloudflare",
+    "NameserversDNSSettingsZoneNameserversCustomExisting",
+    "NameserversDNSSettingsZoneNameserversCustomSet",
+    "SOA",
+]
 
 
 class InternalDNS(BaseModel):
@@ -15,16 +23,32 @@ class InternalDNS(BaseModel):
     """The ID of the zone to fallback to."""
 
 
-class Nameservers(BaseModel):
-    """
-    Settings determining the nameservers through which the zone should be available.
-    """
+class NameserversDNSSettingsZoneNameserversCloudflare(BaseModel):
+    type: Literal["cloudflare.standard", "cloudflare.advanced"]
+    """Nameserver type."""
 
-    type: Literal["cloudflare.standard", "cloudflare.advanced", "custom.account", "custom.tenant", "custom.zone"]
-    """Nameserver type"""
+
+class NameserversDNSSettingsZoneNameserversCustomExisting(BaseModel):
+    type: Literal["custom.account", "custom.tenant", "custom.zone"]
+    """Nameserver type."""
 
     ns_set: Optional[int] = None
-    """Configured nameserver set to be used for this zone"""
+    """Configured nameserver set number to use for this zone."""
+
+
+class NameserversDNSSettingsZoneNameserversCustomSet(BaseModel):
+    nameserver_set_id: str
+    """Identifier of the account-owned Custom Nameserver Set to use for this zone."""
+
+    type: Literal["custom"]
+    """Nameserver type."""
+
+
+Nameservers: TypeAlias = Union[
+    NameserversDNSSettingsZoneNameserversCloudflare,
+    NameserversDNSSettingsZoneNameserversCustomExisting,
+    NameserversDNSSettingsZoneNameserversCustomSet,
+]
 
 
 class SOA(BaseModel):
@@ -89,9 +113,7 @@ class ZoneEditResponse(BaseModel):
     """
 
     nameservers: Nameservers
-    """
-    Settings determining the nameservers through which the zone should be available.
-    """
+    """Controls the nameservers through which the zone is available."""
 
     ns_ttl: float
     """The time to live (TTL) of the zone's nameserver (NS) records."""

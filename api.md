@@ -157,6 +157,8 @@ Methods:
 
 # [DurableObjects](src/cloudflare/resources/durable_objects/api.md)
 
+# [Containers](src/cloudflare/resources/containers/api.md)
+
 # [Queues](src/cloudflare/resources/queues/api.md)
 
 # [APIGateway](src/cloudflare/resources/api_gateway/api.md)
@@ -218,6 +220,8 @@ Methods:
 # [R2](src/cloudflare/resources/r2/api.md)
 
 # [R2DataCatalog](src/cloudflare/resources/r2_data_catalog/api.md)
+
+# [BasinCatalog](src/cloudflare/resources/basin_catalog/api.md)
 
 # [WorkersForPlatforms](src/cloudflare/resources/workers_for_platforms/api.md)
 

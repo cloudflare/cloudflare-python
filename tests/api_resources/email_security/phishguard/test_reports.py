@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_date, parse_datetime
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.email_security.phishguard import ReportListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -24,7 +24,7 @@ class TestReports:
         report = client.email_security.phishguard.reports.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[ReportListResponse], report, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ReportListResponse], report, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -32,10 +32,12 @@ class TestReports:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
             from_date=parse_date("2019-12-27"),
+            page=1,
+            per_page=20,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             to_date=parse_date("2019-12-27"),
         )
-        assert_matches_type(SyncSinglePage[ReportListResponse], report, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ReportListResponse], report, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -46,7 +48,7 @@ class TestReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         report = response.parse()
-        assert_matches_type(SyncSinglePage[ReportListResponse], report, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ReportListResponse], report, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -57,7 +59,7 @@ class TestReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             report = response.parse()
-            assert_matches_type(SyncSinglePage[ReportListResponse], report, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[ReportListResponse], report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -79,7 +81,7 @@ class TestAsyncReports:
         report = await async_client.email_security.phishguard.reports.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[ReportListResponse], report, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ReportListResponse], report, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -87,10 +89,12 @@ class TestAsyncReports:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             end=parse_datetime("2019-12-27T18:11:19.117Z"),
             from_date=parse_date("2019-12-27"),
+            page=1,
+            per_page=20,
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
             to_date=parse_date("2019-12-27"),
         )
-        assert_matches_type(AsyncSinglePage[ReportListResponse], report, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ReportListResponse], report, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -101,7 +105,7 @@ class TestAsyncReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         report = await response.parse()
-        assert_matches_type(AsyncSinglePage[ReportListResponse], report, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ReportListResponse], report, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -112,7 +116,7 @@ class TestAsyncReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             report = await response.parse()
-            assert_matches_type(AsyncSinglePage[ReportListResponse], report, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[ReportListResponse], report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

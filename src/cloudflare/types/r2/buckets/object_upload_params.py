@@ -11,7 +11,7 @@ __all__ = ["ObjectUploadParams"]
 
 class ObjectUploadParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID."""
+    """Cloudflare account ID that owns the R2 resource."""
 
     bucket_name: Required[str]
     """Name of the bucket."""

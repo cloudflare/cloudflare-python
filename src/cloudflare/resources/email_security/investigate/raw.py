@@ -56,7 +56,7 @@ class RawResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawGetResponse:
         """
-        Returns the raw eml of any non-benign message.
+        Returns the raw EML content of any message with a detection.
 
         Args:
           account_id: Identifier.
@@ -125,7 +125,7 @@ class AsyncRawResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawGetResponse:
         """
-        Returns the raw eml of any non-benign message.
+        Returns the raw EML content of any message with a detection.
 
         Args:
           account_id: Identifier.

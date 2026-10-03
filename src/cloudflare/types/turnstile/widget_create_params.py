@@ -30,9 +30,10 @@ class WidgetCreateParams(TypedDict, total=False):
     """Direction to order widgets."""
 
     filter: str
-    """
-    Filter widgets by field using case-insensitive substring matching. Format:
-    `field:value`
+    """Filter widgets by field.
+
+    The `name` field uses case-insensitive substring matching; `sitekey` uses exact
+    matching. Format: `field:value`
 
     Supported fields:
 

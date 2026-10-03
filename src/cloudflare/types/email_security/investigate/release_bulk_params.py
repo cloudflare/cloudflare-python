@@ -13,4 +13,5 @@ class ReleaseBulkParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    body: Required[SequenceNotStr[str]]
+    ids: Required[SequenceNotStr[str]]
+    """Investigate IDs of the messages to release."""

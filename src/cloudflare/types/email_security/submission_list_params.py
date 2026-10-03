@@ -39,8 +39,10 @@ class SubmissionListParams(TypedDict, total=False):
     """Field to sort by."""
 
     original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
+    """The disposition a message is submitted to have."""
 
     outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
+    """The disposition a message is submitted to have."""
 
     page: int
     """Current page within paginated list of results."""
@@ -49,14 +51,22 @@ class SubmissionListParams(TypedDict, total=False):
     """The number of results per page. Maximum value is 1000."""
 
     query: Optional[str]
+    """Search term for filtering submissions."""
 
     requested_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
+    """The disposition a message is submitted to have."""
 
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The beginning of the search date range. Defaults to `now - 30 days`."""
 
     status: str
+    """Filter by review status — `escalated`, `reviewed`, or `unreviewed`."""
 
     submission_id: str
+    """Filter by a specific submission ID."""
 
     type: Literal["TEAM", "USER"]
+    """
+    Filter by who created the submission — `TEAM` for security team members or
+    `USER` for end users.
+    """

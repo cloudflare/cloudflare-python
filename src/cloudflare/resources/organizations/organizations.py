@@ -102,7 +102,8 @@ class OrganizationsResource(SyncAPIResource):
     ) -> Organization:
         """Create a new organization for a user.
 
-        (Currently in Public Beta - see
+        Sub-organization creation availability
+        depends on the organization's capabilities. (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -148,7 +149,7 @@ class OrganizationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """Modify organization.
+        """Update an organization's name.
 
         (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
@@ -262,7 +263,8 @@ class OrganizationsResource(SyncAPIResource):
         """Delete an organization.
 
         The organization MUST be empty before deleting. It must
-        not contain any sub-organizations, accounts, members or users. (Currently in
+        not contain any sub-organizations, accounts, members or users. Sub-organization
+        deletion availability depends on the organization's capabilities. (Currently in
         Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         **Access Control:** Restricted to enterprise organizations.
@@ -377,7 +379,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> Organization:
         """Create a new organization for a user.
 
-        (Currently in Public Beta - see
+        Sub-organization creation availability
+        depends on the organization's capabilities. (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
@@ -423,7 +426,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """Modify organization.
+        """Update an organization's name.
 
         (Currently in Public Beta - see
         https://developers.cloudflare.com/fundamentals/organizations/)
@@ -537,7 +540,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         """Delete an organization.
 
         The organization MUST be empty before deleting. It must
-        not contain any sub-organizations, accounts, members or users. (Currently in
+        not contain any sub-organizations, accounts, members or users. Sub-organization
+        deletion availability depends on the organization's capabilities. (Currently in
         Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         **Access Control:** Restricted to enterprise organizations.

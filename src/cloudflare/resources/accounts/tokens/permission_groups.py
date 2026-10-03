@@ -59,8 +59,11 @@ class PermissionGroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PermissionGroupListResponse]:
-        """
-        Find all available permission groups for Account Owned API Tokens
+        """Find all available permission groups for Account Owned API Tokens.
+
+        Each
+        permission group indicates whether the caller can select it when creating a
+        token. Token creation performs the authoritative permission check.
 
         Args:
           account_id: Account identifier tag.
@@ -111,8 +114,11 @@ class PermissionGroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PermissionGroupGetResponse]:
-        """
-        Find all available permission groups for Account Owned API Tokens
+        """Find all available permission groups for Account Owned API Tokens.
+
+        Each
+        permission group indicates whether the caller can select it when creating a
+        token. Token creation performs the authoritative permission check.
 
         Args:
           account_id: Account identifier tag.
@@ -184,8 +190,11 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PermissionGroupListResponse, AsyncSinglePage[PermissionGroupListResponse]]:
-        """
-        Find all available permission groups for Account Owned API Tokens
+        """Find all available permission groups for Account Owned API Tokens.
+
+        Each
+        permission group indicates whether the caller can select it when creating a
+        token. Token creation performs the authoritative permission check.
 
         Args:
           account_id: Account identifier tag.
@@ -236,8 +245,11 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PermissionGroupGetResponse]:
-        """
-        Find all available permission groups for Account Owned API Tokens
+        """Find all available permission groups for Account Owned API Tokens.
+
+        Each
+        permission group indicates whether the caller can select it when creating a
+        token. Token creation performs the authoritative permission check.
 
         Args:
           account_id: Account identifier tag.

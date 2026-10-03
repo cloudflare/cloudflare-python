@@ -21,5 +21,6 @@ class ProviderConfigCreateParams(TypedDict, total=False):
     rate_limit_period: float
 
     secret: str
+    """Provider API key to store in the Secrets Store configured on the gateway."""
 
     secret_id: str

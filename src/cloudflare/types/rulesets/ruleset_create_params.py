@@ -97,15 +97,6 @@ __all__ = [
 
 
 class RulesetCreateParams(TypedDict, total=False):
-    kind: Required[Kind]
-    """The kind of the ruleset."""
-
-    name: Required[str]
-    """The human-readable name of the ruleset."""
-
-    phase: Required[Phase]
-    """The phase of the ruleset."""
-
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -121,6 +112,15 @@ class RulesetCreateParams(TypedDict, total=False):
 
     description: str
     """An informative description of the ruleset."""
+
+    kind: Kind
+    """The kind of the ruleset."""
+
+    name: str
+    """The human-readable name of the ruleset."""
+
+    phase: Phase
+    """The phase of the ruleset."""
 
     rules: Iterable[Rule]
     """The list of rules in the ruleset."""

@@ -177,18 +177,21 @@ class InvestigateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[InvestigateListResponse]:
         """
-        Returns information for each email that matches the search parameter(s).
+        Returns information for each email that matches the provided search parameters.
 
         Args:
           account_id: Identifier.
 
-          delivery_status: Delivery status to filter by.
+          alert_id: Filter by alert ID.
+
+          cursor: Pagination cursor from the previous response's `result_info`.
 
           delivery_status: Delivery status to filter by.
 
           detections_only: Whether to include only detections in search results.
 
-          domain: Sender domains to filter by.
+          domain: Filter by a domain found in the email — sender domain, recipient domain, or a
+              domain in a link.
 
           end: The end of the search date range. Defaults to `now`.
 
@@ -196,16 +199,28 @@ class InvestigateResource(SyncAPIResource):
 
           message_action: Message actions to filter by.
 
+          message_id: Filter by the RFC 5322 Message-ID header.
+
+          metric: Metric to aggregate the results by.
+
           page: Deprecated: Use cursor pagination instead. End of life: November 1, 2026.
 
           per_page: The number of results per page. Maximum value is 1000.
 
-          query: Space-delimited search term. Case-insensitive.
+          query: Space-delimited term matched case-insensitively against message metadata —
+              sender, recipient, subject, attachment names and hashes, and message ID.
+
+          recipient: Filter by recipient. Matches an email address or a domain.
+
+          sender: Filter by sender. Matches an email address or a domain.
 
           smtp_helo_ip: Matches messages whose SMTP HELO server IP address equals this value.
 
           start: The beginning of the search date range. Defaults to `now - 30 days`. Must not be
               in the future.
+
+          subject: Search for messages containing individual keywords in any order within the
+              subject.
 
           extra_headers: Send extra headers
 
@@ -393,18 +408,21 @@ class AsyncInvestigateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InvestigateListResponse, AsyncV4PagePaginationArray[InvestigateListResponse]]:
         """
-        Returns information for each email that matches the search parameter(s).
+        Returns information for each email that matches the provided search parameters.
 
         Args:
           account_id: Identifier.
 
-          delivery_status: Delivery status to filter by.
+          alert_id: Filter by alert ID.
+
+          cursor: Pagination cursor from the previous response's `result_info`.
 
           delivery_status: Delivery status to filter by.
 
           detections_only: Whether to include only detections in search results.
 
-          domain: Sender domains to filter by.
+          domain: Filter by a domain found in the email — sender domain, recipient domain, or a
+              domain in a link.
 
           end: The end of the search date range. Defaults to `now`.
 
@@ -412,16 +430,28 @@ class AsyncInvestigateResource(AsyncAPIResource):
 
           message_action: Message actions to filter by.
 
+          message_id: Filter by the RFC 5322 Message-ID header.
+
+          metric: Metric to aggregate the results by.
+
           page: Deprecated: Use cursor pagination instead. End of life: November 1, 2026.
 
           per_page: The number of results per page. Maximum value is 1000.
 
-          query: Space-delimited search term. Case-insensitive.
+          query: Space-delimited term matched case-insensitively against message metadata —
+              sender, recipient, subject, attachment names and hashes, and message ID.
+
+          recipient: Filter by recipient. Matches an email address or a domain.
+
+          sender: Filter by sender. Matches an email address or a domain.
 
           smtp_helo_ip: Matches messages whose SMTP HELO server IP address equals this value.
 
           start: The beginning of the search date range. Defaults to `now - 30 days`. Must not be
               in the future.
+
+          subject: Search for messages containing individual keywords in any order within the
+              subject.
 
           extra_headers: Send extra headers
 

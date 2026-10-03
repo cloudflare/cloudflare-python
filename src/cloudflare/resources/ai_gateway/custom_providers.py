@@ -71,9 +71,14 @@ class CustomProvidersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomProviderCreateResponse:
         """
-        Creates a new AI Gateway.
+        Creates an account-level custom provider that forwards AI Gateway requests to
+        the HTTPS base URL you supply. Requests reference the provider as
+        `custom-{slug}`, so the slug must be unique within the account.
 
         Args:
+          headers: JSON object of extra HTTP headers that AI Gateway sends to the provider. Values
+              can contain credentials.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -129,7 +134,8 @@ class CustomProvidersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[CustomProviderListResponse]:
         """
-        Lists all AI Gateway evaluator types configured for the account.
+        Lists the custom providers configured for the account, ordered by position and
+        then name.
 
         Args:
           search: Search by id, name, slug
@@ -179,7 +185,7 @@ class CustomProvidersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomProviderDeleteResponse:
         """
-        Deletes an AI Gateway dataset.
+        Deletes a custom provider and every pricing rule that belongs to it.
 
         Args:
           extra_headers: Send extra headers
@@ -219,7 +225,7 @@ class CustomProvidersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomProviderGetResponse:
         """
-        Retrieves details for a specific AI Gateway dataset.
+        Retrieves a custom provider, including its slug, base URL, and custom headers.
 
         Args:
           extra_headers: Send extra headers
@@ -290,9 +296,14 @@ class AsyncCustomProvidersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomProviderCreateResponse:
         """
-        Creates a new AI Gateway.
+        Creates an account-level custom provider that forwards AI Gateway requests to
+        the HTTPS base URL you supply. Requests reference the provider as
+        `custom-{slug}`, so the slug must be unique within the account.
 
         Args:
+          headers: JSON object of extra HTTP headers that AI Gateway sends to the provider. Values
+              can contain credentials.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -348,7 +359,8 @@ class AsyncCustomProvidersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomProviderListResponse, AsyncV4PagePaginationArray[CustomProviderListResponse]]:
         """
-        Lists all AI Gateway evaluator types configured for the account.
+        Lists the custom providers configured for the account, ordered by position and
+        then name.
 
         Args:
           search: Search by id, name, slug
@@ -398,7 +410,7 @@ class AsyncCustomProvidersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomProviderDeleteResponse:
         """
-        Deletes an AI Gateway dataset.
+        Deletes a custom provider and every pricing rule that belongs to it.
 
         Args:
           extra_headers: Send extra headers
@@ -438,7 +450,7 @@ class AsyncCustomProvidersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomProviderGetResponse:
         """
-        Retrieves details for a specific AI Gateway dataset.
+        Retrieves a custom provider, including its slug, base URL, and custom headers.
 
         Args:
           extra_headers: Send extra headers

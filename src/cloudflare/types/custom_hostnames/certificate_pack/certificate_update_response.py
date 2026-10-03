@@ -248,7 +248,7 @@ class SSL(BaseModel):
 
 class CertificateUpdateResponse(BaseModel):
     id: str
-    """Identifier."""
+    """Custom hostname identifier tag."""
 
     hostname: str
     """The custom hostname that will point to your hostname via CNAME."""

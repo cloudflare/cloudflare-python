@@ -141,6 +141,7 @@ class LANsResource(SyncAPIResource):
         account_id: str,
         site_id: str,
         bond_id: int | Omit = omit,
+        ha_link: bool | Omit = omit,
         is_breakout: bool | Omit = omit,
         is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
@@ -165,6 +166,9 @@ class LANsResource(SyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
+              only one LAN can be set as the ha_link.
 
           is_breakout: mark true to use this LAN for source-based breakout traffic
 
@@ -200,6 +204,7 @@ class LANsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "bond_id": bond_id,
+                    "ha_link": ha_link,
                     "is_breakout": is_breakout,
                     "is_prioritized": is_prioritized,
                     "name": name,
@@ -323,6 +328,7 @@ class LANsResource(SyncAPIResource):
         account_id: str,
         site_id: str,
         bond_id: int | Omit = omit,
+        ha_link: bool | Omit = omit,
         is_breakout: bool | Omit = omit,
         is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
@@ -347,6 +353,9 @@ class LANsResource(SyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
+              only one LAN can be set as the ha_link.
 
           is_breakout: mark true to use this LAN for source-based breakout traffic
 
@@ -382,6 +391,7 @@ class LANsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "bond_id": bond_id,
+                    "ha_link": ha_link,
                     "is_breakout": is_breakout,
                     "is_prioritized": is_prioritized,
                     "name": name,
@@ -567,6 +577,7 @@ class AsyncLANsResource(AsyncAPIResource):
         account_id: str,
         site_id: str,
         bond_id: int | Omit = omit,
+        ha_link: bool | Omit = omit,
         is_breakout: bool | Omit = omit,
         is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
@@ -591,6 +602,9 @@ class AsyncLANsResource(AsyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
+              only one LAN can be set as the ha_link.
 
           is_breakout: mark true to use this LAN for source-based breakout traffic
 
@@ -626,6 +640,7 @@ class AsyncLANsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "bond_id": bond_id,
+                    "ha_link": ha_link,
                     "is_breakout": is_breakout,
                     "is_prioritized": is_prioritized,
                     "name": name,
@@ -749,6 +764,7 @@ class AsyncLANsResource(AsyncAPIResource):
         account_id: str,
         site_id: str,
         bond_id: int | Omit = omit,
+        ha_link: bool | Omit = omit,
         is_breakout: bool | Omit = omit,
         is_prioritized: bool | Omit = omit,
         name: str | Omit = omit,
@@ -773,6 +789,9 @@ class AsyncLANsResource(AsyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
+              only one LAN can be set as the ha_link.
 
           is_breakout: mark true to use this LAN for source-based breakout traffic
 
@@ -808,6 +827,7 @@ class AsyncLANsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "bond_id": bond_id,
+                    "ha_link": ha_link,
                     "is_breakout": is_breakout,
                     "is_prioritized": is_prioritized,
                     "name": name,

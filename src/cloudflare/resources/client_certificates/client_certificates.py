@@ -187,7 +187,7 @@ class ClientCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          client_certificate_id: Identifier.
+          client_certificate_id: Client Certificate Tag
 
           extra_headers: Send extra headers
 
@@ -239,7 +239,7 @@ class ClientCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          client_certificate_id: Identifier.
+          client_certificate_id: Client Certificate Tag
 
           extra_headers: Send extra headers
 
@@ -292,7 +292,7 @@ class ClientCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          client_certificate_id: Identifier.
+          client_certificate_id: Client Certificate Tag
 
           extra_headers: Send extra headers
 
@@ -482,7 +482,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          client_certificate_id: Identifier.
+          client_certificate_id: Client Certificate Tag
 
           extra_headers: Send extra headers
 
@@ -534,7 +534,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          client_certificate_id: Identifier.
+          client_certificate_id: Client Certificate Tag
 
           extra_headers: Send extra headers
 
@@ -587,7 +587,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          client_certificate_id: Identifier.
+          client_certificate_id: Client Certificate Tag
 
           extra_headers: Send extra headers
 

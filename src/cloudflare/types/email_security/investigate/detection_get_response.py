@@ -170,3 +170,4 @@ class DetectionGetResponse(BaseModel):
             "NONE",
         ]
     ] = None
+    """The verdict Email Security assigns to a message."""

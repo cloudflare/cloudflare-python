@@ -31,6 +31,9 @@ class PermissionGroupListResponse(BaseModel):
     ] = None
     """Product category that this permission group belongs to."""
 
+    is_selectable: Optional[bool] = None
+    """Whether the caller can select this permission group when creating a token."""
+
     name: Optional[str] = None
     """Permission Group Name"""
 

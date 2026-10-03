@@ -188,7 +188,7 @@ class MTLSCertificatesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          mtls_certificate_id: Identifier.
+          mtls_certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -241,7 +241,7 @@ class MTLSCertificatesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          mtls_certificate_id: Identifier.
+          mtls_certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -427,7 +427,7 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          mtls_certificate_id: Identifier.
+          mtls_certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -480,7 +480,7 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          mtls_certificate_id: Identifier.
+          mtls_certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 

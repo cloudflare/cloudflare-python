@@ -27,7 +27,7 @@ __all__ = [
 
 class R2EnableSippyAws(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID."""
+    """Cloudflare account ID that owns the R2 resource."""
 
     destination: R2EnableSippyAwsDestination
     """R2 bucket to copy objects to."""
@@ -78,7 +78,7 @@ class R2EnableSippyAwsSource(TypedDict, total=False):
     provider: Literal["aws"]
 
     region: str
-    """Name of the AWS availability zone."""
+    """AWS region containing the source S3 bucket."""
 
     secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
     """Secret Access Key of an IAM credential (ideally scoped to a single S3 bucket)."""
@@ -86,7 +86,7 @@ class R2EnableSippyAwsSource(TypedDict, total=False):
 
 class R2EnableSippyGcs(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID."""
+    """Cloudflare account ID that owns the R2 resource."""
 
     destination: R2EnableSippyGcsDestination
     """R2 bucket to copy objects to."""
@@ -142,7 +142,7 @@ class R2EnableSippyGcsSource(TypedDict, total=False):
 
 class R2EnableSippyS3(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID."""
+    """Cloudflare account ID that owns the R2 resource."""
 
     destination: R2EnableSippyS3Destination
     """R2 bucket to copy objects to."""
@@ -198,7 +198,7 @@ class R2EnableSippyS3Source(TypedDict, total=False):
 
 class R2EnableSippyAzure(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID."""
+    """Cloudflare account ID that owns the R2 resource."""
 
     destination: R2EnableSippyAzureDestination
     """R2 bucket to copy objects to."""

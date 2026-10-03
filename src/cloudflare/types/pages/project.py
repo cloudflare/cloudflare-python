@@ -576,7 +576,11 @@ class Project(BaseModel):
     """Most recent deployment of the project."""
 
     name: str
-    """Name of the project."""
+    """Name of the Pages project.
+
+    Must begin with a lowercase letter or digit and contain only lowercase letters,
+    digits, and hyphens.
+    """
 
     preview_script_name: str
     """Name of the preview script."""

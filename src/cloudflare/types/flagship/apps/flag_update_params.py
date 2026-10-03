@@ -34,10 +34,10 @@ __all__ = [
 
 class FlagUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Cloudflare account ID."""
+    """Cloudflare account ID that owns the Flagship app."""
 
     app_id: Required[str]
-    """App identifier."""
+    """Flagship app ID returned when the app was created."""
 
     default_variation: Required[str]
     """
@@ -68,6 +68,7 @@ class FlagUpdateParams(TypedDict, total=False):
     """
 
     description: Optional[str]
+    """Optional operator-facing description. It does not affect flag evaluation."""
 
     type: Literal["boolean", "string", "number", "json"]
     """Deprecated compatibility field.
@@ -93,6 +94,8 @@ class RuleConditionUnionMember0(TypedDict, total=False):
             "ends_with",
             "in",
             "not_in",
+            "has",
+            "not_has",
         ]
     ]
 
@@ -115,6 +118,8 @@ class RuleConditionUnionMember1ClauseUnionMember0(TypedDict, total=False):
             "ends_with",
             "in",
             "not_in",
+            "has",
+            "not_has",
         ]
     ]
 
@@ -137,6 +142,8 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0(TypedDict, t
             "ends_with",
             "in",
             "not_in",
+            "has",
+            "not_has",
         ]
     ]
 
@@ -159,6 +166,8 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
             "ends_with",
             "in",
             "not_in",
+            "has",
+            "not_has",
         ]
     ]
 
@@ -183,6 +192,8 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
             "ends_with",
             "in",
             "not_in",
+            "has",
+            "not_has",
         ]
     ]
 
@@ -207,6 +218,8 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
             "ends_with",
             "in",
             "not_in",
+            "has",
+            "not_has",
         ]
     ]
 
@@ -291,10 +304,10 @@ RuleCondition: TypeAlias = Union[RuleConditionUnionMember0, RuleConditionUnionMe
 
 class RuleRollout(TypedDict, total=False):
     percentage: Required[float]
-    """Percentage of matching traffic (0–100) served this variation.
-
-    For multi-way splits, use cumulative upper bounds across rules (e.g. 30, 70,
-    100).
+    """
+    Percentage of matching traffic (0–100, up to 2 decimal places) served this
+    variation. For multi-way splits, use cumulative upper bounds across rules (e.g.
+    30, 70, 100).
     """
 
     attribute: str

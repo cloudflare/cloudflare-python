@@ -76,6 +76,7 @@ class Patch(BaseModel):
     emails_processed: Optional[PatchEmailsProcessed] = None
 
     folder: Optional[Literal["AllItems", "Inbox"]] = None
+    """The mailbox folder to scan, for API-scanning domains."""
 
     inbox_provider: Optional[Literal["Microsoft", "Google"]] = None
 
@@ -155,6 +156,7 @@ class Post(BaseModel):
     emails_processed: Optional[PostEmailsProcessed] = None
 
     folder: Optional[Literal["AllItems", "Inbox"]] = None
+    """The mailbox folder to scan, for API-scanning domains."""
 
     inbox_provider: Optional[Literal["Microsoft", "Google"]] = None
 
@@ -234,6 +236,7 @@ class Put(BaseModel):
     emails_processed: Optional[PutEmailsProcessed] = None
 
     folder: Optional[Literal["AllItems", "Inbox"]] = None
+    """The mailbox folder to scan, for API-scanning domains."""
 
     inbox_provider: Optional[Literal["Microsoft", "Google"]] = None
 

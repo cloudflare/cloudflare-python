@@ -56,6 +56,7 @@ class TestCrawl:
                 "username": "x",
             },
             best_attempt=True,
+            browser="kitesurf",
             content_use="reference",
             cookies=[
                 {
@@ -398,6 +399,7 @@ class TestAsyncCrawl:
                 "username": "x",
             },
             best_attempt=True,
+            browser="kitesurf",
             content_use="reference",
             cookies=[
                 {

@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.types.registrar import (
     RegistrarCheckResponse,
     RegistrarSearchResponse,
+    RegistrarTransferCheckResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -138,6 +139,48 @@ class TestRegistrar:
                 q="x",
             )
 
+    @parametrize
+    def test_method_transfer_check(self, client: Cloudflare) -> None:
+        registrar = client.registrar.transfer_check(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            domains=[{"domain_name": "example.co.uk"}],
+        )
+        assert_matches_type(RegistrarTransferCheckResponse, registrar, path=["response"])
+
+    @parametrize
+    def test_raw_response_transfer_check(self, client: Cloudflare) -> None:
+        response = client.registrar.with_raw_response.transfer_check(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            domains=[{"domain_name": "example.co.uk"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        registrar = response.parse()
+        assert_matches_type(RegistrarTransferCheckResponse, registrar, path=["response"])
+
+    @parametrize
+    def test_streaming_response_transfer_check(self, client: Cloudflare) -> None:
+        with client.registrar.with_streaming_response.transfer_check(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            domains=[{"domain_name": "example.co.uk"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            registrar = response.parse()
+            assert_matches_type(RegistrarTransferCheckResponse, registrar, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_transfer_check(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.registrar.with_raw_response.transfer_check(
+                account_id="",
+                domains=[{"domain_name": "example.co.uk"}],
+            )
+
 
 class TestAsyncRegistrar:
     parametrize = pytest.mark.parametrize(
@@ -260,4 +303,46 @@ class TestAsyncRegistrar:
             await async_client.registrar.with_raw_response.search(
                 account_id="",
                 q="x",
+            )
+
+    @parametrize
+    async def test_method_transfer_check(self, async_client: AsyncCloudflare) -> None:
+        registrar = await async_client.registrar.transfer_check(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            domains=[{"domain_name": "example.co.uk"}],
+        )
+        assert_matches_type(RegistrarTransferCheckResponse, registrar, path=["response"])
+
+    @parametrize
+    async def test_raw_response_transfer_check(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.registrar.with_raw_response.transfer_check(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            domains=[{"domain_name": "example.co.uk"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        registrar = await response.parse()
+        assert_matches_type(RegistrarTransferCheckResponse, registrar, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_transfer_check(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.registrar.with_streaming_response.transfer_check(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            domains=[{"domain_name": "example.co.uk"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            registrar = await response.parse()
+            assert_matches_type(RegistrarTransferCheckResponse, registrar, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_transfer_check(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.registrar.with_raw_response.transfer_check(
+                account_id="",
+                domains=[{"domain_name": "example.co.uk"}],
             )

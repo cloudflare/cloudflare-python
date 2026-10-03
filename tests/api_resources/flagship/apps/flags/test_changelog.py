@@ -34,7 +34,7 @@ class TestChangelog:
             account_id="account_id",
             app_id="app_id",
             cursor="cursor",
-            limit="limit",
+            limit=1,
         )
         assert_matches_type(SyncCursorPaginationAfter[ChangelogListResponse], changelog, path=["response"])
 
@@ -111,7 +111,7 @@ class TestAsyncChangelog:
             account_id="account_id",
             app_id="app_id",
             cursor="cursor",
-            limit="limit",
+            limit=1,
         )
         assert_matches_type(AsyncCursorPaginationAfter[ChangelogListResponse], changelog, path=["response"])
 

@@ -9,6 +9,7 @@ __all__ = ["SchemaGetParams"]
 
 class SchemaGetParams(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     model: Required[str]
-    """Model Name"""
+    """AI model identifier, including its namespace and model name."""

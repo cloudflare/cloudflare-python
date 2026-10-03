@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -56,6 +57,7 @@ class NamespacesResource(SyncAPIResource):
         """
         return NamespacesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("Use `GET /accounts/{account_id}/basin-catalog/{bucket_name}/namespaces` instead.")
     def list(
         self,
         bucket_name: str,
@@ -161,6 +163,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         """
         return AsyncNamespacesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("Use `GET /accounts/{account_id}/basin-catalog/{bucket_name}/namespaces` instead.")
     async def list(
         self,
         bucket_name: str,
@@ -246,8 +249,10 @@ class NamespacesResourceWithRawResponse:
     def __init__(self, namespaces: NamespacesResource) -> None:
         self._namespaces = namespaces
 
-        self.list = to_raw_response_wrapper(
-            namespaces.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                namespaces.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -259,8 +264,10 @@ class AsyncNamespacesResourceWithRawResponse:
     def __init__(self, namespaces: AsyncNamespacesResource) -> None:
         self._namespaces = namespaces
 
-        self.list = async_to_raw_response_wrapper(
-            namespaces.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                namespaces.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -272,8 +279,10 @@ class NamespacesResourceWithStreamingResponse:
     def __init__(self, namespaces: NamespacesResource) -> None:
         self._namespaces = namespaces
 
-        self.list = to_streamed_response_wrapper(
-            namespaces.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                namespaces.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -285,8 +294,10 @@ class AsyncNamespacesResourceWithStreamingResponse:
     def __init__(self, namespaces: AsyncNamespacesResource) -> None:
         self._namespaces = namespaces
 
-        self.list = async_to_streamed_response_wrapper(
-            namespaces.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                namespaces.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

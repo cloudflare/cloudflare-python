@@ -163,6 +163,18 @@ class PropertiesIndicatorsItems(BaseModel):
     related_events: Optional[List[PropertiesIndicatorsItemsRelatedEvent]] = FieldInfo(
         alias="relatedEvents", default=None
     )
+    """Related events, capped by `relatedEventsLimit` (default 2).
+
+    Check `relatedEventsHasMore` to detect a capped list; pass
+    `relatedEventsLimit=-1` to retrieve all of them.
+    """
+
+    related_events_has_more: Optional[bool] = FieldInfo(alias="relatedEventsHasMore", default=None)
+    """
+    True when this indicator appears in more events than `relatedEvents` contains
+    because `relatedEventsLimit` capped the list. Pass `relatedEventsLimit=-1` to
+    retrieve every related event.
+    """
 
     tags: Optional[List[PropertiesIndicatorsItemsTag]] = None
 

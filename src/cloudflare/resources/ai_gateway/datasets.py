@@ -65,10 +65,12 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
-        Creates a new AI Gateway.
+        Creates a dataset that selects gateway logs matching the specified filters for
+        use in evaluations. Evaluations and datasets are deprecated and unavailable to
+        new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -122,11 +124,13 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetUpdateResponse:
-        """
-        Updates an existing AI Gateway dataset.
+        """Replaces the name, log filters, and enabled state of a dataset.
+
+        Evaluations and
+        datasets are deprecated and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -184,11 +188,13 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DatasetListResponse]:
-        """
-        Lists all AI Gateway evaluator types configured for the account.
+        """Lists the datasets defined for an AI Gateway.
+
+        Evaluations and datasets are
+        deprecated and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           search: Search by id, name, filters
 
@@ -243,11 +249,13 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDeleteResponse:
-        """
-        Deletes an AI Gateway dataset.
+        """Deletes a dataset.
+
+        Evaluations and datasets are deprecated and unavailable to
+        new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -293,11 +301,13 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
-        """
-        Retrieves details for a specific AI Gateway dataset.
+        """Retrieves a dataset and its log filters.
+
+        Evaluations and datasets are deprecated
+        and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -367,10 +377,12 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
         """
-        Creates a new AI Gateway.
+        Creates a dataset that selects gateway logs matching the specified filters for
+        use in evaluations. Evaluations and datasets are deprecated and unavailable to
+        new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -424,11 +436,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetUpdateResponse:
-        """
-        Updates an existing AI Gateway dataset.
+        """Replaces the name, log filters, and enabled state of a dataset.
+
+        Evaluations and
+        datasets are deprecated and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -486,11 +500,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DatasetListResponse, AsyncV4PagePaginationArray[DatasetListResponse]]:
-        """
-        Lists all AI Gateway evaluator types configured for the account.
+        """Lists the datasets defined for an AI Gateway.
+
+        Evaluations and datasets are
+        deprecated and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           search: Search by id, name, filters
 
@@ -545,11 +561,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDeleteResponse:
-        """
-        Deletes an AI Gateway dataset.
+        """Deletes a dataset.
+
+        Evaluations and datasets are deprecated and unavailable to
+        new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -595,11 +613,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
-        """
-        Retrieves details for a specific AI Gateway dataset.
+        """Retrieves a dataset and its log filters.
+
+        Evaluations and datasets are deprecated
+        and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 

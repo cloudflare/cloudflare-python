@@ -59,11 +59,14 @@ class LocksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Set lock rules for a bucket.
+        """Replaces the lock rules for an R2 bucket.
+
+        Enabled rules prevent matching objects
+        from being overwritten or deleted for a duration, until a date, or indefinitely.
+        Rules apply to existing and newly uploaded objects.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -117,7 +120,7 @@ class LocksResource(SyncAPIResource):
         Get lock rules for a bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -188,11 +191,14 @@ class AsyncLocksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Set lock rules for a bucket.
+        """Replaces the lock rules for an R2 bucket.
+
+        Enabled rules prevent matching objects
+        from being overwritten or deleted for a duration, until a date, or indefinitely.
+        Rules apply to existing and newly uploaded objects.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -246,7 +252,7 @@ class AsyncLocksResource(AsyncAPIResource):
         Get lock rules for a bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 

@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta"]
 
@@ -11,9 +14,29 @@ __all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta"]
 class PermissionGroupMeta(TypedDict, total=False):
     """Attributes associated to the permission group."""
 
-    key: str
+    category: str
+    """A category used to group permission groups."""
 
-    value: str
+    deprecated: str
+    """Indicates whether the permission group is deprecated."""
+
+    description: str
+    """Additional information about the permission group."""
+
+    editable: str
+    """Indicates whether the permission group can be edited."""
+
+    eol_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The planned end-of-life date and time, when provided."""
+
+    label: str
+    """A label identifying the permission group."""
+
+    scopes: str
+    """The scope associated with the permission group."""
+
+    visibility: str
+    """Indicates the permission group's availability or visibility."""
 
 
 class PermissionGroup(TypedDict, total=False):

@@ -98,11 +98,26 @@ class SubmissionsResource(SyncAPIResource):
 
           order: Field to sort by.
 
+          original_disposition: The disposition a message is submitted to have.
+
+          outcome_disposition: The disposition a message is submitted to have.
+
           page: Current page within paginated list of results.
 
           per_page: The number of results per page. Maximum value is 1000.
 
+          query: Search term for filtering submissions.
+
+          requested_disposition: The disposition a message is submitted to have.
+
           start: The beginning of the search date range. Defaults to `now - 30 days`.
+
+          status: Filter by review status — `escalated`, `reviewed`, or `unreviewed`.
+
+          submission_id: Filter by a specific submission ID.
+
+          type: Filter by who created the submission — `TEAM` for security team members or
+              `USER` for end users.
 
           extra_headers: Send extra headers
 
@@ -218,11 +233,26 @@ class AsyncSubmissionsResource(AsyncAPIResource):
 
           order: Field to sort by.
 
+          original_disposition: The disposition a message is submitted to have.
+
+          outcome_disposition: The disposition a message is submitted to have.
+
           page: Current page within paginated list of results.
 
           per_page: The number of results per page. Maximum value is 1000.
 
+          query: Search term for filtering submissions.
+
+          requested_disposition: The disposition a message is submitted to have.
+
           start: The beginning of the search date range. Defaults to `now - 30 days`.
+
+          status: Filter by review status — `escalated`, `reviewed`, or `unreviewed`.
+
+          submission_id: Filter by a specific submission ID.
+
+          type: Filter by who created the submission — `TEAM` for security team members or
+              `USER` for end users.
 
           extra_headers: Send extra headers
 

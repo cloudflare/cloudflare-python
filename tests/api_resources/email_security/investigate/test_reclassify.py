@@ -10,6 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -18,31 +20,36 @@ class TestReclassify:
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        reclassify = client.email_security.investigate.reclassify.create(
-            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_disposition="NONE",
-        )
+        with pytest.warns(DeprecationWarning):
+            reclassify = client.email_security.investigate.reclassify.create(
+                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_disposition="NONE",
+            )
+
         assert_matches_type(object, reclassify, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        reclassify = client.email_security.investigate.reclassify.create(
-            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_disposition="NONE",
-            eml_content="eml_content",
-            escalated_submission_id="escalated_submission_id",
-        )
+        with pytest.warns(DeprecationWarning):
+            reclassify = client.email_security.investigate.reclassify.create(
+                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_disposition="NONE",
+                eml_content="eml_content",
+                escalated_submission_id="escalated_submission_id",
+            )
+
         assert_matches_type(object, reclassify, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.email_security.investigate.reclassify.with_raw_response.create(
-            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_disposition="NONE",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.email_security.investigate.reclassify.with_raw_response.create(
+                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_disposition="NONE",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -51,34 +58,36 @@ class TestReclassify:
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.email_security.investigate.reclassify.with_streaming_response.create(
-            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_disposition="NONE",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.email_security.investigate.reclassify.with_streaming_response.create(
+                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_disposition="NONE",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            reclassify = response.parse()
-            assert_matches_type(object, reclassify, path=["response"])
+                reclassify = response.parse()
+                assert_matches_type(object, reclassify, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.email_security.investigate.reclassify.with_raw_response.create(
-                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-                account_id="",
-                expected_disposition="NONE",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                client.email_security.investigate.reclassify.with_raw_response.create(
+                    investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                    account_id="",
+                    expected_disposition="NONE",
+                )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `investigate_id` but received ''"):
-            client.email_security.investigate.reclassify.with_raw_response.create(
-                investigate_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_disposition="NONE",
-            )
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `investigate_id` but received ''"):
+                client.email_security.investigate.reclassify.with_raw_response.create(
+                    investigate_id="",
+                    account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    expected_disposition="NONE",
+                )
 
 
 class TestAsyncReclassify:
@@ -88,31 +97,36 @@ class TestAsyncReclassify:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        reclassify = await async_client.email_security.investigate.reclassify.create(
-            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_disposition="NONE",
-        )
+        with pytest.warns(DeprecationWarning):
+            reclassify = await async_client.email_security.investigate.reclassify.create(
+                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_disposition="NONE",
+            )
+
         assert_matches_type(object, reclassify, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        reclassify = await async_client.email_security.investigate.reclassify.create(
-            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_disposition="NONE",
-            eml_content="eml_content",
-            escalated_submission_id="escalated_submission_id",
-        )
+        with pytest.warns(DeprecationWarning):
+            reclassify = await async_client.email_security.investigate.reclassify.create(
+                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_disposition="NONE",
+                eml_content="eml_content",
+                escalated_submission_id="escalated_submission_id",
+            )
+
         assert_matches_type(object, reclassify, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.email_security.investigate.reclassify.with_raw_response.create(
-            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_disposition="NONE",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.email_security.investigate.reclassify.with_raw_response.create(
+                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_disposition="NONE",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -121,31 +135,33 @@ class TestAsyncReclassify:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.email_security.investigate.reclassify.with_streaming_response.create(
-            investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_disposition="NONE",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.email_security.investigate.reclassify.with_streaming_response.create(
+                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                expected_disposition="NONE",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            reclassify = await response.parse()
-            assert_matches_type(object, reclassify, path=["response"])
+                reclassify = await response.parse()
+                assert_matches_type(object, reclassify, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.email_security.investigate.reclassify.with_raw_response.create(
-                investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
-                account_id="",
-                expected_disposition="NONE",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                await async_client.email_security.investigate.reclassify.with_raw_response.create(
+                    investigate_id="4Njp3P0STMz2c02Q-2024-01-05T10:00:00-12345678",
+                    account_id="",
+                    expected_disposition="NONE",
+                )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `investigate_id` but received ''"):
-            await async_client.email_security.investigate.reclassify.with_raw_response.create(
-                investigate_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_disposition="NONE",
-            )
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `investigate_id` but received ''"):
+                await async_client.email_security.investigate.reclassify.with_raw_response.create(
+                    investigate_id="",
+                    account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    expected_disposition="NONE",
+                )

@@ -8,6 +8,7 @@ from cloudflare.types.registrar import (
     WorkflowStatus,
     RegistrarCheckResponse,
     RegistrarSearchResponse,
+    RegistrarTransferCheckResponse,
 )
 ```
 
@@ -15,6 +16,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/registrar/domain-check">client.registrar.<a href="./src/cloudflare/resources/registrar/registrar.py">check</a>(\*, account_id, \*\*<a href="src/cloudflare/types/registrar/registrar_check_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar/registrar_check_response.py">RegistrarCheckResponse</a></code>
 - <code title="get /accounts/{account_id}/registrar/domain-search">client.registrar.<a href="./src/cloudflare/resources/registrar/registrar.py">search</a>(\*, account_id, \*\*<a href="src/cloudflare/types/registrar/registrar_search_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar/registrar_search_response.py">RegistrarSearchResponse</a></code>
+- <code title="post /accounts/{account_id}/registrar/domain-transfer-check">client.registrar.<a href="./src/cloudflare/resources/registrar/registrar.py">transfer_check</a>(\*, account_id, \*\*<a href="src/cloudflare/types/registrar/registrar_transfer_check_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar/registrar_transfer_check_response.py">RegistrarTransferCheckResponse</a></code>
 
 ## Domains
 

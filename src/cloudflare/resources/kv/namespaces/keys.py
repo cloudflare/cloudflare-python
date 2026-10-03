@@ -66,20 +66,20 @@ class KeysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorLimitPagination[Key]:
         """
-        Lists a namespace's keys.
+        Lists key names in the specified Workers KV namespace, with expiration times and
+        metadata when present. Use `prefix` to filter names and `cursor` to request the
+        next page. Values are not included.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
-          cursor: Opaque token indicating the position from which to continue when requesting the
-              next set of records if the amount of list results was limited by the limit
-              parameter. A valid value for the cursor can be obtained from the `cursors`
-              object in the `result_info` structure.
+          cursor: Opaque pagination token from `result_info.cursor` in the previous response. Pass
+              it unchanged to request the next page of keys.
 
-          limit: Limits the number of keys returned in the response. The cursor attribute may be
-              used to iterate over the next batch of keys if there are more than the limit.
+          limit: Maximum number of keys to return in one response. Pass `result_info.cursor` from
+              the response as `cursor` to request the next page.
 
           prefix: Filters returned keys by a name prefix. Exact matches and any key names that
               begin with the prefix will be returned.
@@ -134,15 +134,15 @@ class KeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkDeleteResponse]:
-        """Remove multiple KV pairs from the namespace.
-
-        Body should be an array of up to
-        10,000 keys to be removed.
+        """
+        Deletes up to 10,000 key-value pairs from the specified Workers KV namespace.
+        Send a JSON array of the key names to delete. The result reports the number of
+        successful deletions and any keys that failed and should be retried.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
           extra_headers: Send extra headers
 
@@ -189,20 +189,21 @@ class KeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkGetResponse]:
-        """Retrieve up to 100 KV pairs from the namespace.
-
-        Keys must contain text-based
-        values. JSON values can optionally be parsed instead of being returned as a
-        string value. Metadata can be included if `withMetadata` is true.
+        """
+        Retrieves the text-based values of up to 100 keys from the specified Workers KV
+        namespace. The result maps each requested key to its value. Set `type` to `json`
+        to parse JSON values instead of returning strings, and set `withMetadata` to
+        `true` to include metadata with each value. Binary values are not supported by
+        this operation.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
           keys: Array of keys to retrieve (maximum of 100).
 
-          type: Whether to parse JSON values in the response.
+          type: Return values as strings with `text`, or parse stored JSON values with `json`.
 
           with_metadata: Whether to include metadata in the response.
 
@@ -261,19 +262,19 @@ class KeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkUpdateResponse]:
-        """Write multiple keys and values at once.
-
-        Body should be an array of up to 10,000
-        key-value pairs to be stored, along with optional expiration information.
-        Existing values and expirations will be overwritten. If neither `expiration` nor
-        `expiration_ttl` is specified, the key-value pair will never expire. If both are
-        set, `expiration_ttl` is used and `expiration` is ignored. The entire request
-        size must be 100 megabytes or less.
+        """
+        Writes up to 10,000 key-value pairs to the specified Workers KV namespace from a
+        JSON array, with optional metadata and expiration settings for each pair.
+        Existing values and expirations are overwritten. If neither `expiration` nor
+        `expiration_ttl` is specified, the key-value pair will not expire. If both are
+        set, `expiration_ttl` takes precedence. The entire request must be 100 megabytes
+        or less. The result reports the number of successful writes and any keys that
+        failed and should be retried.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
           extra_headers: Send extra headers
 
@@ -341,20 +342,20 @@ class AsyncKeysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Key, AsyncCursorLimitPagination[Key]]:
         """
-        Lists a namespace's keys.
+        Lists key names in the specified Workers KV namespace, with expiration times and
+        metadata when present. Use `prefix` to filter names and `cursor` to request the
+        next page. Values are not included.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
-          cursor: Opaque token indicating the position from which to continue when requesting the
-              next set of records if the amount of list results was limited by the limit
-              parameter. A valid value for the cursor can be obtained from the `cursors`
-              object in the `result_info` structure.
+          cursor: Opaque pagination token from `result_info.cursor` in the previous response. Pass
+              it unchanged to request the next page of keys.
 
-          limit: Limits the number of keys returned in the response. The cursor attribute may be
-              used to iterate over the next batch of keys if there are more than the limit.
+          limit: Maximum number of keys to return in one response. Pass `result_info.cursor` from
+              the response as `cursor` to request the next page.
 
           prefix: Filters returned keys by a name prefix. Exact matches and any key names that
               begin with the prefix will be returned.
@@ -409,15 +410,15 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkDeleteResponse]:
-        """Remove multiple KV pairs from the namespace.
-
-        Body should be an array of up to
-        10,000 keys to be removed.
+        """
+        Deletes up to 10,000 key-value pairs from the specified Workers KV namespace.
+        Send a JSON array of the key names to delete. The result reports the number of
+        successful deletions and any keys that failed and should be retried.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
           extra_headers: Send extra headers
 
@@ -464,20 +465,21 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkGetResponse]:
-        """Retrieve up to 100 KV pairs from the namespace.
-
-        Keys must contain text-based
-        values. JSON values can optionally be parsed instead of being returned as a
-        string value. Metadata can be included if `withMetadata` is true.
+        """
+        Retrieves the text-based values of up to 100 keys from the specified Workers KV
+        namespace. The result maps each requested key to its value. Set `type` to `json`
+        to parse JSON values instead of returning strings, and set `withMetadata` to
+        `true` to include metadata with each value. Binary values are not supported by
+        this operation.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
           keys: Array of keys to retrieve (maximum of 100).
 
-          type: Whether to parse JSON values in the response.
+          type: Return values as strings with `text`, or parse stored JSON values with `json`.
 
           with_metadata: Whether to include metadata in the response.
 
@@ -536,19 +538,19 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkUpdateResponse]:
-        """Write multiple keys and values at once.
-
-        Body should be an array of up to 10,000
-        key-value pairs to be stored, along with optional expiration information.
-        Existing values and expirations will be overwritten. If neither `expiration` nor
-        `expiration_ttl` is specified, the key-value pair will never expire. If both are
-        set, `expiration_ttl` is used and `expiration` is ignored. The entire request
-        size must be 100 megabytes or less.
+        """
+        Writes up to 10,000 key-value pairs to the specified Workers KV namespace from a
+        JSON array, with optional metadata and expiration settings for each pair.
+        Existing values and expirations are overwritten. If neither `expiration` nor
+        `expiration_ttl` is specified, the key-value pair will not expire. If both are
+        set, `expiration_ttl` takes precedence. The entire request must be 100 megabytes
+        or less. The result reports the number of successful writes and any keys that
+        failed and should be retried.
 
         Args:
-          account_id: Identifier.
+          account_id: ID of the Cloudflare account that owns the Workers KV namespaces.
 
-          namespace_id: Namespace identifier tag.
+          namespace_id: ID of the Workers KV namespace.
 
           extra_headers: Send extra headers
 

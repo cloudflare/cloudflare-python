@@ -12,6 +12,7 @@ __all__ = ["BulkGetResponse", "ActionParams", "ActionParamsMove", "ActionParamsR
 
 class ActionParamsMove(BaseModel):
     destination: Literal["Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"]
+    """The mailbox folder to move messages to."""
 
     type: Literal["MOVE"]
 
@@ -47,20 +48,27 @@ class SearchParams(BaseModel):
     """
 
     alert_id: Optional[str] = None
+    """Alert ID of the detection to filter by."""
 
     delivery_status: Optional[
         Literal["delivered", "moved", "quarantined", "rejected", "deferred", "bounced", "queued", "move_failed"]
     ] = None
-    """Delivery status of the message."""
+    """Delivery status to filter by."""
 
     detections_only: Optional[bool] = None
+    """Whether to include only detections in search results."""
 
     domain: Optional[str] = None
+    """
+    Match messages that mention this domain — sender domain, recipient domain, or a
+    domain in a link.
+    """
 
     end: Optional[datetime] = None
     """End of search date range."""
 
     exact_subject: Optional[str] = None
+    """Match messages whose subject line equals this value exactly."""
 
     final_disposition: Optional[
         Literal[
@@ -76,18 +84,25 @@ class SearchParams(BaseModel):
             "NONE",
         ]
     ] = None
+    """Dispositions to filter by."""
 
     message_action: Optional[Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"]] = None
+    """Message actions to filter by."""
 
     message_id: Optional[str] = None
+    """Message-ID header value to filter by."""
 
     metric: Optional[str] = None
+    """Metric name to filter the search by."""
 
     query: Optional[str] = None
+    """Space-delimited search term. Case-insensitive."""
 
     recipient: Optional[str] = None
+    """Match messages whose recipient is this email address or domain."""
 
     sender: Optional[str] = None
+    """Match messages whose sender is this email address or domain."""
 
     smtp_helo_ip: Optional[str] = None
     """Matches messages whose SMTP HELO server IP address equals this value."""
@@ -96,8 +111,10 @@ class SearchParams(BaseModel):
     """Beginning of search date range."""
 
     subject: Optional[str] = None
+    """Match messages whose subject contains these keywords, in any order."""
 
     submissions: Optional[bool] = None
+    """Whether to search reclassification submissions instead of original messages."""
 
 
 class BulkGetResponse(BaseModel):

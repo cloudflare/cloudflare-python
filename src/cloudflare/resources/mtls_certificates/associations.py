@@ -59,7 +59,7 @@ class AssociationsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          mtls_certificate_id: Identifier.
+          mtls_certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -127,7 +127,7 @@ class AsyncAssociationsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          mtls_certificate_id: Identifier.
+          mtls_certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 

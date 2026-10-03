@@ -11,7 +11,7 @@ __all__ = ["EvaluateGetParams"]
 
 class EvaluateGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Cloudflare account ID."""
+    """Cloudflare account ID that owns the Flagship app."""
 
     flag_key: Required[Annotated[str, PropertyInfo(alias="flagKey")]]
     """The flag key to evaluate."""

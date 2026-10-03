@@ -245,9 +245,9 @@ class InstancesResource(SyncAPIResource):
         Creates a CSV export for Finding instances and accepts optional filters in the
         payload.
 
-        The `storage_namespace_id` path parameter is derived from the finding ID by
-        base64-decoding it (which yields `integration_id:finding_type_id`) and replacing
-        the colon with a hyphen.
+        Identify the finding as `<integration_id>-<finding_type_id>`: join the
+        `integration.id` and `finding.id` of the finding (from the List posture findings
+        response) with a hyphen.
 
         Args:
           archived: Filter for archived status.
@@ -602,9 +602,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         Creates a CSV export for Finding instances and accepts optional filters in the
         payload.
 
-        The `storage_namespace_id` path parameter is derived from the finding ID by
-        base64-decoding it (which yields `integration_id:finding_type_id`) and replacing
-        the colon with a hyphen.
+        Identify the finding as `<integration_id>-<finding_type_id>`: join the
+        `integration.id` and `finding.id` of the finding (from the List posture findings
+        response) with a hyphen.
 
         Args:
           archived: Filter for archived status.

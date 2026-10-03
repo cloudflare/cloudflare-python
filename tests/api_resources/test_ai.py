@@ -20,7 +20,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_1(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         )
@@ -29,7 +29,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_1(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         )
@@ -42,7 +42,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_1(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         ) as response:
@@ -58,7 +58,7 @@ class TestAI:
     def test_path_params_run_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 text="x",
             )
@@ -73,7 +73,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_2(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -82,7 +82,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_2(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             guidance=0,
@@ -101,7 +101,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_2(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -114,7 +114,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_2(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         ) as response:
@@ -130,7 +130,7 @@ class TestAI:
     def test_path_params_run_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 prompt="x",
             )
@@ -145,7 +145,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_3(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -154,7 +154,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_3(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             lang="lang",
@@ -164,7 +164,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_3(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -177,7 +177,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_3(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         ) as response:
@@ -193,7 +193,7 @@ class TestAI:
     def test_path_params_run_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 prompt="x",
             )
@@ -208,7 +208,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_4(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         )
@@ -217,7 +217,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_4(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         )
@@ -230,7 +230,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_4(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         ) as response:
@@ -246,7 +246,7 @@ class TestAI:
     def test_path_params_run_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 text="x",
             )
@@ -261,7 +261,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_5(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0],
         )
@@ -270,7 +270,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_5(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0],
             source_lang="source_lang",
@@ -281,7 +281,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_5(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0],
         )
@@ -294,7 +294,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_5(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0],
         ) as response:
@@ -310,7 +310,7 @@ class TestAI:
     def test_path_params_run_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 audio=[0],
             )
@@ -325,7 +325,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_6(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -334,7 +334,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_6(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -347,7 +347,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_6(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         ) as response:
@@ -363,7 +363,7 @@ class TestAI:
     def test_path_params_run_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 image=[0],
             )
@@ -378,7 +378,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_7(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -386,7 +386,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_7(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -395,7 +395,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_7(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -407,7 +407,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_7(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -422,7 +422,7 @@ class TestAI:
     def test_path_params_run_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
             )
 
@@ -435,7 +435,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_8(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -444,7 +444,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_8(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             frequency_penalty=-2,
@@ -468,7 +468,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_8(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -481,7 +481,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_8(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         ) as response:
@@ -497,7 +497,7 @@ class TestAI:
     def test_path_params_run_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 prompt="x",
             )
@@ -512,7 +512,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_9(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             messages=[
                 {
@@ -526,7 +526,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_9(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             messages=[
                 {
@@ -576,7 +576,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_9(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             messages=[
                 {
@@ -594,7 +594,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_9(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             messages=[
                 {
@@ -615,7 +615,7 @@ class TestAI:
     def test_path_params_run_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 messages=[
                     {
@@ -640,7 +640,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_10(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="target_lang",
             text="x",
@@ -650,7 +650,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_10(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="target_lang",
             text="x",
@@ -661,7 +661,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_10(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="target_lang",
             text="x",
@@ -675,7 +675,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_10(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="target_lang",
             text="x",
@@ -692,7 +692,7 @@ class TestAI:
     def test_path_params_run_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 target_lang="target_lang",
                 text="x",
@@ -709,7 +709,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_11(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             input_text="x",
         )
@@ -718,7 +718,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_11(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             input_text="x",
             max_length=0,
@@ -728,7 +728,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_11(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             input_text="x",
         )
@@ -741,7 +741,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_11(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             input_text="x",
         ) as response:
@@ -757,7 +757,7 @@ class TestAI:
     def test_path_params_run_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 input_text="x",
             )
@@ -772,7 +772,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_12(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -781,7 +781,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_12(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
             frequency_penalty=0,
@@ -800,7 +800,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_12(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -813,7 +813,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_12(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         ) as response:
@@ -829,7 +829,7 @@ class TestAI:
     def test_path_params_run_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 image=[0],
             )
@@ -844,7 +844,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_13(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             prompt="x",
@@ -854,7 +854,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_13(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             prompt="x",
@@ -873,7 +873,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_13(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             prompt="x",
@@ -887,7 +887,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_13(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             prompt="x",
@@ -904,7 +904,7 @@ class TestAI:
     def test_path_params_run_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 image="image",
                 prompt="x",
@@ -921,7 +921,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_14(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             messages=[
@@ -936,7 +936,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_14(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             messages=[
@@ -960,7 +960,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_14(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             messages=[
@@ -979,7 +979,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_14(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             messages=[
@@ -1001,7 +1001,7 @@ class TestAI:
     def test_path_params_run_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 image="image",
                 messages=[
@@ -1028,7 +1028,7 @@ class TestAI:
     @parametrize
     def test_method_run_overload_15(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -1036,7 +1036,7 @@ class TestAI:
     @parametrize
     def test_method_run_with_all_params_overload_15(self, client: Cloudflare) -> None:
         ai = client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="x",
             text=["x"],
@@ -1046,7 +1046,7 @@ class TestAI:
     @parametrize
     def test_raw_response_run_overload_15(self, client: Cloudflare) -> None:
         response = client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -1058,7 +1058,7 @@ class TestAI:
     @parametrize
     def test_streaming_response_run_overload_15(self, client: Cloudflare) -> None:
         with client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -1073,7 +1073,7 @@ class TestAI:
     def test_path_params_run_overload_15(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
             )
 
@@ -1092,7 +1092,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_1(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         )
@@ -1101,7 +1101,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         )
@@ -1114,7 +1114,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         ) as response:
@@ -1130,7 +1130,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 text="x",
             )
@@ -1145,7 +1145,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_2(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -1154,7 +1154,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             guidance=0,
@@ -1173,7 +1173,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -1186,7 +1186,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         ) as response:
@@ -1202,7 +1202,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 prompt="x",
             )
@@ -1217,7 +1217,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_3(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -1226,7 +1226,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             lang="lang",
@@ -1236,7 +1236,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -1249,7 +1249,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         ) as response:
@@ -1265,7 +1265,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 prompt="x",
             )
@@ -1280,7 +1280,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_4(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         )
@@ -1289,7 +1289,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         )
@@ -1302,7 +1302,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             text="x",
         ) as response:
@@ -1318,7 +1318,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 text="x",
             )
@@ -1333,7 +1333,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_5(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0],
         )
@@ -1342,7 +1342,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0],
             source_lang="source_lang",
@@ -1353,7 +1353,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0],
         )
@@ -1366,7 +1366,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0],
         ) as response:
@@ -1382,7 +1382,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 audio=[0],
             )
@@ -1397,7 +1397,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_6(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -1406,7 +1406,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -1419,7 +1419,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         ) as response:
@@ -1435,7 +1435,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 image=[0],
             )
@@ -1450,7 +1450,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_7(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -1458,7 +1458,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -1467,7 +1467,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -1479,7 +1479,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -1494,7 +1494,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
             )
 
@@ -1507,7 +1507,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_8(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -1516,7 +1516,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             frequency_penalty=-2,
@@ -1540,7 +1540,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         )
@@ -1553,7 +1553,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
         ) as response:
@@ -1569,7 +1569,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 prompt="x",
             )
@@ -1584,7 +1584,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_9(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             messages=[
                 {
@@ -1598,7 +1598,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             messages=[
                 {
@@ -1648,7 +1648,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             messages=[
                 {
@@ -1666,7 +1666,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             messages=[
                 {
@@ -1687,7 +1687,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 messages=[
                     {
@@ -1712,7 +1712,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_10(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="target_lang",
             text="x",
@@ -1722,7 +1722,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="target_lang",
             text="x",
@@ -1733,7 +1733,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="target_lang",
             text="x",
@@ -1747,7 +1747,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_lang="target_lang",
             text="x",
@@ -1764,7 +1764,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 target_lang="target_lang",
                 text="x",
@@ -1781,7 +1781,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_11(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             input_text="x",
         )
@@ -1790,7 +1790,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             input_text="x",
             max_length=0,
@@ -1800,7 +1800,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             input_text="x",
         )
@@ -1813,7 +1813,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             input_text="x",
         ) as response:
@@ -1829,7 +1829,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 input_text="x",
             )
@@ -1844,7 +1844,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_12(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -1853,7 +1853,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
             frequency_penalty=0,
@@ -1872,7 +1872,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         )
@@ -1885,7 +1885,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
         ) as response:
@@ -1901,7 +1901,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 image=[0],
             )
@@ -1916,7 +1916,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_13(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             prompt="x",
@@ -1926,7 +1926,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             prompt="x",
@@ -1945,7 +1945,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             prompt="x",
@@ -1959,7 +1959,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             prompt="x",
@@ -1976,7 +1976,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 image="image",
                 prompt="x",
@@ -1993,7 +1993,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_14(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             messages=[
@@ -2008,7 +2008,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             messages=[
@@ -2032,7 +2032,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             messages=[
@@ -2051,7 +2051,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="image",
             messages=[
@@ -2073,7 +2073,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
                 image="image",
                 messages=[
@@ -2100,7 +2100,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_overload_15(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -2108,7 +2108,7 @@ class TestAsyncAI:
     @parametrize
     async def test_method_run_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.ai.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image="x",
             text=["x"],
@@ -2118,7 +2118,7 @@ class TestAsyncAI:
     @parametrize
     async def test_raw_response_run_overload_15(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.with_raw_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -2130,7 +2130,7 @@ class TestAsyncAI:
     @parametrize
     async def test_streaming_response_run_overload_15(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.with_streaming_response.run(
-            model_name="model_name",
+            model_name="@cf/meta/llama-3.1-8b-instruct",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -2145,7 +2145,7 @@ class TestAsyncAI:
     async def test_path_params_run_overload_15(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.with_raw_response.run(
-                model_name="model_name",
+                model_name="@cf/meta/llama-3.1-8b-instruct",
                 account_id="",
             )
 

@@ -80,6 +80,16 @@ class ContentPoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          enabled: Whether the policy is active.
+
+          name: Human-readable name of the policy.
+
+          pattern: Regular expression the policy matches against.
+
+          targets: Parts of the email the pattern is matched against.
+
+          notes: Optional note describing the purpose of the policy.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -252,14 +262,24 @@ class ContentPoliciesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ContentPolicyBatchResponse]:
-        """Executes multiple operations atomically.
-
-        All four operation arrays (deletes,
-        patches, puts, posts) are required and executed in order. Send empty arrays for
-        unused operations.
+        """
+        Executes multiple content policy operations atomically: delete, partially
+        update, replace, and create content policies in a single request. All four
+        operation arrays (deletes, patches, puts, posts) are required and executed in
+        order. Send empty arrays for unused operations.
 
         Args:
           account_id: Identifier.
+
+          deletes: IDs of the content policies to delete.
+
+          patches: Partial updates to apply — each entry carries the policy's ID and only the
+              fields to change.
+
+          posts: Content policies to create.
+
+          puts: Full replacements to apply — each entry carries the policy's ID and every field
+              of its new value.
 
           extra_headers: Send extra headers
 
@@ -319,6 +339,16 @@ class ContentPoliciesResource(SyncAPIResource):
           account_id: Identifier.
 
           policy_id: Content policy identifier.
+
+          enabled: Whether the policy is active.
+
+          name: Human-readable name of the policy.
+
+          notes: Optional note describing the purpose of the policy.
+
+          pattern: Regular expression the policy matches against.
+
+          targets: Parts of the email the pattern is matched against.
 
           extra_headers: Send extra headers
 
@@ -451,6 +481,16 @@ class AsyncContentPoliciesResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          enabled: Whether the policy is active.
+
+          name: Human-readable name of the policy.
+
+          pattern: Regular expression the policy matches against.
+
+          targets: Parts of the email the pattern is matched against.
+
+          notes: Optional note describing the purpose of the policy.
 
           extra_headers: Send extra headers
 
@@ -624,14 +664,24 @@ class AsyncContentPoliciesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ContentPolicyBatchResponse]:
-        """Executes multiple operations atomically.
-
-        All four operation arrays (deletes,
-        patches, puts, posts) are required and executed in order. Send empty arrays for
-        unused operations.
+        """
+        Executes multiple content policy operations atomically: delete, partially
+        update, replace, and create content policies in a single request. All four
+        operation arrays (deletes, patches, puts, posts) are required and executed in
+        order. Send empty arrays for unused operations.
 
         Args:
           account_id: Identifier.
+
+          deletes: IDs of the content policies to delete.
+
+          patches: Partial updates to apply — each entry carries the policy's ID and only the
+              fields to change.
+
+          posts: Content policies to create.
+
+          puts: Full replacements to apply — each entry carries the policy's ID and every field
+              of its new value.
 
           extra_headers: Send extra headers
 
@@ -691,6 +741,16 @@ class AsyncContentPoliciesResource(AsyncAPIResource):
           account_id: Identifier.
 
           policy_id: Content policy identifier.
+
+          enabled: Whether the policy is active.
+
+          name: Human-readable name of the policy.
+
+          notes: Optional note describing the purpose of the policy.
+
+          pattern: Regular expression the policy matches against.
+
+          targets: Parts of the email the pattern is matched against.
 
           extra_headers: Send extra headers
 

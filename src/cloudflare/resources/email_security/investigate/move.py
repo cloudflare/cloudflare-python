@@ -86,6 +86,8 @@ class MoveResource(SyncAPIResource):
 
           investigate_id: Unique identifier for a message retrieved from investigation.
 
+          destination: The mailbox folder to move messages to.
+
           expected_disposition: Nonfunctional field. End of life: December 1, 2026.
 
           extra_headers: Send extra headers
@@ -128,6 +130,7 @@ class MoveResource(SyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
+        ids: SequenceNotStr[str],
         expected_disposition: Optional[
             Literal[
                 "MALICIOUS",
@@ -143,7 +146,6 @@ class MoveResource(SyncAPIResource):
             ]
         ]
         | Omit = omit,
-        ids: SequenceNotStr[str] | Omit = omit,
         postfix_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -153,16 +155,19 @@ class MoveResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[MoveBulkResponse]:
         """
-        Moves multiple messages to a specified mailbox folder (Inbox, JunkEmail,
+        Moves one or more messages to a specified mailbox folder (Inbox, JunkEmail,
         DeletedItems, RecoverableItemsDeletions, or RecoverableItemsPurges). Requires
-        active integration.
+        active integration. Operates on an explicit list of messages; to move all
+        messages matching a search, create a bulk action job instead.
 
         Args:
           account_id: Identifier.
 
-          expected_disposition: Nonfunctional field. End of life: December 1, 2026.
+          destination: The mailbox folder to move messages to.
 
           ids: List of message IDs to move.
+
+          expected_disposition: Nonfunctional field. End of life: December 1, 2026.
 
           postfix_ids: Deprecated, use `ids` instead. End of life: November 1, 2026.
 
@@ -182,8 +187,8 @@ class MoveResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "destination": destination,
-                    "expected_disposition": expected_disposition,
                     "ids": ids,
+                    "expected_disposition": expected_disposition,
                     "postfix_ids": postfix_ids,
                 },
                 move_bulk_params.MoveBulkParams,
@@ -256,6 +261,8 @@ class AsyncMoveResource(AsyncAPIResource):
 
           investigate_id: Unique identifier for a message retrieved from investigation.
 
+          destination: The mailbox folder to move messages to.
+
           expected_disposition: Nonfunctional field. End of life: December 1, 2026.
 
           extra_headers: Send extra headers
@@ -298,6 +305,7 @@ class AsyncMoveResource(AsyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
+        ids: SequenceNotStr[str],
         expected_disposition: Optional[
             Literal[
                 "MALICIOUS",
@@ -313,7 +321,6 @@ class AsyncMoveResource(AsyncAPIResource):
             ]
         ]
         | Omit = omit,
-        ids: SequenceNotStr[str] | Omit = omit,
         postfix_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -323,16 +330,19 @@ class AsyncMoveResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MoveBulkResponse, AsyncSinglePage[MoveBulkResponse]]:
         """
-        Moves multiple messages to a specified mailbox folder (Inbox, JunkEmail,
+        Moves one or more messages to a specified mailbox folder (Inbox, JunkEmail,
         DeletedItems, RecoverableItemsDeletions, or RecoverableItemsPurges). Requires
-        active integration.
+        active integration. Operates on an explicit list of messages; to move all
+        messages matching a search, create a bulk action job instead.
 
         Args:
           account_id: Identifier.
 
-          expected_disposition: Nonfunctional field. End of life: December 1, 2026.
+          destination: The mailbox folder to move messages to.
 
           ids: List of message IDs to move.
+
+          expected_disposition: Nonfunctional field. End of life: December 1, 2026.
 
           postfix_ids: Deprecated, use `ids` instead. End of life: November 1, 2026.
 
@@ -352,8 +362,8 @@ class AsyncMoveResource(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "destination": destination,
-                    "expected_disposition": expected_disposition,
                     "ids": ids,
+                    "expected_disposition": expected_disposition,
                     "postfix_ids": postfix_ids,
                 },
                 move_bulk_params.MoveBulkParams,

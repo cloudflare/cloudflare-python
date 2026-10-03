@@ -56,3 +56,9 @@ class Dataset(BaseModel):
 
     Omitted when no filter is set.
     """
+
+    filter_attack_traffic: Optional[bool] = None
+    """Whether the Logpush job filters attack traffic.
+
+    Omitted for datasets that do not support this option.
+    """

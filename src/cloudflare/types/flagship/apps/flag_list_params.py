@@ -9,10 +9,10 @@ __all__ = ["FlagListParams"]
 
 class FlagListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Cloudflare account ID."""
+    """Cloudflare account ID that owns the Flagship app."""
 
     cursor: str
     """Pagination cursor from a previous response."""
 
-    limit: str
+    limit: int
     """Max items to return (1–200)."""

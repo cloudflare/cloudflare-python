@@ -30,6 +30,10 @@ class CustomProviderListResponse(BaseModel):
     enable: Optional[bool] = None
 
     headers: Optional[str] = None
+    """JSON object of extra HTTP headers that AI Gateway sends to the provider.
+
+    Values can contain credentials.
+    """
 
     js_example: Optional[str] = None
 

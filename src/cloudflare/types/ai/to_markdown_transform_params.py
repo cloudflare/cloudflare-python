@@ -11,9 +11,11 @@ __all__ = ["ToMarkdownTransformParams", "File"]
 
 class ToMarkdownTransformParams(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     file: Required[File]
 
 
 class File(TypedDict, total=False):
     files: Required[SequenceNotStr[FileTypes]]
+    """Files to convert, supplied as multipart file uploads."""

@@ -36,6 +36,13 @@ class DatasetUpdateParams(TypedDict, total=False):
     syntax and examples.
     """
 
+    filter_attack_traffic: bool
+    """Whether to filter attack traffic from the Logpush job.
+
+    If omitted, the existing setting is left unchanged. Supported datasets are
+    `http_requests`, `firewall_events`, and `network_analytics_logs`.
+    """
+
 
 class Field(TypedDict, total=False):
     enabled: Required[bool]

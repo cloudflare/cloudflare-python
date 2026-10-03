@@ -104,6 +104,31 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          allowed_delivery_modes: Delivery modes to onboard the domain through.
+
+          domain: The email domain to protect.
+
+          drop_dispositions: Dispositions to drop instead of delivering, e.g. `["MALICIOUS", "SPAM"]`.
+
+          ip_restrictions: Source IP ranges mail is accepted from. Any other source is rejected.
+
+          regions: Regions that process messages for this domain, e.g. `["GLOBAL"]` or `["US"]`.
+
+          folder: The mailbox folder to scan, for API-scanning domains.
+
+          integration_id: Identifier of the CASB integration that authorizes this domain. The integration
+              also enables API scanning, post-delivery actions, and directory sync.
+
+          lookback_hops: Number of hops to trace back through received headers when reconstructing the
+              original message (1-20).
+
+          require_tls_inbound: Require TLS on inbound connections.
+
+          require_tls_outbound: Require TLS on outbound connections.
+
+          transport: The mail transport hostname for MX/Inline delivery — the MX record Cloudflare
+              delivers email to (e.g. `mx.example.com`).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -185,6 +210,29 @@ class DomainsResource(SyncAPIResource):
           account_id: Identifier.
 
           domain_id: Domain identifier.
+
+          allowed_delivery_modes: Delivery modes to onboard the domain through.
+
+          drop_dispositions: Dispositions to drop instead of delivering, e.g. `["MALICIOUS", "SPAM"]`.
+
+          ip_restrictions: Source IP ranges mail is accepted from. Any other source is rejected.
+
+          regions: Regions that process messages for this domain, e.g. `["GLOBAL"]` or `["US"]`.
+
+          folder: The mailbox folder to scan, for API-scanning domains.
+
+          integration_id: Identifier of the CASB integration that authorizes this domain. The integration
+              also enables API scanning, post-delivery actions, and directory sync.
+
+          lookback_hops: Number of hops to trace back through received headers when reconstructing the
+              original message (1-20).
+
+          require_tls_inbound: Require TLS on inbound connections.
+
+          require_tls_outbound: Require TLS on outbound connections.
+
+          transport: The mail transport hostname for MX/Inline delivery — the MX record Cloudflare
+              delivers email to (e.g. `mx.example.com`).
 
           extra_headers: Send extra headers
 
@@ -391,6 +439,16 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          deletes: IDs of the domains to remove protection from.
+
+          patches: Partial updates to apply — each entry carries the domain's ID and only the
+              fields to change.
+
+          posts: Domains to add protection for.
+
+          puts: Full replacements to apply — each entry carries the domain's ID and every field
+              of its new value.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -510,6 +568,29 @@ class DomainsResource(SyncAPIResource):
           account_id: Identifier.
 
           domain_id: Domain identifier.
+
+          allowed_delivery_modes: Delivery modes to onboard the domain through.
+
+          drop_dispositions: Dispositions to drop instead of delivering, e.g. `["MALICIOUS", "SPAM"]`.
+
+          folder: The mailbox folder to scan, for API-scanning domains.
+
+          integration_id: Identifier of the CASB integration that authorizes this domain. The integration
+              also enables API scanning, post-delivery actions, and directory sync.
+
+          ip_restrictions: Source IP ranges mail is accepted from. Any other source is rejected.
+
+          lookback_hops: Number of hops to trace back through received headers when reconstructing the
+              original message (1-20).
+
+          regions: Regions that process messages for this domain, e.g. `["GLOBAL"]` or `["US"]`.
+
+          require_tls_inbound: Require TLS on inbound connections.
+
+          require_tls_outbound: Require TLS on outbound connections.
+
+          transport: The mail transport hostname for MX/Inline delivery — the MX record Cloudflare
+              delivers email to (e.g. `mx.example.com`).
 
           extra_headers: Send extra headers
 
@@ -668,6 +749,31 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          allowed_delivery_modes: Delivery modes to onboard the domain through.
+
+          domain: The email domain to protect.
+
+          drop_dispositions: Dispositions to drop instead of delivering, e.g. `["MALICIOUS", "SPAM"]`.
+
+          ip_restrictions: Source IP ranges mail is accepted from. Any other source is rejected.
+
+          regions: Regions that process messages for this domain, e.g. `["GLOBAL"]` or `["US"]`.
+
+          folder: The mailbox folder to scan, for API-scanning domains.
+
+          integration_id: Identifier of the CASB integration that authorizes this domain. The integration
+              also enables API scanning, post-delivery actions, and directory sync.
+
+          lookback_hops: Number of hops to trace back through received headers when reconstructing the
+              original message (1-20).
+
+          require_tls_inbound: Require TLS on inbound connections.
+
+          require_tls_outbound: Require TLS on outbound connections.
+
+          transport: The mail transport hostname for MX/Inline delivery — the MX record Cloudflare
+              delivers email to (e.g. `mx.example.com`).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -749,6 +855,29 @@ class AsyncDomainsResource(AsyncAPIResource):
           account_id: Identifier.
 
           domain_id: Domain identifier.
+
+          allowed_delivery_modes: Delivery modes to onboard the domain through.
+
+          drop_dispositions: Dispositions to drop instead of delivering, e.g. `["MALICIOUS", "SPAM"]`.
+
+          ip_restrictions: Source IP ranges mail is accepted from. Any other source is rejected.
+
+          regions: Regions that process messages for this domain, e.g. `["GLOBAL"]` or `["US"]`.
+
+          folder: The mailbox folder to scan, for API-scanning domains.
+
+          integration_id: Identifier of the CASB integration that authorizes this domain. The integration
+              also enables API scanning, post-delivery actions, and directory sync.
+
+          lookback_hops: Number of hops to trace back through received headers when reconstructing the
+              original message (1-20).
+
+          require_tls_inbound: Require TLS on inbound connections.
+
+          require_tls_outbound: Require TLS on outbound connections.
+
+          transport: The mail transport hostname for MX/Inline delivery — the MX record Cloudflare
+              delivers email to (e.g. `mx.example.com`).
 
           extra_headers: Send extra headers
 
@@ -955,6 +1084,16 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          deletes: IDs of the domains to remove protection from.
+
+          patches: Partial updates to apply — each entry carries the domain's ID and only the
+              fields to change.
+
+          posts: Domains to add protection for.
+
+          puts: Full replacements to apply — each entry carries the domain's ID and every field
+              of its new value.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1074,6 +1213,29 @@ class AsyncDomainsResource(AsyncAPIResource):
           account_id: Identifier.
 
           domain_id: Domain identifier.
+
+          allowed_delivery_modes: Delivery modes to onboard the domain through.
+
+          drop_dispositions: Dispositions to drop instead of delivering, e.g. `["MALICIOUS", "SPAM"]`.
+
+          folder: The mailbox folder to scan, for API-scanning domains.
+
+          integration_id: Identifier of the CASB integration that authorizes this domain. The integration
+              also enables API scanning, post-delivery actions, and directory sync.
+
+          ip_restrictions: Source IP ranges mail is accepted from. Any other source is rejected.
+
+          lookback_hops: Number of hops to trace back through received headers when reconstructing the
+              original message (1-20).
+
+          regions: Regions that process messages for this domain, e.g. `["GLOBAL"]` or `["US"]`.
+
+          require_tls_inbound: Require TLS on inbound connections.
+
+          require_tls_outbound: Require TLS on outbound connections.
+
+          transport: The mail transport hostname for MX/Inline delivery — the MX record Cloudflare
+              delivers email to (e.g. `mx.example.com`).
 
           extra_headers: Send extra headers
 

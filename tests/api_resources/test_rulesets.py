@@ -27,9 +27,6 @@ class TestRulesets:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.create(
-            kind="root",
-            name="My ruleset",
-            phase="http_request_firewall_custom",
             account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -38,12 +35,12 @@ class TestRulesets:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.create(
-            kind="root",
-            name="My ruleset",
-            phase="http_request_firewall_custom",
             account_id="account_id",
             dry_run=True,
             description="A description for my ruleset.",
+            kind="root",
+            name="My ruleset",
+            phase="http_request_firewall_custom",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -83,9 +80,6 @@ class TestRulesets:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.create(
-            kind="root",
-            name="My ruleset",
-            phase="http_request_firewall_custom",
             account_id="account_id",
         )
 
@@ -98,9 +92,6 @@ class TestRulesets:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.create(
-            kind="root",
-            name="My ruleset",
-            phase="http_request_firewall_custom",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -116,17 +107,11 @@ class TestRulesets:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.create(
-                kind="root",
-                name="My ruleset",
-                phase="http_request_firewall_custom",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.create(
-                kind="root",
-                name="My ruleset",
-                phase="http_request_firewall_custom",
                 account_id="account_id",
             )
 
@@ -436,9 +421,6 @@ class TestAsyncRulesets:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.create(
-            kind="root",
-            name="My ruleset",
-            phase="http_request_firewall_custom",
             account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -447,12 +429,12 @@ class TestAsyncRulesets:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.create(
-            kind="root",
-            name="My ruleset",
-            phase="http_request_firewall_custom",
             account_id="account_id",
             dry_run=True,
             description="A description for my ruleset.",
+            kind="root",
+            name="My ruleset",
+            phase="http_request_firewall_custom",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -492,9 +474,6 @@ class TestAsyncRulesets:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.create(
-            kind="root",
-            name="My ruleset",
-            phase="http_request_firewall_custom",
             account_id="account_id",
         )
 
@@ -507,9 +486,6 @@ class TestAsyncRulesets:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.create(
-            kind="root",
-            name="My ruleset",
-            phase="http_request_firewall_custom",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -525,17 +501,11 @@ class TestAsyncRulesets:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.create(
-                kind="root",
-                name="My ruleset",
-                phase="http_request_firewall_custom",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.create(
-                kind="root",
-                name="My ruleset",
-                phase="http_request_firewall_custom",
                 account_id="account_id",
             )
 

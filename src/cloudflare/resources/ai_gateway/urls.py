@@ -60,7 +60,7 @@ class URLsResource(SyncAPIResource):
         Retrieves the endpoint URL for an AI Gateway.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -131,7 +131,7 @@ class AsyncURLsResource(AsyncAPIResource):
         Retrieves the endpoint URL for an AI Gateway.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 

@@ -10,7 +10,7 @@ __all__ = ["OriginCACertificateDeleteResponse"]
 
 class OriginCACertificateDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier."""
+    """The x509 serial number of the Origin CA certificate."""
 
     revoked_at: Optional[datetime] = None
     """When the certificate was revoked."""

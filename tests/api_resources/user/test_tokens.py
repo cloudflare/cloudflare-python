@@ -36,7 +36,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         )
@@ -54,19 +54,31 @@ class TestTokens:
                         {
                             "id": "c8fed203ed3043cba015a93ad1616f1f",
                             "meta": {
-                                "key": "key",
-                                "value": "value",
+                                "category": "category",
+                                "deprecated": "deprecated",
+                                "description": "description",
+                                "editable": "editable",
+                                "eol_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "label": "load_balancer_admin",
+                                "scopes": "com.cloudflare.api.account",
+                                "visibility": "visibility",
                             },
                         },
                         {
                             "id": "82e64a83756745bbbb1c9c2701bf816b",
                             "meta": {
-                                "key": "key",
-                                "value": "value",
+                                "category": "category",
+                                "deprecated": "deprecated",
+                                "description": "description",
+                                "editable": "editable",
+                                "eol_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "label": "fbm_user",
+                                "scopes": "com.cloudflare.api.account",
+                                "visibility": "visibility",
                             },
                         },
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
             condition={
@@ -92,7 +104,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         )
@@ -114,7 +126,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         ) as response:
@@ -139,7 +151,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         )
@@ -158,19 +170,31 @@ class TestTokens:
                         {
                             "id": "c8fed203ed3043cba015a93ad1616f1f",
                             "meta": {
-                                "key": "key",
-                                "value": "value",
+                                "category": "category",
+                                "deprecated": "deprecated",
+                                "description": "description",
+                                "editable": "editable",
+                                "eol_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "label": "load_balancer_admin",
+                                "scopes": "com.cloudflare.api.account",
+                                "visibility": "visibility",
                             },
                         },
                         {
                             "id": "82e64a83756745bbbb1c9c2701bf816b",
                             "meta": {
-                                "key": "key",
-                                "value": "value",
+                                "category": "category",
+                                "deprecated": "deprecated",
+                                "description": "description",
+                                "editable": "editable",
+                                "eol_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "label": "fbm_user",
+                                "scopes": "com.cloudflare.api.account",
+                                "visibility": "visibility",
                             },
                         },
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
             condition={
@@ -198,7 +222,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         )
@@ -221,7 +245,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         ) as response:
@@ -247,7 +271,7 @@ class TestTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {"foo": "string"},
+                        "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                     }
                 ],
             )
@@ -421,7 +445,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         )
@@ -439,19 +463,31 @@ class TestAsyncTokens:
                         {
                             "id": "c8fed203ed3043cba015a93ad1616f1f",
                             "meta": {
-                                "key": "key",
-                                "value": "value",
+                                "category": "category",
+                                "deprecated": "deprecated",
+                                "description": "description",
+                                "editable": "editable",
+                                "eol_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "label": "load_balancer_admin",
+                                "scopes": "com.cloudflare.api.account",
+                                "visibility": "visibility",
                             },
                         },
                         {
                             "id": "82e64a83756745bbbb1c9c2701bf816b",
                             "meta": {
-                                "key": "key",
-                                "value": "value",
+                                "category": "category",
+                                "deprecated": "deprecated",
+                                "description": "description",
+                                "editable": "editable",
+                                "eol_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "label": "fbm_user",
+                                "scopes": "com.cloudflare.api.account",
+                                "visibility": "visibility",
                             },
                         },
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
             condition={
@@ -477,7 +513,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         )
@@ -499,7 +535,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         ) as response:
@@ -524,7 +560,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         )
@@ -543,19 +579,31 @@ class TestAsyncTokens:
                         {
                             "id": "c8fed203ed3043cba015a93ad1616f1f",
                             "meta": {
-                                "key": "key",
-                                "value": "value",
+                                "category": "category",
+                                "deprecated": "deprecated",
+                                "description": "description",
+                                "editable": "editable",
+                                "eol_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "label": "load_balancer_admin",
+                                "scopes": "com.cloudflare.api.account",
+                                "visibility": "visibility",
                             },
                         },
                         {
                             "id": "82e64a83756745bbbb1c9c2701bf816b",
                             "meta": {
-                                "key": "key",
-                                "value": "value",
+                                "category": "category",
+                                "deprecated": "deprecated",
+                                "description": "description",
+                                "editable": "editable",
+                                "eol_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "label": "fbm_user",
+                                "scopes": "com.cloudflare.api.account",
+                                "visibility": "visibility",
                             },
                         },
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
             condition={
@@ -583,7 +631,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         )
@@ -606,7 +654,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                 }
             ],
         ) as response:
@@ -632,7 +680,7 @@ class TestAsyncTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {"foo": "string"},
+                        "resources": {"com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*"},
                     }
                 ],
             )

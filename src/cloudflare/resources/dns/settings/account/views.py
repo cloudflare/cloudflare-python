@@ -110,8 +110,8 @@ class ViewsResource(SyncAPIResource):
         match: Literal["any", "all"] | Omit = omit,
         name: view_list_params.Name | Omit = omit,
         order: Literal["name", "created_on", "modified_on"] | Omit = omit,
-        page: float | Omit = omit,
-        per_page: float | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         zone_id: str | Omit = omit,
         zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -137,7 +137,7 @@ class ViewsResource(SyncAPIResource):
 
           page: Page number of paginated results.
 
-          per_page: Number of DNS views per page.
+          per_page: Number of results per page.
 
           zone_id: A zone ID that exists in the zones list for the view.
 
@@ -410,8 +410,8 @@ class AsyncViewsResource(AsyncAPIResource):
         match: Literal["any", "all"] | Omit = omit,
         name: view_list_params.Name | Omit = omit,
         order: Literal["name", "created_on", "modified_on"] | Omit = omit,
-        page: float | Omit = omit,
-        per_page: float | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         zone_id: str | Omit = omit,
         zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -437,7 +437,7 @@ class AsyncViewsResource(AsyncAPIResource):
 
           page: Page number of paginated results.
 
-          per_page: Number of DNS views per page.
+          per_page: Number of results per page.
 
           zone_id: A zone ID that exists in the zones list for the view.
 

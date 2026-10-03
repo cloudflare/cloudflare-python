@@ -156,7 +156,7 @@ class ScriptsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
@@ -243,7 +243,7 @@ class ScriptsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           force: If true, delete the script even when other Workers still reference it. Service
               bindings in those Workers may be left broken. Durable Object namespaces
@@ -304,7 +304,7 @@ class ScriptsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -409,7 +409,7 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
@@ -498,7 +498,7 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           force: If true, delete the script even when other Workers still reference it. Service
               bindings in those Workers may be left broken. Durable Object namespaces
@@ -559,7 +559,7 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 

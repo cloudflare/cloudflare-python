@@ -24,6 +24,13 @@ __all__ = [
     "CursorLimitPaginationResultInfo",
     "SyncCursorLimitPagination",
     "AsyncCursorLimitPagination",
+    "ContainersInstancesV1PaginationResult",
+    "ContainersInstancesV1PaginationResultInfo",
+    "SyncContainersInstancesV1Pagination",
+    "AsyncContainersInstancesV1Pagination",
+    "PageTokenPaginationResultInfo",
+    "SyncPageTokenPagination",
+    "AsyncPageTokenPagination",
     "SyncSinglePage",
     "AsyncSinglePage",
 ]
@@ -287,6 +294,124 @@ class AsyncCursorLimitPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
             return None
 
         return PageInfo(params={"cursor": cursor})
+
+
+class ContainersInstancesV1PaginationResult(GenericModel, Generic[_T]):
+    instances: Optional[List[_T]] = None
+
+
+class ContainersInstancesV1PaginationResultInfo(BaseModel):
+    next_page_token: Optional[str] = None
+
+    page_token: Optional[str] = None
+
+    per_page: Optional[int] = None
+
+
+class SyncContainersInstancesV1Pagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    result: Optional[ContainersInstancesV1PaginationResult[_T]] = None
+    result_info: Optional[ContainersInstancesV1PaginationResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        instances = None
+        if self.result is not None:
+            if self.result.instances is not None:
+                instances = self.result.instances
+        if not instances:
+            return []
+        return instances
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        next_page_token = None
+        if self.result_info is not None:
+            if self.result_info.next_page_token is not None:
+                next_page_token = self.result_info.next_page_token
+        if not next_page_token:
+            return None
+
+        return PageInfo(params={"page_token": next_page_token})
+
+
+class AsyncContainersInstancesV1Pagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    result: Optional[ContainersInstancesV1PaginationResult[_T]] = None
+    result_info: Optional[ContainersInstancesV1PaginationResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        instances = None
+        if self.result is not None:
+            if self.result.instances is not None:
+                instances = self.result.instances
+        if not instances:
+            return []
+        return instances
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        next_page_token = None
+        if self.result_info is not None:
+            if self.result_info.next_page_token is not None:
+                next_page_token = self.result_info.next_page_token
+        if not next_page_token:
+            return None
+
+        return PageInfo(params={"page_token": next_page_token})
+
+
+class PageTokenPaginationResultInfo(BaseModel):
+    next_page_token: Optional[str] = None
+
+    page_token: Optional[str] = None
+
+    per_page: Optional[int] = None
+
+
+class SyncPageTokenPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    result: List[_T]
+    result_info: Optional[PageTokenPaginationResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        result = self.result
+        if not result:
+            return []
+        return result
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        next_page_token = None
+        if self.result_info is not None:
+            if self.result_info.next_page_token is not None:
+                next_page_token = self.result_info.next_page_token
+        if not next_page_token:
+            return None
+
+        return PageInfo(params={"page_token": next_page_token})
+
+
+class AsyncPageTokenPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    result: List[_T]
+    result_info: Optional[PageTokenPaginationResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        result = self.result
+        if not result:
+            return []
+        return result
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        next_page_token = None
+        if self.result_info is not None:
+            if self.result_info.next_page_token is not None:
+                next_page_token = self.result_info.next_page_token
+        if not next_page_token:
+            return None
+
+        return PageInfo(params={"page_token": next_page_token})
 
 
 class SyncSinglePage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):

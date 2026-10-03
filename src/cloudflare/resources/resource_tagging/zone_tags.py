@@ -105,19 +105,7 @@ class ZoneTagsResource(SyncAPIResource):
         zone_id: str,
         access_application_id: str,
         resource_id: str,
-        resource_type: Literal[
-            "api_gateway_operation",
-            "custom_certificate",
-            "custom_hostname",
-            "dns_record",
-            "healthcheck",
-            "load_balancer",
-            "managed_client_certificate",
-            "worker_route",
-            "zone",
-            "zone_ruleset",
-            "access_application_policy",
-        ],
+        resource_type: Literal["access_application_policy"],
         tags: Dict[str, str] | Omit = omit,
         if_match: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,7 +127,7 @@ class ZoneTagsResource(SyncAPIResource):
 
           resource_id: Identifies the unique resource.
 
-          resource_type: Enum for base zone-level resource types (those with no extra required fields).
+          resource_type: Enum for access_application_policy resource type.
 
           tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
               Values may contain at most 1024 characters and may be empty for key-only tags.
@@ -175,19 +163,7 @@ class ZoneTagsResource(SyncAPIResource):
             "zone",
             "zone_ruleset",
         ]
-        | Literal[
-            "api_gateway_operation",
-            "custom_certificate",
-            "custom_hostname",
-            "dns_record",
-            "healthcheck",
-            "load_balancer",
-            "managed_client_certificate",
-            "worker_route",
-            "zone",
-            "zone_ruleset",
-            "access_application_policy",
-        ],
+        | Literal["access_application_policy"],
         tags: Dict[str, str] | Omit = omit,
         if_match: str | Omit = omit,
         access_application_id: str | Omit = omit,
@@ -419,19 +395,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
         zone_id: str,
         access_application_id: str,
         resource_id: str,
-        resource_type: Literal[
-            "api_gateway_operation",
-            "custom_certificate",
-            "custom_hostname",
-            "dns_record",
-            "healthcheck",
-            "load_balancer",
-            "managed_client_certificate",
-            "worker_route",
-            "zone",
-            "zone_ruleset",
-            "access_application_policy",
-        ],
+        resource_type: Literal["access_application_policy"],
         tags: Dict[str, str] | Omit = omit,
         if_match: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -453,7 +417,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
 
           resource_id: Identifies the unique resource.
 
-          resource_type: Enum for base zone-level resource types (those with no extra required fields).
+          resource_type: Enum for access_application_policy resource type.
 
           tags: Contains key-value pairs of tags. Keys may contain at most 256 characters.
               Values may contain at most 1024 characters and may be empty for key-only tags.
@@ -489,19 +453,7 @@ class AsyncZoneTagsResource(AsyncAPIResource):
             "zone",
             "zone_ruleset",
         ]
-        | Literal[
-            "api_gateway_operation",
-            "custom_certificate",
-            "custom_hostname",
-            "dns_record",
-            "healthcheck",
-            "load_balancer",
-            "managed_client_certificate",
-            "worker_route",
-            "zone",
-            "zone_ruleset",
-            "access_application_policy",
-        ],
+        | Literal["access_application_policy"],
         tags: Dict[str, str] | Omit = omit,
         if_match: str | Omit = omit,
         access_application_id: str | Omit = omit,

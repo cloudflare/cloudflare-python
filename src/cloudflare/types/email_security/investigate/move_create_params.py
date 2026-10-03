@@ -15,6 +15,7 @@ class MoveCreateParams(TypedDict, total=False):
     destination: Required[
         Literal["Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"]
     ]
+    """The mailbox folder to move messages to."""
 
     expected_disposition: Optional[
         Literal[

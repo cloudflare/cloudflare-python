@@ -55,7 +55,8 @@ class EntitlementsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TenantEntitlements:
         """
-        List of innate entitlements available for the Tenant.
+        Retrieves the innate and custom entitlement allocations available to this
+        tenant.
 
         Args:
           extra_headers: Send extra headers
@@ -113,7 +114,8 @@ class AsyncEntitlementsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TenantEntitlements:
         """
-        List of innate entitlements available for the Tenant.
+        Retrieves the innate and custom entitlement allocations available to this
+        tenant.
 
         Args:
           extra_headers: Send extra headers

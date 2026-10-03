@@ -10,7 +10,7 @@ __all__ = ["CustomTrustStore"]
 
 class CustomTrustStore(BaseModel):
     id: str
-    """Identifier."""
+    """Certificate identifier tag."""
 
     certificate: str
     """The root CA certificate in PEM format.

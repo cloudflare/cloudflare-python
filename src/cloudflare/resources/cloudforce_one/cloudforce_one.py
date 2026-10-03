@@ -36,15 +36,19 @@ from .threat_events.threat_events import (
     ThreatEventsResourceWithStreamingResponse,
     AsyncThreatEventsResourceWithStreamingResponse,
 )
+from .threat_signals.threat_signals import (
+    ThreatSignalsResource,
+    AsyncThreatSignalsResource,
+    ThreatSignalsResourceWithRawResponse,
+    AsyncThreatSignalsResourceWithRawResponse,
+    ThreatSignalsResourceWithStreamingResponse,
+    AsyncThreatSignalsResourceWithStreamingResponse,
+)
 
 __all__ = ["CloudforceOneResource", "AsyncCloudforceOneResource"]
 
 
 class CloudforceOneResource(SyncAPIResource):
-    @cached_property
-    def scans(self) -> ScansResource:
-        return ScansResource(self._client)
-
     @cached_property
     def binary_storage(self) -> BinaryStorageResource:
         return BinaryStorageResource(self._client)
@@ -54,8 +58,24 @@ class CloudforceOneResource(SyncAPIResource):
         return RequestsResource(self._client)
 
     @cached_property
+    def scans(self) -> ScansResource:
+        return ScansResource(self._client)
+
+    @cached_property
     def threat_events(self) -> ThreatEventsResource:
         return ThreatEventsResource(self._client)
+
+    @cached_property
+    def threat_signals(self) -> ThreatSignalsResource:
+        """
+        Threat Signals API for managing threat intelligence feeds, articles, indicators, and AI skills in Cloudforce One.
+
+        ## Prerequisites
+
+        1. **API token** — requests must use an API token with Cloudforce One permissions; write operations (creating, editing, or deleting feeds, skills, and tags) require write access.
+        2. **Plan limits** — access on the Free plan is limited; feed quotas and managed default skills apply.
+        """
+        return ThreatSignalsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CloudforceOneResourceWithRawResponse:
@@ -79,10 +99,6 @@ class CloudforceOneResource(SyncAPIResource):
 
 class AsyncCloudforceOneResource(AsyncAPIResource):
     @cached_property
-    def scans(self) -> AsyncScansResource:
-        return AsyncScansResource(self._client)
-
-    @cached_property
     def binary_storage(self) -> AsyncBinaryStorageResource:
         return AsyncBinaryStorageResource(self._client)
 
@@ -91,8 +107,24 @@ class AsyncCloudforceOneResource(AsyncAPIResource):
         return AsyncRequestsResource(self._client)
 
     @cached_property
+    def scans(self) -> AsyncScansResource:
+        return AsyncScansResource(self._client)
+
+    @cached_property
     def threat_events(self) -> AsyncThreatEventsResource:
         return AsyncThreatEventsResource(self._client)
+
+    @cached_property
+    def threat_signals(self) -> AsyncThreatSignalsResource:
+        """
+        Threat Signals API for managing threat intelligence feeds, articles, indicators, and AI skills in Cloudforce One.
+
+        ## Prerequisites
+
+        1. **API token** — requests must use an API token with Cloudforce One permissions; write operations (creating, editing, or deleting feeds, skills, and tags) require write access.
+        2. **Plan limits** — access on the Free plan is limited; feed quotas and managed default skills apply.
+        """
+        return AsyncThreatSignalsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudforceOneResourceWithRawResponse:
@@ -119,10 +151,6 @@ class CloudforceOneResourceWithRawResponse:
         self._cloudforce_one = cloudforce_one
 
     @cached_property
-    def scans(self) -> ScansResourceWithRawResponse:
-        return ScansResourceWithRawResponse(self._cloudforce_one.scans)
-
-    @cached_property
     def binary_storage(self) -> BinaryStorageResourceWithRawResponse:
         return BinaryStorageResourceWithRawResponse(self._cloudforce_one.binary_storage)
 
@@ -131,17 +159,29 @@ class CloudforceOneResourceWithRawResponse:
         return RequestsResourceWithRawResponse(self._cloudforce_one.requests)
 
     @cached_property
+    def scans(self) -> ScansResourceWithRawResponse:
+        return ScansResourceWithRawResponse(self._cloudforce_one.scans)
+
+    @cached_property
     def threat_events(self) -> ThreatEventsResourceWithRawResponse:
         return ThreatEventsResourceWithRawResponse(self._cloudforce_one.threat_events)
+
+    @cached_property
+    def threat_signals(self) -> ThreatSignalsResourceWithRawResponse:
+        """
+        Threat Signals API for managing threat intelligence feeds, articles, indicators, and AI skills in Cloudforce One.
+
+        ## Prerequisites
+
+        1. **API token** — requests must use an API token with Cloudforce One permissions; write operations (creating, editing, or deleting feeds, skills, and tags) require write access.
+        2. **Plan limits** — access on the Free plan is limited; feed quotas and managed default skills apply.
+        """
+        return ThreatSignalsResourceWithRawResponse(self._cloudforce_one.threat_signals)
 
 
 class AsyncCloudforceOneResourceWithRawResponse:
     def __init__(self, cloudforce_one: AsyncCloudforceOneResource) -> None:
         self._cloudforce_one = cloudforce_one
-
-    @cached_property
-    def scans(self) -> AsyncScansResourceWithRawResponse:
-        return AsyncScansResourceWithRawResponse(self._cloudforce_one.scans)
 
     @cached_property
     def binary_storage(self) -> AsyncBinaryStorageResourceWithRawResponse:
@@ -152,17 +192,29 @@ class AsyncCloudforceOneResourceWithRawResponse:
         return AsyncRequestsResourceWithRawResponse(self._cloudforce_one.requests)
 
     @cached_property
+    def scans(self) -> AsyncScansResourceWithRawResponse:
+        return AsyncScansResourceWithRawResponse(self._cloudforce_one.scans)
+
+    @cached_property
     def threat_events(self) -> AsyncThreatEventsResourceWithRawResponse:
         return AsyncThreatEventsResourceWithRawResponse(self._cloudforce_one.threat_events)
+
+    @cached_property
+    def threat_signals(self) -> AsyncThreatSignalsResourceWithRawResponse:
+        """
+        Threat Signals API for managing threat intelligence feeds, articles, indicators, and AI skills in Cloudforce One.
+
+        ## Prerequisites
+
+        1. **API token** — requests must use an API token with Cloudforce One permissions; write operations (creating, editing, or deleting feeds, skills, and tags) require write access.
+        2. **Plan limits** — access on the Free plan is limited; feed quotas and managed default skills apply.
+        """
+        return AsyncThreatSignalsResourceWithRawResponse(self._cloudforce_one.threat_signals)
 
 
 class CloudforceOneResourceWithStreamingResponse:
     def __init__(self, cloudforce_one: CloudforceOneResource) -> None:
         self._cloudforce_one = cloudforce_one
-
-    @cached_property
-    def scans(self) -> ScansResourceWithStreamingResponse:
-        return ScansResourceWithStreamingResponse(self._cloudforce_one.scans)
 
     @cached_property
     def binary_storage(self) -> BinaryStorageResourceWithStreamingResponse:
@@ -173,17 +225,29 @@ class CloudforceOneResourceWithStreamingResponse:
         return RequestsResourceWithStreamingResponse(self._cloudforce_one.requests)
 
     @cached_property
+    def scans(self) -> ScansResourceWithStreamingResponse:
+        return ScansResourceWithStreamingResponse(self._cloudforce_one.scans)
+
+    @cached_property
     def threat_events(self) -> ThreatEventsResourceWithStreamingResponse:
         return ThreatEventsResourceWithStreamingResponse(self._cloudforce_one.threat_events)
+
+    @cached_property
+    def threat_signals(self) -> ThreatSignalsResourceWithStreamingResponse:
+        """
+        Threat Signals API for managing threat intelligence feeds, articles, indicators, and AI skills in Cloudforce One.
+
+        ## Prerequisites
+
+        1. **API token** — requests must use an API token with Cloudforce One permissions; write operations (creating, editing, or deleting feeds, skills, and tags) require write access.
+        2. **Plan limits** — access on the Free plan is limited; feed quotas and managed default skills apply.
+        """
+        return ThreatSignalsResourceWithStreamingResponse(self._cloudforce_one.threat_signals)
 
 
 class AsyncCloudforceOneResourceWithStreamingResponse:
     def __init__(self, cloudforce_one: AsyncCloudforceOneResource) -> None:
         self._cloudforce_one = cloudforce_one
-
-    @cached_property
-    def scans(self) -> AsyncScansResourceWithStreamingResponse:
-        return AsyncScansResourceWithStreamingResponse(self._cloudforce_one.scans)
 
     @cached_property
     def binary_storage(self) -> AsyncBinaryStorageResourceWithStreamingResponse:
@@ -194,5 +258,21 @@ class AsyncCloudforceOneResourceWithStreamingResponse:
         return AsyncRequestsResourceWithStreamingResponse(self._cloudforce_one.requests)
 
     @cached_property
+    def scans(self) -> AsyncScansResourceWithStreamingResponse:
+        return AsyncScansResourceWithStreamingResponse(self._cloudforce_one.scans)
+
+    @cached_property
     def threat_events(self) -> AsyncThreatEventsResourceWithStreamingResponse:
         return AsyncThreatEventsResourceWithStreamingResponse(self._cloudforce_one.threat_events)
+
+    @cached_property
+    def threat_signals(self) -> AsyncThreatSignalsResourceWithStreamingResponse:
+        """
+        Threat Signals API for managing threat intelligence feeds, articles, indicators, and AI skills in Cloudforce One.
+
+        ## Prerequisites
+
+        1. **API token** — requests must use an API token with Cloudforce One permissions; write operations (creating, editing, or deleting feeds, skills, and tags) require write access.
+        2. **Plan limits** — access on the Free plan is limited; feed quotas and managed default skills apply.
+        """
+        return AsyncThreatSignalsResourceWithStreamingResponse(self._cloudforce_one.threat_signals)

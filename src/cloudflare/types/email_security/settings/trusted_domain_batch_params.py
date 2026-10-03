@@ -13,12 +13,22 @@ class TrustedDomainBatchParams(TypedDict, total=False):
     """Identifier."""
 
     deletes: Required[Iterable[Delete]]
+    """IDs of the trusted domain patterns to delete."""
 
     patches: Required[Iterable[Patch]]
+    """
+    Partial updates to apply — each entry carries the pattern's ID and only the
+    fields to change.
+    """
 
     posts: Required[Iterable[Post]]
+    """Trusted domain patterns to create."""
 
     puts: Required[Iterable[Put]]
+    """
+    Full replacements to apply — each entry carries the pattern's ID and every field
+    of its new value.
+    """
 
 
 class Delete(TypedDict, total=False):
@@ -38,6 +48,7 @@ class Patch(TypedDict, total=False):
     """
 
     is_regex: bool
+    """Whether `pattern` is a regular expression instead of a literal domain."""
 
     is_similarity: bool
     """
@@ -46,6 +57,7 @@ class Patch(TypedDict, total=False):
     """
 
     pattern: str
+    """The domain pattern to trust, e.g. `example.com`."""
 
 
 class Post(TypedDict, total=False):
@@ -58,6 +70,7 @@ class Post(TypedDict, total=False):
     """
 
     is_regex: Required[bool]
+    """Whether `pattern` is a regular expression instead of a literal domain."""
 
     is_similarity: Required[bool]
     """
@@ -66,6 +79,7 @@ class Post(TypedDict, total=False):
     """
 
     pattern: Required[str]
+    """The domain pattern to trust, e.g. `example.com`."""
 
     comments: Optional[str]
 
@@ -80,6 +94,7 @@ class Put(TypedDict, total=False):
     """
 
     is_regex: Required[bool]
+    """Whether `pattern` is a regular expression instead of a literal domain."""
 
     is_similarity: Required[bool]
     """
@@ -88,5 +103,6 @@ class Put(TypedDict, total=False):
     """
 
     pattern: Required[str]
+    """The domain pattern to trust, e.g. `example.com`."""
 
     comments: Optional[str]

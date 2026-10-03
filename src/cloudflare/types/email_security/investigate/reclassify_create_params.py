@@ -12,8 +12,13 @@ class ReclassifyCreateParams(TypedDict, total=False):
     """Identifier."""
 
     expected_disposition: Required[Literal["NONE", "BULK", "MALICIOUS", "SPAM", "SPOOF", "SUSPICIOUS"]]
+    """The disposition the message should have."""
 
     eml_content: str
     """Base64 encoded content of the EML file."""
 
     escalated_submission_id: str
+    """
+    Submission ID of the original user submission, when reclassifying an escalated
+    user report.
+    """

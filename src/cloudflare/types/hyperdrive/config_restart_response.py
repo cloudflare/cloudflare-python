@@ -107,11 +107,11 @@ class Integration(BaseModel):
     database_name: str
     """The name of the PlanetScale database."""
 
-    integration: Literal["planetscale"]
-    """The database integration used by this operation."""
-
     organization_name: str
     """The name of the PlanetScale organization."""
+
+    provider: Literal["planetscale"]
+    """The database integration provider used by this operation."""
 
     scheme: Literal["postgres", "postgresql", "mysql"]
     """Specifies the URL scheme used to connect to your origin database."""

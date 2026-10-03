@@ -11,7 +11,7 @@ __all__ = ["HostnameCertificateDeleteResponse"]
 
 class HostnameCertificateDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier."""
+    """Certificate identifier tag."""
 
     certificate: Optional[str] = None
     """The hostname certificate."""

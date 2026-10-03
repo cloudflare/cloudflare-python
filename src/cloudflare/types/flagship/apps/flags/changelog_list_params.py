@@ -9,13 +9,13 @@ __all__ = ["ChangelogListParams"]
 
 class ChangelogListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Cloudflare account ID."""
+    """Cloudflare account ID that owns the Flagship app."""
 
     app_id: Required[str]
-    """App identifier."""
+    """Flagship app ID returned when the app was created."""
 
     cursor: str
     """Pagination cursor from a previous response."""
 
-    limit: str
+    limit: int
     """Max items to return (1–200)."""

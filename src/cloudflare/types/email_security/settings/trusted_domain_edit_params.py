@@ -21,6 +21,7 @@ class TrustedDomainEditParams(TypedDict, total=False):
     """
 
     is_regex: bool
+    """Whether `pattern` is a regular expression instead of a literal domain."""
 
     is_similarity: bool
     """
@@ -29,3 +30,4 @@ class TrustedDomainEditParams(TypedDict, total=False):
     """
 
     pattern: str
+    """The domain pattern to trust, e.g. `example.com`."""

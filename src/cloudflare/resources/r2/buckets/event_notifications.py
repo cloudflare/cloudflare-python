@@ -62,14 +62,18 @@ class EventNotificationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Create event notification rule.
+        Creates rules that send notifications for matching R2 object events to the
+        specified Cloudflare Queue. Rules can filter objects by key prefix and suffix.
+        New rules are added to any existing rules for the queue; a rule that overlaps an
+        existing rule is rejected.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
-          queue_id: Queue ID.
+          queue_id: ID of the Cloudflare Queue that receives notifications for matching R2 object
+              events.
 
           rules: Array of rules to drive notifications.
 
@@ -125,10 +129,11 @@ class EventNotificationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventNotificationListResponse:
         """
-        List all event notification rules for a bucket.
+        Lists event notification rules for an R2 bucket, grouped by the Cloudflare Queue
+        that receives matching object events.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -180,17 +185,18 @@ class EventNotificationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Delete an event notification rule.
-
-        **If no body is provided, all rules for
-        specified queue will be deleted**.
+        """
+        Deletes the specified event notification rules for an R2 bucket and Cloudflare
+        Queue. Provide ruleIds in the request body to select rules. If no body is
+        provided, all rules for that bucket and queue are deleted.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
-          queue_id: Queue ID.
+          queue_id: ID of the Cloudflare Queue that receives notifications for matching R2 object
+              events.
 
           extra_headers: Send extra headers
 
@@ -244,14 +250,16 @@ class EventNotificationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventNotificationGetResponse:
         """
-        Get a single event notification rule.
+        Gets the event notification rules for the specified R2 bucket and Cloudflare
+        Queue. The response includes the queue's configuration and its array of rules.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
-          queue_id: Queue ID.
+          queue_id: ID of the Cloudflare Queue that receives notifications for matching R2 object
+              events.
 
           extra_headers: Send extra headers
 
@@ -327,14 +335,18 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Create event notification rule.
+        Creates rules that send notifications for matching R2 object events to the
+        specified Cloudflare Queue. Rules can filter objects by key prefix and suffix.
+        New rules are added to any existing rules for the queue; a rule that overlaps an
+        existing rule is rejected.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
-          queue_id: Queue ID.
+          queue_id: ID of the Cloudflare Queue that receives notifications for matching R2 object
+              events.
 
           rules: Array of rules to drive notifications.
 
@@ -392,10 +404,11 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventNotificationListResponse:
         """
-        List all event notification rules for a bucket.
+        Lists event notification rules for an R2 bucket, grouped by the Cloudflare Queue
+        that receives matching object events.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -447,17 +460,18 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Delete an event notification rule.
-
-        **If no body is provided, all rules for
-        specified queue will be deleted**.
+        """
+        Deletes the specified event notification rules for an R2 bucket and Cloudflare
+        Queue. Provide ruleIds in the request body to select rules. If no body is
+        provided, all rules for that bucket and queue are deleted.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
-          queue_id: Queue ID.
+          queue_id: ID of the Cloudflare Queue that receives notifications for matching R2 object
+              events.
 
           extra_headers: Send extra headers
 
@@ -511,14 +525,16 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventNotificationGetResponse:
         """
-        Get a single event notification rule.
+        Gets the event notification rules for the specified R2 bucket and Cloudflare
+        Queue. The response includes the queue's configuration and its array of rules.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
-          queue_id: Queue ID.
+          queue_id: ID of the Cloudflare Queue that receives notifications for matching R2 object
+              events.
 
           extra_headers: Send extra headers
 

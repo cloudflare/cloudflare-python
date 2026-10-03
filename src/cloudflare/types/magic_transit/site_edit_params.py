@@ -18,6 +18,13 @@ class SiteEditParams(TypedDict, total=False):
 
     description: str
 
+    ha_mode: bool
+    """Site high availability mode.
+
+    If set to true, the site can have two connectors and runs in high availability
+    mode.
+    """
+
     location: SiteLocationParam
     """Location of site in latitude and longitude."""
 

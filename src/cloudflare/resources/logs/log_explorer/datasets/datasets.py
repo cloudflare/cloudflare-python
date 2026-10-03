@@ -66,6 +66,7 @@ class DatasetsResource(SyncAPIResource):
         zone_id: str | Omit = omit,
         fields: Iterable[dataset_create_params.Field] | Omit = omit,
         filter: str | Omit = omit,
+        filter_attack_traffic: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -95,10 +96,13 @@ class DatasetsResource(SyncAPIResource):
           fields: Controls which fields the API ingests. Defaults to all available fields when
               absent.
 
-          filter: Optional Logpush filter predicate to restrict which events are ingested. If
-              provided, replaces the dataset's default filter entirely. See
+          filter: Optional Logpush filter predicate to restrict which events are ingested. See
               [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
               syntax and examples.
+
+          filter_attack_traffic: Whether to filter attack traffic from the Logpush job. Defaults to `true` for
+              supported datasets when omitted. Supported datasets are `http_requests`,
+              `firewall_events`, and `network_analytics_logs`.
 
           extra_headers: Send extra headers
 
@@ -131,6 +135,7 @@ class DatasetsResource(SyncAPIResource):
                     "dataset": dataset,
                     "fields": fields,
                     "filter": filter,
+                    "filter_attack_traffic": filter_attack_traffic,
                 },
                 dataset_create_params.DatasetCreateParams,
             ),
@@ -154,6 +159,7 @@ class DatasetsResource(SyncAPIResource):
         deletion_protection: bool | Omit = omit,
         fields: Iterable[dataset_update_params.Field] | Omit = omit,
         filter: Optional[str] | Omit = omit,
+        filter_attack_traffic: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -182,6 +188,10 @@ class DatasetsResource(SyncAPIResource):
               clear the filter. Otherwise, replaces the dataset's filter entirely. See
               [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
               syntax and examples.
+
+          filter_attack_traffic: Whether to filter attack traffic from the Logpush job. If omitted, the existing
+              setting is left unchanged. Supported datasets are `http_requests`,
+              `firewall_events`, and `network_analytics_logs`.
 
           extra_headers: Send extra headers
 
@@ -218,6 +228,7 @@ class DatasetsResource(SyncAPIResource):
                     "deletion_protection": deletion_protection,
                     "fields": fields,
                     "filter": filter,
+                    "filter_attack_traffic": filter_attack_traffic,
                 },
                 dataset_update_params.DatasetUpdateParams,
             ),
@@ -450,6 +461,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         zone_id: str | Omit = omit,
         fields: Iterable[dataset_create_params.Field] | Omit = omit,
         filter: str | Omit = omit,
+        filter_attack_traffic: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -479,10 +491,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
           fields: Controls which fields the API ingests. Defaults to all available fields when
               absent.
 
-          filter: Optional Logpush filter predicate to restrict which events are ingested. If
-              provided, replaces the dataset's default filter entirely. See
+          filter: Optional Logpush filter predicate to restrict which events are ingested. See
               [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
               syntax and examples.
+
+          filter_attack_traffic: Whether to filter attack traffic from the Logpush job. Defaults to `true` for
+              supported datasets when omitted. Supported datasets are `http_requests`,
+              `firewall_events`, and `network_analytics_logs`.
 
           extra_headers: Send extra headers
 
@@ -515,6 +530,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
                     "dataset": dataset,
                     "fields": fields,
                     "filter": filter,
+                    "filter_attack_traffic": filter_attack_traffic,
                 },
                 dataset_create_params.DatasetCreateParams,
             ),
@@ -538,6 +554,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         deletion_protection: bool | Omit = omit,
         fields: Iterable[dataset_update_params.Field] | Omit = omit,
         filter: Optional[str] | Omit = omit,
+        filter_attack_traffic: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -566,6 +583,10 @@ class AsyncDatasetsResource(AsyncAPIResource):
               clear the filter. Otherwise, replaces the dataset's filter entirely. See
               [Logpush filters](https://developers.cloudflare.com/logs/reference/filters/) for
               syntax and examples.
+
+          filter_attack_traffic: Whether to filter attack traffic from the Logpush job. If omitted, the existing
+              setting is left unchanged. Supported datasets are `http_requests`,
+              `firewall_events`, and `network_analytics_logs`.
 
           extra_headers: Send extra headers
 
@@ -602,6 +623,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
                     "deletion_protection": deletion_protection,
                     "fields": fields,
                     "filter": filter,
+                    "filter_attack_traffic": filter_attack_traffic,
                 },
                 dataset_update_params.DatasetUpdateParams,
             ),

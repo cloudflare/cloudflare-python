@@ -25,7 +25,7 @@ class TestAccountTags:
         account_tag = client.resource_tagging.account_tags.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="worker",
+            resource_type="worker_version",
             worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
         )
         assert_matches_type(Optional[AccountTagUpdateResponse], account_tag, path=["response"])
@@ -35,7 +35,7 @@ class TestAccountTags:
         account_tag = client.resource_tagging.account_tags.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="worker",
+            resource_type="worker_version",
             worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
             tags={
                 "environment": "production",
@@ -50,7 +50,7 @@ class TestAccountTags:
         response = client.resource_tagging.account_tags.with_raw_response.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="worker",
+            resource_type="worker_version",
             worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
         )
 
@@ -64,7 +64,7 @@ class TestAccountTags:
         with client.resource_tagging.account_tags.with_streaming_response.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="worker",
+            resource_type="worker_version",
             worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
         ) as response:
             assert not response.is_closed
@@ -81,7 +81,7 @@ class TestAccountTags:
             client.resource_tagging.account_tags.with_raw_response.update(
                 account_id="",
                 resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-                resource_type="worker",
+                resource_type="worker_version",
                 worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
             )
 
@@ -258,7 +258,7 @@ class TestAsyncAccountTags:
         account_tag = await async_client.resource_tagging.account_tags.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="worker",
+            resource_type="worker_version",
             worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
         )
         assert_matches_type(Optional[AccountTagUpdateResponse], account_tag, path=["response"])
@@ -268,7 +268,7 @@ class TestAsyncAccountTags:
         account_tag = await async_client.resource_tagging.account_tags.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="worker",
+            resource_type="worker_version",
             worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
             tags={
                 "environment": "production",
@@ -283,7 +283,7 @@ class TestAsyncAccountTags:
         response = await async_client.resource_tagging.account_tags.with_raw_response.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="worker",
+            resource_type="worker_version",
             worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
         )
 
@@ -297,7 +297,7 @@ class TestAsyncAccountTags:
         async with async_client.resource_tagging.account_tags.with_streaming_response.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_type="worker",
+            resource_type="worker_version",
             worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
         ) as response:
             assert not response.is_closed
@@ -314,7 +314,7 @@ class TestAsyncAccountTags:
             await async_client.resource_tagging.account_tags.with_raw_response.update(
                 account_id="",
                 resource_id="023e105f4ecef8ad9ca31a8372d0c353",
-                resource_type="worker",
+                resource_type="worker_version",
                 worker_id="3f72a691-44b3-4c11-8642-c18a88ddaa5e",
             )
 

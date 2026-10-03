@@ -74,7 +74,8 @@ class DynamicRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingCreateResponse:
         """
-        Create a new AI Gateway Dynamic Route.
+        Creates a dynamic route on an AI Gateway from the specified routing elements.
+        Clients call the route by using `dynamic/{name}` as the model name.
 
         Args:
           extra_headers: Send extra headers
@@ -126,8 +127,10 @@ class DynamicRoutingResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingUpdateResponse:
-        """
-        Update an AI Gateway Dynamic Route.
+        """Updates the name of a dynamic route.
+
+        To change routing behaviour, create and
+        deploy a new version.
 
         Args:
           extra_headers: Send extra headers
@@ -173,7 +176,7 @@ class DynamicRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingListResponse:
         """
-        List all AI Gateway Dynamic Routes.
+        Lists the dynamic routes configured on an AI Gateway.
 
         Args:
           page: Page number
@@ -228,7 +231,7 @@ class DynamicRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingDeleteResponse:
         """
-        Delete an AI Gateway Dynamic Route.
+        Deletes a dynamic route from an AI Gateway.
 
         Args:
           extra_headers: Send extra headers
@@ -277,7 +280,8 @@ class DynamicRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingCreateDeploymentResponse:
         """
-        Create a new AI Gateway Dynamic Route Deployment.
+        Deploys the specified version of a dynamic route so that it serves traffic.
+        Deploy an earlier version to roll back.
 
         Args:
           extra_headers: Send extra headers
@@ -332,7 +336,8 @@ class DynamicRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingCreateVersionResponse:
         """
-        Create a new AI Gateway Dynamic Route Version.
+        Creates a new version of a dynamic route from the specified routing elements.
+        The version does not serve traffic until you deploy it.
 
         Args:
           extra_headers: Send extra headers
@@ -383,7 +388,8 @@ class DynamicRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingGetResponse:
         """
-        Get an AI Gateway Dynamic Route.
+        Retrieves a dynamic route with its routing elements, active version, and current
+        deployment.
 
         Args:
           extra_headers: Send extra headers
@@ -432,7 +438,7 @@ class DynamicRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingGetVersionResponse:
         """
-        Get an AI Gateway Dynamic Route Version.
+        Retrieves a saved version of a dynamic route, including its routing elements.
 
         Args:
           extra_headers: Send extra headers
@@ -483,7 +489,7 @@ class DynamicRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingListDeploymentsResponse:
         """
-        List all AI Gateway Dynamic Route Deployments.
+        Lists the deployment history of a dynamic route.
 
         Args:
           extra_headers: Send extra headers
@@ -527,7 +533,7 @@ class DynamicRoutingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingListVersionsResponse:
         """
-        List all AI Gateway Dynamic Route Versions.
+        Lists the saved versions of a dynamic route.
 
         Args:
           extra_headers: Send extra headers
@@ -593,7 +599,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingCreateResponse:
         """
-        Create a new AI Gateway Dynamic Route.
+        Creates a dynamic route on an AI Gateway from the specified routing elements.
+        Clients call the route by using `dynamic/{name}` as the model name.
 
         Args:
           extra_headers: Send extra headers
@@ -645,8 +652,10 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingUpdateResponse:
-        """
-        Update an AI Gateway Dynamic Route.
+        """Updates the name of a dynamic route.
+
+        To change routing behaviour, create and
+        deploy a new version.
 
         Args:
           extra_headers: Send extra headers
@@ -692,7 +701,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingListResponse:
         """
-        List all AI Gateway Dynamic Routes.
+        Lists the dynamic routes configured on an AI Gateway.
 
         Args:
           page: Page number
@@ -747,7 +756,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingDeleteResponse:
         """
-        Delete an AI Gateway Dynamic Route.
+        Deletes a dynamic route from an AI Gateway.
 
         Args:
           extra_headers: Send extra headers
@@ -796,7 +805,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingCreateDeploymentResponse:
         """
-        Create a new AI Gateway Dynamic Route Deployment.
+        Deploys the specified version of a dynamic route so that it serves traffic.
+        Deploy an earlier version to roll back.
 
         Args:
           extra_headers: Send extra headers
@@ -851,7 +861,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingCreateVersionResponse:
         """
-        Create a new AI Gateway Dynamic Route Version.
+        Creates a new version of a dynamic route from the specified routing elements.
+        The version does not serve traffic until you deploy it.
 
         Args:
           extra_headers: Send extra headers
@@ -902,7 +913,8 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingGetResponse:
         """
-        Get an AI Gateway Dynamic Route.
+        Retrieves a dynamic route with its routing elements, active version, and current
+        deployment.
 
         Args:
           extra_headers: Send extra headers
@@ -951,7 +963,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingGetVersionResponse:
         """
-        Get an AI Gateway Dynamic Route Version.
+        Retrieves a saved version of a dynamic route, including its routing elements.
 
         Args:
           extra_headers: Send extra headers
@@ -1002,7 +1014,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingListDeploymentsResponse:
         """
-        List all AI Gateway Dynamic Route Deployments.
+        Lists the deployment history of a dynamic route.
 
         Args:
           extra_headers: Send extra headers
@@ -1046,7 +1058,7 @@ class AsyncDynamicRoutingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DynamicRoutingListVersionsResponse:
         """
-        List all AI Gateway Dynamic Route Versions.
+        Lists the saved versions of a dynamic route.
 
         Args:
           extra_headers: Send extra headers

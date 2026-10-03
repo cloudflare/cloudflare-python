@@ -64,10 +64,12 @@ class EvaluationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationCreateResponse:
         """
-        Creates a new AI Gateway.
+        Creates an evaluation that scores the logs in a dataset with the specified
+        evaluator types. Evaluations and datasets are deprecated and unavailable to new
+        accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -122,11 +124,13 @@ class EvaluationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[EvaluationListResponse]:
-        """
-        Lists all AI Gateway evaluator types configured for the account.
+        """Lists the evaluations run on an AI Gateway.
+
+        Evaluations and datasets are
+        deprecated and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           search: Search by id, name
 
@@ -181,11 +185,13 @@ class EvaluationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationDeleteResponse:
-        """
-        Deletes an AI Gateway dataset.
+        """Deletes an evaluation and its results.
+
+        Evaluations and datasets are deprecated
+        and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -231,11 +237,13 @@ class EvaluationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationGetResponse:
-        """
-        Retrieves details for a specific AI Gateway dataset.
+        """Retrieves an evaluation and its results.
+
+        Evaluations and datasets are deprecated
+        and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -305,10 +313,12 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationCreateResponse:
         """
-        Creates a new AI Gateway.
+        Creates an evaluation that scores the logs in a dataset with the specified
+        evaluator types. Evaluations and datasets are deprecated and unavailable to new
+        accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -363,11 +373,13 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EvaluationListResponse, AsyncV4PagePaginationArray[EvaluationListResponse]]:
-        """
-        Lists all AI Gateway evaluator types configured for the account.
+        """Lists the evaluations run on an AI Gateway.
+
+        Evaluations and datasets are
+        deprecated and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           search: Search by id, name
 
@@ -422,11 +434,13 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationDeleteResponse:
-        """
-        Deletes an AI Gateway dataset.
+        """Deletes an evaluation and its results.
+
+        Evaluations and datasets are deprecated
+        and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -472,11 +486,13 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationGetResponse:
-        """
-        Retrieves details for a specific AI Gateway dataset.
+        """Retrieves an evaluation and its results.
+
+        Evaluations and datasets are deprecated
+        and unavailable to new accounts.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 

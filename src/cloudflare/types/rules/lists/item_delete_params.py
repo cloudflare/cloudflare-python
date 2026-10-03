@@ -13,6 +13,7 @@ class ItemDeleteParams(TypedDict, total=False):
     """The Account ID for this resource."""
 
     items: Iterable[Item]
+    """The list items to delete, identified by their unique IDs."""
 
 
 class Item(TypedDict, total=False):

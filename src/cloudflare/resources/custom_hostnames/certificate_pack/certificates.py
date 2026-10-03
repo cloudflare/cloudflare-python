@@ -70,11 +70,11 @@ class CertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: Custom hostname identifier tag.
 
-          certificate_id: Identifier.
+          certificate_id: Custom hostname identifier tag.
 
           custom_certificate: If a custom uploaded certificate is used.
 
@@ -146,11 +146,11 @@ class CertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: Custom hostname identifier tag.
 
-          certificate_id: Identifier.
+          certificate_id: Custom hostname identifier tag.
 
           extra_headers: Send extra headers
 
@@ -230,11 +230,11 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: Custom hostname identifier tag.
 
-          certificate_id: Identifier.
+          certificate_id: Custom hostname identifier tag.
 
           custom_certificate: If a custom uploaded certificate is used.
 
@@ -306,11 +306,11 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
-          certificate_pack_id: Identifier.
+          certificate_pack_id: Custom hostname identifier tag.
 
-          certificate_id: Identifier.
+          certificate_id: Custom hostname identifier tag.
 
           extra_headers: Send extra headers
 

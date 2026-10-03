@@ -12,9 +12,12 @@ __all__ = ["EvaluateGetResponse"]
 
 class EvaluateGetResponse(BaseModel):
     flag_key: str = FieldInfo(alias="flagKey")
+    """Key of the evaluated flag."""
 
-    reason: Literal["TARGETING_MATCH", "DEFAULT", "DISABLED", "SPLIT"]
+    reason: Literal["STATIC", "TARGETING_MATCH", "DEFAULT", "DISABLED", "SPLIT"]
+    """Reason the evaluator selected this variation."""
 
     variant: str
+    """Name of the variation that supplied the resolved value."""
 
     value: Union[Optional[str], float, bool, Dict[str, object], List[object], None] = None

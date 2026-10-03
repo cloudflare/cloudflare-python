@@ -65,7 +65,7 @@ class BindingsResource(SyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -138,7 +138,7 @@ class AsyncBindingsResource(AsyncAPIResource):
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 

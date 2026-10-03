@@ -12,4 +12,4 @@ class DomainCreateParams(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """The domain name."""
+    """Fully qualified domain name for the Pages project, such as `example.com`."""

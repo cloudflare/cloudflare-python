@@ -59,6 +59,7 @@ class DomainUpdateResponse(BaseModel):
     emails_processed: Optional[EmailsProcessed] = None
 
     folder: Optional[Literal["AllItems", "Inbox"]] = None
+    """The mailbox folder to scan, for API-scanning domains."""
 
     inbox_provider: Optional[Literal["Microsoft", "Google"]] = None
 

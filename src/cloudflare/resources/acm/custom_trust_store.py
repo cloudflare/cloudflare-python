@@ -174,7 +174,7 @@ class CustomTrustStoreResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_origin_trust_store_id: Identifier.
+          custom_origin_trust_store_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -225,7 +225,7 @@ class CustomTrustStoreResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_origin_trust_store_id: Identifier.
+          custom_origin_trust_store_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -406,7 +406,7 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_origin_trust_store_id: Identifier.
+          custom_origin_trust_store_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -457,7 +457,7 @@ class AsyncCustomTrustStoreResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_origin_trust_store_id: Identifier.
+          custom_origin_trust_store_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, cast
 from typing_extensions import Literal
 
@@ -44,6 +45,7 @@ class ReclassifyResource(SyncAPIResource):
         """
         return ReclassifyResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         investigate_id: str,
@@ -63,14 +65,20 @@ class ReclassifyResource(SyncAPIResource):
 
         Use for reporting false
         positives or false negatives. Optionally provide the raw EML content for
-        reanalysis. The reclassification is processed asynchronously.
+        reanalysis. The reclassification is processed asynchronously. Deprecated; use
+        the create submissions endpoint instead.
 
         Args:
           account_id: Identifier.
 
           investigate_id: Unique identifier for a message retrieved from investigation.
 
+          expected_disposition: The disposition the message should have.
+
           eml_content: Base64 encoded content of the EML file.
+
+          escalated_submission_id: Submission ID of the original user submission, when reclassifying an escalated
+              user report.
 
           extra_headers: Send extra headers
 
@@ -129,6 +137,7 @@ class AsyncReclassifyResource(AsyncAPIResource):
         """
         return AsyncReclassifyResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         investigate_id: str,
@@ -148,14 +157,20 @@ class AsyncReclassifyResource(AsyncAPIResource):
 
         Use for reporting false
         positives or false negatives. Optionally provide the raw EML content for
-        reanalysis. The reclassification is processed asynchronously.
+        reanalysis. The reclassification is processed asynchronously. Deprecated; use
+        the create submissions endpoint instead.
 
         Args:
           account_id: Identifier.
 
           investigate_id: Unique identifier for a message retrieved from investigation.
 
+          expected_disposition: The disposition the message should have.
+
           eml_content: Base64 encoded content of the EML file.
+
+          escalated_submission_id: Submission ID of the original user submission, when reclassifying an escalated
+              user report.
 
           extra_headers: Send extra headers
 
@@ -198,8 +213,10 @@ class ReclassifyResourceWithRawResponse:
     def __init__(self, reclassify: ReclassifyResource) -> None:
         self._reclassify = reclassify
 
-        self.create = to_raw_response_wrapper(
-            reclassify.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                reclassify.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -207,8 +224,10 @@ class AsyncReclassifyResourceWithRawResponse:
     def __init__(self, reclassify: AsyncReclassifyResource) -> None:
         self._reclassify = reclassify
 
-        self.create = async_to_raw_response_wrapper(
-            reclassify.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                reclassify.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -216,8 +235,10 @@ class ReclassifyResourceWithStreamingResponse:
     def __init__(self, reclassify: ReclassifyResource) -> None:
         self._reclassify = reclassify
 
-        self.create = to_streamed_response_wrapper(
-            reclassify.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                reclassify.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -225,6 +246,8 @@ class AsyncReclassifyResourceWithStreamingResponse:
     def __init__(self, reclassify: AsyncReclassifyResource) -> None:
         self._reclassify = reclassify
 
-        self.create = async_to_streamed_response_wrapper(
-            reclassify.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                reclassify.create,  # pyright: ignore[reportDeprecated],
+            )
         )

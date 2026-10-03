@@ -14,6 +14,8 @@ from cloudflare.types.r2_data_catalog import (
     MaintenanceConfigUpdateResponse,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -22,35 +24,40 @@ class TestMaintenanceConfigs:
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        maintenance_config = client.r2_data_catalog.maintenance_configs.update(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        )
+        with pytest.warns(DeprecationWarning):
+            maintenance_config = client.r2_data_catalog.maintenance_configs.update(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            )
+
         assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        maintenance_config = client.r2_data_catalog.maintenance_configs.update(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-            compaction={
-                "state": "enabled",
-                "target_size_mb": "256",
-            },
-            snapshot_expiration={
-                "max_snapshot_age": "14d",
-                "min_snapshots_to_keep": 5,
-                "state": "enabled",
-            },
-        )
+        with pytest.warns(DeprecationWarning):
+            maintenance_config = client.r2_data_catalog.maintenance_configs.update(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+                compaction={
+                    "state": "enabled",
+                    "target_size_mb": "256",
+                },
+                snapshot_expiration={
+                    "max_snapshot_age": "14d",
+                    "min_snapshots_to_keep": 5,
+                    "state": "enabled",
+                },
+            )
+
         assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.r2_data_catalog.maintenance_configs.with_raw_response.update(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.r2_data_catalog.maintenance_configs.with_raw_response.update(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -59,46 +66,51 @@ class TestMaintenanceConfigs:
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.r2_data_catalog.maintenance_configs.with_streaming_response.update(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.r2_data_catalog.maintenance_configs.with_streaming_response.update(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            maintenance_config = response.parse()
-            assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])
+                maintenance_config = response.parse()
+                assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.r2_data_catalog.maintenance_configs.with_raw_response.update(
-                bucket_name="my-data-bucket",
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                client.r2_data_catalog.maintenance_configs.with_raw_response.update(
+                    bucket_name="my-data-bucket",
+                    account_id="",
+                )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            client.r2_data_catalog.maintenance_configs.with_raw_response.update(
-                bucket_name="",
-                account_id="0123456789abcdef0123456789abcdef",
-            )
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+                client.r2_data_catalog.maintenance_configs.with_raw_response.update(
+                    bucket_name="",
+                    account_id="0123456789abcdef0123456789abcdef",
+                )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        maintenance_config = client.r2_data_catalog.maintenance_configs.get(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        )
+        with pytest.warns(DeprecationWarning):
+            maintenance_config = client.r2_data_catalog.maintenance_configs.get(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            )
+
         assert_matches_type(Optional[MaintenanceConfigGetResponse], maintenance_config, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.r2_data_catalog.maintenance_configs.with_raw_response.get(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.r2_data_catalog.maintenance_configs.with_raw_response.get(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,31 +119,33 @@ class TestMaintenanceConfigs:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.r2_data_catalog.maintenance_configs.with_streaming_response.get(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.r2_data_catalog.maintenance_configs.with_streaming_response.get(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            maintenance_config = response.parse()
-            assert_matches_type(Optional[MaintenanceConfigGetResponse], maintenance_config, path=["response"])
+                maintenance_config = response.parse()
+                assert_matches_type(Optional[MaintenanceConfigGetResponse], maintenance_config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.r2_data_catalog.maintenance_configs.with_raw_response.get(
-                bucket_name="my-data-bucket",
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                client.r2_data_catalog.maintenance_configs.with_raw_response.get(
+                    bucket_name="my-data-bucket",
+                    account_id="",
+                )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            client.r2_data_catalog.maintenance_configs.with_raw_response.get(
-                bucket_name="",
-                account_id="0123456789abcdef0123456789abcdef",
-            )
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+                client.r2_data_catalog.maintenance_configs.with_raw_response.get(
+                    bucket_name="",
+                    account_id="0123456789abcdef0123456789abcdef",
+                )
 
 
 class TestAsyncMaintenanceConfigs:
@@ -141,35 +155,40 @@ class TestAsyncMaintenanceConfigs:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        maintenance_config = await async_client.r2_data_catalog.maintenance_configs.update(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        )
+        with pytest.warns(DeprecationWarning):
+            maintenance_config = await async_client.r2_data_catalog.maintenance_configs.update(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            )
+
         assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        maintenance_config = await async_client.r2_data_catalog.maintenance_configs.update(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-            compaction={
-                "state": "enabled",
-                "target_size_mb": "256",
-            },
-            snapshot_expiration={
-                "max_snapshot_age": "14d",
-                "min_snapshots_to_keep": 5,
-                "state": "enabled",
-            },
-        )
+        with pytest.warns(DeprecationWarning):
+            maintenance_config = await async_client.r2_data_catalog.maintenance_configs.update(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+                compaction={
+                    "state": "enabled",
+                    "target_size_mb": "256",
+                },
+                snapshot_expiration={
+                    "max_snapshot_age": "14d",
+                    "min_snapshots_to_keep": 5,
+                    "state": "enabled",
+                },
+            )
+
         assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.r2_data_catalog.maintenance_configs.with_raw_response.update(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.r2_data_catalog.maintenance_configs.with_raw_response.update(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -178,46 +197,51 @@ class TestAsyncMaintenanceConfigs:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.r2_data_catalog.maintenance_configs.with_streaming_response.update(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.r2_data_catalog.maintenance_configs.with_streaming_response.update(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            maintenance_config = await response.parse()
-            assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])
+                maintenance_config = await response.parse()
+                assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.r2_data_catalog.maintenance_configs.with_raw_response.update(
-                bucket_name="my-data-bucket",
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                await async_client.r2_data_catalog.maintenance_configs.with_raw_response.update(
+                    bucket_name="my-data-bucket",
+                    account_id="",
+                )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            await async_client.r2_data_catalog.maintenance_configs.with_raw_response.update(
-                bucket_name="",
-                account_id="0123456789abcdef0123456789abcdef",
-            )
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+                await async_client.r2_data_catalog.maintenance_configs.with_raw_response.update(
+                    bucket_name="",
+                    account_id="0123456789abcdef0123456789abcdef",
+                )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        maintenance_config = await async_client.r2_data_catalog.maintenance_configs.get(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        )
+        with pytest.warns(DeprecationWarning):
+            maintenance_config = await async_client.r2_data_catalog.maintenance_configs.get(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            )
+
         assert_matches_type(Optional[MaintenanceConfigGetResponse], maintenance_config, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.r2_data_catalog.maintenance_configs.with_raw_response.get(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.r2_data_catalog.maintenance_configs.with_raw_response.get(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -226,28 +250,30 @@ class TestAsyncMaintenanceConfigs:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.r2_data_catalog.maintenance_configs.with_streaming_response.get(
-            bucket_name="my-data-bucket",
-            account_id="0123456789abcdef0123456789abcdef",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.r2_data_catalog.maintenance_configs.with_streaming_response.get(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            maintenance_config = await response.parse()
-            assert_matches_type(Optional[MaintenanceConfigGetResponse], maintenance_config, path=["response"])
+                maintenance_config = await response.parse()
+                assert_matches_type(Optional[MaintenanceConfigGetResponse], maintenance_config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.r2_data_catalog.maintenance_configs.with_raw_response.get(
-                bucket_name="my-data-bucket",
-                account_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+                await async_client.r2_data_catalog.maintenance_configs.with_raw_response.get(
+                    bucket_name="my-data-bucket",
+                    account_id="",
+                )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            await async_client.r2_data_catalog.maintenance_configs.with_raw_response.get(
-                bucket_name="",
-                account_id="0123456789abcdef0123456789abcdef",
-            )
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+                await async_client.r2_data_catalog.maintenance_configs.with_raw_response.get(
+                    bucket_name="",
+                    account_id="0123456789abcdef0123456789abcdef",
+                )

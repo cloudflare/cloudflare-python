@@ -18,4 +18,4 @@ class MessageListParams(TypedDict, total=False):
     """The number of results per page. Maximum value is 1000."""
 
     status: Literal["PENDING", "PROCESSING", "COMPLETED", "FAILED", "CANCELLED", "SKIPPED"]
-    """Filter by message status."""
+    """Filter the job's messages by their processing status."""

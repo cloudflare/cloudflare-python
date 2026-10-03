@@ -60,7 +60,7 @@ class MetricsResource(SyncAPIResource):
         Account-Level Metrics may not immediately reflect the latest data.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           extra_headers: Send extra headers
 
@@ -122,7 +122,7 @@ class AsyncMetricsResource(AsyncAPIResource):
         Account-Level Metrics may not immediately reflect the latest data.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           extra_headers: Send extra headers
 

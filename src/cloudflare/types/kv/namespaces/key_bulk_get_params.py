@@ -12,13 +12,13 @@ __all__ = ["KeyBulkGetParams"]
 
 class KeyBulkGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """ID of the Cloudflare account that owns the Workers KV namespaces."""
 
     keys: Required[SequenceNotStr[str]]
     """Array of keys to retrieve (maximum of 100)."""
 
     type: Literal["text", "json"]
-    """Whether to parse JSON values in the response."""
+    """Return values as strings with `text`, or parse stored JSON values with `json`."""
 
     with_metadata: Annotated[bool, PropertyInfo(alias="withMetadata")]
     """Whether to include metadata in the response."""

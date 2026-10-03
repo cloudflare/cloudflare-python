@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -56,6 +57,9 @@ class TablesResource(SyncAPIResource):
         """
         return TablesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use `GET /accounts/{account_id}/basin-catalog/{bucket_name}/namespaces/{namespace}/tables` instead."
+    )
     def list(
         self,
         namespace: str,
@@ -159,6 +163,9 @@ class AsyncTablesResource(AsyncAPIResource):
         """
         return AsyncTablesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use `GET /accounts/{account_id}/basin-catalog/{bucket_name}/namespaces/{namespace}/tables` instead."
+    )
     async def list(
         self,
         namespace: str,
@@ -242,8 +249,10 @@ class TablesResourceWithRawResponse:
     def __init__(self, tables: TablesResource) -> None:
         self._tables = tables
 
-        self.list = to_raw_response_wrapper(
-            tables.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tables.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -255,8 +264,10 @@ class AsyncTablesResourceWithRawResponse:
     def __init__(self, tables: AsyncTablesResource) -> None:
         self._tables = tables
 
-        self.list = async_to_raw_response_wrapper(
-            tables.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tables.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -268,8 +279,10 @@ class TablesResourceWithStreamingResponse:
     def __init__(self, tables: TablesResource) -> None:
         self._tables = tables
 
-        self.list = to_streamed_response_wrapper(
-            tables.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tables.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -281,8 +294,10 @@ class AsyncTablesResourceWithStreamingResponse:
     def __init__(self, tables: AsyncTablesResource) -> None:
         self._tables = tables
 
-        self.list = async_to_streamed_response_wrapper(
-            tables.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tables.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

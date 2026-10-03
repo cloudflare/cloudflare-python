@@ -158,7 +158,10 @@ class IndicatorsResource(SyncAPIResource):
           related_events: Filter by related event IDs
 
           related_events_limit: Limit the number of related events returned per indicator. Default: 2. Set to 0
-              for none, -1 for all events.
+              for none, -1 for all events. For JSON responses, when the limit hides events,
+              the indicator carries `relatedEventsHasMore: true` and the response includes an
+              advisory message — the cap is never applied silently. STIX and TAXII
+              representations do not include related-event data.
 
           search: Structured search as a JSON array of {field, op, value} objects. Searchable
               fields: value, indicatorType, uuid. Supports operators: equals, not, contains,
@@ -342,7 +345,10 @@ class AsyncIndicatorsResource(AsyncAPIResource):
           related_events: Filter by related event IDs
 
           related_events_limit: Limit the number of related events returned per indicator. Default: 2. Set to 0
-              for none, -1 for all events.
+              for none, -1 for all events. For JSON responses, when the limit hides events,
+              the indicator carries `relatedEventsHasMore: true` and the response includes an
+              advisory message — the cap is never applied silently. STIX and TAXII
+              representations do not include related-event data.
 
           search: Structured search as a JSON array of {field, op, value} objects. Searchable
               fields: value, indicatorType, uuid. Supports operators: equals, not, contains,

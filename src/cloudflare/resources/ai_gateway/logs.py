@@ -94,7 +94,7 @@ class LogsResource(SyncAPIResource):
         pagination.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           model: Model filter.
 
@@ -194,7 +194,7 @@ class LogsResource(SyncAPIResource):
         Deletes gateway log entries matching the specified criteria.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -252,7 +252,7 @@ class LogsResource(SyncAPIResource):
         Updates metadata for an AI Gateway log entry.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -310,7 +310,7 @@ class LogsResource(SyncAPIResource):
         Retrieves detailed information for a specific AI Gateway log entry.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -360,7 +360,7 @@ class LogsResource(SyncAPIResource):
         Retrieves the original request payload for an AI Gateway log entry.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -406,7 +406,7 @@ class LogsResource(SyncAPIResource):
         Retrieves the response payload for an AI Gateway log entry.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -501,7 +501,7 @@ class AsyncLogsResource(AsyncAPIResource):
         pagination.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           model: Model filter.
 
@@ -601,7 +601,7 @@ class AsyncLogsResource(AsyncAPIResource):
         Deletes gateway log entries matching the specified criteria.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -659,7 +659,7 @@ class AsyncLogsResource(AsyncAPIResource):
         Updates metadata for an AI Gateway log entry.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -717,7 +717,7 @@ class AsyncLogsResource(AsyncAPIResource):
         Retrieves detailed information for a specific AI Gateway log entry.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -767,7 +767,7 @@ class AsyncLogsResource(AsyncAPIResource):
         Retrieves the original request payload for an AI Gateway log entry.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -813,7 +813,7 @@ class AsyncLogsResource(AsyncAPIResource):
         Retrieves the response payload for an AI Gateway log entry.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 

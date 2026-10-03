@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .role import Role
@@ -22,9 +23,29 @@ __all__ = [
 class PolicyPermissionGroupMeta(BaseModel):
     """Attributes associated to the permission group."""
 
-    key: Optional[str] = None
+    category: Optional[str] = None
+    """A category used to group permission groups."""
 
-    value: Optional[str] = None
+    deprecated: Optional[str] = None
+    """Indicates whether the permission group is deprecated."""
+
+    description: Optional[str] = None
+    """Additional information about the permission group."""
+
+    editable: Optional[str] = None
+    """Indicates whether the permission group can be edited."""
+
+    eol_at: Optional[datetime] = None
+    """The planned end-of-life date and time, when provided."""
+
+    label: Optional[str] = None
+    """A label identifying the permission group."""
+
+    scopes: Optional[str] = None
+    """The scope associated with the permission group."""
+
+    visibility: Optional[str] = None
+    """Indicates the permission group's availability or visibility."""
 
 
 class PolicyPermissionGroup(BaseModel):

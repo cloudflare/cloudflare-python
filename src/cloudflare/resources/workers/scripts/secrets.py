@@ -79,7 +79,7 @@ class SecretsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           name: A JavaScript variable name for the binding.
 
@@ -128,7 +128,7 @@ class SecretsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           algorithm: Algorithm-specific key parameters.
               [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
@@ -239,7 +239,7 @@ class SecretsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -290,7 +290,7 @@ class SecretsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secret_name: A JavaScript variable name for the secret binding.
 
@@ -357,7 +357,7 @@ class SecretsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secrets:
               Map of secret names to secret values:
@@ -423,7 +423,7 @@ class SecretsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secret_name: A JavaScript variable name for the secret binding.
 
@@ -512,7 +512,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           name: A JavaScript variable name for the binding.
 
@@ -561,7 +561,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           algorithm: Algorithm-specific key parameters.
               [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
@@ -672,7 +672,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -723,7 +723,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secret_name: A JavaScript variable name for the secret binding.
 
@@ -792,7 +792,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secrets:
               Map of secret names to secret values:
@@ -858,7 +858,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           secret_name: A JavaScript variable name for the secret binding.
 

@@ -203,7 +203,7 @@ class ScriptsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
@@ -325,7 +325,7 @@ class ScriptsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           force: If true, delete the Worker even when other Workers still reference it. Service
               bindings in those Workers may be left broken. Durable Object namespaces
@@ -379,7 +379,7 @@ class ScriptsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -553,7 +553,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
@@ -677,7 +677,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           force: If true, delete the Worker even when other Workers still reference it. Service
               bindings in those Workers may be left broken. Durable Object namespaces
@@ -731,7 +731,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 

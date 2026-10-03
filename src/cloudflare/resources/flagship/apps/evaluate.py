@@ -58,13 +58,14 @@ class EvaluateResource(SyncAPIResource):
         """Evaluates a flag against the provided context.
 
         Pass context attributes as query
-        parameters; values are forwarded as strings. For low-latency in-Worker
-        evaluation, prefer the Flagship binding over this endpoint.
+        parameters; values are coerced to numbers or booleans where unambiguous. For
+        low-latency in-Worker evaluation, prefer the Flagship binding over this
+        endpoint.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
 
           flag_key: The flag key to evaluate.
 
@@ -141,13 +142,14 @@ class AsyncEvaluateResource(AsyncAPIResource):
         """Evaluates a flag against the provided context.
 
         Pass context attributes as query
-        parameters; values are forwarded as strings. For low-latency in-Worker
-        evaluation, prefer the Flagship binding over this endpoint.
+        parameters; values are coerced to numbers or booleans where unambiguous. For
+        low-latency in-Worker evaluation, prefer the Flagship binding over this
+        endpoint.
 
         Args:
-          account_id: Cloudflare account ID.
+          account_id: Cloudflare account ID that owns the Flagship app.
 
-          app_id: App identifier.
+          app_id: Flagship app ID returned when the app was created.
 
           flag_key: The flag key to evaluate.
 

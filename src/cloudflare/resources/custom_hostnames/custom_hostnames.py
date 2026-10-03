@@ -322,7 +322,7 @@ class CustomHostnamesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
           extra_headers: Send extra headers
 
@@ -377,7 +377,7 @@ class CustomHostnamesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
@@ -449,7 +449,7 @@ class CustomHostnamesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
           extra_headers: Send extra headers
 
@@ -744,7 +744,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
           extra_headers: Send extra headers
 
@@ -799,7 +799,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
@@ -871,7 +871,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          custom_hostname_id: Identifier.
+          custom_hostname_id: Custom hostname identifier tag.
 
           extra_headers: Send extra headers
 

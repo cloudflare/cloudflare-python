@@ -128,7 +128,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         keyless_certificate = client.keyless_certificates.delete(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[KeylessCertificateDeleteResponse], keyless_certificate, path=["response"])
@@ -136,7 +136,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.keyless_certificates.with_raw_response.delete(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -148,7 +148,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.keyless_certificates.with_streaming_response.delete(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -163,7 +163,7 @@ class TestKeylessCertificates:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.keyless_certificates.with_raw_response.delete(
-                keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
                 zone_id="",
             )
 
@@ -178,7 +178,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         keyless_certificate = client.keyless_certificates.edit(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[KeylessCertificate], keyless_certificate, path=["response"])
@@ -186,7 +186,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         keyless_certificate = client.keyless_certificates.edit(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=False,
             host="example.com",
@@ -202,7 +202,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.keyless_certificates.with_raw_response.edit(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -214,7 +214,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.keyless_certificates.with_streaming_response.edit(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -229,7 +229,7 @@ class TestKeylessCertificates:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.keyless_certificates.with_raw_response.edit(
-                keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
                 zone_id="",
             )
 
@@ -244,7 +244,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         keyless_certificate = client.keyless_certificates.get(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[KeylessCertificate], keyless_certificate, path=["response"])
@@ -252,7 +252,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.keyless_certificates.with_raw_response.get(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -264,7 +264,7 @@ class TestKeylessCertificates:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.keyless_certificates.with_streaming_response.get(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -279,7 +279,7 @@ class TestKeylessCertificates:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.keyless_certificates.with_raw_response.get(
-                keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
                 zone_id="",
             )
 
@@ -404,7 +404,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         keyless_certificate = await async_client.keyless_certificates.delete(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[KeylessCertificateDeleteResponse], keyless_certificate, path=["response"])
@@ -412,7 +412,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.keyless_certificates.with_raw_response.delete(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -424,7 +424,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.keyless_certificates.with_streaming_response.delete(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -439,7 +439,7 @@ class TestAsyncKeylessCertificates:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.keyless_certificates.with_raw_response.delete(
-                keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
                 zone_id="",
             )
 
@@ -454,7 +454,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         keyless_certificate = await async_client.keyless_certificates.edit(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[KeylessCertificate], keyless_certificate, path=["response"])
@@ -462,7 +462,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         keyless_certificate = await async_client.keyless_certificates.edit(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=False,
             host="example.com",
@@ -478,7 +478,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.keyless_certificates.with_raw_response.edit(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -490,7 +490,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.keyless_certificates.with_streaming_response.edit(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -505,7 +505,7 @@ class TestAsyncKeylessCertificates:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.keyless_certificates.with_raw_response.edit(
-                keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
                 zone_id="",
             )
 
@@ -520,7 +520,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         keyless_certificate = await async_client.keyless_certificates.get(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[KeylessCertificate], keyless_certificate, path=["response"])
@@ -528,7 +528,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.keyless_certificates.with_raw_response.get(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -540,7 +540,7 @@ class TestAsyncKeylessCertificates:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.keyless_certificates.with_streaming_response.get(
-            keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+            keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -555,7 +555,7 @@ class TestAsyncKeylessCertificates:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.keyless_certificates.with_raw_response.get(
-                keyless_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                keyless_certificate_id="4d2844d2ce78891c34d0b6c0535a291e",
                 zone_id="",
             )
 

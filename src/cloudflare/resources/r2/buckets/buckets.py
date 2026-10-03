@@ -158,10 +158,11 @@ class BucketsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Bucket:
         """
-        Creates a new R2 bucket.
+        Creates an R2 bucket in the account and selected jurisdiction, with an optional
+        location hint and default storage class.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           name: Name of the bucket.
 
@@ -223,11 +224,13 @@ class BucketsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BucketListResponse:
-        """
-        Lists all R2 buckets on your account.
+        """Lists a page of R2 buckets in the account and selected jurisdiction.
+
+        Use the
+        returned cursor to retrieve the next page.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           cursor: Pagination cursor received during the last List Buckets call. R2 buckets are
               paginated using cursors instead of page numbers.
@@ -295,11 +298,14 @@ class BucketsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Deletes an existing R2 bucket.
+        """Deletes an empty R2 bucket and its configuration.
+
+        The bucket must have no
+        objects, no in-progress multipart uploads, and no event notification rules;
+        otherwise the request fails.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -350,10 +356,12 @@ class BucketsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Bucket:
         """
-        Updates properties of an existing R2 bucket.
+        Changes the default storage class for newly uploaded objects in an existing R2
+        bucket. Existing objects retain their storage class, and individual uploads can
+        override the bucket default.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -411,7 +419,7 @@ class BucketsResource(SyncAPIResource):
         Gets properties of an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -516,10 +524,11 @@ class AsyncBucketsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Bucket:
         """
-        Creates a new R2 bucket.
+        Creates an R2 bucket in the account and selected jurisdiction, with an optional
+        location hint and default storage class.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           name: Name of the bucket.
 
@@ -581,11 +590,13 @@ class AsyncBucketsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BucketListResponse:
-        """
-        Lists all R2 buckets on your account.
+        """Lists a page of R2 buckets in the account and selected jurisdiction.
+
+        Use the
+        returned cursor to retrieve the next page.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           cursor: Pagination cursor received during the last List Buckets call. R2 buckets are
               paginated using cursors instead of page numbers.
@@ -653,11 +664,14 @@ class AsyncBucketsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """
-        Deletes an existing R2 bucket.
+        """Deletes an empty R2 bucket and its configuration.
+
+        The bucket must have no
+        objects, no in-progress multipart uploads, and no event notification rules;
+        otherwise the request fails.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -708,10 +722,12 @@ class AsyncBucketsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Bucket:
         """
-        Updates properties of an existing R2 bucket.
+        Changes the default storage class for newly uploaded objects in an existing R2
+        bucket. Existing objects retain their storage class, and individual uploads can
+        override the bucket default.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 
@@ -769,7 +785,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         Gets properties of an existing R2 bucket.
 
         Args:
-          account_id: Account ID.
+          account_id: Cloudflare account ID that owns the R2 resource.
 
           bucket_name: Name of the bucket.
 

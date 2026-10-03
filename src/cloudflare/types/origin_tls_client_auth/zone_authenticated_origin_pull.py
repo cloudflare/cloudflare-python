@@ -11,7 +11,7 @@ __all__ = ["ZoneAuthenticatedOriginPull"]
 
 class ZoneAuthenticatedOriginPull(BaseModel):
     id: Optional[str] = None
-    """Identifier."""
+    """Certificate identifier tag."""
 
     certificate: Optional[str] = None
     """The zone's leaf certificate."""

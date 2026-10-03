@@ -2,10 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Union, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["ZoneEditParams", "InternalDNS", "Nameservers", "SOA"]
+__all__ = [
+    "ZoneEditParams",
+    "InternalDNS",
+    "Nameservers",
+    "NameserversDNSSettingsZoneNameserversCloudflare",
+    "NameserversDNSSettingsZoneNameserversCustomExisting",
+    "NameserversDNSSettingsZoneNameserversCustomSet",
+    "SOA",
+]
 
 
 class ZoneEditParams(TypedDict, total=False):
@@ -33,9 +41,7 @@ class ZoneEditParams(TypedDict, total=False):
     """
 
     nameservers: Nameservers
-    """
-    Settings determining the nameservers through which the zone should be available.
-    """
+    """Controls the nameservers through which the zone is available."""
 
     ns_ttl: float
     """The time to live (TTL) of the zone's nameserver (NS) records."""
@@ -60,16 +66,32 @@ class InternalDNS(TypedDict, total=False):
     """The ID of the zone to fallback to."""
 
 
-class Nameservers(TypedDict, total=False):
-    """
-    Settings determining the nameservers through which the zone should be available.
-    """
+class NameserversDNSSettingsZoneNameserversCloudflare(TypedDict, total=False):
+    type: Required[Literal["cloudflare.standard", "cloudflare.advanced"]]
+    """Nameserver type."""
+
+
+class NameserversDNSSettingsZoneNameserversCustomExisting(TypedDict, total=False):
+    type: Required[Literal["custom.account", "custom.tenant", "custom.zone"]]
+    """Nameserver type."""
 
     ns_set: int
-    """Configured nameserver set to be used for this zone"""
+    """Configured nameserver set number to use for this zone."""
 
-    type: Literal["cloudflare.standard", "cloudflare.advanced", "custom.account", "custom.tenant", "custom.zone"]
-    """Nameserver type"""
+
+class NameserversDNSSettingsZoneNameserversCustomSet(TypedDict, total=False):
+    nameserver_set_id: Required[str]
+    """Identifier of the account-owned Custom Nameserver Set to use for this zone."""
+
+    type: Required[Literal["custom"]]
+    """Nameserver type."""
+
+
+Nameservers: TypeAlias = Union[
+    NameserversDNSSettingsZoneNameserversCloudflare,
+    NameserversDNSSettingsZoneNameserversCustomExisting,
+    NameserversDNSSettingsZoneNameserversCustomSet,
+]
 
 
 class SOA(TypedDict, total=False):

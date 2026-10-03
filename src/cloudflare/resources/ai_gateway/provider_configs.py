@@ -66,10 +66,14 @@ class ProviderConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProviderConfigCreateResponse:
         """
-        Creates a new AI Gateway.
+        Stores an upstream AI provider API key for an AI Gateway in the Secrets Store
+        configured on the gateway, with an optional rate limit. Pass `secret` to store a
+        new key, or omit it to use an existing Secrets Store secret.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
+
+          secret: Provider API key to store in the Secrets Store configured on the gateway.
 
           extra_headers: Send extra headers
 
@@ -125,11 +129,13 @@ class ProviderConfigsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ProviderConfigListResponse]:
-        """
-        Lists all AI Gateway evaluator types configured for the account.
+        """Lists the provider keys stored for an AI Gateway.
+
+        Responses show a masked
+        preview of each key, never the key itself.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 
@@ -207,10 +213,14 @@ class AsyncProviderConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProviderConfigCreateResponse:
         """
-        Creates a new AI Gateway.
+        Stores an upstream AI provider API key for an AI Gateway in the Secrets Store
+        configured on the gateway, with an optional rate limit. Pass `secret` to store a
+        new key, or omit it to use an existing Secrets Store secret.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
+
+          secret: Provider API key to store in the Secrets Store configured on the gateway.
 
           extra_headers: Send extra headers
 
@@ -266,11 +276,13 @@ class AsyncProviderConfigsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ProviderConfigListResponse, AsyncV4PagePaginationArray[ProviderConfigListResponse]]:
-        """
-        Lists all AI Gateway evaluator types configured for the account.
+        """Lists the provider keys stored for an AI Gateway.
+
+        Responses show a masked
+        preview of each key, never the key itself.
 
         Args:
-          gateway_id: gateway id
+          gateway_id: Unique identifier of the AI Gateway within the account.
 
           extra_headers: Send extra headers
 

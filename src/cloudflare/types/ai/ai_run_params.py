@@ -45,6 +45,7 @@ __all__ = [
 
 class TextClassification(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     text: Required[str]
     """The text that you want to classify"""
@@ -52,6 +53,7 @@ class TextClassification(TypedDict, total=False):
 
 class TextToImage(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     prompt: Required[str]
     """A text description of the image you want to generate"""
@@ -104,6 +106,7 @@ class TextToImage(TypedDict, total=False):
 
 class TextToSpeech(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     prompt: Required[str]
     """A text description of the audio you want to generate"""
@@ -117,6 +120,7 @@ class TextToSpeech(TypedDict, total=False):
 
 class TextEmbeddings(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     text: Required[Union[str, SequenceNotStr[str]]]
     """The text to embed"""
@@ -124,6 +128,7 @@ class TextEmbeddings(TypedDict, total=False):
 
 class AutomaticSpeechRecognition(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     audio: Required[Iterable[float]]
     """
@@ -143,6 +148,7 @@ class AutomaticSpeechRecognition(TypedDict, total=False):
 
 class ImageClassification(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     image: Required[Iterable[float]]
     """
@@ -153,6 +159,7 @@ class ImageClassification(TypedDict, total=False):
 
 class ObjectDetection(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     image: Iterable[float]
     """
@@ -163,6 +170,7 @@ class ObjectDetection(TypedDict, total=False):
 
 class Prompt(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     prompt: Required[str]
     """The input text prompt for the model to generate a response."""
@@ -228,6 +236,7 @@ class PromptResponseFormat(TypedDict, total=False):
 
 class Messages(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     messages: Required[Iterable[MessagesMessage]]
     """An array of message objects representing the conversation history."""
@@ -394,6 +403,7 @@ MessagesTool: TypeAlias = Union[MessagesToolUnionMember0, MessagesToolFunction]
 
 class Translation(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     target_lang: Required[str]
     """The language code to translate the text into (e.g., 'es' for Spanish)"""
@@ -410,6 +420,7 @@ class Translation(TypedDict, total=False):
 
 class Summarization(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     input_text: Required[str]
     """The text that you want the model to summarize"""
@@ -420,6 +431,7 @@ class Summarization(TypedDict, total=False):
 
 class ImageToText(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     image: Required[Iterable[float]]
     """
@@ -474,6 +486,7 @@ class ImageToText(TypedDict, total=False):
 
 class Variant12(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     image: Required[str]
     """Image in base64 encoded format."""
@@ -525,6 +538,7 @@ class Variant12(TypedDict, total=False):
 
 class Variant13(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     image: Required[str]
     """Image in base64 encoded format."""
@@ -602,6 +616,7 @@ class Variant13Message(TypedDict, total=False):
 
 class MultimodalEmbeddings(TypedDict, total=False):
     account_id: Required[str]
+    """Cloudflare account ID used for this AI model request."""
 
     image: str
     """Image in base64 encoded format."""

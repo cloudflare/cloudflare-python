@@ -23,16 +23,21 @@ class Patch(BaseModel):
     created_at: Optional[datetime] = None
 
     enabled: Optional[bool] = None
+    """Whether the policy is active."""
 
     modified_at: Optional[datetime] = None
 
     name: Optional[str] = None
+    """Human-readable name of the policy."""
 
     notes: Optional[str] = None
+    """Optional note describing the purpose of the policy."""
 
     pattern: Optional[str] = None
+    """Regular expression the policy matches against."""
 
     targets: Optional[List[Literal["SUBJECT", "BODY"]]] = None
+    """Parts of the email the pattern is matched against."""
 
 
 class Post(BaseModel):
@@ -44,16 +49,21 @@ class Post(BaseModel):
     created_at: Optional[datetime] = None
 
     enabled: Optional[bool] = None
+    """Whether the policy is active."""
 
     modified_at: Optional[datetime] = None
 
     name: Optional[str] = None
+    """Human-readable name of the policy."""
 
     notes: Optional[str] = None
+    """Optional note describing the purpose of the policy."""
 
     pattern: Optional[str] = None
+    """Regular expression the policy matches against."""
 
     targets: Optional[List[Literal["SUBJECT", "BODY"]]] = None
+    """Parts of the email the pattern is matched against."""
 
 
 class Put(BaseModel):
@@ -65,16 +75,21 @@ class Put(BaseModel):
     created_at: Optional[datetime] = None
 
     enabled: Optional[bool] = None
+    """Whether the policy is active."""
 
     modified_at: Optional[datetime] = None
 
     name: Optional[str] = None
+    """Human-readable name of the policy."""
 
     notes: Optional[str] = None
+    """Optional note describing the purpose of the policy."""
 
     pattern: Optional[str] = None
+    """Regular expression the policy matches against."""
 
     targets: Optional[List[Literal["SUBJECT", "BODY"]]] = None
+    """Parts of the email the pattern is matched against."""
 
 
 class ContentPolicyBatchResponse(BaseModel):

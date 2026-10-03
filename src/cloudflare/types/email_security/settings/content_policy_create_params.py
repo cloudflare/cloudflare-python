@@ -13,11 +13,16 @@ class ContentPolicyCreateParams(TypedDict, total=False):
     """Identifier."""
 
     enabled: Required[bool]
+    """Whether the policy is active."""
 
     name: Required[str]
+    """Human-readable name of the policy."""
 
     pattern: Required[str]
+    """Regular expression the policy matches against."""
 
     targets: Required[List[Literal["SUBJECT", "BODY"]]]
+    """Parts of the email the pattern is matched against."""
 
     notes: Optional[str]
+    """Optional note describing the purpose of the policy."""

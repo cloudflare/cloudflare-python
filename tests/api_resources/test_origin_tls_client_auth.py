@@ -127,7 +127,7 @@ class TestOriginTLSClientAuth:
     def test_method_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             origin_tls_client_auth = client.origin_tls_client_auth.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -137,7 +137,7 @@ class TestOriginTLSClientAuth:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.origin_tls_client_auth.with_raw_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -150,7 +150,7 @@ class TestOriginTLSClientAuth:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.origin_tls_client_auth.with_streaming_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -168,7 +168,7 @@ class TestOriginTLSClientAuth:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.origin_tls_client_auth.with_raw_response.delete(
-                    certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                     zone_id="",
                 )
 
@@ -182,7 +182,7 @@ class TestOriginTLSClientAuth:
     def test_method_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             origin_tls_client_auth = client.origin_tls_client_auth.get(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -192,7 +192,7 @@ class TestOriginTLSClientAuth:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.origin_tls_client_auth.with_raw_response.get(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -205,7 +205,7 @@ class TestOriginTLSClientAuth:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.origin_tls_client_auth.with_streaming_response.get(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -221,7 +221,7 @@ class TestOriginTLSClientAuth:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.origin_tls_client_auth.with_raw_response.get(
-                    certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                     zone_id="",
                 )
 
@@ -339,7 +339,7 @@ class TestAsyncOriginTLSClientAuth:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             origin_tls_client_auth = await async_client.origin_tls_client_auth.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -349,7 +349,7 @@ class TestAsyncOriginTLSClientAuth:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.origin_tls_client_auth.with_raw_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -362,7 +362,7 @@ class TestAsyncOriginTLSClientAuth:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.origin_tls_client_auth.with_streaming_response.delete(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -380,7 +380,7 @@ class TestAsyncOriginTLSClientAuth:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.origin_tls_client_auth.with_raw_response.delete(
-                    certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                     zone_id="",
                 )
 
@@ -394,7 +394,7 @@ class TestAsyncOriginTLSClientAuth:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             origin_tls_client_auth = await async_client.origin_tls_client_auth.get(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -404,7 +404,7 @@ class TestAsyncOriginTLSClientAuth:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.origin_tls_client_auth.with_raw_response.get(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -417,7 +417,7 @@ class TestAsyncOriginTLSClientAuth:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.origin_tls_client_auth.with_streaming_response.get(
-                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -433,7 +433,7 @@ class TestAsyncOriginTLSClientAuth:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.origin_tls_client_auth.with_raw_response.get(
-                    certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    certificate_id="2458ce5a-0c35-4c7f-82c7-8e9487d3ff60",
                     zone_id="",
                 )
 

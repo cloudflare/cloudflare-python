@@ -149,7 +149,7 @@ from cloudflare.types.email_security.phishguard import ReportListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/email-security/phishguard/reports">client.email_security.phishguard.reports.<a href="./src/cloudflare/resources/email_security/phishguard/reports.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/phishguard/report_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/phishguard/report_list_response.py">SyncSinglePage[ReportListResponse]</a></code>
+- <code title="get /accounts/{account_id}/email-security/phishguard/reports">client.email_security.phishguard.reports.<a href="./src/cloudflare/resources/email_security/phishguard/reports.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/phishguard/report_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/phishguard/report_list_response.py">SyncV4PagePaginationArray[ReportListResponse]</a></code>
 
 ## Settings
 

@@ -159,7 +159,7 @@ class ZoneCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_id: Identifier.
+          certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -208,7 +208,7 @@ class ZoneCertificatesResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_id: Identifier.
+          certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -370,7 +370,7 @@ class AsyncZoneCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_id: Identifier.
+          certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 
@@ -419,7 +419,7 @@ class AsyncZoneCertificatesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          certificate_id: Identifier.
+          certificate_id: Certificate identifier tag.
 
           extra_headers: Send extra headers
 

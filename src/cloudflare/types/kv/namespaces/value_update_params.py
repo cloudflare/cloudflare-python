@@ -12,10 +12,10 @@ __all__ = ["ValueUpdateParams"]
 
 class ValueUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """ID of the Cloudflare account that owns the Workers KV namespaces."""
 
     namespace_id: Required[str]
-    """Namespace identifier tag."""
+    """ID of the Workers KV namespace."""
 
     value: Required[Union[str, FileTypes]]
     """A byte sequence to be stored, up to 25 MiB in length."""
@@ -27,7 +27,10 @@ class ValueUpdateParams(TypedDict, total=False):
     """
 
     expiration_ttl: float
-    """Expires the key after a number of seconds. Must be at least 60."""
+    """Number of seconds until the key expires.
+
+    Must be at least 60. Takes precedence over `expiration` when both are specified.
+    """
 
     metadata: object
     """Associates arbitrary JSON data with a key/value pair."""

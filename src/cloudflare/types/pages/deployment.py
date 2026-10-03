@@ -184,7 +184,7 @@ class Deployment(BaseModel):
     """Type of deploy."""
 
     is_skipped: bool
-    """If the deployment has been skipped."""
+    """Whether the deployment was skipped."""
 
     latest_stage: Stage
     """The status of the deployment."""
@@ -196,7 +196,11 @@ class Deployment(BaseModel):
     """Id of the project."""
 
     project_name: str
-    """Name of the project."""
+    """Name of the Pages project.
+
+    Must begin with a lowercase letter or digit and contain only lowercase letters,
+    digits, and hyphens.
+    """
 
     short_id: str
     """Short Id (8 character) of the deployment."""
@@ -218,6 +222,7 @@ class Deployment(BaseModel):
             "path_config",
             "branch_config",
             "pages_to_workers_conversion",
+            "superseded_queued_build",
         ]
     ] = None
     """Why the deployment was skipped."""

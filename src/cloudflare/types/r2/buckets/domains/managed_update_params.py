@@ -11,7 +11,7 @@ __all__ = ["ManagedUpdateParams"]
 
 class ManagedUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID."""
+    """Cloudflare account ID that owns the R2 resource."""
 
     enabled: Required[bool]
     """Whether to enable public bucket access at the r2.dev domain."""

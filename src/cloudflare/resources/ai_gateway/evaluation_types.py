@@ -59,8 +59,10 @@ class EvaluationTypesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[EvaluationTypeListResponse]:
-        """
-        Lists all available evaluator types for scoring AI gateway responses.
+        """Lists the evaluator types that evaluations can use to score AI Gateway
+        responses.
+
+        Evaluations are deprecated and unavailable to new accounts.
 
         Args:
           extra_headers: Send extra headers
@@ -130,8 +132,10 @@ class AsyncEvaluationTypesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EvaluationTypeListResponse, AsyncV4PagePaginationArray[EvaluationTypeListResponse]]:
-        """
-        Lists all available evaluator types for scoring AI gateway responses.
+        """Lists the evaluator types that evaluations can use to score AI Gateway
+        responses.
+
+        Evaluations are deprecated and unavailable to new accounts.
 
         Args:
           extra_headers: Send extra headers

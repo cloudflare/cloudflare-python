@@ -62,14 +62,15 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainCreateResponse:
         """
-        Add a new domain for the Pages project.
+        Attach a custom domain to a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          name: The domain name.
+          name: Fully qualified domain name for the Pages project, such as `example.com`.
 
           extra_headers: Send extra headers
 
@@ -113,12 +114,13 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DomainListResponse]:
         """
-        Fetch a list of all domains associated with a Pages project.
+        List the custom domains associated with a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 
@@ -159,14 +161,15 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a Pages project's domain.
+        Remove a custom domain from a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          domain_name: The domain name.
+          domain_name: Fully qualified domain name for the Pages project, such as `example.com`.
 
           extra_headers: Send extra headers
 
@@ -213,14 +216,15 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainEditResponse:
         """
-        Retry the validation status of a single domain.
+        Retry validation for a custom domain attached to a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          domain_name: The domain name.
+          domain_name: Fully qualified domain name for the Pages project, such as `example.com`.
 
           extra_headers: Send extra headers
 
@@ -267,14 +271,16 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainGetResponse:
         """
-        Fetch a single domain.
+        Retrieve the configuration and validation status of a custom domain attached to
+        a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          domain_name: The domain name.
+          domain_name: Fully qualified domain name for the Pages project, such as `example.com`.
 
           extra_headers: Send extra headers
 
@@ -342,14 +348,15 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainCreateResponse:
         """
-        Add a new domain for the Pages project.
+        Attach a custom domain to a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          name: The domain name.
+          name: Fully qualified domain name for the Pages project, such as `example.com`.
 
           extra_headers: Send extra headers
 
@@ -393,12 +400,13 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DomainListResponse, AsyncSinglePage[DomainListResponse]]:
         """
-        Fetch a list of all domains associated with a Pages project.
+        List the custom domains associated with a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
           extra_headers: Send extra headers
 
@@ -439,14 +447,15 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Delete a Pages project's domain.
+        Remove a custom domain from a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          domain_name: The domain name.
+          domain_name: Fully qualified domain name for the Pages project, such as `example.com`.
 
           extra_headers: Send extra headers
 
@@ -493,14 +502,15 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainEditResponse:
         """
-        Retry the validation status of a single domain.
+        Retry validation for a custom domain attached to a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          domain_name: The domain name.
+          domain_name: Fully qualified domain name for the Pages project, such as `example.com`.
 
           extra_headers: Send extra headers
 
@@ -547,14 +557,16 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DomainGetResponse:
         """
-        Fetch a single domain.
+        Retrieve the configuration and validation status of a custom domain attached to
+        a Cloudflare Pages project.
 
         Args:
           account_id: Identifier.
 
-          project_name: Name of the project.
+          project_name: Name of the Pages project. Must begin with a lowercase letter or digit and
+              contain only lowercase letters, digits, and hyphens.
 
-          domain_name: The domain name.
+          domain_name: Fully qualified domain name for the Pages project, such as `example.com`.
 
           extra_headers: Send extra headers
 

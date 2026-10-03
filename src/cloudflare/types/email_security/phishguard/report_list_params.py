@@ -21,6 +21,12 @@ class ReportListParams(TypedDict, total=False):
     from_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """Deprecated, use `start` instead. Start date in YYYY-MM-DD format."""
 
+    page: int
+    """Current page within paginated list of results."""
+
+    per_page: int
+    """The number of results per page. Maximum value is 1000."""
+
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Start of the time range (RFC3339). Takes precedence over from_date."""
 

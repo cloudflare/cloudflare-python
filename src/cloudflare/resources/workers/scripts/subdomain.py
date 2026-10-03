@@ -66,7 +66,7 @@ class SubdomainResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           enabled: Whether the Worker should be available on the workers.dev subdomain.
 
@@ -126,7 +126,7 @@ class SubdomainResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -174,7 +174,7 @@ class SubdomainResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -245,7 +245,7 @@ class AsyncSubdomainResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           enabled: Whether the Worker should be available on the workers.dev subdomain.
 
@@ -305,7 +305,7 @@ class AsyncSubdomainResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -353,7 +353,7 @@ class AsyncSubdomainResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 

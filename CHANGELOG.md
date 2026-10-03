@@ -1,5 +1,27 @@
 # Changelog
 
+## 5.9.0 (2026-10-02)
+
+Full Changelog: [v5.8.0...v5.9.0](https://github.com/cloudflare/cloudflare-python/compare/v5.8.0...v5.9.0)
+
+This release adds the Containers, R2 Data Catalog, and Cloudforce One threat
+signals APIs, plus cache invalidation and a registrar transfer-check method.
+
+### Breaking Changes
+
+* **addressing:** `client.addressing.address_maps.zones.update()` and `delete()` have been removed, along with the
+  `ZoneUpdateResponse` and `ZoneDeleteResponse` types.
+* **pagination:** `client.email_security.phishguard.reports.list()` now returns `SyncV4PagePaginationArray` instead of
+  `SyncSinglePage`. Auto-iteration is unchanged; code reading page-level fields may need updating.
+
+### Features
+
+* **containers:** add top-level `client.containers` with application, instance, rollout, version, image, and registry APIs
+* **basin_catalog:** add top-level `client.basin_catalog` (R2 Data Catalog) with catalog, credential, namespace, table, and maintenance-config APIs
+* **cloudforce_one:** add `client.cloudforce_one.threat_signals` with article, category, feed, indicator, search, and skill APIs
+* **cache:** add `client.cache.invalidate()` and `client.cache.invalidate_environment()`
+* **registrar:** add `client.registrar.transfer_check()`
+
 ## 5.8.0 (2026-09-25)
 
 Full Changelog: [v5.7.0...v5.8.0](https://github.com/cloudflare/cloudflare-python/compare/v5.7.0...v5.8.0)

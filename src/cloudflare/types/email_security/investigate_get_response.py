@@ -98,6 +98,7 @@ class Finding(BaseModel):
             "NONE",
         ]
     ] = None
+    """The verdict Email Security assigns to a message."""
 
     field: Optional[str] = None
 
@@ -191,6 +192,7 @@ class InvestigateGetResponse(BaseModel):
             "NONE",
         ]
     ] = None
+    """The verdict Email Security assigns to a message."""
 
     findings: Optional[List[Finding]] = None
     """

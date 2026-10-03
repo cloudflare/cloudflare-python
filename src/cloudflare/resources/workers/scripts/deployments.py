@@ -74,7 +74,7 @@ class DeploymentsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           versions: Worker versions included in this deployment. Each object must contain a
               `version_id` UUID and a `percentage`; percentages across all objects must
@@ -147,7 +147,7 @@ class DeploymentsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           page: Current page.
 
@@ -215,7 +215,7 @@ class DeploymentsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -263,7 +263,7 @@ class DeploymentsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -342,7 +342,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           versions: Worker versions included in this deployment. Each object must contain a
               `version_id` UUID and a `percentage`; percentages across all objects must
@@ -415,7 +415,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           page: Current page.
 
@@ -483,7 +483,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -531,7 +531,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 

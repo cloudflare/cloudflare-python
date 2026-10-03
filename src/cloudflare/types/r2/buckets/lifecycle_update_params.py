@@ -27,7 +27,7 @@ __all__ = [
 
 class LifecycleUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID."""
+    """Cloudflare account ID that owns the R2 resource."""
 
     rules: Iterable[Rule]
 

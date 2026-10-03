@@ -73,6 +73,18 @@ class Indicator(BaseModel):
     """The dataset ID this indicator belongs to. Included in list responses."""
 
     related_events: Optional[List[IndicatorRelatedEvent]] = FieldInfo(alias="relatedEvents", default=None)
+    """Related events, capped by `relatedEventsLimit` (default 2).
+
+    Check `relatedEventsHasMore` to detect a capped list; pass
+    `relatedEventsLimit=-1` to retrieve all of them.
+    """
+
+    related_events_has_more: Optional[bool] = FieldInfo(alias="relatedEventsHasMore", default=None)
+    """
+    True when this indicator appears in more events than `relatedEvents` contains
+    because `relatedEventsLimit` capped the list. Pass `relatedEventsLimit=-1` to
+    retrieve every related event.
+    """
 
     tags: Optional[List[IndicatorTag]] = None
 

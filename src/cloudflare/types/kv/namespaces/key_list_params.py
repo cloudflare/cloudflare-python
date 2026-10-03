@@ -9,21 +9,19 @@ __all__ = ["KeyListParams"]
 
 class KeyListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """ID of the Cloudflare account that owns the Workers KV namespaces."""
 
     cursor: str
-    """
-    Opaque token indicating the position from which to continue when requesting the
-    next set of records if the amount of list results was limited by the limit
-    parameter. A valid value for the cursor can be obtained from the `cursors`
-    object in the `result_info` structure.
+    """Opaque pagination token from `result_info.cursor` in the previous response.
+
+    Pass it unchanged to request the next page of keys.
     """
 
     limit: float
-    """Limits the number of keys returned in the response.
+    """Maximum number of keys to return in one response.
 
-    The cursor attribute may be used to iterate over the next batch of keys if there
-    are more than the limit.
+    Pass `result_info.cursor` from the response as `cursor` to request the next
+    page.
     """
 
     prefix: str

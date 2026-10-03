@@ -66,11 +66,13 @@ class MessagesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          job_id: Bulk action job identifier.
+
           page: Current page within paginated list of results.
 
           per_page: The number of results per page. Maximum value is 1000.
 
-          status: Filter by message status.
+          status: Filter the job's messages by their processing status.
 
           extra_headers: Send extra headers
 
@@ -151,11 +153,13 @@ class AsyncMessagesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          job_id: Bulk action job identifier.
+
           page: Current page within paginated list of results.
 
           per_page: The number of results per page. Maximum value is 1000.
 
-          status: Filter by message status.
+          status: Filter the job's messages by their processing status.
 
           extra_headers: Send extra headers
 

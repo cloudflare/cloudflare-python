@@ -12,7 +12,7 @@ class ProjectListParams(TypedDict, total=False):
     """Identifier."""
 
     page: int
-    """Which page of projects to fetch."""
+    """Page number of results to return."""
 
     per_page: int
-    """How many projects to return per page."""
+    """Number of results to return per page."""

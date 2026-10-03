@@ -25,6 +25,7 @@ class TrustedDomainCreateResponse(BaseModel):
     """
 
     is_regex: Optional[bool] = None
+    """Whether `pattern` is a regular expression instead of a literal domain."""
 
     is_similarity: Optional[bool] = None
     """
@@ -38,3 +39,4 @@ class TrustedDomainCreateResponse(BaseModel):
     modified_at: Optional[datetime] = None
 
     pattern: Optional[str] = None
+    """The domain pattern to trust, e.g. `example.com`."""

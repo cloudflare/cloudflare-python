@@ -26,7 +26,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import cache_purge_params, cache_purge_environment_params
+from ...types.cache import (
+    cache_purge_params,
+    cache_invalidate_params,
+    cache_purge_environment_params,
+    cache_invalidate_environment_params,
+)
 from .cache_reserve import (
     CacheReserveResource,
     AsyncCacheReserveResource,
@@ -61,7 +66,9 @@ from .regional_tiered_cache import (
     AsyncRegionalTieredCacheResourceWithStreamingResponse,
 )
 from ...types.cache.cache_purge_response import CachePurgeResponse
+from ...types.cache.cache_invalidate_response import CacheInvalidateResponse
 from ...types.cache.cache_purge_environment_response import CachePurgeEnvironmentResponse
+from ...types.cache.cache_invalidate_environment_response import CacheInvalidateEnvironmentResponse
 
 __all__ = ["CacheResource", "AsyncCacheResource"]
 
@@ -107,6 +114,953 @@ class CacheResource(SyncAPIResource):
         return CacheResourceWithStreamingResponse(self)
 
     @overload
+    def invalidate(
+        self,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          tags: Cache tags. Targets all content whose `Cache-Tag` response header contains at
+              least one of these tags. See
+              [Purge cache by cache-tags](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate(
+        self,
+        *,
+        zone_id: str,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          hosts: Hostnames, such as `www.example.com`. Targets all content cached for these
+              hostnames. See
+              [Purge cache by hostname](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate(
+        self,
+        *,
+        zone_id: str,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          prefixes: URL prefixes, each a hostname followed by a path, such as
+              `www.example.com/blog/`. Targets all content whose URL starts with one of these
+              prefixes. Do not include a scheme, query string, or fragment. See
+              [Purge cache by prefix](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate(
+        self,
+        *,
+        zone_id: str,
+        purge_everything: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          purge_everything: Set to `true` to target all cached content in the zone, or in the environment
+              for the environment endpoints. Must be the only field in the request. See
+              [Purge everything](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate(
+        self,
+        *,
+        zone_id: str,
+        files: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: Full URLs, such as `https://www.example.com/css/styles.css`. Targets the content
+              cached for each URL. If your cache key includes request headers, send objects
+              with `url` and `headers` instead. See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate(
+        self,
+        *,
+        zone_id: str,
+        files: Iterable[cache_invalidate_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: URLs with the request headers your cache key uses. Use this form when your cache
+              key includes request headers, or the visitor's device type, country, or
+              language: send the header values each URL was cached with, such as
+              `CF-Device-Type`, `CF-IPCountry`, or `Accept-Language`.
+
+              When you send the `Origin` header, include the scheme and hostname. Include the
+              port unless it is the default for the scheme: 80 for `http`, 443 for `https`.
+
+              See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["zone_id"])
+    def invalidate(
+        self,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        purge_everything: bool | Omit = omit,
+        files: SequenceNotStr[str]
+        | Iterable[cache_invalidate_params.CachePurgeSingleFileWithURLAndHeadersFile]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._post(
+            path_template("/zones/{zone_id}/invalidate_cache", zone_id=zone_id),
+            body=maybe_transform(
+                {
+                    "tags": tags,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                cache_invalidate_params.CacheInvalidateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CacheInvalidateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CacheInvalidateResponse]], ResultWrapper[CacheInvalidateResponse]),
+        )
+
+    @overload
+    def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          tags: Cache tags. Targets all content whose `Cache-Tag` response header contains at
+              least one of these tags. See
+              [Purge cache by cache-tags](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          hosts: Hostnames, such as `www.example.com`. Targets all content cached for these
+              hostnames. See
+              [Purge cache by hostname](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          prefixes: URL prefixes, each a hostname followed by a path, such as
+              `www.example.com/blog/`. Targets all content whose URL starts with one of these
+              prefixes. Do not include a scheme, query string, or fragment. See
+              [Purge cache by prefix](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        purge_everything: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          purge_everything: Set to `true` to target all cached content in the zone, or in the environment
+              for the environment endpoints. Must be the only field in the request. See
+              [Purge everything](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        files: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: Full URLs, such as `https://www.example.com/css/styles.css`. Targets the content
+              cached for each URL. If your cache key includes request headers, send objects
+              with `url` and `headers` instead. See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        files: Iterable[cache_invalidate_environment_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: URLs with the request headers your cache key uses. Use this form when your cache
+              key includes request headers, or the visitor's device type, country, or
+              language: send the header values each URL was cached with, such as
+              `CF-Device-Type`, `CF-IPCountry`, or `Accept-Language`.
+
+              When you send the `Origin` header, include the scheme and hostname. Include the
+              port unless it is the default for the scheme: 80 for `http`, 443 for `https`.
+
+              See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["zone_id"])
+    def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        purge_everything: bool | Omit = omit,
+        files: SequenceNotStr[str]
+        | Iterable[cache_invalidate_environment_params.CachePurgeSingleFileWithURLAndHeadersFile]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not environment_id:
+            raise ValueError(f"Expected a non-empty value for `environment_id` but received {environment_id!r}")
+        return self._post(
+            path_template(
+                "/zones/{zone_id}/environments/{environment_id}/invalidate_cache",
+                zone_id=zone_id,
+                environment_id=environment_id,
+            ),
+            body=maybe_transform(
+                {
+                    "tags": tags,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                cache_invalidate_environment_params.CacheInvalidateEnvironmentParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CacheInvalidateEnvironmentResponse]]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[Optional[CacheInvalidateEnvironmentResponse]], ResultWrapper[CacheInvalidateEnvironmentResponse]
+            ),
+        )
+
+    @overload
     def purge(
         self,
         *,
@@ -119,84 +1073,43 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          tags: For more information on cache tags and purging by tags, please refer to
-              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+          tags: Cache tags. Targets all content whose `Cache-Tag` response header contains at
+              least one of these tags. See
+              [Purge cache by cache-tags](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
 
           extra_headers: Send extra headers
 
@@ -221,84 +1134,43 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          hosts: For more information purging by hostnames, please refer to
-              [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+          hosts: Hostnames, such as `www.example.com`. Targets all content cached for these
+              hostnames. See
+              [Purge cache by hostname](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
 
           extra_headers: Send extra headers
 
@@ -323,84 +1195,44 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          prefixes: For more information on purging by prefixes, please refer to
-              [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+          prefixes: URL prefixes, each a hostname followed by a path, such as
+              `www.example.com/blog/`. Targets all content whose URL starts with one of these
+              prefixes. Do not include a scheme, query string, or fragment. See
+              [Purge cache by prefix](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
 
           extra_headers: Send extra headers
 
@@ -425,84 +1257,43 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          purge_everything: For more information, please refer to
-              [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+          purge_everything: Set to `true` to target all cached content in the zone, or in the environment
+              for the environment endpoints. Must be the only field in the request. See
+              [Purge everything](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
 
           extra_headers: Send extra headers
 
@@ -527,84 +1318,44 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          files: For more information on purging files, please refer to
-              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+          files: Full URLs, such as `https://www.example.com/css/styles.css`. Targets the content
+              cached for each URL. If your cache key includes request headers, send objects
+              with `url` and `headers` instead. See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
 
           extra_headers: Send extra headers
 
@@ -629,84 +1380,50 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          files: For more information on purging files with URL and headers, please refer to
-              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+          files: URLs with the request headers your cache key uses. Use this form when your cache
+              key includes request headers, or the visitor's device type, country, or
+              language: send the header values each URL was cached with, such as
+              `CF-Device-Type`, `CF-IPCountry`, or `Accept-Language`.
+
+              When you send the `Origin` header, include the scheme and hostname. Include the
+              port unless it is the default for the scheme: 80 for `http`, 443 for `https`.
+
+              See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
 
           extra_headers: Send extra headers
 
@@ -775,20 +1492,32 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          tags: For more information on cache tags and purging by tags, please refer to
-              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+          tags: Cache tags. Targets all content whose `Cache-Tag` response header contains at
+              least one of these tags. See
+              [Purge cache by cache-tags](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
 
           extra_headers: Send extra headers
 
@@ -814,20 +1543,32 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          hosts: For more information purging by hostnames, please refer to
-              [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+          hosts: Hostnames, such as `www.example.com`. Targets all content cached for these
+              hostnames. See
+              [Purge cache by hostname](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
 
           extra_headers: Send extra headers
 
@@ -853,20 +1594,33 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          prefixes: For more information on purging by prefixes, please refer to
-              [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+          prefixes: URL prefixes, each a hostname followed by a path, such as
+              `www.example.com/blog/`. Targets all content whose URL starts with one of these
+              prefixes. Do not include a scheme, query string, or fragment. See
+              [Purge cache by prefix](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
 
           extra_headers: Send extra headers
 
@@ -892,20 +1646,32 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          purge_everything: For more information, please refer to
-              [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+          purge_everything: Set to `true` to target all cached content in the zone, or in the environment
+              for the environment endpoints. Must be the only field in the request. See
+              [Purge everything](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
 
           extra_headers: Send extra headers
 
@@ -931,20 +1697,33 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          files: For more information on purging files, please refer to
-              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+          files: Full URLs, such as `https://www.example.com/css/styles.css`. Targets the content
+              cached for each URL. If your cache key includes request headers, send objects
+              with `url` and `headers` instead. See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
 
           extra_headers: Send extra headers
 
@@ -970,20 +1749,39 @@ class CacheResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          files: For more information on purging files with URL and headers, please refer to
-              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+          files: URLs with the request headers your cache key uses. Use this form when your cache
+              key includes request headers, or the visitor's device type, country, or
+              language: send the header values each URL was cached with, such as
+              `CF-Device-Type`, `CF-IPCountry`, or `Accept-Language`.
+
+              When you send the `Origin` header, include the scheme and hostname. Include the
+              port unless it is the default for the scheme: 80 for `http`, 443 for `https`.
+
+              See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
 
           extra_headers: Send extra headers
 
@@ -1087,6 +1885,953 @@ class AsyncCacheResource(AsyncAPIResource):
         return AsyncCacheResourceWithStreamingResponse(self)
 
     @overload
+    async def invalidate(
+        self,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          tags: Cache tags. Targets all content whose `Cache-Tag` response header contains at
+              least one of these tags. See
+              [Purge cache by cache-tags](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate(
+        self,
+        *,
+        zone_id: str,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          hosts: Hostnames, such as `www.example.com`. Targets all content cached for these
+              hostnames. See
+              [Purge cache by hostname](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate(
+        self,
+        *,
+        zone_id: str,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          prefixes: URL prefixes, each a hostname followed by a path, such as
+              `www.example.com/blog/`. Targets all content whose URL starts with one of these
+              prefixes. Do not include a scheme, query string, or fragment. See
+              [Purge cache by prefix](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate(
+        self,
+        *,
+        zone_id: str,
+        purge_everything: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          purge_everything: Set to `true` to target all cached content in the zone, or in the environment
+              for the environment endpoints. Must be the only field in the request. See
+              [Purge everything](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate(
+        self,
+        *,
+        zone_id: str,
+        files: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: Full URLs, such as `https://www.example.com/css/styles.css`. Targets the content
+              cached for each URL. If your cache key includes request headers, send objects
+              with `url` and `headers` instead. See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate(
+        self,
+        *,
+        zone_id: str,
+        files: Iterable[cache_invalidate_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        """
+        Marks cached content as stale in every Cloudflare data center and cache tier,
+        including Cache Reserve. The content stays in cache. The next request for it
+        makes Cloudflare revalidate it with your origin, using the `ETag` and
+        `Last-Modified` values it was cached with:
+
+        - If your origin answers `304 Not Modified`, Cloudflare serves the cached copy
+          without downloading it again, and `CF-Cache-Status` is `REVALIDATED`.
+        - If your origin sends a full response, Cloudflare serves and caches the new
+          content, and `CF-Cache-Status` is `EXPIRED`.
+
+        With Tiered Cache, each tier revalidates with the tier above it, so a visitor
+        can see `EXPIRED` even when your origin answered `304`.
+
+        Until content is revalidated, your `stale-while-revalidate` and `stale-if-error`
+        directives still apply, counted from the time you invalidated it. For example,
+        if your origin fails during revalidation, Cloudflare can keep serving the stale
+        copy for the `stale-if-error` window.
+
+        ### Invalidate or purge?
+
+        - **Invalidate** when content may not have changed, for example after a deploy.
+          Unchanged content costs your origin a `304` instead of a full response. That
+          saving needs an origin that sends `ETag` or `Last-Modified` and answers
+          conditional requests. Otherwise, every revalidation downloads the full
+          response.
+        - **Purge**, with `POST /zones/{zone_id}/purge_cache`, when content must not be
+          served again, for example content you removed for legal or security reasons.
+
+        Invalidating takes the same request bodies as purging, needs the same
+        permission, and counts against the same rate limits. After a broad invalidation,
+        such as `purge_everything`, expect more conditional requests to your origin
+        while visitors request the invalidated content again.
+
+        ### Choose what to invalidate
+
+        Send one of these fields in the request body:
+
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
+
+        ### Check the result
+
+        A `200` response with `success: true` means Cloudflare accepted the request. To
+        check, request an invalidated URL and confirm that the `CF-Cache-Status`
+        response header is `REVALIDATED` or `EXPIRED`.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: URLs with the request headers your cache key uses. Use this form when your cache
+              key includes request headers, or the visitor's device type, country, or
+              language: send the header values each URL was cached with, such as
+              `CF-Device-Type`, `CF-IPCountry`, or `Accept-Language`.
+
+              When you send the `Origin` header, include the scheme and hostname. Include the
+              port unless it is the default for the scheme: 80 for `http`, 443 for `https`.
+
+              See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["zone_id"])
+    async def invalidate(
+        self,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        purge_everything: bool | Omit = omit,
+        files: SequenceNotStr[str]
+        | Iterable[cache_invalidate_params.CachePurgeSingleFileWithURLAndHeadersFile]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateResponse]:
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            path_template("/zones/{zone_id}/invalidate_cache", zone_id=zone_id),
+            body=await async_maybe_transform(
+                {
+                    "tags": tags,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                cache_invalidate_params.CacheInvalidateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CacheInvalidateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CacheInvalidateResponse]], ResultWrapper[CacheInvalidateResponse]),
+        )
+
+    @overload
+    async def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          tags: Cache tags. Targets all content whose `Cache-Tag` response header contains at
+              least one of these tags. See
+              [Purge cache by cache-tags](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          hosts: Hostnames, such as `www.example.com`. Targets all content cached for these
+              hostnames. See
+              [Purge cache by hostname](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          prefixes: URL prefixes, each a hostname followed by a path, such as
+              `www.example.com/blog/`. Targets all content whose URL starts with one of these
+              prefixes. Do not include a scheme, query string, or fragment. See
+              [Purge cache by prefix](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        purge_everything: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          purge_everything: Set to `true` to target all cached content in the zone, or in the environment
+              for the environment endpoints. Must be the only field in the request. See
+              [Purge everything](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        files: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: Full URLs, such as `https://www.example.com/css/styles.css`. Targets the content
+              cached for each URL. If your cache key includes request headers, send objects
+              with `url` and `headers` instead. See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        files: Iterable[cache_invalidate_environment_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        """Marks cached content as stale for one environment of the zone.
+
+        Content cached
+        for the zone's other environments, including production, is not affected.
+        Otherwise this works like `POST /zones/{zone_id}/invalidate_cache`: the next
+        request for invalidated content makes Cloudflare revalidate it with your origin,
+        and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        delete the content instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/purge_cache`.
+
+        Invalidating by URL (`files`) does not work for environments that select
+        requests by IP address, country, ASN, or threat score, and fails with error
+        `1136`. Use `tags`, `hosts`, `prefixes`, or `purge_everything` for those
+        environments.
+
+        ### Availability and limits
+
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
+        Args:
+          files: URLs with the request headers your cache key uses. Use this form when your cache
+              key includes request headers, or the visitor's device type, country, or
+              language: send the header values each URL was cached with, such as
+              `CF-Device-Type`, `CF-IPCountry`, or `Accept-Language`.
+
+              When you send the `Origin` header, include the scheme and hostname. Include the
+              port unless it is the default for the scheme: 80 for `http`, 443 for `https`.
+
+              See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["zone_id"])
+    async def invalidate_environment(
+        self,
+        environment_id: str,
+        *,
+        zone_id: str,
+        tags: SequenceNotStr[str] | Omit = omit,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        purge_everything: bool | Omit = omit,
+        files: SequenceNotStr[str]
+        | Iterable[cache_invalidate_environment_params.CachePurgeSingleFileWithURLAndHeadersFile]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CacheInvalidateEnvironmentResponse]:
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not environment_id:
+            raise ValueError(f"Expected a non-empty value for `environment_id` but received {environment_id!r}")
+        return await self._post(
+            path_template(
+                "/zones/{zone_id}/environments/{environment_id}/invalidate_cache",
+                zone_id=zone_id,
+                environment_id=environment_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "tags": tags,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                cache_invalidate_environment_params.CacheInvalidateEnvironmentParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CacheInvalidateEnvironmentResponse]]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[Optional[CacheInvalidateEnvironmentResponse]], ResultWrapper[CacheInvalidateEnvironmentResponse]
+            ),
+        )
+
+    @overload
     async def purge(
         self,
         *,
@@ -1099,84 +2844,43 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          tags: For more information on cache tags and purging by tags, please refer to
-              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+          tags: Cache tags. Targets all content whose `Cache-Tag` response header contains at
+              least one of these tags. See
+              [Purge cache by cache-tags](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
 
           extra_headers: Send extra headers
 
@@ -1201,84 +2905,43 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          hosts: For more information purging by hostnames, please refer to
-              [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+          hosts: Hostnames, such as `www.example.com`. Targets all content cached for these
+              hostnames. See
+              [Purge cache by hostname](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
 
           extra_headers: Send extra headers
 
@@ -1303,84 +2966,44 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          prefixes: For more information on purging by prefixes, please refer to
-              [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+          prefixes: URL prefixes, each a hostname followed by a path, such as
+              `www.example.com/blog/`. Targets all content whose URL starts with one of these
+              prefixes. Do not include a scheme, query string, or fragment. See
+              [Purge cache by prefix](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
 
           extra_headers: Send extra headers
 
@@ -1405,84 +3028,43 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          purge_everything: For more information, please refer to
-              [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+          purge_everything: Set to `true` to target all cached content in the zone, or in the environment
+              for the environment endpoints. Must be the only field in the request. See
+              [Purge everything](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
 
           extra_headers: Send extra headers
 
@@ -1507,84 +3089,44 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          files: For more information on purging files, please refer to
-              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+          files: Full URLs, such as `https://www.example.com/css/styles.css`. Targets the content
+              cached for each URL. If your cache key includes request headers, send objects
+              with `url` and `headers` instead. See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
 
           extra_headers: Send extra headers
 
@@ -1609,84 +3151,50 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
-        """### Purge All Cached Content
+        """
+        Deletes cached content in every Cloudflare data center and cache tier, including
+        Cache Reserve. The next request for purged content is a cache `MISS`: Cloudflare
+        fetches the full response from your origin and caches it again. Cloudflare does
+        not serve purged content from cache again, even if your origin is unavailable.
 
-        Removes ALL files from Cloudflare's cache.
+        To keep content cached and have Cloudflare revalidate it with your origin
+        instead, use `POST /zones/{zone_id}/invalidate_cache`.
 
-        All tiers can purge everything.
+        ### Choose what to purge
 
-        ```
-        {"purge_everything": true}
-        ```
+        Send one of these fields in the request body:
 
-        ### Purge Cached Content by URL
+        - `files`: specific URLs. If your cache key includes request headers, send each
+          URL with the header values it was cached with.
+        - `tags`: all content whose `Cache-Tag` response header contains one of the
+          tags.
+        - `hosts`: all content cached for the hostnames.
+        - `prefixes`: all content whose URL starts with one of the prefixes.
+        - `purge_everything`: all cached content in the zone.
 
-        Granularly removes one or more files from Cloudflare's cache by specifying URLs.
-        All tiers can purge by URL.
+        ### Check the result
 
-        To purge files with custom cache keys, include the headers used to compute the
-        cache key as in the example. If you have a device type or geo in your cache key,
-        you will need to include the CF-Device-Type or CF-IPCountry headers. If you have
-        lang in your cache key, you will need to include the Accept-Language header.
-
-        **NB:** When including the Origin header, be sure to include the **scheme** and
-        **hostname**. The port number can be omitted if it is the default port (80 for
-        http, 443 for https), but must be included otherwise.
-
-        Single file purge example with files:
-
-        ```
-        {"files": ["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"]}
-        ```
-
-        Single file purge example with url and header pairs:
-
-        ```
-        {
-            "files": [
-                {
-                    "url": "http://www.example.com/cat_picture.jpg",
-                    "headers": {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
-                },
-                {
-                    "url": "http://www.example.com/dog_picture.jpg",
-                    "headers": {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
-                },
-            ]
-        }
-        ```
-
-        ### Purge Cached Content by Tag, Host or Prefix
-
-        Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix.
-
-        Flex purge with tags:
-
-        ```
-        {"tags": ["a-cache-tag", "another-cache-tag"]}
-        ```
-
-        Flex purge with hosts:
-
-        ```
-        {"hosts": ["www.example.com", "images.example.com"]}
-        ```
-
-        Flex purge with prefixes:
-
-        ```
-        {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
-        ```
+        A `200` response with `success: true` means Cloudflare accepted the request. It
+        does not confirm that any content was cached or removed. To check, request a
+        purged URL and confirm that the `CF-Cache-Status` response header is `MISS`.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          files: For more information on purging files with URL and headers, please refer to
-              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+          files: URLs with the request headers your cache key uses. Use this form when your cache
+              key includes request headers, or the visitor's device type, country, or
+              language: send the header values each URL was cached with, such as
+              `CF-Device-Type`, `CF-IPCountry`, or `Accept-Language`.
+
+              When you send the `Origin` header, include the scheme and hostname. Include the
+              port unless it is the default for the scheme: 80 for `http`, 443 for `https`.
+
+              See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
 
           extra_headers: Send extra headers
 
@@ -1755,20 +3263,32 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          tags: For more information on cache tags and purging by tags, please refer to
-              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
+          tags: Cache tags. Targets all content whose `Cache-Tag` response header contains at
+              least one of these tags. See
+              [Purge cache by cache-tags](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
 
           extra_headers: Send extra headers
 
@@ -1794,20 +3314,32 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          hosts: For more information purging by hostnames, please refer to
-              [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
+          hosts: Hostnames, such as `www.example.com`. Targets all content cached for these
+              hostnames. See
+              [Purge cache by hostname](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
 
           extra_headers: Send extra headers
 
@@ -1833,20 +3365,33 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          prefixes: For more information on purging by prefixes, please refer to
-              [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
+          prefixes: URL prefixes, each a hostname followed by a path, such as
+              `www.example.com/blog/`. Targets all content whose URL starts with one of these
+              prefixes. Do not include a scheme, query string, or fragment. See
+              [Purge cache by prefix](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
 
           extra_headers: Send extra headers
 
@@ -1872,20 +3417,32 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          purge_everything: For more information, please refer to
-              [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
+          purge_everything: Set to `true` to target all cached content in the zone, or in the environment
+              for the environment endpoints. Must be the only field in the request. See
+              [Purge everything](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
 
           extra_headers: Send extra headers
 
@@ -1911,20 +3468,33 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          files: For more information on purging files, please refer to
-              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+          files: Full URLs, such as `https://www.example.com/css/styles.css`. Targets the content
+              cached for each URL. If your cache key includes request headers, send objects
+              with `url` and `headers` instead. See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
 
           extra_headers: Send extra headers
 
@@ -1950,20 +3520,39 @@ class AsyncCacheResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeEnvironmentResponse]:
-        """Purge cached content scoped to a specific environment.
+        """Deletes cached content for one environment of the zone.
 
-        Supports the same purge
-        types as the zone-level endpoint (purge everything, by URL, by tag, host, or
-        prefix).
+        Content cached for the
+        zone's other environments, including production, is not affected. Otherwise this
+        works like `POST /zones/{zone_id}/purge_cache`: the next request for purged
+        content is a cache `MISS`, and the request body takes the same fields.
+
+        Environments are part of
+        [Version Management](https://developers.cloudflare.com/version-management/). To
+        keep content cached and have Cloudflare revalidate it instead, use
+        `POST /zones/{zone_id}/environments/{environment_id}/invalidate_cache`.
+
+        Purging by URL (`files`) does not work for environments that select requests by
+        IP address, country, ASN, or threat score, and fails with error `1136`. Use
+        `tags`, `hosts`, `prefixes`, or `purge_everything` for those environments.
 
         ### Availability and limits
 
-        Please refer to
-        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+        Rate limits and the number of items you can send in one request depend on your
+        plan. See
+        [Purge cache: availability and limits](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
-          files: For more information on purging files with URL and headers, please refer to
-              [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
+          files: URLs with the request headers your cache key uses. Use this form when your cache
+              key includes request headers, or the visitor's device type, country, or
+              language: send the header values each URL was cached with, such as
+              `CF-Device-Type`, `CF-IPCountry`, or `Accept-Language`.
+
+              When you send the `Origin` header, include the scheme and hostname. Include the
+              port unless it is the default for the scheme: 80 for `http`, 443 for `https`.
+
+              See
+              [Purge by single-file](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
 
           extra_headers: Send extra headers
 
@@ -2030,6 +3619,12 @@ class CacheResourceWithRawResponse:
     def __init__(self, cache: CacheResource) -> None:
         self._cache = cache
 
+        self.invalidate = to_raw_response_wrapper(
+            cache.invalidate,
+        )
+        self.invalidate_environment = to_raw_response_wrapper(
+            cache.invalidate_environment,
+        )
         self.purge = to_raw_response_wrapper(
             cache.purge,
         )
@@ -2062,6 +3657,12 @@ class AsyncCacheResourceWithRawResponse:
     def __init__(self, cache: AsyncCacheResource) -> None:
         self._cache = cache
 
+        self.invalidate = async_to_raw_response_wrapper(
+            cache.invalidate,
+        )
+        self.invalidate_environment = async_to_raw_response_wrapper(
+            cache.invalidate_environment,
+        )
         self.purge = async_to_raw_response_wrapper(
             cache.purge,
         )
@@ -2094,6 +3695,12 @@ class CacheResourceWithStreamingResponse:
     def __init__(self, cache: CacheResource) -> None:
         self._cache = cache
 
+        self.invalidate = to_streamed_response_wrapper(
+            cache.invalidate,
+        )
+        self.invalidate_environment = to_streamed_response_wrapper(
+            cache.invalidate_environment,
+        )
         self.purge = to_streamed_response_wrapper(
             cache.purge,
         )
@@ -2126,6 +3733,12 @@ class AsyncCacheResourceWithStreamingResponse:
     def __init__(self, cache: AsyncCacheResource) -> None:
         self._cache = cache
 
+        self.invalidate = async_to_streamed_response_wrapper(
+            cache.invalidate,
+        )
+        self.invalidate_environment = async_to_streamed_response_wrapper(
+            cache.invalidate_environment,
+        )
         self.purge = async_to_streamed_response_wrapper(
             cache.purge,
         )
