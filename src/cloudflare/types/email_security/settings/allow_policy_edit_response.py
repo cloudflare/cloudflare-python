@@ -22,6 +22,13 @@ class AllowPolicyEditResponse(BaseModel):
 
     comments: Optional[str] = None
 
+    expires_at: Optional[datetime] = None
+    """Timestamp at which the policy expires.
+
+    After this time, Email Security ignores the policy. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
+
     is_acceptable_sender: Optional[bool] = None
     """
     Exempts messages from this sender from Spam, Spoof and Bulk dispositions only;
@@ -64,7 +71,8 @@ class AllowPolicyEditResponse(BaseModel):
     plain IPv4 or IPv6 address or CIDR block for IP (e.g. `1.2.3.4`, `1.2.3.0/24`,
     `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the API rejects private or
     unique-local, loopback, link-local, unspecified, and IPv4 broadcast addresses,
-    including their IPv4-mapped IPv6 equivalents.
+    including their IPv4-mapped IPv6 equivalents. The API also rejects a pattern
+    that equals a domain onboarded to the account, ignoring case.
     """
 
     pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]] = None

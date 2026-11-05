@@ -48,6 +48,12 @@ class FeedListResponse(BaseModel):
     count: int
     """Number of feeds on this page."""
 
+    custom_feed_count: int
+    """The current count of custom feeds for the account."""
+
+    custom_feed_limit: int
+    """The resolved custom feed limit for the account."""
+
     feeds: List[Feed]
 
     page: int

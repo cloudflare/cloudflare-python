@@ -29,9 +29,19 @@ class FeedEditParams(TypedDict, total=False):
     """
 
     display_name: Optional[str]
+    """Override the feed's display name.
+
+    Null clears it; omit to keep existing or derived value.
+    """
 
     enabled: bool
+    """Whether to actively poll the feed. Omit to keep current value."""
 
     poll_interval_s: int
+    """New polling interval in seconds (60-86400). Omit to keep current value."""
 
     title: Optional[str]
+    """Override the feed's title.
+
+    Null clears it; omit to keep existing or derived value.
+    """

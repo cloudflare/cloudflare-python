@@ -11,6 +11,7 @@ class History(BaseModel):
     id: str
 
     aggregated_value: float
+    """AI Gateway usage cost in the window, in US dollars."""
 
     end_time: float
 

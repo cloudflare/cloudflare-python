@@ -72,14 +72,6 @@ from .entitlements import (
     EntitlementsResourceWithStreamingResponse,
     AsyncEntitlementsResourceWithStreamingResponse,
 )
-from .pay_bad_debt import (
-    PayBadDebtResource,
-    AsyncPayBadDebtResource,
-    PayBadDebtResourceWithRawResponse,
-    AsyncPayBadDebtResourceWithRawResponse,
-    PayBadDebtResourceWithStreamingResponse,
-    AsyncPayBadDebtResourceWithStreamingResponse,
-)
 from .client_secret import (
     ClientSecretResource,
     AsyncClientSecretResource,
@@ -168,12 +160,6 @@ __all__ = [
     "AsyncPayInvoiceResourceWithRawResponse",
     "PayInvoiceResourceWithStreamingResponse",
     "AsyncPayInvoiceResourceWithStreamingResponse",
-    "PayBadDebtResource",
-    "AsyncPayBadDebtResource",
-    "PayBadDebtResourceWithRawResponse",
-    "AsyncPayBadDebtResourceWithRawResponse",
-    "PayBadDebtResourceWithStreamingResponse",
-    "AsyncPayBadDebtResourceWithStreamingResponse",
     "ReceiptsResource",
     "AsyncReceiptsResource",
     "ReceiptsResourceWithRawResponse",

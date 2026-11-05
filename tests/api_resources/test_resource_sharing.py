@@ -29,15 +29,31 @@ class TestResourceSharing:
         resource_sharing = client.resource_sharing.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}],
+        )
+        assert_matches_type(Optional[ResourceSharingCreateResponse], resource_sharing, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        resource_sharing = client.resource_sharing.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="My Shared WAF Managed Rule",
+            excluded_recipients=[{"account_id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            recipients=[
+                {
+                    "account_id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "organization_id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "recipient_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
+                }
+            ],
             resources=[
                 {
                     "meta": {},
                     "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "resource_id": "0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
                     "resource_type": "custom-ruleset",
                 }
             ],
+            tags={"foo": "string"},
         )
         assert_matches_type(Optional[ResourceSharingCreateResponse], resource_sharing, path=["response"])
 
@@ -46,15 +62,6 @@ class TestResourceSharing:
         response = client.resource_sharing.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}],
-            resources=[
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -67,15 +74,6 @@ class TestResourceSharing:
         with client.resource_sharing.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}],
-            resources=[
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -91,15 +89,6 @@ class TestResourceSharing:
             client.resource_sharing.with_raw_response.create(
                 account_id="",
                 name="My Shared WAF Managed Rule",
-                recipients=[{}],
-                resources=[
-                    {
-                        "meta": {},
-                        "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_type": "custom-ruleset",
-                    }
-                ],
             )
 
     @parametrize
@@ -108,6 +97,16 @@ class TestResourceSharing:
             share_id="3fd85f74b32742f1bff64a85009dda07",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
+        )
+        assert_matches_type(Optional[ResourceSharingUpdateResponse], resource_sharing, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        resource_sharing = client.resource_sharing.update(
+            share_id="3fd85f74b32742f1bff64a85009dda07",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="My Shared WAF Managed Rule",
+            tags={"foo": "string"},
         )
         assert_matches_type(Optional[ResourceSharingUpdateResponse], resource_sharing, path=["response"])
 
@@ -169,6 +168,7 @@ class TestResourceSharing:
             direction="asc",
             include_recipient_counts=True,
             include_resources=True,
+            include_tags_from="api",
             kind="sent",
             order="name",
             page=2,
@@ -276,6 +276,7 @@ class TestResourceSharing:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             include_recipient_counts=True,
             include_resources=True,
+            include_tags_from="api",
         )
         assert_matches_type(Optional[ResourceSharingGetResponse], resource_sharing, path=["response"])
 
@@ -330,15 +331,31 @@ class TestAsyncResourceSharing:
         resource_sharing = await async_client.resource_sharing.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}],
+        )
+        assert_matches_type(Optional[ResourceSharingCreateResponse], resource_sharing, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        resource_sharing = await async_client.resource_sharing.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="My Shared WAF Managed Rule",
+            excluded_recipients=[{"account_id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+            recipients=[
+                {
+                    "account_id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "organization_id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "recipient_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
+                }
+            ],
             resources=[
                 {
                     "meta": {},
                     "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "resource_id": "0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
                     "resource_type": "custom-ruleset",
                 }
             ],
+            tags={"foo": "string"},
         )
         assert_matches_type(Optional[ResourceSharingCreateResponse], resource_sharing, path=["response"])
 
@@ -347,15 +364,6 @@ class TestAsyncResourceSharing:
         response = await async_client.resource_sharing.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}],
-            resources=[
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -368,15 +376,6 @@ class TestAsyncResourceSharing:
         async with async_client.resource_sharing.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}],
-            resources=[
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -392,15 +391,6 @@ class TestAsyncResourceSharing:
             await async_client.resource_sharing.with_raw_response.create(
                 account_id="",
                 name="My Shared WAF Managed Rule",
-                recipients=[{}],
-                resources=[
-                    {
-                        "meta": {},
-                        "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_type": "custom-ruleset",
-                    }
-                ],
             )
 
     @parametrize
@@ -409,6 +399,16 @@ class TestAsyncResourceSharing:
             share_id="3fd85f74b32742f1bff64a85009dda07",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
+        )
+        assert_matches_type(Optional[ResourceSharingUpdateResponse], resource_sharing, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        resource_sharing = await async_client.resource_sharing.update(
+            share_id="3fd85f74b32742f1bff64a85009dda07",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="My Shared WAF Managed Rule",
+            tags={"foo": "string"},
         )
         assert_matches_type(Optional[ResourceSharingUpdateResponse], resource_sharing, path=["response"])
 
@@ -472,6 +472,7 @@ class TestAsyncResourceSharing:
             direction="asc",
             include_recipient_counts=True,
             include_resources=True,
+            include_tags_from="api",
             kind="sent",
             order="name",
             page=2,
@@ -583,6 +584,7 @@ class TestAsyncResourceSharing:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             include_recipient_counts=True,
             include_resources=True,
+            include_tags_from="api",
         )
         assert_matches_type(Optional[ResourceSharingGetResponse], resource_sharing, path=["response"])
 

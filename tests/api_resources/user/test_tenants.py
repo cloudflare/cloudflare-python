@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.organizations import Organization
+from cloudflare.types.user import TenantListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +21,7 @@ class TestTenants:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         tenant = client.user.tenants.list()
-        assert_matches_type(SyncSinglePage[Organization], tenant, path=["response"])
+        assert_matches_type(SyncSinglePage[TenantListResponse], tenant, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -30,7 +30,7 @@ class TestTenants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tenant = response.parse()
-        assert_matches_type(SyncSinglePage[Organization], tenant, path=["response"])
+        assert_matches_type(SyncSinglePage[TenantListResponse], tenant, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -39,7 +39,7 @@ class TestTenants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tenant = response.parse()
-            assert_matches_type(SyncSinglePage[Organization], tenant, path=["response"])
+            assert_matches_type(SyncSinglePage[TenantListResponse], tenant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -52,7 +52,7 @@ class TestAsyncTenants:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         tenant = await async_client.user.tenants.list()
-        assert_matches_type(AsyncSinglePage[Organization], tenant, path=["response"])
+        assert_matches_type(AsyncSinglePage[TenantListResponse], tenant, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -61,7 +61,7 @@ class TestAsyncTenants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tenant = await response.parse()
-        assert_matches_type(AsyncSinglePage[Organization], tenant, path=["response"])
+        assert_matches_type(AsyncSinglePage[TenantListResponse], tenant, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -70,6 +70,6 @@ class TestAsyncTenants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tenant = await response.parse()
-            assert_matches_type(AsyncSinglePage[Organization], tenant, path=["response"])
+            assert_matches_type(AsyncSinglePage[TenantListResponse], tenant, path=["response"])
 
         assert cast(Any, response.is_closed) is True

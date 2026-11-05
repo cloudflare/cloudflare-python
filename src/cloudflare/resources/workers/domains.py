@@ -54,6 +54,8 @@ class DomainsResource(SyncAPIResource):
         account_id: str,
         hostname: str,
         service: str,
+        enabled: bool | Omit = omit,
+        previews_enabled: bool | Omit = omit,
         zone_id: str | Omit = omit,
         zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -75,6 +77,18 @@ class DomainsResource(SyncAPIResource):
           service: Name of the Worker associated with the domain. Requests to the configured
               hostname will be routed to this Worker.
 
+          enabled: Whether the configured hostname is routable for the domain. If disabled, then
+              requests to the configured hostname will not be routed to the configured Worker.
+              If disabled, then preview routing must be enabled, and only subdomains of the
+              configured hostname will be routable.
+
+          previews_enabled: Whether previews are routable for the domain. If enabled, previews will be
+              routable as subdomains of the configured hostname. For example, if the
+              configured hostname is `app.example.com`, then requests to
+              `my-feature.app.example.com` will be routed to the preview with slug
+              `my-feature`, if such a preview exists. If preview routing is disabled, then
+              hostname routing must be enabled.
+
           zone_id: ID of the zone containing the domain hostname.
 
           zone_name: Name of the zone containing the domain hostname.
@@ -95,6 +109,8 @@ class DomainsResource(SyncAPIResource):
                 {
                     "hostname": hostname,
                     "service": service,
+                    "enabled": enabled,
+                    "previews_enabled": previews_enabled,
                     "zone_id": zone_id,
                     "zone_name": zone_name,
                 },
@@ -114,8 +130,10 @@ class DomainsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        enabled: bool | Omit = omit,
         environment: str | Omit = omit,
         hostname: str | Omit = omit,
+        previews_enabled: bool | Omit = omit,
         service: str | Omit = omit,
         zone_id: str | Omit = omit,
         zone_name: str | Omit = omit,
@@ -132,9 +150,13 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
+          enabled: Whether the configured hostname is routable for the domain.
+
           environment: Worker environment associated with the domain.
 
           hostname: Hostname of the domain.
+
+          previews_enabled: Whether previews are routable for the domain.
 
           service: Name of the Worker associated with the domain.
 
@@ -162,8 +184,10 @@ class DomainsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "enabled": enabled,
                         "environment": environment,
                         "hostname": hostname,
+                        "previews_enabled": previews_enabled,
                         "service": service,
                         "zone_id": zone_id,
                         "zone_name": zone_name,
@@ -291,6 +315,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         account_id: str,
         hostname: str,
         service: str,
+        enabled: bool | Omit = omit,
+        previews_enabled: bool | Omit = omit,
         zone_id: str | Omit = omit,
         zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -312,6 +338,18 @@ class AsyncDomainsResource(AsyncAPIResource):
           service: Name of the Worker associated with the domain. Requests to the configured
               hostname will be routed to this Worker.
 
+          enabled: Whether the configured hostname is routable for the domain. If disabled, then
+              requests to the configured hostname will not be routed to the configured Worker.
+              If disabled, then preview routing must be enabled, and only subdomains of the
+              configured hostname will be routable.
+
+          previews_enabled: Whether previews are routable for the domain. If enabled, previews will be
+              routable as subdomains of the configured hostname. For example, if the
+              configured hostname is `app.example.com`, then requests to
+              `my-feature.app.example.com` will be routed to the preview with slug
+              `my-feature`, if such a preview exists. If preview routing is disabled, then
+              hostname routing must be enabled.
+
           zone_id: ID of the zone containing the domain hostname.
 
           zone_name: Name of the zone containing the domain hostname.
@@ -332,6 +370,8 @@ class AsyncDomainsResource(AsyncAPIResource):
                 {
                     "hostname": hostname,
                     "service": service,
+                    "enabled": enabled,
+                    "previews_enabled": previews_enabled,
                     "zone_id": zone_id,
                     "zone_name": zone_name,
                 },
@@ -351,8 +391,10 @@ class AsyncDomainsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        enabled: bool | Omit = omit,
         environment: str | Omit = omit,
         hostname: str | Omit = omit,
+        previews_enabled: bool | Omit = omit,
         service: str | Omit = omit,
         zone_id: str | Omit = omit,
         zone_name: str | Omit = omit,
@@ -369,9 +411,13 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
+          enabled: Whether the configured hostname is routable for the domain.
+
           environment: Worker environment associated with the domain.
 
           hostname: Hostname of the domain.
+
+          previews_enabled: Whether previews are routable for the domain.
 
           service: Name of the Worker associated with the domain.
 
@@ -399,8 +445,10 @@ class AsyncDomainsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "enabled": enabled,
                         "environment": environment,
                         "hostname": hostname,
+                        "previews_enabled": previews_enabled,
                         "service": service,
                         "zone_id": zone_id,
                         "zone_name": zone_name,

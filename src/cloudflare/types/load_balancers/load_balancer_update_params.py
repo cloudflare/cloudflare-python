@@ -15,7 +15,14 @@ from .adaptive_routing_param import AdaptiveRoutingParam
 from .location_strategy_param import LocationStrategyParam
 from .session_affinity_attributes_param import SessionAffinityAttributesParam
 
-__all__ = ["LoadBalancerUpdateParams"]
+__all__ = [
+    "LoadBalancerUpdateParams",
+    "PoolSet",
+    "PoolSetFixedResponse",
+    "PoolSetMatch",
+    "PoolSetMatchTopology",
+    "PoolSetOverrides",
+]
 
 
 class LoadBalancerUpdateParams(TypedDict, total=False):
@@ -74,6 +81,16 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
 
     networks: SequenceNotStr[str]
     """List of networks where Load Balancer or Pool is enabled."""
+
+    pool_sets: Iterable[PoolSet]
+    """An optional list of pool sets, evaluated in array order with first match wins.
+
+    Pool sets are independent from the standard steering fields (`region_pools` /
+    `country_pools` / `pop_pools` / `default_pools` / `steering_policy` /
+    `random_steering` / `fallback_pool` / `rules`). On a PATCH, an empty array
+    (`pool_sets: []`) clears all pool sets, while omitting the field leaves existing
+    pool sets unchanged.
+    """
 
     pop_pools: Dict[str, SequenceNotStr[str]]
     """
@@ -179,4 +196,154 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     """
     Time to live (TTL) of the DNS entry for the IP address returned by this load
     balancer. This only applies to gray-clouded (unproxied) load balancers.
+    """
+
+
+class PoolSetFixedResponse(TypedDict, total=False):
+    """
+    A collection of fields used to directly respond to the client instead of routing to a pool. When supplied on a rule, that rule stops further rule evaluation.
+    """
+
+    content_type: str
+    """The http 'Content-Type' header to include in the response."""
+
+    location: str
+    """The http 'Location' header to include in the response."""
+
+    message_body: str
+    """Text to include as the http body."""
+
+    status_code: int
+    """The http status code to respond with."""
+
+
+class PoolSetMatchTopology(TypedDict, total=False):
+    """Matches requests by location.
+
+    Set any combination of `pops`, `countries`, and `regions` (at least one is required); a request matches when its value appears in any populated list (e.g. `regions: ["WNAM"]` with `countries: ["US"]` matches a request in either WNAM or the US).
+    """
+
+    countries: SequenceNotStr[str]
+    """A list of ISO 3166-1 alpha-2 country codes.
+
+    Matches when the request's country is in this list.
+    """
+
+    pops: SequenceNotStr[str]
+    """A list of Cloudflare PoP codes. Matches when the request's PoP is in this list."""
+
+    regions: SequenceNotStr[str]
+    """A list of Cloudflare region codes (e.g.
+
+    `WNAM`, `ENAM`, `WEU`). Matches when the request's region is in this list.
+    """
+
+
+class PoolSetMatch(TypedDict, total=False):
+    """Determines which requests a pool set applies to.
+
+    Set `topology` to match by location or `default: true` to match all requests; the two are mutually exclusive. A pool set with no `match` matches all requests.
+    """
+
+    default: bool
+    """When true, matches every request. Cannot be combined with `topology`."""
+
+    topology: PoolSetMatchTopology
+    """Matches requests by location.
+
+    Set any combination of `pops`, `countries`, and `regions` (at least one is
+    required); a request matches when its value appears in any populated list (e.g.
+    `regions: ["WNAM"]` with `countries: ["US"]` matches a request in either WNAM or
+    the US).
+    """
+
+
+class PoolSetOverrides(TypedDict, total=False):
+    """The behavior a pool set applies when its `match` succeeds.
+
+    A strict subset of a rule's `overrides`: a pool set replaces the topology wholesale with a flat pool list (`pools`), so only the declarative pool-routing fields plus `fallback_pool` and `steering_policy` are settable. All fields are optional.
+    """
+
+    fallback_pool: str
+    """The pool ID to use when all other pools are detected as unhealthy."""
+
+    pool_default_weight: float
+    """The default weight for pools not listed in `pool_weights`.
+
+    The declarative alternative to `random_steering.default_weight`; mutually
+    exclusive with `random_steering`.
+    """
+
+    pool_weights: Dict[str, float]
+    """A mapping of pool IDs to custom weights, relative to the other pools.
+
+    The declarative alternative to `random_steering.pool_weights`; mutually
+    exclusive with `random_steering`.
+    """
+
+    pools: SequenceNotStr[str]
+    """A flat, ordered list of pool IDs to route the matched audience to.
+
+    Replaces the resolved topology with exactly these pools. Mutually exclusive with
+    `fixed_response`.
+    """
+
+    steering_policy: SteeringPolicy
+    """Steering Policy for this load balancer.
+
+    - `"off"`: Use `default_pools`.
+    - `"geo"`: Use `region_pools`/`country_pools`/`pop_pools`. For non-proxied
+      requests, the country for `country_pools` is determined by
+      `location_strategy`.
+    - `"random"`: Select a pool randomly.
+    - `"dynamic_latency"`: Use round trip time to select the closest pool in
+      default_pools (requires pool health checks).
+    - `"proximity"`: Use the pools' latitude and longitude to select the closest
+      pool using the Cloudflare PoP location for proxied requests or the location
+      determined by `location_strategy` for non-proxied requests.
+    - `"least_outstanding_requests"`: Select a pool by taking into consideration
+      `random_steering` weights, as well as each pool's number of outstanding
+      requests. Pools with more pending requests are weighted proportionately less
+      relative to others.
+    - `"least_connections"`: Select a pool by taking into consideration
+      `random_steering` weights, as well as each pool's number of open connections.
+      Pools with more open connections are weighted proportionately less relative to
+      others. Supported for HTTP/1 and HTTP/2 connections.
+    - `""`: Will map to `"geo"` if you use
+      `region_pools`/`country_pools`/`pop_pools` otherwise `"off"`.
+    """
+
+
+class PoolSet(TypedDict, total=False):
+    """One entry in a load balancer's `pool_sets`.
+
+    Pool sets are evaluated in array order; the first whose `match` succeeds applies its `overrides` (or `fixed_response`), and evaluation stops there.
+    """
+
+    disabled: bool
+    """Disable this specific pool set. It will no longer be evaluated."""
+
+    fixed_response: PoolSetFixedResponse
+    """
+    A collection of fields used to directly respond to the client instead of routing
+    to a pool. When supplied on a rule, that rule stops further rule evaluation.
+    """
+
+    match: PoolSetMatch
+    """Determines which requests a pool set applies to.
+
+    Set `topology` to match by location or `default: true` to match all requests;
+    the two are mutually exclusive. A pool set with no `match` matches all requests.
+    """
+
+    name: str
+    """A human-readable name for this pool set."""
+
+    overrides: PoolSetOverrides
+    """The behavior a pool set applies when its `match` succeeds.
+
+    A strict subset of a rule's `overrides`: a pool set replaces the topology
+    wholesale with a flat pool list (`pools`), so only the declarative pool-routing
+    fields plus `fallback_pool` and `steering_policy` are settable. All fields are
+    optional.
     """

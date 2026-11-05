@@ -1,18 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["NEL", "Value"]
+__all__ = ["NEL", "Value", "ValueEnabled"]
 
 
-class Value(BaseModel):
-    """Current value of the zone setting."""
-
+class ValueEnabled(BaseModel):
     enabled: Optional[bool] = None
+
+
+Value: TypeAlias = Union[ValueEnabled, ValueEnabled, ValueEnabled, ValueEnabled, ValueEnabled]
 
 
 class NEL(BaseModel):

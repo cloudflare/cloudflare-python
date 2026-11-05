@@ -25,6 +25,14 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
+from .nameserver_sets import (
+    NameserverSetsResource,
+    AsyncNameserverSetsResource,
+    NameserverSetsResourceWithRawResponse,
+    AsyncNameserverSetsResourceWithRawResponse,
+    NameserverSetsResourceWithStreamingResponse,
+    AsyncNameserverSetsResourceWithStreamingResponse,
+)
 from ....._base_client import make_request_options
 from .....types.dns.settings import account_edit_params
 from .....types.dns.settings.account_get_response import AccountGetResponse
@@ -34,6 +42,10 @@ __all__ = ["AccountResource", "AsyncAccountResource"]
 
 
 class AccountResource(SyncAPIResource):
+    @cached_property
+    def nameserver_sets(self) -> NameserverSetsResource:
+        return NameserverSetsResource(self._client)
+
     @cached_property
     def views(self) -> ViewsResource:
         return ViewsResource(self._client)
@@ -154,6 +166,10 @@ class AccountResource(SyncAPIResource):
 
 
 class AsyncAccountResource(AsyncAPIResource):
+    @cached_property
+    def nameserver_sets(self) -> AsyncNameserverSetsResource:
+        return AsyncNameserverSetsResource(self._client)
+
     @cached_property
     def views(self) -> AsyncViewsResource:
         return AsyncViewsResource(self._client)
@@ -285,6 +301,10 @@ class AccountResourceWithRawResponse:
         )
 
     @cached_property
+    def nameserver_sets(self) -> NameserverSetsResourceWithRawResponse:
+        return NameserverSetsResourceWithRawResponse(self._account.nameserver_sets)
+
+    @cached_property
     def views(self) -> ViewsResourceWithRawResponse:
         return ViewsResourceWithRawResponse(self._account.views)
 
@@ -299,6 +319,10 @@ class AsyncAccountResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             account.get,
         )
+
+    @cached_property
+    def nameserver_sets(self) -> AsyncNameserverSetsResourceWithRawResponse:
+        return AsyncNameserverSetsResourceWithRawResponse(self._account.nameserver_sets)
 
     @cached_property
     def views(self) -> AsyncViewsResourceWithRawResponse:
@@ -317,6 +341,10 @@ class AccountResourceWithStreamingResponse:
         )
 
     @cached_property
+    def nameserver_sets(self) -> NameserverSetsResourceWithStreamingResponse:
+        return NameserverSetsResourceWithStreamingResponse(self._account.nameserver_sets)
+
+    @cached_property
     def views(self) -> ViewsResourceWithStreamingResponse:
         return ViewsResourceWithStreamingResponse(self._account.views)
 
@@ -331,6 +359,10 @@ class AsyncAccountResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             account.get,
         )
+
+    @cached_property
+    def nameserver_sets(self) -> AsyncNameserverSetsResourceWithStreamingResponse:
+        return AsyncNameserverSetsResourceWithStreamingResponse(self._account.nameserver_sets)
 
     @cached_property
     def views(self) -> AsyncViewsResourceWithStreamingResponse:

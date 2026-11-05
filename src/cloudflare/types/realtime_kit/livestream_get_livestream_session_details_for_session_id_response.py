@@ -9,34 +9,38 @@ __all__ = ["LivestreamGetLivestreamSessionDetailsForSessionIDResponse", "Data"]
 
 
 class Data(BaseModel):
-    id: Optional[str] = None
-    """The livestream ID."""
+    id: str
+    """ID of the livestream session."""
 
-    created_at: Optional[datetime] = None
-    """Timestamp the object was created at. The time is returned in ISO format."""
+    created_at: datetime
+    """Timestamp the livestream session was created at, in ISO format."""
 
     err_message: Optional[str] = None
-    """The server URL to which the RTMP encoder sends the video and audio data."""
+    """Error message, if the livestream session failed."""
 
-    ingest_seconds: Optional[int] = None
-    """Name of the livestream."""
+    ingest_seconds: float
+    """The time duration for which the input was given or the meeting was streamed."""
 
-    livestream_id: Optional[str] = None
+    invoked_time: Optional[datetime] = None
+    """Timestamp the livestream session was invoked at, in ISO format."""
 
-    started_time: Optional[str] = None
-    """Unique key for accessing each livestream."""
+    livestream_id: str
+    """ID of the livestream."""
 
-    stopped_time: Optional[str] = None
-    """The web address that viewers can use to watch the livestream."""
+    started_time: Optional[datetime] = None
+    """Timestamp the livestream session started at, in ISO format."""
 
-    updated_at: Optional[str] = None
-    """Timestamp the object was updated at. The time is returned in ISO format."""
+    stopped_time: Optional[datetime] = None
+    """Timestamp the livestream session stopped at, in ISO format."""
 
-    viewer_seconds: Optional[int] = None
-    """Specifies if the livestream was disabled."""
+    updated_at: datetime
+    """Timestamp the livestream session was last updated at, in ISO format."""
+
+    viewer_seconds: float
+    """The total view time for which the viewers watched the stream."""
 
 
 class LivestreamGetLivestreamSessionDetailsForSessionIDResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Data
 
-    success: Optional[bool] = None
+    success: bool

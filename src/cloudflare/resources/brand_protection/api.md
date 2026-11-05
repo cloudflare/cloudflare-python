@@ -4,8 +4,6 @@ Types:
 
 ```python
 from cloudflare.types.brand_protection import (
-    Info,
-    Submit,
     BrandProtectionSubmitResponse,
     BrandProtectionURLInfoResponse,
 )

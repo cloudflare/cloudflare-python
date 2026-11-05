@@ -6,10 +6,32 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["SuperBotFightModeDefinitelyConfigurationParam"]
+__all__ = ["SuperBotFightModeDefinitelyConfigurationParam", "AIAgents"]
+
+
+class AIAgents(TypedDict, total=False):
+    """Configure blocking behavior for supported personal AI agents."""
+
+    anthropic_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    google_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    instinct: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    muse: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    openai_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
 
 
 class SuperBotFightModeDefinitelyConfigurationParam(TypedDict, total=False):
+    ai_agents: AIAgents
+    """Configure blocking behavior for supported personal AI agents."""
+
     ai_bots_migration_opt_out: bool
     """
     Temporary migration flag tracking zones opted out of AI bots managed-rule

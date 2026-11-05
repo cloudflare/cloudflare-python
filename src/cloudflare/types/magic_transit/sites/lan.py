@@ -7,7 +7,19 @@ from ...._models import BaseModel
 from .routed_subnet import RoutedSubnet
 from .lan_static_addressing import LANStaticAddressing
 
-__all__ = ["LAN"]
+__all__ = ["LAN", "RemoteSubnet"]
+
+
+class RemoteSubnet(BaseModel):
+    """
+    A remote subnet reachable through Cloudflare that is addressed from this LAN by a local alias prefix of the same size. The local alias prefix must not overlap other subnets on the LAN, and the remote prefix must not overlap other remote prefixes on the LAN.
+    """
+
+    local_alias_prefix: str
+    """A valid CIDR notation representing an IP range."""
+
+    remote_prefix: str
+    """A valid CIDR notation representing an IP range."""
 
 
 class LAN(BaseModel):
@@ -33,6 +45,8 @@ class LAN(BaseModel):
     nat: Optional[Nat] = None
 
     physport: Optional[int] = None
+
+    remote_subnets: Optional[List[RemoteSubnet]] = None
 
     routed_subnets: Optional[List[RoutedSubnet]] = None
 

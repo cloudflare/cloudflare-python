@@ -22,7 +22,6 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.magic_transit.sites import wan_edit_params, wan_create_params, wan_update_params
 from ....types.magic_transit.sites.wan import WAN
-from ....types.magic_transit.sites.wan_static_addressing_param import WANStaticAddressingParam
 
 __all__ = ["WANsResource", "AsyncWANsResource"]
 
@@ -57,7 +56,9 @@ class WANsResource(SyncAPIResource):
         load_balance_inner_flows: bool | Omit = omit,
         name: str | Omit = omit,
         priority: int | Omit = omit,
-        static_addressing: WANStaticAddressingParam | Omit = omit,
+        provisioned_download_kbps: int | Omit = omit,
+        provisioned_upload_kbps: int | Omit = omit,
+        static_addressing: wan_create_params.StaticAddressing | Omit = omit,
         vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -77,8 +78,12 @@ class WANsResource(SyncAPIResource):
           health_check_rate: Magic WAN health check rate for tunnels created on this link. The default value
               is `mid`.
 
-          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
-              availability mode.
+          provisioned_download_kbps: Provisioned download rate of the WAN circuit in kilobits per second.
+
+          provisioned_upload_kbps: Provisioned upload rate of the WAN circuit in kilobits per second.
+
+          static_addressing: Static addressing configuration for a WAN. Omit to use DHCP. Submit
+              secondary_address when the site is in high availability mode.
 
           vlan_tag: VLAN ID. Use zero for untagged.
 
@@ -104,6 +109,8 @@ class WANsResource(SyncAPIResource):
                     "load_balance_inner_flows": load_balance_inner_flows,
                     "name": name,
                     "priority": priority,
+                    "provisioned_download_kbps": provisioned_download_kbps,
+                    "provisioned_upload_kbps": provisioned_upload_kbps,
                     "static_addressing": static_addressing,
                     "vlan_tag": vlan_tag,
                 },
@@ -127,7 +134,9 @@ class WANsResource(SyncAPIResource):
         name: str | Omit = omit,
         physport: int | Omit = omit,
         priority: int | Omit = omit,
-        static_addressing: WANStaticAddressingParam | Omit = omit,
+        provisioned_download_kbps: Optional[int] | Omit = omit,
+        provisioned_upload_kbps: Optional[int] | Omit = omit,
+        static_addressing: wan_update_params.StaticAddressing | Omit = omit,
         vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -148,8 +157,14 @@ class WANsResource(SyncAPIResource):
 
           health_check_rate: Magic WAN health check rate for tunnels created on this link.
 
-          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
-              availability mode.
+          provisioned_download_kbps: Provisioned download rate of the WAN circuit in kilobits per second. Set to null
+              to remove it.
+
+          provisioned_upload_kbps: Provisioned upload rate of the WAN circuit in kilobits per second. Set to null
+              to remove it.
+
+          static_addressing: Static addressing configuration. PATCH updates only the fields provided, and PUT
+              replaces the configuration.
 
           vlan_tag: VLAN ID. Use zero for untagged.
 
@@ -181,6 +196,8 @@ class WANsResource(SyncAPIResource):
                     "name": name,
                     "physport": physport,
                     "priority": priority,
+                    "provisioned_download_kbps": provisioned_download_kbps,
+                    "provisioned_upload_kbps": provisioned_upload_kbps,
                     "static_addressing": static_addressing,
                     "vlan_tag": vlan_tag,
                 },
@@ -302,7 +319,9 @@ class WANsResource(SyncAPIResource):
         name: str | Omit = omit,
         physport: int | Omit = omit,
         priority: int | Omit = omit,
-        static_addressing: WANStaticAddressingParam | Omit = omit,
+        provisioned_download_kbps: Optional[int] | Omit = omit,
+        provisioned_upload_kbps: Optional[int] | Omit = omit,
+        static_addressing: wan_edit_params.StaticAddressing | Omit = omit,
         vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -323,8 +342,14 @@ class WANsResource(SyncAPIResource):
 
           health_check_rate: Magic WAN health check rate for tunnels created on this link.
 
-          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
-              availability mode.
+          provisioned_download_kbps: Provisioned download rate of the WAN circuit in kilobits per second. Set to null
+              to remove it.
+
+          provisioned_upload_kbps: Provisioned upload rate of the WAN circuit in kilobits per second. Set to null
+              to remove it.
+
+          static_addressing: Static addressing configuration. PATCH updates only the fields provided, and PUT
+              replaces the configuration.
 
           vlan_tag: VLAN ID. Use zero for untagged.
 
@@ -356,6 +381,8 @@ class WANsResource(SyncAPIResource):
                     "name": name,
                     "physport": physport,
                     "priority": priority,
+                    "provisioned_download_kbps": provisioned_download_kbps,
+                    "provisioned_upload_kbps": provisioned_upload_kbps,
                     "static_addressing": static_addressing,
                     "vlan_tag": vlan_tag,
                 },
@@ -456,7 +483,9 @@ class AsyncWANsResource(AsyncAPIResource):
         load_balance_inner_flows: bool | Omit = omit,
         name: str | Omit = omit,
         priority: int | Omit = omit,
-        static_addressing: WANStaticAddressingParam | Omit = omit,
+        provisioned_download_kbps: int | Omit = omit,
+        provisioned_upload_kbps: int | Omit = omit,
+        static_addressing: wan_create_params.StaticAddressing | Omit = omit,
         vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -476,8 +505,12 @@ class AsyncWANsResource(AsyncAPIResource):
           health_check_rate: Magic WAN health check rate for tunnels created on this link. The default value
               is `mid`.
 
-          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
-              availability mode.
+          provisioned_download_kbps: Provisioned download rate of the WAN circuit in kilobits per second.
+
+          provisioned_upload_kbps: Provisioned upload rate of the WAN circuit in kilobits per second.
+
+          static_addressing: Static addressing configuration for a WAN. Omit to use DHCP. Submit
+              secondary_address when the site is in high availability mode.
 
           vlan_tag: VLAN ID. Use zero for untagged.
 
@@ -503,6 +536,8 @@ class AsyncWANsResource(AsyncAPIResource):
                     "load_balance_inner_flows": load_balance_inner_flows,
                     "name": name,
                     "priority": priority,
+                    "provisioned_download_kbps": provisioned_download_kbps,
+                    "provisioned_upload_kbps": provisioned_upload_kbps,
                     "static_addressing": static_addressing,
                     "vlan_tag": vlan_tag,
                 },
@@ -526,7 +561,9 @@ class AsyncWANsResource(AsyncAPIResource):
         name: str | Omit = omit,
         physport: int | Omit = omit,
         priority: int | Omit = omit,
-        static_addressing: WANStaticAddressingParam | Omit = omit,
+        provisioned_download_kbps: Optional[int] | Omit = omit,
+        provisioned_upload_kbps: Optional[int] | Omit = omit,
+        static_addressing: wan_update_params.StaticAddressing | Omit = omit,
         vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -547,8 +584,14 @@ class AsyncWANsResource(AsyncAPIResource):
 
           health_check_rate: Magic WAN health check rate for tunnels created on this link.
 
-          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
-              availability mode.
+          provisioned_download_kbps: Provisioned download rate of the WAN circuit in kilobits per second. Set to null
+              to remove it.
+
+          provisioned_upload_kbps: Provisioned upload rate of the WAN circuit in kilobits per second. Set to null
+              to remove it.
+
+          static_addressing: Static addressing configuration. PATCH updates only the fields provided, and PUT
+              replaces the configuration.
 
           vlan_tag: VLAN ID. Use zero for untagged.
 
@@ -580,6 +623,8 @@ class AsyncWANsResource(AsyncAPIResource):
                     "name": name,
                     "physport": physport,
                     "priority": priority,
+                    "provisioned_download_kbps": provisioned_download_kbps,
+                    "provisioned_upload_kbps": provisioned_upload_kbps,
                     "static_addressing": static_addressing,
                     "vlan_tag": vlan_tag,
                 },
@@ -701,7 +746,9 @@ class AsyncWANsResource(AsyncAPIResource):
         name: str | Omit = omit,
         physport: int | Omit = omit,
         priority: int | Omit = omit,
-        static_addressing: WANStaticAddressingParam | Omit = omit,
+        provisioned_download_kbps: Optional[int] | Omit = omit,
+        provisioned_upload_kbps: Optional[int] | Omit = omit,
+        static_addressing: wan_edit_params.StaticAddressing | Omit = omit,
         vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -722,8 +769,14 @@ class AsyncWANsResource(AsyncAPIResource):
 
           health_check_rate: Magic WAN health check rate for tunnels created on this link.
 
-          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
-              availability mode.
+          provisioned_download_kbps: Provisioned download rate of the WAN circuit in kilobits per second. Set to null
+              to remove it.
+
+          provisioned_upload_kbps: Provisioned upload rate of the WAN circuit in kilobits per second. Set to null
+              to remove it.
+
+          static_addressing: Static addressing configuration. PATCH updates only the fields provided, and PUT
+              replaces the configuration.
 
           vlan_tag: VLAN ID. Use zero for untagged.
 
@@ -755,6 +808,8 @@ class AsyncWANsResource(AsyncAPIResource):
                     "name": name,
                     "physport": physport,
                     "priority": priority,
+                    "provisioned_download_kbps": provisioned_download_kbps,
+                    "provisioned_upload_kbps": provisioned_upload_kbps,
                     "static_addressing": static_addressing,
                     "vlan_tag": vlan_tag,
                 },

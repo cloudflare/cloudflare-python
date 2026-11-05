@@ -73,13 +73,12 @@ class IndicatorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndicatorListResponse:
-        """Returns indicators associated with the provided tag UUID, with pagination.
+        """Lists the indicators that carry a tag, with pagination.
 
-        By
-        default fans out across every indicator dataset the account can read; pass
-        datasetIds to scope to UUIDs, analytics datasets, or operational datasets.
-        Analytics datasets do not expose tag associations, so the analytics scope
-        returns an empty result.
+        By default, every
+        intelligence dataset you can read is searched; use `datasetIds` to limit the
+        search to specific datasets or a scope value. Analytics datasets don't store tag
+        associations, so the `analytics` scope returns no results.
 
         Args:
           account_id: Account ID.
@@ -87,10 +86,10 @@ class IndicatorsResource(SyncAPIResource):
           tag_uuid: Tag UUID.
 
           dataset_ids: Dataset UUIDs to scope to (repeat the param for multiple), or one standalone
-              scope: 'all'/'\\**', 'analytics' for isAnalytics=true datasets, or 'operational'
-              for isAnalytics=false datasets. Analytics datasets do not expose tag
-              associations, so 'analytics' returns an empty result. Omit to search all
-              readable datasets.
+              scope value: 'all'/'\\**' or 'operational' for readable intelligence datasets
+              (isAnalytics=false), or 'analytics' for readable analytics datasets
+              (isAnalytics=true). Analytics datasets do not expose tag associations, so
+              'analytics' returns an empty result. Omit for 'all'.
 
           related_event: Filter indicators by related event UUID(s). Multiple UUIDs can be provided by
               repeating the parameter.
@@ -180,13 +179,12 @@ class AsyncIndicatorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndicatorListResponse:
-        """Returns indicators associated with the provided tag UUID, with pagination.
+        """Lists the indicators that carry a tag, with pagination.
 
-        By
-        default fans out across every indicator dataset the account can read; pass
-        datasetIds to scope to UUIDs, analytics datasets, or operational datasets.
-        Analytics datasets do not expose tag associations, so the analytics scope
-        returns an empty result.
+        By default, every
+        intelligence dataset you can read is searched; use `datasetIds` to limit the
+        search to specific datasets or a scope value. Analytics datasets don't store tag
+        associations, so the `analytics` scope returns no results.
 
         Args:
           account_id: Account ID.
@@ -194,10 +192,10 @@ class AsyncIndicatorsResource(AsyncAPIResource):
           tag_uuid: Tag UUID.
 
           dataset_ids: Dataset UUIDs to scope to (repeat the param for multiple), or one standalone
-              scope: 'all'/'\\**', 'analytics' for isAnalytics=true datasets, or 'operational'
-              for isAnalytics=false datasets. Analytics datasets do not expose tag
-              associations, so 'analytics' returns an empty result. Omit to search all
-              readable datasets.
+              scope value: 'all'/'\\**' or 'operational' for readable intelligence datasets
+              (isAnalytics=false), or 'analytics' for readable analytics datasets
+              (isAnalytics=true). Analytics datasets do not expose tag associations, so
+              'analytics' returns an empty result. Omit for 'all'.
 
           related_event: Filter indicators by related event UUID(s). Multiple UUIDs can be provided by
               repeating the parameter.

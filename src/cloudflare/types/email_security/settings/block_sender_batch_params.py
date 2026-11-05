@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Union, Iterable, Optional
+from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["BlockSenderBatchParams", "Delete", "Patch", "Post", "Put"]
 
@@ -40,6 +43,13 @@ class Patch(TypedDict, total=False):
     """A blocked sender pattern."""
 
     comments: Optional[str]
+
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Timestamp at which the pattern expires.
+
+    After this time, Email Security ignores the pattern. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
 
     is_regex: bool
     """Whether `pattern` is a regular expression instead of a literal value."""
@@ -103,6 +113,13 @@ class Post(TypedDict, total=False):
 
     comments: Optional[str]
 
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Timestamp at which the pattern expires.
+
+    After this time, Email Security ignores the pattern. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
+
 
 class Put(TypedDict, total=False):
     """A blocked sender pattern."""
@@ -136,3 +153,10 @@ class Put(TypedDict, total=False):
     """
 
     comments: Optional[str]
+
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Timestamp at which the pattern expires.
+
+    After this time, Email Security ignores the pattern. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """

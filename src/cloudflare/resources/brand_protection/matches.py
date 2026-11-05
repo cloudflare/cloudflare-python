@@ -59,7 +59,7 @@ class MatchesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MatchDownloadResponse:
         """
-        Return matches as CSV for string queries based on ID
+        Return matches as CSV for string queries based on ID.
 
         Args:
           extra_headers: Send extra headers
@@ -110,7 +110,7 @@ class MatchesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MatchGetResponse:
         """
-        Return matches for string queries based on ID
+        Return matches for string queries based on ID.
 
         Args:
           extra_headers: Send extra headers
@@ -182,7 +182,7 @@ class AsyncMatchesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MatchDownloadResponse:
         """
-        Return matches as CSV for string queries based on ID
+        Return matches as CSV for string queries based on ID.
 
         Args:
           extra_headers: Send extra headers
@@ -233,7 +233,7 @@ class AsyncMatchesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MatchGetResponse:
         """
-        Return matches for string queries based on ID
+        Return matches for string queries based on ID.
 
         Args:
           extra_headers: Send extra headers

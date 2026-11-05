@@ -56,10 +56,19 @@ class SkillOutputsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillOutputGetResponse:
-        """
-        Retrieves the stored output of a skill for a Threat Signals article.
+        """Retrieves the stored output of a skill for a Threat Signals article.
+
+        The
+        custom_output field is parsed JSON when the stored output is valid JSON,
+        otherwise the raw string.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          skill_id:
+              Custom Skill UUID or a Managed Default Skill ID (IOC-context:
+              default-ioc-context-skill)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -125,10 +134,19 @@ class AsyncSkillOutputsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillOutputGetResponse:
-        """
-        Retrieves the stored output of a skill for a Threat Signals article.
+        """Retrieves the stored output of a skill for a Threat Signals article.
+
+        The
+        custom_output field is parsed JSON when the stored output is valid JSON,
+        otherwise the raw string.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          skill_id:
+              Custom Skill UUID or a Managed Default Skill ID (IOC-context:
+              default-ioc-context-skill)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

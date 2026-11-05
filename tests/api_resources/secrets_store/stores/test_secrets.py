@@ -32,7 +32,6 @@ class TestSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
-                    "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -47,7 +46,6 @@ class TestSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
-                    "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -66,7 +64,6 @@ class TestSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
-                    "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -88,7 +85,6 @@ class TestSecrets:
                 body=[
                     {
                         "name": "MY_API_KEY",
-                        "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                         "value": "api-token-secret-123",
                     }
                 ],
@@ -101,7 +97,6 @@ class TestSecrets:
                 body=[
                     {
                         "name": "MY_API_KEY",
-                        "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                         "value": "api-token-secret-123",
                     }
                 ],
@@ -290,7 +285,6 @@ class TestSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
-            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
         )
         assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
 
@@ -302,8 +296,8 @@ class TestSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
-            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
             comment="info about my secret",
+            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
         )
         assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
 
@@ -315,7 +309,6 @@ class TestSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
-            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
         )
 
         assert response.is_closed is True
@@ -331,7 +324,6 @@ class TestSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
-            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -350,7 +342,6 @@ class TestSecrets:
                 account_id="",
                 store_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="MY_API_KEY",
-                scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `store_id` but received ''"):
@@ -359,7 +350,6 @@ class TestSecrets:
                 account_id="985e105f4ecef8ad9ca31a8372d0c353",
                 store_id="",
                 name="MY_API_KEY",
-                scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_id` but received ''"):
@@ -368,7 +358,6 @@ class TestSecrets:
                 account_id="985e105f4ecef8ad9ca31a8372d0c353",
                 store_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="MY_API_KEY",
-                scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
             )
 
     @pytest.mark.skip(reason="TODO: investigate prism error for 422 Unprocessable Entity")
@@ -522,7 +511,6 @@ class TestAsyncSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
-                    "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -537,7 +525,6 @@ class TestAsyncSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
-                    "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -556,7 +543,6 @@ class TestAsyncSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
-                    "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -578,7 +564,6 @@ class TestAsyncSecrets:
                 body=[
                     {
                         "name": "MY_API_KEY",
-                        "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                         "value": "api-token-secret-123",
                     }
                 ],
@@ -591,7 +576,6 @@ class TestAsyncSecrets:
                 body=[
                     {
                         "name": "MY_API_KEY",
-                        "scopes": ["workers", "ai_gateway", "dex", "access", "websearch"],
                         "value": "api-token-secret-123",
                     }
                 ],
@@ -780,7 +764,6 @@ class TestAsyncSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
-            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
         )
         assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
 
@@ -792,8 +775,8 @@ class TestAsyncSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
-            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
             comment="info about my secret",
+            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
         )
         assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
 
@@ -805,7 +788,6 @@ class TestAsyncSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
-            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
         )
 
         assert response.is_closed is True
@@ -821,7 +803,6 @@ class TestAsyncSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
-            scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -840,7 +821,6 @@ class TestAsyncSecrets:
                 account_id="",
                 store_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="MY_API_KEY",
-                scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `store_id` but received ''"):
@@ -849,7 +829,6 @@ class TestAsyncSecrets:
                 account_id="985e105f4ecef8ad9ca31a8372d0c353",
                 store_id="",
                 name="MY_API_KEY",
-                scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_id` but received ''"):
@@ -858,7 +837,6 @@ class TestAsyncSecrets:
                 account_id="985e105f4ecef8ad9ca31a8372d0c353",
                 store_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="MY_API_KEY",
-                scopes=["workers", "ai_gateway", "dex", "access", "websearch"],
             )
 
     @pytest.mark.skip(reason="TODO: investigate prism error for 422 Unprocessable Entity")

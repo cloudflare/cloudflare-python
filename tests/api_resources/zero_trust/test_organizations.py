@@ -25,8 +25,6 @@ class TestOrganizations:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         organization = client.zero_trust.organizations.create(
-            auth_domain="test.cloudflareaccess.com",
-            name="Widget Corps Internal Applications",
             account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
@@ -35,13 +33,13 @@ class TestOrganizations:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         organization = client.zero_trust.organizations.create(
-            auth_domain="test.cloudflareaccess.com",
-            name="Widget Corps Internal Applications",
             account_id="account_id",
             allow_authenticate_via_warp=True,
+            auth_domain="test.cloudflareaccess.com",
             auto_redirect_to_identity=True,
             deny_unmatched_requests=True,
             deny_unmatched_requests_exempted_zone_names=["example.com"],
+            disable_end_user_app_creation=False,
             is_ui_read_only=True,
             login_design={
                 "background_color": "#c5ed1b",
@@ -64,6 +62,7 @@ class TestOrganizations:
                 "touch_policy": "always",
             },
             mfa_required_for_all_apps=False,
+            name="Widget Corps Internal Applications",
             service_token_inactivity={
                 "action": "disable",
                 "enabled": True,
@@ -82,8 +81,6 @@ class TestOrganizations:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.organizations.with_raw_response.create(
-            auth_domain="test.cloudflareaccess.com",
-            name="Widget Corps Internal Applications",
             account_id="account_id",
         )
 
@@ -96,8 +93,6 @@ class TestOrganizations:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.organizations.with_streaming_response.create(
-            auth_domain="test.cloudflareaccess.com",
-            name="Widget Corps Internal Applications",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -113,15 +108,11 @@ class TestOrganizations:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.organizations.with_raw_response.create(
-                auth_domain="test.cloudflareaccess.com",
-                name="Widget Corps Internal Applications",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.organizations.with_raw_response.create(
-                auth_domain="test.cloudflareaccess.com",
-                name="Widget Corps Internal Applications",
                 account_id="account_id",
             )
 
@@ -147,6 +138,7 @@ class TestOrganizations:
             },
             deny_unmatched_requests=True,
             deny_unmatched_requests_exempted_zone_names=["example.com"],
+            disable_end_user_app_creation=False,
             is_ui_read_only=True,
             login_design={
                 "background_color": "#c5ed1b",
@@ -353,8 +345,6 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.zero_trust.organizations.create(
-            auth_domain="test.cloudflareaccess.com",
-            name="Widget Corps Internal Applications",
             account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
@@ -363,13 +353,13 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.zero_trust.organizations.create(
-            auth_domain="test.cloudflareaccess.com",
-            name="Widget Corps Internal Applications",
             account_id="account_id",
             allow_authenticate_via_warp=True,
+            auth_domain="test.cloudflareaccess.com",
             auto_redirect_to_identity=True,
             deny_unmatched_requests=True,
             deny_unmatched_requests_exempted_zone_names=["example.com"],
+            disable_end_user_app_creation=False,
             is_ui_read_only=True,
             login_design={
                 "background_color": "#c5ed1b",
@@ -392,6 +382,7 @@ class TestAsyncOrganizations:
                 "touch_policy": "always",
             },
             mfa_required_for_all_apps=False,
+            name="Widget Corps Internal Applications",
             service_token_inactivity={
                 "action": "disable",
                 "enabled": True,
@@ -410,8 +401,6 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.organizations.with_raw_response.create(
-            auth_domain="test.cloudflareaccess.com",
-            name="Widget Corps Internal Applications",
             account_id="account_id",
         )
 
@@ -424,8 +413,6 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.organizations.with_streaming_response.create(
-            auth_domain="test.cloudflareaccess.com",
-            name="Widget Corps Internal Applications",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -441,15 +428,11 @@ class TestAsyncOrganizations:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.organizations.with_raw_response.create(
-                auth_domain="test.cloudflareaccess.com",
-                name="Widget Corps Internal Applications",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.organizations.with_raw_response.create(
-                auth_domain="test.cloudflareaccess.com",
-                name="Widget Corps Internal Applications",
                 account_id="account_id",
             )
 
@@ -475,6 +458,7 @@ class TestAsyncOrganizations:
             },
             deny_unmatched_requests=True,
             deny_unmatched_requests_exempted_zone_names=["example.com"],
+            disable_end_user_app_creation=False,
             is_ui_read_only=True,
             login_design={
                 "background_color": "#c5ed1b",

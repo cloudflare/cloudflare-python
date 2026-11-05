@@ -4,14 +4,13 @@ from typing import Dict, List, Optional
 
 from ..._models import BaseModel
 from .default_pools import DefaultPools
-from .random_steering import RandomSteering
 from .steering_policy import SteeringPolicy
 from .adaptive_routing import AdaptiveRouting
 from .session_affinity import SessionAffinity
 from .location_strategy import LocationStrategy
 from .session_affinity_attributes import SessionAffinityAttributes
 
-__all__ = ["Rules", "FixedResponse", "Overrides"]
+__all__ = ["Rules", "FixedResponse", "Overrides", "OverridesRandomSteering"]
 
 
 class FixedResponse(BaseModel):
@@ -30,6 +29,28 @@ class FixedResponse(BaseModel):
 
     status_code: Optional[int] = None
     """The http status code to respond with."""
+
+
+class OverridesRandomSteering(BaseModel):
+    """Configures pool weights for a rule override.
+
+    An omitted default_weight inherits the load balancer's default weight.
+    - `steering_policy="random"`: A random pool is selected with probability proportional to pool weights.
+    - `steering_policy="least_outstanding_requests"`: Use pool weights to scale each pool's outstanding requests.
+    - `steering_policy="least_connections"`: Use pool weights to scale each pool's open connections.
+    """
+
+    default_weight: Optional[float] = None
+    """
+    The default weight for pools in the load balancer that are not specified in the
+    pool_weights map. An omitted value inherits the load balancer's default weight.
+    """
+
+    pool_weights: Optional[Dict[str, float]] = None
+    """A mapping of pool IDs to custom weights.
+
+    The weight is relative to other pools in the load balancer.
+    """
 
 
 class Overrides(BaseModel):
@@ -100,8 +121,10 @@ class Overrides(BaseModel):
     region_pool mapping if it exists else to default_pools.
     """
 
-    random_steering: Optional[RandomSteering] = None
-    """Configures pool weights.
+    random_steering: Optional[OverridesRandomSteering] = None
+    """Configures pool weights for a rule override.
+
+    An omitted default_weight inherits the load balancer's default weight.
 
     - `steering_policy="random"`: A random pool is selected with probability
       proportional to pool weights.
@@ -228,9 +251,9 @@ class Rules(BaseModel):
     priority: Optional[int] = None
     """The order in which rules should be executed in relation to each other.
 
-    Lower values are executed first. Values do not need to be sequential. If no
-    value is provided for any rule the array order of the rules field will be used
-    to assign a priority.
+    Lower values are executed first. Values do not need to be sequential. If all
+    priorities are omitted or zero, the API assigns priorities based on the array
+    order of the rules field.
     """
 
     terminates: Optional[bool] = None

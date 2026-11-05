@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 
 from ...._models import BaseModel
 
@@ -37,8 +37,16 @@ class ServiceTokenCreateResponse(BaseModel):
 
     A disabled service token cannot be used to authenticate; both its current and
     previous `client_secret` stop being accepted, but the token itself is preserved
-    and can be re-enabled at any time. Defaults to enabled when omitted on create.
+    and can be re-enabled. A service token reported as leaked is disabled
+    automatically and cannot be re-enabled until its secret is rotated; attempting
+    to do so returns a 409. Defaults to enabled when omitted on create.
     """
 
     name: Optional[str] = None
     """The name of the service token."""
+
+    tags: Optional[Dict[str, str]] = None
+    """Tags associated with the service token, as key-value pairs.
+
+    On update, replaces all existing tags.
+    """

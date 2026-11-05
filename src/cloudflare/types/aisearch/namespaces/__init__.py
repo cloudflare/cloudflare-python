@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .instance_list_params import InstanceListParams as InstanceListParams
+from .instance_move_params import InstanceMoveParams as InstanceMoveParams
 from .instance_create_params import InstanceCreateParams as InstanceCreateParams
 from .instance_list_response import InstanceListResponse as InstanceListResponse
 from .instance_read_response import InstanceReadResponse as InstanceReadResponse

@@ -4134,8 +4134,7 @@ class SetConfigurationRuleActionParameters(TypedDict, total=False):
     """Bundled WebMCP tool packs to activate for matching requests.
 
     An empty array disables all packs. Omitting this parameter leaves the pack
-    selection unchanged. Does not enable the WebMCP bridge itself. Non-empty
-    selections require the WebMCP Configuration Rules entitlement.
+    selection unchanged. Does not enable the WebMCP bridge itself.
     """
 
 

@@ -60,6 +60,9 @@ __all__ = [
     "MetadataBindingWorkersBindingKindVPCService",
     "MetadataBindingWorkersBindingKindVPCNetwork",
     "MetadataCacheOptions",
+    "MetadataCodeUpdateStrategy",
+    "MetadataCodeUpdateStrategyMode",
+    "MetadataCodeUpdateStrategyUnionMember1",
     "MetadataExports",
     "MetadataExportsWorkersWorkerExport",
     "MetadataExportsWorkersWorkerExportCache",
@@ -104,9 +107,10 @@ class ScriptUpdateParams(TypedDict, total=False):
 
     bindings_inherit: Literal["strict"]
     """
-    When set to "strict", the upload will fail if any `inherit` type bindings cannot
-    be resolved against the previous version of the script. Without this,
-    unresolvable inherit bindings are silently dropped.
+    When set to "strict", the upload will fail with error 10057 if any `inherit`
+    type bindings cannot be resolved against the latest uploaded version of the
+    script, which may not be the deployed version. Without this, unresolvable
+    inherit bindings are silently dropped.
     """
 
     files: SequenceNotStr[FileTypes]
@@ -405,10 +409,14 @@ class MetadataBindingWorkersBindingKindInherit(TypedDict, total=False):
     """
 
     version_id: str
-    """
-    Identifier for the version to inherit the binding from, which can be the version
-    ID or the literal "latest" to inherit from the latest version. Defaults to
-    inheriting the binding from the latest version.
+    """Identifier for the version to inherit the binding from.
+
+    This can be a version ID, or the literal "latest" to inherit from the most
+    recently uploaded version, which may not be the deployed version. Defaults to
+    "latest". Only the Workers API version endpoints under
+    `/accounts/{account_id}/workers/workers/{worker_id}/versions` accept a version
+    ID. Other endpoints, including script upload and script version upload, accept
+    only "latest" and reject a version ID with error 10057.
     """
 
 
@@ -755,13 +763,16 @@ class MetadataBindingWorkersBindingKindVPCNetwork(TypedDict, total=False):
     identity: Literal["runtime-email-alpha"]
     """Enables Gateway identity for the binding.
 
-    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id.
+    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id or
+    an explicit "cf1:vnet:<UUID>" network_id.
     """
 
     network_id: str
     """Identifier of the network to bind to.
 
-    Only "cf1:network" is currently supported. Mutually exclusive with tunnel_id.
+    Use "cf1:network" to select the account's default virtual network at runtime, or
+    "cf1:vnet:<UUID>" to select an explicit virtual network in the Worker's account.
+    Mutually exclusive with tunnel_id.
     """
 
     tunnel_id: str
@@ -828,6 +839,27 @@ class MetadataCacheOptions(TypedDict, total=False):
     This is independent of `enabled`. It can stay true while caching is off, so the
     preference survives turning caching off and back on.
     """
+
+
+class MetadataCodeUpdateStrategyMode(TypedDict, total=False):
+    mode: Required[Literal["immediate"]]
+    """Apply Durable Object code updates immediately."""
+
+
+class MetadataCodeUpdateStrategyUnionMember1(TypedDict, total=False):
+    mode: Required[Literal["deferred"]]
+    """Allow active Durable Objects to hibernate before updating their code."""
+
+    max_delay: Optional[float]
+    """Set the maximum number of seconds to wait before forcing the update.
+
+    When omitted, the default maximum delay applies.
+    """
+
+
+MetadataCodeUpdateStrategy: TypeAlias = Union[
+    MetadataCodeUpdateStrategyMode, MetadataCodeUpdateStrategyUnionMember1, Optional[object]
+]
 
 
 class MetadataExportsWorkersWorkerExportCache(TypedDict, total=False):
@@ -1244,6 +1276,12 @@ class Metadata(TypedDict, total=False):
     When caching is on, the platform provisions a `cloudflare.app` zone for the
     Worker. A `type: worker` entry in the `exports` map can override this value for
     a single entrypoint.
+    """
+
+    code_update_strategy: MetadataCodeUpdateStrategy
+    """Choose whether to apply Durable Object code updates immediately or defer them.
+
+    When omitted, the default strategy applies.
     """
 
     compatibility_date: str

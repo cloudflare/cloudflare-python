@@ -58,6 +58,7 @@ class DeploymentsResource(SyncAPIResource):
         versions: Iterable[deployment_create_params.Version],
         force: bool | Omit = omit,
         annotations: deployment_create_params.Annotations | Omit = omit,
+        code_update_strategy: deployment_create_params.CodeUpdateStrategy | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,6 +77,9 @@ class DeploymentsResource(SyncAPIResource):
 
           script_name: Name of the script.
 
+          strategy: Strategy for routing traffic across the listed versions. `percentage` splits
+              traffic according to each version's `percentage`.
+
           versions: Worker versions included in this deployment. Each object must contain a
               `version_id` UUID and a `percentage`; percentages across all objects must
               total 100. In the `cf` CLI, pass the entire array as one JSON value to
@@ -85,6 +89,11 @@ class DeploymentsResource(SyncAPIResource):
 
           force: If set to true, the deployment will be created even if normally blocked by
               something such rolling back to an older version when a secret has changed.
+
+          annotations: Metadata attached to the deployment.
+
+          code_update_strategy: Choose whether to apply Durable Object code updates immediately or defer them.
+              When omitted, the default strategy applies.
 
           extra_headers: Send extra headers
 
@@ -109,6 +118,7 @@ class DeploymentsResource(SyncAPIResource):
                     "strategy": strategy,
                     "versions": versions,
                     "annotations": annotations,
+                    "code_update_strategy": code_update_strategy,
                 },
                 deployment_create_params.DeploymentCreateParams,
             ),
@@ -326,6 +336,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         versions: Iterable[deployment_create_params.Version],
         force: bool | Omit = omit,
         annotations: deployment_create_params.Annotations | Omit = omit,
+        code_update_strategy: deployment_create_params.CodeUpdateStrategy | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -344,6 +355,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           script_name: Name of the script.
 
+          strategy: Strategy for routing traffic across the listed versions. `percentage` splits
+              traffic according to each version's `percentage`.
+
           versions: Worker versions included in this deployment. Each object must contain a
               `version_id` UUID and a `percentage`; percentages across all objects must
               total 100. In the `cf` CLI, pass the entire array as one JSON value to
@@ -353,6 +367,11 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           force: If set to true, the deployment will be created even if normally blocked by
               something such rolling back to an older version when a secret has changed.
+
+          annotations: Metadata attached to the deployment.
+
+          code_update_strategy: Choose whether to apply Durable Object code updates immediately or defer them.
+              When omitted, the default strategy applies.
 
           extra_headers: Send extra headers
 
@@ -377,6 +396,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                     "strategy": strategy,
                     "versions": versions,
                     "annotations": annotations,
+                    "code_update_strategy": code_update_strategy,
                 },
                 deployment_create_params.DeploymentCreateParams,
             ),

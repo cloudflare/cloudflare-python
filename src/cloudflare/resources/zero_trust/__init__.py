@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .cws import (
+    CWSResource,
+    AsyncCWSResource,
+    CWSResourceWithRawResponse,
+    AsyncCWSResourceWithRawResponse,
+    CWSResourceWithStreamingResponse,
+    AsyncCWSResourceWithStreamingResponse,
+)
 from .dex import (
     DEXResource,
     AsyncDEXResource,
@@ -122,6 +130,12 @@ from .connectivity_settings import (
 )
 
 __all__ = [
+    "CWSResource",
+    "AsyncCWSResource",
+    "CWSResourceWithRawResponse",
+    "AsyncCWSResourceWithRawResponse",
+    "CWSResourceWithStreamingResponse",
+    "AsyncCWSResourceWithStreamingResponse",
     "DevicesResource",
     "AsyncDevicesResource",
     "DevicesResourceWithRawResponse",

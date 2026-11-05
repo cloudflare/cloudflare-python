@@ -53,7 +53,7 @@ class QueriesResource(SyncAPIResource):
         max_time: Union[str, datetime, None] | Omit = omit,
         min_time: Union[str, datetime, None] | Omit = omit,
         body_scan: bool | Omit = omit,
-        string_matches: object | Omit = omit,
+        string_matches: Iterable[query_create_params.StringMatch] | Omit = omit,
         body_tag: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,7 +63,7 @@ class QueriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Return a success message after creating new saved string queries
+        Return a success message after creating new saved string queries.
 
         Args:
           extra_headers: Send extra headers
@@ -121,7 +121,7 @@ class QueriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Return a success message after deleting saved string queries by ID
+        Return a success message after deleting saved string queries by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -167,7 +167,7 @@ class QueriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Return a success message after creating new saved string queries in bulk
+        Return a success message after creating new saved string queries in bulk.
 
         Args:
           extra_headers: Send extra headers
@@ -221,7 +221,7 @@ class AsyncQueriesResource(AsyncAPIResource):
         max_time: Union[str, datetime, None] | Omit = omit,
         min_time: Union[str, datetime, None] | Omit = omit,
         body_scan: bool | Omit = omit,
-        string_matches: object | Omit = omit,
+        string_matches: Iterable[query_create_params.StringMatch] | Omit = omit,
         body_tag: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -231,7 +231,7 @@ class AsyncQueriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Return a success message after creating new saved string queries
+        Return a success message after creating new saved string queries.
 
         Args:
           extra_headers: Send extra headers
@@ -289,7 +289,7 @@ class AsyncQueriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Return a success message after deleting saved string queries by ID
+        Return a success message after deleting saved string queries by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -335,7 +335,7 @@ class AsyncQueriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Return a success message after creating new saved string queries in bulk
+        Return a success message after creating new saved string queries in bulk.
 
         Args:
           extra_headers: Send extra headers

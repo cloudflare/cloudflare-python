@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -81,6 +82,7 @@ class WorkflowsResource(SyncAPIResource):
         script_name: str,
         concurrency: workflow_update_params.Concurrency | Omit = omit,
         default_retention: workflow_update_params.DefaultRetention | Omit = omit,
+        jurisdiction: Literal["eu", "fedramp", "us"] | Omit = omit,
         limits: workflow_update_params.Limits | Omit = omit,
         schedules: Iterable[workflow_update_params.Schedule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -96,6 +98,10 @@ class WorkflowsResource(SyncAPIResource):
         Args:
           default_retention: Default retention applied to instances of this version when they do not set
               their own retention.
+
+          jurisdiction: Jurisdiction where instances of this workflow run and store data. Can only be
+              set when the workflow is created and cannot be changed afterwards; omit it to
+              keep the existing jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -119,6 +125,7 @@ class WorkflowsResource(SyncAPIResource):
                     "script_name": script_name,
                     "concurrency": concurrency,
                     "default_retention": default_retention,
+                    "jurisdiction": jurisdiction,
                     "limits": limits,
                     "schedules": schedules,
                 },
@@ -308,6 +315,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         script_name: str,
         concurrency: workflow_update_params.Concurrency | Omit = omit,
         default_retention: workflow_update_params.DefaultRetention | Omit = omit,
+        jurisdiction: Literal["eu", "fedramp", "us"] | Omit = omit,
         limits: workflow_update_params.Limits | Omit = omit,
         schedules: Iterable[workflow_update_params.Schedule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -323,6 +331,10 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         Args:
           default_retention: Default retention applied to instances of this version when they do not set
               their own retention.
+
+          jurisdiction: Jurisdiction where instances of this workflow run and store data. Can only be
+              set when the workflow is created and cannot be changed afterwards; omit it to
+              keep the existing jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -346,6 +358,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     "script_name": script_name,
                     "concurrency": concurrency,
                     "default_retention": default_retention,
+                    "jurisdiction": jurisdiction,
                     "limits": limits,
                     "schedules": schedules,
                 },

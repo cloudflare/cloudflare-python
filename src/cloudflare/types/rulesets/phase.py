@@ -23,6 +23,7 @@ Phase: TypeAlias = Literal[
     "http_request_transform",
     "http_response_cache_settings",
     "http_response_compression",
+    "http_response_firewall_custom",
     "http_response_firewall_managed",
     "http_response_headers_transform",
     "magic_transit",

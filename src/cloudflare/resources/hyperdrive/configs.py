@@ -131,9 +131,10 @@ class ConfigsResource(SyncAPIResource):
         Args:
           account_id: Define configurations using a unique string identifier.
 
-          integration: Connects to a PlanetScale database using credentials managed by Cloudflare. The
-              Cloudflare account must already be linked to PlanetScale in the Hyperdrive
-              dashboard.
+          integration: Selects a PlanetScale database and provisions credentials managed by Cloudflare
+              when creating a Hyperdrive configuration. The Cloudflare account must already be
+              linked to PlanetScale in the Hyperdrive dashboard. The selection is returned as
+              read-only metadata and cannot be changed with replace or update operations.
 
           name: The name of the Hyperdrive configuration. Used to identify the configuration in
               the Cloudflare dashboard and API.
@@ -230,7 +231,9 @@ class ConfigsResource(SyncAPIResource):
         The request must
         include the name and complete origin connection details. Omitted caching
         settings are reset to their defaults, while omitted mTLS settings and origin
-        connection limits are preserved. Use the update operation to modify only
+        connection limits are preserved. The integration association is set only during
+        creation and cannot be changed; omit the integration field even when replacing
+        an integration-backed configuration. Use the update operation to modify only
         selected fields.
 
         Args:
@@ -412,7 +415,9 @@ class ConfigsResource(SyncAPIResource):
         """Updates and returns the specified fields of the Hyperdrive configuration.
 
         Custom
-        caching settings are not kept if caching is disabled.
+        caching settings are not kept if caching is disabled. For an integration-backed
+        configuration, the integration association is preserved but cannot be changed;
+        omit the integration field.
 
         Args:
           account_id: Define configurations using a unique string identifier.
@@ -674,9 +679,10 @@ class AsyncConfigsResource(AsyncAPIResource):
         Args:
           account_id: Define configurations using a unique string identifier.
 
-          integration: Connects to a PlanetScale database using credentials managed by Cloudflare. The
-              Cloudflare account must already be linked to PlanetScale in the Hyperdrive
-              dashboard.
+          integration: Selects a PlanetScale database and provisions credentials managed by Cloudflare
+              when creating a Hyperdrive configuration. The Cloudflare account must already be
+              linked to PlanetScale in the Hyperdrive dashboard. The selection is returned as
+              read-only metadata and cannot be changed with replace or update operations.
 
           name: The name of the Hyperdrive configuration. Used to identify the configuration in
               the Cloudflare dashboard and API.
@@ -773,7 +779,9 @@ class AsyncConfigsResource(AsyncAPIResource):
         The request must
         include the name and complete origin connection details. Omitted caching
         settings are reset to their defaults, while omitted mTLS settings and origin
-        connection limits are preserved. Use the update operation to modify only
+        connection limits are preserved. The integration association is set only during
+        creation and cannot be changed; omit the integration field even when replacing
+        an integration-backed configuration. Use the update operation to modify only
         selected fields.
 
         Args:
@@ -955,7 +963,9 @@ class AsyncConfigsResource(AsyncAPIResource):
         """Updates and returns the specified fields of the Hyperdrive configuration.
 
         Custom
-        caching settings are not kept if caching is disabled.
+        caching settings are not kept if caching is disabled. For an integration-backed
+        configuration, the integration association is preserved but cannot be changed;
+        omit the integration field.
 
         Args:
           account_id: Define configurations using a unique string identifier.

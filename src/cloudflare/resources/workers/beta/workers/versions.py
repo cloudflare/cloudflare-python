@@ -12,15 +12,28 @@ from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.workers.beta.workers import version_get_params, version_list_params, version_create_params
+from .....types.workers.beta.workers import (
+    version_get_params,
+    version_list_params,
+    version_create_params,
+    version_profile_params,
+)
 from .....types.workers.beta.workers.version import Version
 from .....types.workers.beta.workers.version_delete_response import VersionDeleteResponse
 
@@ -370,6 +383,85 @@ class VersionsResource(SyncAPIResource):
             cast_to=cast(Type[Version], ResultWrapper[Version]),
         )
 
+    def profile(
+        self,
+        version_id: str,
+        *,
+        account_id: str,
+        worker_id: str,
+        duration_ms: int,
+        actor_id: str | Omit = omit,
+        namespace_id: str | Omit = omit,
+        profile_type: Literal["cpu", "heap"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BinaryAPIResponse:
+        """
+        Captures a CPU or heap profile from a recently active isolate running the
+        specified Worker version. This endpoint requires the Worker profiling feature to
+        be enabled for the account.
+
+        Args:
+          account_id: Identifier.
+
+          worker_id: Identifies the Worker by ID or name.
+
+          version_id: Identifies the version by UUID or UUID prefix with a minimum length of eight
+              characters. Use "latest" to select the most recently created version, which may
+              not be deployed. Use "latest-deployed" to profile a version in the active
+              deployment. Versions are tried in order of traffic share until one has a loaded
+              isolate.
+
+          duration_ms: Profile duration in milliseconds.
+
+          actor_id: Identifies the exact Durable Object actor to profile. Must be specified together
+              with namespace_id. The actor must currently be active and running the requested
+              version.
+
+          namespace_id: Identifies the Durable Object namespace containing the actor to profile. Must be
+              specified together with actor_id.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not worker_id:
+            raise ValueError(f"Expected a non-empty value for `worker_id` but received {worker_id!r}")
+        if not version_id:
+            raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
+        extra_headers = {"Accept": "application/vnd.google.protobuf", **(extra_headers or {})}
+        return self._post(
+            path_template(
+                "/accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}/profile",
+                account_id=account_id,
+                worker_id=worker_id,
+                version_id=version_id,
+            ),
+            body=maybe_transform(
+                {
+                    "duration_ms": duration_ms,
+                    "actor_id": actor_id,
+                    "namespace_id": namespace_id,
+                    "profile_type": profile_type,
+                },
+                version_profile_params.VersionProfileParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=BinaryAPIResponse,
+        )
+
 
 class AsyncVersionsResource(AsyncAPIResource):
     @cached_property
@@ -714,6 +806,85 @@ class AsyncVersionsResource(AsyncAPIResource):
             cast_to=cast(Type[Version], ResultWrapper[Version]),
         )
 
+    async def profile(
+        self,
+        version_id: str,
+        *,
+        account_id: str,
+        worker_id: str,
+        duration_ms: int,
+        actor_id: str | Omit = omit,
+        namespace_id: str | Omit = omit,
+        profile_type: Literal["cpu", "heap"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncBinaryAPIResponse:
+        """
+        Captures a CPU or heap profile from a recently active isolate running the
+        specified Worker version. This endpoint requires the Worker profiling feature to
+        be enabled for the account.
+
+        Args:
+          account_id: Identifier.
+
+          worker_id: Identifies the Worker by ID or name.
+
+          version_id: Identifies the version by UUID or UUID prefix with a minimum length of eight
+              characters. Use "latest" to select the most recently created version, which may
+              not be deployed. Use "latest-deployed" to profile a version in the active
+              deployment. Versions are tried in order of traffic share until one has a loaded
+              isolate.
+
+          duration_ms: Profile duration in milliseconds.
+
+          actor_id: Identifies the exact Durable Object actor to profile. Must be specified together
+              with namespace_id. The actor must currently be active and running the requested
+              version.
+
+          namespace_id: Identifies the Durable Object namespace containing the actor to profile. Must be
+              specified together with actor_id.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not worker_id:
+            raise ValueError(f"Expected a non-empty value for `worker_id` but received {worker_id!r}")
+        if not version_id:
+            raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
+        extra_headers = {"Accept": "application/vnd.google.protobuf", **(extra_headers or {})}
+        return await self._post(
+            path_template(
+                "/accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}/profile",
+                account_id=account_id,
+                worker_id=worker_id,
+                version_id=version_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "duration_ms": duration_ms,
+                    "actor_id": actor_id,
+                    "namespace_id": namespace_id,
+                    "profile_type": profile_type,
+                },
+                version_profile_params.VersionProfileParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AsyncBinaryAPIResponse,
+        )
+
 
 class VersionsResourceWithRawResponse:
     def __init__(self, versions: VersionsResource) -> None:
@@ -730,6 +901,10 @@ class VersionsResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             versions.get,
+        )
+        self.profile = to_custom_raw_response_wrapper(
+            versions.profile,
+            BinaryAPIResponse,
         )
 
 
@@ -749,6 +924,10 @@ class AsyncVersionsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             versions.get,
         )
+        self.profile = async_to_custom_raw_response_wrapper(
+            versions.profile,
+            AsyncBinaryAPIResponse,
+        )
 
 
 class VersionsResourceWithStreamingResponse:
@@ -767,6 +946,10 @@ class VersionsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             versions.get,
         )
+        self.profile = to_custom_streamed_response_wrapper(
+            versions.profile,
+            StreamedBinaryAPIResponse,
+        )
 
 
 class AsyncVersionsResourceWithStreamingResponse:
@@ -784,4 +967,8 @@ class AsyncVersionsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             versions.get,
+        )
+        self.profile = async_to_custom_streamed_response_wrapper(
+            versions.profile,
+            AsyncStreamedBinaryAPIResponse,
         )

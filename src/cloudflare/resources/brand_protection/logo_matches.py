@@ -57,7 +57,7 @@ class LogoMatchesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoMatchDownloadResponse:
         """
-        Return matches as CSV for logo queries based on ID
+        Return matches as CSV for logo queries based on ID.
 
         Args:
           extra_headers: Send extra headers
@@ -104,7 +104,7 @@ class LogoMatchesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoMatchGetResponse:
         """
-        Return matches for logo queries based on ID
+        Return matches for logo queries based on ID.
 
         Args:
           extra_headers: Send extra headers
@@ -172,7 +172,7 @@ class AsyncLogoMatchesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoMatchDownloadResponse:
         """
-        Return matches as CSV for logo queries based on ID
+        Return matches as CSV for logo queries based on ID.
 
         Args:
           extra_headers: Send extra headers
@@ -219,7 +219,7 @@ class AsyncLogoMatchesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoMatchGetResponse:
         """
-        Return matches for logo queries based on ID
+        Return matches for logo queries based on ID.
 
         Args:
           extra_headers: Send extra headers

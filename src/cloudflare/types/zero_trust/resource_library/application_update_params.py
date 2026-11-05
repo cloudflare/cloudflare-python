@@ -23,7 +23,11 @@ class ApplicationUpdateParams(TypedDict, total=False):
     """
 
     port_protocols: SequenceNotStr[str]
-    """Port and protocol pairs matched by the application."""
+    """
+    Ports matched by the application, in `protocol/port` or inclusive
+    `protocol/start-end` format (for example, `tcp/443` or `udp/10000-20000`). TCP
+    and UDP ports must be between 0 and 65535.
+    """
 
     support_domains: SequenceNotStr[str]
     """Support domains matched by the application."""

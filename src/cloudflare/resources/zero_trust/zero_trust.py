@@ -10,6 +10,14 @@ from .seats import (
     SeatsResourceWithStreamingResponse,
     AsyncSeatsResourceWithStreamingResponse,
 )
+from .cws.cws import (
+    CWSResource,
+    AsyncCWSResource,
+    CWSResourceWithRawResponse,
+    AsyncCWSResourceWithRawResponse,
+    CWSResourceWithStreamingResponse,
+    AsyncCWSResourceWithStreamingResponse,
+)
 from .dex.dex import (
     DEXResource,
     AsyncDEXResource,
@@ -122,6 +130,10 @@ __all__ = ["ZeroTrustResource", "AsyncZeroTrustResource"]
 
 class ZeroTrustResource(SyncAPIResource):
     @cached_property
+    def cws(self) -> CWSResource:
+        return CWSResource(self._client)
+
+    @cached_property
     def devices(self) -> DevicesResource:
         return DevicesResource(self._client)
 
@@ -198,6 +210,10 @@ class ZeroTrustResource(SyncAPIResource):
 
 
 class AsyncZeroTrustResource(AsyncAPIResource):
+    @cached_property
+    def cws(self) -> AsyncCWSResource:
+        return AsyncCWSResource(self._client)
+
     @cached_property
     def devices(self) -> AsyncDevicesResource:
         return AsyncDevicesResource(self._client)
@@ -279,6 +295,10 @@ class ZeroTrustResourceWithRawResponse:
         self._zero_trust = zero_trust
 
     @cached_property
+    def cws(self) -> CWSResourceWithRawResponse:
+        return CWSResourceWithRawResponse(self._zero_trust.cws)
+
+    @cached_property
     def devices(self) -> DevicesResourceWithRawResponse:
         return DevicesResourceWithRawResponse(self._zero_trust.devices)
 
@@ -338,6 +358,10 @@ class ZeroTrustResourceWithRawResponse:
 class AsyncZeroTrustResourceWithRawResponse:
     def __init__(self, zero_trust: AsyncZeroTrustResource) -> None:
         self._zero_trust = zero_trust
+
+    @cached_property
+    def cws(self) -> AsyncCWSResourceWithRawResponse:
+        return AsyncCWSResourceWithRawResponse(self._zero_trust.cws)
 
     @cached_property
     def devices(self) -> AsyncDevicesResourceWithRawResponse:
@@ -401,6 +425,10 @@ class ZeroTrustResourceWithStreamingResponse:
         self._zero_trust = zero_trust
 
     @cached_property
+    def cws(self) -> CWSResourceWithStreamingResponse:
+        return CWSResourceWithStreamingResponse(self._zero_trust.cws)
+
+    @cached_property
     def devices(self) -> DevicesResourceWithStreamingResponse:
         return DevicesResourceWithStreamingResponse(self._zero_trust.devices)
 
@@ -460,6 +488,10 @@ class ZeroTrustResourceWithStreamingResponse:
 class AsyncZeroTrustResourceWithStreamingResponse:
     def __init__(self, zero_trust: AsyncZeroTrustResource) -> None:
         self._zero_trust = zero_trust
+
+    @cached_property
+    def cws(self) -> AsyncCWSResourceWithStreamingResponse:
+        return AsyncCWSResourceWithStreamingResponse(self._zero_trust.cws)
 
     @cached_property
     def devices(self) -> AsyncDevicesResourceWithStreamingResponse:

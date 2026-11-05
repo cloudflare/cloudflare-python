@@ -1,14 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["InvestigateGetResponse", "ActionLog", "ActionLogProperties", "Properties", "Finding", "Validation"]
+__all__ = [
+    "InvestigateGetResponse",
+    "ActionLog",
+    "ActionLogProperties",
+    "Properties",
+    "Finding",
+    "Validation",
+    "ValidationEmailSecurityValidation",
+]
 
 
 class ActionLogProperties(BaseModel):
@@ -113,7 +121,7 @@ class Finding(BaseModel):
     value: Optional[str] = None
 
 
-class Validation(BaseModel):
+class ValidationEmailSecurityValidation(BaseModel):
     comment: Optional[str] = None
 
     dkim: Optional[Literal["pass", "neutral", "fail", "error", "none"]] = None
@@ -121,6 +129,9 @@ class Validation(BaseModel):
     dmarc: Optional[Literal["pass", "neutral", "fail", "error", "none"]] = None
 
     spf: Optional[Literal["pass", "neutral", "fail", "error", "none"]] = None
+
+
+Validation: TypeAlias = Union[ValidationEmailSecurityValidation, Optional[object]]
 
 
 class InvestigateGetResponse(BaseModel):

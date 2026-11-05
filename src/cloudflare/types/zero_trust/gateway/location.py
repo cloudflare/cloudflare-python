@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from .endpoint import Endpoint
 from ...._models import BaseModel
+from .dns_destination_ips_id import DNSDestinationIPsID
 
 __all__ = ["Location", "MaxTTL", "Network"]
 
@@ -43,7 +44,7 @@ class Location(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    dns_destination_ips_id: Optional[str] = None
+    dns_destination_ips_id: Optional[DNSDestinationIPsID] = None
     """
     Indicate the identifier of the pair of IPv4 addresses assigned to this location.
     """
@@ -53,6 +54,12 @@ class Location(BaseModel):
     Specify the UUID of the IPv6 block brought to the gateway so that this
     location's IPv6 address is allocated from the Bring Your Own IPv6 (BYOIPv6)
     block rather than the standard Cloudflare IPv6 block.
+    """
+
+    dns64_enabled: Optional[bool] = None
+    """Enable DNS64 synthesis for DNS queries matched to this location.
+
+    When updating a location, omitting this field resets it to false.
     """
 
     doh_subdomain: Optional[str] = None

@@ -56,9 +56,15 @@ class RawResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Retrieves the feed document fetched by the most recent poll.
+        Retrieves the feed document fetched by the most recent poll as text/plain by
+        default or application/xml when format is xml.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
+          format: Response format. Use xml for application/xml; omit it for the default text/plain
+              response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -123,9 +129,15 @@ class AsyncRawResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Retrieves the feed document fetched by the most recent poll.
+        Retrieves the feed document fetched by the most recent poll as text/plain by
+        default or application/xml when format is xml.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
+          format: Response format. Use xml for application/xml; omit it for the default text/plain
+              response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

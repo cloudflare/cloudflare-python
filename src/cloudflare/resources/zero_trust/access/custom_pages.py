@@ -20,10 +20,16 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.access import custom_page_list_params, custom_page_create_params, custom_page_update_params
+from ....types.zero_trust.access import (
+    custom_page_list_params,
+    custom_page_create_params,
+    custom_page_update_params,
+    custom_page_validate_params,
+)
 from ....types.zero_trust.access.custom_page import CustomPage
 from ....types.zero_trust.access.custom_page_without_html import CustomPageWithoutHTML
 from ....types.zero_trust.access.custom_page_delete_response import CustomPageDeleteResponse
+from ....types.zero_trust.access.custom_page_validate_response import CustomPageValidateResponse
 
 __all__ = ["CustomPagesResource", "AsyncCustomPagesResource"]
 
@@ -327,6 +333,63 @@ class CustomPagesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[CustomPage]], ResultWrapper[CustomPage]),
         )
 
+    def validate(
+        self,
+        *,
+        account_id: str,
+        template: str,
+        type: Literal["identity_denied", "forbidden", "login", "interstitial"],
+        version: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CustomPageValidateResponse]:
+        """
+        Validate a Liquid template and return its errors and warnings without persisting
+        it.
+
+        Args:
+          account_id: Identifier.
+
+          template: The Liquid template to validate.
+
+          type: Custom page type.
+
+          version: Contract version to validate against; omit for the latest.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            path_template("/accounts/{account_id}/access/custom_pages/validate", account_id=account_id),
+            body=maybe_transform(
+                {
+                    "template": template,
+                    "type": type,
+                    "version": version,
+                },
+                custom_page_validate_params.CustomPageValidateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageValidateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomPageValidateResponse]], ResultWrapper[CustomPageValidateResponse]),
+        )
+
 
 class AsyncCustomPagesResource(AsyncAPIResource):
     @cached_property
@@ -627,6 +690,63 @@ class AsyncCustomPagesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[CustomPage]], ResultWrapper[CustomPage]),
         )
 
+    async def validate(
+        self,
+        *,
+        account_id: str,
+        template: str,
+        type: Literal["identity_denied", "forbidden", "login", "interstitial"],
+        version: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[CustomPageValidateResponse]:
+        """
+        Validate a Liquid template and return its errors and warnings without persisting
+        it.
+
+        Args:
+          account_id: Identifier.
+
+          template: The Liquid template to validate.
+
+          type: Custom page type.
+
+          version: Contract version to validate against; omit for the latest.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            path_template("/accounts/{account_id}/access/custom_pages/validate", account_id=account_id),
+            body=await async_maybe_transform(
+                {
+                    "template": template,
+                    "type": type,
+                    "version": version,
+                },
+                custom_page_validate_params.CustomPageValidateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageValidateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomPageValidateResponse]], ResultWrapper[CustomPageValidateResponse]),
+        )
+
 
 class CustomPagesResourceWithRawResponse:
     def __init__(self, custom_pages: CustomPagesResource) -> None:
@@ -646,6 +766,9 @@ class CustomPagesResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             custom_pages.get,
+        )
+        self.validate = to_raw_response_wrapper(
+            custom_pages.validate,
         )
 
 
@@ -668,6 +791,9 @@ class AsyncCustomPagesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             custom_pages.get,
         )
+        self.validate = async_to_raw_response_wrapper(
+            custom_pages.validate,
+        )
 
 
 class CustomPagesResourceWithStreamingResponse:
@@ -689,6 +815,9 @@ class CustomPagesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             custom_pages.get,
         )
+        self.validate = to_streamed_response_wrapper(
+            custom_pages.validate,
+        )
 
 
 class AsyncCustomPagesResourceWithStreamingResponse:
@@ -709,4 +838,7 @@ class AsyncCustomPagesResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             custom_pages.get,
+        )
+        self.validate = async_to_streamed_response_wrapper(
+            custom_pages.validate,
         )

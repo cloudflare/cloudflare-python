@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -14,19 +14,19 @@ class Resource(BaseModel):
     """Share Resource identifier."""
 
     created: datetime
-    """When the share was created."""
+    """When the object was created."""
 
     meta: object
     """Resource Metadata."""
 
     modified: datetime
-    """When the share was modified."""
+    """When the object was last modified."""
 
     resource_account_id: str
     """Account identifier."""
 
     resource_id: str
-    """Share Resource identifier."""
+    """Identifier assigned by the service that owns the shared resource."""
 
     resource_type: Literal[
         "custom-ruleset",
@@ -57,10 +57,10 @@ class ResourceSharingDeleteResponse(BaseModel):
     """The display name of an account."""
 
     created: datetime
-    """When the share was created."""
+    """When the object was created."""
 
     modified: datetime
-    """When the share was modified."""
+    """When the object was last modified."""
 
     name: str
     """The name of the share."""
@@ -107,4 +107,11 @@ class ResourceSharingDeleteResponse(BaseModel):
 
     This field is only included when requested via the 'include_resources'
     parameter.
+    """
+
+    tags: Optional[Dict[str, str]] = None
+    """Tags associated with the share.
+
+    Included in create and update responses when tags are supplied, and in read
+    responses when the `include_tags_from` parameter is set.
     """

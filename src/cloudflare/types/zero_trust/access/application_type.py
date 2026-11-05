@@ -6,6 +6,7 @@ __all__ = ["ApplicationType"]
 
 ApplicationType: TypeAlias = Literal[
     "self_hosted",
+    "end_user",
     "saas",
     "ssh",
     "vnc",

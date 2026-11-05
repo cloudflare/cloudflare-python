@@ -10,23 +10,23 @@ __all__ = ["ItemListParams"]
 class ItemListParams(TypedDict, total=False):
     account_id: Required[str]
 
-    name: Required[str]
+    namespace: Required[str]
 
     item_id: str
-    """Filter items by their unique ID. Returns at most one item."""
+    """Return only the item with this unique ID. Returns at most one item."""
 
     key: str
-    """Filter items by their exact key (object key / filename).
+    """Return only items with this exact key (object key / filename).
 
-    Keys are unique per source, so combine with `source` to disambiguate across data
-    sources.
+    Each key is unique within a source, so combine with `source` to disambiguate
+    across data sources.
     """
 
     metadata_filter: str
     """JSON-encoded metadata filter using Vectorize filter syntax.
 
     Examples: {"folder":"reports/"},
-    {"timestamp":{"$gte":1700000000000}}, {"folder":{"$in":["docs/","reports/"]}}
+    {"timestamp":{"$gte":1700000000000}}, {"folder":{"$in":["docs/","reports/"]}}.
     """
 
     page: int
@@ -38,12 +38,13 @@ class ItemListParams(TypedDict, total=False):
     sort_by: Literal["status", "modified_at"]
     """Sort order for items.
 
-    "status" (default) sorts by status priority then last_seen_at. "modified_at"
-    sorts by file modification time (most recent first), falling back to created_at.
+    "status" (default) sorts items according to status priority, then last_seen_at.
+    "modified_at" sorts items according to file modification time (most recent
+    first), falling back to created_at.
     """
 
     source: str
-    """Filter items by source_id.
+    """Return only items with this source_id.
 
     Use "builtin" for uploaded files, or a source identifier like
     "web-crawler:https://example.com".

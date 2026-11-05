@@ -21,6 +21,13 @@ workflow:
 lint:
   stage: lint
   timeout: 20 minutes
+  # pyright peaks ~5.3GB RSS; default linux-x86-2cpu-4gb Pod runner OOMs. Bump to
+  # 8GB per Codex RFC 023 (gitlab-ci-runner-selection): Pod runner, one tag,
+  # below the 8cpu-16gb evidence threshold.
+  tags:
+    - linux-x86-4cpu-8gb
+  variables:
+    NODE_OPTIONS: "--max-old-space-size=6144"
   rules:
     - if: $CI_COMMIT_TITLE == "codegen metadata"
       when: never

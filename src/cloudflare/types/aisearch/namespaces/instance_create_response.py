@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -14,6 +14,7 @@ __all__ = [
     "IndexMethod",
     "IndexingOptions",
     "Metadata",
+    "MetadataCreatedFromEmdashPlugin",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
     "PublicEndpointParamsMcp",
@@ -36,9 +37,9 @@ class CustomMetadata(BaseModel):
 
 
 class IndexMethod(BaseModel):
-    """Controls which storage backends are used during indexing.
+    """Controls which storage backends indexing uses.
 
-    Defaults to vector and keyword indexing for new instances.
+    Defaults to vector and keyword indexing for new instances. When set, both vector and keyword are required.
     """
 
     keyword: bool
@@ -65,22 +66,42 @@ class IndexingOptions(BaseModel):
     """
 
 
+class MetadataCreatedFromEmdashPlugin(BaseModel):
+    type: Literal["native", "rest"]
+
+    version: str
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+    else:
+        __pydantic_extra__: Dict[str, object]
+
+
 class Metadata(BaseModel):
     created_from_aisearch_wizard: Optional[bool] = None
+
+    created_from_emdash_plugin: Optional[MetadataCreatedFromEmdashPlugin] = None
 
     worker_domain: Optional[str] = None
 
 
 class PublicEndpointParamsChatCompletionsEndpoint(BaseModel):
     disabled: Optional[bool] = None
-    """Disable chat completions endpoint for this public endpoint"""
+    """Disable chat completions endpoint for this public endpoint."""
 
 
 class PublicEndpointParamsMcp(BaseModel):
     description: Optional[str] = None
 
     disabled: Optional[bool] = None
-    """Disable MCP endpoint for this public endpoint"""
+    """Disable MCP endpoint for this public endpoint."""
 
 
 class PublicEndpointParamsRateLimit(BaseModel):
@@ -93,7 +114,7 @@ class PublicEndpointParamsRateLimit(BaseModel):
 
 class PublicEndpointParamsSearchEndpoint(BaseModel):
     disabled: Optional[bool] = None
-    """Disable search endpoint for this public endpoint"""
+    """Disable search endpoint for this public endpoint."""
 
 
 class PublicEndpointParams(BaseModel):
@@ -156,18 +177,18 @@ class RetrievalOptions(BaseModel):
     """
 
     keyword_match_mode: Optional[Literal["and", "or"]] = None
-    """Controls which documents are candidates for BM25 scoring.
+    """Controls which documents become candidates for BM25 scoring.
 
     'and' restricts candidates to documents containing all query terms; 'or'
-    includes any document containing at least one term, ranked by BM25 relevance.
-    When omitted on an update, the existing stored value is preserved; when never
-    set, search falls back to 'and'.
+    includes any document containing at least one term and ranks results according
+    to BM25 relevance. When omitted on an update, the existing stored value stays
+    unchanged; when never set, search falls back to 'and'.
     """
 
 
 class SourceParamsWebCrawlerDiscoverOptions(BaseModel):
     """
-    Options for parse_type 'discover', where Browser Run discovers URLs by link following and sitemaps. Ignored for 'sitemap'.
+    Options for parse_type 'discover', where Browser Run discovers URLs through link following and sitemaps. Ignored for 'sitemap'.
     """
 
     depth: Optional[float] = None
@@ -176,7 +197,7 @@ class SourceParamsWebCrawlerDiscoverOptions(BaseModel):
     include_external_links: Optional[bool] = None
     """Follow links that point outside the source domain.
 
-    Must stay `false` — discover crawls are restricted to the zone you own.
+    Must stay `false` because discover crawls only cover the zone you own.
     """
 
     include_subdomains: Optional[bool] = None
@@ -206,9 +227,9 @@ class SourceParamsWebCrawlerParseOptionsContentSelector(BaseModel):
     selector: str
     """CSS selector to extract content from pages matching the path pattern.
 
-    Must not contain disallowed characters (;, `, $, {, }, \\)). Must target a single
-    element; if multiple elements match, the selector is ignored and the full page
-    is used.
+    Disallowed characters: ;, `, $, {, }, \\.. Must target a single element; if
+    multiple elements match, the crawler ignores the selector and uses the full
+    page.
     """
 
 
@@ -217,15 +238,16 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
     """
     List of path-to-selector mappings for extracting specific content from crawled
     pages. Each entry pairs a URL glob pattern with a CSS selector. The first
-    matching path wins. Only the matched HTML fragment is stored and indexed. Omit
-    the field to disable content selection — empty arrays are rejected.
+    matching path wins. The crawler stores and indexes only the matched HTML
+    fragment. Omit the field to disable content selection; the API rejects empty
+    arrays.
     """
 
     include_headers: Optional[Dict[str, str]] = None
     """Up to 5 custom HTTP headers sent with each crawl request.
 
-    Names must be RFC-7230 token characters (no spaces, colons, or control
-    characters); values must be HTAB + printable ASCII (no CR/LF).
+    Names must use RFC-7230 token characters, excluding spaces, colons, and control
+    characters. Values must use HTAB and printable ASCII only, excluding CR and LF.
     """
 
     include_images: Optional[bool] = None
@@ -242,17 +264,17 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
 class SourceParamsWebCrawler(BaseModel):
     discover_options: Optional[SourceParamsWebCrawlerDiscoverOptions] = None
     """
-    Options for parse_type 'discover', where Browser Run discovers URLs by link
+    Options for parse_type 'discover', where Browser Run discovers URLs through link
     following and sitemaps. Ignored for 'sitemap'.
     """
 
     parse_options: Optional[SourceParamsWebCrawlerParseOptions] = None
 
     parse_type: Optional[Literal["sitemap", "discover"]] = None
-    """How URLs are discovered.
+    """How the crawler finds URLs.
 
     'sitemap' reads XML sitemaps; 'discover' follows links recursively and requires
-    the source to be a Verified zone on this account.
+    the source to belong to a Verified zone on this account.
     """
 
 
@@ -262,7 +284,7 @@ class SourceParams(BaseModel):
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
     path segments (e.g., /admin/** matches /admin/users and
-    /admin/settings/advanced). Most accounts are limited to 10 rules; contact
+    /admin/settings/advanced). Most accounts have a limit of 10 rules; contact
     support to raise it.
     """
 
@@ -271,7 +293,7 @@ class SourceParams(BaseModel):
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
     path segments (e.g., /blog/** matches /blog/post and /blog/2024/post). Most
-    accounts are limited to 10 rules; contact support to raise it.
+    accounts have a limit of 10 rules; contact support to raise it.
     """
 
     prefix: Optional[str] = None
@@ -331,9 +353,10 @@ class InstanceCreateResponse(BaseModel):
     """
 
     index_method: Optional[IndexMethod] = None
-    """Controls which storage backends are used during indexing.
+    """Controls which storage backends indexing uses.
 
-    Defaults to vector and keyword indexing for new instances.
+    Defaults to vector and keyword indexing for new instances. When set, both vector
+    and keyword are required.
     """
 
     indexing_options: Optional[IndexingOptions] = None
@@ -369,6 +392,7 @@ class InstanceCreateResponse(BaseModel):
     rewrite_query: Optional[bool] = None
 
     score_threshold: Optional[float] = None
+    """Minimum similarity score a chunk must reach to be returned. Defaults to 0.4."""
 
     source: Optional[str] = None
 
@@ -380,7 +404,7 @@ class InstanceCreateResponse(BaseModel):
     """Interval between automatic syncs, in seconds.
 
     Allowed values: 900 (15min), 1800 (30min), 3600 (1h), 7200 (2h), 14400 (4h),
-    21600 (6h), 43200 (12h), 86400 (24h).
+    21600 (6h), 43200 (12h), 86400 (24h). Defaults to 86400 (24h).
     """
 
     token_id: Optional[str] = None

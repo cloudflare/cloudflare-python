@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-from .domain import Domain as Domain
 from .registration import Registration as Registration
 from .workflow_status import WorkflowStatus as WorkflowStatus
-from .domain_update_params import DomainUpdateParams as DomainUpdateParams
 from .extension_list_params import ExtensionListParams as ExtensionListParams
 from .extension_get_response import ExtensionGetResponse as ExtensionGetResponse
 from .registrar_check_params import RegistrarCheckParams as RegistrarCheckParams

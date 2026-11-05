@@ -115,7 +115,11 @@ class OrganizationListResponse(BaseModel):
     """
 
     auth_domain: Optional[str] = None
-    """The unique subdomain assigned to your Zero Trust organization."""
+    """The unique subdomain assigned to your Zero Trust organization.
+
+    If omitted on creation, a unique subdomain is auto-generated in the format
+    `adjective-noun-hex4` (e.g. `frosty-moon-7a3b.cloudflareaccess.com`).
+    """
 
     auto_redirect_to_identity: Optional[bool] = None
     """
@@ -142,6 +146,9 @@ class OrganizationListResponse(BaseModel):
     the request.
     """
 
+    disable_end_user_app_creation: Optional[bool] = None
+    """Whether creation of end user applications is disabled for this organization."""
+
     is_ui_read_only: Optional[bool] = None
     """Lock all settings as Read-Only in the Dashboard, regardless of user permission.
 
@@ -166,7 +173,11 @@ class OrganizationListResponse(BaseModel):
     """
 
     name: Optional[str] = None
-    """The name of your Zero Trust organization."""
+    """The name of your Zero Trust organization.
+
+    When omitted on creation, defaults to the provided auth_domain; when both are
+    omitted, defaults to the auto-generated subdomain slug (e.g. frosty-moon-7a3b).
+    """
 
     service_token_inactivity: Optional[ServiceTokenInactivity] = None
     """Configures automatic enforcement for inactive service tokens.

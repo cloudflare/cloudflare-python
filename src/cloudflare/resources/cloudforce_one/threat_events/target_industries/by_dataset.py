@@ -52,8 +52,10 @@ class ByDatasetResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByDatasetListResponse:
-        """
-        Lists all target industries for a specific dataset
+        """Legacy.
+
+        Use `threat-intel events target-industries list`
+        (`GET /events/targetIndustries`) instead.
 
         Args:
           account_id: Account ID.
@@ -117,8 +119,10 @@ class AsyncByDatasetResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByDatasetListResponse:
-        """
-        Lists all target industries for a specific dataset
+        """Legacy.
+
+        Use `threat-intel events target-industries list`
+        (`GET /events/targetIndustries`) instead.
 
         Args:
           account_id: Account ID.

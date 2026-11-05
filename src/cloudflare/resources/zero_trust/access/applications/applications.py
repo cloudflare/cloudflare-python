@@ -125,6 +125,85 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
+        oauth_configuration: application_create_params.AccessEndUserPropsOAuthConfiguration,
+        type: Literal[
+            "self_hosted",
+            "end_user",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
+        ],
+        user_populations: SequenceNotStr[str],
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        destinations: Iterable[application_create_params.AccessEndUserPropsDestination] | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Adds a new application to Access.
+
+        Args:
+          oauth_configuration: **Beta:** Optional configuration for managing an OAuth authorization flow
+              controlled by Access. When set, Access will act as the OAuth authorization
+              server for this application. Only compatible with OAuth clients that support
+              [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+              for OAuth 2.0). This feature is currently in beta.
+
+          type: The application type.
+
+          user_populations: The single user population associated with this application.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          destinations: Public hostname and Workers destinations secured by Access.
+
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
+
+          name: The name of the application.
+
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         domain: str,
         type: ApplicationType,
         account_id: str | Omit = omit,
@@ -265,7 +344,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -363,6 +442,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -515,7 +595,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -544,6 +624,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -696,7 +777,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -724,6 +805,7 @@ class ApplicationsResource(SyncAPIResource):
         *,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -801,7 +883,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -867,7 +949,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -931,7 +1013,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -1002,7 +1084,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -1081,6 +1163,7 @@ class ApplicationsResource(SyncAPIResource):
         mfa_config: application_create_params.InfrastructureApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
         policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1104,6 +1187,10 @@ class ApplicationsResource(SyncAPIResource):
           name: The name of the application.
 
           policies: The policies that Access applies to the application.
+
+          session_duration: The maximum duration of a connection to this application's targets. Connections
+              are terminated once it elapses. Must be in the format `30m` or `2h45m`, in whole
+              seconds. Valid time units are: s, m, h.
 
           extra_headers: Send extra headers
 
@@ -1260,7 +1347,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -1379,7 +1466,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -1495,7 +1582,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -1513,10 +1600,17 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        domain: str | Omit = omit,
-        type: ApplicationType
-        | Literal[
+        oauth_configuration: application_create_params.AccessEndUserPropsOAuthConfiguration
+        | application_create_params.SelfHostedApplicationOAuthConfiguration
+        | application_create_params.BrowserSSHApplicationOAuthConfiguration
+        | application_create_params.BrowserVNCApplicationOAuthConfiguration
+        | application_create_params.BrowserRDPApplicationOAuthConfiguration
+        | application_create_params.McpServerApplicationOAuthConfiguration
+        | application_create_params.McpServerPortalApplicationOAuthConfiguration
+        | Omit = omit,
+        type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -1531,12 +1625,25 @@ class ApplicationsResource(SyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ]
+        | ApplicationType
         | Omit = omit,
+        user_populations: SequenceNotStr[str] | Omit = omit,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        destinations: Iterable[application_create_params.AccessEndUserPropsDestination]
+        | Iterable[application_create_params.SelfHostedApplicationDestination]
+        | Iterable[application_create_params.BrowserSSHApplicationDestination]
+        | Iterable[application_create_params.BrowserVNCApplicationDestination]
+        | Iterable[application_create_params.BrowserRDPApplicationDestination]
+        | Iterable[application_create_params.McpServerApplicationDestination]
+        | Iterable[application_create_params.McpServerPortalApplicationDestination]
+        | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
-        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_visible: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         cors_headers: CORSHeadersParam | Omit = omit,
@@ -1544,13 +1651,6 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | Omit = omit,
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
-        destinations: Iterable[application_create_params.SelfHostedApplicationDestination]
-        | Iterable[application_create_params.BrowserSSHApplicationDestination]
-        | Iterable[application_create_params.BrowserVNCApplicationDestination]
-        | Iterable[application_create_params.BrowserRDPApplicationDestination]
-        | Iterable[application_create_params.McpServerApplicationDestination]
-        | Iterable[application_create_params.McpServerPortalApplicationDestination]
-        | Omit = omit,
         eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
@@ -1560,14 +1660,6 @@ class ApplicationsResource(SyncAPIResource):
         | application_create_params.BrowserVNCApplicationMfaConfig
         | application_create_params.InfrastructureApplicationMfaConfig
         | application_create_params.BrowserRDPApplicationMfaConfig
-        | Omit = omit,
-        name: str | Omit = omit,
-        oauth_configuration: application_create_params.SelfHostedApplicationOAuthConfiguration
-        | application_create_params.BrowserSSHApplicationOAuthConfiguration
-        | application_create_params.BrowserVNCApplicationOAuthConfiguration
-        | application_create_params.BrowserRDPApplicationOAuthConfiguration
-        | application_create_params.McpServerApplicationOAuthConfiguration
-        | application_create_params.McpServerPortalApplicationOAuthConfiguration
         | Omit = omit,
         options_preflight_bypass: bool | Omit = omit,
         path_cookie_attribute: bool | Omit = omit,
@@ -1595,7 +1687,6 @@ class ApplicationsResource(SyncAPIResource):
         | application_create_params.McpServerApplicationSCIMConfig
         | application_create_params.McpServerPortalApplicationSCIMConfig
         | Omit = omit,
-        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         service_auth_401_redirect: bool | Omit = omit,
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
@@ -1640,11 +1731,16 @@ class ApplicationsResource(SyncAPIResource):
                 ),
                 body=maybe_transform(
                     {
-                        "domain": domain,
+                        "oauth_configuration": oauth_configuration,
                         "type": type,
+                        "user_populations": user_populations,
+                        "allowed_idps": allowed_idps,
+                        "destinations": destinations,
+                        "domain": domain,
+                        "name": name,
+                        "self_hosted_domains": self_hosted_domains,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
                         "allow_iframe": allow_iframe,
-                        "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
                         "cors_headers": cors_headers,
@@ -1652,21 +1748,17 @@ class ApplicationsResource(SyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
-                        "destinations": destinations,
                         "eager_redirect_cookie_setting": eager_redirect_cookie_setting,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
                         "mfa_config": mfa_config,
-                        "name": name,
-                        "oauth_configuration": oauth_configuration,
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
                         "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
-                        "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
@@ -1695,6 +1787,88 @@ class ApplicationsResource(SyncAPIResource):
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
+
+    @overload
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        oauth_configuration: application_update_params.AccessEndUserPropsOAuthConfiguration,
+        type: Literal[
+            "self_hosted",
+            "end_user",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
+        ],
+        user_populations: SequenceNotStr[str],
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        destinations: Iterable[application_update_params.AccessEndUserPropsDestination] | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Updates an Access application.
+
+        Args:
+          app_id: Identifier.
+
+          oauth_configuration: **Beta:** Optional configuration for managing an OAuth authorization flow
+              controlled by Access. When set, Access will act as the OAuth authorization
+              server for this application. Only compatible with OAuth clients that support
+              [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+              for OAuth 2.0). This feature is currently in beta.
+
+          type: The application type.
+
+          user_populations: The single user population associated with this application.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          destinations: Public hostname and Workers destinations secured by Access.
+
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
+
+          name: The name of the application.
+
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
 
     @overload
     def update(
@@ -1843,7 +2017,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -1945,6 +2119,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -2099,7 +2274,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -2129,6 +2304,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -2283,7 +2459,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -2312,6 +2488,7 @@ class ApplicationsResource(SyncAPIResource):
         *,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -2391,7 +2568,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -2460,7 +2637,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -2527,7 +2704,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -2601,7 +2778,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -2684,6 +2861,7 @@ class ApplicationsResource(SyncAPIResource):
         mfa_config: application_update_params.InfrastructureApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
         policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2709,6 +2887,10 @@ class ApplicationsResource(SyncAPIResource):
           name: The name of the application.
 
           policies: The policies that Access applies to the application.
+
+          session_duration: The maximum duration of a connection to this application's targets. Connections
+              are terminated once it elapses. Must be in the format `30m` or `2h45m`, in whole
+              seconds. Valid time units are: s, m, h.
 
           extra_headers: Send extra headers
 
@@ -2868,7 +3050,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -2990,7 +3172,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -3109,7 +3291,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -3128,10 +3310,17 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppID,
         *,
-        domain: str | Omit = omit,
-        type: ApplicationType
-        | Literal[
+        oauth_configuration: application_update_params.AccessEndUserPropsOAuthConfiguration
+        | application_update_params.SelfHostedApplicationOAuthConfiguration
+        | application_update_params.BrowserSSHApplicationOAuthConfiguration
+        | application_update_params.BrowserVNCApplicationOAuthConfiguration
+        | application_update_params.BrowserRDPApplicationOAuthConfiguration
+        | application_update_params.McpServerApplicationOAuthConfiguration
+        | application_update_params.McpServerPortalApplicationOAuthConfiguration
+        | Omit = omit,
+        type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -3146,12 +3335,25 @@ class ApplicationsResource(SyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ]
+        | ApplicationType
         | Omit = omit,
+        user_populations: SequenceNotStr[str] | Omit = omit,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        destinations: Iterable[application_update_params.AccessEndUserPropsDestination]
+        | Iterable[application_update_params.SelfHostedApplicationDestination]
+        | Iterable[application_update_params.BrowserSSHApplicationDestination]
+        | Iterable[application_update_params.BrowserVNCApplicationDestination]
+        | Iterable[application_update_params.BrowserRDPApplicationDestination]
+        | Iterable[application_update_params.McpServerApplicationDestination]
+        | Iterable[application_update_params.McpServerPortalApplicationDestination]
+        | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
-        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_visible: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         cors_headers: CORSHeadersParam | Omit = omit,
@@ -3159,13 +3361,6 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | Omit = omit,
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
-        destinations: Iterable[application_update_params.SelfHostedApplicationDestination]
-        | Iterable[application_update_params.BrowserSSHApplicationDestination]
-        | Iterable[application_update_params.BrowserVNCApplicationDestination]
-        | Iterable[application_update_params.BrowserRDPApplicationDestination]
-        | Iterable[application_update_params.McpServerApplicationDestination]
-        | Iterable[application_update_params.McpServerPortalApplicationDestination]
-        | Omit = omit,
         eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
@@ -3175,14 +3370,6 @@ class ApplicationsResource(SyncAPIResource):
         | application_update_params.BrowserVNCApplicationMfaConfig
         | application_update_params.InfrastructureApplicationMfaConfig
         | application_update_params.BrowserRDPApplicationMfaConfig
-        | Omit = omit,
-        name: str | Omit = omit,
-        oauth_configuration: application_update_params.SelfHostedApplicationOAuthConfiguration
-        | application_update_params.BrowserSSHApplicationOAuthConfiguration
-        | application_update_params.BrowserVNCApplicationOAuthConfiguration
-        | application_update_params.BrowserRDPApplicationOAuthConfiguration
-        | application_update_params.McpServerApplicationOAuthConfiguration
-        | application_update_params.McpServerPortalApplicationOAuthConfiguration
         | Omit = omit,
         options_preflight_bypass: bool | Omit = omit,
         path_cookie_attribute: bool | Omit = omit,
@@ -3210,7 +3397,6 @@ class ApplicationsResource(SyncAPIResource):
         | application_update_params.McpServerApplicationSCIMConfig
         | application_update_params.McpServerPortalApplicationSCIMConfig
         | Omit = omit,
-        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         service_auth_401_redirect: bool | Omit = omit,
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
@@ -3258,11 +3444,16 @@ class ApplicationsResource(SyncAPIResource):
                 ),
                 body=maybe_transform(
                     {
-                        "domain": domain,
+                        "oauth_configuration": oauth_configuration,
                         "type": type,
+                        "user_populations": user_populations,
+                        "allowed_idps": allowed_idps,
+                        "destinations": destinations,
+                        "domain": domain,
+                        "name": name,
+                        "self_hosted_domains": self_hosted_domains,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
                         "allow_iframe": allow_iframe,
-                        "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
                         "cors_headers": cors_headers,
@@ -3270,21 +3461,17 @@ class ApplicationsResource(SyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
-                        "destinations": destinations,
                         "eager_redirect_cookie_setting": eager_redirect_cookie_setting,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
                         "mfa_config": mfa_config,
-                        "name": name,
-                        "oauth_configuration": oauth_configuration,
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
                         "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
-                        "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
@@ -3643,6 +3830,85 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        oauth_configuration: application_create_params.AccessEndUserPropsOAuthConfiguration,
+        type: Literal[
+            "self_hosted",
+            "end_user",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
+        ],
+        user_populations: SequenceNotStr[str],
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        destinations: Iterable[application_create_params.AccessEndUserPropsDestination] | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Adds a new application to Access.
+
+        Args:
+          oauth_configuration: **Beta:** Optional configuration for managing an OAuth authorization flow
+              controlled by Access. When set, Access will act as the OAuth authorization
+              server for this application. Only compatible with OAuth clients that support
+              [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+              for OAuth 2.0). This feature is currently in beta.
+
+          type: The application type.
+
+          user_populations: The single user population associated with this application.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          destinations: Public hostname and Workers destinations secured by Access.
+
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
+
+          name: The name of the application.
+
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         domain: str,
         type: ApplicationType,
         account_id: str | Omit = omit,
@@ -3783,7 +4049,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -3881,6 +4147,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -4033,7 +4300,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -4062,6 +4329,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -4214,7 +4482,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -4242,6 +4510,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -4319,7 +4588,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -4385,7 +4654,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -4449,7 +4718,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -4520,7 +4789,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -4599,6 +4868,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         mfa_config: application_create_params.InfrastructureApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
         policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4622,6 +4892,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           name: The name of the application.
 
           policies: The policies that Access applies to the application.
+
+          session_duration: The maximum duration of a connection to this application's targets. Connections
+              are terminated once it elapses. Must be in the format `30m` or `2h45m`, in whole
+              seconds. Valid time units are: s, m, h.
 
           extra_headers: Send extra headers
 
@@ -4778,7 +5052,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -4897,7 +5171,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -5013,7 +5287,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -5031,10 +5305,17 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        domain: str | Omit = omit,
-        type: ApplicationType
-        | Literal[
+        oauth_configuration: application_create_params.AccessEndUserPropsOAuthConfiguration
+        | application_create_params.SelfHostedApplicationOAuthConfiguration
+        | application_create_params.BrowserSSHApplicationOAuthConfiguration
+        | application_create_params.BrowserVNCApplicationOAuthConfiguration
+        | application_create_params.BrowserRDPApplicationOAuthConfiguration
+        | application_create_params.McpServerApplicationOAuthConfiguration
+        | application_create_params.McpServerPortalApplicationOAuthConfiguration
+        | Omit = omit,
+        type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -5049,12 +5330,25 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ]
+        | ApplicationType
         | Omit = omit,
+        user_populations: SequenceNotStr[str] | Omit = omit,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        destinations: Iterable[application_create_params.AccessEndUserPropsDestination]
+        | Iterable[application_create_params.SelfHostedApplicationDestination]
+        | Iterable[application_create_params.BrowserSSHApplicationDestination]
+        | Iterable[application_create_params.BrowserVNCApplicationDestination]
+        | Iterable[application_create_params.BrowserRDPApplicationDestination]
+        | Iterable[application_create_params.McpServerApplicationDestination]
+        | Iterable[application_create_params.McpServerPortalApplicationDestination]
+        | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
-        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_visible: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         cors_headers: CORSHeadersParam | Omit = omit,
@@ -5062,13 +5356,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | Omit = omit,
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
-        destinations: Iterable[application_create_params.SelfHostedApplicationDestination]
-        | Iterable[application_create_params.BrowserSSHApplicationDestination]
-        | Iterable[application_create_params.BrowserVNCApplicationDestination]
-        | Iterable[application_create_params.BrowserRDPApplicationDestination]
-        | Iterable[application_create_params.McpServerApplicationDestination]
-        | Iterable[application_create_params.McpServerPortalApplicationDestination]
-        | Omit = omit,
         eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
@@ -5078,14 +5365,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | application_create_params.BrowserVNCApplicationMfaConfig
         | application_create_params.InfrastructureApplicationMfaConfig
         | application_create_params.BrowserRDPApplicationMfaConfig
-        | Omit = omit,
-        name: str | Omit = omit,
-        oauth_configuration: application_create_params.SelfHostedApplicationOAuthConfiguration
-        | application_create_params.BrowserSSHApplicationOAuthConfiguration
-        | application_create_params.BrowserVNCApplicationOAuthConfiguration
-        | application_create_params.BrowserRDPApplicationOAuthConfiguration
-        | application_create_params.McpServerApplicationOAuthConfiguration
-        | application_create_params.McpServerPortalApplicationOAuthConfiguration
         | Omit = omit,
         options_preflight_bypass: bool | Omit = omit,
         path_cookie_attribute: bool | Omit = omit,
@@ -5113,7 +5392,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | application_create_params.McpServerApplicationSCIMConfig
         | application_create_params.McpServerPortalApplicationSCIMConfig
         | Omit = omit,
-        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         service_auth_401_redirect: bool | Omit = omit,
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
@@ -5158,11 +5436,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
                 ),
                 body=await async_maybe_transform(
                     {
-                        "domain": domain,
+                        "oauth_configuration": oauth_configuration,
                         "type": type,
+                        "user_populations": user_populations,
+                        "allowed_idps": allowed_idps,
+                        "destinations": destinations,
+                        "domain": domain,
+                        "name": name,
+                        "self_hosted_domains": self_hosted_domains,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
                         "allow_iframe": allow_iframe,
-                        "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
                         "cors_headers": cors_headers,
@@ -5170,21 +5453,17 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
-                        "destinations": destinations,
                         "eager_redirect_cookie_setting": eager_redirect_cookie_setting,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
                         "mfa_config": mfa_config,
-                        "name": name,
-                        "oauth_configuration": oauth_configuration,
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
                         "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
-                        "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
@@ -5213,6 +5492,88 @@ class AsyncApplicationsResource(AsyncAPIResource):
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
+
+    @overload
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        oauth_configuration: application_update_params.AccessEndUserPropsOAuthConfiguration,
+        type: Literal[
+            "self_hosted",
+            "end_user",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
+        ],
+        user_populations: SequenceNotStr[str],
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        destinations: Iterable[application_update_params.AccessEndUserPropsDestination] | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Updates an Access application.
+
+        Args:
+          app_id: Identifier.
+
+          oauth_configuration: **Beta:** Optional configuration for managing an OAuth authorization flow
+              controlled by Access. When set, Access will act as the OAuth authorization
+              server for this application. Only compatible with OAuth clients that support
+              [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+              for OAuth 2.0). This feature is currently in beta.
+
+          type: The application type.
+
+          user_populations: The single user population associated with this application.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          destinations: Public hostname and Workers destinations secured by Access.
+
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
+
+          name: The name of the application.
+
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
 
     @overload
     async def update(
@@ -5361,7 +5722,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -5463,6 +5824,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -5617,7 +5979,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -5647,6 +6009,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -5801,7 +6164,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -5830,6 +6193,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -5909,7 +6273,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -5978,7 +6342,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -6045,7 +6409,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -6119,7 +6483,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           extra_headers: Send extra headers
 
@@ -6202,6 +6566,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         mfa_config: application_update_params.InfrastructureApplicationMfaConfig | Omit = omit,
         name: str | Omit = omit,
         policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | Omit = omit,
+        session_duration: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6227,6 +6592,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           name: The name of the application.
 
           policies: The policies that Access applies to the application.
+
+          session_duration: The maximum duration of a connection to this application's targets. Connections
+              are terminated once it elapses. Must be in the format `30m` or `2h45m`, in whole
+              seconds. Valid time units are: s, m, h.
 
           extra_headers: Send extra headers
 
@@ -6386,7 +6755,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -6508,7 +6877,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -6627,7 +6996,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
+              s, m, h.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -6646,10 +7015,17 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppID,
         *,
-        domain: str | Omit = omit,
-        type: ApplicationType
-        | Literal[
+        oauth_configuration: application_update_params.AccessEndUserPropsOAuthConfiguration
+        | application_update_params.SelfHostedApplicationOAuthConfiguration
+        | application_update_params.BrowserSSHApplicationOAuthConfiguration
+        | application_update_params.BrowserVNCApplicationOAuthConfiguration
+        | application_update_params.BrowserRDPApplicationOAuthConfiguration
+        | application_update_params.McpServerApplicationOAuthConfiguration
+        | application_update_params.McpServerPortalApplicationOAuthConfiguration
+        | Omit = omit,
+        type: Literal[
             "self_hosted",
+            "end_user",
             "saas",
             "ssh",
             "vnc",
@@ -6664,12 +7040,25 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "mcp_portal",
             "proxy_endpoint",
         ]
+        | ApplicationType
         | Omit = omit,
+        user_populations: SequenceNotStr[str] | Omit = omit,
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
+        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
+        destinations: Iterable[application_update_params.AccessEndUserPropsDestination]
+        | Iterable[application_update_params.SelfHostedApplicationDestination]
+        | Iterable[application_update_params.BrowserSSHApplicationDestination]
+        | Iterable[application_update_params.BrowserVNCApplicationDestination]
+        | Iterable[application_update_params.BrowserRDPApplicationDestination]
+        | Iterable[application_update_params.McpServerApplicationDestination]
+        | Iterable[application_update_params.McpServerPortalApplicationDestination]
+        | Omit = omit,
+        domain: str | Omit = omit,
+        name: str | Omit = omit,
+        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         allow_authenticate_via_warp: bool | Omit = omit,
         allow_iframe: bool | Omit = omit,
-        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
         app_launcher_visible: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         cors_headers: CORSHeadersParam | Omit = omit,
@@ -6677,13 +7066,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | Omit = omit,
         custom_non_identity_deny_url: str | Omit = omit,
         custom_pages: SequenceNotStr[str] | Omit = omit,
-        destinations: Iterable[application_update_params.SelfHostedApplicationDestination]
-        | Iterable[application_update_params.BrowserSSHApplicationDestination]
-        | Iterable[application_update_params.BrowserVNCApplicationDestination]
-        | Iterable[application_update_params.BrowserRDPApplicationDestination]
-        | Iterable[application_update_params.McpServerApplicationDestination]
-        | Iterable[application_update_params.McpServerPortalApplicationDestination]
-        | Omit = omit,
         eager_redirect_cookie_setting: bool | Omit = omit,
         enable_binding_cookie: bool | Omit = omit,
         http_only_cookie_attribute: bool | Omit = omit,
@@ -6693,14 +7075,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | application_update_params.BrowserVNCApplicationMfaConfig
         | application_update_params.InfrastructureApplicationMfaConfig
         | application_update_params.BrowserRDPApplicationMfaConfig
-        | Omit = omit,
-        name: str | Omit = omit,
-        oauth_configuration: application_update_params.SelfHostedApplicationOAuthConfiguration
-        | application_update_params.BrowserSSHApplicationOAuthConfiguration
-        | application_update_params.BrowserVNCApplicationOAuthConfiguration
-        | application_update_params.BrowserRDPApplicationOAuthConfiguration
-        | application_update_params.McpServerApplicationOAuthConfiguration
-        | application_update_params.McpServerPortalApplicationOAuthConfiguration
         | Omit = omit,
         options_preflight_bypass: bool | Omit = omit,
         path_cookie_attribute: bool | Omit = omit,
@@ -6728,7 +7102,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | application_update_params.McpServerApplicationSCIMConfig
         | application_update_params.McpServerPortalApplicationSCIMConfig
         | Omit = omit,
-        self_hosted_domains: SequenceNotStr[SelfHostedDomains] | Omit = omit,
         service_auth_401_redirect: bool | Omit = omit,
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
@@ -6776,11 +7149,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
                 ),
                 body=await async_maybe_transform(
                     {
-                        "domain": domain,
+                        "oauth_configuration": oauth_configuration,
                         "type": type,
+                        "user_populations": user_populations,
+                        "allowed_idps": allowed_idps,
+                        "destinations": destinations,
+                        "domain": domain,
+                        "name": name,
+                        "self_hosted_domains": self_hosted_domains,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
                         "allow_iframe": allow_iframe,
-                        "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
                         "cors_headers": cors_headers,
@@ -6788,21 +7166,17 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
-                        "destinations": destinations,
                         "eager_redirect_cookie_setting": eager_redirect_cookie_setting,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
                         "mfa_config": mfa_config,
-                        "name": name,
-                        "oauth_configuration": oauth_configuration,
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
                         "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
-                        "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,

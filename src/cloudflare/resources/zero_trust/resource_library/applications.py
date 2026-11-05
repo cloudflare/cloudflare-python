@@ -18,7 +18,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.resource_library import (
     application_list_params,
@@ -73,22 +73,25 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
-        Create a custom application for an account.
+        Create a custom application for an account from a name, category, and optional
+        network matchers.
 
         Args:
           hostnames: Hostnames matched by the application.
 
-          category_id: Returns the category ID.
+          category_id: Numeric identifier for an application category.
 
-          human_id: Returns the human readable ID.
+          human_id: Human-readable identifier for the application.
 
           ip_subnets: IP subnets for this application. Custom application create and update requests
               accept IPv4 prefix lengths /8 through /32 and IPv6 prefix lengths /32 through
               /128.
 
-          name: Returns the application name.
+          name: Application name.
 
-          port_protocols: Port and protocol pairs matched by the application.
+          port_protocols: Ports matched by the application, in `protocol/port` or inclusive
+              `protocol/start-end` format (for example, `tcp/443` or `udp/10000-20000`). TCP
+              and UDP ports must be between 0 and 65535.
 
           support_domains: Support domains matched by the application.
 
@@ -122,22 +125,25 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
-        Create a custom application for an account.
+        Create a custom application for an account from a name, category, and optional
+        network matchers.
 
         Args:
           ip_subnets: IP subnets for this application. Custom application create and update requests
               accept IPv4 prefix lengths /8 through /32 and IPv6 prefix lengths /32 through
               /128.
 
-          category_id: Returns the category ID.
+          category_id: Numeric identifier for an application category.
 
           hostnames: Hostnames matched by the application.
 
-          human_id: Returns the human readable ID.
+          human_id: Human-readable identifier for the application.
 
-          name: Returns the application name.
+          name: Application name.
 
-          port_protocols: Port and protocol pairs matched by the application.
+          port_protocols: Ports matched by the application, in `protocol/port` or inclusive
+              `protocol/start-end` format (for example, `tcp/443` or `udp/10000-20000`). TCP
+              and UDP ports must be between 0 and 65535.
 
           support_domains: Support domains matched by the application.
 
@@ -213,10 +219,12 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
-        Replace the network matchers for a custom application and create a new version.
+        Replace the supplied network matchers for a custom application and create a new
+        version. Omitted matcher lists remain unchanged; send an empty list to clear a
+        matcher type.
 
         Args:
-          id: Returns the application ID.
+          id: Numeric identifier for the application.
 
           hostnames: Hostnames matched by the application.
 
@@ -224,7 +232,9 @@ class ApplicationsResource(SyncAPIResource):
               accept IPv4 prefix lengths /8 through /32 and IPv6 prefix lengths /32 through
               /128.
 
-          port_protocols: Port and protocol pairs matched by the application.
+          port_protocols: Ports matched by the application, in `protocol/port` or inclusive
+              `protocol/start-end` format (for example, `tcp/443` or `udp/10000-20000`). TCP
+              and UDP ports must be between 0 and 65535.
 
           support_domains: Support domains matched by the application.
 
@@ -263,9 +273,11 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        cursor: str | Omit = omit,
         fields: str | Omit = omit,
         filter: str | Omit = omit,
         limit: int | Omit = omit,
+        lookup: str | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
         search: str | Omit = omit,
@@ -275,24 +287,40 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[ApplicationListResponse]:
+    ) -> SyncCursorPaginationAfter[ApplicationListResponse]:
         """
         List the applications available to an account, both the applications Cloudflare
         curates and the custom applications the account has defined.
 
-        Results are paginated. Use `filter` and `search` to narrow the list, `order_by`
-        to sort it, and `fields` to reduce each result to only the properties you need.
+        Results are paginated. Page with `cursor` so that applications added or removed
+        between requests do not make other results repeat or go missing; `offset` paging
+        can repeat or miss results when the list changes between requests. Use `filter`
+        and `search` to narrow the list, `order_by` to sort it, and `fields` to reduce
+        each result to only the properties you need. Use `lookup` to find complete
+        application names mentioned in a rule sentence, ignoring case. Lookup does not
+        correct misspellings. It ranks matches by relevance and uses the same filters,
+        fields, and pagination as listing. `lookup` cannot be combined with `search`.
+
+        Invalid UTF-8 or a NUL character (U+0000) in any query parameter name or value
+        returns `400`.
 
         The authenticated principal must have access to the account identified by
         `account_id`.
 
         Args:
+          cursor: Opaque value from `result_info.cursor` of the previous response. Returns the
+              results that follow it. Send the same `filter`, `search`, `lookup`, and
+              `order_by` values as the request that returned it; `limit` and `fields` may
+              change. An empty value is the same as no cursor. A modified cursor, or one used
+              with different values, returns `400`.
+
           fields: Return only the listed properties on each application, as a comma-separated
               list. Use this to keep responses small when you only need part of each
-              application — for example populating a picker with `fields=id,name` instead of
+              application, for example populating a picker with `fields=id,name` instead of
               downloading every hostname and IP subnet.
 
-              Omit this parameter to receive the full application object.
+              Omit this parameter to receive the full application object, including when
+              lookup is used.
 
               `id` is always returned.
 
@@ -303,32 +331,42 @@ class ApplicationsResource(SyncAPIResource):
               Unknown or empty property names return `400`.
 
           filter:
-              Filter applications using key:value format. Supported filter keys:
+              Filter applications using `key:value` format. Supported filter keys:
 
-              - name: Filter by application name (e.g., name:HR)
-              - id: Filter by application ID (e.g., id:498)
-              - human_id: Filter by human-readable ID (e.g., human_id:HR)
-              - hostname: Filter by hostname or support domain (e.g.,
-                hostname:portal.example.com)
-              - source: Filter by application source name (e.g., source:cloudflare)
-              - ip_subnet: Filter by IP subnet using CIDR containment — returns applications
-                where any stored subnet contains the search value (e.g., ip_subnet:10.0.1.5/32
-                matches apps with 10.0.0.0/16)
-              - category_id: Filter by category ID (e.g., category_id:12).
-              - category_name: Filter by category name (e.g., category_name:HR).
-              - supported: Filter by supported Cloudflare product (e.g., supported:ACCESS).
-                Values: GATEWAY, ACCESS, CASB.
-              - review_status: Filter by the account's Gateway review status. Values:
-                approved, unapproved, in_review, unreviewed. .
+              - `name`: application name (for example, `name:HR`).
+              - `id`: application ID (for example, `id:498`).
+              - `human_id`: human-readable ID (for example, `human_id:HR`).
+              - `hostname`: hostname or support domain (for example,
+                `hostname:portal.example.com`).
+              - `source`: application source name (for example, `source:cloudflare`).
+              - `ip_subnet`: CIDR containment; returns applications where a stored subnet
+                contains the search value (for example, `ip_subnet:10.0.1.5/32` matches
+                `10.0.0.0/16`).
+              - `category_id`: category ID (for example, `category_id:12`).
+              - `category_name`: category name (for example, `category_name:HR`).
+              - `supported`: supported Cloudflare product. Values: `GATEWAY`, `ACCESS`,
+                `CASB`.
+              - `review_status`: account-specific Gateway review status. Values: `approved`,
+                `unapproved`, `in_review`, `unreviewed`.
 
-          limit: Limit of number of results to return (max 250).
+          limit: Number of results to return. Defaults to 25; values are clamped to 1–250.
 
-          offset: Offset of results to return.
+          lookup: Find complete, case-insensitive application name mentions in a phrase or rule
+              sentence. Misspelled names do not match. Returns matching applications ranked by
+              relevance. Must be between 2 and 1000 characters, with no control characters
+              other than tab and line breaks. Uses the same filters, fields, and pagination as
+              listing. `search` cannot be combined with lookup. Results are ranked by
+              relevance, so `order_by` is ignored. To keep the text out of URLs, send it to
+              `POST .../applications/lookup` instead.
+
+          offset: Number of results to skip. Defaults to 0; negative values are clamped to 0.
+              Ignored when `cursor` is provided.
 
           order_by: Order results using field:direction format. Supported fields are name, id,
               human_id, category_id, application_type, application_confidence_score, and
               gen_ai_score. Supported directions are asc and desc. Ignored when search is
-              provided; results are ranked by relevance instead.
+              provided; results are ranked by relevance instead. Also ignored when lookup is
+              provided.
 
           search: Fuzzy search across application name and hostnames. Results are ranked by
               relevance. Must be between 2 and 200 characters. Can be combined with filter
@@ -346,7 +384,7 @@ class ApplicationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/resource-library/applications", account_id=account_id),
-            page=SyncSinglePage[ApplicationListResponse],
+            page=SyncCursorPaginationAfter[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -354,9 +392,11 @@ class ApplicationsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cursor": cursor,
                         "fields": fields,
                         "filter": filter,
                         "limit": limit,
+                        "lookup": lookup,
                         "offset": offset,
                         "order_by": order_by,
                         "search": search,
@@ -385,7 +425,7 @@ class ApplicationsResource(SyncAPIResource):
         other resources reference the application.
 
         Args:
-          id: Returns the application ID.
+          id: Numeric identifier for the application.
 
           extra_headers: Send extra headers
 
@@ -422,10 +462,10 @@ class ApplicationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationGetResponse]:
         """
-        Get application by ID.
+        Retrieve an application available to the account by its numeric application ID.
 
         Args:
-          id: Returns the application ID.
+          id: Numeric identifier for the application.
 
           extra_headers: Send extra headers
 
@@ -490,22 +530,25 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
-        Create a custom application for an account.
+        Create a custom application for an account from a name, category, and optional
+        network matchers.
 
         Args:
           hostnames: Hostnames matched by the application.
 
-          category_id: Returns the category ID.
+          category_id: Numeric identifier for an application category.
 
-          human_id: Returns the human readable ID.
+          human_id: Human-readable identifier for the application.
 
           ip_subnets: IP subnets for this application. Custom application create and update requests
               accept IPv4 prefix lengths /8 through /32 and IPv6 prefix lengths /32 through
               /128.
 
-          name: Returns the application name.
+          name: Application name.
 
-          port_protocols: Port and protocol pairs matched by the application.
+          port_protocols: Ports matched by the application, in `protocol/port` or inclusive
+              `protocol/start-end` format (for example, `tcp/443` or `udp/10000-20000`). TCP
+              and UDP ports must be between 0 and 65535.
 
           support_domains: Support domains matched by the application.
 
@@ -539,22 +582,25 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationCreateResponse]:
         """
-        Create a custom application for an account.
+        Create a custom application for an account from a name, category, and optional
+        network matchers.
 
         Args:
           ip_subnets: IP subnets for this application. Custom application create and update requests
               accept IPv4 prefix lengths /8 through /32 and IPv6 prefix lengths /32 through
               /128.
 
-          category_id: Returns the category ID.
+          category_id: Numeric identifier for an application category.
 
           hostnames: Hostnames matched by the application.
 
-          human_id: Returns the human readable ID.
+          human_id: Human-readable identifier for the application.
 
-          name: Returns the application name.
+          name: Application name.
 
-          port_protocols: Port and protocol pairs matched by the application.
+          port_protocols: Ports matched by the application, in `protocol/port` or inclusive
+              `protocol/start-end` format (for example, `tcp/443` or `udp/10000-20000`). TCP
+              and UDP ports must be between 0 and 65535.
 
           support_domains: Support domains matched by the application.
 
@@ -630,10 +676,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationUpdateResponse]:
         """
-        Replace the network matchers for a custom application and create a new version.
+        Replace the supplied network matchers for a custom application and create a new
+        version. Omitted matcher lists remain unchanged; send an empty list to clear a
+        matcher type.
 
         Args:
-          id: Returns the application ID.
+          id: Numeric identifier for the application.
 
           hostnames: Hostnames matched by the application.
 
@@ -641,7 +689,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
               accept IPv4 prefix lengths /8 through /32 and IPv6 prefix lengths /32 through
               /128.
 
-          port_protocols: Port and protocol pairs matched by the application.
+          port_protocols: Ports matched by the application, in `protocol/port` or inclusive
+              `protocol/start-end` format (for example, `tcp/443` or `udp/10000-20000`). TCP
+              and UDP ports must be between 0 and 65535.
 
           support_domains: Support domains matched by the application.
 
@@ -680,9 +730,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        cursor: str | Omit = omit,
         fields: str | Omit = omit,
         filter: str | Omit = omit,
         limit: int | Omit = omit,
+        lookup: str | Omit = omit,
         offset: int | Omit = omit,
         order_by: str | Omit = omit,
         search: str | Omit = omit,
@@ -692,24 +744,40 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ApplicationListResponse, AsyncSinglePage[ApplicationListResponse]]:
+    ) -> AsyncPaginator[ApplicationListResponse, AsyncCursorPaginationAfter[ApplicationListResponse]]:
         """
         List the applications available to an account, both the applications Cloudflare
         curates and the custom applications the account has defined.
 
-        Results are paginated. Use `filter` and `search` to narrow the list, `order_by`
-        to sort it, and `fields` to reduce each result to only the properties you need.
+        Results are paginated. Page with `cursor` so that applications added or removed
+        between requests do not make other results repeat or go missing; `offset` paging
+        can repeat or miss results when the list changes between requests. Use `filter`
+        and `search` to narrow the list, `order_by` to sort it, and `fields` to reduce
+        each result to only the properties you need. Use `lookup` to find complete
+        application names mentioned in a rule sentence, ignoring case. Lookup does not
+        correct misspellings. It ranks matches by relevance and uses the same filters,
+        fields, and pagination as listing. `lookup` cannot be combined with `search`.
+
+        Invalid UTF-8 or a NUL character (U+0000) in any query parameter name or value
+        returns `400`.
 
         The authenticated principal must have access to the account identified by
         `account_id`.
 
         Args:
+          cursor: Opaque value from `result_info.cursor` of the previous response. Returns the
+              results that follow it. Send the same `filter`, `search`, `lookup`, and
+              `order_by` values as the request that returned it; `limit` and `fields` may
+              change. An empty value is the same as no cursor. A modified cursor, or one used
+              with different values, returns `400`.
+
           fields: Return only the listed properties on each application, as a comma-separated
               list. Use this to keep responses small when you only need part of each
-              application — for example populating a picker with `fields=id,name` instead of
+              application, for example populating a picker with `fields=id,name` instead of
               downloading every hostname and IP subnet.
 
-              Omit this parameter to receive the full application object.
+              Omit this parameter to receive the full application object, including when
+              lookup is used.
 
               `id` is always returned.
 
@@ -720,32 +788,42 @@ class AsyncApplicationsResource(AsyncAPIResource):
               Unknown or empty property names return `400`.
 
           filter:
-              Filter applications using key:value format. Supported filter keys:
+              Filter applications using `key:value` format. Supported filter keys:
 
-              - name: Filter by application name (e.g., name:HR)
-              - id: Filter by application ID (e.g., id:498)
-              - human_id: Filter by human-readable ID (e.g., human_id:HR)
-              - hostname: Filter by hostname or support domain (e.g.,
-                hostname:portal.example.com)
-              - source: Filter by application source name (e.g., source:cloudflare)
-              - ip_subnet: Filter by IP subnet using CIDR containment — returns applications
-                where any stored subnet contains the search value (e.g., ip_subnet:10.0.1.5/32
-                matches apps with 10.0.0.0/16)
-              - category_id: Filter by category ID (e.g., category_id:12).
-              - category_name: Filter by category name (e.g., category_name:HR).
-              - supported: Filter by supported Cloudflare product (e.g., supported:ACCESS).
-                Values: GATEWAY, ACCESS, CASB.
-              - review_status: Filter by the account's Gateway review status. Values:
-                approved, unapproved, in_review, unreviewed. .
+              - `name`: application name (for example, `name:HR`).
+              - `id`: application ID (for example, `id:498`).
+              - `human_id`: human-readable ID (for example, `human_id:HR`).
+              - `hostname`: hostname or support domain (for example,
+                `hostname:portal.example.com`).
+              - `source`: application source name (for example, `source:cloudflare`).
+              - `ip_subnet`: CIDR containment; returns applications where a stored subnet
+                contains the search value (for example, `ip_subnet:10.0.1.5/32` matches
+                `10.0.0.0/16`).
+              - `category_id`: category ID (for example, `category_id:12`).
+              - `category_name`: category name (for example, `category_name:HR`).
+              - `supported`: supported Cloudflare product. Values: `GATEWAY`, `ACCESS`,
+                `CASB`.
+              - `review_status`: account-specific Gateway review status. Values: `approved`,
+                `unapproved`, `in_review`, `unreviewed`.
 
-          limit: Limit of number of results to return (max 250).
+          limit: Number of results to return. Defaults to 25; values are clamped to 1–250.
 
-          offset: Offset of results to return.
+          lookup: Find complete, case-insensitive application name mentions in a phrase or rule
+              sentence. Misspelled names do not match. Returns matching applications ranked by
+              relevance. Must be between 2 and 1000 characters, with no control characters
+              other than tab and line breaks. Uses the same filters, fields, and pagination as
+              listing. `search` cannot be combined with lookup. Results are ranked by
+              relevance, so `order_by` is ignored. To keep the text out of URLs, send it to
+              `POST .../applications/lookup` instead.
+
+          offset: Number of results to skip. Defaults to 0; negative values are clamped to 0.
+              Ignored when `cursor` is provided.
 
           order_by: Order results using field:direction format. Supported fields are name, id,
               human_id, category_id, application_type, application_confidence_score, and
               gen_ai_score. Supported directions are asc and desc. Ignored when search is
-              provided; results are ranked by relevance instead.
+              provided; results are ranked by relevance instead. Also ignored when lookup is
+              provided.
 
           search: Fuzzy search across application name and hostnames. Results are ranked by
               relevance. Must be between 2 and 200 characters. Can be combined with filter
@@ -763,7 +841,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/resource-library/applications", account_id=account_id),
-            page=AsyncSinglePage[ApplicationListResponse],
+            page=AsyncCursorPaginationAfter[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -771,9 +849,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cursor": cursor,
                         "fields": fields,
                         "filter": filter,
                         "limit": limit,
+                        "lookup": lookup,
                         "offset": offset,
                         "order_by": order_by,
                         "search": search,
@@ -802,7 +882,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         other resources reference the application.
 
         Args:
-          id: Returns the application ID.
+          id: Numeric identifier for the application.
 
           extra_headers: Send extra headers
 
@@ -839,10 +919,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ApplicationGetResponse]:
         """
-        Get application by ID.
+        Retrieve an application available to the account by its numeric application ID.
 
         Args:
-          id: Returns the application ID.
+          id: Numeric identifier for the application.
 
           extra_headers: Send extra headers
 

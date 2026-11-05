@@ -31,6 +31,16 @@ class TestSkills:
             name="x",
             output_schema="x",
             prompt="x",
+        )
+        assert_matches_type(SkillCreateResponse, skill, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        skill = client.cloudforce_one.threat_signals.skills.create(
+            account_id="account_id",
+            name="x",
+            output_schema="x",
+            prompt="x",
             type="summary",
         )
         assert_matches_type(SkillCreateResponse, skill, path=["response"])
@@ -42,7 +52,6 @@ class TestSkills:
             name="x",
             output_schema="x",
             prompt="x",
-            type="summary",
         )
 
         assert response.is_closed is True
@@ -57,7 +66,6 @@ class TestSkills:
             name="x",
             output_schema="x",
             prompt="x",
-            type="summary",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,7 +83,6 @@ class TestSkills:
                 name="x",
                 output_schema="x",
                 prompt="x",
-                type="summary",
             )
 
     @parametrize
@@ -295,6 +302,16 @@ class TestAsyncSkills:
             name="x",
             output_schema="x",
             prompt="x",
+        )
+        assert_matches_type(SkillCreateResponse, skill, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        skill = await async_client.cloudforce_one.threat_signals.skills.create(
+            account_id="account_id",
+            name="x",
+            output_schema="x",
+            prompt="x",
             type="summary",
         )
         assert_matches_type(SkillCreateResponse, skill, path=["response"])
@@ -306,7 +323,6 @@ class TestAsyncSkills:
             name="x",
             output_schema="x",
             prompt="x",
-            type="summary",
         )
 
         assert response.is_closed is True
@@ -321,7 +337,6 @@ class TestAsyncSkills:
             name="x",
             output_schema="x",
             prompt="x",
-            type="summary",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -339,7 +354,6 @@ class TestAsyncSkills:
                 name="x",
                 output_schema="x",
                 prompt="x",
-                type="summary",
             )
 
     @parametrize

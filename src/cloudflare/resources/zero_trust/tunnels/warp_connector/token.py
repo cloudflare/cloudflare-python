@@ -56,8 +56,7 @@ class TokenResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Gets the token used to associate warp device with a specific Warp Connector
-        tunnel.
+        Gets the token used to associate a WARP device with a specific Mesh node.
 
         Args:
           account_id: Cloudflare account ID
@@ -124,8 +123,7 @@ class AsyncTokenResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
-        Gets the token used to associate warp device with a specific Warp Connector
-        tunnel.
+        Gets the token used to associate a WARP device with a specific Mesh node.
 
         Args:
           account_id: Cloudflare account ID

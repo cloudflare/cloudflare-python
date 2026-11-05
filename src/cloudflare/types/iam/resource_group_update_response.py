@@ -20,7 +20,7 @@ class ScopeObject(BaseModel):
 
 
 class Scope(BaseModel):
-    """A scope is a combination of scope objects which provides additional context."""
+    """The scope associated to the resource group"""
 
     key: str
     """
@@ -47,7 +47,7 @@ class ResourceGroupUpdateResponse(BaseModel):
     """Identifier of the resource group."""
 
     scope: Scope
-    """A scope is a combination of scope objects which provides additional context."""
+    """The scope associated to the resource group"""
 
     meta: Optional[Meta] = None
     """Attributes associated to the resource group."""

@@ -76,7 +76,7 @@ class PolicyResourceGroupScopeObject(BaseModel):
 
 
 class PolicyResourceGroupScope(BaseModel):
-    """A scope is a combination of scope objects which provides additional context."""
+    """The scope associated to the resource group"""
 
     key: str
     """
@@ -103,7 +103,7 @@ class PolicyResourceGroup(BaseModel):
     """Identifier of the resource group."""
 
     scope: PolicyResourceGroupScope
-    """A scope is a combination of scope objects which provides additional context."""
+    """The scope associated to the resource group"""
 
     meta: Optional[PolicyResourceGroupMeta] = None
     """Attributes associated to the resource group."""

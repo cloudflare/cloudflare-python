@@ -28,6 +28,14 @@ from .policies import (
 )
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
+from .asset_schemas import (
+    AssetSchemasResource,
+    AsyncAssetSchemasResource,
+    AssetSchemasResourceWithRawResponse,
+    AsyncAssetSchemasResourceWithRawResponse,
+    AssetSchemasResourceWithStreamingResponse,
+    AsyncAssetSchemasResourceWithStreamingResponse,
+)
 from .findings.findings import (
     FindingsResource,
     AsyncFindingsResource,
@@ -78,6 +86,10 @@ class PostureResource(SyncAPIResource):
         return FindingTypesResource(self._client)
 
     @cached_property
+    def asset_schemas(self) -> AssetSchemasResource:
+        return AssetSchemasResource(self._client)
+
+    @cached_property
     def content(self) -> ContentResource:
         return ContentResource(self._client)
 
@@ -125,6 +137,10 @@ class AsyncPostureResource(AsyncAPIResource):
     @cached_property
     def finding_types(self) -> AsyncFindingTypesResource:
         return AsyncFindingTypesResource(self._client)
+
+    @cached_property
+    def asset_schemas(self) -> AsyncAssetSchemasResource:
+        return AsyncAssetSchemasResource(self._client)
 
     @cached_property
     def content(self) -> AsyncContentResource:
@@ -179,6 +195,10 @@ class PostureResourceWithRawResponse:
         return FindingTypesResourceWithRawResponse(self._posture.finding_types)
 
     @cached_property
+    def asset_schemas(self) -> AssetSchemasResourceWithRawResponse:
+        return AssetSchemasResourceWithRawResponse(self._posture.asset_schemas)
+
+    @cached_property
     def content(self) -> ContentResourceWithRawResponse:
         return ContentResourceWithRawResponse(self._posture.content)
 
@@ -210,6 +230,10 @@ class AsyncPostureResourceWithRawResponse:
     @cached_property
     def finding_types(self) -> AsyncFindingTypesResourceWithRawResponse:
         return AsyncFindingTypesResourceWithRawResponse(self._posture.finding_types)
+
+    @cached_property
+    def asset_schemas(self) -> AsyncAssetSchemasResourceWithRawResponse:
+        return AsyncAssetSchemasResourceWithRawResponse(self._posture.asset_schemas)
 
     @cached_property
     def content(self) -> AsyncContentResourceWithRawResponse:
@@ -245,6 +269,10 @@ class PostureResourceWithStreamingResponse:
         return FindingTypesResourceWithStreamingResponse(self._posture.finding_types)
 
     @cached_property
+    def asset_schemas(self) -> AssetSchemasResourceWithStreamingResponse:
+        return AssetSchemasResourceWithStreamingResponse(self._posture.asset_schemas)
+
+    @cached_property
     def content(self) -> ContentResourceWithStreamingResponse:
         return ContentResourceWithStreamingResponse(self._posture.content)
 
@@ -276,6 +304,10 @@ class AsyncPostureResourceWithStreamingResponse:
     @cached_property
     def finding_types(self) -> AsyncFindingTypesResourceWithStreamingResponse:
         return AsyncFindingTypesResourceWithStreamingResponse(self._posture.finding_types)
+
+    @cached_property
+    def asset_schemas(self) -> AsyncAssetSchemasResourceWithStreamingResponse:
+        return AsyncAssetSchemasResourceWithStreamingResponse(self._posture.asset_schemas)
 
     @cached_property
     def content(self) -> AsyncContentResourceWithStreamingResponse:

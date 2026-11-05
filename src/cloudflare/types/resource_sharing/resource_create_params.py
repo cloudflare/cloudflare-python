@@ -15,10 +15,10 @@ class ResourceCreateParams(TypedDict, total=False):
     """Resource Metadata."""
 
     resource_account_id: Required[str]
-    """Account identifier."""
+    """The account that owns the resource. Must match the `account_id` in the path."""
 
     resource_id: Required[str]
-    """Share Resource identifier."""
+    """Identifier assigned by the service that owns the shared resource."""
 
     resource_type: Required[
         Literal[

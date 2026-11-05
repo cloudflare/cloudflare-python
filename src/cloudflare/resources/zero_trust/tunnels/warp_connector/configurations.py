@@ -61,17 +61,17 @@ class ConfigurationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigurationUpdateResponse]:
         """
-        Adds or updates the high-availability configuration for a WARP Connector tunnel.
+        Adds or updates the high-availability configuration for a Mesh node.
 
         Args:
           account_id: Identifier.
 
           tunnel_id: UUID of the tunnel.
 
-          ha_mode: High-availability mode for the WARP Connector tunnel. `none` means HA is enabled
-              but no provider is configured yet (newly created tunnels default to this).
-              `disabled` means HA is explicitly turned off. `aws` uses AWS ENI move for
-              failover. `local` uses virtual IPs (VIPs) on the local interface.
+          ha_mode: High-availability mode for the Mesh node. `none` means HA is enabled but no
+              provider is configured yet (newly created nodes default to this). `disabled`
+              means HA is explicitly turned off. `aws` uses AWS ENI move for failover. `local`
+              uses virtual IPs (VIPs) on the local interface.
 
           config: Provider-specific configuration. Required shape depends on ha_mode. For `aws`,
               must contain `fnr_id`. For `local`, must contain `vips`. For `none` and
@@ -125,7 +125,7 @@ class ConfigurationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigurationGetResponse]:
         """
-        Gets the high-availability configuration for a WARP Connector tunnel.
+        Gets the high-availability configuration for a Mesh node.
 
         Args:
           account_id: Identifier.
@@ -196,17 +196,17 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigurationUpdateResponse]:
         """
-        Adds or updates the high-availability configuration for a WARP Connector tunnel.
+        Adds or updates the high-availability configuration for a Mesh node.
 
         Args:
           account_id: Identifier.
 
           tunnel_id: UUID of the tunnel.
 
-          ha_mode: High-availability mode for the WARP Connector tunnel. `none` means HA is enabled
-              but no provider is configured yet (newly created tunnels default to this).
-              `disabled` means HA is explicitly turned off. `aws` uses AWS ENI move for
-              failover. `local` uses virtual IPs (VIPs) on the local interface.
+          ha_mode: High-availability mode for the Mesh node. `none` means HA is enabled but no
+              provider is configured yet (newly created nodes default to this). `disabled`
+              means HA is explicitly turned off. `aws` uses AWS ENI move for failover. `local`
+              uses virtual IPs (VIPs) on the local interface.
 
           config: Provider-specific configuration. Required shape depends on ha_mode. For `aws`,
               must contain `fnr_id`. For `local`, must contain `vips`. For `none` and
@@ -260,7 +260,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ConfigurationGetResponse]:
         """
-        Gets the high-availability configuration for a WARP Connector tunnel.
+        Gets the high-availability configuration for a Mesh node.
 
         Args:
           account_id: Identifier.

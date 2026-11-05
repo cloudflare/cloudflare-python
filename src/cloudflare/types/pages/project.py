@@ -48,6 +48,7 @@ __all__ = [
     "DeploymentConfigsProductionServices",
     "DeploymentConfigsProductionVectorizeBindings",
     "BuildConfig",
+    "BuildImageAutoUpgrade",
     "Source",
     "SourceConfig",
 ]
@@ -190,7 +191,12 @@ class DeploymentConfigsPreview(BaseModel):
     """Whether to always use the latest compatibility date for Pages Functions."""
 
     build_image_major_version: int
-    """The major version of the build image to use for Pages Functions."""
+    """The major version of the build image to use for Pages Functions.
+
+    Version 1 is retired and its projects are moved to version 3. Once a project's
+    builds have been moved, this is the version the builds run on and
+    `build_image_auto_upgrade` is set on the project.
+    """
 
     compatibility_date: str
     """Compatibility date used for Pages Functions."""
@@ -390,7 +396,12 @@ class DeploymentConfigsProduction(BaseModel):
     """Whether to always use the latest compatibility date for Pages Functions."""
 
     build_image_major_version: int
-    """The major version of the build image to use for Pages Functions."""
+    """The major version of the build image to use for Pages Functions.
+
+    Version 1 is retired and its projects are moved to version 3. Once a project's
+    builds have been moved, this is the version the builds run on and
+    `build_image_auto_upgrade` is set on the project.
+    """
 
     compatibility_date: str
     """Compatibility date used for Pages Functions."""
@@ -483,6 +494,18 @@ class BuildConfig(BaseModel):
 
     root_dir: Optional[str] = None
     """Directory to run the command."""
+
+
+class BuildImageAutoUpgrade(BaseModel):
+    """
+    Present when the project is set to a retired build image major version and its builds have been moved to a newer one. `build_image_major_version` in `deployment_configs` then reports the version the builds run on.
+    """
+
+    from_version: int
+    """The retired build image major version the project is set to."""
+
+    to_version: int
+    """The build image major version the project's builds run on."""
 
 
 class SourceConfig(BaseModel):
@@ -596,6 +619,13 @@ class Project(BaseModel):
 
     build_config: Optional[BuildConfig] = None
     """Configs for the project build process."""
+
+    build_image_auto_upgrade: Optional[BuildImageAutoUpgrade] = None
+    """
+    Present when the project is set to a retired build image major version and its
+    builds have been moved to a newer one. `build_image_major_version` in
+    `deployment_configs` then reports the version the builds run on.
+    """
 
     domains: Optional[List[str]] = None
     """A list of associated custom domains for the project."""

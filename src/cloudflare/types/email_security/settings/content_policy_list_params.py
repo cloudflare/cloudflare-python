@@ -17,6 +17,12 @@ class ContentPolicyListParams(TypedDict, total=False):
     enabled: bool
     """Filter by enabled status."""
 
+    expired: bool
+    """
+    Filter to return only expired policies (`true`) or only policies that still
+    apply (`false`). Omit to return both.
+    """
+
     name: str
     """Filter by exact policy name."""
 

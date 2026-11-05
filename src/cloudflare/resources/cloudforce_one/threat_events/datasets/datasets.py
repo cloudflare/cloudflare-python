@@ -73,9 +73,10 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
-        """
-        Creates a new threat event dataset in Cloudforce One for organizing related
-        threat events.
+        """Creates a dataset for grouping events.
+
+        Set `isPublic` to true to let anyone
+        search it; otherwise only the account can.
 
         Args:
           account_id: Account ID.
@@ -122,8 +123,9 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
-        """
-        Lists all threat event datasets configured in Cloudforce One.
+        """Lists the account's datasets.
+
+        Set `includeDeleted` to include deleted datasets.
 
         Args:
           account_id: Account ID.
@@ -165,8 +167,10 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDeleteResponse:
-        """
-        Soft-deletes a dataset given a datasetId.
+        """Deletes a dataset.
+
+        To see deleted datasets, use `threat-intel datasets list`
+        with `includeDeleted`.
 
         Args:
           account_id: Account ID.
@@ -211,9 +215,9 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetEditResponse:
-        """
-        Partially updates a threat event dataset in Cloudforce One, modifying specific
-        fields without replacing the entire dataset configuration.
+        """Updates a dataset's `name` and `isPublic` setting.
+
+        Both fields are required.
 
         Args:
           account_id: Account ID.
@@ -269,7 +273,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
-        Retrieves details for a specific threat event dataset.
+        Returns a dataset by its ID.
 
         Args:
           account_id: Account ID.
@@ -314,9 +318,11 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetRawResponse:
-        """
-        Deprecated; use GET /events/datasets/{dataset_id}/events/{event_id}/raw.
-        Available through 2026-11-28.
+        """Legacy.
+
+        Use `threat-intel events raw get`
+        (`GET /events/datasets/{dataset_id}/events/{event_id}/raw`) instead. Available
+        through 2026-11-28.
 
         Args:
           account_id: Account ID.
@@ -390,9 +396,10 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetCreateResponse:
-        """
-        Creates a new threat event dataset in Cloudforce One for organizing related
-        threat events.
+        """Creates a dataset for grouping events.
+
+        Set `isPublic` to true to let anyone
+        search it; otherwise only the account can.
 
         Args:
           account_id: Account ID.
@@ -439,8 +446,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
-        """
-        Lists all threat event datasets configured in Cloudforce One.
+        """Lists the account's datasets.
+
+        Set `includeDeleted` to include deleted datasets.
 
         Args:
           account_id: Account ID.
@@ -484,8 +492,10 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDeleteResponse:
-        """
-        Soft-deletes a dataset given a datasetId.
+        """Deletes a dataset.
+
+        To see deleted datasets, use `threat-intel datasets list`
+        with `includeDeleted`.
 
         Args:
           account_id: Account ID.
@@ -530,9 +540,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetEditResponse:
-        """
-        Partially updates a threat event dataset in Cloudforce One, modifying specific
-        fields without replacing the entire dataset configuration.
+        """Updates a dataset's `name` and `isPublic` setting.
+
+        Both fields are required.
 
         Args:
           account_id: Account ID.
@@ -588,7 +598,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetGetResponse:
         """
-        Retrieves details for a specific threat event dataset.
+        Returns a dataset by its ID.
 
         Args:
           account_id: Account ID.
@@ -633,9 +643,11 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetRawResponse:
-        """
-        Deprecated; use GET /events/datasets/{dataset_id}/events/{event_id}/raw.
-        Available through 2026-11-28.
+        """Legacy.
+
+        Use `threat-intel events raw get`
+        (`GET /events/datasets/{dataset_id}/events/{event_id}/raw`) instead. Available
+        through 2026-11-28.
 
         Args:
           account_id: Account ID.

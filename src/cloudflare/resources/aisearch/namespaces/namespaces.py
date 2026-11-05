@@ -133,7 +133,7 @@ class NamespacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceUpdateResponse:
         """
-        Update the description and/or the public endpoint configuration of an existing
+        Updates the description and/or the public endpoint configuration of an existing
         namespace. The default namespace's description cannot be modified, but its
         public endpoint can.
 
@@ -186,7 +186,8 @@ class NamespacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[NamespaceListResponse]:
         """
-        List namespaces in the account, including their descriptions and creation times.
+        Lists namespaces in the account, including their descriptions and creation
+        times.
 
         Args:
           page: Page number (1-indexed).
@@ -238,10 +239,11 @@ class NamespacesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Permanently delete a namespace.
+        """Deletes a namespace permanently.
 
-        The namespace must be empty (no instances), and
-        the default namespace cannot be deleted.
+        The namespace must not contain any instances
+        (instances whose deletion is still in progress do not count), and the default
+        namespace cannot be deleted.
 
         Args:
           extra_headers: Send extra headers
@@ -516,7 +518,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NamespaceUpdateResponse:
         """
-        Update the description and/or the public endpoint configuration of an existing
+        Updates the description and/or the public endpoint configuration of an existing
         namespace. The default namespace's description cannot be modified, but its
         public endpoint can.
 
@@ -569,7 +571,8 @@ class AsyncNamespacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[NamespaceListResponse, AsyncV4PagePaginationArray[NamespaceListResponse]]:
         """
-        List namespaces in the account, including their descriptions and creation times.
+        Lists namespaces in the account, including their descriptions and creation
+        times.
 
         Args:
           page: Page number (1-indexed).
@@ -621,10 +624,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Permanently delete a namespace.
+        """Deletes a namespace permanently.
 
-        The namespace must be empty (no instances), and
-        the default namespace cannot be deleted.
+        The namespace must not contain any instances
+        (instances whose deletion is still in progress do not count), and the default
+        namespace cannot be deleted.
 
         Args:
           extra_headers: Send extra headers

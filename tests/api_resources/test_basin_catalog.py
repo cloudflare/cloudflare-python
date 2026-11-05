@@ -173,6 +173,15 @@ class TestBasinCatalog:
         assert_matches_type(Optional[BasinCatalogEnableResponse], basin_catalog, path=["response"])
 
     @parametrize
+    def test_method_enable_with_all_params(self, client: Cloudflare) -> None:
+        basin_catalog = client.basin_catalog.enable(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+            credential={"token": "your-cloudflare-api-token-here"},
+        )
+        assert_matches_type(Optional[BasinCatalogEnableResponse], basin_catalog, path=["response"])
+
+    @parametrize
     def test_raw_response_enable(self, client: Cloudflare) -> None:
         response = client.basin_catalog.with_raw_response.enable(
             bucket_name="my-data-bucket",
@@ -414,6 +423,15 @@ class TestAsyncBasinCatalog:
         basin_catalog = await async_client.basin_catalog.enable(
             bucket_name="my-data-bucket",
             account_id="0123456789abcdef0123456789abcdef",
+        )
+        assert_matches_type(Optional[BasinCatalogEnableResponse], basin_catalog, path=["response"])
+
+    @parametrize
+    async def test_method_enable_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        basin_catalog = await async_client.basin_catalog.enable(
+            bucket_name="my-data-bucket",
+            account_id="0123456789abcdef0123456789abcdef",
+            credential={"token": "your-cloudflare-api-token-here"},
         )
         assert_matches_type(Optional[BasinCatalogEnableResponse], basin_catalog, path=["response"])
 

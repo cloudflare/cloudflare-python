@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -33,7 +33,6 @@ from .hotlink_protection import HotlinkProtection
 from .proxy_read_timeout import ProxyReadTimeout
 from .opportunistic_onion import OpportunisticOnion
 from .server_side_excludes import ServerSideExcludes
-from .automatic_platform_optimization import AutomaticPlatformOptimization
 
 __all__ = [
     "SettingEditResponse",
@@ -64,6 +63,12 @@ __all__ = [
     "ZonesResponseBuffering2",
     "ZonesRocketLoader2",
     "ZonesSchemasAutomaticPlatformOptimization",
+    "ZonesSchemasAutomaticPlatformOptimizationValue",
+    "ZonesSchemasAutomaticPlatformOptimizationValueUnionMember0",
+    "ZonesSchemasAutomaticPlatformOptimizationValueUnionMember1",
+    "ZonesSchemasAutomaticPlatformOptimizationValueUnionMember2",
+    "ZonesSchemasAutomaticPlatformOptimizationValueUnionMember3",
+    "ZonesSchemasAutomaticPlatformOptimizationValueUnionMember4",
     "ZonesSearchForAgents",
     "ZonesSecurityLevel2",
     "ZonesSha1Support",
@@ -75,6 +80,7 @@ __all__ = [
     "ZonesTrueClientIPHeader2",
     "ZonesWAF2",
     "ZonesWebmcpEnabled",
+    "ZonesWebmcpMcpURL",
     "ZonesWebmcpPacks",
 ]
 
@@ -115,7 +121,7 @@ class ZonesAlwaysUseHTTPS2(BaseModel):
     id: Literal["always_use_https"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -134,7 +140,7 @@ class ZonesAutomaticHTTPSRewrites2(BaseModel):
     id: Literal["automatic_https_rewrites"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -155,8 +161,15 @@ class ZonesBrowserCacheTTL2(BaseModel):
     id: Literal["browser_cache_ttl"]
     """ID of the zone setting."""
 
-    value: int
-    """Current value of the zone setting."""
+    value: Union[str, float, bool, List[str], object]
+    """Value of the zone setting in seconds. Minimum values by plan:
+
+    - Free: 1 second
+    - Pro: 1 second
+    - Business: 1 second
+    - Enterprise: 1 second Setting a TTL of 0 is equivalent to selecting
+      `Respect Existing Headers` and is allowed for all plans.
+    """
 
     editable: Optional[Literal[True, False]] = None
     """
@@ -176,7 +189,7 @@ class ZonesBrowserCheck2(BaseModel):
     id: Literal["browser_check"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -198,7 +211,7 @@ class ZonesCacheLevel2(BaseModel):
     id: Literal["cache_level"]
     """ID of the zone setting."""
 
-    value: Literal["aggressive", "basic", "simplified"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -217,7 +230,7 @@ class ZonesChinaNetworkEnabled(BaseModel):
     id: Literal["china_network_enabled"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -240,7 +253,7 @@ class ZonesContentConverter(BaseModel):
     id: Literal["content_converter"]
     """ID of the zone setting."""
 
-    value: Literal["off", "on"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -259,7 +272,7 @@ class ZonesCNAMEFlattening(BaseModel):
     id: Literal["cname_flattening"]
     """How to flatten the cname destination."""
 
-    value: Literal["flatten_at_root", "flatten_all"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -280,29 +293,7 @@ class ZonesEdgeCacheTTL2(BaseModel):
     id: Literal["edge_cache_ttl"]
     """ID of the zone setting."""
 
-    value: Literal[
-        30,
-        60,
-        300,
-        1200,
-        1800,
-        3600,
-        7200,
-        10800,
-        14400,
-        18000,
-        28800,
-        43200,
-        57600,
-        72000,
-        86400,
-        172800,
-        259200,
-        345600,
-        432000,
-        518400,
-        604800,
-    ]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -323,7 +314,7 @@ class ZonesEmailObfuscation2(BaseModel):
     id: Literal["email_obfuscation"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -344,7 +335,7 @@ class ZonesIPGeolocation2(BaseModel):
     id: Literal["ip_geolocation"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -363,34 +354,7 @@ class ZonesMaxUpload(BaseModel):
     id: Literal["max_upload"]
     """identifier of the zone setting."""
 
-    value: Literal[
-        100,
-        125,
-        150,
-        175,
-        200,
-        225,
-        250,
-        275,
-        300,
-        325,
-        350,
-        375,
-        400,
-        425,
-        450,
-        475,
-        500,
-        1000,
-        1500,
-        2000,
-        2500,
-        3000,
-        3500,
-        4000,
-        4500,
-        5000,
-    ]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -414,7 +378,7 @@ class ZonesMirage2(BaseModel):
     id: Literal["mirage"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -433,7 +397,7 @@ class ZonesOpportunisticEncryption2(BaseModel):
     id: Literal["opportunistic_encryption"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -454,7 +418,7 @@ class ZonesOriginErrorPagePassThru2(BaseModel):
     id: Literal["origin_error_page_pass_thru"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -506,7 +470,7 @@ class ZonesPolish2(BaseModel):
     id: Literal["polish"]
     """ID of the zone setting."""
 
-    value: Literal["off", "lossless", "lossy"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -528,7 +492,7 @@ class ZonesPreRender(BaseModel):
     id: Literal["pre_render"]
     """ID of the zone setting."""
 
-    value: Literal["off", "on"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -549,7 +513,7 @@ class ZonesPrivacyPass(BaseModel):
     id: Literal["privacy_pass"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -571,7 +535,7 @@ class ZonesRedirectsForAITraining(BaseModel):
     id: Literal["redirects_for_ai_training"]
     """ID of the zone setting."""
 
-    value: Literal["off", "on"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -592,7 +556,7 @@ class ZonesReplaceInsecureJS(BaseModel):
     id: Literal["replace_insecure_js"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -614,7 +578,7 @@ class ZonesResponseBuffering2(BaseModel):
     id: Literal["response_buffering"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -635,7 +599,7 @@ class ZonesRocketLoader2(BaseModel):
     id: Literal["rocket_loader"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -648,6 +612,170 @@ class ZonesRocketLoader2(BaseModel):
     """last time this setting was modified."""
 
 
+class ZonesSchemasAutomaticPlatformOptimizationValueUnionMember0(BaseModel):
+    cache_by_device_type: Optional[bool] = None
+    """
+    Indicates whether or not
+    [cache by device type](https://developers.cloudflare.com/automatic-platform-optimization/reference/cache-device-type/)
+    is enabled.
+    """
+
+    cf: Optional[bool] = None
+    """Indicates whether or not Cloudflare proxy is enabled."""
+
+    enabled: Optional[bool] = None
+    """Indicates whether or not Automatic Platform Optimization is enabled."""
+
+    hostnames: Optional[List[str]] = None
+    """
+    An array of hostnames where Automatic Platform Optimization for WordPress is
+    activated.
+    """
+
+    wordpress: Optional[bool] = None
+    """Indicates whether or not site is powered by WordPress."""
+
+    wp_plugin: Optional[bool] = None
+    """
+    Indicates whether or not
+    [Cloudflare for WordPress plugin](https://wordpress.org/plugins/cloudflare/) is
+    installed.
+    """
+
+
+class ZonesSchemasAutomaticPlatformOptimizationValueUnionMember1(BaseModel):
+    cache_by_device_type: Optional[bool] = None
+    """
+    Indicates whether or not
+    [cache by device type](https://developers.cloudflare.com/automatic-platform-optimization/reference/cache-device-type/)
+    is enabled.
+    """
+
+    cf: Optional[bool] = None
+    """Indicates whether or not Cloudflare proxy is enabled."""
+
+    enabled: Optional[bool] = None
+    """Indicates whether or not Automatic Platform Optimization is enabled."""
+
+    hostnames: Optional[List[str]] = None
+    """
+    An array of hostnames where Automatic Platform Optimization for WordPress is
+    activated.
+    """
+
+    wordpress: Optional[bool] = None
+    """Indicates whether or not site is powered by WordPress."""
+
+    wp_plugin: Optional[bool] = None
+    """
+    Indicates whether or not
+    [Cloudflare for WordPress plugin](https://wordpress.org/plugins/cloudflare/) is
+    installed.
+    """
+
+
+class ZonesSchemasAutomaticPlatformOptimizationValueUnionMember2(BaseModel):
+    cache_by_device_type: Optional[bool] = None
+    """
+    Indicates whether or not
+    [cache by device type](https://developers.cloudflare.com/automatic-platform-optimization/reference/cache-device-type/)
+    is enabled.
+    """
+
+    cf: Optional[bool] = None
+    """Indicates whether or not Cloudflare proxy is enabled."""
+
+    enabled: Optional[bool] = None
+    """Indicates whether or not Automatic Platform Optimization is enabled."""
+
+    hostnames: Optional[List[str]] = None
+    """
+    An array of hostnames where Automatic Platform Optimization for WordPress is
+    activated.
+    """
+
+    wordpress: Optional[bool] = None
+    """Indicates whether or not site is powered by WordPress."""
+
+    wp_plugin: Optional[bool] = None
+    """
+    Indicates whether or not
+    [Cloudflare for WordPress plugin](https://wordpress.org/plugins/cloudflare/) is
+    installed.
+    """
+
+
+class ZonesSchemasAutomaticPlatformOptimizationValueUnionMember3(BaseModel):
+    cache_by_device_type: Optional[bool] = None
+    """
+    Indicates whether or not
+    [cache by device type](https://developers.cloudflare.com/automatic-platform-optimization/reference/cache-device-type/)
+    is enabled.
+    """
+
+    cf: Optional[bool] = None
+    """Indicates whether or not Cloudflare proxy is enabled."""
+
+    enabled: Optional[bool] = None
+    """Indicates whether or not Automatic Platform Optimization is enabled."""
+
+    hostnames: Optional[List[str]] = None
+    """
+    An array of hostnames where Automatic Platform Optimization for WordPress is
+    activated.
+    """
+
+    wordpress: Optional[bool] = None
+    """Indicates whether or not site is powered by WordPress."""
+
+    wp_plugin: Optional[bool] = None
+    """
+    Indicates whether or not
+    [Cloudflare for WordPress plugin](https://wordpress.org/plugins/cloudflare/) is
+    installed.
+    """
+
+
+class ZonesSchemasAutomaticPlatformOptimizationValueUnionMember4(BaseModel):
+    cache_by_device_type: Optional[bool] = None
+    """
+    Indicates whether or not
+    [cache by device type](https://developers.cloudflare.com/automatic-platform-optimization/reference/cache-device-type/)
+    is enabled.
+    """
+
+    cf: Optional[bool] = None
+    """Indicates whether or not Cloudflare proxy is enabled."""
+
+    enabled: Optional[bool] = None
+    """Indicates whether or not Automatic Platform Optimization is enabled."""
+
+    hostnames: Optional[List[str]] = None
+    """
+    An array of hostnames where Automatic Platform Optimization for WordPress is
+    activated.
+    """
+
+    wordpress: Optional[bool] = None
+    """Indicates whether or not site is powered by WordPress."""
+
+    wp_plugin: Optional[bool] = None
+    """
+    Indicates whether or not
+    [Cloudflare for WordPress plugin](https://wordpress.org/plugins/cloudflare/) is
+    installed.
+    """
+
+
+ZonesSchemasAutomaticPlatformOptimizationValue: TypeAlias = Union[
+    ZonesSchemasAutomaticPlatformOptimizationValueUnionMember0,
+    ZonesSchemasAutomaticPlatformOptimizationValueUnionMember1,
+    ZonesSchemasAutomaticPlatformOptimizationValueUnionMember2,
+    ZonesSchemasAutomaticPlatformOptimizationValueUnionMember3,
+    ZonesSchemasAutomaticPlatformOptimizationValueUnionMember4,
+]
+
+
 class ZonesSchemasAutomaticPlatformOptimization(BaseModel):
     """
     [Automatic Platform Optimization for WordPress](https://developers.cloudflare.com/automatic-platform-optimization/) serves your WordPress site from Cloudflare's edge network and caches third-party fonts.
@@ -656,7 +784,7 @@ class ZonesSchemasAutomaticPlatformOptimization(BaseModel):
     id: Literal["automatic_platform_optimization"]
     """ID of the zone setting."""
 
-    value: AutomaticPlatformOptimization
+    value: ZonesSchemasAutomaticPlatformOptimizationValue
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -680,7 +808,7 @@ class ZonesSearchForAgents(BaseModel):
     id: Literal["search_for_agents"]
     """ID of the zone setting."""
 
-    value: Literal["off", "on"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -701,7 +829,7 @@ class ZonesSecurityLevel2(BaseModel):
     id: Literal["security_level"]
     """ID of the zone setting."""
 
-    value: Literal["off", "essentially_off", "low", "medium", "high", "under_attack"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -720,7 +848,7 @@ class ZonesSha1Support(BaseModel):
     id: Literal["sha1_support"]
     """Zone setting identifier."""
 
-    value: Literal["off", "on"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -741,7 +869,7 @@ class ZonesSortQueryStringForCache2(BaseModel):
     id: Literal["sort_query_string_for_cache"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -762,7 +890,7 @@ class ZonesSSL2(BaseModel):
     id: Literal["ssl"]
     """ID of the zone setting."""
 
-    value: Literal["off", "flexible", "full", "strict"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -781,7 +909,7 @@ class ZonesTLS1_2Only(BaseModel):
     id: Literal["tls_1_2_only"]
     """Zone setting identifier."""
 
-    value: Literal["off", "on"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -805,7 +933,7 @@ class ZonesTransformations(BaseModel):
     Shared between Image Transformations and Video Transformations.
     """
 
-    value: Literal["on", "off", "open"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -829,8 +957,14 @@ class ZonesTransformationsAllowedOrigins(BaseModel):
     Shared between Image Transformations and Video Transformations.
     """
 
-    value: str
-    """Current value of the zone setting."""
+    value: Union[str, float, bool, List[str], object]
+    """
+    Comma-separated list of allowed origins. Refer to the
+    [Image Transformations](https://developers.cloudflare.com/images/transform-images/sources/)
+    and
+    [Video Transformations](https://developers.cloudflare.com/stream/transform-videos/#getting-started)
+    documentation for more information.
+    """
 
     editable: Optional[Literal[True, False]] = None
     """
@@ -850,7 +984,7 @@ class ZonesTrueClientIPHeader2(BaseModel):
     id: Literal["true_client_ip_header"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -872,7 +1006,7 @@ class ZonesWAF2(BaseModel):
     id: Literal["waf"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -897,8 +1031,41 @@ class ZonesWebmcpEnabled(BaseModel):
     id: Literal["webmcp_enabled"]
     """ID of the zone setting."""
 
-    value: Literal["off", "on"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
+class ZonesWebmcpMcpURL(BaseModel):
+    """
+    Optional per-zone path of the site's own MCP server, used by the WebMCP
+    mcp-server-client tool pack to list and call the site's MCP tools from
+    the browser. The path is resolved against the page's origin, so it
+    applies to every hostname in the zone. Only takes effect when
+    webmcp_enabled is on and the mcp-server-client pack is active. Leave
+    empty to use /mcp. This setting is currently in beta and its behavior
+    may change.
+    """
+
+    id: Literal["webmcp_mcp_url"]
+    """ID of the zone setting."""
+
+    value: Union[str, float, bool, List[str], object]
+    """
+    Root-relative path (with optional query string) of this zone's MCP endpoint, for
+    example "/api/mcp". Surfaced to the injected bridge as the data-mcp-url
+    attribute. Absolute and protocol-relative URLs, fragments, and characters
+    outside RFC 3986 paths and queries are rejected. An empty value clears the
+    override so the bridge uses /mcp.
+    """
 
     editable: Optional[Literal[True, False]] = None
     """
@@ -922,8 +1089,13 @@ class ZonesWebmcpPacks(BaseModel):
     id: Literal["webmcp_packs"]
     """ID of the zone setting."""
 
-    value: str
-    """Current value of the zone setting."""
+    value: Union[str, float, bool, List[str], object]
+    """
+    Comma-separated list of WebMCP tool-pack names to activate for this zone (for
+    example, "c2pa,mcp-server-client"), surfaced to the injected bridge as the
+    data-packs attribute. An empty value clears the override so the bridge uses its
+    built-in default pack set.
+    """
 
     editable: Optional[Literal[True, False]] = None
     """
@@ -999,6 +1171,7 @@ SettingEditResponse: TypeAlias = Union[
     ZonesTrueClientIPHeader2,
     ZonesWAF2,
     ZonesWebmcpEnabled,
+    ZonesWebmcpMcpURL,
     ZonesWebmcpPacks,
     WebP,
     Websocket,

@@ -78,8 +78,9 @@ class TargetIndustriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TargetIndustryListResponse:
         """
-        Retrieves the catalog of industry classifications used in Cloudforce One threat
-        intelligence.
+        Lists the target industries referenced by events in the datasets given by
+        `datasetIds`, or in the default dataset when `datasetIds` is omitted. To list
+        every target industry, use `threat-intel events target-industries catalog list`.
 
         Args:
           account_id: Account ID.
@@ -153,8 +154,9 @@ class AsyncTargetIndustriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TargetIndustryListResponse:
         """
-        Retrieves the catalog of industry classifications used in Cloudforce One threat
-        intelligence.
+        Lists the target industries referenced by events in the datasets given by
+        `datasetIds`, or in the default dataset when `datasetIds` is omitted. To list
+        every target industry, use `threat-intel events target-industries catalog list`.
 
         Args:
           account_id: Account ID.

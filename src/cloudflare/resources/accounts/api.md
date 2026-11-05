@@ -89,7 +89,7 @@ from cloudflare.types.accounts.subscriptions import BulkCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/bulk/subscriptions">client.accounts.subscriptions.bulk.<a href="./src/cloudflare/resources/accounts/subscriptions/bulk.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/subscriptions/bulk_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/subscriptions/bulk_create_response.py">Optional[BulkCreateResponse]</a></code>
+- <code title="post /accounts/{account_id}/bulk/subscriptions">client.accounts.subscriptions.bulk.<a href="./src/cloudflare/resources/accounts/subscriptions/bulk.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/subscriptions/bulk_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/subscriptions/bulk_create_response.py">BulkCreateResponse</a></code>
 
 ## Tokens
 
@@ -208,18 +208,6 @@ from cloudflare.types.accounts import PayInvoiceCreateResponse
 Methods:
 
 - <code title="post /accounts/{account_id}/pay-invoice">client.accounts.pay_invoice.<a href="./src/cloudflare/resources/accounts/pay_invoice.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/pay_invoice_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/pay_invoice_create_response.py">PayInvoiceCreateResponse</a></code>
-
-## PayBadDebt
-
-Types:
-
-```python
-from cloudflare.types.accounts import PayBadDebtCreateResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/pay-bad-debt">client.accounts.pay_bad_debt.<a href="./src/cloudflare/resources/accounts/pay_bad_debt.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/pay_bad_debt_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/pay_bad_debt_create_response.py">PayBadDebtCreateResponse</a></code>
 
 ## Receipts
 

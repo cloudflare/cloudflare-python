@@ -11,3 +11,7 @@ class ContentGetParams(TypedDict, total=False):
     account_id: Required[str]
 
     format: Literal["text", "html"]
+    """Response Content-Type: text (the default) for text/plain or html for text/html.
+
+    Neither value converts the content. html is deprecated; use text.
+    """

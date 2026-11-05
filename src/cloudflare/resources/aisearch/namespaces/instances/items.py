@@ -74,7 +74,7 @@ class ItemsResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         item_id: str | Omit = omit,
         key: str | Omit = omit,
         metadata_filter: str | Omit = omit,
@@ -98,22 +98,23 @@ class ItemsResource(SyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
-          item_id: Filter items by their unique ID. Returns at most one item.
+          item_id: Return only the item with this unique ID. Returns at most one item.
 
-          key: Filter items by their exact key (object key / filename). Keys are unique per
-              source, so combine with `source` to disambiguate across data sources.
+          key: Return only items with this exact key (object key / filename). Each key is
+              unique within a source, so combine with `source` to disambiguate across data
+              sources.
 
           metadata_filter:
               JSON-encoded metadata filter using Vectorize filter syntax. Examples:
               {"folder":"reports/"},
-              {"timestamp":{"$gte":1700000000000}}, {"folder":{"$in":["docs/","reports/"]}}
+              {"timestamp":{"$gte":1700000000000}}, {"folder":{"$in":["docs/","reports/"]}}.
 
-          sort_by: Sort order for items. "status" (default) sorts by status priority then
-              last_seen_at. "modified_at" sorts by file modification time (most recent first),
-              falling back to created_at.
+          sort_by: Sort order for items. "status" (default) sorts items according to status
+              priority, then last_seen_at. "modified_at" sorts items according to file
+              modification time (most recent first), falling back to created_at.
 
-          source: Filter items by source_id. Use "builtin" for uploaded files, or a source
-              identifier like "web-crawler:https://example.com".
+          source: Return only items with this source_id. Use "builtin" for uploaded files, or a
+              source identifier like "web-crawler:https://example.com".
 
           extra_headers: Send extra headers
 
@@ -125,15 +126,15 @@ class ItemsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             page=SyncV4PagePaginationArray[ItemListResponse],
@@ -165,7 +166,7 @@ class ItemsResource(SyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -190,17 +191,17 @@ class ItemsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._delete(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -219,7 +220,7 @@ class ItemsResource(SyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -247,17 +248,17 @@ class ItemsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/chunks",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}/chunks",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -283,7 +284,7 @@ class ItemsResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         key: str,
         next_action: Literal["INDEX"],
         wait_for_completion: bool | Omit = omit,
@@ -302,11 +303,11 @@ class ItemsResource(SyncAPIResource):
 
           key: Item key / filename. Must not exceed 128 characters.
 
-          wait_for_completion: Wait for indexing to fully complete before responding. On RAGs with vector
-              indexing enabled, this additionally waits for Vectorize ingestion confirmation
-              (up to 40s) so the returned item reflects a queryable state. On timeout the item
-              is returned in `running` state and the background alarm continues polling.
-              Defaults to false.
+          wait_for_completion: Wait for indexing before responding. After processing, vector-indexed instances
+              use any time remaining in a 25s wait budget to confirm Vectorize ingestion.
+              Processing itself continues uninterrupted and can exceed that budget. If
+              confirmation times out, the response returns the current item state and
+              background indexing continues. Defaults to false.
 
           extra_headers: Send extra headers
 
@@ -318,15 +319,15 @@ class ItemsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=maybe_transform(
@@ -352,7 +353,7 @@ class ItemsResource(SyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -378,8 +379,8 @@ class ItemsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
@@ -387,9 +388,9 @@ class ItemsResource(SyncAPIResource):
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/download",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}/download",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -404,7 +405,7 @@ class ItemsResource(SyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -429,17 +430,17 @@ class ItemsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -458,7 +459,7 @@ class ItemsResource(SyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         cursor: str | Omit = omit,
         limit: int | Omit = omit,
@@ -485,17 +486,17 @@ class ItemsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/logs",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}/logs",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -521,7 +522,7 @@ class ItemsResource(SyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         next_action: Literal["INDEX"],
         wait_for_completion: bool | Omit = omit,
@@ -532,18 +533,17 @@ class ItemsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemSyncResponse:
-        """Syncs an item to an AI Search instance index.
+        """
+        Synchronizes an item to an AI Search instance index.
 
         Args:
-          id: AI Search instance ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
-        Lowercase alphanumeric, hyphens, and underscores.
-
-          wait_for_completion: Wait for indexing to fully complete before responding. On RAGs with vector
-              indexing enabled, this additionally waits for Vectorize ingestion confirmation
-              (up to 40s) so the returned item reflects a queryable state. On timeout the item
-              is returned in `running` state and the background alarm continues polling.
-              Defaults to false.
+          wait_for_completion: Wait for indexing before responding. After processing, vector-indexed instances
+              use any time remaining in a 25s wait budget to confirm Vectorize ingestion.
+              Processing itself continues uninterrupted and can exceed that budget. If
+              confirmation times out, the response returns the current item state and
+              background indexing continues. Defaults to false.
 
           extra_headers: Send extra headers
 
@@ -555,17 +555,17 @@ class ItemsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._patch(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -591,7 +591,7 @@ class ItemsResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         file: item_upload_params.File,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -616,8 +616,8 @@ class ItemsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         body = deepcopy_with_paths(file, [["file"]])
@@ -628,9 +628,9 @@ class ItemsResource(SyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=maybe_transform(body, item_upload_params.ItemUploadParams),
@@ -671,7 +671,7 @@ class AsyncItemsResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         item_id: str | Omit = omit,
         key: str | Omit = omit,
         metadata_filter: str | Omit = omit,
@@ -695,22 +695,23 @@ class AsyncItemsResource(AsyncAPIResource):
 
         Lowercase alphanumeric, hyphens, and underscores.
 
-          item_id: Filter items by their unique ID. Returns at most one item.
+          item_id: Return only the item with this unique ID. Returns at most one item.
 
-          key: Filter items by their exact key (object key / filename). Keys are unique per
-              source, so combine with `source` to disambiguate across data sources.
+          key: Return only items with this exact key (object key / filename). Each key is
+              unique within a source, so combine with `source` to disambiguate across data
+              sources.
 
           metadata_filter:
               JSON-encoded metadata filter using Vectorize filter syntax. Examples:
               {"folder":"reports/"},
-              {"timestamp":{"$gte":1700000000000}}, {"folder":{"$in":["docs/","reports/"]}}
+              {"timestamp":{"$gte":1700000000000}}, {"folder":{"$in":["docs/","reports/"]}}.
 
-          sort_by: Sort order for items. "status" (default) sorts by status priority then
-              last_seen_at. "modified_at" sorts by file modification time (most recent first),
-              falling back to created_at.
+          sort_by: Sort order for items. "status" (default) sorts items according to status
+              priority, then last_seen_at. "modified_at" sorts items according to file
+              modification time (most recent first), falling back to created_at.
 
-          source: Filter items by source_id. Use "builtin" for uploaded files, or a source
-              identifier like "web-crawler:https://example.com".
+          source: Return only items with this source_id. Use "builtin" for uploaded files, or a
+              source identifier like "web-crawler:https://example.com".
 
           extra_headers: Send extra headers
 
@@ -722,15 +723,15 @@ class AsyncItemsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             page=AsyncV4PagePaginationArray[ItemListResponse],
@@ -762,7 +763,7 @@ class AsyncItemsResource(AsyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -787,17 +788,17 @@ class AsyncItemsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._delete(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -816,7 +817,7 @@ class AsyncItemsResource(AsyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -844,17 +845,17 @@ class AsyncItemsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/chunks",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}/chunks",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -880,7 +881,7 @@ class AsyncItemsResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         key: str,
         next_action: Literal["INDEX"],
         wait_for_completion: bool | Omit = omit,
@@ -899,11 +900,11 @@ class AsyncItemsResource(AsyncAPIResource):
 
           key: Item key / filename. Must not exceed 128 characters.
 
-          wait_for_completion: Wait for indexing to fully complete before responding. On RAGs with vector
-              indexing enabled, this additionally waits for Vectorize ingestion confirmation
-              (up to 40s) so the returned item reflects a queryable state. On timeout the item
-              is returned in `running` state and the background alarm continues polling.
-              Defaults to false.
+          wait_for_completion: Wait for indexing before responding. After processing, vector-indexed instances
+              use any time remaining in a 25s wait budget to confirm Vectorize ingestion.
+              Processing itself continues uninterrupted and can exceed that budget. If
+              confirmation times out, the response returns the current item state and
+              background indexing continues. Defaults to false.
 
           extra_headers: Send extra headers
 
@@ -915,15 +916,15 @@ class AsyncItemsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=await async_maybe_transform(
@@ -949,7 +950,7 @@ class AsyncItemsResource(AsyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -975,8 +976,8 @@ class AsyncItemsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
@@ -984,9 +985,9 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/download",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}/download",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -1001,7 +1002,7 @@ class AsyncItemsResource(AsyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1026,17 +1027,17 @@ class AsyncItemsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -1055,7 +1056,7 @@ class AsyncItemsResource(AsyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         cursor: str | Omit = omit,
         limit: int | Omit = omit,
@@ -1082,17 +1083,17 @@ class AsyncItemsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}/logs",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}/logs",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -1118,7 +1119,7 @@ class AsyncItemsResource(AsyncAPIResource):
         item_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         next_action: Literal["INDEX"],
         wait_for_completion: bool | Omit = omit,
@@ -1129,18 +1130,17 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ItemSyncResponse:
-        """Syncs an item to an AI Search instance index.
+        """
+        Synchronizes an item to an AI Search instance index.
 
         Args:
-          id: AI Search instance ID.
+          id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
 
-        Lowercase alphanumeric, hyphens, and underscores.
-
-          wait_for_completion: Wait for indexing to fully complete before responding. On RAGs with vector
-              indexing enabled, this additionally waits for Vectorize ingestion confirmation
-              (up to 40s) so the returned item reflects a queryable state. On timeout the item
-              is returned in `running` state and the background alarm continues polling.
-              Defaults to false.
+          wait_for_completion: Wait for indexing before responding. After processing, vector-indexed instances
+              use any time remaining in a 25s wait budget to confirm Vectorize ingestion.
+              Processing itself continues uninterrupted and can exceed that budget. If
+              confirmation times out, the response returns the current item state and
+              background indexing continues. Defaults to false.
 
           extra_headers: Send extra headers
 
@@ -1152,17 +1152,17 @@ class AsyncItemsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._patch(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items/{item_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items/{item_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 item_id=item_id,
             ),
@@ -1188,7 +1188,7 @@ class AsyncItemsResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         file: item_upload_params.File,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1213,8 +1213,8 @@ class AsyncItemsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         body = deepcopy_with_paths(file, [["file"]])
@@ -1225,9 +1225,9 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/items",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=await async_maybe_transform(body, item_upload_params.ItemUploadParams),

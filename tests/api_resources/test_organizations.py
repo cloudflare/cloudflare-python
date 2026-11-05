@@ -24,14 +24,14 @@ class TestOrganizations:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         organization = client.organizations.create(
-            name="name",
+            name="x",
         )
         assert_matches_type(Organization, organization, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         organization = client.organizations.create(
-            name="name",
+            name="x",
             parent={"id": "a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8"},
             profile={
                 "business_address": "business_address",
@@ -46,7 +46,7 @@ class TestOrganizations:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.organizations.with_raw_response.create(
-            name="name",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -57,7 +57,7 @@ class TestOrganizations:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.organizations.with_streaming_response.create(
-            name="name",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,7 +71,6 @@ class TestOrganizations:
     def test_method_update(self, client: Cloudflare) -> None:
         organization = client.organizations.update(
             organization_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
-            name="name",
         )
         assert_matches_type(Organization, organization, path=["response"])
 
@@ -80,14 +79,7 @@ class TestOrganizations:
         organization = client.organizations.update(
             organization_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
             name="name",
-            parent={"id": "a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8"},
-            profile={
-                "business_address": "business_address",
-                "business_email": "business_email",
-                "business_name": "business_name",
-                "business_phone": "business_phone",
-                "external_metadata": "external_metadata",
-            },
+            parent_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
         )
         assert_matches_type(Organization, organization, path=["response"])
 
@@ -95,7 +87,6 @@ class TestOrganizations:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.organizations.with_raw_response.update(
             organization_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
-            name="name",
         )
 
         assert response.is_closed is True
@@ -107,7 +98,6 @@ class TestOrganizations:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.organizations.with_streaming_response.update(
             organization_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
-            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,7 +112,6 @@ class TestOrganizations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `organization_id` but received ''"):
             client.organizations.with_raw_response.update(
                 organization_id="",
-                name="name",
             )
 
     @parametrize
@@ -139,11 +128,14 @@ class TestOrganizations:
                 "organization": "organization",
                 "user": "user",
             },
+            direction="asc",
+            member={"email": "email"},
             name={
                 "contains": "contains",
                 "ends_with": "endsWith",
                 "starts_with": "startsWith",
             },
+            order_by="name",
             page_size=0,
             page_token="page_token",
             parent={"id": "a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8"},
@@ -255,14 +247,14 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.organizations.create(
-            name="name",
+            name="x",
         )
         assert_matches_type(Organization, organization, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.organizations.create(
-            name="name",
+            name="x",
             parent={"id": "a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8"},
             profile={
                 "business_address": "business_address",
@@ -277,7 +269,7 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.organizations.with_raw_response.create(
-            name="name",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -288,7 +280,7 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.organizations.with_streaming_response.create(
-            name="name",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -302,7 +294,6 @@ class TestAsyncOrganizations:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.organizations.update(
             organization_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
-            name="name",
         )
         assert_matches_type(Organization, organization, path=["response"])
 
@@ -311,14 +302,7 @@ class TestAsyncOrganizations:
         organization = await async_client.organizations.update(
             organization_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
             name="name",
-            parent={"id": "a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8"},
-            profile={
-                "business_address": "business_address",
-                "business_email": "business_email",
-                "business_name": "business_name",
-                "business_phone": "business_phone",
-                "external_metadata": "external_metadata",
-            },
+            parent_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
         )
         assert_matches_type(Organization, organization, path=["response"])
 
@@ -326,7 +310,6 @@ class TestAsyncOrganizations:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.organizations.with_raw_response.update(
             organization_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
-            name="name",
         )
 
         assert response.is_closed is True
@@ -338,7 +321,6 @@ class TestAsyncOrganizations:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.organizations.with_streaming_response.update(
             organization_id="a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8",
-            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -353,7 +335,6 @@ class TestAsyncOrganizations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `organization_id` but received ''"):
             await async_client.organizations.with_raw_response.update(
                 organization_id="",
-                name="name",
             )
 
     @parametrize
@@ -370,11 +351,14 @@ class TestAsyncOrganizations:
                 "organization": "organization",
                 "user": "user",
             },
+            direction="asc",
+            member={"email": "email"},
             name={
                 "contains": "contains",
                 "ends_with": "endsWith",
                 "starts_with": "startsWith",
             },
+            order_by="name",
             page_size=0,
             page_token="page_token",
             parent={"id": "a7b9c3d2e8f4a1b5c6d0e9f2a3b7c4d8"},

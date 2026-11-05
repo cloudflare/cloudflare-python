@@ -40,7 +40,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(SyncV4PagePaginationArray[ItemListResponse], item, path=["response"])
 
@@ -49,7 +49,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             item_id="item_id",
             key="key",
             metadata_filter="metadata_filter",
@@ -67,7 +67,7 @@ class TestItems:
         response = client.aisearch.namespaces.instances.items.with_raw_response.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -80,7 +80,7 @@ class TestItems:
         with client.aisearch.namespaces.instances.items.with_streaming_response.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -96,21 +96,21 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.list(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.list(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.list(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -118,7 +118,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.delete(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(ItemDeleteResponse, item, path=["response"])
@@ -128,7 +128,7 @@ class TestItems:
         response = client.aisearch.namespaces.instances.items.with_raw_response.delete(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -142,7 +142,7 @@ class TestItems:
         with client.aisearch.namespaces.instances.items.with_streaming_response.delete(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -159,15 +159,15 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.delete(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.delete(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -175,7 +175,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.delete(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -183,7 +183,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.delete(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -192,7 +192,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.chunks(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(ItemChunksResponse, item, path=["response"])
@@ -202,7 +202,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.chunks(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             limit=1,
             offset=0,
@@ -214,7 +214,7 @@ class TestItems:
         response = client.aisearch.namespaces.instances.items.with_raw_response.chunks(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -228,7 +228,7 @@ class TestItems:
         with client.aisearch.namespaces.instances.items.with_streaming_response.chunks(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -245,15 +245,15 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.chunks(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.chunks(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -261,7 +261,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.chunks(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -269,7 +269,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.chunks(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -278,7 +278,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.create_or_update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             key="key",
             next_action="INDEX",
         )
@@ -289,7 +289,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.create_or_update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             key="key",
             next_action="INDEX",
             wait_for_completion=True,
@@ -301,7 +301,7 @@ class TestItems:
         response = client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             key="key",
             next_action="INDEX",
         )
@@ -316,7 +316,7 @@ class TestItems:
         with client.aisearch.namespaces.instances.items.with_streaming_response.create_or_update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             key="key",
             next_action="INDEX",
         ) as response:
@@ -334,16 +334,16 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 key="key",
                 next_action="INDEX",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 key="key",
                 next_action="INDEX",
             )
@@ -352,7 +352,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 key="key",
                 next_action="INDEX",
             )
@@ -366,7 +366,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.download(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert item.is_closed
@@ -384,7 +384,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.with_raw_response.download(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -402,7 +402,7 @@ class TestItems:
         with client.aisearch.namespaces.instances.items.with_streaming_response.download(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as item:
             assert not item.is_closed
@@ -421,15 +421,15 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.download(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.download(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -437,7 +437,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.download(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -445,7 +445,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.download(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -454,7 +454,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.get(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(ItemGetResponse, item, path=["response"])
@@ -464,7 +464,7 @@ class TestItems:
         response = client.aisearch.namespaces.instances.items.with_raw_response.get(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -478,7 +478,7 @@ class TestItems:
         with client.aisearch.namespaces.instances.items.with_streaming_response.get(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -495,15 +495,15 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.get(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.get(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -511,7 +511,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.get(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -519,7 +519,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.get(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -528,7 +528,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.logs(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(ItemLogsResponse, item, path=["response"])
@@ -538,7 +538,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.logs(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             cursor="cursor",
             limit=1,
@@ -550,7 +550,7 @@ class TestItems:
         response = client.aisearch.namespaces.instances.items.with_raw_response.logs(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -564,7 +564,7 @@ class TestItems:
         with client.aisearch.namespaces.instances.items.with_streaming_response.logs(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -581,15 +581,15 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.logs(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.logs(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -597,7 +597,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.logs(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -605,7 +605,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.logs(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -614,7 +614,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.sync(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
         )
@@ -625,7 +625,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.sync(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
             wait_for_completion=True,
@@ -637,7 +637,7 @@ class TestItems:
         response = client.aisearch.namespaces.instances.items.with_raw_response.sync(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
         )
@@ -652,7 +652,7 @@ class TestItems:
         with client.aisearch.namespaces.instances.items.with_streaming_response.sync(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
         ) as response:
@@ -670,16 +670,16 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.sync(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
                 next_action="INDEX",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.sync(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
                 next_action="INDEX",
             )
@@ -688,7 +688,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.sync(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
                 next_action="INDEX",
             )
@@ -697,7 +697,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.sync(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
                 next_action="INDEX",
             )
@@ -707,7 +707,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.upload(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             file={"file": b"Example data"},
         )
         assert_matches_type(ItemUploadResponse, item, path=["response"])
@@ -717,7 +717,7 @@ class TestItems:
         item = client.aisearch.namespaces.instances.items.upload(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             file={
                 "file": b"Example data",
                 "metadata": "metadata",
@@ -731,7 +731,7 @@ class TestItems:
         response = client.aisearch.namespaces.instances.items.with_raw_response.upload(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             file={"file": b"Example data"},
         )
 
@@ -745,7 +745,7 @@ class TestItems:
         with client.aisearch.namespaces.instances.items.with_streaming_response.upload(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             file={"file": b"Example data"},
         ) as response:
             assert not response.is_closed
@@ -762,15 +762,15 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.upload(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 file={"file": b"Example data"},
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.items.with_raw_response.upload(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 file={"file": b"Example data"},
             )
 
@@ -778,7 +778,7 @@ class TestItems:
             client.aisearch.namespaces.instances.items.with_raw_response.upload(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 file={"file": b"Example data"},
             )
 
@@ -793,7 +793,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(AsyncV4PagePaginationArray[ItemListResponse], item, path=["response"])
 
@@ -802,7 +802,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             item_id="item_id",
             key="key",
             metadata_filter="metadata_filter",
@@ -820,7 +820,7 @@ class TestAsyncItems:
         response = await async_client.aisearch.namespaces.instances.items.with_raw_response.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -833,7 +833,7 @@ class TestAsyncItems:
         async with async_client.aisearch.namespaces.instances.items.with_streaming_response.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -849,21 +849,21 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.list(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.list(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.list(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -871,7 +871,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.delete(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(ItemDeleteResponse, item, path=["response"])
@@ -881,7 +881,7 @@ class TestAsyncItems:
         response = await async_client.aisearch.namespaces.instances.items.with_raw_response.delete(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -895,7 +895,7 @@ class TestAsyncItems:
         async with async_client.aisearch.namespaces.instances.items.with_streaming_response.delete(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -912,15 +912,15 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.delete(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.delete(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -928,7 +928,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.delete(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -936,7 +936,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.delete(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -945,7 +945,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.chunks(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(ItemChunksResponse, item, path=["response"])
@@ -955,7 +955,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.chunks(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             limit=1,
             offset=0,
@@ -967,7 +967,7 @@ class TestAsyncItems:
         response = await async_client.aisearch.namespaces.instances.items.with_raw_response.chunks(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -981,7 +981,7 @@ class TestAsyncItems:
         async with async_client.aisearch.namespaces.instances.items.with_streaming_response.chunks(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -998,15 +998,15 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.chunks(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.chunks(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -1014,7 +1014,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.chunks(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -1022,7 +1022,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.chunks(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -1031,7 +1031,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.create_or_update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             key="key",
             next_action="INDEX",
         )
@@ -1042,7 +1042,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.create_or_update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             key="key",
             next_action="INDEX",
             wait_for_completion=True,
@@ -1054,7 +1054,7 @@ class TestAsyncItems:
         response = await async_client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             key="key",
             next_action="INDEX",
         )
@@ -1069,7 +1069,7 @@ class TestAsyncItems:
         async with async_client.aisearch.namespaces.instances.items.with_streaming_response.create_or_update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             key="key",
             next_action="INDEX",
         ) as response:
@@ -1087,16 +1087,16 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 key="key",
                 next_action="INDEX",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 key="key",
                 next_action="INDEX",
             )
@@ -1105,7 +1105,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.create_or_update(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 key="key",
                 next_action="INDEX",
             )
@@ -1119,7 +1119,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.download(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert item.is_closed
@@ -1137,7 +1137,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.with_raw_response.download(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -1155,7 +1155,7 @@ class TestAsyncItems:
         async with async_client.aisearch.namespaces.instances.items.with_streaming_response.download(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as item:
             assert not item.is_closed
@@ -1174,15 +1174,15 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.download(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.download(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -1190,7 +1190,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.download(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -1198,7 +1198,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.download(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -1207,7 +1207,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.get(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(ItemGetResponse, item, path=["response"])
@@ -1217,7 +1217,7 @@ class TestAsyncItems:
         response = await async_client.aisearch.namespaces.instances.items.with_raw_response.get(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -1231,7 +1231,7 @@ class TestAsyncItems:
         async with async_client.aisearch.namespaces.instances.items.with_streaming_response.get(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -1248,15 +1248,15 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.get(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.get(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -1264,7 +1264,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.get(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -1272,7 +1272,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.get(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -1281,7 +1281,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.logs(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(ItemLogsResponse, item, path=["response"])
@@ -1291,7 +1291,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.logs(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             cursor="cursor",
             limit=1,
@@ -1303,7 +1303,7 @@ class TestAsyncItems:
         response = await async_client.aisearch.namespaces.instances.items.with_raw_response.logs(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -1317,7 +1317,7 @@ class TestAsyncItems:
         async with async_client.aisearch.namespaces.instances.items.with_streaming_response.logs(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -1334,15 +1334,15 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.logs(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.logs(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -1350,7 +1350,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.logs(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -1358,7 +1358,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.logs(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -1367,7 +1367,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.sync(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
         )
@@ -1378,7 +1378,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.sync(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
             wait_for_completion=True,
@@ -1390,7 +1390,7 @@ class TestAsyncItems:
         response = await async_client.aisearch.namespaces.instances.items.with_raw_response.sync(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
         )
@@ -1405,7 +1405,7 @@ class TestAsyncItems:
         async with async_client.aisearch.namespaces.instances.items.with_streaming_response.sync(
             item_id="item_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             next_action="INDEX",
         ) as response:
@@ -1423,16 +1423,16 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.sync(
                 item_id="item_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
                 next_action="INDEX",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.sync(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
                 next_action="INDEX",
             )
@@ -1441,7 +1441,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.sync(
                 item_id="item_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
                 next_action="INDEX",
             )
@@ -1450,7 +1450,7 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.sync(
                 item_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
                 next_action="INDEX",
             )
@@ -1460,7 +1460,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.upload(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             file={"file": b"Example data"},
         )
         assert_matches_type(ItemUploadResponse, item, path=["response"])
@@ -1470,7 +1470,7 @@ class TestAsyncItems:
         item = await async_client.aisearch.namespaces.instances.items.upload(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             file={
                 "file": b"Example data",
                 "metadata": "metadata",
@@ -1484,7 +1484,7 @@ class TestAsyncItems:
         response = await async_client.aisearch.namespaces.instances.items.with_raw_response.upload(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             file={"file": b"Example data"},
         )
 
@@ -1498,7 +1498,7 @@ class TestAsyncItems:
         async with async_client.aisearch.namespaces.instances.items.with_streaming_response.upload(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             file={"file": b"Example data"},
         ) as response:
             assert not response.is_closed
@@ -1515,15 +1515,15 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.upload(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 file={"file": b"Example data"},
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.items.with_raw_response.upload(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 file={"file": b"Example data"},
             )
 
@@ -1531,6 +1531,6 @@ class TestAsyncItems:
             await async_client.aisearch.namespaces.instances.items.with_raw_response.upload(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 file={"file": b"Example data"},
             )

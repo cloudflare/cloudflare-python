@@ -45,6 +45,7 @@ class TestEntries:
             },
             description="description",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            validator_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
 
@@ -114,6 +115,7 @@ class TestEntries:
             type="custom",
             description="description",
             enabled=True,
+            validator_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
@@ -470,6 +472,7 @@ class TestAsyncEntries:
             },
             description="description",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            validator_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
 
@@ -539,6 +542,7 @@ class TestAsyncEntries:
             type="custom",
             description="description",
             enabled=True,
+            validator_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 

@@ -56,6 +56,14 @@ from .remediations import (
     RemediationsResourceWithStreamingResponse,
     AsyncRemediationsResourceWithStreamingResponse,
 )
+from .asset_schemas import (
+    AssetSchemasResource,
+    AsyncAssetSchemasResource,
+    AssetSchemasResourceWithRawResponse,
+    AsyncAssetSchemasResourceWithRawResponse,
+    AssetSchemasResourceWithStreamingResponse,
+    AsyncAssetSchemasResourceWithStreamingResponse,
+)
 from .finding_types import (
     FindingTypesResource,
     AsyncFindingTypesResource,
@@ -84,6 +92,12 @@ __all__ = [
     "AsyncFindingTypesResourceWithRawResponse",
     "FindingTypesResourceWithStreamingResponse",
     "AsyncFindingTypesResourceWithStreamingResponse",
+    "AssetSchemasResource",
+    "AsyncAssetSchemasResource",
+    "AssetSchemasResourceWithRawResponse",
+    "AsyncAssetSchemasResourceWithRawResponse",
+    "AssetSchemasResourceWithStreamingResponse",
+    "AsyncAssetSchemasResourceWithStreamingResponse",
     "ContentResource",
     "AsyncContentResource",
     "ContentResourceWithRawResponse",

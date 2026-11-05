@@ -10,7 +10,7 @@ __all__ = ["JobUpdateParams"]
 class JobUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    name: Required[str]
+    namespace: Required[str]
 
     id: Required[str]
     """AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores."""

@@ -157,6 +157,15 @@ class TestThreatEvents:
                     "value": "x",
                 }
             ],
+            search_branches=[
+                [
+                    {
+                        "field": "attacker",
+                        "op": "equals",
+                        "value": "x",
+                    }
+                ]
+            ],
         )
         assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
 
@@ -674,6 +683,15 @@ class TestAsyncThreatEvents:
                     "op": "equals",
                     "value": "x",
                 }
+            ],
+            search_branches=[
+                [
+                    {
+                        "field": "attacker",
+                        "op": "equals",
+                        "value": "x",
+                    }
+                ]
             ],
         )
         assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])

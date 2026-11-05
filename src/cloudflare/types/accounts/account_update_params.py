@@ -15,7 +15,7 @@ class AccountUpdateParams(TypedDict, total=False):
     """Identifier"""
 
     name: Required[str]
-    """Account name"""
+    """Account name, limited to 65 UTF-8 bytes."""
 
     type: Required[Literal["standard", "enterprise"]]
 

@@ -10,7 +10,7 @@ __all__ = ["ApplicationGetResponse"]
 
 class ApplicationGetResponse(BaseModel):
     id: int
-    """Returns the application ID."""
+    """Numeric identifier for the application."""
 
     application_confidence_score: float
     """Confidence score for the application. Returns -1 when no score is available."""
@@ -25,7 +25,7 @@ class ApplicationGetResponse(BaseModel):
     """Returns the application type description."""
 
     category_id: int
-    """Returns the category ID."""
+    """Numeric identifier for an application category."""
 
     created_at: str
     """Returns the application creation time."""
@@ -37,7 +37,7 @@ class ApplicationGetResponse(BaseModel):
     """Hostnames matched by the application."""
 
     human_id: str
-    """Returns the human readable ID."""
+    """Human-readable identifier for the application."""
 
     ip_subnets: List[str]
     """IP subnets for this application.
@@ -47,10 +47,14 @@ class ApplicationGetResponse(BaseModel):
     """
 
     name: str
-    """Returns the application name."""
+    """Application name."""
 
     port_protocols: List[str]
-    """Port and protocol pairs matched by the application."""
+    """
+    Ports matched by the application, in `protocol/port` or inclusive
+    `protocol/start-end` format (for example, `tcp/443` or `udp/10000-20000`). TCP
+    and UDP ports must be between 0 and 65535.
+    """
 
     support_domains: List[str]
     """Support domains matched by the application."""

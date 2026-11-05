@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
 from cloudflare.types.zero_trust.resource_library import CategoryGetResponse, CategoryListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -23,16 +23,17 @@ class TestCategories:
         category = client.zero_trust.resource_library.categories.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[CategoryListResponse], category, path=["response"])
+        assert_matches_type(SyncCursorPaginationAfter[CategoryListResponse], category, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         category = client.zero_trust.resource_library.categories.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            cursor="cursor",
             limit=0,
             offset=0,
         )
-        assert_matches_type(SyncSinglePage[CategoryListResponse], category, path=["response"])
+        assert_matches_type(SyncCursorPaginationAfter[CategoryListResponse], category, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -43,7 +44,7 @@ class TestCategories:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         category = response.parse()
-        assert_matches_type(SyncSinglePage[CategoryListResponse], category, path=["response"])
+        assert_matches_type(SyncCursorPaginationAfter[CategoryListResponse], category, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -54,7 +55,7 @@ class TestCategories:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             category = response.parse()
-            assert_matches_type(SyncSinglePage[CategoryListResponse], category, path=["response"])
+            assert_matches_type(SyncCursorPaginationAfter[CategoryListResponse], category, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -118,16 +119,17 @@ class TestAsyncCategories:
         category = await async_client.zero_trust.resource_library.categories.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[CategoryListResponse], category, path=["response"])
+        assert_matches_type(AsyncCursorPaginationAfter[CategoryListResponse], category, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         category = await async_client.zero_trust.resource_library.categories.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            cursor="cursor",
             limit=0,
             offset=0,
         )
-        assert_matches_type(AsyncSinglePage[CategoryListResponse], category, path=["response"])
+        assert_matches_type(AsyncCursorPaginationAfter[CategoryListResponse], category, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -138,7 +140,7 @@ class TestAsyncCategories:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         category = await response.parse()
-        assert_matches_type(AsyncSinglePage[CategoryListResponse], category, path=["response"])
+        assert_matches_type(AsyncCursorPaginationAfter[CategoryListResponse], category, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -149,7 +151,7 @@ class TestAsyncCategories:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             category = await response.parse()
-            assert_matches_type(AsyncSinglePage[CategoryListResponse], category, path=["response"])
+            assert_matches_type(AsyncCursorPaginationAfter[CategoryListResponse], category, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

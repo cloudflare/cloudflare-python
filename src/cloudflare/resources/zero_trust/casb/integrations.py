@@ -71,13 +71,14 @@ class IntegrationsResource(SyncAPIResource):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ],
         credentials: Dict[str, object],
         name: str,
+        use_cases: List[Literal["casb", "ces", "auto_remediation"]],
         auth_method: Optional[str] | Omit = omit,
         dlp_profiles: SequenceNotStr[str] | Omit = omit,
         permissions: SequenceNotStr[str] | Omit = omit,
-        use_cases: List[Literal["casb", "ces", "auto_remediation"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,19 +111,21 @@ class IntegrationsResource(SyncAPIResource):
               - `SALESFORCE` - SALESFORCE
               - `SERVICENOW` - SERVICENOW
               - `SLACK` - SLACK
+              - `ZOOM` - ZOOM
 
           credentials: Credentials for the integration.
 
           name: Name of the integration.
+
+          use_cases: List of use case or feature slugs to enroll. At least one use case (casb, ces)
+              is required; auto_remediation may be added alongside casb (e.g., ['casb', 'ces',
+              'auto_remediation']).
 
           auth_method: Authentication method slug (uses default if omitted).
 
           dlp_profiles: List of DLP profile IDs to associate.
 
           permissions: List of permission scopes (uses policy defaults if empty).
-
-          use_cases: List of use case or feature slugs to enroll (e.g., ['casb', 'ces',
-              'auto_remediation']).
 
           extra_headers: Send extra headers
 
@@ -141,10 +144,10 @@ class IntegrationsResource(SyncAPIResource):
                     "application": application,
                     "credentials": credentials,
                     "name": name,
+                    "use_cases": use_cases,
                     "auth_method": auth_method,
                     "dlp_profiles": dlp_profiles,
                     "permissions": permissions,
-                    "use_cases": use_cases,
                 },
                 integration_create_params.IntegrationCreateParams,
             ),
@@ -502,13 +505,14 @@ class AsyncIntegrationsResource(AsyncAPIResource):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ],
         credentials: Dict[str, object],
         name: str,
+        use_cases: List[Literal["casb", "ces", "auto_remediation"]],
         auth_method: Optional[str] | Omit = omit,
         dlp_profiles: SequenceNotStr[str] | Omit = omit,
         permissions: SequenceNotStr[str] | Omit = omit,
-        use_cases: List[Literal["casb", "ces", "auto_remediation"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -541,19 +545,21 @@ class AsyncIntegrationsResource(AsyncAPIResource):
               - `SALESFORCE` - SALESFORCE
               - `SERVICENOW` - SERVICENOW
               - `SLACK` - SLACK
+              - `ZOOM` - ZOOM
 
           credentials: Credentials for the integration.
 
           name: Name of the integration.
+
+          use_cases: List of use case or feature slugs to enroll. At least one use case (casb, ces)
+              is required; auto_remediation may be added alongside casb (e.g., ['casb', 'ces',
+              'auto_remediation']).
 
           auth_method: Authentication method slug (uses default if omitted).
 
           dlp_profiles: List of DLP profile IDs to associate.
 
           permissions: List of permission scopes (uses policy defaults if empty).
-
-          use_cases: List of use case or feature slugs to enroll (e.g., ['casb', 'ces',
-              'auto_remediation']).
 
           extra_headers: Send extra headers
 
@@ -572,10 +578,10 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                     "application": application,
                     "credentials": credentials,
                     "name": name,
+                    "use_cases": use_cases,
                     "auth_method": auth_method,
                     "dlp_profiles": dlp_profiles,
                     "permissions": permissions,
-                    "use_cases": use_cases,
                 },
                 integration_create_params.IntegrationCreateParams,
             ),

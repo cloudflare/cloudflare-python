@@ -129,7 +129,7 @@ class WARPConnectorResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorCreateResponse:
         """
-        Creates a new Warp Connector Tunnel in an account.
+        Creates a new Mesh node in an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -191,7 +191,7 @@ class WARPConnectorResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[WARPConnectorListResponse]:
         """
-        Lists and filters Warp Connector Tunnels in an account.
+        Lists and filters Mesh nodes in an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -266,7 +266,7 @@ class WARPConnectorResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorDeleteResponse:
         """
-        Deletes a Warp Connector Tunnel from an account.
+        Deletes a Mesh node from an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -314,7 +314,7 @@ class WARPConnectorResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorEditResponse:
         """
-        Updates an existing Warp Connector Tunnel.
+        Updates an existing Mesh node.
 
         Args:
           account_id: Cloudflare account ID
@@ -372,7 +372,7 @@ class WARPConnectorResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorGetResponse:
         """
-        Fetches a single Warp Connector Tunnel.
+        Fetches a single Mesh node.
 
         Args:
           account_id: Cloudflare account ID
@@ -460,7 +460,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorCreateResponse:
         """
-        Creates a new Warp Connector Tunnel in an account.
+        Creates a new Mesh node in an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -522,7 +522,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WARPConnectorListResponse, AsyncV4PagePaginationArray[WARPConnectorListResponse]]:
         """
-        Lists and filters Warp Connector Tunnels in an account.
+        Lists and filters Mesh nodes in an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -597,7 +597,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorDeleteResponse:
         """
-        Deletes a Warp Connector Tunnel from an account.
+        Deletes a Mesh node from an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -645,7 +645,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorEditResponse:
         """
-        Updates an existing Warp Connector Tunnel.
+        Updates an existing Mesh node.
 
         Args:
           account_id: Cloudflare account ID
@@ -703,7 +703,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorGetResponse:
         """
-        Fetches a single Warp Connector Tunnel.
+        Fetches a single Mesh node.
 
         Args:
           account_id: Cloudflare account ID

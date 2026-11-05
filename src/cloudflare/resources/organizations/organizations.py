@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -43,19 +44,20 @@ from .organization_profile import (
     OrganizationProfileResourceWithStreamingResponse,
     AsyncOrganizationProfileResourceWithStreamingResponse,
 )
-from ...types.organizations import (
-    organization_list_params,
-    organization_create_params,
-    organization_update_params,
-)
+from ...types.organizations import organization_list_params, organization_create_params, organization_update_params
 from ...types.organizations.organization import Organization
-from ...types.organizations.organization_profile_param import OrganizationProfileParam
 from ...types.organizations.organization_delete_response import OrganizationDeleteResponse
 
 __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 
 
 class OrganizationsResource(SyncAPIResource):
+    """
+    User API tokens can list and create Organizations, but reading, updating, or deleting an Organization requires a Global API key and your registered email address. The `cloudflare_organization` Terraform resource therefore requires a Global API key for its full lifecycle.
+
+    See [Organizations authentication limitations](https://developers.cloudflare.com/fundamentals/organizations/limitations/#api-authentication) for credential compatibility by operation. Each endpoint’s **Security** section lists its supported authentication methods, with **Accepted Permissions** where applicable.
+    """
+
     @cached_property
     def organization_profile(self) -> OrganizationProfileResource:
         return OrganizationProfileResource(self._client)
@@ -92,7 +94,7 @@ class OrganizationsResource(SyncAPIResource):
         *,
         name: str,
         parent: organization_create_params.Parent | Omit = omit,
-        profile: OrganizationProfileParam | Omit = omit,
+        profile: organization_create_params.Profile | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -103,10 +105,19 @@ class OrganizationsResource(SyncAPIResource):
         """Create a new organization for a user.
 
         Sub-organization creation availability
-        depends on the organization's capabilities. (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        depends on the organization's capabilities. The optional `profile` object
+        accepts partial profile details; its individual fields are not required.
+        Organization names are limited to 65 UTF-8 bytes. Each profile field is limited
+        to 1,000 UTF-8 bytes, and a non-empty business email must be valid. At least one
+        of business name, address, phone, or email must be non-empty to persist a
+        profile.
 
         Args:
+          name: The Organization name, limited to 65 UTF-8 bytes.
+
+          profile: Optional profile fields, each limited to 1,000 UTF-8 bytes. An empty profile is
+              ignored.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -139,9 +150,8 @@ class OrganizationsResource(SyncAPIResource):
         self,
         organization_id: str,
         *,
-        name: str,
-        parent: organization_update_params.Parent | Omit = omit,
-        profile: OrganizationProfileParam | Omit = omit,
+        name: str | Omit = omit,
+        parent_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,10 +161,17 @@ class OrganizationsResource(SyncAPIResource):
     ) -> Organization:
         """Update an organization's name.
 
-        (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        Supplying `parent_id` verifies the current
+        parent; this endpoint cannot move an organization. Organization names are
+        limited to 65 UTF-8 bytes.
 
         Args:
+          name: The Organization's display name, limited to 65 UTF-8 bytes. An omitted, empty,
+              or unchanged value is a no-op.
+
+          parent_id: The current parent Organization ID. A different value is rejected; this endpoint
+              cannot move an Organization.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -170,8 +187,7 @@ class OrganizationsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
-                    "parent": parent,
-                    "profile": profile,
+                    "parent_id": parent_id,
                 },
                 organization_update_params.OrganizationUpdateParams,
             ),
@@ -190,7 +206,10 @@ class OrganizationsResource(SyncAPIResource):
         *,
         id: SequenceNotStr[str] | Omit = omit,
         containing: organization_list_params.Containing | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        member: organization_list_params.Member | Omit = omit,
         name: organization_list_params.Name | Omit = omit,
+        order_by: Literal["name"] | Omit = omit,
         page_size: int | Omit = omit,
         page_token: str | Omit = omit,
         parent: organization_list_params.Parent | Omit = omit,
@@ -203,12 +222,19 @@ class OrganizationsResource(SyncAPIResource):
     ) -> SyncSinglePage[Organization]:
         """Retrieve a list of organizations a particular user has access to.
 
-        (Currently in
-        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        At most one of
+        `containing.account`, `containing.user`, or `containing.organization` may be
+        provided.
 
         Args:
           id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
               multiple elements by repeating the query value.
+
+          direction: Sort direction for the `order_by` field. Defaults to `asc` when `order_by` is
+              specified.
+
+          order_by: Field to order results by. Currently supported values: `name`. When not
+              specified, results are ordered by hierarchy.
 
           page_size: The amount of items to return. Defaults to 10.
 
@@ -238,7 +264,10 @@ class OrganizationsResource(SyncAPIResource):
                     {
                         "id": id,
                         "containing": containing,
+                        "direction": direction,
+                        "member": member,
                         "name": name,
+                        "order_by": order_by,
                         "page_size": page_size,
                         "page_token": page_token,
                         "parent": parent,
@@ -262,12 +291,12 @@ class OrganizationsResource(SyncAPIResource):
     ) -> OrganizationDeleteResponse:
         """Delete an organization.
 
-        The organization MUST be empty before deleting. It must
-        not contain any sub-organizations, accounts, members or users. Sub-organization
-        deletion availability depends on the organization's capabilities. (Currently in
-        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        It must not contain active sub-organizations or
+        accounts. A root organization must also have no active managed users.
+        Sub-organization deletion availability depends on the organization's
+        capabilities.
 
-        **Access Control:** Restricted to enterprise organizations.
+        **Access Control:** Root deletion is restricted to enterprise organizations.
 
         Args:
           extra_headers: Send extra headers
@@ -303,10 +332,8 @@ class OrganizationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """Retrieve the details of a certain organization.
-
-        (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        """
+        Retrieve the details of a certain organization.
 
         Args:
           extra_headers: Send extra headers
@@ -333,6 +360,12 @@ class OrganizationsResource(SyncAPIResource):
 
 
 class AsyncOrganizationsResource(AsyncAPIResource):
+    """
+    User API tokens can list and create Organizations, but reading, updating, or deleting an Organization requires a Global API key and your registered email address. The `cloudflare_organization` Terraform resource therefore requires a Global API key for its full lifecycle.
+
+    See [Organizations authentication limitations](https://developers.cloudflare.com/fundamentals/organizations/limitations/#api-authentication) for credential compatibility by operation. Each endpoint’s **Security** section lists its supported authentication methods, with **Accepted Permissions** where applicable.
+    """
+
     @cached_property
     def organization_profile(self) -> AsyncOrganizationProfileResource:
         return AsyncOrganizationProfileResource(self._client)
@@ -369,7 +402,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         *,
         name: str,
         parent: organization_create_params.Parent | Omit = omit,
-        profile: OrganizationProfileParam | Omit = omit,
+        profile: organization_create_params.Profile | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -380,10 +413,19 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         """Create a new organization for a user.
 
         Sub-organization creation availability
-        depends on the organization's capabilities. (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        depends on the organization's capabilities. The optional `profile` object
+        accepts partial profile details; its individual fields are not required.
+        Organization names are limited to 65 UTF-8 bytes. Each profile field is limited
+        to 1,000 UTF-8 bytes, and a non-empty business email must be valid. At least one
+        of business name, address, phone, or email must be non-empty to persist a
+        profile.
 
         Args:
+          name: The Organization name, limited to 65 UTF-8 bytes.
+
+          profile: Optional profile fields, each limited to 1,000 UTF-8 bytes. An empty profile is
+              ignored.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -416,9 +458,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         self,
         organization_id: str,
         *,
-        name: str,
-        parent: organization_update_params.Parent | Omit = omit,
-        profile: OrganizationProfileParam | Omit = omit,
+        name: str | Omit = omit,
+        parent_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -428,10 +469,17 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> Organization:
         """Update an organization's name.
 
-        (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        Supplying `parent_id` verifies the current
+        parent; this endpoint cannot move an organization. Organization names are
+        limited to 65 UTF-8 bytes.
 
         Args:
+          name: The Organization's display name, limited to 65 UTF-8 bytes. An omitted, empty,
+              or unchanged value is a no-op.
+
+          parent_id: The current parent Organization ID. A different value is rejected; this endpoint
+              cannot move an Organization.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -447,8 +495,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
-                    "parent": parent,
-                    "profile": profile,
+                    "parent_id": parent_id,
                 },
                 organization_update_params.OrganizationUpdateParams,
             ),
@@ -467,7 +514,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         *,
         id: SequenceNotStr[str] | Omit = omit,
         containing: organization_list_params.Containing | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        member: organization_list_params.Member | Omit = omit,
         name: organization_list_params.Name | Omit = omit,
+        order_by: Literal["name"] | Omit = omit,
         page_size: int | Omit = omit,
         page_token: str | Omit = omit,
         parent: organization_list_params.Parent | Omit = omit,
@@ -480,12 +530,19 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> AsyncPaginator[Organization, AsyncSinglePage[Organization]]:
         """Retrieve a list of organizations a particular user has access to.
 
-        (Currently in
-        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        At most one of
+        `containing.account`, `containing.user`, or `containing.organization` may be
+        provided.
 
         Args:
           id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
               multiple elements by repeating the query value.
+
+          direction: Sort direction for the `order_by` field. Defaults to `asc` when `order_by` is
+              specified.
+
+          order_by: Field to order results by. Currently supported values: `name`. When not
+              specified, results are ordered by hierarchy.
 
           page_size: The amount of items to return. Defaults to 10.
 
@@ -515,7 +572,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     {
                         "id": id,
                         "containing": containing,
+                        "direction": direction,
+                        "member": member,
                         "name": name,
+                        "order_by": order_by,
                         "page_size": page_size,
                         "page_token": page_token,
                         "parent": parent,
@@ -539,12 +599,12 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     ) -> OrganizationDeleteResponse:
         """Delete an organization.
 
-        The organization MUST be empty before deleting. It must
-        not contain any sub-organizations, accounts, members or users. Sub-organization
-        deletion availability depends on the organization's capabilities. (Currently in
-        Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
+        It must not contain active sub-organizations or
+        accounts. A root organization must also have no active managed users.
+        Sub-organization deletion availability depends on the organization's
+        capabilities.
 
-        **Access Control:** Restricted to enterprise organizations.
+        **Access Control:** Root deletion is restricted to enterprise organizations.
 
         Args:
           extra_headers: Send extra headers
@@ -580,10 +640,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """Retrieve the details of a certain organization.
-
-        (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        """
+        Retrieve the details of a certain organization.
 
         Args:
           extra_headers: Send extra headers

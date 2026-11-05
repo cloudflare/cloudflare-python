@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Any, Optional, cast
 
 import httpx
 
-from ......_types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
-from ......_utils import path_template, maybe_transform
+from ......_types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ......_utils import path_template, maybe_transform, strip_not_given
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -16,10 +16,10 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_wrappers import ResultWrapper
 from ......pagination import SyncSinglePage, AsyncSinglePage
 from ......_base_client import AsyncPaginator, make_request_options
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_list_response import TagListResponse
+from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_delete_response import TagDeleteResponse
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_update_response import TagUpdateResponse
 
 __all__ = ["TagsResource", "AsyncTagsResource"]
@@ -160,16 +160,21 @@ class TagsResource(SyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         script_name: str,
+        api_version: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> TagDeleteResponse:
         """
         Delete a tag from a script uploaded to a Workers for Platforms dispatch
         namespace.
+
+        On `api-version` dates on or after `2026-10-01`, `tag` identifies a key and the
+        operation returns the complete updated tag map. Deleting a missing key succeeds.
+        Earlier versions retain the legacy string-tag behavior and return a null result.
 
         Args:
           account_id: Identifier.
@@ -177,6 +182,11 @@ class TagsResource(SyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script.
+
+          tag: A typed tag key containing only Unicode letters or numbers, underscores,
+              periods, or hyphens. The complete UTF-8 encoded tag (the key plus `=` and the
+              value when the value is non-empty) must not exceed 1024 bytes.
+              Cloudflare-reserved prefixes are not accepted.
 
           extra_headers: Send extra headers
 
@@ -194,22 +204,22 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         if not tag:
             raise ValueError(f"Expected a non-empty value for `tag` but received {tag!r}")
-        return self._delete(
-            path_template(
-                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags/{tag}",
-                account_id=account_id,
-                dispatch_namespace=dispatch_namespace,
-                script_name=script_name,
-                tag=tag,
+        extra_headers = {**strip_not_given({"api-version": api_version}), **(extra_headers or {})}
+        return cast(
+            TagDeleteResponse,
+            self._delete(
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags/{tag}",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                    tag=tag,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, TagDeleteResponse),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -348,16 +358,21 @@ class AsyncTagsResource(AsyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         script_name: str,
+        api_version: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> TagDeleteResponse:
         """
         Delete a tag from a script uploaded to a Workers for Platforms dispatch
         namespace.
+
+        On `api-version` dates on or after `2026-10-01`, `tag` identifies a key and the
+        operation returns the complete updated tag map. Deleting a missing key succeeds.
+        Earlier versions retain the legacy string-tag behavior and return a null result.
 
         Args:
           account_id: Identifier.
@@ -365,6 +380,11 @@ class AsyncTagsResource(AsyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script.
+
+          tag: A typed tag key containing only Unicode letters or numbers, underscores,
+              periods, or hyphens. The complete UTF-8 encoded tag (the key plus `=` and the
+              value when the value is non-empty) must not exceed 1024 bytes.
+              Cloudflare-reserved prefixes are not accepted.
 
           extra_headers: Send extra headers
 
@@ -382,22 +402,22 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         if not tag:
             raise ValueError(f"Expected a non-empty value for `tag` but received {tag!r}")
-        return await self._delete(
-            path_template(
-                "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags/{tag}",
-                account_id=account_id,
-                dispatch_namespace=dispatch_namespace,
-                script_name=script_name,
-                tag=tag,
+        extra_headers = {**strip_not_given({"api-version": api_version}), **(extra_headers or {})}
+        return cast(
+            TagDeleteResponse,
+            await self._delete(
+                path_template(
+                    "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags/{tag}",
+                    account_id=account_id,
+                    dispatch_namespace=dispatch_namespace,
+                    script_name=script_name,
+                    tag=tag,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, TagDeleteResponse),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

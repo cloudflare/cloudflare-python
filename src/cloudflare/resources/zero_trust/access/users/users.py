@@ -6,6 +6,14 @@ from typing import Type, Optional, cast
 
 import httpx
 
+from .passkeys import (
+    PasskeysResource,
+    AsyncPasskeysResource,
+    PasskeysResourceWithRawResponse,
+    AsyncPasskeysResourceWithRawResponse,
+    PasskeysResourceWithStreamingResponse,
+    AsyncPasskeysResourceWithStreamingResponse,
+)
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
@@ -43,6 +51,14 @@ from .last_seen_identity import (
     LastSeenIdentityResourceWithStreamingResponse,
     AsyncLastSeenIdentityResourceWithStreamingResponse,
 )
+from .mfa_authenticators import (
+    MfaAuthenticatorsResource,
+    AsyncMfaAuthenticatorsResource,
+    MfaAuthenticatorsResourceWithRawResponse,
+    AsyncMfaAuthenticatorsResourceWithRawResponse,
+    MfaAuthenticatorsResourceWithStreamingResponse,
+    AsyncMfaAuthenticatorsResourceWithStreamingResponse,
+)
 from .....types.zero_trust.access import user_list_params, user_create_params, user_update_params
 from .....types.zero_trust.access.user_get_response import UserGetResponse
 from .....types.zero_trust.access.user_list_response import UserListResponse
@@ -64,6 +80,14 @@ class UsersResource(SyncAPIResource):
     @cached_property
     def failed_logins(self) -> FailedLoginsResource:
         return FailedLoginsResource(self._client)
+
+    @cached_property
+    def mfa_authenticators(self) -> MfaAuthenticatorsResource:
+        return MfaAuthenticatorsResource(self._client)
+
+    @cached_property
+    def passkeys(self) -> PasskeysResource:
+        return PasskeysResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> UsersResourceWithRawResponse:
@@ -362,6 +386,14 @@ class AsyncUsersResource(AsyncAPIResource):
     @cached_property
     def failed_logins(self) -> AsyncFailedLoginsResource:
         return AsyncFailedLoginsResource(self._client)
+
+    @cached_property
+    def mfa_authenticators(self) -> AsyncMfaAuthenticatorsResource:
+        return AsyncMfaAuthenticatorsResource(self._client)
+
+    @cached_property
+    def passkeys(self) -> AsyncPasskeysResource:
+        return AsyncPasskeysResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncUsersResourceWithRawResponse:
@@ -680,6 +712,14 @@ class UsersResourceWithRawResponse:
     def failed_logins(self) -> FailedLoginsResourceWithRawResponse:
         return FailedLoginsResourceWithRawResponse(self._users.failed_logins)
 
+    @cached_property
+    def mfa_authenticators(self) -> MfaAuthenticatorsResourceWithRawResponse:
+        return MfaAuthenticatorsResourceWithRawResponse(self._users.mfa_authenticators)
+
+    @cached_property
+    def passkeys(self) -> PasskeysResourceWithRawResponse:
+        return PasskeysResourceWithRawResponse(self._users.passkeys)
+
 
 class AsyncUsersResourceWithRawResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
@@ -712,6 +752,14 @@ class AsyncUsersResourceWithRawResponse:
     @cached_property
     def failed_logins(self) -> AsyncFailedLoginsResourceWithRawResponse:
         return AsyncFailedLoginsResourceWithRawResponse(self._users.failed_logins)
+
+    @cached_property
+    def mfa_authenticators(self) -> AsyncMfaAuthenticatorsResourceWithRawResponse:
+        return AsyncMfaAuthenticatorsResourceWithRawResponse(self._users.mfa_authenticators)
+
+    @cached_property
+    def passkeys(self) -> AsyncPasskeysResourceWithRawResponse:
+        return AsyncPasskeysResourceWithRawResponse(self._users.passkeys)
 
 
 class UsersResourceWithStreamingResponse:
@@ -746,6 +794,14 @@ class UsersResourceWithStreamingResponse:
     def failed_logins(self) -> FailedLoginsResourceWithStreamingResponse:
         return FailedLoginsResourceWithStreamingResponse(self._users.failed_logins)
 
+    @cached_property
+    def mfa_authenticators(self) -> MfaAuthenticatorsResourceWithStreamingResponse:
+        return MfaAuthenticatorsResourceWithStreamingResponse(self._users.mfa_authenticators)
+
+    @cached_property
+    def passkeys(self) -> PasskeysResourceWithStreamingResponse:
+        return PasskeysResourceWithStreamingResponse(self._users.passkeys)
+
 
 class AsyncUsersResourceWithStreamingResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
@@ -778,3 +834,11 @@ class AsyncUsersResourceWithStreamingResponse:
     @cached_property
     def failed_logins(self) -> AsyncFailedLoginsResourceWithStreamingResponse:
         return AsyncFailedLoginsResourceWithStreamingResponse(self._users.failed_logins)
+
+    @cached_property
+    def mfa_authenticators(self) -> AsyncMfaAuthenticatorsResourceWithStreamingResponse:
+        return AsyncMfaAuthenticatorsResourceWithStreamingResponse(self._users.mfa_authenticators)
+
+    @cached_property
+    def passkeys(self) -> AsyncPasskeysResourceWithStreamingResponse:
+        return AsyncPasskeysResourceWithStreamingResponse(self._users.passkeys)

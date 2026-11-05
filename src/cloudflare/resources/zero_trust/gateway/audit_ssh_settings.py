@@ -57,8 +57,7 @@ class AuditSSHSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Update Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
-        an account.
+        Update SSH with Access for Infrastructure settings for an account.
 
         Args:
           account_id: Specify the Cloudflare account identifier.
@@ -103,8 +102,7 @@ class AuditSSHSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Retrieve all Zero Trust Audit SSH and SSH with Access for Infrastructure
-        settings for an account.
+        Retrieve SSH with Access for Infrastructure settings for an account.
 
         Args:
           account_id: Specify the Cloudflare account identifier.
@@ -205,8 +203,7 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Update Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
-        an account.
+        Update SSH with Access for Infrastructure settings for an account.
 
         Args:
           account_id: Specify the Cloudflare account identifier.
@@ -251,8 +248,7 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewaySettings]:
         """
-        Retrieve all Zero Trust Audit SSH and SSH with Access for Infrastructure
-        settings for an account.
+        Retrieve SSH with Access for Infrastructure settings for an account.
 
         Args:
           account_id: Specify the Cloudflare account identifier.

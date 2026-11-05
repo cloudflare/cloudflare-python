@@ -123,6 +123,7 @@ class ApplicationGetResponse(BaseModel):
         "SALESFORCE",
         "SERVICENOW",
         "SLACK",
+        "ZOOM",
     ]
     """Vendor identifier.
 
@@ -141,6 +142,7 @@ class ApplicationGetResponse(BaseModel):
     - `SALESFORCE` - SALESFORCE
     - `SERVICENOW` - SERVICENOW
     - `SLACK` - SLACK
+    - `ZOOM` - ZOOM
     """
 
     auth_methods: List[AuthMethod]

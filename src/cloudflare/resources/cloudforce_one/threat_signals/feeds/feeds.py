@@ -109,12 +109,34 @@ class FeedsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FeedCreateResponse:
-        """
-        Subscribes the account to a custom or curated Threat Signals feed.
+        """Subscribes the account to a custom or curated Threat Signals feed.
+
+        Adding a
+        custom feed when the account is at its custom-feed limit returns 403 with
+        `errors[0].reason` `threat_signals_feed_limit`, and
+        `errors[0].custom_feed_limit` and `errors[0].custom_feed_count` give the limit
+        and current count. Curated feeds are not subject to this limit.
 
         Args:
           category_id: One of the predefined Threat Signals feed categories; see GET
               /:account_id/v2/threat-signals/categories.
+
+          curated_feed_id: UUID of a curated feed to subscribe to. Provide exactly one of url or
+              curated_feed_id. The account must have feed creation entitlement and not exceed
+              feed allowance.
+
+          display_name: Override the feed's display name. Null clears it; omit to keep existing or
+              derived value.
+
+          enabled: Whether to actively poll the feed. Default true.
+
+          poll_interval_s: Polling interval in seconds (60-86400). Default 300s (5 minutes).
+
+          title: Override the feed's title. Null clears it; omit to keep existing or derived
+              value.
+
+          url: HTTPS RSS feed URL. Provide exactly one of url or curated_feed_id. The account
+              must have feed creation entitlement and not exceed feed allowance.
 
           extra_headers: Send extra headers
 
@@ -173,6 +195,26 @@ class FeedsResource(SyncAPIResource):
         Lists the account's Threat Signals feed subscriptions.
 
         Args:
+          category: Exact feed-category filter, up to 100 characters. Omit to include all
+              categories.
+
+          enabled: Filter by enabled state. Accepts true, false, 1, or 0; omit to include enabled
+              and disabled feeds.
+
+          limit: Optional 1–100 alias for per_page. When provided, limit takes precedence.
+
+          page: 1-based page number. Minimum 1; defaults to 1.
+
+          per_page: Number of feeds per page, from 1 to 100. Defaults to 20.
+
+          sort: Sort by created_at, title, category, or url. Prefix the field with - for
+              descending order; defaults to -created_at.
+
+          source_type: Filter by curated or custom feed source. Omit to include both source types.
+
+          status: Exact stored polling-status filter, such as active or error. Omit to include
+              every status.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -224,6 +266,8 @@ class FeedsResource(SyncAPIResource):
         Unsubscribes the account from a Threat Signals feed and deletes its articles.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -285,8 +329,20 @@ class FeedsResource(SyncAPIResource):
         Updates a Threat Signals feed subscription.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
           category_id: One of the predefined Threat Signals feed categories; see GET
               /:account_id/v2/threat-signals/categories.
+
+          display_name: Override the feed's display name. Null clears it; omit to keep existing or
+              derived value.
+
+          enabled: Whether to actively poll the feed. Omit to keep current value.
+
+          poll_interval_s: New polling interval in seconds (60-86400). Omit to keep current value.
+
+          title: Override the feed's title. Null clears it; omit to keep existing or derived
+              value.
 
           extra_headers: Send extra headers
 
@@ -342,6 +398,9 @@ class FeedsResource(SyncAPIResource):
         Starts an immediate poll of one or all Threat Signals feeds.
 
         Args:
+          feed_id: UUID of a specific feed to poll, or "all" to poll all feeds. Omit or pass "all"
+              for all feeds.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -424,12 +483,34 @@ class AsyncFeedsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FeedCreateResponse:
-        """
-        Subscribes the account to a custom or curated Threat Signals feed.
+        """Subscribes the account to a custom or curated Threat Signals feed.
+
+        Adding a
+        custom feed when the account is at its custom-feed limit returns 403 with
+        `errors[0].reason` `threat_signals_feed_limit`, and
+        `errors[0].custom_feed_limit` and `errors[0].custom_feed_count` give the limit
+        and current count. Curated feeds are not subject to this limit.
 
         Args:
           category_id: One of the predefined Threat Signals feed categories; see GET
               /:account_id/v2/threat-signals/categories.
+
+          curated_feed_id: UUID of a curated feed to subscribe to. Provide exactly one of url or
+              curated_feed_id. The account must have feed creation entitlement and not exceed
+              feed allowance.
+
+          display_name: Override the feed's display name. Null clears it; omit to keep existing or
+              derived value.
+
+          enabled: Whether to actively poll the feed. Default true.
+
+          poll_interval_s: Polling interval in seconds (60-86400). Default 300s (5 minutes).
+
+          title: Override the feed's title. Null clears it; omit to keep existing or derived
+              value.
+
+          url: HTTPS RSS feed URL. Provide exactly one of url or curated_feed_id. The account
+              must have feed creation entitlement and not exceed feed allowance.
 
           extra_headers: Send extra headers
 
@@ -488,6 +569,26 @@ class AsyncFeedsResource(AsyncAPIResource):
         Lists the account's Threat Signals feed subscriptions.
 
         Args:
+          category: Exact feed-category filter, up to 100 characters. Omit to include all
+              categories.
+
+          enabled: Filter by enabled state. Accepts true, false, 1, or 0; omit to include enabled
+              and disabled feeds.
+
+          limit: Optional 1–100 alias for per_page. When provided, limit takes precedence.
+
+          page: 1-based page number. Minimum 1; defaults to 1.
+
+          per_page: Number of feeds per page, from 1 to 100. Defaults to 20.
+
+          sort: Sort by created_at, title, category, or url. Prefix the field with - for
+              descending order; defaults to -created_at.
+
+          source_type: Filter by curated or custom feed source. Omit to include both source types.
+
+          status: Exact stored polling-status filter, such as active or error. Omit to include
+              every status.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -539,6 +640,8 @@ class AsyncFeedsResource(AsyncAPIResource):
         Unsubscribes the account from a Threat Signals feed and deletes its articles.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -600,8 +703,20 @@ class AsyncFeedsResource(AsyncAPIResource):
         Updates a Threat Signals feed subscription.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
           category_id: One of the predefined Threat Signals feed categories; see GET
               /:account_id/v2/threat-signals/categories.
+
+          display_name: Override the feed's display name. Null clears it; omit to keep existing or
+              derived value.
+
+          enabled: Whether to actively poll the feed. Omit to keep current value.
+
+          poll_interval_s: New polling interval in seconds (60-86400). Omit to keep current value.
+
+          title: Override the feed's title. Null clears it; omit to keep existing or derived
+              value.
 
           extra_headers: Send extra headers
 
@@ -657,6 +772,9 @@ class AsyncFeedsResource(AsyncAPIResource):
         Starts an immediate poll of one or all Threat Signals feeds.
 
         Args:
+          feed_id: UUID of a specific feed to poll, or "all" to poll all feeds. Omit or pass "all"
+              for all feeds.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

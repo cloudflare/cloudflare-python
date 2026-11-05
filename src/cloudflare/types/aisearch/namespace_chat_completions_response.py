@@ -121,7 +121,29 @@ class Chunk(BaseModel):
 
     item: Optional[ChunkItem] = None
 
+    media_end_ms: Optional[int] = None
+    """
+    Audio/video transcript chunks only: end, in milliseconds from the start of the
+    media (whole seconds), of the last transcript section the matched chunk covers.
+    Describes the matched chunk before any context expansion, not the expanded
+    `text`.
+    """
+
+    media_start_ms: Optional[int] = None
+    """
+    Audio/video transcript chunks only: start, in milliseconds from the start of the
+    media (whole seconds), of the transcript section the matched chunk begins in.
+    Describes the matched chunk before any context expansion, not the expanded
+    `text`.
+    """
+
     scoring_details: Optional[ChunkScoringDetails] = None
+
+    source_media_type: Optional[Literal["audio", "video"]] = None
+    """Audio/video transcript chunks only: type of the source media file.
+
+    Omitted for all other chunks.
+    """
 
 
 class Error(BaseModel):

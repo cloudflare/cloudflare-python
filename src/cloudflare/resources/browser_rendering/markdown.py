@@ -51,6 +51,7 @@ class MarkdownResource(SyncAPIResource):
         *,
         account_id: str,
         url: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[markdown_create_params.Variant0AddScriptTag] | Omit = omit,
@@ -130,6 +131,8 @@ class MarkdownResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -184,6 +187,7 @@ class MarkdownResource(SyncAPIResource):
         *,
         account_id: str,
         html: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[markdown_create_params.Variant1AddScriptTag] | Omit = omit,
@@ -263,6 +267,8 @@ class MarkdownResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -317,6 +323,7 @@ class MarkdownResource(SyncAPIResource):
         *,
         account_id: str,
         url: str | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[markdown_create_params.Variant0AddScriptTag]
@@ -434,7 +441,13 @@ class MarkdownResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"cache_ttl": cache_ttl}, markdown_create_params.MarkdownCreateParams),
+                query=maybe_transform(
+                    {
+                        "browser": browser,
+                        "cache_ttl": cache_ttl,
+                    },
+                    markdown_create_params.MarkdownCreateParams,
+                ),
                 post_parser=ResultWrapper[Optional[MarkdownCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
@@ -467,6 +480,7 @@ class AsyncMarkdownResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[markdown_create_params.Variant0AddScriptTag] | Omit = omit,
@@ -546,6 +560,8 @@ class AsyncMarkdownResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -600,6 +616,7 @@ class AsyncMarkdownResource(AsyncAPIResource):
         *,
         account_id: str,
         html: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[markdown_create_params.Variant1AddScriptTag] | Omit = omit,
@@ -679,6 +696,8 @@ class AsyncMarkdownResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -733,6 +752,7 @@ class AsyncMarkdownResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[markdown_create_params.Variant0AddScriptTag]
@@ -851,7 +871,11 @@ class AsyncMarkdownResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"cache_ttl": cache_ttl}, markdown_create_params.MarkdownCreateParams
+                    {
+                        "browser": browser,
+                        "cache_ttl": cache_ttl,
+                    },
+                    markdown_create_params.MarkdownCreateParams,
                 ),
                 post_parser=ResultWrapper[Optional[MarkdownCreateResponse]]._unwrapper,
             ),

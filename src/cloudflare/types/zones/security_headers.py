@@ -1,15 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["SecurityHeaders", "Value", "ValueStrictTransportSecurity"]
+__all__ = [
+    "SecurityHeaders",
+    "Value",
+    "ValueStrictTransportSecurity",
+    "ValueStrictTransportSecurityStrictTransportSecurity",
+]
 
 
-class ValueStrictTransportSecurity(BaseModel):
+class ValueStrictTransportSecurityStrictTransportSecurity(BaseModel):
     """Strict Transport Security."""
 
     enabled: Optional[bool] = None
@@ -28,11 +33,18 @@ class ValueStrictTransportSecurity(BaseModel):
     """Enable automatic preload of the HSTS configuration."""
 
 
-class Value(BaseModel):
-    """Current value of the zone setting."""
-
-    strict_transport_security: Optional[ValueStrictTransportSecurity] = None
+class ValueStrictTransportSecurity(BaseModel):
+    strict_transport_security: Optional[ValueStrictTransportSecurityStrictTransportSecurity] = None
     """Strict Transport Security."""
+
+
+Value: TypeAlias = Union[
+    ValueStrictTransportSecurity,
+    ValueStrictTransportSecurity,
+    ValueStrictTransportSecurity,
+    ValueStrictTransportSecurity,
+    ValueStrictTransportSecurity,
+]
 
 
 class SecurityHeaders(BaseModel):

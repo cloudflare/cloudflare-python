@@ -134,6 +134,9 @@ class RelaysResource(SyncAPIResource):
         Args:
           account_id: Cloudflare account identifier.
 
+          config: Relay configuration. All sub-objects use whole-object replacement when present;
+              omitted sub-objects preserve the existing value.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -424,6 +427,9 @@ class AsyncRelaysResource(AsyncAPIResource):
 
         Args:
           account_id: Cloudflare account identifier.
+
+          config: Relay configuration. All sub-objects use whole-object replacement when present;
+              omitted sub-objects preserve the existing value.
 
           extra_headers: Send extra headers
 

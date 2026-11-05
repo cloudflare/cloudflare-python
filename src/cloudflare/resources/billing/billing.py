@@ -75,12 +75,24 @@ from .profiles.profiles import (
     ProfilesResourceWithStreamingResponse,
     AsyncProfilesResourceWithStreamingResponse,
 )
+from .spend_policies.spend_policies import (
+    SpendPoliciesResource,
+    AsyncSpendPoliciesResource,
+    SpendPoliciesResourceWithRawResponse,
+    AsyncSpendPoliciesResourceWithRawResponse,
+    SpendPoliciesResourceWithStreamingResponse,
+    AsyncSpendPoliciesResourceWithStreamingResponse,
+)
 from ...types.billing.billing_address_validation_response import BillingAddressValidationResponse
 
 __all__ = ["BillingResource", "AsyncBillingResource"]
 
 
 class BillingResource(SyncAPIResource):
+    @cached_property
+    def spend_policies(self) -> SpendPoliciesResource:
+        return SpendPoliciesResource(self._client)
+
     @cached_property
     def profiles(self) -> ProfilesResource:
         return ProfilesResource(self._client)
@@ -195,6 +207,10 @@ class BillingResource(SyncAPIResource):
 
 
 class AsyncBillingResource(AsyncAPIResource):
+    @cached_property
+    def spend_policies(self) -> AsyncSpendPoliciesResource:
+        return AsyncSpendPoliciesResource(self._client)
+
     @cached_property
     def profiles(self) -> AsyncProfilesResource:
         return AsyncProfilesResource(self._client)
@@ -317,6 +333,10 @@ class BillingResourceWithRawResponse:
         )
 
     @cached_property
+    def spend_policies(self) -> SpendPoliciesResourceWithRawResponse:
+        return SpendPoliciesResourceWithRawResponse(self._billing.spend_policies)
+
+    @cached_property
     def profiles(self) -> ProfilesResourceWithRawResponse:
         return ProfilesResourceWithRawResponse(self._billing.profiles)
 
@@ -352,6 +372,10 @@ class AsyncBillingResourceWithRawResponse:
         self.address_validation = async_to_raw_response_wrapper(
             billing.address_validation,
         )
+
+    @cached_property
+    def spend_policies(self) -> AsyncSpendPoliciesResourceWithRawResponse:
+        return AsyncSpendPoliciesResourceWithRawResponse(self._billing.spend_policies)
 
     @cached_property
     def profiles(self) -> AsyncProfilesResourceWithRawResponse:
@@ -391,6 +415,10 @@ class BillingResourceWithStreamingResponse:
         )
 
     @cached_property
+    def spend_policies(self) -> SpendPoliciesResourceWithStreamingResponse:
+        return SpendPoliciesResourceWithStreamingResponse(self._billing.spend_policies)
+
+    @cached_property
     def profiles(self) -> ProfilesResourceWithStreamingResponse:
         return ProfilesResourceWithStreamingResponse(self._billing.profiles)
 
@@ -426,6 +454,10 @@ class AsyncBillingResourceWithStreamingResponse:
         self.address_validation = async_to_streamed_response_wrapper(
             billing.address_validation,
         )
+
+    @cached_property
+    def spend_policies(self) -> AsyncSpendPoliciesResourceWithStreamingResponse:
+        return AsyncSpendPoliciesResourceWithStreamingResponse(self._billing.spend_policies)
 
     @cached_property
     def profiles(self) -> AsyncProfilesResourceWithStreamingResponse:

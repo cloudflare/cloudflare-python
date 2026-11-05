@@ -17,7 +17,9 @@ class Topic(BaseModel):
     topic: str
     """Description of the topic category.
 
-    Must contain only printable ASCII characters.
+    Must contain 2–50 UTF-8 bytes. Text in any language is supported, including
+    spaces, numbers, punctuation, and symbols. Tabs, line breaks, invalid text, and
+    invisible formatting characters are not allowed.
     """
 
 

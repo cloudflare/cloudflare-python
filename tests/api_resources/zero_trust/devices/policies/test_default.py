@@ -40,6 +40,7 @@ class TestDefault:
                     "description": "Example internal domains",
                 }
             ],
+            enable_device_credential_authentication=False,
             exclude=[
                 {
                     "address": "192.0.2.0/24",
@@ -52,6 +53,7 @@ class TestDefault:
                 "enabled": True,
                 "masque_endpoints": ["198.51.100.1:443"],
                 "wireguard_endpoints": ["198.51.100.1:2408"],
+                "allow_manual_override": True,
                 "autoswitch": True,
             },
             include=[
@@ -177,6 +179,7 @@ class TestAsyncDefault:
                     "description": "Example internal domains",
                 }
             ],
+            enable_device_credential_authentication=False,
             exclude=[
                 {
                     "address": "192.0.2.0/24",
@@ -189,6 +192,7 @@ class TestAsyncDefault:
                 "enabled": True,
                 "masque_endpoints": ["198.51.100.1:443"],
                 "wireguard_endpoints": ["198.51.100.1:2408"],
+                "allow_manual_override": True,
                 "autoswitch": True,
             },
             include=[

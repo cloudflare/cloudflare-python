@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -48,11 +48,11 @@ class OrganizationProfileResource(SyncAPIResource):
         self,
         organization_id: str,
         *,
-        business_address: str,
-        business_email: str,
-        business_name: str,
-        business_phone: str,
-        external_metadata: str,
+        business_address: Optional[str] | Omit = omit,
+        business_email: Optional[str] | Omit = omit,
+        business_name: Optional[str] | Omit = omit,
+        business_phone: Optional[str] | Omit = omit,
+        external_metadata: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,10 +60,13 @@ class OrganizationProfileResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Modify organization profile.
-
-        (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        """
+        Partially updates the business profile (name, email, phone, address, and
+        external metadata) associated with this organization's customer record, creating
+        the profile if it does not exist. Changes apply to every account and
+        organization sharing that profile. Omitted, empty, or null fields are left
+        unchanged. Each profile field is limited to 1,000 UTF-8 bytes. Only available to
+        members of the organization.
 
         Args:
           extra_headers: Send extra headers
@@ -106,10 +109,11 @@ class OrganizationProfileResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OrganizationProfile:
-        """Get an organizations profile if it exists.
-
-        (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        """
+        Retrieves the business profile (name, email, phone, address, and external
+        metadata) associated with this organization's customer record. Profiles can be
+        shared across accounts and organizations. Only available to members of the
+        organization.
 
         Args:
           extra_headers: Send extra headers
@@ -159,11 +163,11 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
         self,
         organization_id: str,
         *,
-        business_address: str,
-        business_email: str,
-        business_name: str,
-        business_phone: str,
-        external_metadata: str,
+        business_address: Optional[str] | Omit = omit,
+        business_email: Optional[str] | Omit = omit,
+        business_name: Optional[str] | Omit = omit,
+        business_phone: Optional[str] | Omit = omit,
+        external_metadata: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,10 +175,13 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Modify organization profile.
-
-        (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        """
+        Partially updates the business profile (name, email, phone, address, and
+        external metadata) associated with this organization's customer record, creating
+        the profile if it does not exist. Changes apply to every account and
+        organization sharing that profile. Omitted, empty, or null fields are left
+        unchanged. Each profile field is limited to 1,000 UTF-8 bytes. Only available to
+        members of the organization.
 
         Args:
           extra_headers: Send extra headers
@@ -217,10 +224,11 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OrganizationProfile:
-        """Get an organizations profile if it exists.
-
-        (Currently in Public Beta - see
-        https://developers.cloudflare.com/fundamentals/organizations/)
+        """
+        Retrieves the business profile (name, email, phone, address, and external
+        metadata) associated with this organization's customer record. Profiles can be
+        shared across accounts and organizations. Only available to members of the
+        organization.
 
         Args:
           extra_headers: Send extra headers

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -96,11 +96,14 @@ class ArticlesResource(SyncAPIResource):
         fetched_after: Union[str, datetime] | Omit = omit,
         fetched_before: Union[str, datetime] | Omit = omit,
         include_total: bool | Omit = omit,
+        min_relevance: Literal["low", "medium", "high"] | Omit = omit,
         per_page: int | Omit = omit,
+        pir_id: str | Omit = omit,
         published_after: Union[str, datetime] | Omit = omit,
         published_before: Union[str, datetime] | Omit = omit,
         read: bool | Omit = omit,
         search: str | Omit = omit,
+        severity: List[Literal["informational", "low", "medium", "high", "critical"]] | Omit = omit,
         sort: str | Omit = omit,
         source_type: Literal["curated", "custom"] | Omit = omit,
         tag: str | Omit = omit,
@@ -127,6 +130,53 @@ class ArticlesResource(SyncAPIResource):
               pagination, ordering, totals, and article filters come from the cursor. Sending
               `per_page`, `sort`, `include_total`, or any article filter alongside it returns
               a 400 `CursorFilterConflictError`.
+
+          feed_category: Exact feed-category filter after trimming. Omit to include every category.
+
+          feed_id: Feed UUID filter. Omit to include articles from every account feed.
+
+          fetched_after: Include articles fetched at or after this ISO 8601 date-time with Z or a numeric
+              UTC offset; normalized to UTC.
+
+          fetched_before: Include articles fetched at or before this ISO 8601 date-time with Z or a
+              numeric UTC offset; normalized to UTC.
+
+          include_total: When true on the first page, count matching articles and return an exact total.
+              Defaults to false; cursor pages do not recalculate totals.
+
+          min_relevance: Beta. Return only articles at or above this relevance band for pir_id, or for
+              any active PIR when pir_id is omitted. Excludes articles that have not been
+              scored.
+
+          per_page: Number of articles per cursor page, from 1 to 100. Defaults to 20.
+
+          pir_id: Beta. Active Priority Intelligence Requirement to report, filter, and sort
+              relevance by. Omit to use each article's most relevant active PIR. Returns a 400
+              error unless the PIR is active.
+
+          published_after: Include articles published at or after this ISO 8601 date-time with Z or a
+              numeric UTC offset; normalized to UTC.
+
+          published_before: Include articles published at or before this ISO 8601 date-time with Z or a
+              numeric UTC offset; normalized to UTC.
+
+          read: Filter by read state. Accepts true, false, 1, or 0; omit to include read and
+              unread articles.
+
+          search: NFC-normalized, trimmed literal substring filter on article titles; ASCII
+              case-insensitive, from 1 to 500 characters.
+
+          severity: Beta. Repeatable intrinsic severity band filter. An article matches any selected
+              band, the band reported as its severity. Excludes articles without a severity.
+              Like the severity field, severity is reported only while the account has an
+              active Priority Intelligence Requirement; otherwise no articles match.
+
+          sort: Sort by fetched_at, published_at, title, or relevance (beta). Prefix the field
+              with - for descending order; defaults to -fetched_at. -relevance lists the most
+              relevant articles first, by pir_id or by each article's most relevant active
+              PIR, with unscored articles last.
+
+          source_type: Filter by curated or custom feed source. Omit to include both source types.
 
           tag: Legacy human-readable tag-value filter. Ignored when tag_id is supplied; prefer
               tag_id.
@@ -168,11 +218,14 @@ class ArticlesResource(SyncAPIResource):
                         "fetched_after": fetched_after,
                         "fetched_before": fetched_before,
                         "include_total": include_total,
+                        "min_relevance": min_relevance,
                         "per_page": per_page,
+                        "pir_id": pir_id,
                         "published_after": published_after,
                         "published_before": published_before,
                         "read": read,
                         "search": search,
+                        "severity": severity,
                         "sort": sort,
                         "source_type": source_type,
                         "tag": tag,
@@ -205,6 +258,10 @@ class ArticlesResource(SyncAPIResource):
         Marks up to 50 Threat Signals articles as read or unread.
 
         Args:
+          article_ids: Array of article UUIDs to mark (1-50).
+
+          read: True to mark read, false to mark unread.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -251,6 +308,10 @@ class ArticlesResource(SyncAPIResource):
         Marks a Threat Signals article as read or unread.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          read: True to mark the article read, false to mark unread.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -293,9 +354,12 @@ class ArticlesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ArticleGetResponse:
         """
-        Retrieves a Threat Signals article with its summary, tags and indicator status.
+        Retrieves a Threat Signals article with its summary, tags, indicator status and
+        relevance to the account's Priority Intelligence Requirements.
 
         Args:
+          article_id: Threat Signals article UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -368,11 +432,14 @@ class AsyncArticlesResource(AsyncAPIResource):
         fetched_after: Union[str, datetime] | Omit = omit,
         fetched_before: Union[str, datetime] | Omit = omit,
         include_total: bool | Omit = omit,
+        min_relevance: Literal["low", "medium", "high"] | Omit = omit,
         per_page: int | Omit = omit,
+        pir_id: str | Omit = omit,
         published_after: Union[str, datetime] | Omit = omit,
         published_before: Union[str, datetime] | Omit = omit,
         read: bool | Omit = omit,
         search: str | Omit = omit,
+        severity: List[Literal["informational", "low", "medium", "high", "critical"]] | Omit = omit,
         sort: str | Omit = omit,
         source_type: Literal["curated", "custom"] | Omit = omit,
         tag: str | Omit = omit,
@@ -399,6 +466,53 @@ class AsyncArticlesResource(AsyncAPIResource):
               pagination, ordering, totals, and article filters come from the cursor. Sending
               `per_page`, `sort`, `include_total`, or any article filter alongside it returns
               a 400 `CursorFilterConflictError`.
+
+          feed_category: Exact feed-category filter after trimming. Omit to include every category.
+
+          feed_id: Feed UUID filter. Omit to include articles from every account feed.
+
+          fetched_after: Include articles fetched at or after this ISO 8601 date-time with Z or a numeric
+              UTC offset; normalized to UTC.
+
+          fetched_before: Include articles fetched at or before this ISO 8601 date-time with Z or a
+              numeric UTC offset; normalized to UTC.
+
+          include_total: When true on the first page, count matching articles and return an exact total.
+              Defaults to false; cursor pages do not recalculate totals.
+
+          min_relevance: Beta. Return only articles at or above this relevance band for pir_id, or for
+              any active PIR when pir_id is omitted. Excludes articles that have not been
+              scored.
+
+          per_page: Number of articles per cursor page, from 1 to 100. Defaults to 20.
+
+          pir_id: Beta. Active Priority Intelligence Requirement to report, filter, and sort
+              relevance by. Omit to use each article's most relevant active PIR. Returns a 400
+              error unless the PIR is active.
+
+          published_after: Include articles published at or after this ISO 8601 date-time with Z or a
+              numeric UTC offset; normalized to UTC.
+
+          published_before: Include articles published at or before this ISO 8601 date-time with Z or a
+              numeric UTC offset; normalized to UTC.
+
+          read: Filter by read state. Accepts true, false, 1, or 0; omit to include read and
+              unread articles.
+
+          search: NFC-normalized, trimmed literal substring filter on article titles; ASCII
+              case-insensitive, from 1 to 500 characters.
+
+          severity: Beta. Repeatable intrinsic severity band filter. An article matches any selected
+              band, the band reported as its severity. Excludes articles without a severity.
+              Like the severity field, severity is reported only while the account has an
+              active Priority Intelligence Requirement; otherwise no articles match.
+
+          sort: Sort by fetched_at, published_at, title, or relevance (beta). Prefix the field
+              with - for descending order; defaults to -fetched_at. -relevance lists the most
+              relevant articles first, by pir_id or by each article's most relevant active
+              PIR, with unscored articles last.
+
+          source_type: Filter by curated or custom feed source. Omit to include both source types.
 
           tag: Legacy human-readable tag-value filter. Ignored when tag_id is supplied; prefer
               tag_id.
@@ -440,11 +554,14 @@ class AsyncArticlesResource(AsyncAPIResource):
                         "fetched_after": fetched_after,
                         "fetched_before": fetched_before,
                         "include_total": include_total,
+                        "min_relevance": min_relevance,
                         "per_page": per_page,
+                        "pir_id": pir_id,
                         "published_after": published_after,
                         "published_before": published_before,
                         "read": read,
                         "search": search,
+                        "severity": severity,
                         "sort": sort,
                         "source_type": source_type,
                         "tag": tag,
@@ -477,6 +594,10 @@ class AsyncArticlesResource(AsyncAPIResource):
         Marks up to 50 Threat Signals articles as read or unread.
 
         Args:
+          article_ids: Array of article UUIDs to mark (1-50).
+
+          read: True to mark read, false to mark unread.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -523,6 +644,10 @@ class AsyncArticlesResource(AsyncAPIResource):
         Marks a Threat Signals article as read or unread.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          read: True to mark the article read, false to mark unread.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -565,9 +690,12 @@ class AsyncArticlesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ArticleGetResponse:
         """
-        Retrieves a Threat Signals article with its summary, tags and indicator status.
+        Retrieves a Threat Signals article with its summary, tags, indicator status and
+        relevance to the account's Priority Intelligence Requirements.
 
         Args:
+          article_id: Threat Signals article UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

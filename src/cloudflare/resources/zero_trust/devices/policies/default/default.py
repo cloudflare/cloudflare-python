@@ -106,6 +106,7 @@ class DefaultResource(SyncAPIResource):
         captive_portal: float | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
         dns_search_suffixes: Iterable[default_edit_params.DNSSearchSuffix] | Omit = omit,
+        enable_device_credential_authentication: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
         global_acceleration: Optional[default_edit_params.GlobalAcceleration] | Omit = omit,
@@ -148,6 +149,10 @@ class DefaultResource(SyncAPIResource):
 
           dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
               order. Use an empty array to clear.
+
+          enable_device_credential_authentication: Determines whether the WARP client can silently reauthenticate the user with
+              device credentials (Microsoft Entra) instead of prompting for browser-based
+              reauthentication.
 
           exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
@@ -208,6 +213,7 @@ class DefaultResource(SyncAPIResource):
                     "captive_portal": captive_portal,
                     "disable_auto_fallback": disable_auto_fallback,
                     "dns_search_suffixes": dns_search_suffixes,
+                    "enable_device_credential_authentication": enable_device_credential_authentication,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
                     "global_acceleration": global_acceleration,
@@ -320,6 +326,7 @@ class AsyncDefaultResource(AsyncAPIResource):
         captive_portal: float | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
         dns_search_suffixes: Iterable[default_edit_params.DNSSearchSuffix] | Omit = omit,
+        enable_device_credential_authentication: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
         global_acceleration: Optional[default_edit_params.GlobalAcceleration] | Omit = omit,
@@ -362,6 +369,10 @@ class AsyncDefaultResource(AsyncAPIResource):
 
           dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
               order. Use an empty array to clear.
+
+          enable_device_credential_authentication: Determines whether the WARP client can silently reauthenticate the user with
+              device credentials (Microsoft Entra) instead of prompting for browser-based
+              reauthentication.
 
           exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
@@ -422,6 +433,7 @@ class AsyncDefaultResource(AsyncAPIResource):
                     "captive_portal": captive_portal,
                     "disable_auto_fallback": disable_auto_fallback,
                     "dns_search_suffixes": dns_search_suffixes,
+                    "enable_device_credential_authentication": enable_device_credential_authentication,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
                     "global_acceleration": global_acceleration,

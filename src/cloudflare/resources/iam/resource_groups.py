@@ -70,7 +70,7 @@ class ResourceGroupsResource(SyncAPIResource):
 
           name: Name of the resource group
 
-          scope: A scope is a combination of scope objects which provides additional context.
+          scope: The scope associated to the resource group
 
           extra_headers: Send extra headers
 
@@ -125,7 +125,7 @@ class ResourceGroupsResource(SyncAPIResource):
 
           name: Name of the resource group
 
-          scope: A scope is a combination of scope objects which provides additional context.
+          scope: The scope associated to the resource group
 
           extra_headers: Send extra headers
 
@@ -352,7 +352,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
 
           name: Name of the resource group
 
-          scope: A scope is a combination of scope objects which provides additional context.
+          scope: The scope associated to the resource group
 
           extra_headers: Send extra headers
 
@@ -407,7 +407,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
 
           name: Name of the resource group
 
-          scope: A scope is a combination of scope objects which provides additional context.
+          scope: The scope associated to the resource group
 
           extra_headers: Send extra headers
 

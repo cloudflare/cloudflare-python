@@ -153,6 +153,7 @@ class TestPolicies:
                 "mfa_disabled": False,
                 "session_duration": "24h",
             },
+            policy_resolution_account_id="policy_resolution_account_id",
             require=[{"certificate": {}}],
         )
         assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
@@ -366,6 +367,7 @@ class TestPolicies:
                 "mfa_disabled": False,
                 "session_duration": "24h",
             },
+            policy_resolution_account_id="policy_resolution_account_id",
             require=[{"certificate": {}}],
         )
         assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
@@ -815,6 +817,7 @@ class TestAsyncPolicies:
                 "mfa_disabled": False,
                 "session_duration": "24h",
             },
+            policy_resolution_account_id="policy_resolution_account_id",
             require=[{"certificate": {}}],
         )
         assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
@@ -1028,6 +1031,7 @@ class TestAsyncPolicies:
                 "mfa_disabled": False,
                 "session_duration": "24h",
             },
+            policy_resolution_account_id="policy_resolution_account_id",
             require=[{"certificate": {}}],
         )
         assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])

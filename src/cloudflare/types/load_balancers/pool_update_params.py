@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .check_region import CheckRegion
 from .origin_param import OriginParam
 from .load_shedding_param import LoadSheddingParam
@@ -93,6 +94,9 @@ class PoolUpdateParams(TypedDict, total=False):
     The ID of the Monitor Group to use for checking the health of origins within
     this pool.
     """
+
+    networks: SequenceNotStr[str]
+    """List of networks where Load Balancer or Pool is enabled."""
 
     notification_email: str
     """This field is now deprecated.

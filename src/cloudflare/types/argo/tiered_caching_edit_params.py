@@ -12,4 +12,4 @@ class TieredCachingEditParams(TypedDict, total=False):
     """Identifier."""
 
     value: Required[Literal["on", "off"]]
-    """Enables Tiered Caching."""
+    """Enables or disables Tiered Cache."""

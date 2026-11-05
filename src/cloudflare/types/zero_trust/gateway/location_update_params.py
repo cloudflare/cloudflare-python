@@ -29,6 +29,12 @@ class LocationUpdateParams(TypedDict, total=False):
     pre-assigned pair remains unchanged.
     """
 
+    dns64_enabled: bool
+    """Enable DNS64 synthesis for DNS queries matched to this location.
+
+    When updating a location, omitting this field resets it to false.
+    """
+
     ecs_support: bool
     """Indicate whether the location must resolve EDNS queries."""
 

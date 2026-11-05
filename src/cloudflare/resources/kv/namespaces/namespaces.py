@@ -98,6 +98,7 @@ class NamespacesResource(SyncAPIResource):
         account_id: str,
         title: str,
         jurisdiction: Literal["eu", "fedramp", "us"] | Omit = omit,
+        mode: Literal["instant"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,6 +121,11 @@ class NamespacesResource(SyncAPIResource):
           jurisdiction: Specify the jurisdiction to restrict the KV namespace to durably store data
               within. Can only be set at namespace creation time.
 
+          mode: The mode of the Workers KV namespace. Specify `instant` when creating a
+              namespace to create a KV Instant namespace. Omit this field when creating a
+              namespace to create a classic namespace. Currently, `instant` is the only
+              supported explicit value.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -136,6 +142,7 @@ class NamespacesResource(SyncAPIResource):
                 {
                     "title": title,
                     "jurisdiction": jurisdiction,
+                    "mode": mode,
                 },
                 namespace_create_params.NamespaceCreateParams,
             ),
@@ -583,6 +590,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         account_id: str,
         title: str,
         jurisdiction: Literal["eu", "fedramp", "us"] | Omit = omit,
+        mode: Literal["instant"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -605,6 +613,11 @@ class AsyncNamespacesResource(AsyncAPIResource):
           jurisdiction: Specify the jurisdiction to restrict the KV namespace to durably store data
               within. Can only be set at namespace creation time.
 
+          mode: The mode of the Workers KV namespace. Specify `instant` when creating a
+              namespace to create a KV Instant namespace. Omit this field when creating a
+              namespace to create a classic namespace. Currently, `instant` is the only
+              supported explicit value.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -621,6 +634,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 {
                     "title": title,
                     "jurisdiction": jurisdiction,
+                    "mode": mode,
                 },
                 namespace_create_params.NamespaceCreateParams,
             ),

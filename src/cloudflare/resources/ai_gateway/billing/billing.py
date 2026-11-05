@@ -203,7 +203,8 @@ class BillingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingUsageHistoryResponse:
         """
-        Retrieve aggregated usage meter event summaries for the given time range.
+        Retrieve AI Gateway usage cost, in US dollars, aggregated by hour or day for the
+        given time range.
 
         Args:
           value_grouping_window: Grouping window for usage data.
@@ -404,7 +405,8 @@ class AsyncBillingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BillingUsageHistoryResponse:
         """
-        Retrieve aggregated usage meter event summaries for the given time range.
+        Retrieve AI Gateway usage cost, in US dollars, aggregated by hour or day for the
+        given time range.
 
         Args:
           value_grouping_window: Grouping window for usage data.

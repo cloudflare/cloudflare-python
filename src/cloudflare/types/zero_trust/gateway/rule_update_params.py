@@ -36,6 +36,7 @@ class RuleUpdateParams(TypedDict, total=False):
             "resolve",
             "quarantine",
             "redirect",
+            "forward",
         ]
     ]
     """

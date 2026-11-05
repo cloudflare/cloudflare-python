@@ -31,6 +31,13 @@ class TestBotManagement:
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ai_agents={
+                "anthropic_agent": "block",
+                "google_agent": "block",
+                "instinct": "block",
+                "muse": "block",
+                "openai_agent": "block",
+            },
             ai_bots_migration_opt_out=False,
             ai_bots_protection="block",
             aisearch="block",
@@ -89,6 +96,13 @@ class TestBotManagement:
     def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ai_agents={
+                "anthropic_agent": "block",
+                "google_agent": "block",
+                "instinct": "block",
+                "muse": "block",
+                "openai_agent": "block",
+            },
             ai_bots_migration_opt_out=False,
             ai_bots_protection="block",
             aisearch="block",
@@ -150,6 +164,13 @@ class TestBotManagement:
     def test_method_update_with_all_params_overload_3(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ai_agents={
+                "anthropic_agent": "block",
+                "google_agent": "block",
+                "instinct": "block",
+                "muse": "block",
+                "openai_agent": "block",
+            },
             ai_bots_migration_opt_out=False,
             ai_bots_protection="block",
             aisearch="block",
@@ -212,6 +233,13 @@ class TestBotManagement:
     def test_method_update_with_all_params_overload_4(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ai_agents={
+                "anthropic_agent": "block",
+                "google_agent": "block",
+                "instinct": "block",
+                "muse": "block",
+                "openai_agent": "block",
+            },
             ai_bots_migration_opt_out=False,
             ai_bots_protection="block",
             aisearch="block",
@@ -316,6 +344,13 @@ class TestAsyncBotManagement:
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ai_agents={
+                "anthropic_agent": "block",
+                "google_agent": "block",
+                "instinct": "block",
+                "muse": "block",
+                "openai_agent": "block",
+            },
             ai_bots_migration_opt_out=False,
             ai_bots_protection="block",
             aisearch="block",
@@ -374,6 +409,13 @@ class TestAsyncBotManagement:
     async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ai_agents={
+                "anthropic_agent": "block",
+                "google_agent": "block",
+                "instinct": "block",
+                "muse": "block",
+                "openai_agent": "block",
+            },
             ai_bots_migration_opt_out=False,
             ai_bots_protection="block",
             aisearch="block",
@@ -435,6 +477,13 @@ class TestAsyncBotManagement:
     async def test_method_update_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ai_agents={
+                "anthropic_agent": "block",
+                "google_agent": "block",
+                "instinct": "block",
+                "muse": "block",
+                "openai_agent": "block",
+            },
             ai_bots_migration_opt_out=False,
             ai_bots_protection="block",
             aisearch="block",
@@ -497,6 +546,13 @@ class TestAsyncBotManagement:
     async def test_method_update_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ai_agents={
+                "anthropic_agent": "block",
+                "google_agent": "block",
+                "instinct": "block",
+                "muse": "block",
+                "openai_agent": "block",
+            },
             ai_bots_migration_opt_out=False,
             ai_bots_protection="block",
             aisearch="block",

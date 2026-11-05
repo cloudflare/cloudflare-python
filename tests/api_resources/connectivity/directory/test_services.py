@@ -48,7 +48,11 @@ class TestServices:
             type="http",
             http_port=8080,
             https_port=8443,
-            tls_settings={"cert_verification_mode": "verify_full"},
+            tls_settings={
+                "cert_verification_mode": "verify_full",
+                "certificate_authority": "705db030-8247-489b-80dd-0d6256e5950d",
+                "client_certificate": "a493fbb4-34bc-4218-a63c-61a9323ac725",
+            },
         )
         assert_matches_type(Optional[ServiceCreateResponse], service, path=["response"])
 
@@ -126,7 +130,11 @@ class TestServices:
             type="tcp",
             app_protocol="postgresql",
             tcp_port=5432,
-            tls_settings={"cert_verification_mode": "verify_full"},
+            tls_settings={
+                "cert_verification_mode": "verify_full",
+                "certificate_authority": "705db030-8247-489b-80dd-0d6256e5950d",
+                "client_certificate": "a493fbb4-34bc-4218-a63c-61a9323ac725",
+            },
         )
         assert_matches_type(Optional[ServiceCreateResponse], service, path=["response"])
 
@@ -206,7 +214,11 @@ class TestServices:
             type="http",
             http_port=8080,
             https_port=8443,
-            tls_settings={"cert_verification_mode": "verify_full"},
+            tls_settings={
+                "cert_verification_mode": "verify_full",
+                "certificate_authority": "705db030-8247-489b-80dd-0d6256e5950d",
+                "client_certificate": "a493fbb4-34bc-4218-a63c-61a9323ac725",
+            },
         )
         assert_matches_type(Optional[ServiceUpdateResponse], service, path=["response"])
 
@@ -301,7 +313,11 @@ class TestServices:
             type="tcp",
             app_protocol="postgresql",
             tcp_port=5432,
-            tls_settings={"cert_verification_mode": "verify_full"},
+            tls_settings={
+                "cert_verification_mode": "verify_full",
+                "certificate_authority": "705db030-8247-489b-80dd-0d6256e5950d",
+                "client_certificate": "a493fbb4-34bc-4218-a63c-61a9323ac725",
+            },
         )
         assert_matches_type(Optional[ServiceUpdateResponse], service, path=["response"])
 
@@ -544,7 +560,11 @@ class TestAsyncServices:
             type="http",
             http_port=8080,
             https_port=8443,
-            tls_settings={"cert_verification_mode": "verify_full"},
+            tls_settings={
+                "cert_verification_mode": "verify_full",
+                "certificate_authority": "705db030-8247-489b-80dd-0d6256e5950d",
+                "client_certificate": "a493fbb4-34bc-4218-a63c-61a9323ac725",
+            },
         )
         assert_matches_type(Optional[ServiceCreateResponse], service, path=["response"])
 
@@ -622,7 +642,11 @@ class TestAsyncServices:
             type="tcp",
             app_protocol="postgresql",
             tcp_port=5432,
-            tls_settings={"cert_verification_mode": "verify_full"},
+            tls_settings={
+                "cert_verification_mode": "verify_full",
+                "certificate_authority": "705db030-8247-489b-80dd-0d6256e5950d",
+                "client_certificate": "a493fbb4-34bc-4218-a63c-61a9323ac725",
+            },
         )
         assert_matches_type(Optional[ServiceCreateResponse], service, path=["response"])
 
@@ -702,7 +726,11 @@ class TestAsyncServices:
             type="http",
             http_port=8080,
             https_port=8443,
-            tls_settings={"cert_verification_mode": "verify_full"},
+            tls_settings={
+                "cert_verification_mode": "verify_full",
+                "certificate_authority": "705db030-8247-489b-80dd-0d6256e5950d",
+                "client_certificate": "a493fbb4-34bc-4218-a63c-61a9323ac725",
+            },
         )
         assert_matches_type(Optional[ServiceUpdateResponse], service, path=["response"])
 
@@ -797,7 +825,11 @@ class TestAsyncServices:
             type="tcp",
             app_protocol="postgresql",
             tcp_port=5432,
-            tls_settings={"cert_verification_mode": "verify_full"},
+            tls_settings={
+                "cert_verification_mode": "verify_full",
+                "certificate_authority": "705db030-8247-489b-80dd-0d6256e5950d",
+                "client_certificate": "a493fbb4-34bc-4218-a63c-61a9323ac725",
+            },
         )
         assert_matches_type(Optional[ServiceUpdateResponse], service, path=["response"])
 

@@ -113,6 +113,13 @@ class PolicyUpdateResponse(BaseModel):
     name: Optional[str] = None
     """The name of the Access policy."""
 
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     purpose_justification_prompt: Optional[str] = None
     """A custom message that will appear on the purpose justification screen."""
 

@@ -30,6 +30,7 @@ class TestScrape:
         scrape = client.browser_rendering.scrape.create(
             account_id="account_id",
             url="url",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -150,6 +151,7 @@ class TestScrape:
         scrape = client.browser_rendering.scrape.create(
             account_id="account_id",
             html="html",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -276,6 +278,7 @@ class TestAsyncScrape:
         scrape = await async_client.browser_rendering.scrape.create(
             account_id="account_id",
             url="url",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -396,6 +399,7 @@ class TestAsyncScrape:
         scrape = await async_client.browser_rendering.scrape.create(
             account_id="account_id",
             html="html",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[

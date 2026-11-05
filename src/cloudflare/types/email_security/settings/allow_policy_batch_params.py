@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Union, Iterable, Optional
+from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["AllowPolicyBatchParams", "Delete", "Patch", "Post", "Put"]
 
@@ -40,6 +43,13 @@ class Patch(TypedDict, total=False):
     """An email allow policy."""
 
     comments: Optional[str]
+
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Timestamp at which the policy expires.
+
+    After this time, Email Security ignores the policy. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
 
     is_acceptable_sender: bool
     """
@@ -81,7 +91,8 @@ class Patch(TypedDict, total=False):
     plain IPv4 or IPv6 address or CIDR block for IP (e.g. `1.2.3.4`, `1.2.3.0/24`,
     `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the API rejects private or
     unique-local, loopback, link-local, unspecified, and IPv4 broadcast addresses,
-    including their IPv4-mapped IPv6 equivalents.
+    including their IPv4-mapped IPv6 equivalents. The API also rejects a pattern
+    that equals a domain onboarded to the account, ignoring case.
     """
 
     pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
@@ -130,7 +141,8 @@ class Post(TypedDict, total=False):
     plain IPv4 or IPv6 address or CIDR block for IP (e.g. `1.2.3.4`, `1.2.3.0/24`,
     `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the API rejects private or
     unique-local, loopback, link-local, unspecified, and IPv4 broadcast addresses,
-    including their IPv4-mapped IPv6 equivalents.
+    including their IPv4-mapped IPv6 equivalents. The API also rejects a pattern
+    that equals a domain onboarded to the account, ignoring case.
     """
 
     pattern_type: Required[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]]
@@ -155,6 +167,13 @@ class Post(TypedDict, total=False):
 
     comments: Optional[str]
 
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Timestamp at which the policy expires.
+
+    After this time, Email Security ignores the policy. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
+
     is_recipient: bool
     """Deprecated as of July 1, 2025.
 
@@ -178,6 +197,13 @@ class Put(TypedDict, total=False):
     """An email allow policy."""
 
     comments: Optional[str]
+
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """Timestamp at which the policy expires.
+
+    After this time, Email Security ignores the policy. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
 
     is_acceptable_sender: bool
     """
@@ -219,7 +245,8 @@ class Put(TypedDict, total=False):
     plain IPv4 or IPv6 address or CIDR block for IP (e.g. `1.2.3.4`, `1.2.3.0/24`,
     `2606:4700:4700::1111`, or `2606:4700:4700::/48`); the API rejects private or
     unique-local, loopback, link-local, unspecified, and IPv4 broadcast addresses,
-    including their IPv4-mapped IPv6 equivalents.
+    including their IPv4-mapped IPv6 equivalents. The API also rejects a pattern
+    that equals a domain onboarded to the account, ignoring case.
     """
 
     pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]

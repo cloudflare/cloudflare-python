@@ -14,6 +14,12 @@ class AllowPolicyListParams(TypedDict, total=False):
     direction: Literal["asc", "desc"]
     """The sorting direction."""
 
+    expired: bool
+    """
+    Filter to return only expired policies (`true`) or only policies that still
+    apply (`false`). Omit to return both.
+    """
+
     is_acceptable_sender: bool
     """
     Filter to show only policies where messages from the sender are exempted from

@@ -15,6 +15,14 @@ from .cors import (
     CORSResourceWithStreamingResponse,
     AsyncCORSResourceWithStreamingResponse,
 )
+from .jobs import (
+    JobsResource,
+    AsyncJobsResource,
+    JobsResourceWithRawResponse,
+    AsyncJobsResourceWithRawResponse,
+    JobsResourceWithStreamingResponse,
+    AsyncJobsResourceWithStreamingResponse,
+)
 from .locks import (
     LocksResource,
     AsyncLocksResource,
@@ -122,6 +130,10 @@ class BucketsResource(SyncAPIResource):
     @cached_property
     def objects(self) -> ObjectsResource:
         return ObjectsResource(self._client)
+
+    @cached_property
+    def jobs(self) -> JobsResource:
+        return JobsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> BucketsResourceWithRawResponse:
@@ -488,6 +500,10 @@ class AsyncBucketsResource(AsyncAPIResource):
     @cached_property
     def objects(self) -> AsyncObjectsResource:
         return AsyncObjectsResource(self._client)
+
+    @cached_property
+    def jobs(self) -> AsyncJobsResource:
+        return AsyncJobsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBucketsResourceWithRawResponse:
@@ -874,6 +890,10 @@ class BucketsResourceWithRawResponse:
     def objects(self) -> ObjectsResourceWithRawResponse:
         return ObjectsResourceWithRawResponse(self._buckets.objects)
 
+    @cached_property
+    def jobs(self) -> JobsResourceWithRawResponse:
+        return JobsResourceWithRawResponse(self._buckets.jobs)
+
 
 class AsyncBucketsResourceWithRawResponse:
     def __init__(self, buckets: AsyncBucketsResource) -> None:
@@ -926,6 +946,10 @@ class AsyncBucketsResourceWithRawResponse:
     @cached_property
     def objects(self) -> AsyncObjectsResourceWithRawResponse:
         return AsyncObjectsResourceWithRawResponse(self._buckets.objects)
+
+    @cached_property
+    def jobs(self) -> AsyncJobsResourceWithRawResponse:
+        return AsyncJobsResourceWithRawResponse(self._buckets.jobs)
 
 
 class BucketsResourceWithStreamingResponse:
@@ -980,6 +1004,10 @@ class BucketsResourceWithStreamingResponse:
     def objects(self) -> ObjectsResourceWithStreamingResponse:
         return ObjectsResourceWithStreamingResponse(self._buckets.objects)
 
+    @cached_property
+    def jobs(self) -> JobsResourceWithStreamingResponse:
+        return JobsResourceWithStreamingResponse(self._buckets.jobs)
+
 
 class AsyncBucketsResourceWithStreamingResponse:
     def __init__(self, buckets: AsyncBucketsResource) -> None:
@@ -1032,3 +1060,7 @@ class AsyncBucketsResourceWithStreamingResponse:
     @cached_property
     def objects(self) -> AsyncObjectsResourceWithStreamingResponse:
         return AsyncObjectsResourceWithStreamingResponse(self._buckets.objects)
+
+    @cached_property
+    def jobs(self) -> AsyncJobsResourceWithStreamingResponse:
+        return AsyncJobsResourceWithStreamingResponse(self._buckets.jobs)

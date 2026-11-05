@@ -170,6 +170,10 @@ class TestMeetings:
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
             custom_participant_id="custom_participant_id",
             preset_name="preset_name",
+            token={
+                "expires_on": parse_datetime("2026-10-01T11:00:00Z"),
+                "not_before": parse_datetime("2026-10-01T09:00:00Z"),
+            },
             name="Mary Sue",
             picture="https://i.imgur.com/test.jpg",
         )
@@ -718,6 +722,19 @@ class TestMeetings:
 
     @pytest.mark.skip(reason="TODO: auth not handled well")
     @parametrize
+    def test_method_refresh_participant_token_with_all_params(self, client: Cloudflare) -> None:
+        meeting = client.realtime_kit.meetings.refresh_participant_token(
+            participant_id="participant_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="14a396e7-ca44-4937-bf1f-050a69118543",
+            meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            expires_on=parse_datetime("2026-10-01T11:00:00Z"),
+            not_before=parse_datetime("2026-10-01T09:00:00Z"),
+        )
+        assert_matches_type(MeetingRefreshParticipantTokenResponse, meeting, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: auth not handled well")
+    @parametrize
     def test_raw_response_refresh_participant_token(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.refresh_participant_token(
             participant_id="participant_id",
@@ -1194,6 +1211,10 @@ class TestAsyncMeetings:
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
             custom_participant_id="custom_participant_id",
             preset_name="preset_name",
+            token={
+                "expires_on": parse_datetime("2026-10-01T11:00:00Z"),
+                "not_before": parse_datetime("2026-10-01T09:00:00Z"),
+            },
             name="Mary Sue",
             picture="https://i.imgur.com/test.jpg",
         )
@@ -1737,6 +1758,19 @@ class TestAsyncMeetings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
             meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(MeetingRefreshParticipantTokenResponse, meeting, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: auth not handled well")
+    @parametrize
+    async def test_method_refresh_participant_token_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        meeting = await async_client.realtime_kit.meetings.refresh_participant_token(
+            participant_id="participant_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="14a396e7-ca44-4937-bf1f-050a69118543",
+            meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            expires_on=parse_datetime("2026-10-01T11:00:00Z"),
+            not_before=parse_datetime("2026-10-01T09:00:00Z"),
         )
         assert_matches_type(MeetingRefreshParticipantTokenResponse, meeting, path=["response"])
 

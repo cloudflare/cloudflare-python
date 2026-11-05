@@ -55,115 +55,143 @@ __all__ = [
     "MetaProcessorsAgentReadinessChecksBotAccessControlContentSignalsEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksBotAccessControlContentSignalsEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksBotAccessControlContentSignalsEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksBotAccessControlContentSignalsMessageRef",
     "MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTXTAIRules",
     "MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTxtaiRulesEvidence",
     "MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTxtaiRulesEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTxtaiRulesEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTxtaiRulesEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTXTAIRulesMessageRef",
     "MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuth",
     "MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidence",
     "MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthMessageRef",
     "MetaProcessorsAgentReadinessChecksCommerce",
     "MetaProcessorsAgentReadinessChecksCommerceAcp",
     "MetaProcessorsAgentReadinessChecksCommerceAcpEvidence",
     "MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksCommerceAcpMessageRef",
     "MetaProcessorsAgentReadinessChecksCommerceAp2",
     "MetaProcessorsAgentReadinessChecksCommerceAp2Evidence",
     "MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceFinding",
     "MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceRequest",
     "MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksCommerceAp2MessageRef",
     "MetaProcessorsAgentReadinessChecksCommerceMpp",
     "MetaProcessorsAgentReadinessChecksCommerceMppEvidence",
     "MetaProcessorsAgentReadinessChecksCommerceMppEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksCommerceMppEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksCommerceMppEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksCommerceMppMessageRef",
     "MetaProcessorsAgentReadinessChecksCommerceUcp",
     "MetaProcessorsAgentReadinessChecksCommerceUcpEvidence",
     "MetaProcessorsAgentReadinessChecksCommerceUcpEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksCommerceUcpEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksCommerceUcpEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksCommerceUcpMessageRef",
     "MetaProcessorsAgentReadinessChecksCommerceX402",
     "MetaProcessorsAgentReadinessChecksCommerceX402Evidence",
     "MetaProcessorsAgentReadinessChecksCommerceX402EvidenceFinding",
     "MetaProcessorsAgentReadinessChecksCommerceX402EvidenceRequest",
     "MetaProcessorsAgentReadinessChecksCommerceX402EvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksCommerceX402MessageRef",
     "MetaProcessorsAgentReadinessChecksContentAccessibility",
     "MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiation",
     "MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationEvidence",
     "MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoverability",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAid",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeaders",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXT",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoverabilitySitemap",
     "MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscovery",
     "MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCard",
     "MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoveryAgentSkills",
     "MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoveryAPICatalog",
     "MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoveryArd",
     "MetaProcessorsAgentReadinessChecksDiscoveryArdEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryArdMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoveryAuthMd",
     "MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryAuthMdMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCard",
     "MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscovery",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResource",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceMessageRef",
+    "MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocol",
+    "MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidence",
+    "MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidenceFinding",
+    "MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidenceRequest",
+    "MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolMessageRef",
     "MetaProcessorsAgentReadinessChecksDiscoveryWebMcp",
     "MetaProcessorsAgentReadinessChecksDiscoveryWebMcpEvidence",
     "MetaProcessorsAgentReadinessChecksDiscoveryWebMcpEvidenceFinding",
     "MetaProcessorsAgentReadinessChecksDiscoveryWebMcpEvidenceRequest",
     "MetaProcessorsAgentReadinessChecksDiscoveryWebMcpEvidenceResponse",
+    "MetaProcessorsAgentReadinessChecksDiscoveryWebMcpMessageRef",
     "MetaProcessorsAgentReadinessNextLevel",
     "MetaProcessorsAgentReadinessNextLevelRequirement",
     "MetaProcessorsPhishingV2",
@@ -662,6 +690,13 @@ class MetaProcessorsAgentReadinessChecksBotAccessControlContentSignalsEvidence(B
     response: Optional[MetaProcessorsAgentReadinessChecksBotAccessControlContentSignalsEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksBotAccessControlContentSignalsMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksBotAccessControlContentSignals(BaseModel):
     status: str
 
@@ -672,6 +707,10 @@ class MetaProcessorsAgentReadinessChecksBotAccessControlContentSignals(BaseModel
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksBotAccessControlContentSignalsEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksBotAccessControlContentSignalsMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTxtaiRulesEvidenceFinding(BaseModel):
@@ -714,6 +753,13 @@ class MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTxtaiRulesEvidence
     response: Optional[MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTxtaiRulesEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTXTAIRulesMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTXTAIRules(BaseModel):
     status: str
 
@@ -724,6 +770,10 @@ class MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTXTAIRules(BaseMod
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTxtaiRulesEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksBotAccessControlRobotsTXTAIRulesMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidenceFinding(BaseModel):
@@ -766,6 +816,13 @@ class MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidence(BaseM
     response: Optional[MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuth(BaseModel):
     status: str
 
@@ -776,6 +833,10 @@ class MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuth(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksBotAccessControlWebBotAuthMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksBotAccessControl(BaseModel):
@@ -830,6 +891,13 @@ class MetaProcessorsAgentReadinessChecksCommerceAcpEvidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksCommerceAcpEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksCommerceAcpMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksCommerceAcp(BaseModel):
     status: str
 
@@ -840,6 +908,10 @@ class MetaProcessorsAgentReadinessChecksCommerceAcp(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksCommerceAcpEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksCommerceAcpMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceFinding(BaseModel):
@@ -882,6 +954,13 @@ class MetaProcessorsAgentReadinessChecksCommerceAp2Evidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksCommerceAp2EvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksCommerceAp2MessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksCommerceAp2(BaseModel):
     status: str
 
@@ -892,6 +971,10 @@ class MetaProcessorsAgentReadinessChecksCommerceAp2(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksCommerceAp2Evidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksCommerceAp2MessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksCommerceMppEvidenceFinding(BaseModel):
@@ -934,6 +1017,13 @@ class MetaProcessorsAgentReadinessChecksCommerceMppEvidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksCommerceMppEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksCommerceMppMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksCommerceMpp(BaseModel):
     status: str
 
@@ -944,6 +1034,10 @@ class MetaProcessorsAgentReadinessChecksCommerceMpp(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksCommerceMppEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksCommerceMppMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksCommerceUcpEvidenceFinding(BaseModel):
@@ -986,6 +1080,13 @@ class MetaProcessorsAgentReadinessChecksCommerceUcpEvidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksCommerceUcpEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksCommerceUcpMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksCommerceUcp(BaseModel):
     status: str
 
@@ -996,6 +1097,10 @@ class MetaProcessorsAgentReadinessChecksCommerceUcp(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksCommerceUcpEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksCommerceUcpMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksCommerceX402EvidenceFinding(BaseModel):
@@ -1038,6 +1143,13 @@ class MetaProcessorsAgentReadinessChecksCommerceX402Evidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksCommerceX402EvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksCommerceX402MessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksCommerceX402(BaseModel):
     status: str
 
@@ -1048,6 +1160,10 @@ class MetaProcessorsAgentReadinessChecksCommerceX402(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksCommerceX402Evidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksCommerceX402MessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksCommerce(BaseModel):
@@ -1102,6 +1218,13 @@ class MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationE
     response: Optional[MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiation(BaseModel):
     status: str
 
@@ -1112,6 +1235,10 @@ class MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiation(
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksContentAccessibilityMarkdownNegotiationMessageRef] = (
+        FieldInfo(alias="messageRef", default=None)
+    )
 
 
 class MetaProcessorsAgentReadinessChecksContentAccessibility(BaseModel):
@@ -1160,6 +1287,13 @@ class MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidence(BaseModel)
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAid(BaseModel):
     status: str
 
@@ -1170,6 +1304,10 @@ class MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAid(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilityDNSAidMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidenceFinding(BaseModel):
@@ -1212,6 +1350,13 @@ class MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidence(BaseM
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeaders(BaseModel):
     status: str
 
@@ -1222,6 +1367,10 @@ class MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeaders(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilityLinkHeadersMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTEvidenceFinding(BaseModel):
@@ -1264,6 +1413,13 @@ class MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTEvidence(BaseMod
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXT(BaseModel):
     status: str
 
@@ -1274,6 +1430,10 @@ class MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXT(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilityRobotsTXTMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapEvidenceFinding(BaseModel):
@@ -1316,6 +1476,13 @@ class MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapEvidence(BaseModel
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoverabilitySitemap(BaseModel):
     status: str
 
@@ -1326,6 +1493,10 @@ class MetaProcessorsAgentReadinessChecksDiscoverabilitySitemap(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoverabilitySitemapMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoverability(BaseModel):
@@ -1378,6 +1549,13 @@ class MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardEvidence(BaseModel)
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCard(BaseModel):
     status: str
 
@@ -1388,6 +1566,10 @@ class MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCard(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryA2aAgentCardMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsEvidenceFinding(BaseModel):
@@ -1430,6 +1612,13 @@ class MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsEvidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoveryAgentSkills(BaseModel):
     status: str
 
@@ -1440,6 +1629,10 @@ class MetaProcessorsAgentReadinessChecksDiscoveryAgentSkills(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryAgentSkillsMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidenceFinding(BaseModel):
@@ -1482,6 +1675,13 @@ class MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoveryAPICatalog(BaseModel):
     status: str
 
@@ -1492,6 +1692,10 @@ class MetaProcessorsAgentReadinessChecksDiscoveryAPICatalog(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryAPICatalogMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceFinding(BaseModel):
@@ -1534,6 +1738,13 @@ class MetaProcessorsAgentReadinessChecksDiscoveryArdEvidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryArdEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoveryArdMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoveryArd(BaseModel):
     status: str
 
@@ -1544,6 +1755,10 @@ class MetaProcessorsAgentReadinessChecksDiscoveryArd(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryArdEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryArdMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceFinding(BaseModel):
@@ -1586,6 +1801,13 @@ class MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoveryAuthMdMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoveryAuthMd(BaseModel):
     status: str
 
@@ -1596,6 +1818,10 @@ class MetaProcessorsAgentReadinessChecksDiscoveryAuthMd(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryAuthMdEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryAuthMdMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidenceFinding(BaseModel):
@@ -1638,6 +1864,13 @@ class MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidence(BaseModel
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCard(BaseModel):
     status: str
 
@@ -1648,6 +1881,10 @@ class MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCard(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryMcpServerCardMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryEvidenceFinding(BaseModel):
@@ -1690,6 +1927,13 @@ class MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryEvidence(BaseMode
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscovery(BaseModel):
     status: str
 
@@ -1700,6 +1944,10 @@ class MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscovery(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryOAuthDiscoveryMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceEvidenceFinding(BaseModel):
@@ -1742,6 +1990,13 @@ class MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceEvidence(
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResource(BaseModel):
     status: str
 
@@ -1752,6 +2007,73 @@ class MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResource(BaseMode
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResourceMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidenceFinding(BaseModel):
+    outcome: str
+
+    summary: str
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidenceRequest(BaseModel):
+    method: str
+
+    url: str
+
+    headers: Optional[object] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidenceResponse(BaseModel):
+    status: int
+
+    status_text: str = FieldInfo(alias="statusText")
+
+    body_preview: Optional[str] = FieldInfo(alias="bodyPreview", default=None)
+
+    body_size: Optional[int] = FieldInfo(alias="bodySize", default=None)
+
+    headers: Optional[object] = None
+
+    redirected_to: Optional[str] = FieldInfo(alias="redirectedTo", default=None)
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidence(BaseModel):
+    action: str
+
+    label: str
+
+    finding: Optional[MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidenceFinding] = None
+
+    request: Optional[MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidenceRequest] = None
+
+    response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidenceResponse] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
+class MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocol(BaseModel):
+    status: str
+
+    details: Optional[object] = None
+
+    duration_ms: Optional[float] = FieldInfo(alias="durationMs", default=None)
+
+    evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolEvidence]] = None
+
+    message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocolMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscoveryWebMcpEvidenceFinding(BaseModel):
@@ -1794,6 +2116,13 @@ class MetaProcessorsAgentReadinessChecksDiscoveryWebMcpEvidence(BaseModel):
     response: Optional[MetaProcessorsAgentReadinessChecksDiscoveryWebMcpEvidenceResponse] = None
 
 
+class MetaProcessorsAgentReadinessChecksDiscoveryWebMcpMessageRef(BaseModel):
+    code: str
+    """Stable, translatable message code."""
+
+    params: Optional[object] = None
+
+
 class MetaProcessorsAgentReadinessChecksDiscoveryWebMcp(BaseModel):
     status: str
 
@@ -1804,6 +2133,10 @@ class MetaProcessorsAgentReadinessChecksDiscoveryWebMcp(BaseModel):
     evidence: Optional[List[MetaProcessorsAgentReadinessChecksDiscoveryWebMcpEvidence]] = None
 
     message: Optional[str] = None
+
+    message_ref: Optional[MetaProcessorsAgentReadinessChecksDiscoveryWebMcpMessageRef] = FieldInfo(
+        alias="messageRef", default=None
+    )
 
 
 class MetaProcessorsAgentReadinessChecksDiscovery(BaseModel):
@@ -1823,6 +2156,10 @@ class MetaProcessorsAgentReadinessChecksDiscovery(BaseModel):
 
     oauth_protected_resource: MetaProcessorsAgentReadinessChecksDiscoveryOAuthProtectedResource = FieldInfo(
         alias="oauthProtectedResource"
+    )
+
+    personal_agent_protocol: MetaProcessorsAgentReadinessChecksDiscoveryPersonalAgentProtocol = FieldInfo(
+        alias="personalAgentProtocol"
     )
 
     web_mcp: MetaProcessorsAgentReadinessChecksDiscoveryWebMcp = FieldInfo(alias="webMcp")

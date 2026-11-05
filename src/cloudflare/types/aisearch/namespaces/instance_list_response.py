@@ -14,6 +14,7 @@ __all__ = [
     "IndexMethod",
     "IndexingOptions",
     "Metadata",
+    "MetadataCreatedFromEmdashPlugin",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
     "PublicEndpointParamsMcp",
@@ -71,8 +72,28 @@ class IndexingOptions(BaseModel):
         __pydantic_extra__: Dict[str, object]
 
 
+class MetadataCreatedFromEmdashPlugin(BaseModel):
+    type: Literal["native", "rest"]
+
+    version: str
+
+    if TYPE_CHECKING:
+        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
+        # value to this field, so for compatibility we avoid doing it at runtime.
+        __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+    else:
+        __pydantic_extra__: Dict[str, object]
+
+
 class Metadata(BaseModel):
     created_from_aisearch_wizard: Optional[bool] = None
+
+    created_from_emdash_plugin: Optional[MetadataCreatedFromEmdashPlugin] = None
 
     worker_domain: Optional[str] = None
 
@@ -237,8 +258,8 @@ class SourceParamsWebCrawlerDiscoverOptions(BaseModel):
     limit: Optional[float] = None
     """Maximum number of pages to crawl.
 
-    New values are capped at 100000; instances configured before that cap may report
-    a higher stored value, which the crawler clamps at run time.
+    New values have a maximum of 100000; instances configured before that cap may
+    report a higher stored value, which the crawler clamps at run time.
     """
 
     max_age: Optional[float] = None

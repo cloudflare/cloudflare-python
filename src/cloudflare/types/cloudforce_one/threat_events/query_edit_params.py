@@ -12,10 +12,10 @@ class QueryEditParams(TypedDict, total=False):
     """Account ID."""
 
     alert_enabled: bool
-    """Enable alerts for this query"""
+    """Deprecated and ignored: saved-query alerting and rules were removed."""
 
     alert_rollup_enabled: bool
-    """Enable alert rollup for this query"""
+    """Deprecated and ignored: saved-query alerting and rules were removed."""
 
     name: str
     """Unique name for the saved query"""
@@ -24,7 +24,7 @@ class QueryEditParams(TypedDict, total=False):
     """JSON string containing the query parameters"""
 
     rule_enabled: bool
-    """Enable rule for this query"""
+    """Deprecated and ignored: saved-query alerting and rules were removed."""
 
     rule_scope: str
-    """Scope for the rule"""
+    """Deprecated and ignored: saved-query alerting and rules were removed."""

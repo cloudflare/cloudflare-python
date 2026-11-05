@@ -28,6 +28,7 @@ __all__ = [
     "CcContainersCreateDurableObjectApplicationRequestConfiguration",
     "CcContainersCreateDurableObjectApplicationRequestConfigurationAuthorizedKey",
     "CcContainersCreateDurableObjectApplicationRequestConfigurationWranglerSSH",
+    "CcContainersCreateDurableObjectApplicationRequestConstraints",
     "CcContainersCreateDurableObjectApplicationRequestObservability",
     "CcContainersCreateDurableObjectApplicationRequestObservabilityLogs",
 ]
@@ -229,6 +230,13 @@ class CcContainersCreateDurableObjectApplicationRequest(TypedDict, total=False):
     configuration: CcContainersCreateDurableObjectApplicationRequestConfiguration
     """Configuration for a Durable Object-managed application."""
 
+    constraints: CcContainersCreateDurableObjectApplicationRequestConstraints
+    """
+    The jurisdiction of a Durable Object-managed application's primary control-plane
+    object. Set this when creating the application; it cannot be changed afterwards.
+    Other placement constraints are not supported by this scheduling policy.
+    """
+
     observability: CcContainersCreateDurableObjectApplicationRequestObservability
     """
     Application-wide logging settings for a Durable Object-managed application. The
@@ -289,6 +297,16 @@ class CcContainersCreateDurableObjectApplicationRequestConfiguration(TypedDict, 
 
     wrangler_ssh: CcContainersCreateDurableObjectApplicationRequestConfigurationWranglerSSH
     """Configuration properties for connecting with SSH to a container using Wrangler."""
+
+
+class CcContainersCreateDurableObjectApplicationRequestConstraints(TypedDict, total=False):
+    """
+    The jurisdiction of a Durable Object-managed application's primary control-plane object.
+    Set this when creating the application; it cannot be changed afterwards.
+    Other placement constraints are not supported by this scheduling policy.
+    """
+
+    jurisdiction: Required[Literal["eu", "fedramp", "us"]]
 
 
 class CcContainersCreateDurableObjectApplicationRequestObservabilityLogs(TypedDict, total=False):

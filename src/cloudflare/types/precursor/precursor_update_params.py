@@ -3,22 +3,42 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .enforcement_rule_param import EnforcementRuleParam
+from ..._utils import PropertyInfo
 
-__all__ = ["PrecursorUpdateParams"]
+__all__ = ["PrecursorUpdateParams", "Rule"]
 
 
 class PrecursorUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    default_mode: Literal["off", "min-friction", "max-security"]
-    """
-    The zone-level Precursor enforcement mode applied to requests that do not match
-    a more specific enforcement rule.
+    cloudflare_version: Annotated[Literal["1.0"], PropertyInfo(alias="Cloudflare-Version")]
+
+    mode: Literal["off", "monitor", "arm"]
+    """Controls Precursor detection for the zone.
+
+    `off` disables detection, `monitor` records detections without affecting bot
+    scores, and `arm` allows detections to affect bot scores.
     """
 
-    enforcement_rules: Iterable[EnforcementRuleParam]
-    """The ordered list of enforcement rules for the zone."""
+    rules: Iterable[Rule]
+    """The ordered list of Precursor rules for the zone."""
+
+    show_interstitial: bool
+    """Whether Precursor shows an interstitial when it takes action on a request."""
+
+
+class Rule(TypedDict, total=False):
+    expression: Required[str]
+    """The filter expression that determines which requests the rule matches."""
+
+    show_interstitial: Required[bool]
+    """Whether Precursor shows an interstitial when it takes action on a request."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule is active."""

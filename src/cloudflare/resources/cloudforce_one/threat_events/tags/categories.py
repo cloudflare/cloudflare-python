@@ -65,8 +65,10 @@ class CategoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
-        """
-        Creates a new Source-of-Truth tag category for an account.
+        """Creates a tag category.
+
+        Use `schema` to define the custom fields its tags can
+        have.
 
         Args:
           account_id: Account ID.
@@ -112,8 +114,9 @@ class CategoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
-        """
-        Returns all Source-of-Truth tag categories for an account.
+        """Lists the account's tag categories.
+
+        Use `search` to filter them.
 
         Args:
           account_id: Account ID.
@@ -153,9 +156,10 @@ class CategoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
-        """Deprecated; use DELETE /events/tag-categories/{category_uuid}.
+        """Legacy.
 
-        Available through
+        Use `threat-intel tags categories delete`
+        (`DELETE /events/tag-categories/{category_uuid}`) instead. Available through
         2026-11-28.
 
         Args:
@@ -203,9 +207,10 @@ class CategoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
-        """Deprecated; use PATCH /events/tag-categories/{category_uuid}.
+        """Legacy.
 
-        Available through
+        Use `threat-intel tags categories update`
+        (`PATCH /events/tag-categories/{category_uuid}`) instead. Available through
         2026-11-28.
 
         Args:
@@ -283,8 +288,10 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
-        """
-        Creates a new Source-of-Truth tag category for an account.
+        """Creates a tag category.
+
+        Use `schema` to define the custom fields its tags can
+        have.
 
         Args:
           account_id: Account ID.
@@ -330,8 +337,9 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
-        """
-        Returns all Source-of-Truth tag categories for an account.
+        """Lists the account's tag categories.
+
+        Use `search` to filter them.
 
         Args:
           account_id: Account ID.
@@ -371,9 +379,10 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
-        """Deprecated; use DELETE /events/tag-categories/{category_uuid}.
+        """Legacy.
 
-        Available through
+        Use `threat-intel tags categories delete`
+        (`DELETE /events/tag-categories/{category_uuid}`) instead. Available through
         2026-11-28.
 
         Args:
@@ -421,9 +430,10 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
-        """Deprecated; use PATCH /events/tag-categories/{category_uuid}.
+        """Legacy.
 
-        Available through
+        Use `threat-intel tags categories update`
+        (`PATCH /events/tag-categories/{category_uuid}`) instead. Available through
         2026-11-28.
 
         Args:

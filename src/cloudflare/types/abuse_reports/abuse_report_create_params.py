@@ -69,6 +69,8 @@ class AbuseReportsDmcaReport(TypedDict, total=False):
     host_notification: Required[Literal["send"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -89,6 +91,8 @@ class AbuseReportsDmcaReport(TypedDict, total=False):
     owner_notification: Required[Literal["send"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -115,7 +119,12 @@ class AbuseReportsDmcaReport(TypedDict, total=False):
     """
 
     comments: str
-    """Any additional comments about the infringement not exceeding 2000 characters"""
+    """Any additional comments about the infringement not exceeding 2000 characters.
+
+    Comments are kept internal to Cloudflare and not shared with the host or
+    customer as part of regular processing. For delegated reports, comments may be
+    shared in full.
+    """
 
     company: str
     """Text not exceeding 100 characters.
@@ -160,6 +169,8 @@ class AbuseReportsTrademarkReport(TypedDict, total=False):
     host_notification: Required[Literal["send"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -180,6 +191,8 @@ class AbuseReportsTrademarkReport(TypedDict, total=False):
     owner_notification: Required[Literal["send"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -201,7 +214,12 @@ class AbuseReportsTrademarkReport(TypedDict, total=False):
     """
 
     comments: str
-    """Any additional comments about the infringement not exceeding 2000 characters"""
+    """Any additional comments about the infringement not exceeding 2000 characters.
+
+    Comments are kept internal to Cloudflare and not shared with the host or
+    customer as part of regular processing. For delegated reports, comments may be
+    shared in full.
+    """
 
     company: str
     """Text not exceeding 100 characters.
@@ -246,6 +264,8 @@ class AbuseReportsGeneralReport(TypedDict, total=False):
     host_notification: Required[Literal["send", "send-anon"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -266,6 +286,8 @@ class AbuseReportsGeneralReport(TypedDict, total=False):
     owner_notification: Required[Literal["send", "send-anon"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -278,7 +300,12 @@ class AbuseReportsGeneralReport(TypedDict, total=False):
     """
 
     comments: str
-    """Any additional comments about the infringement not exceeding 2000 characters"""
+    """Any additional comments about the infringement not exceeding 2000 characters.
+
+    Comments are kept internal to Cloudflare and not shared with the host or
+    customer as part of regular processing. For delegated reports, comments may be
+    shared in full.
+    """
 
     company: str
     """Text not exceeding 100 characters.
@@ -345,6 +372,8 @@ class AbuseReportsPhishingReport(TypedDict, total=False):
     host_notification: Required[Literal["send", "send-anon"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -365,6 +394,8 @@ class AbuseReportsPhishingReport(TypedDict, total=False):
     owner_notification: Required[Literal["send", "send-anon"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -377,7 +408,12 @@ class AbuseReportsPhishingReport(TypedDict, total=False):
     """
 
     comments: str
-    """Any additional comments about the infringement not exceeding 2000 characters"""
+    """Any additional comments about the infringement not exceeding 2000 characters.
+
+    Comments are kept internal to Cloudflare and not shared with the host or
+    customer as part of regular processing. For delegated reports, comments may be
+    shared in full.
+    """
 
     company: str
     """Text not exceeding 100 characters.
@@ -429,6 +465,8 @@ class AbuseReportsCsamReport(TypedDict, total=False):
     host_notification: Required[Literal["send", "send-anon"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -455,6 +493,8 @@ class AbuseReportsCsamReport(TypedDict, total=False):
     owner_notification: Required[Literal["send", "send-anon", "none"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -467,7 +507,12 @@ class AbuseReportsCsamReport(TypedDict, total=False):
     """
 
     comments: str
-    """Any additional comments about the infringement not exceeding 2000 characters"""
+    """Any additional comments about the infringement not exceeding 2000 characters.
+
+    Comments are kept internal to Cloudflare and not shared with the host or
+    customer as part of regular processing. For delegated reports, comments may be
+    shared in full.
+    """
 
     company: str
     """Text not exceeding 100 characters.
@@ -519,6 +564,8 @@ class AbuseReportsThreatReport(TypedDict, total=False):
     host_notification: Required[Literal["send", "send-anon"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -539,6 +586,8 @@ class AbuseReportsThreatReport(TypedDict, total=False):
     owner_notification: Required[Literal["send", "send-anon"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -551,7 +600,12 @@ class AbuseReportsThreatReport(TypedDict, total=False):
     """
 
     comments: str
-    """Any additional comments about the infringement not exceeding 2000 characters"""
+    """Any additional comments about the infringement not exceeding 2000 characters.
+
+    Comments are kept internal to Cloudflare and not shared with the host or
+    customer as part of regular processing. For delegated reports, comments may be
+    shared in full.
+    """
 
     company: str
     """Text not exceeding 100 characters.
@@ -603,6 +657,8 @@ class AbuseReportsRegistrarWhoisReport(TypedDict, total=False):
     owner_notification: Required[Literal["send", "send-anon", "none"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -615,7 +671,12 @@ class AbuseReportsRegistrarWhoisReport(TypedDict, total=False):
     """
 
     comments: str
-    """Any additional comments about the infringement not exceeding 2000 characters"""
+    """Any additional comments about the infringement not exceeding 2000 characters.
+
+    Comments are kept internal to Cloudflare and not shared with the host or
+    customer as part of regular processing. For delegated reports, comments may be
+    shared in full.
+    """
 
     company: str
     """Text not exceeding 100 characters.
@@ -719,6 +780,8 @@ class AbuseReportsNcseiReport(TypedDict, total=False):
     host_notification: Required[Literal["send", "send-anon"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -735,6 +798,8 @@ class AbuseReportsNcseiReport(TypedDict, total=False):
     owner_notification: Required[Literal["send", "send-anon", "none"]]
     """Notification type based on the abuse type.
 
+    For delegated reports, the report—including contact information and
+    comments—will be forwarded to the customer in full regardless of this value.
     NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.
     """
 
@@ -747,7 +812,12 @@ class AbuseReportsNcseiReport(TypedDict, total=False):
     """
 
     comments: str
-    """Any additional comments about the infringement not exceeding 2000 characters"""
+    """Any additional comments about the infringement not exceeding 2000 characters.
+
+    Comments are kept internal to Cloudflare and not shared with the host or
+    customer as part of regular processing. For delegated reports, comments may be
+    shared in full.
+    """
 
     company: str
     """Text not exceeding 100 characters.

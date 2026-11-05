@@ -24,6 +24,8 @@ __all__ = [
     "AccessLinkedin",
     "AccessOIDC",
     "AccessOIDCConfig",
+    "AccessDuo",
+    "AccessDuoConfig",
     "AccessOkta",
     "AccessOktaConfig",
     "AccessOnelogin",
@@ -38,6 +40,8 @@ __all__ = [
     "AccessOnetimepinConfig",
     "AccessCloudflare",
     "AccessCloudflareConfig",
+    "AccessPasskeys",
+    "AccessPasskeysConfig",
 ]
 
 
@@ -350,6 +354,55 @@ class AccessOIDCConfig(TypedDict, total=False):
 
 class AccessOIDC(TypedDict, total=False):
     config: Required[AccessOIDCConfig]
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    name: Required[str]
+    """The name of the identity provider, shown to users on the login page."""
+
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
+
+
+class AccessDuoConfig(TypedDict, total=False):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    client_id: str
+    """The client ID from the Duo Generic OIDC Relying Party metadata."""
+
+    client_secret: str
+    """The client secret from the Duo Generic OIDC Relying Party metadata."""
+
+    issuer_url: str
+    """The issuer URL from the Duo Generic OIDC Relying Party metadata."""
+
+
+class AccessDuo(TypedDict, total=False):
+    config: Required[AccessDuoConfig]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -777,6 +830,52 @@ class AccessCloudflare(TypedDict, total=False):
     """
 
 
+class AccessPasskeysConfig(TypedDict, total=False):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    login_page_auto_prompt: bool
+    """
+    When enabled, the Access login page automatically prompts the user to
+    authenticate with a passkey.
+    """
+
+
+class AccessPasskeys(TypedDict, total=False):
+    config: Required[AccessPasskeysConfig]
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    name: Required[str]
+    """The name of the identity provider, shown to users on the login page."""
+
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    saml_certificate_set_id: str
+    """
+    The UID of the SAML encryption certificate set assigned to this Identity
+    Provider. Only present for SAML identity providers with encryption configured.
+    Create a certificate set via POST to
+    `/identity_providers/{id}/saml_certificate`.
+    """
+
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
+
+
 IdentityProviderParam: TypeAlias = Union[
     AzureADParam,
     AccessCentrify,
@@ -786,6 +885,7 @@ IdentityProviderParam: TypeAlias = Union[
     AccessGoogleApps,
     AccessLinkedin,
     AccessOIDC,
+    AccessDuo,
     AccessOkta,
     AccessOnelogin,
     AccessPingone,
@@ -793,4 +893,5 @@ IdentityProviderParam: TypeAlias = Union[
     AccessYandex,
     AccessOnetimepin,
     AccessCloudflare,
+    AccessPasskeys,
 ]

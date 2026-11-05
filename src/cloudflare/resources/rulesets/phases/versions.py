@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Any, cast
 
 import httpx
 
@@ -17,8 +17,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
+from ...._base_client import make_request_options
 from ....types.rulesets import Phase
 from ....types.rulesets.phase import Phase
 from ....types.rulesets.phases.version_get_response import VersionGetResponse
@@ -59,7 +58,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[VersionListResponse]:
+    ) -> VersionListResponse:
         """
         Fetches the versions of an account or zone entry point ruleset.
 
@@ -92,18 +91,26 @@ class VersionsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get_api_list(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint/versions",
-                ruleset_phase=ruleset_phase,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            VersionListResponse,
+            self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint/versions",
+                    ruleset_phase=ruleset_phase,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[VersionListResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[VersionListResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            page=SyncSinglePage[VersionListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=VersionListResponse,
         )
 
     def get(
@@ -156,22 +163,27 @@ class VersionsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint/versions/{ruleset_version}",
-                ruleset_phase=ruleset_phase,
-                ruleset_version=ruleset_version,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            VersionGetResponse,
+            self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint/versions/{ruleset_version}",
+                    ruleset_phase=ruleset_phase,
+                    ruleset_version=ruleset_version,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[VersionGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[VersionGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VersionGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )
 
 
@@ -195,7 +207,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         """
         return AsyncVersionsResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         ruleset_phase: Phase,
         *,
@@ -207,7 +219,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VersionListResponse, AsyncSinglePage[VersionListResponse]]:
+    ) -> VersionListResponse:
         """
         Fetches the versions of an account or zone entry point ruleset.
 
@@ -240,18 +252,26 @@ class AsyncVersionsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get_api_list(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint/versions",
-                ruleset_phase=ruleset_phase,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            VersionListResponse,
+            await self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint/versions",
+                    ruleset_phase=ruleset_phase,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[VersionListResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[VersionListResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            page=AsyncSinglePage[VersionListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=VersionListResponse,
         )
 
     async def get(
@@ -304,22 +324,27 @@ class AsyncVersionsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint/versions/{ruleset_version}",
-                ruleset_phase=ruleset_phase,
-                ruleset_version=ruleset_version,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            VersionGetResponse,
+            await self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint/versions/{ruleset_version}",
+                    ruleset_phase=ruleset_phase,
+                    ruleset_version=ruleset_version,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[VersionGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[VersionGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VersionGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )
 
 

@@ -11,3 +11,4 @@ class TagCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     tag_id: Required[str]
+    """UUID of a tag from the account's catalog to apply to the article."""

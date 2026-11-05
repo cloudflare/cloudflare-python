@@ -8,7 +8,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["OrganizationListParams", "Containing", "Name", "Parent"]
+__all__ = ["OrganizationListParams", "Containing", "Member", "Name", "Parent"]
 
 
 class OrganizationListParams(TypedDict, total=False):
@@ -20,7 +20,22 @@ class OrganizationListParams(TypedDict, total=False):
 
     containing: Containing
 
+    direction: Literal["asc", "desc"]
+    """Sort direction for the `order_by` field.
+
+    Defaults to `asc` when `order_by` is specified.
+    """
+
+    member: Member
+
     name: Name
+
+    order_by: Literal["name"]
+    """Field to order results by.
+
+    Currently supported values: `name`. When not specified, results are ordered by
+    hierarchy.
+    """
 
     page_size: int
     """The amount of items to return. Defaults to 10."""
@@ -57,6 +72,15 @@ class Containing(TypedDict, total=False):
     representation of any authorization or privilege to manage any resources
     therein. An organization "containing" a user simply means the user is managed by
     that organization.
+    """
+
+
+class Member(TypedDict, total=False):
+    email: str
+    """
+    Filter organizations to those where the given user, by email, is an active
+    member of that exact organization. This does not include hierarchy-derived
+    access.
     """
 
 

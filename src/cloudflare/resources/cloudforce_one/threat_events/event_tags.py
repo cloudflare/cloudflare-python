@@ -58,8 +58,10 @@ class EventTagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagCreateResponse:
-        """
-        Adds a tag to a threat event in Cloudforce One for classification and filtering.
+        """Legacy.
+
+        Use `threat-intel tags relationships create`
+        (`POST /events/tags/{tag_uuid}/relationships`) instead.
 
         Args:
           account_id: Account ID.
@@ -107,8 +109,10 @@ class EventTagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagDeleteResponse:
-        """
-        Removes a tag from a threat event in Cloudforce One.
+        """Legacy.
+
+        Use `threat-intel tags relationships delete`
+        (`DELETE /events/tags/{tag_uuid}/relationships/{rel_uuid}`) instead.
 
         Args:
           account_id: Account ID.
@@ -177,8 +181,10 @@ class AsyncEventTagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagCreateResponse:
-        """
-        Adds a tag to a threat event in Cloudforce One for classification and filtering.
+        """Legacy.
+
+        Use `threat-intel tags relationships create`
+        (`POST /events/tags/{tag_uuid}/relationships`) instead.
 
         Args:
           account_id: Account ID.
@@ -226,8 +232,10 @@ class AsyncEventTagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventTagDeleteResponse:
-        """
-        Removes a tag from a threat event in Cloudforce One.
+        """Legacy.
+
+        Use `threat-intel tags relationships delete`
+        (`DELETE /events/tags/{tag_uuid}/relationships/{rel_uuid}`) instead.
 
         Args:
           account_id: Account ID.

@@ -64,6 +64,14 @@ class SearchResource(SyncAPIResource):
         retrieval.
 
         Args:
+          query: Keyword and semantic article-search text, from 1 to 1000 characters.
+
+          feed_id: Optional feed UUID that restricts results to articles from that feed.
+
+          max_results: Maximum search matches to request, an integer from 1 to 50. Defaults to 20 when
+              omitted or empty; multiple matches from one article can produce fewer returned
+              articles.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -134,6 +142,14 @@ class AsyncSearchResource(AsyncAPIResource):
         retrieval.
 
         Args:
+          query: Keyword and semantic article-search text, from 1 to 1000 characters.
+
+          feed_id: Optional feed UUID that restricts results to articles from that feed.
+
+          max_results: Maximum search matches to request, an integer from 1 to 50. Defaults to 20 when
+              omitted or empty; multiple matches from one article can produce fewer returned
+              articles.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

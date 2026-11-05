@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
+from ...._types import SequenceNotStr
 from .profiles.pattern_param import PatternParam
 
 __all__ = ["EntryCreateParams"]
@@ -22,3 +23,6 @@ class EntryCreateParams(TypedDict, total=False):
     description: Optional[str]
 
     profile_id: str
+
+    validator_ids: SequenceNotStr[str]
+    """Validators the new entry should reference, by id, at most 10."""

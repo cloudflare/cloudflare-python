@@ -19,5 +19,6 @@ class ServiceTokenRotateParams(TypedDict, total=False):
     """The expiration of the previous `client_secret`.
 
     If not provided, it defaults to the current timestamp in order to immediately
-    expire the previous secret.
+    expire the previous secret. If the service token was reported as leaked, this
+    must not be in the future; the leaked secret is discarded immediately.
     """
