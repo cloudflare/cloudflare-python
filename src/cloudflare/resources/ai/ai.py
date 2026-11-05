@@ -1050,9 +1050,8 @@ class AIResource(SyncAPIResource):
         return cast(
             Optional[AIRunResponse],
             self._post(
-                path_template(
-                    "/accounts/{account_id}/ai/run/{model_name}", account_id=account_id, model_name=model_name
-                ),
+                path_template("/accounts/{account_id}/ai/run/", account_id=account_id)
+                + "/".join(path_template("{model_part}", model_part=part) for part in model_name.split("/")),
                 body=maybe_transform(
                     {
                         "text": text,
@@ -2090,9 +2089,8 @@ class AsyncAIResource(AsyncAPIResource):
         return cast(
             Optional[AIRunResponse],
             await self._post(
-                path_template(
-                    "/accounts/{account_id}/ai/run/{model_name}", account_id=account_id, model_name=model_name
-                ),
+                path_template("/accounts/{account_id}/ai/run/", account_id=account_id)
+                + "/".join(path_template("{model_part}", model_part=part) for part in model_name.split("/")),
                 body=await async_maybe_transform(
                     {
                         "text": text,
