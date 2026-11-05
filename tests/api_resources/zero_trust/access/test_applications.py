@@ -351,12 +351,11 @@ class TestApplications:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            client.zero_trust.access.applications.with_raw_response.create(
-                domain="test.example.com/admin",
-                type="self_hosted",
-                account_id="account_id",
-            )
+        client.zero_trust.access.applications.with_raw_response.create(
+            domain="test.example.com/admin",
+            type="self_hosted",
+            account_id="account_id",
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4472,10 +4471,9 @@ class TestApplications:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            client.zero_trust.access.applications.with_raw_response.list(
-                account_id="account_id",
-            )
+        client.zero_trust.access.applications.with_raw_response.list(
+            account_id="account_id",
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9132,10 +9130,9 @@ class TestAsyncApplications:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            await async_client.zero_trust.access.applications.with_raw_response.list(
-                account_id="account_id",
-            )
+        await async_client.zero_trust.access.applications.with_raw_response.list(
+            account_id="account_id",
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
