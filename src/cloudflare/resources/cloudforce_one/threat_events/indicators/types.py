@@ -54,14 +54,18 @@ class TypesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TypeListResponse:
         """
-        Lists indicator types across multiple datasets
+        Lists the indicator types used in the datasets given by `datasetIds`, which
+        accepts dataset UUIDs or one scope value used alone. Without `datasetIds`, every
+        dataset you can read is included, analytics datasets too.
 
         Args:
           account_id: Account ID.
 
-          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**', 'analytics'
-              for isAnalytics=true datasets, or 'operational' for isAnalytics=false datasets.
-              If not provided, queries all accessible datasets.
+          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'operational' for
+              readable intelligence datasets (isAnalytics=false), 'analytics' for readable
+              analytics datasets (isAnalytics=true), or 'all'/'\\**' for every readable dataset
+              including analytics datasets. If not provided, queries all accessible datasets,
+              including analytics datasets.
 
           extra_headers: Send extra headers
 
@@ -119,14 +123,18 @@ class AsyncTypesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TypeListResponse:
         """
-        Lists indicator types across multiple datasets
+        Lists the indicator types used in the datasets given by `datasetIds`, which
+        accepts dataset UUIDs or one scope value used alone. Without `datasetIds`, every
+        dataset you can read is included, analytics datasets too.
 
         Args:
           account_id: Account ID.
 
-          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**', 'analytics'
-              for isAnalytics=true datasets, or 'operational' for isAnalytics=false datasets.
-              If not provided, queries all accessible datasets.
+          dataset_ids: Dataset UUIDs to query, or one standalone scope value: 'operational' for
+              readable intelligence datasets (isAnalytics=false), 'analytics' for readable
+              analytics datasets (isAnalytics=true), or 'all'/'\\**' for every readable dataset
+              including analytics datasets. If not provided, queries all accessible datasets,
+              including analytics datasets.
 
           extra_headers: Send extra headers
 

@@ -164,6 +164,13 @@ class AccessInfraPolicyReq(TypedDict, total=False):
     applications.
     """
 
+    policy_resolution_account_id: str
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     require: Iterable[AccessRuleParam]
     """Rules evaluated with an AND logical operator.
 

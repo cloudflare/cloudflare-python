@@ -19,6 +19,13 @@ class BlockSenderGetResponse(BaseModel):
 
     created_at: Optional[datetime] = None
 
+    expires_at: Optional[datetime] = None
+    """Timestamp at which the pattern expires.
+
+    After this time, Email Security ignores the pattern. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
+
     is_regex: Optional[bool] = None
     """Whether `pattern` is a regular expression instead of a literal value."""
 

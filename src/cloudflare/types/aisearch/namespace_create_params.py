@@ -30,14 +30,14 @@ class NamespaceCreateParams(TypedDict, total=False):
 
 class PublicEndpointParamsChatCompletionsEndpoint(TypedDict, total=False):
     disabled: bool
-    """Disable chat completions endpoint for this public endpoint"""
+    """Disable chat completions endpoint for this public endpoint."""
 
 
 class PublicEndpointParamsMcp(TypedDict, total=False):
     description: str
 
     disabled: bool
-    """Disable MCP endpoint for this public endpoint"""
+    """Disable MCP endpoint for this public endpoint."""
 
 
 class PublicEndpointParamsRateLimit(TypedDict, total=False):
@@ -50,7 +50,7 @@ class PublicEndpointParamsRateLimit(TypedDict, total=False):
 
 class PublicEndpointParamsSearchEndpoint(TypedDict, total=False):
     disabled: bool
-    """Disable search endpoint for this public endpoint"""
+    """Disable search endpoint for this public endpoint."""
 
 
 class PublicEndpointParams(TypedDict, total=False):
@@ -80,8 +80,9 @@ class PublicEndpointParams(TypedDict, total=False):
     instances_allowed: SequenceNotStr[str]
     """Instance IDs exposed through the namespace public endpoint.
 
-    Empty means nothing is searchable. Every ID must be an existing instance in this
-    namespace, and the list cannot exceed the account's multi-instance search limit.
+    Empty means nothing is searchable. Every ID must reference an existing instance
+    in this namespace, and the list must stay within the account's multi-instance
+    search limit.
     """
 
     mcp: PublicEndpointParamsMcp

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Any, cast
 from typing_extensions import Literal
 
 import httpx
@@ -79,23 +79,28 @@ class URLNormalizationResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._put(
-            path_template("/zones/{zone_id}/url_normalization", zone_id=zone_id),
-            body=maybe_transform(
-                {
-                    "scope": scope,
-                    "type": type,
-                },
-                url_normalization_update_params.URLNormalizationUpdateParams,
+        return cast(
+            URLNormalizationUpdateResponse,
+            self._put(
+                path_template("/zones/{zone_id}/url_normalization", zone_id=zone_id),
+                body=maybe_transform(
+                    {
+                        "scope": scope,
+                        "type": type,
+                    },
+                    url_normalization_update_params.URLNormalizationUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[URLNormalizationUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[URLNormalizationUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[URLNormalizationUpdateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[URLNormalizationUpdateResponse], ResultWrapper[URLNormalizationUpdateResponse]),
         )
 
     def delete(
@@ -161,16 +166,21 @@ class URLNormalizationResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            path_template("/zones/{zone_id}/url_normalization", zone_id=zone_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[URLNormalizationGetResponse]._unwrapper,
+        return cast(
+            URLNormalizationGetResponse,
+            self._get(
+                path_template("/zones/{zone_id}/url_normalization", zone_id=zone_id),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[URLNormalizationGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[URLNormalizationGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[URLNormalizationGetResponse], ResultWrapper[URLNormalizationGetResponse]),
         )
 
 
@@ -227,23 +237,28 @@ class AsyncURLNormalizationResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._put(
-            path_template("/zones/{zone_id}/url_normalization", zone_id=zone_id),
-            body=await async_maybe_transform(
-                {
-                    "scope": scope,
-                    "type": type,
-                },
-                url_normalization_update_params.URLNormalizationUpdateParams,
+        return cast(
+            URLNormalizationUpdateResponse,
+            await self._put(
+                path_template("/zones/{zone_id}/url_normalization", zone_id=zone_id),
+                body=await async_maybe_transform(
+                    {
+                        "scope": scope,
+                        "type": type,
+                    },
+                    url_normalization_update_params.URLNormalizationUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[URLNormalizationUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[URLNormalizationUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[URLNormalizationUpdateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[URLNormalizationUpdateResponse], ResultWrapper[URLNormalizationUpdateResponse]),
         )
 
     async def delete(
@@ -309,16 +324,21 @@ class AsyncURLNormalizationResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
-            path_template("/zones/{zone_id}/url_normalization", zone_id=zone_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[URLNormalizationGetResponse]._unwrapper,
+        return cast(
+            URLNormalizationGetResponse,
+            await self._get(
+                path_template("/zones/{zone_id}/url_normalization", zone_id=zone_id),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[URLNormalizationGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[URLNormalizationGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[URLNormalizationGetResponse], ResultWrapper[URLNormalizationGetResponse]),
         )
 
 

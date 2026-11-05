@@ -10,15 +10,22 @@ from ..._utils import PropertyInfo
 __all__ = [
     "BotManagementUpdateParams",
     "BotFightModeConfiguration",
+    "BotFightModeConfigurationAIAgents",
     "SuperBotFightModeDefinitelyConfiguration",
+    "SuperBotFightModeDefinitelyConfigurationAIAgents",
     "SuperBotFightModeLikelyConfiguration",
+    "SuperBotFightModeLikelyConfigurationAIAgents",
     "SubscriptionConfiguration",
+    "SubscriptionConfigurationAIAgents",
 ]
 
 
 class BotFightModeConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
+
+    ai_agents: BotFightModeConfigurationAIAgents
+    """Configure blocking behavior for supported personal AI agents."""
 
     ai_bots_migration_opt_out: bool
     """
@@ -81,9 +88,31 @@ class BotFightModeConfiguration(TypedDict, total=False):
     """
 
 
+class BotFightModeConfigurationAIAgents(TypedDict, total=False):
+    """Configure blocking behavior for supported personal AI agents."""
+
+    anthropic_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    google_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    instinct: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    muse: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    openai_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+
 class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
+
+    ai_agents: SuperBotFightModeDefinitelyConfigurationAIAgents
+    """Configure blocking behavior for supported personal AI agents."""
 
     ai_bots_migration_opt_out: bool
     """
@@ -159,9 +188,31 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     """Super Bot Fight Mode (SBFM) action to take on verified bots requests."""
 
 
+class SuperBotFightModeDefinitelyConfigurationAIAgents(TypedDict, total=False):
+    """Configure blocking behavior for supported personal AI agents."""
+
+    anthropic_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    google_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    instinct: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    muse: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    openai_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+
 class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
+
+    ai_agents: SuperBotFightModeLikelyConfigurationAIAgents
+    """Configure blocking behavior for supported personal AI agents."""
 
     ai_bots_migration_opt_out: bool
     """
@@ -240,9 +291,31 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     """Super Bot Fight Mode (SBFM) action to take on verified bots requests."""
 
 
+class SuperBotFightModeLikelyConfigurationAIAgents(TypedDict, total=False):
+    """Configure blocking behavior for supported personal AI agents."""
+
+    anthropic_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    google_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    instinct: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    muse: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    openai_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+
 class SubscriptionConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
+
+    ai_agents: SubscriptionConfigurationAIAgents
+    """Configure blocking behavior for supported personal AI agents."""
 
     ai_bots_migration_opt_out: bool
     """
@@ -319,6 +392,25 @@ class SubscriptionConfiguration(TypedDict, total=False):
     Whether to disable tracking the highest bot score for a session in the Bot
     Management cookie.
     """
+
+
+class SubscriptionConfigurationAIAgents(TypedDict, total=False):
+    """Configure blocking behavior for supported personal AI agents."""
+
+    anthropic_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    google_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    instinct: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    muse: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
+
+    openai_agent: Literal["disabled", "block", "only_on_ad_pages"]
+    """Action to apply to one supported personal AI agent."""
 
 
 BotManagementUpdateParams: TypeAlias = Union[

@@ -12,3 +12,7 @@ class FeedPollParams(TypedDict, total=False):
     account_id: Required[str]
 
     feed_id: Union[str, Literal["all"]]
+    """UUID of a specific feed to poll, or "all" to poll all feeds.
+
+    Omit or pass "all" for all feeds.
+    """

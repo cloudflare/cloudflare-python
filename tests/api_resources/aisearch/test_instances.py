@@ -73,6 +73,10 @@ class TestInstances:
                 max_num_results=1,
                 metadata={
                     "created_from_aisearch_wizard": True,
+                    "created_from_emdash_plugin": {
+                        "type": "native",
+                        "version": "version",
+                    },
                     "worker_domain": "worker_domain",
                 },
                 public_endpoint_params={
@@ -230,6 +234,10 @@ class TestInstances:
                 max_num_results=1,
                 metadata={
                     "created_from_aisearch_wizard": True,
+                    "created_from_emdash_plugin": {
+                        "type": "native",
+                        "version": "version",
+                    },
                     "worker_domain": "worker_domain",
                 },
                 paused=True,
@@ -866,6 +874,10 @@ class TestAsyncInstances:
                 max_num_results=1,
                 metadata={
                     "created_from_aisearch_wizard": True,
+                    "created_from_emdash_plugin": {
+                        "type": "native",
+                        "version": "version",
+                    },
                     "worker_domain": "worker_domain",
                 },
                 public_endpoint_params={
@@ -1023,6 +1035,10 @@ class TestAsyncInstances:
                 max_num_results=1,
                 metadata={
                     "created_from_aisearch_wizard": True,
+                    "created_from_emdash_plugin": {
+                        "type": "native",
+                        "version": "version",
+                    },
                     "worker_domain": "worker_domain",
                 },
                 paused=True,

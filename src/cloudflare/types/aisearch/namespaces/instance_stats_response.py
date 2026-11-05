@@ -42,10 +42,10 @@ class InstanceStatsResponse(BaseModel):
     completed: Optional[int] = None
 
     degraded: Optional[bool] = None
-    """True when status counts are unavailable (e.g.
+    """True when the API cannot compute status counts (e.g.
 
-    legacy stats query exceeded D1 statement-size limit). Counts are omitted in this
-    case.
+    the legacy stats query exceeded the D1 statement-size limit). The response omits
+    counts in this case.
     """
 
     engine: Optional[Engine] = None

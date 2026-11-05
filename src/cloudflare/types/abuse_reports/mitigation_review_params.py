@@ -19,6 +19,12 @@ class MitigationReviewParams(TypedDict, total=False):
     data: Data
     """Counter-notice details supporting an appeal."""
 
+    explanation: str
+    """
+    Optional explanation for a "content_removed" appeal, such as how the content was
+    removed. Not accepted for other appeal types.
+    """
+
     type: Literal["counter_notice", "content_removed"]
     """The type of appeal being submitted."""
 

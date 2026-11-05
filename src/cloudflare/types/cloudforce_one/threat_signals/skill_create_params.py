@@ -11,9 +11,13 @@ class SkillCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     name: Required[str]
+    """Custom Skill name (1–100 characters)."""
 
     output_schema: Required[str]
+    """JSON Schema serialized as a string (max 4096 characters)."""
 
     prompt: Required[str]
+    """AI prompt (1–4000 characters) defining the skill's instructions."""
 
-    type: Required[Literal["summary", "tags"]]
+    type: Literal["summary", "tags"]
+    """Optional label; does not affect execution. Defaults to "summary"."""

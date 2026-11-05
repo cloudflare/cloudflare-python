@@ -11,10 +11,10 @@ class InstanceListParams(TypedDict, total=False):
     account_id: Required[str]
 
     hostname: str
-    """Filter by exact Search for Agents hostname (case-insensitive)."""
-
-    namespace: str
-    """Filter by namespace."""
+    """
+    Return only instances with this exact Search for Agents hostname
+    (case-insensitive).
+    """
 
     order_by: Literal["created_at"]
     """Field to order results by."""

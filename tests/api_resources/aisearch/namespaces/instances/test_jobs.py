@@ -29,7 +29,7 @@ class TestJobs:
         job = client.aisearch.namespaces.instances.jobs.create(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(JobCreateResponse, job, path=["response"])
 
@@ -38,7 +38,7 @@ class TestJobs:
         job = client.aisearch.namespaces.instances.jobs.create(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             description="description",
         )
         assert_matches_type(JobCreateResponse, job, path=["response"])
@@ -48,7 +48,7 @@ class TestJobs:
         response = client.aisearch.namespaces.instances.jobs.with_raw_response.create(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -61,7 +61,7 @@ class TestJobs:
         with client.aisearch.namespaces.instances.jobs.with_streaming_response.create(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -77,21 +77,21 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.create(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.jobs.with_raw_response.create(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.namespaces.instances.jobs.with_raw_response.create(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -99,7 +99,7 @@ class TestJobs:
         job = client.aisearch.namespaces.instances.jobs.update(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             action="cancel",
         )
@@ -110,7 +110,7 @@ class TestJobs:
         response = client.aisearch.namespaces.instances.jobs.with_raw_response.update(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             action="cancel",
         )
@@ -125,7 +125,7 @@ class TestJobs:
         with client.aisearch.namespaces.instances.jobs.with_streaming_response.update(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             action="cancel",
         ) as response:
@@ -143,16 +143,16 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.update(
                 job_id="job_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
                 action="cancel",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.jobs.with_raw_response.update(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
                 action="cancel",
             )
@@ -161,7 +161,7 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.update(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
                 action="cancel",
             )
@@ -170,7 +170,7 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.update(
                 job_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
                 action="cancel",
             )
@@ -180,7 +180,7 @@ class TestJobs:
         job = client.aisearch.namespaces.instances.jobs.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(SyncV4PagePaginationArray[JobListResponse], job, path=["response"])
 
@@ -189,7 +189,7 @@ class TestJobs:
         job = client.aisearch.namespaces.instances.jobs.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             page=1,
             per_page=0,
         )
@@ -200,7 +200,7 @@ class TestJobs:
         response = client.aisearch.namespaces.instances.jobs.with_raw_response.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -213,7 +213,7 @@ class TestJobs:
         with client.aisearch.namespaces.instances.jobs.with_streaming_response.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -229,21 +229,21 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.list(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.jobs.with_raw_response.list(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.namespaces.instances.jobs.with_raw_response.list(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -251,7 +251,7 @@ class TestJobs:
         job = client.aisearch.namespaces.instances.jobs.get(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(JobGetResponse, job, path=["response"])
@@ -261,7 +261,7 @@ class TestJobs:
         response = client.aisearch.namespaces.instances.jobs.with_raw_response.get(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -275,7 +275,7 @@ class TestJobs:
         with client.aisearch.namespaces.instances.jobs.with_streaming_response.get(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -292,15 +292,15 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.get(
                 job_id="job_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.jobs.with_raw_response.get(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -308,7 +308,7 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.get(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -316,7 +316,7 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.get(
                 job_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -325,7 +325,7 @@ class TestJobs:
         job = client.aisearch.namespaces.instances.jobs.logs(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(JobLogsResponse, job, path=["response"])
@@ -335,7 +335,7 @@ class TestJobs:
         job = client.aisearch.namespaces.instances.jobs.logs(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             page=1,
             per_page=0,
@@ -347,7 +347,7 @@ class TestJobs:
         response = client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -361,7 +361,7 @@ class TestJobs:
         with client.aisearch.namespaces.instances.jobs.with_streaming_response.logs(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -378,15 +378,15 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
                 job_id="job_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -394,7 +394,7 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -402,7 +402,7 @@ class TestJobs:
             client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
                 job_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -417,7 +417,7 @@ class TestAsyncJobs:
         job = await async_client.aisearch.namespaces.instances.jobs.create(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(JobCreateResponse, job, path=["response"])
 
@@ -426,7 +426,7 @@ class TestAsyncJobs:
         job = await async_client.aisearch.namespaces.instances.jobs.create(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             description="description",
         )
         assert_matches_type(JobCreateResponse, job, path=["response"])
@@ -436,7 +436,7 @@ class TestAsyncJobs:
         response = await async_client.aisearch.namespaces.instances.jobs.with_raw_response.create(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -449,7 +449,7 @@ class TestAsyncJobs:
         async with async_client.aisearch.namespaces.instances.jobs.with_streaming_response.create(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -465,21 +465,21 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.create(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.create(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.create(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -487,7 +487,7 @@ class TestAsyncJobs:
         job = await async_client.aisearch.namespaces.instances.jobs.update(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             action="cancel",
         )
@@ -498,7 +498,7 @@ class TestAsyncJobs:
         response = await async_client.aisearch.namespaces.instances.jobs.with_raw_response.update(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             action="cancel",
         )
@@ -513,7 +513,7 @@ class TestAsyncJobs:
         async with async_client.aisearch.namespaces.instances.jobs.with_streaming_response.update(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             action="cancel",
         ) as response:
@@ -531,16 +531,16 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.update(
                 job_id="job_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
                 action="cancel",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.update(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
                 action="cancel",
             )
@@ -549,7 +549,7 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.update(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
                 action="cancel",
             )
@@ -558,7 +558,7 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.update(
                 job_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
                 action="cancel",
             )
@@ -568,7 +568,7 @@ class TestAsyncJobs:
         job = await async_client.aisearch.namespaces.instances.jobs.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(AsyncV4PagePaginationArray[JobListResponse], job, path=["response"])
 
@@ -577,7 +577,7 @@ class TestAsyncJobs:
         job = await async_client.aisearch.namespaces.instances.jobs.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             page=1,
             per_page=0,
         )
@@ -588,7 +588,7 @@ class TestAsyncJobs:
         response = await async_client.aisearch.namespaces.instances.jobs.with_raw_response.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -601,7 +601,7 @@ class TestAsyncJobs:
         async with async_client.aisearch.namespaces.instances.jobs.with_streaming_response.list(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -617,21 +617,21 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.list(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.list(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.list(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -639,7 +639,7 @@ class TestAsyncJobs:
         job = await async_client.aisearch.namespaces.instances.jobs.get(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(JobGetResponse, job, path=["response"])
@@ -649,7 +649,7 @@ class TestAsyncJobs:
         response = await async_client.aisearch.namespaces.instances.jobs.with_raw_response.get(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -663,7 +663,7 @@ class TestAsyncJobs:
         async with async_client.aisearch.namespaces.instances.jobs.with_streaming_response.get(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -680,15 +680,15 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.get(
                 job_id="job_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.get(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -696,7 +696,7 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.get(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -704,7 +704,7 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.get(
                 job_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
@@ -713,7 +713,7 @@ class TestAsyncJobs:
         job = await async_client.aisearch.namespaces.instances.jobs.logs(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
         assert_matches_type(JobLogsResponse, job, path=["response"])
@@ -723,7 +723,7 @@ class TestAsyncJobs:
         job = await async_client.aisearch.namespaces.instances.jobs.logs(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
             page=1,
             per_page=0,
@@ -735,7 +735,7 @@ class TestAsyncJobs:
         response = await async_client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         )
 
@@ -749,7 +749,7 @@ class TestAsyncJobs:
         async with async_client.aisearch.namespaces.instances.jobs.with_streaming_response.logs(
             job_id="job_id",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             id="my-ai-search",
         ) as response:
             assert not response.is_closed
@@ -766,15 +766,15 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
                 job_id="job_id",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 id="my-ai-search",
             )
 
@@ -782,7 +782,7 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
                 job_id="job_id",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="",
             )
 
@@ -790,6 +790,6 @@ class TestAsyncJobs:
             await async_client.aisearch.namespaces.instances.jobs.with_raw_response.logs(
                 job_id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 id="my-ai-search",
             )

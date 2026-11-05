@@ -14,10 +14,10 @@ class Data(BaseModel):
     date: Optional[str] = None
     """Analytics date."""
 
-    total_ingest_seconds: Optional[int] = None
+    total_ingest_seconds: Optional[float] = None
     """Total time duration for which the input was given or the meeting was streamed."""
 
-    total_viewer_seconds: Optional[int] = None
+    total_viewer_seconds: Optional[float] = None
     """Total view time for which the viewers watched the stream."""
 
 

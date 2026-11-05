@@ -68,8 +68,9 @@ class UsageResource(SyncAPIResource):
         allowances and may result in zero cost. The response includes usage for every
         account belonging to the specified organization.
 
-        **Note:** Cost and pricing fields are not yet populated and will be absent from
-        responses until billing integration is complete.
+        **Note:** This endpoint serves `usage` records only; cost and pricing fields are
+        absent from responses. Rated costs are available per account via
+        `POST /accounts/{account_id}/billable/usage` with `Metric: cost`.
 
         When `from` and `to` are omitted, defaults to the start of the current month
         through today. The maximum date range is 31 days.
@@ -162,8 +163,9 @@ class AsyncUsageResource(AsyncAPIResource):
         allowances and may result in zero cost. The response includes usage for every
         account belonging to the specified organization.
 
-        **Note:** Cost and pricing fields are not yet populated and will be absent from
-        responses until billing integration is complete.
+        **Note:** This endpoint serves `usage` records only; cost and pricing fields are
+        absent from responses. Rated costs are available per account via
+        `POST /accounts/{account_id}/billable/usage` with `Metric: cost`.
 
         When `from` and `to` are omitted, defaults to the start of the current month
         through today. The maximum date range is 31 days.

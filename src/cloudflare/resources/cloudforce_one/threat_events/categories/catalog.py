@@ -51,8 +51,11 @@ class CatalogResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogListResponse:
-        """
-        Lists categories
+        """Lists every event category in the catalog, whether or not an event uses it.
+
+        To
+        list only the categories used in specific datasets, use
+        `threat-intel events categories list`.
 
         Args:
           account_id: Account ID.
@@ -107,8 +110,11 @@ class AsyncCatalogResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogListResponse:
-        """
-        Lists categories
+        """Lists every event category in the catalog, whether or not an event uses it.
+
+        To
+        list only the categories used in specific datasets, use
+        `threat-intel events categories list`.
 
         Args:
           account_id: Account ID.

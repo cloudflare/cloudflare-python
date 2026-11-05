@@ -42,6 +42,7 @@ class TestServiceTokens:
             duration="60m",
             enabled=True,
             previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            tags={"environment": "production"},
         )
         assert_matches_type(Optional[ServiceTokenCreateResponse], service_token, path=["response"])
 
@@ -108,6 +109,7 @@ class TestServiceTokens:
             enabled=True,
             name="CI/CD token",
             previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            tags={"environment": "production"},
         )
         assert_matches_type(Optional[ServiceToken], service_token, path=["response"])
 
@@ -483,6 +485,7 @@ class TestAsyncServiceTokens:
             duration="60m",
             enabled=True,
             previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            tags={"environment": "production"},
         )
         assert_matches_type(Optional[ServiceTokenCreateResponse], service_token, path=["response"])
 
@@ -549,6 +552,7 @@ class TestAsyncServiceTokens:
             enabled=True,
             name="CI/CD token",
             previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            tags={"environment": "production"},
         )
         assert_matches_type(Optional[ServiceToken], service_token, path=["response"])
 

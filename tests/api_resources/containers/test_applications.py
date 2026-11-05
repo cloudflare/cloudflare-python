@@ -148,6 +148,7 @@ class TestApplications:
                     "port": 1,
                 },
             },
+            constraints={"jurisdiction": "eu"},
             observability={"logs": {"enabled": True}},
         )
         assert_matches_type(ApplicationCreateResponse, application, path=["response"])
@@ -542,6 +543,7 @@ class TestAsyncApplications:
                     "port": 1,
                 },
             },
+            constraints={"jurisdiction": "eu"},
             observability={"logs": {"enabled": True}},
         )
         assert_matches_type(ApplicationCreateResponse, application, path=["response"])

@@ -726,12 +726,9 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_9(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
-                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "client_id": "<your client id>",
+                "client_id": "DIABC123678901234567",
                 "client_secret": "<your client secret>",
-                "email_claim_name": "custom_claim_name",
-                "okta_account": "https://dev-abc123.oktapreview.com",
+                "issuer_url": "https://sso-abc1def2.sso.duosecurity.com/oidc/DIABC123678901234567",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -813,11 +810,12 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_10(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
+                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
                 "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
-                "onelogin_account": "https://mycompany.onelogin.com",
+                "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -903,7 +901,7 @@ class TestIdentityProviders:
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
-                "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
+                "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -985,21 +983,11 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_12(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
-                "attributes": ["group", "department_code", "divison"],
-                "email_attribute_name": "Email",
-                "enable_encryption": True,
-                "force_authn": True,
-                "header_attributes": [
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    }
-                ],
-                "idp_public_certs": ["string"],
-                "issuer_url": "https://whoami.com",
-                "max_sso_url_length": 8192,
-                "sign_request": True,
-                "sso_target_url": "https://edgeaccess.org/idp/saml/login",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
+                "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -1081,8 +1069,21 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_13(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
+                "attributes": ["group", "department_code", "divison"],
+                "email_attribute_name": "Email",
+                "enable_encryption": True,
+                "force_authn": True,
+                "header_attributes": [
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    }
+                ],
+                "idp_public_certs": ["string"],
+                "issuer_url": "https://whoami.com",
+                "max_sso_url_length": 8192,
+                "sign_request": True,
+                "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -1163,7 +1164,10 @@ class TestIdentityProviders:
     @parametrize
     def test_method_create_with_all_params_overload_14(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
-            config={},
+            config={
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+            },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
@@ -1243,7 +1247,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_create_with_all_params_overload_15(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
-            config={"restrict_to_account_members": True},
+            config={},
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
@@ -1292,6 +1296,166 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_15(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_overload_16(self, client: Cloudflare) -> None:
+        identity_provider = client.zero_trust.identity_providers.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params_overload_16(self, client: Cloudflare) -> None:
+        identity_provider = client.zero_trust.identity_providers.create(
+            config={"restrict_to_account_members": True},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_create_overload_16(self, client: Cloudflare) -> None:
+        response = client.zero_trust.identity_providers.with_raw_response.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        identity_provider = response.parse()
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_create_overload_16(self, client: Cloudflare) -> None:
+        with client.zero_trust.identity_providers.with_streaming_response.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            identity_provider = response.parse()
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_create_overload_16(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_overload_17(self, client: Cloudflare) -> None:
+        identity_provider = client.zero_trust.identity_providers.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params_overload_17(self, client: Cloudflare) -> None:
+        identity_provider = client.zero_trust.identity_providers.create(
+            config={"login_page_auto_prompt": True},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_create_overload_17(self, client: Cloudflare) -> None:
+        response = client.zero_trust.identity_providers.with_raw_response.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        identity_provider = response.parse()
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_create_overload_17(self, client: Cloudflare) -> None:
+        with client.zero_trust.identity_providers.with_streaming_response.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            identity_provider = response.parse()
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_create_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
@@ -2134,12 +2298,9 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "client_id": "<your client id>",
+                "client_id": "DIABC123678901234567",
                 "client_secret": "<your client secret>",
-                "email_claim_name": "custom_claim_name",
-                "okta_account": "https://dev-abc123.oktapreview.com",
+                "issuer_url": "https://sso-abc1def2.sso.duosecurity.com/oidc/DIABC123678901234567",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -2236,11 +2397,12 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
                 "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
-                "onelogin_account": "https://mycompany.onelogin.com",
+                "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -2341,7 +2503,7 @@ class TestIdentityProviders:
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
-                "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
+                "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -2438,21 +2600,11 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "attributes": ["group", "department_code", "divison"],
-                "email_attribute_name": "Email",
-                "enable_encryption": True,
-                "force_authn": True,
-                "header_attributes": [
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    }
-                ],
-                "idp_public_certs": ["string"],
-                "issuer_url": "https://whoami.com",
-                "max_sso_url_length": 8192,
-                "sign_request": True,
-                "sso_target_url": "https://edgeaccess.org/idp/saml/login",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
+                "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -2549,8 +2701,21 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
+                "attributes": ["group", "department_code", "divison"],
+                "email_attribute_name": "Email",
+                "enable_encryption": True,
+                "force_authn": True,
+                "header_attributes": [
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    }
+                ],
+                "idp_public_certs": ["string"],
+                "issuer_url": "https://whoami.com",
+                "max_sso_url_length": 8192,
+                "sign_request": True,
+                "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -2646,7 +2811,10 @@ class TestIdentityProviders:
     def test_method_update_with_all_params_overload_14(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            config={},
+            config={
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+            },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
@@ -2741,7 +2909,7 @@ class TestIdentityProviders:
     def test_method_update_with_all_params_overload_15(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            config={"restrict_to_account_members": True},
+            config={},
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
@@ -2792,6 +2960,196 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_15(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_overload_16(self, client: Cloudflare) -> None:
+        identity_provider = client.zero_trust.identity_providers.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params_overload_16(self, client: Cloudflare) -> None:
+        identity_provider = client.zero_trust.identity_providers.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={"restrict_to_account_members": True},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_update_overload_16(self, client: Cloudflare) -> None:
+        response = client.zero_trust.identity_providers.with_raw_response.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        identity_provider = response.parse()
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_update_overload_16(self, client: Cloudflare) -> None:
+        with client.zero_trust.identity_providers.with_streaming_response.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            identity_provider = response.parse()
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_update_overload_16(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_overload_17(self, client: Cloudflare) -> None:
+        identity_provider = client.zero_trust.identity_providers.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params_overload_17(self, client: Cloudflare) -> None:
+        identity_provider = client.zero_trust.identity_providers.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={"login_page_auto_prompt": True},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_update_overload_17(self, client: Cloudflare) -> None:
+        response = client.zero_trust.identity_providers.with_raw_response.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        identity_provider = response.parse()
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_update_overload_17(self, client: Cloudflare) -> None:
+        with client.zero_trust.identity_providers.with_streaming_response.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            identity_provider = response.parse()
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_update_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
@@ -3729,12 +4087,9 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
-                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "client_id": "<your client id>",
+                "client_id": "DIABC123678901234567",
                 "client_secret": "<your client secret>",
-                "email_claim_name": "custom_claim_name",
-                "okta_account": "https://dev-abc123.oktapreview.com",
+                "issuer_url": "https://sso-abc1def2.sso.duosecurity.com/oidc/DIABC123678901234567",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -3816,11 +4171,12 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
+                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
                 "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
-                "onelogin_account": "https://mycompany.onelogin.com",
+                "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -3906,7 +4262,7 @@ class TestAsyncIdentityProviders:
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
-                "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
+                "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -3988,21 +4344,11 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
-                "attributes": ["group", "department_code", "divison"],
-                "email_attribute_name": "Email",
-                "enable_encryption": True,
-                "force_authn": True,
-                "header_attributes": [
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    }
-                ],
-                "idp_public_certs": ["string"],
-                "issuer_url": "https://whoami.com",
-                "max_sso_url_length": 8192,
-                "sign_request": True,
-                "sso_target_url": "https://edgeaccess.org/idp/saml/login",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
+                "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -4084,8 +4430,21 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
+                "attributes": ["group", "department_code", "divison"],
+                "email_attribute_name": "Email",
+                "enable_encryption": True,
+                "force_authn": True,
+                "header_attributes": [
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    }
+                ],
+                "idp_public_certs": ["string"],
+                "issuer_url": "https://whoami.com",
+                "max_sso_url_length": 8192,
+                "sign_request": True,
+                "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -4166,7 +4525,10 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_create_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
-            config={},
+            config={
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+            },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
@@ -4246,7 +4608,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_create_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
-            config={"restrict_to_account_members": True},
+            config={},
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
@@ -4295,6 +4657,166 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_15(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_overload_16(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.zero_trust.identity_providers.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.zero_trust.identity_providers.create(
+            config={"restrict_to_account_members": True},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_create_overload_16(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.identity_providers.with_raw_response.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        identity_provider = await response.parse()
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_create_overload_16(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.identity_providers.with_streaming_response.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            identity_provider = await response.parse()
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_create_overload_16(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_overload_17(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.zero_trust.identity_providers.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.zero_trust.identity_providers.create(
+            config={"login_page_auto_prompt": True},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_create_overload_17(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.identity_providers.with_raw_response.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        identity_provider = await response.parse()
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_create_overload_17(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.identity_providers.with_streaming_response.create(
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            identity_provider = await response.parse()
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
@@ -5137,12 +5659,9 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "client_id": "<your client id>",
+                "client_id": "DIABC123678901234567",
                 "client_secret": "<your client secret>",
-                "email_claim_name": "custom_claim_name",
-                "okta_account": "https://dev-abc123.oktapreview.com",
+                "issuer_url": "https://sso-abc1def2.sso.duosecurity.com/oidc/DIABC123678901234567",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -5239,11 +5758,12 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
                 "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
-                "onelogin_account": "https://mycompany.onelogin.com",
+                "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -5344,7 +5864,7 @@ class TestAsyncIdentityProviders:
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
-                "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
+                "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -5441,21 +5961,11 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "attributes": ["group", "department_code", "divison"],
-                "email_attribute_name": "Email",
-                "enable_encryption": True,
-                "force_authn": True,
-                "header_attributes": [
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    }
-                ],
-                "idp_public_certs": ["string"],
-                "issuer_url": "https://whoami.com",
-                "max_sso_url_length": 8192,
-                "sign_request": True,
-                "sso_target_url": "https://edgeaccess.org/idp/saml/login",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
+                "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -5552,8 +6062,21 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
+                "attributes": ["group", "department_code", "divison"],
+                "email_attribute_name": "Email",
+                "enable_encryption": True,
+                "force_authn": True,
+                "header_attributes": [
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    }
+                ],
+                "idp_public_certs": ["string"],
+                "issuer_url": "https://whoami.com",
+                "max_sso_url_length": 8192,
+                "sign_request": True,
+                "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
             name="Widget Corps IDP",
             type="onetimepin",
@@ -5649,7 +6172,10 @@ class TestAsyncIdentityProviders:
     async def test_method_update_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            config={},
+            config={
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+            },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
@@ -5744,7 +6270,7 @@ class TestAsyncIdentityProviders:
     async def test_method_update_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            config={"restrict_to_account_members": True},
+            config={},
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
@@ -5795,6 +6321,196 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_15(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_overload_16(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.zero_trust.identity_providers.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.zero_trust.identity_providers.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={"restrict_to_account_members": True},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_update_overload_16(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.identity_providers.with_raw_response.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        identity_provider = await response.parse()
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_update_overload_16(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.identity_providers.with_streaming_response.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            identity_provider = await response.parse()
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_update_overload_16(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_overload_17(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.zero_trust.identity_providers.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
+        identity_provider = await async_client.zero_trust.identity_providers.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={"login_page_auto_prompt": True},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+            saml_certificate_set_id="c409ef44-e72c-41c8-8c0b-278c8a6f4fd8",
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
+        )
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_update_overload_17(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.identity_providers.with_raw_response.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        identity_provider = await response.parse()
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_update_overload_17(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.identity_providers.with_streaming_response.update(
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            config={},
+            name="Widget Corps IDP",
+            type="onetimepin",
+            account_id="account_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            identity_provider = await response.parse()
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_update_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",

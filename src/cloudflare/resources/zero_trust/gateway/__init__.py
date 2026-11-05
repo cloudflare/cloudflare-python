@@ -96,6 +96,14 @@ from .audit_ssh_settings import (
     AuditSSHSettingsResourceWithStreamingResponse,
     AsyncAuditSSHSettingsResourceWithStreamingResponse,
 )
+from .dns_destination_ips import (
+    DNSDestinationIPsResource,
+    AsyncDNSDestinationIPsResource,
+    DNSDestinationIPsResourceWithRawResponse,
+    AsyncDNSDestinationIPsResourceWithRawResponse,
+    DNSDestinationIPsResourceWithStreamingResponse,
+    AsyncDNSDestinationIPsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AuditSSHSettingsResource",
@@ -164,6 +172,12 @@ __all__ = [
     "AsyncPacfilesResourceWithRawResponse",
     "PacfilesResourceWithStreamingResponse",
     "AsyncPacfilesResourceWithStreamingResponse",
+    "DNSDestinationIPsResource",
+    "AsyncDNSDestinationIPsResource",
+    "DNSDestinationIPsResourceWithRawResponse",
+    "AsyncDNSDestinationIPsResourceWithRawResponse",
+    "DNSDestinationIPsResourceWithStreamingResponse",
+    "AsyncDNSDestinationIPsResourceWithStreamingResponse",
     "GatewayResource",
     "AsyncGatewayResource",
     "GatewayResourceWithRawResponse",

@@ -9,7 +9,7 @@ from .nat_param import NatParam
 from .routed_subnet_param import RoutedSubnetParam
 from .lan_static_addressing_param import LANStaticAddressingParam
 
-__all__ = ["LANEditParams"]
+__all__ = ["LANEditParams", "RemoteSubnet"]
 
 
 class LANEditParams(TypedDict, total=False):
@@ -39,6 +39,8 @@ class LANEditParams(TypedDict, total=False):
 
     physport: int
 
+    remote_subnets: Iterable[RemoteSubnet]
+
     routed_subnets: Iterable[RoutedSubnetParam]
 
     static_addressing: LANStaticAddressingParam
@@ -50,3 +52,15 @@ class LANEditParams(TypedDict, total=False):
 
     vlan_tag: int
     """VLAN ID. Use zero for untagged."""
+
+
+class RemoteSubnet(TypedDict, total=False):
+    """
+    A remote subnet reachable through Cloudflare that is addressed from this LAN by a local alias prefix of the same size. The local alias prefix must not overlap other subnets on the LAN, and the remote prefix must not overlap other remote prefixes on the LAN.
+    """
+
+    local_alias_prefix: Required[str]
+    """A valid CIDR notation representing an IP range."""
+
+    remote_prefix: Required[str]
+    """A valid CIDR notation representing an IP range."""

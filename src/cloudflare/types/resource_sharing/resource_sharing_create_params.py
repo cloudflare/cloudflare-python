@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ResourceSharingCreateParams", "Recipient", "Resource"]
+__all__ = ["ResourceSharingCreateParams", "ExcludedRecipient", "Recipient", "Resource"]
 
 
 class ResourceSharingCreateParams(TypedDict, total=False):
@@ -15,9 +15,24 @@ class ResourceSharingCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the share."""
 
-    recipients: Required[Iterable[Recipient]]
+    excluded_recipients: Iterable[ExcludedRecipient]
+    """Accounts to exclude from an organization-targeted share.
 
-    resources: Required[Iterable[Resource]]
+    Only allowed when `recipients` contains no account entries. The share owner
+    cannot be excluded. Duplicate entries are ignored.
+    """
+
+    recipients: Iterable[Recipient]
+
+    resources: Iterable[Resource]
+
+    tags: Dict[str, str]
+    """Tags associated with the share."""
+
+
+class ExcludedRecipient(TypedDict, total=False):
+    account_id: Required[str]
+    """The account to exclude from the organization-targeted share."""
 
 
 class Recipient(TypedDict, total=False):
@@ -47,10 +62,10 @@ class Resource(TypedDict, total=False):
     """Resource Metadata."""
 
     resource_account_id: Required[str]
-    """Account identifier."""
+    """The account that owns the resource. Must match the `account_id` in the path."""
 
     resource_id: Required[str]
-    """Share Resource identifier."""
+    """Identifier assigned by the service that owns the shared resource."""
 
     resource_type: Required[
         Literal[

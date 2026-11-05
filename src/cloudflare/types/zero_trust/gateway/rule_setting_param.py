@@ -11,13 +11,13 @@ from .dns_resolver_settings_v6_param import DNSResolverSettingsV6Param
 
 __all__ = [
     "RuleSettingParam",
-    "AuditSSH",
     "BISOAdminControls",
     "BlockPage",
     "CheckSession",
     "DNSResolvers",
     "Egress",
     "ForensicCopy",
+    "Forward",
     "L4override",
     "NotificationSettings",
     "PayloadLog",
@@ -26,16 +26,6 @@ __all__ = [
     "ResolveDNSInternally",
     "UntrustedCERT",
 ]
-
-
-class AuditSSH(TypedDict, total=False):
-    """Define the settings for the Audit SSH action.
-
-    Settable only for `l4` rules with `audit_ssh` action.
-    """
-
-    command_logging: bool
-    """Enable SSH command logging."""
 
 
 class BISOAdminControls(TypedDict, total=False):
@@ -74,11 +64,15 @@ class BISOAdminControls(TypedDict, total=False):
     du: bool
     """Set to false to enable uploading. Only applies when `version == "v1"`."""
 
-    keyboard: Literal["enabled", "disabled"]
+    keyboard: Literal["enabled", "disabled", "enable_read_only_actions"]
     """Configure keyboard usage behavior.
 
-    If this field is absent, keyboard usage remains enabled. Applies only when
-    version == "v2".
+    When set to enable_read_only_actions, only approved browser commands (find,
+    copy, print, zoom, and select-all) may execute; other keyboard input is blocked
+    from reaching the page. Copy and print remain subject to their independent
+    controls. If this field is absent, keyboard usage remains enabled. Applies only
+    when version == "v2". The enable_read_only_actions value requires an explicit
+    version of "v2".
     """
 
     paste: Literal["enabled", "disabled", "remote_only"]
@@ -178,6 +172,16 @@ class ForensicCopy(TypedDict, total=False):
 
     enabled: bool
     """Enable sending the copy to storage."""
+
+
+class Forward(TypedDict, total=False):
+    """Forward matching HTTP requests to a Worker.
+
+    Required for `http` rules with the action set to `forward`.
+    """
+
+    worker_id: Required[str]
+    """Specify the public Worker ID of the target Worker."""
 
 
 class L4override(TypedDict, total=False):
@@ -305,12 +309,6 @@ class RuleSettingParam(TypedDict, total=False):
     rules.
     """
 
-    audit_ssh: Optional[AuditSSH]
-    """Define the settings for the Audit SSH action.
-
-    Settable only for `l4` rules with `audit_ssh` action.
-    """
-
     biso_admin_controls: BISOAdminControls
     """Configure browser isolation behavior.
 
@@ -377,6 +375,12 @@ class RuleSettingParam(TypedDict, total=False):
     """
     Configure whether a copy of the HTTP request will be sent to storage when the
     rule matches.
+    """
+
+    forward: Optional[Forward]
+    """Forward matching HTTP requests to a Worker.
+
+    Required for `http` rules with the action set to `forward`.
     """
 
     ignore_cname_category_matches: bool

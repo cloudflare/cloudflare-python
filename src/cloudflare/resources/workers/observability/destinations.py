@@ -108,8 +108,8 @@ class DestinationsResource(SyncAPIResource):
         slug: str,
         *,
         account_id: str,
-        configuration: destination_update_params.Configuration,
         enabled: bool,
+        configuration: destination_update_params.Configuration | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -139,8 +139,8 @@ class DestinationsResource(SyncAPIResource):
             ),
             body=maybe_transform(
                 {
-                    "configuration": configuration,
                     "enabled": enabled,
+                    "configuration": configuration,
                 },
                 destination_update_params.DestinationUpdateParams,
             ),
@@ -322,8 +322,8 @@ class AsyncDestinationsResource(AsyncAPIResource):
         slug: str,
         *,
         account_id: str,
-        configuration: destination_update_params.Configuration,
         enabled: bool,
+        configuration: destination_update_params.Configuration | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -353,8 +353,8 @@ class AsyncDestinationsResource(AsyncAPIResource):
             ),
             body=await async_maybe_transform(
                 {
-                    "configuration": configuration,
                     "enabled": enabled,
+                    "configuration": configuration,
                 },
                 destination_update_params.DestinationUpdateParams,
             ),

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, cast
+from typing import Any, Iterable, cast
 
 import httpx
 
@@ -33,7 +33,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncCursorPagination, AsyncCursorPagination
 from .phases.phases import (
     PhasesResource,
     AsyncPhasesResource,
@@ -42,7 +41,7 @@ from .phases.phases import (
     PhasesResourceWithStreamingResponse,
     AsyncPhasesResourceWithStreamingResponse,
 )
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.rulesets import (
     Kind,
     Phase,
@@ -297,7 +296,7 @@ class RulesetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncCursorPagination[RulesetListResponse]:
+    ) -> RulesetListResponse:
         """
         Fetches all rulesets.
 
@@ -330,27 +329,32 @@ class RulesetsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get_api_list(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets",
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
-            ),
-            page=SyncCursorPagination[RulesetListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cursor": cursor,
-                        "per_page": per_page,
-                    },
-                    ruleset_list_params.RulesetListParams,
+        return cast(
+            RulesetListResponse,
+            self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets",
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
                 ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "cursor": cursor,
+                            "per_page": per_page,
+                        },
+                        ruleset_list_params.RulesetListParams,
+                    ),
+                    post_parser=ResultWrapper[RulesetListResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RulesetListResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=RulesetListResponse,
         )
 
     def delete(
@@ -466,21 +470,26 @@ class RulesetsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
-                ruleset_id=ruleset_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RulesetGetResponse,
+            self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
+                    ruleset_id=ruleset_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[RulesetGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RulesetGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RulesetGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RulesetGetResponse], ResultWrapper[RulesetGetResponse]),
         )
 
 
@@ -707,7 +716,7 @@ class AsyncRulesetsResource(AsyncAPIResource):
             ),
         )
 
-    def list(
+    async def list(
         self,
         *,
         account_id: str | Omit = omit,
@@ -720,7 +729,7 @@ class AsyncRulesetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[RulesetListResponse, AsyncCursorPagination[RulesetListResponse]]:
+    ) -> RulesetListResponse:
         """
         Fetches all rulesets.
 
@@ -753,27 +762,32 @@ class AsyncRulesetsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get_api_list(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets",
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
-            ),
-            page=AsyncCursorPagination[RulesetListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cursor": cursor,
-                        "per_page": per_page,
-                    },
-                    ruleset_list_params.RulesetListParams,
+        return cast(
+            RulesetListResponse,
+            await self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets",
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
                 ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "cursor": cursor,
+                            "per_page": per_page,
+                        },
+                        ruleset_list_params.RulesetListParams,
+                    ),
+                    post_parser=ResultWrapper[RulesetListResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RulesetListResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=RulesetListResponse,
         )
 
     async def delete(
@@ -889,21 +903,26 @@ class AsyncRulesetsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
-                ruleset_id=ruleset_id,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            RulesetGetResponse,
+            await self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
+                    ruleset_id=ruleset_id,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[RulesetGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RulesetGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[RulesetGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RulesetGetResponse], ResultWrapper[RulesetGetResponse]),
         )
 
 

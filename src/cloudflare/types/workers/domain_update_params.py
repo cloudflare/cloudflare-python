@@ -24,6 +24,24 @@ class DomainUpdateParams(TypedDict, total=False):
     Requests to the configured hostname will be routed to this Worker.
     """
 
+    enabled: bool
+    """Whether the configured hostname is routable for the domain.
+
+    If disabled, then requests to the configured hostname will not be routed to the
+    configured Worker. If disabled, then preview routing must be enabled, and only
+    subdomains of the configured hostname will be routable.
+    """
+
+    previews_enabled: bool
+    """Whether previews are routable for the domain.
+
+    If enabled, previews will be routable as subdomains of the configured hostname.
+    For example, if the configured hostname is `app.example.com`, then requests to
+    `my-feature.app.example.com` will be routed to the preview with slug
+    `my-feature`, if such a preview exists. If preview routing is disabled, then
+    hostname routing must be enabled.
+    """
+
     zone_id: str
     """ID of the zone containing the domain hostname."""
 

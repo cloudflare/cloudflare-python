@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Any, Iterable, cast
 
 import httpx
 
@@ -72,16 +72,21 @@ class ManagedTransformsResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            path_template("/zones/{zone_id}/managed_headers", zone_id=zone_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ManagedTransformListResponse]._unwrapper,
+        return cast(
+            ManagedTransformListResponse,
+            self._get(
+                path_template("/zones/{zone_id}/managed_headers", zone_id=zone_id),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ManagedTransformListResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ManagedTransformListResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ManagedTransformListResponse], ResultWrapper[ManagedTransformListResponse]),
         )
 
     def delete(
@@ -153,23 +158,28 @@ class ManagedTransformsResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._patch(
-            path_template("/zones/{zone_id}/managed_headers", zone_id=zone_id),
-            body=maybe_transform(
-                {
-                    "managed_request_headers": managed_request_headers,
-                    "managed_response_headers": managed_response_headers,
-                },
-                managed_transform_edit_params.ManagedTransformEditParams,
+        return cast(
+            ManagedTransformEditResponse,
+            self._patch(
+                path_template("/zones/{zone_id}/managed_headers", zone_id=zone_id),
+                body=maybe_transform(
+                    {
+                        "managed_request_headers": managed_request_headers,
+                        "managed_response_headers": managed_response_headers,
+                    },
+                    managed_transform_edit_params.ManagedTransformEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ManagedTransformEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ManagedTransformEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ManagedTransformEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ManagedTransformEditResponse], ResultWrapper[ManagedTransformEditResponse]),
         )
 
 
@@ -220,16 +230,21 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
-            path_template("/zones/{zone_id}/managed_headers", zone_id=zone_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ManagedTransformListResponse]._unwrapper,
+        return cast(
+            ManagedTransformListResponse,
+            await self._get(
+                path_template("/zones/{zone_id}/managed_headers", zone_id=zone_id),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ManagedTransformListResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ManagedTransformListResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ManagedTransformListResponse], ResultWrapper[ManagedTransformListResponse]),
         )
 
     async def delete(
@@ -301,23 +316,28 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._patch(
-            path_template("/zones/{zone_id}/managed_headers", zone_id=zone_id),
-            body=await async_maybe_transform(
-                {
-                    "managed_request_headers": managed_request_headers,
-                    "managed_response_headers": managed_response_headers,
-                },
-                managed_transform_edit_params.ManagedTransformEditParams,
+        return cast(
+            ManagedTransformEditResponse,
+            await self._patch(
+                path_template("/zones/{zone_id}/managed_headers", zone_id=zone_id),
+                body=await async_maybe_transform(
+                    {
+                        "managed_request_headers": managed_request_headers,
+                        "managed_response_headers": managed_response_headers,
+                    },
+                    managed_transform_edit_params.ManagedTransformEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ManagedTransformEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ManagedTransformEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ManagedTransformEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ManagedTransformEditResponse], ResultWrapper[ManagedTransformEditResponse]),
         )
 
 

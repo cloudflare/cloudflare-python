@@ -53,11 +53,11 @@ class ConfigurationUpdateResponse(BaseModel):
     """Timestamp of when the resource was created."""
 
     ha_mode: Literal["none", "disabled", "aws", "local"]
-    """High-availability mode for the WARP Connector tunnel.
+    """High-availability mode for the Mesh node.
 
     `none` means HA is enabled but no provider is configured yet (newly created
-    tunnels default to this). `disabled` means HA is explicitly turned off. `aws`
-    uses AWS ENI move for failover. `local` uses virtual IPs (VIPs) on the local
+    nodes default to this). `disabled` means HA is explicitly turned off. `aws` uses
+    AWS ENI move for failover. `local` uses virtual IPs (VIPs) on the local
     interface.
     """
 

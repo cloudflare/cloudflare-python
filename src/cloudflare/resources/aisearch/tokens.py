@@ -168,7 +168,8 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[TokenListResponse]:
         """
-        List stored AI Search credentials in the account without exposing their secrets.
+        Lists stored AI Search credentials in the account without exposing their
+        secrets.
 
         Args:
           page: Page number (1-indexed).
@@ -219,7 +220,7 @@ class TokensResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Permanently delete a stored AI Search credential.
+        """Deletes a stored AI Search credential permanently.
 
         Credentials in use by an
         instance cannot be deleted.
@@ -430,7 +431,8 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TokenListResponse, AsyncV4PagePaginationArray[TokenListResponse]]:
         """
-        List stored AI Search credentials in the account without exposing their secrets.
+        Lists stored AI Search credentials in the account without exposing their
+        secrets.
 
         Args:
           page: Page number (1-indexed).
@@ -481,7 +483,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
-        """Permanently delete a stored AI Search credential.
+        """Deletes a stored AI Search credential permanently.
 
         Credentials in use by an
         instance cannot be deleted.

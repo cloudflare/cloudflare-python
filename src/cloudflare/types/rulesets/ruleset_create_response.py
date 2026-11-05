@@ -1358,4 +1358,4 @@ class Ruleset(BaseModel):
     """An informative description of the ruleset."""
 
 
-RulesetCreateResponse: TypeAlias = Union[Ruleset, Optional[object]]
+RulesetCreateResponse: TypeAlias = Union[List[object], str, float, bool, Ruleset, Optional[object], Optional[object]]

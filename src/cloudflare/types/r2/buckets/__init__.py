@@ -4,11 +4,16 @@ from __future__ import annotations
 
 from .sippy import Sippy as Sippy
 from .provider import Provider as Provider
+from .job_list_params import JobListParams as JobListParams
+from .job_get_response import JobGetResponse as JobGetResponse
 from .cors_get_response import CORSGetResponse as CORSGetResponse
+from .job_create_params import JobCreateParams as JobCreateParams
+from .job_list_response import JobListResponse as JobListResponse
 from .lock_get_response import LockGetResponse as LockGetResponse
 from .cors_update_params import CORSUpdateParams as CORSUpdateParams
 from .lock_update_params import LockUpdateParams as LockUpdateParams
 from .object_list_params import ObjectListParams as ObjectListParams
+from .job_create_response import JobCreateResponse as JobCreateResponse
 from .sippy_update_params import SippyUpdateParams as SippyUpdateParams
 from .metric_list_response import MetricListResponse as MetricListResponse
 from .object_list_response import ObjectListResponse as ObjectListResponse

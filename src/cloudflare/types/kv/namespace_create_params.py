@@ -19,3 +19,11 @@ class NamespaceCreateParams(TypedDict, total=False):
     Specify the jurisdiction to restrict the KV namespace to durably store data
     within. Can only be set at namespace creation time.
     """
+
+    mode: Literal["instant"]
+    """The mode of the Workers KV namespace.
+
+    Specify `instant` when creating a namespace to create a KV Instant namespace.
+    Omit this field when creating a namespace to create a classic namespace.
+    Currently, `instant` is the only supported explicit value.
+    """

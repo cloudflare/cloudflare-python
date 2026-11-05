@@ -16,6 +16,14 @@ from .scim import (
     SCIMResourceWithStreamingResponse,
     AsyncSCIMResourceWithStreamingResponse,
 )
+from .jit_requests import (
+    JitRequestsResource,
+    AsyncJitRequestsResource,
+    JitRequestsResourceWithRawResponse,
+    AsyncJitRequestsResourceWithRawResponse,
+    JitRequestsResourceWithStreamingResponse,
+    AsyncJitRequestsResourceWithStreamingResponse,
+)
 from .access_requests import (
     AccessRequestsResource,
     AsyncAccessRequestsResource,
@@ -32,6 +40,12 @@ __all__ = [
     "AsyncAccessRequestsResourceWithRawResponse",
     "AccessRequestsResourceWithStreamingResponse",
     "AsyncAccessRequestsResourceWithStreamingResponse",
+    "JitRequestsResource",
+    "AsyncJitRequestsResource",
+    "JitRequestsResourceWithRawResponse",
+    "AsyncJitRequestsResourceWithRawResponse",
+    "JitRequestsResourceWithStreamingResponse",
+    "AsyncJitRequestsResourceWithStreamingResponse",
     "SCIMResource",
     "AsyncSCIMResource",
     "SCIMResourceWithRawResponse",

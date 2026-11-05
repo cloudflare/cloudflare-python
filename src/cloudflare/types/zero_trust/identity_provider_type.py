@@ -15,9 +15,11 @@ IdentityProviderType: TypeAlias = Literal[
     "google",
     "linkedin",
     "oidc",
+    "duo",
     "okta",
     "onelogin",
     "pingone",
     "yandex",
     "cloudflare",
+    "passkeys",
 ]

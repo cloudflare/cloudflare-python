@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -28,3 +29,9 @@ class WorkflowUpdateResponse(BaseModel):
     triggered_on: Optional[datetime] = None
 
     version_id: str
+
+    jurisdiction: Optional[Literal["eu", "fedramp", "us"]] = None
+    """Jurisdiction where instances of this workflow run and store data.
+
+    Set when the workflow is created and cannot be changed.
+    """

@@ -54,7 +54,7 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventGetResponse:
         """
-        Retrieves a specific event by its UUID.
+        Returns an event from a dataset by its UUID.
 
         Args:
           account_id: Account ID.
@@ -125,7 +125,7 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EventGetResponse:
         """
-        Retrieves a specific event by its UUID.
+        Returns an event from a dataset by its UUID.
 
         Args:
           account_id: Account ID.

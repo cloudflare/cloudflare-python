@@ -13,3 +13,7 @@ class TagCategoryUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
     category_uuids: Required[SequenceNotStr[str]]
+    """
+    Up to 100 unique tag category UUIDs that the managed default tagging skill may
+    select tags from.
+    """

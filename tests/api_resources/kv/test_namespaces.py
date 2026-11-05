@@ -38,6 +38,7 @@ class TestNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
             jurisdiction="eu",
+            mode="instant",
         )
         assert_matches_type(Optional[Namespace], namespace, path=["response"])
 
@@ -488,6 +489,7 @@ class TestAsyncNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
             jurisdiction="eu",
+            mode="instant",
         )
         assert_matches_type(Optional[Namespace], namespace, path=["response"])
 

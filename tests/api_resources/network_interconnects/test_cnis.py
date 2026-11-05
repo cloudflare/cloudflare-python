@@ -49,7 +49,7 @@ class TestCNIs:
             },
             bgp={
                 "customer_asn": 0,
-                "extra_prefixes": ["string"],
+                "extra_prefixes": ["192.168.3.4/31"],
                 "md5_key": "md5_key",
             },
         )
@@ -142,7 +142,7 @@ class TestCNIs:
             p2p_ip="192.168.3.4/31",
             bgp={
                 "customer_asn": 0,
-                "extra_prefixes": ["string"],
+                "extra_prefixes": ["192.168.3.4/31"],
                 "md5_key": "md5_key",
             },
             bgp_mode="dynamic_route_exchange",
@@ -407,7 +407,7 @@ class TestAsyncCNIs:
             },
             bgp={
                 "customer_asn": 0,
-                "extra_prefixes": ["string"],
+                "extra_prefixes": ["192.168.3.4/31"],
                 "md5_key": "md5_key",
             },
         )
@@ -500,7 +500,7 @@ class TestAsyncCNIs:
             p2p_ip="192.168.3.4/31",
             bgp={
                 "customer_asn": 0,
-                "extra_prefixes": ["string"],
+                "extra_prefixes": ["192.168.3.4/31"],
                 "md5_key": "md5_key",
             },
             bgp_mode="dynamic_route_exchange",

@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Union, Iterable, Optional, cast
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -64,6 +65,7 @@ class BlockSendersResource(SyncAPIResource):
         pattern: str,
         pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"],
         comments: Optional[str] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -101,6 +103,10 @@ class BlockSendersResource(SyncAPIResource):
               - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
                 but it may appear on existing entries.
 
+          expires_at: Timestamp at which the pattern expires. After this time, Email Security ignores
+              the pattern. The value must lie in the future. Send `null` to clear the
+              expiration.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -119,6 +125,7 @@ class BlockSendersResource(SyncAPIResource):
                     "pattern": pattern,
                     "pattern_type": pattern_type,
                     "comments": comments,
+                    "expires_at": expires_at,
                 },
                 block_sender_create_params.BlockSenderCreateParams,
             ),
@@ -137,6 +144,7 @@ class BlockSendersResource(SyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
+        expired: bool | Omit = omit,
         order: Literal["pattern", "created_at"] | Omit = omit,
         page: int | Omit = omit,
         pattern: str | Omit = omit,
@@ -160,6 +168,9 @@ class BlockSendersResource(SyncAPIResource):
           account_id: Identifier.
 
           direction: The sorting direction.
+
+          expired: Filter to return only expired patterns (`true`) or only patterns that still
+              apply (`false`). Omit to return both.
 
           order: Field to sort by.
 
@@ -194,6 +205,7 @@ class BlockSendersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "expired": expired,
                         "order": order,
                         "page": page,
                         "pattern": pattern,
@@ -328,6 +340,7 @@ class BlockSendersResource(SyncAPIResource):
         *,
         account_id: str,
         comments: Optional[str] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
         is_regex: bool | Omit = omit,
         pattern: str | Omit = omit,
         pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | Omit = omit,
@@ -347,6 +360,10 @@ class BlockSendersResource(SyncAPIResource):
           account_id: Identifier.
 
           pattern_id: Blocked sender pattern identifier.
+
+          expires_at: Timestamp at which the pattern expires. After this time, Email Security ignores
+              the pattern. The value must lie in the future. Send `null` to clear the
+              expiration.
 
           is_regex: Whether `pattern` is a regular expression instead of a literal value.
 
@@ -390,6 +407,7 @@ class BlockSendersResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "comments": comments,
+                    "expires_at": expires_at,
                     "is_regex": is_regex,
                     "pattern": pattern,
                     "pattern_type": pattern_type,
@@ -484,6 +502,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         pattern: str,
         pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"],
         comments: Optional[str] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -521,6 +540,10 @@ class AsyncBlockSendersResource(AsyncAPIResource):
               - UNKNOWN: deprecated; you cannot use this when creating or updating policies,
                 but it may appear on existing entries.
 
+          expires_at: Timestamp at which the pattern expires. After this time, Email Security ignores
+              the pattern. The value must lie in the future. Send `null` to clear the
+              expiration.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -539,6 +562,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
                     "pattern": pattern,
                     "pattern_type": pattern_type,
                     "comments": comments,
+                    "expires_at": expires_at,
                 },
                 block_sender_create_params.BlockSenderCreateParams,
             ),
@@ -557,6 +581,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
+        expired: bool | Omit = omit,
         order: Literal["pattern", "created_at"] | Omit = omit,
         page: int | Omit = omit,
         pattern: str | Omit = omit,
@@ -580,6 +605,9 @@ class AsyncBlockSendersResource(AsyncAPIResource):
           account_id: Identifier.
 
           direction: The sorting direction.
+
+          expired: Filter to return only expired patterns (`true`) or only patterns that still
+              apply (`false`). Omit to return both.
 
           order: Field to sort by.
 
@@ -614,6 +642,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "expired": expired,
                         "order": order,
                         "page": page,
                         "pattern": pattern,
@@ -748,6 +777,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         *,
         account_id: str,
         comments: Optional[str] | Omit = omit,
+        expires_at: Union[str, datetime, None] | Omit = omit,
         is_regex: bool | Omit = omit,
         pattern: str | Omit = omit,
         pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | Omit = omit,
@@ -767,6 +797,10 @@ class AsyncBlockSendersResource(AsyncAPIResource):
           account_id: Identifier.
 
           pattern_id: Blocked sender pattern identifier.
+
+          expires_at: Timestamp at which the pattern expires. After this time, Email Security ignores
+              the pattern. The value must lie in the future. Send `null` to clear the
+              expiration.
 
           is_regex: Whether `pattern` is a regular expression instead of a literal value.
 
@@ -810,6 +844,7 @@ class AsyncBlockSendersResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "comments": comments,
+                    "expires_at": expires_at,
                     "is_regex": is_regex,
                     "pattern": pattern,
                     "pattern_type": pattern_type,

@@ -45,6 +45,7 @@ class TestCustom:
             },
             description="description",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            validator_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
@@ -113,6 +114,7 @@ class TestCustom:
                 "validation": "luhn",
             },
             description="description",
+            validator_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(Optional[CustomUpdateResponse], custom, path=["response"])
 
@@ -333,6 +335,7 @@ class TestAsyncCustom:
             },
             description="description",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            validator_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
@@ -401,6 +404,7 @@ class TestAsyncCustom:
                 "validation": "luhn",
             },
             description="description",
+            validator_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert_matches_type(Optional[CustomUpdateResponse], custom, path=["response"])
 

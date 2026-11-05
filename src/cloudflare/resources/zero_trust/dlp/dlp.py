@@ -84,6 +84,14 @@ from .custom_prompt_topics import (
     CustomPromptTopicsResourceWithStreamingResponse,
     AsyncCustomPromptTopicsResourceWithStreamingResponse,
 )
+from .validators.validators import (
+    ValidatorsResource,
+    AsyncValidatorsResource,
+    ValidatorsResourceWithRawResponse,
+    AsyncValidatorsResourceWithRawResponse,
+    ValidatorsResourceWithStreamingResponse,
+    AsyncValidatorsResourceWithStreamingResponse,
+)
 from .sensitivity_groups.sensitivity_groups import (
     SensitivityGroupsResource,
     AsyncSensitivityGroupsResource,
@@ -140,6 +148,10 @@ class DLPResource(SyncAPIResource):
     @cached_property
     def entries(self) -> EntriesResource:
         return EntriesResource(self._client)
+
+    @cached_property
+    def validators(self) -> ValidatorsResource:
+        return ValidatorsResource(self._client)
 
     @cached_property
     def sensitivity_groups(self) -> SensitivityGroupsResource:
@@ -209,6 +221,10 @@ class AsyncDLPResource(AsyncAPIResource):
     @cached_property
     def entries(self) -> AsyncEntriesResource:
         return AsyncEntriesResource(self._client)
+
+    @cached_property
+    def validators(self) -> AsyncValidatorsResource:
+        return AsyncValidatorsResource(self._client)
 
     @cached_property
     def sensitivity_groups(self) -> AsyncSensitivityGroupsResource:
@@ -283,6 +299,10 @@ class DLPResourceWithRawResponse:
         return EntriesResourceWithRawResponse(self._dlp.entries)
 
     @cached_property
+    def validators(self) -> ValidatorsResourceWithRawResponse:
+        return ValidatorsResourceWithRawResponse(self._dlp.validators)
+
+    @cached_property
     def sensitivity_groups(self) -> SensitivityGroupsResourceWithRawResponse:
         return SensitivityGroupsResourceWithRawResponse(self._dlp.sensitivity_groups)
 
@@ -334,6 +354,10 @@ class AsyncDLPResourceWithRawResponse:
     @cached_property
     def entries(self) -> AsyncEntriesResourceWithRawResponse:
         return AsyncEntriesResourceWithRawResponse(self._dlp.entries)
+
+    @cached_property
+    def validators(self) -> AsyncValidatorsResourceWithRawResponse:
+        return AsyncValidatorsResourceWithRawResponse(self._dlp.validators)
 
     @cached_property
     def sensitivity_groups(self) -> AsyncSensitivityGroupsResourceWithRawResponse:
@@ -389,6 +413,10 @@ class DLPResourceWithStreamingResponse:
         return EntriesResourceWithStreamingResponse(self._dlp.entries)
 
     @cached_property
+    def validators(self) -> ValidatorsResourceWithStreamingResponse:
+        return ValidatorsResourceWithStreamingResponse(self._dlp.validators)
+
+    @cached_property
     def sensitivity_groups(self) -> SensitivityGroupsResourceWithStreamingResponse:
         return SensitivityGroupsResourceWithStreamingResponse(self._dlp.sensitivity_groups)
 
@@ -440,6 +468,10 @@ class AsyncDLPResourceWithStreamingResponse:
     @cached_property
     def entries(self) -> AsyncEntriesResourceWithStreamingResponse:
         return AsyncEntriesResourceWithStreamingResponse(self._dlp.entries)
+
+    @cached_property
+    def validators(self) -> AsyncValidatorsResourceWithStreamingResponse:
+        return AsyncValidatorsResourceWithStreamingResponse(self._dlp.validators)
 
     @cached_property
     def sensitivity_groups(self) -> AsyncSensitivityGroupsResourceWithStreamingResponse:

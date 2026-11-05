@@ -14,6 +14,12 @@ class BlockSenderListParams(TypedDict, total=False):
     direction: Literal["asc", "desc"]
     """The sorting direction."""
 
+    expired: bool
+    """
+    Filter to return only expired patterns (`true`) or only patterns that still
+    apply (`false`). Omit to return both.
+    """
+
     order: Literal["pattern", "created_at"]
     """Field to sort by."""
 

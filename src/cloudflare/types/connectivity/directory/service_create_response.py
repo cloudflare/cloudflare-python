@@ -86,10 +86,7 @@ InfraHTTPServiceConfigHost: TypeAlias = Union[
 
 
 class InfraHTTPServiceConfigTLSSettings(BaseModel):
-    """TLS settings for a connectivity service.
-
-    If omitted, the default mode (`verify_full`) is used.
-    """
+    """TLS settings for a connectivity service."""
 
     cert_verification_mode: str
     """TLS certificate verification mode for the connection to the origin.
@@ -97,7 +94,16 @@ class InfraHTTPServiceConfigTLSSettings(BaseModel):
     - `"verify_full"` — verify certificate chain and hostname (default)
     - `"verify_ca"` — verify certificate chain only, skip hostname check
     - `"disabled"` — do not verify the server certificate at all
+
+    `disabled` cannot be combined with `certificate_authority`: a custom CA is only
+    used to verify the server certificate.
     """
+
+    certificate_authority: Optional[str] = None
+    """UUID of the custom CA certificate or chain."""
+
+    client_certificate: Optional[str] = None
+    """UUID of the mTLS client certificate and private key."""
 
 
 class InfraHTTPServiceConfig(BaseModel):
@@ -116,10 +122,7 @@ class InfraHTTPServiceConfig(BaseModel):
     service_id: Optional[str] = None
 
     tls_settings: Optional[InfraHTTPServiceConfigTLSSettings] = None
-    """TLS settings for a connectivity service.
-
-    If omitted, the default mode (`verify_full`) is used.
-    """
+    """TLS settings for a connectivity service."""
 
     updated_at: Optional[datetime] = None
 
@@ -177,10 +180,7 @@ InfraTCPServiceConfigHost: TypeAlias = Union[
 
 
 class InfraTCPServiceConfigTLSSettings(BaseModel):
-    """TLS settings for a connectivity service.
-
-    If omitted, the default mode (`verify_full`) is used.
-    """
+    """TLS settings for a connectivity service."""
 
     cert_verification_mode: str
     """TLS certificate verification mode for the connection to the origin.
@@ -188,7 +188,16 @@ class InfraTCPServiceConfigTLSSettings(BaseModel):
     - `"verify_full"` — verify certificate chain and hostname (default)
     - `"verify_ca"` — verify certificate chain only, skip hostname check
     - `"disabled"` — do not verify the server certificate at all
+
+    `disabled` cannot be combined with `certificate_authority`: a custom CA is only
+    used to verify the server certificate.
     """
+
+    certificate_authority: Optional[str] = None
+    """UUID of the custom CA certificate or chain."""
+
+    client_certificate: Optional[str] = None
+    """UUID of the mTLS client certificate and private key."""
 
 
 class InfraTCPServiceConfig(BaseModel):
@@ -207,10 +216,7 @@ class InfraTCPServiceConfig(BaseModel):
     tcp_port: Optional[int] = None
 
     tls_settings: Optional[InfraTCPServiceConfigTLSSettings] = None
-    """TLS settings for a connectivity service.
-
-    If omitted, the default mode (`verify_full`) is used.
-    """
+    """TLS settings for a connectivity service."""
 
     updated_at: Optional[datetime] = None
 

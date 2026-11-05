@@ -58,9 +58,10 @@ class RawResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawEditResponse:
-        """
-        Partially updates raw threat event data in Cloudforce One, modifying specific
-        fields of the event.
+        """Legacy.
+
+        Updates raw data stored under a `raw_id`, which new events don't use.
+        There is no direct replacement.
 
         Args:
           account_id: Account ID.
@@ -117,8 +118,11 @@ class RawResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawGetResponse:
-        """
-        Retrieves raw threat event data for a specific event in Cloudforce One.
+        """Legacy.
+
+        Returns raw data stored under a `raw_id`, which new events don't use.
+        Use `threat-intel events raw get`
+        (`GET /events/datasets/{dataset_id}/events/{event_id}/raw`) instead.
 
         Args:
           account_id: Account ID.
@@ -191,9 +195,10 @@ class AsyncRawResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawEditResponse:
-        """
-        Partially updates raw threat event data in Cloudforce One, modifying specific
-        fields of the event.
+        """Legacy.
+
+        Updates raw data stored under a `raw_id`, which new events don't use.
+        There is no direct replacement.
 
         Args:
           account_id: Account ID.
@@ -250,8 +255,11 @@ class AsyncRawResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RawGetResponse:
-        """
-        Retrieves raw threat event data for a specific event in Cloudforce One.
+        """Legacy.
+
+        Returns raw data stored under a `raw_id`, which new events don't use.
+        Use `threat-intel events raw get`
+        (`GET /events/datasets/{dataset_id}/events/{event_id}/raw`) instead.
 
         Args:
           account_id: Account ID.

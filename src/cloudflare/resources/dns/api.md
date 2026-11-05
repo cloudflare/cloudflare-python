@@ -138,6 +138,26 @@ Methods:
 - <code title="patch /accounts/{account_id}/dns_settings">client.dns.settings.account.<a href="./src/cloudflare/resources/dns/settings/account/account.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/account_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/account_edit_response.py">Optional[AccountEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/dns_settings">client.dns.settings.account.<a href="./src/cloudflare/resources/dns/settings/account/account.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/dns/settings/account_get_response.py">Optional[AccountGetResponse]</a></code>
 
+#### NameserverSets
+
+Types:
+
+```python
+from cloudflare.types.dns.settings.account import (
+    NameserverSetCreateResponse,
+    NameserverSetListResponse,
+    NameserverSetDeleteResponse,
+    NameserverSetGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dns_settings/nameserver_sets">client.dns.settings.account.nameserver_sets.<a href="./src/cloudflare/resources/dns/settings/account/nameserver_sets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/account/nameserver_set_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/account/nameserver_set_create_response.py">NameserverSetCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/dns_settings/nameserver_sets">client.dns.settings.account.nameserver_sets.<a href="./src/cloudflare/resources/dns/settings/account/nameserver_sets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/account/nameserver_set_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/account/nameserver_set_list_response.py">SyncV4PagePaginationArray[NameserverSetListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dns_settings/nameserver_sets/{nameserver_set_id}">client.dns.settings.account.nameserver_sets.<a href="./src/cloudflare/resources/dns/settings/account/nameserver_sets.py">delete</a>(nameserver_set_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/settings/account/nameserver_set_delete_response.py">NameserverSetDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/dns_settings/nameserver_sets/{nameserver_set_id}">client.dns.settings.account.nameserver_sets.<a href="./src/cloudflare/resources/dns/settings/account/nameserver_sets.py">get</a>(nameserver_set_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/settings/account/nameserver_set_get_response.py">NameserverSetGetResponse</a></code>
+
 #### Views
 
 Types:

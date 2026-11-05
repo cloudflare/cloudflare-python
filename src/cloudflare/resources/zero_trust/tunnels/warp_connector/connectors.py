@@ -57,7 +57,7 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorGetResponse:
         """
-        Fetches connector and connection details for a WARP Connector Tunnel.
+        Fetches connector and connection details for a Mesh node.
 
         Args:
           account_id: Cloudflare account ID
@@ -132,7 +132,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorGetResponse:
         """
-        Fetches connector and connection details for a WARP Connector Tunnel.
+        Fetches connector and connection details for a Mesh node.
 
         Args:
           account_id: Cloudflare account ID

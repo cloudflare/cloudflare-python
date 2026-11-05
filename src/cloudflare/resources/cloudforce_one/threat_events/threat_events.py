@@ -267,11 +267,11 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventCreateResponse:
-        """
-        To create a dataset, see the
-        [`Create Dataset`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/create/)
-        endpoint. When `datasetId` parameter is unspecified, it will be created in a
-        default dataset named `Cloudforce One Threat Events`.
+        """Creates an event.
+
+        Without `datasetId`, the event is created in the default
+        Cloudforce One Threat Events dataset. To create a dataset, use
+        `threat-intel datasets create`.
 
         Args:
           path_account_id: Account ID.
@@ -336,6 +336,7 @@ class ThreatEventsResource(SyncAPIResource):
         page: float | Omit = omit,
         page_size: float | Omit = omit,
         search: Iterable[threat_event_list_params.Search] | Omit = omit,
+        search_branches: Iterable[Iterable[threat_event_list_params.SearchBranch]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -343,15 +344,14 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
-        """
-        Use `datasetId=all` or `datasetId=*` for the legacy all-datasets scope,
-        `datasetId=analytics` for datasets with `isAnalytics=true`, or
-        `datasetId=operational` for datasets with `isAnalytics=false` (limited to 50).
-        Scope values must be used alone. When `datasetId` is unspecified, events are
-        listed from the default Cloudforce One Threat Events dataset. To list existing
-        datasets, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint.
+        """Lists events, with filters passed as query parameters.
+
+        `datasetId` accepts
+        dataset UUIDs or one scope value used alone: `all` (or `*`) and `operational`
+        select the intelligence datasets you can read, and `analytics` selects the
+        analytics datasets you can read. A scope value covers at most 50 datasets.
+        Without `datasetId`, the default Cloudforce One Threat Events dataset is used.
+        To send filters in a JSON body instead, use `threat-intel events search`.
 
         Args:
           account_id: Account ID.
@@ -364,15 +364,22 @@ class ThreatEventsResource(SyncAPIResource):
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
 
-          dataset_id: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for the legacy
-              all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
-              'operational' for isAnalytics=false datasets. If not provided, uses the default
-              dataset.
+          dataset_id: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' or
+              'operational' for readable intelligence datasets (isAnalytics=false), or
+              'analytics' for readable analytics datasets (isAnalytics=true). Scope values
+              query at most 50 datasets. If not provided, uses the default dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.
 
           page_size: Number of results per page. Maximum 25,000.
+
+          search_branches: JSON-encoded. OR branches of structured search filters. Filters within a branch
+              are AND'd, branches are OR'd, and the result is AND'd with `search`:
+              `AND(search) AND OR(AND(branch 1), ...)`. Max 8 branches of 1-10 conditions
+              each. Not supported for analytics datasets, and `indicator` filters are not yet
+              supported inside branches. Cursor pages carry the original branches, so do not
+              resend them with `cursor`.
 
           extra_headers: Send extra headers
 
@@ -403,6 +410,7 @@ class ThreatEventsResource(SyncAPIResource):
                         "page": page,
                         "page_size": page_size,
                         "search": search,
+                        "search_branches": search_branches,
                     },
                     threat_event_list_params.ThreatEventListParams,
                 ),
@@ -424,12 +432,11 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventBulkCreateResponse:
-        """The `datasetId` parameter must be defined.
+        """Creates multiple events in one dataset.
 
-        To list existing datasets (and their
-        IDs) in your account, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint.
+        `datasetId` is required; to find dataset
+        IDs, use `threat-intel datasets list`. Set `includeCreatedEvents` to return the
+        UUIDs of the created events.
 
         Args:
           account_id: Account ID.
@@ -477,9 +484,11 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventBulkCreateRelationshipsResponse:
-        """This method is deprecated.
+        """Legacy.
 
-        Please use `event_create_bulk` instead
+        Use `threat-intel events bulk-create` (`POST /events/create/bulk`) and
+        `threat-intel events relationships create` (`POST /events/relationships/create`)
+        instead.
 
         Args:
           account_id: Account ID.
@@ -538,8 +547,8 @@ class ThreatEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventEditResponse:
         """
-        Partially updates a threat event in Cloudforce One, modifying specific fields
-        without replacing the entire event.
+        Updates the given fields of an event and leaves the other fields unchanged.
+        `datasetId` is required.
 
         Args:
           account_id: Account ID.
@@ -604,10 +613,10 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventGetResponse:
-        """This Method is deprecated.
+        """Legacy.
 
-        Please use
-        /events/dataset/:dataset_id/events/:event_id instead.
+        Use `threat-intel events get`
+        (`GET /events/dataset/{dataset_id}/events/{event_id}`) instead.
 
         Args:
           account_id: Account ID.
@@ -745,11 +754,11 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventCreateResponse:
-        """
-        To create a dataset, see the
-        [`Create Dataset`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/create/)
-        endpoint. When `datasetId` parameter is unspecified, it will be created in a
-        default dataset named `Cloudforce One Threat Events`.
+        """Creates an event.
+
+        Without `datasetId`, the event is created in the default
+        Cloudforce One Threat Events dataset. To create a dataset, use
+        `threat-intel datasets create`.
 
         Args:
           path_account_id: Account ID.
@@ -814,6 +823,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         page: float | Omit = omit,
         page_size: float | Omit = omit,
         search: Iterable[threat_event_list_params.Search] | Omit = omit,
+        search_branches: Iterable[Iterable[threat_event_list_params.SearchBranch]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -821,15 +831,14 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
-        """
-        Use `datasetId=all` or `datasetId=*` for the legacy all-datasets scope,
-        `datasetId=analytics` for datasets with `isAnalytics=true`, or
-        `datasetId=operational` for datasets with `isAnalytics=false` (limited to 50).
-        Scope values must be used alone. When `datasetId` is unspecified, events are
-        listed from the default Cloudforce One Threat Events dataset. To list existing
-        datasets, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint.
+        """Lists events, with filters passed as query parameters.
+
+        `datasetId` accepts
+        dataset UUIDs or one scope value used alone: `all` (or `*`) and `operational`
+        select the intelligence datasets you can read, and `analytics` selects the
+        analytics datasets you can read. A scope value covers at most 50 datasets.
+        Without `datasetId`, the default Cloudforce One Threat Events dataset is used.
+        To send filters in a JSON body instead, use `threat-intel events search`.
 
         Args:
           account_id: Account ID.
@@ -842,15 +851,22 @@ class AsyncThreatEventsResource(AsyncAPIResource):
               result_info.cursor field. Use cursor-based pagination for deep pagination
               (beyond 100,000 records) or for optimal performance.
 
-          dataset_id: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' for the legacy
-              all-datasets behavior, 'analytics' for isAnalytics=true datasets, or
-              'operational' for isAnalytics=false datasets. If not provided, uses the default
-              dataset.
+          dataset_id: Dataset UUIDs to query, or one standalone scope value: 'all'/'\\**' or
+              'operational' for readable intelligence datasets (isAnalytics=false), or
+              'analytics' for readable analytics datasets (isAnalytics=true). Scope values
+              query at most 50 datasets. If not provided, uses the default dataset.
 
           page: Page number (1-indexed) for offset-based pagination. Limited to offset of
               100,000 records. For deep pagination, use cursor-based pagination instead.
 
           page_size: Number of results per page. Maximum 25,000.
+
+          search_branches: JSON-encoded. OR branches of structured search filters. Filters within a branch
+              are AND'd, branches are OR'd, and the result is AND'd with `search`:
+              `AND(search) AND OR(AND(branch 1), ...)`. Max 8 branches of 1-10 conditions
+              each. Not supported for analytics datasets, and `indicator` filters are not yet
+              supported inside branches. Cursor pages carry the original branches, so do not
+              resend them with `cursor`.
 
           extra_headers: Send extra headers
 
@@ -881,6 +897,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                         "page": page,
                         "page_size": page_size,
                         "search": search,
+                        "search_branches": search_branches,
                     },
                     threat_event_list_params.ThreatEventListParams,
                 ),
@@ -902,12 +919,11 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventBulkCreateResponse:
-        """The `datasetId` parameter must be defined.
+        """Creates multiple events in one dataset.
 
-        To list existing datasets (and their
-        IDs) in your account, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint.
+        `datasetId` is required; to find dataset
+        IDs, use `threat-intel datasets list`. Set `includeCreatedEvents` to return the
+        UUIDs of the created events.
 
         Args:
           account_id: Account ID.
@@ -955,9 +971,11 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventBulkCreateRelationshipsResponse:
-        """This method is deprecated.
+        """Legacy.
 
-        Please use `event_create_bulk` instead
+        Use `threat-intel events bulk-create` (`POST /events/create/bulk`) and
+        `threat-intel events relationships create` (`POST /events/relationships/create`)
+        instead.
 
         Args:
           account_id: Account ID.
@@ -1016,8 +1034,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventEditResponse:
         """
-        Partially updates a threat event in Cloudforce One, modifying specific fields
-        without replacing the entire event.
+        Updates the given fields of an event and leaves the other fields unchanged.
+        `datasetId` is required.
 
         Args:
           account_id: Account ID.
@@ -1082,10 +1100,10 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventGetResponse:
-        """This Method is deprecated.
+        """Legacy.
 
-        Please use
-        /events/dataset/:dataset_id/events/:event_id instead.
+        Use `threat-intel events get`
+        (`GET /events/dataset/{dataset_id}/events/{event_id}`) instead.
 
         Args:
           account_id: Account ID.

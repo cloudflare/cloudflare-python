@@ -18,7 +18,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
-from .....types.zero_trust.access.users.identity import Identity
+from .....types.zero_trust.access.users.last_seen_identity_get_response import LastSeenIdentityGetResponse
 
 __all__ = ["LastSeenIdentityResource", "AsyncLastSeenIdentityResource"]
 
@@ -54,7 +54,7 @@ class LastSeenIdentityResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[Identity]:
+    ) -> Optional[LastSeenIdentityGetResponse]:
         """
         Get last seen identity for a single user.
 
@@ -86,9 +86,9 @@ class LastSeenIdentityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Identity]]._unwrapper,
+                post_parser=ResultWrapper[Optional[LastSeenIdentityGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Identity]], ResultWrapper[Identity]),
+            cast_to=cast(Type[Optional[LastSeenIdentityGetResponse]], ResultWrapper[LastSeenIdentityGetResponse]),
         )
 
 
@@ -123,7 +123,7 @@ class AsyncLastSeenIdentityResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[Identity]:
+    ) -> Optional[LastSeenIdentityGetResponse]:
         """
         Get last seen identity for a single user.
 
@@ -155,9 +155,9 @@ class AsyncLastSeenIdentityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Identity]]._unwrapper,
+                post_parser=ResultWrapper[Optional[LastSeenIdentityGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Identity]], ResultWrapper[Identity]),
+            cast_to=cast(Type[Optional[LastSeenIdentityGetResponse]], ResultWrapper[LastSeenIdentityGetResponse]),
         )
 
 

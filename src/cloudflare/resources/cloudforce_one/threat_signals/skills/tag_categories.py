@@ -60,9 +60,15 @@ class TagCategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagCategoryUpdateResponse:
         """
-        Replaces the tag categories the default tagging skill may choose tags from.
+        Replaces the Tag Categories the managed default tagging skill may select tags
+        from. This configures the managed default tagging skill, not Custom Skills.
 
         Args:
+          skill_id: Must be default-tagging-skill; configures the managed default tagging skill
+
+          category_uuids: Up to 100 unique tag category UUIDs that the managed default tagging skill may
+              select tags from.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -107,9 +113,12 @@ class TagCategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagCategoryGetResponse:
         """
-        Retrieves the tag categories the default tagging skill may choose tags from.
+        Retrieves the Tag Categories the managed default tagging skill may select tags
+        from. This configures the managed default tagging skill, not Custom Skills.
 
         Args:
+          skill_id: Must be default-tagging-skill; configures the managed default tagging skill
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -173,9 +182,15 @@ class AsyncTagCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagCategoryUpdateResponse:
         """
-        Replaces the tag categories the default tagging skill may choose tags from.
+        Replaces the Tag Categories the managed default tagging skill may select tags
+        from. This configures the managed default tagging skill, not Custom Skills.
 
         Args:
+          skill_id: Must be default-tagging-skill; configures the managed default tagging skill
+
+          category_uuids: Up to 100 unique tag category UUIDs that the managed default tagging skill may
+              select tags from.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -220,9 +235,12 @@ class AsyncTagCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagCategoryGetResponse:
         """
-        Retrieves the tag categories the default tagging skill may choose tags from.
+        Retrieves the Tag Categories the managed default tagging skill may select tags
+        from. This configures the managed default tagging skill, not Custom Skills.
 
         Args:
+          skill_id: Must be default-tagging-skill; configures the managed default tagging skill
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

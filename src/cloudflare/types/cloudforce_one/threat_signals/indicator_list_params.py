@@ -11,14 +11,28 @@ class IndicatorListParams(TypedDict, total=False):
     account_id: Required[str]
 
     article_id: str
+    """Article UUID filter. Omit to include indicators from every article."""
 
     cursor: str
+    """Opaque cursor from the previous response's `pagination.cursor`.
+
+    When provided, page size, ordering, and filters come from the cursor. Sending
+    `per_page`, `sort`, `include_total`, `feed_id`, `article_id`, or `search`
+    alongside it returns a 400 `CursorFilterConflictError`.
+    """
 
     feed_id: str
+    """Feed UUID filter. Omit to include indicators from every account feed."""
 
     include_total: bool
+    """When true on the first page, count matching indicators and return an exact
+    total.
+
+    Defaults to false; cursor pages do not recalculate totals.
+    """
 
     per_page: int
+    """Number of indicators per cursor page, from 1 to 100. Defaults to 20."""
 
     search: str
     """
@@ -29,3 +43,4 @@ class IndicatorListParams(TypedDict, total=False):
     """
 
     sort: str
+    """Sort by id. Use id for ascending or -id for descending order; defaults to id."""

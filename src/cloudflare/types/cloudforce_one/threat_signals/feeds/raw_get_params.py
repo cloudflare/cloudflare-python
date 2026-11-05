@@ -11,3 +11,7 @@ class RawGetParams(TypedDict, total=False):
     account_id: Required[str]
 
     format: Literal["xml"]
+    """Response format.
+
+    Use xml for application/xml; omit it for the default text/plain response.
+    """

@@ -11,13 +11,13 @@ from .dns_resolver_settings_v6 import DNSResolverSettingsV6
 
 __all__ = [
     "RuleSetting",
-    "AuditSSH",
     "BISOAdminControls",
     "BlockPage",
     "CheckSession",
     "DNSResolvers",
     "Egress",
     "ForensicCopy",
+    "Forward",
     "L4override",
     "NotificationSettings",
     "PayloadLog",
@@ -26,16 +26,6 @@ __all__ = [
     "ResolveDNSInternally",
     "UntrustedCERT",
 ]
-
-
-class AuditSSH(BaseModel):
-    """Define the settings for the Audit SSH action.
-
-    Settable only for `l4` rules with `audit_ssh` action.
-    """
-
-    command_logging: Optional[bool] = None
-    """Enable SSH command logging."""
 
 
 class BISOAdminControls(BaseModel):
@@ -74,11 +64,15 @@ class BISOAdminControls(BaseModel):
     du: Optional[bool] = None
     """Set to false to enable uploading. Only applies when `version == "v1"`."""
 
-    keyboard: Optional[Literal["enabled", "disabled"]] = None
+    keyboard: Optional[Literal["enabled", "disabled", "enable_read_only_actions"]] = None
     """Configure keyboard usage behavior.
 
-    If this field is absent, keyboard usage remains enabled. Applies only when
-    version == "v2".
+    When set to enable_read_only_actions, only approved browser commands (find,
+    copy, print, zoom, and select-all) may execute; other keyboard input is blocked
+    from reaching the page. Copy and print remain subject to their independent
+    controls. If this field is absent, keyboard usage remains enabled. Applies only
+    when version == "v2". The enable_read_only_actions value requires an explicit
+    version of "v2".
     """
 
     paste: Optional[Literal["enabled", "disabled", "remote_only"]] = None
@@ -178,6 +172,16 @@ class ForensicCopy(BaseModel):
 
     enabled: Optional[bool] = None
     """Enable sending the copy to storage."""
+
+
+class Forward(BaseModel):
+    """Forward matching HTTP requests to a Worker.
+
+    Required for `http` rules with the action set to `forward`.
+    """
+
+    worker_id: str
+    """Specify the public Worker ID of the target Worker."""
 
 
 class L4override(BaseModel):
@@ -305,12 +309,6 @@ class RuleSetting(BaseModel):
     rules.
     """
 
-    audit_ssh: Optional[AuditSSH] = None
-    """Define the settings for the Audit SSH action.
-
-    Settable only for `l4` rules with `audit_ssh` action.
-    """
-
     biso_admin_controls: Optional[BISOAdminControls] = None
     """Configure browser isolation behavior.
 
@@ -377,6 +375,12 @@ class RuleSetting(BaseModel):
     """
     Configure whether a copy of the HTTP request will be sent to storage when the
     rule matches.
+    """
+
+    forward: Optional[Forward] = None
+    """Forward matching HTTP requests to a Worker.
+
+    Required for `http` rules with the action set to `forward`.
     """
 
     ignore_cname_category_matches: Optional[bool] = None

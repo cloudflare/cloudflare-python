@@ -51,6 +51,7 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.BotFightModeConfigurationAIAgents | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -137,6 +138,8 @@ class BotManagementResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
+          ai_agents: Configure blocking behavior for supported personal AI agents.
+
           ai_bots_migration_opt_out: Temporary migration flag tracking zones opted out of AI bots managed-rule
               updates.
 
@@ -186,6 +189,7 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.SuperBotFightModeDefinitelyConfigurationAIAgents | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -275,6 +279,8 @@ class BotManagementResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
+          ai_agents: Configure blocking behavior for supported personal AI agents.
+
           ai_bots_migration_opt_out: Temporary migration flag tracking zones opted out of AI bots managed-rule
               updates.
 
@@ -332,6 +338,7 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.SuperBotFightModeLikelyConfigurationAIAgents | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -421,6 +428,8 @@ class BotManagementResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier.
+
+          ai_agents: Configure blocking behavior for supported personal AI agents.
 
           ai_bots_migration_opt_out: Temporary migration flag tracking zones opted out of AI bots managed-rule
               updates.
@@ -481,6 +490,7 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.SubscriptionConfigurationAIAgents | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -569,6 +579,8 @@ class BotManagementResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
+          ai_agents: Configure blocking behavior for supported personal AI agents.
+
           ai_bots_migration_opt_out: Temporary migration flag tracking zones opted out of AI bots managed-rule
               updates.
 
@@ -626,6 +638,11 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.BotFightModeConfigurationAIAgents
+        | bot_management_update_params.SuperBotFightModeDefinitelyConfigurationAIAgents
+        | bot_management_update_params.SuperBotFightModeLikelyConfigurationAIAgents
+        | bot_management_update_params.SubscriptionConfigurationAIAgents
+        | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -662,6 +679,7 @@ class BotManagementResource(SyncAPIResource):
                 path_template("/zones/{zone_id}/bot_management", zone_id=zone_id),
                 body=maybe_transform(
                     {
+                        "ai_agents": ai_agents,
                         "ai_bots_migration_opt_out": ai_bots_migration_opt_out,
                         "ai_bots_protection": ai_bots_protection,
                         "aisearch": aisearch,
@@ -769,6 +787,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.BotFightModeConfigurationAIAgents | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -855,6 +874,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
+          ai_agents: Configure blocking behavior for supported personal AI agents.
+
           ai_bots_migration_opt_out: Temporary migration flag tracking zones opted out of AI bots managed-rule
               updates.
 
@@ -904,6 +925,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.SuperBotFightModeDefinitelyConfigurationAIAgents | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -993,6 +1015,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
+          ai_agents: Configure blocking behavior for supported personal AI agents.
+
           ai_bots_migration_opt_out: Temporary migration flag tracking zones opted out of AI bots managed-rule
               updates.
 
@@ -1050,6 +1074,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.SuperBotFightModeLikelyConfigurationAIAgents | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -1139,6 +1164,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier.
+
+          ai_agents: Configure blocking behavior for supported personal AI agents.
 
           ai_bots_migration_opt_out: Temporary migration flag tracking zones opted out of AI bots managed-rule
               updates.
@@ -1199,6 +1226,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.SubscriptionConfigurationAIAgents | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -1287,6 +1315,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
+          ai_agents: Configure blocking behavior for supported personal AI agents.
+
           ai_bots_migration_opt_out: Temporary migration flag tracking zones opted out of AI bots managed-rule
               updates.
 
@@ -1344,6 +1374,11 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        ai_agents: bot_management_update_params.BotFightModeConfigurationAIAgents
+        | bot_management_update_params.SuperBotFightModeDefinitelyConfigurationAIAgents
+        | bot_management_update_params.SuperBotFightModeLikelyConfigurationAIAgents
+        | bot_management_update_params.SubscriptionConfigurationAIAgents
+        | Omit = omit,
         ai_bots_migration_opt_out: bool | Omit = omit,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         aisearch: Literal["disabled", "block", "only_on_ad_pages"] | Omit = omit,
@@ -1380,6 +1415,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
                 path_template("/zones/{zone_id}/bot_management", zone_id=zone_id),
                 body=await async_maybe_transform(
                     {
+                        "ai_agents": ai_agents,
                         "ai_bots_migration_opt_out": ai_bots_migration_opt_out,
                         "ai_bots_protection": ai_bots_protection,
                         "aisearch": aisearch,

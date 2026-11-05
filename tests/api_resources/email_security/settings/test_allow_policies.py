@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.email_security.settings import (
     AllowPolicyGetResponse,
@@ -51,6 +52,7 @@ class TestAllowPolicies:
             pattern_type="EMAIL",
             verify_sender=True,
             comments="Trust all messages send from test@example.com",
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             is_recipient=False,
             is_sender=True,
             is_spoof=False,
@@ -121,6 +123,7 @@ class TestAllowPolicies:
         allow_policy = client.email_security.settings.allow_policies.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
+            expired=True,
             is_acceptable_sender=True,
             is_exempt_recipient=True,
             is_trusted_sender=True,
@@ -323,6 +326,7 @@ class TestAllowPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             comments="Trust all messages send from test@example.com",
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             is_acceptable_sender=False,
             is_exempt_recipient=False,
             is_recipient=False,
@@ -459,6 +463,7 @@ class TestAsyncAllowPolicies:
             pattern_type="EMAIL",
             verify_sender=True,
             comments="Trust all messages send from test@example.com",
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             is_recipient=False,
             is_sender=True,
             is_spoof=False,
@@ -529,6 +534,7 @@ class TestAsyncAllowPolicies:
         allow_policy = await async_client.email_security.settings.allow_policies.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
+            expired=True,
             is_acceptable_sender=True,
             is_exempt_recipient=True,
             is_trusted_sender=True,
@@ -731,6 +737,7 @@ class TestAsyncAllowPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             comments="Trust all messages send from test@example.com",
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             is_acceptable_sender=False,
             is_exempt_recipient=False,
             is_recipient=False,

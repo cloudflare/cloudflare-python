@@ -40,6 +40,12 @@ class TestLANs:
             name="name",
             nat={"static_prefix": "192.0.2.0/24"},
             physport=1,
+            remote_subnets=[
+                {
+                    "local_alias_prefix": "192.0.2.0/24",
+                    "remote_prefix": "192.0.2.0/24",
+                }
+            ],
             routed_subnets=[
                 {
                     "next_hop": "192.0.2.1",
@@ -136,6 +142,12 @@ class TestLANs:
             name="name",
             nat={"static_prefix": "192.0.2.0/24"},
             physport=1,
+            remote_subnets=[
+                {
+                    "local_alias_prefix": "192.0.2.0/24",
+                    "remote_prefix": "192.0.2.0/24",
+                }
+            ],
             routed_subnets=[
                 {
                     "next_hop": "192.0.2.1",
@@ -351,6 +363,12 @@ class TestLANs:
             name="name",
             nat={"static_prefix": "192.0.2.0/24"},
             physport=1,
+            remote_subnets=[
+                {
+                    "local_alias_prefix": "192.0.2.0/24",
+                    "remote_prefix": "192.0.2.0/24",
+                }
+            ],
             routed_subnets=[
                 {
                     "next_hop": "192.0.2.1",
@@ -522,6 +540,12 @@ class TestAsyncLANs:
             name="name",
             nat={"static_prefix": "192.0.2.0/24"},
             physport=1,
+            remote_subnets=[
+                {
+                    "local_alias_prefix": "192.0.2.0/24",
+                    "remote_prefix": "192.0.2.0/24",
+                }
+            ],
             routed_subnets=[
                 {
                     "next_hop": "192.0.2.1",
@@ -618,6 +642,12 @@ class TestAsyncLANs:
             name="name",
             nat={"static_prefix": "192.0.2.0/24"},
             physport=1,
+            remote_subnets=[
+                {
+                    "local_alias_prefix": "192.0.2.0/24",
+                    "remote_prefix": "192.0.2.0/24",
+                }
+            ],
             routed_subnets=[
                 {
                     "next_hop": "192.0.2.1",
@@ -833,6 +863,12 @@ class TestAsyncLANs:
             name="name",
             nat={"static_prefix": "192.0.2.0/24"},
             physport=1,
+            remote_subnets=[
+                {
+                    "local_alias_prefix": "192.0.2.0/24",
+                    "remote_prefix": "192.0.2.0/24",
+                }
+            ],
             routed_subnets=[
                 {
                     "next_hop": "192.0.2.1",

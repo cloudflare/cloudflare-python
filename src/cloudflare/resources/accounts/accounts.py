@@ -75,14 +75,6 @@ from .entitlements import (
     EntitlementsResourceWithStreamingResponse,
     AsyncEntitlementsResourceWithStreamingResponse,
 )
-from .pay_bad_debt import (
-    PayBadDebtResource,
-    AsyncPayBadDebtResource,
-    PayBadDebtResourceWithRawResponse,
-    AsyncPayBadDebtResourceWithRawResponse,
-    PayBadDebtResourceWithStreamingResponse,
-    AsyncPayBadDebtResourceWithStreamingResponse,
-)
 from .client_secret import (
     ClientSecretResource,
     AsyncClientSecretResource,
@@ -169,10 +161,6 @@ class AccountsResource(SyncAPIResource):
         return PayInvoiceResource(self._client)
 
     @cached_property
-    def pay_bad_debt(self) -> PayBadDebtResource:
-        return PayBadDebtResource(self._client)
-
-    @cached_property
     def receipts(self) -> ReceiptsResource:
         return ReceiptsResource(self._client)
 
@@ -225,13 +213,17 @@ class AccountsResource(SyncAPIResource):
         `standalone: true` and omit `unit`. Providing both fields is invalid. If you
         omit both fields, Cloudflare can determine the destination only when the User is
         an administrator of exactly one Organization. Cloudflare creates the Account in
-        that Organization; otherwise, the request returns an error.
+        that Organization; otherwise, the request returns an error. Account names are
+        limited to 65 UTF-8 bytes.
 
         Args:
-          name: Account name
+          name: Account name, limited to 65 UTF-8 bytes.
 
           standalone: Set to `true` and omit `unit` to create a standalone Free Account. If provided,
               this field must be `true`.
+
+          type: the type of account being created. For self-serve customers, use standard. for
+              enterprise customers, use enterprise.
 
           unit: Information related to the tenant unit. Provide its ID and omit `standalone` to
               create the Account within an Organization. See
@@ -283,15 +275,16 @@ class AccountsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Account]:
-        """
-        Update an existing account.
+        """Update an existing account.
+
+        Account names are limited to 65 UTF-8 bytes.
 
         Args:
           account_id: Account identifier tag.
 
           id: Identifier
 
-          name: Account name
+          name: Account name, limited to 65 UTF-8 bytes.
 
           managed_by: Parent container details
 
@@ -504,10 +497,6 @@ class AsyncAccountsResource(AsyncAPIResource):
         return AsyncPayInvoiceResource(self._client)
 
     @cached_property
-    def pay_bad_debt(self) -> AsyncPayBadDebtResource:
-        return AsyncPayBadDebtResource(self._client)
-
-    @cached_property
     def receipts(self) -> AsyncReceiptsResource:
         return AsyncReceiptsResource(self._client)
 
@@ -560,13 +549,17 @@ class AsyncAccountsResource(AsyncAPIResource):
         `standalone: true` and omit `unit`. Providing both fields is invalid. If you
         omit both fields, Cloudflare can determine the destination only when the User is
         an administrator of exactly one Organization. Cloudflare creates the Account in
-        that Organization; otherwise, the request returns an error.
+        that Organization; otherwise, the request returns an error. Account names are
+        limited to 65 UTF-8 bytes.
 
         Args:
-          name: Account name
+          name: Account name, limited to 65 UTF-8 bytes.
 
           standalone: Set to `true` and omit `unit` to create a standalone Free Account. If provided,
               this field must be `true`.
+
+          type: the type of account being created. For self-serve customers, use standard. for
+              enterprise customers, use enterprise.
 
           unit: Information related to the tenant unit. Provide its ID and omit `standalone` to
               create the Account within an Organization. See
@@ -618,15 +611,16 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Account]:
-        """
-        Update an existing account.
+        """Update an existing account.
+
+        Account names are limited to 65 UTF-8 bytes.
 
         Args:
           account_id: Account identifier tag.
 
           id: Identifier
 
-          name: Account name
+          name: Account name, limited to 65 UTF-8 bytes.
 
           managed_by: Parent container details
 
@@ -858,10 +852,6 @@ class AccountsResourceWithRawResponse:
         return PayInvoiceResourceWithRawResponse(self._accounts.pay_invoice)
 
     @cached_property
-    def pay_bad_debt(self) -> PayBadDebtResourceWithRawResponse:
-        return PayBadDebtResourceWithRawResponse(self._accounts.pay_bad_debt)
-
-    @cached_property
     def receipts(self) -> ReceiptsResourceWithRawResponse:
         return ReceiptsResourceWithRawResponse(self._accounts.receipts)
 
@@ -929,10 +919,6 @@ class AsyncAccountsResourceWithRawResponse:
     @cached_property
     def pay_invoice(self) -> AsyncPayInvoiceResourceWithRawResponse:
         return AsyncPayInvoiceResourceWithRawResponse(self._accounts.pay_invoice)
-
-    @cached_property
-    def pay_bad_debt(self) -> AsyncPayBadDebtResourceWithRawResponse:
-        return AsyncPayBadDebtResourceWithRawResponse(self._accounts.pay_bad_debt)
 
     @cached_property
     def receipts(self) -> AsyncReceiptsResourceWithRawResponse:
@@ -1004,10 +990,6 @@ class AccountsResourceWithStreamingResponse:
         return PayInvoiceResourceWithStreamingResponse(self._accounts.pay_invoice)
 
     @cached_property
-    def pay_bad_debt(self) -> PayBadDebtResourceWithStreamingResponse:
-        return PayBadDebtResourceWithStreamingResponse(self._accounts.pay_bad_debt)
-
-    @cached_property
     def receipts(self) -> ReceiptsResourceWithStreamingResponse:
         return ReceiptsResourceWithStreamingResponse(self._accounts.receipts)
 
@@ -1075,10 +1057,6 @@ class AsyncAccountsResourceWithStreamingResponse:
     @cached_property
     def pay_invoice(self) -> AsyncPayInvoiceResourceWithStreamingResponse:
         return AsyncPayInvoiceResourceWithStreamingResponse(self._accounts.pay_invoice)
-
-    @cached_property
-    def pay_bad_debt(self) -> AsyncPayBadDebtResourceWithStreamingResponse:
-        return AsyncPayBadDebtResourceWithStreamingResponse(self._accounts.pay_bad_debt)
 
     @cached_property
     def receipts(self) -> AsyncReceiptsResourceWithStreamingResponse:

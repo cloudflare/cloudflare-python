@@ -72,12 +72,13 @@ class TopupResource(SyncAPIResource):
     ) -> TopupCreateResponse:
         """
         Create a credit top-up for the given account, charged to the account's default
-        payment method.
+        payment method. Requires a dashboard session; API token, OAuth, and service
+        credentials receive 403.
 
         Args:
           amount: Top-up amount in cents (min 1000).
 
-          payment_method_id: Stripe PaymentMethod to charge instead of the customer's default payment method.
+          payment_method_id: Payment method to charge instead of the customer's default payment method.
 
           extra_headers: Send extra headers
 
@@ -121,10 +122,10 @@ class TopupResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TopupStatusResponse:
         """
-        Get the payment processing status of a top-up by its invoice ID.
+        Get the payment processing status of a top-up by its top-up identifier.
 
         Args:
-          payment_intent_id: Stripe invoice ID to check status for.
+          payment_intent_id: Top-up identifier to check status for.
 
           extra_headers: Send extra headers
 
@@ -189,12 +190,13 @@ class AsyncTopupResource(AsyncAPIResource):
     ) -> TopupCreateResponse:
         """
         Create a credit top-up for the given account, charged to the account's default
-        payment method.
+        payment method. Requires a dashboard session; API token, OAuth, and service
+        credentials receive 403.
 
         Args:
           amount: Top-up amount in cents (min 1000).
 
-          payment_method_id: Stripe PaymentMethod to charge instead of the customer's default payment method.
+          payment_method_id: Payment method to charge instead of the customer's default payment method.
 
           extra_headers: Send extra headers
 
@@ -238,10 +240,10 @@ class AsyncTopupResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TopupStatusResponse:
         """
-        Get the payment processing status of a top-up by its invoice ID.
+        Get the payment processing status of a top-up by its top-up identifier.
 
         Args:
-          payment_intent_id: Stripe invoice ID to check status for.
+          payment_intent_id: Top-up identifier to check status for.
 
           extra_headers: Send extra headers
 

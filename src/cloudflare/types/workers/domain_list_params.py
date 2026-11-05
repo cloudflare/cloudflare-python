@@ -11,11 +11,17 @@ class DomainListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
+    enabled: bool
+    """Whether the configured hostname is routable for the domain."""
+
     environment: str
     """Worker environment associated with the domain."""
 
     hostname: str
     """Hostname of the domain."""
+
+    previews_enabled: bool
+    """Whether previews are routable for the domain."""
 
     service: str
     """Name of the Worker associated with the domain."""

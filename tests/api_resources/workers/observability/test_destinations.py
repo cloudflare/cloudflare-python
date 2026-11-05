@@ -114,12 +114,22 @@ class TestDestinations:
         destination = client.workers.observability.destinations.update(
             slug="slug",
             account_id="account_id",
+            enabled=True,
+        )
+        assert_matches_type(DestinationUpdateResponse, destination, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        destination = client.workers.observability.destinations.update(
+            slug="slug",
+            account_id="account_id",
+            enabled=True,
             configuration={
                 "headers": {"foo": "string"},
                 "type": "logpush",
                 "url": "url",
+                "replace_headers": True,
             },
-            enabled=True,
         )
         assert_matches_type(DestinationUpdateResponse, destination, path=["response"])
 
@@ -128,11 +138,6 @@ class TestDestinations:
         response = client.workers.observability.destinations.with_raw_response.update(
             slug="slug",
             account_id="account_id",
-            configuration={
-                "headers": {"foo": "string"},
-                "type": "logpush",
-                "url": "url",
-            },
             enabled=True,
         )
 
@@ -146,11 +151,6 @@ class TestDestinations:
         with client.workers.observability.destinations.with_streaming_response.update(
             slug="slug",
             account_id="account_id",
-            configuration={
-                "headers": {"foo": "string"},
-                "type": "logpush",
-                "url": "url",
-            },
             enabled=True,
         ) as response:
             assert not response.is_closed
@@ -167,11 +167,6 @@ class TestDestinations:
             client.workers.observability.destinations.with_raw_response.update(
                 slug="slug",
                 account_id="",
-                configuration={
-                    "headers": {"foo": "string"},
-                    "type": "logpush",
-                    "url": "url",
-                },
                 enabled=True,
             )
 
@@ -179,11 +174,6 @@ class TestDestinations:
             client.workers.observability.destinations.with_raw_response.update(
                 slug="",
                 account_id="account_id",
-                configuration={
-                    "headers": {"foo": "string"},
-                    "type": "logpush",
-                    "url": "url",
-                },
                 enabled=True,
             )
 
@@ -381,12 +371,22 @@ class TestAsyncDestinations:
         destination = await async_client.workers.observability.destinations.update(
             slug="slug",
             account_id="account_id",
+            enabled=True,
+        )
+        assert_matches_type(DestinationUpdateResponse, destination, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        destination = await async_client.workers.observability.destinations.update(
+            slug="slug",
+            account_id="account_id",
+            enabled=True,
             configuration={
                 "headers": {"foo": "string"},
                 "type": "logpush",
                 "url": "url",
+                "replace_headers": True,
             },
-            enabled=True,
         )
         assert_matches_type(DestinationUpdateResponse, destination, path=["response"])
 
@@ -395,11 +395,6 @@ class TestAsyncDestinations:
         response = await async_client.workers.observability.destinations.with_raw_response.update(
             slug="slug",
             account_id="account_id",
-            configuration={
-                "headers": {"foo": "string"},
-                "type": "logpush",
-                "url": "url",
-            },
             enabled=True,
         )
 
@@ -413,11 +408,6 @@ class TestAsyncDestinations:
         async with async_client.workers.observability.destinations.with_streaming_response.update(
             slug="slug",
             account_id="account_id",
-            configuration={
-                "headers": {"foo": "string"},
-                "type": "logpush",
-                "url": "url",
-            },
             enabled=True,
         ) as response:
             assert not response.is_closed
@@ -434,11 +424,6 @@ class TestAsyncDestinations:
             await async_client.workers.observability.destinations.with_raw_response.update(
                 slug="slug",
                 account_id="",
-                configuration={
-                    "headers": {"foo": "string"},
-                    "type": "logpush",
-                    "url": "url",
-                },
                 enabled=True,
             )
 
@@ -446,11 +431,6 @@ class TestAsyncDestinations:
             await async_client.workers.observability.destinations.with_raw_response.update(
                 slug="",
                 account_id="account_id",
-                configuration={
-                    "headers": {"foo": "string"},
-                    "type": "logpush",
-                    "url": "url",
-                },
                 enabled=True,
             )
 

@@ -12,20 +12,24 @@ __all__ = [
     "ResourceTaggingTaggedResourceObjectAccessApplication",
     "ResourceTaggingTaggedResourceObjectAccessApplicationPolicy",
     "ResourceTaggingTaggedResourceObjectAccessGroup",
+    "ResourceTaggingTaggedResourceObjectAccessServiceToken",
     "ResourceTaggingTaggedResourceObjectAccount",
     "ResourceTaggingTaggedResourceObjectAccountRuleset",
     "ResourceTaggingTaggedResourceObjectAIGateway",
+    "ResourceTaggingTaggedResourceObjectAISearchInstance",
+    "ResourceTaggingTaggedResourceObjectAISearchNamespace",
     "ResourceTaggingTaggedResourceObjectAlertingPolicy",
     "ResourceTaggingTaggedResourceObjectAlertingWebhook",
     "ResourceTaggingTaggedResourceObjectAPIGatewayOperation",
     "ResourceTaggingTaggedResourceObjectCloudflaredTunnel",
     "ResourceTaggingTaggedResourceObjectCustomCertificate",
     "ResourceTaggingTaggedResourceObjectCustomHostname",
-    "ResourceTaggingTaggedResourceObjectCwsDeployment",
-    "ResourceTaggingTaggedResourceObjectCwsPolicy",
-    "ResourceTaggingTaggedResourceObjectCwsPolicySet",
-    "ResourceTaggingTaggedResourceObjectCwsWorkload",
+    "ResourceTaggingTaggedResourceObjectCWSDeployment",
+    "ResourceTaggingTaggedResourceObjectCWSPolicy",
+    "ResourceTaggingTaggedResourceObjectCWSPolicySet",
+    "ResourceTaggingTaggedResourceObjectCWSWorkload",
     "ResourceTaggingTaggedResourceObjectD1Database",
+    "ResourceTaggingTaggedResourceObjectDevice",
     "ResourceTaggingTaggedResourceObjectDNSRecord",
     "ResourceTaggingTaggedResourceObjectDurableObjectNamespace",
     "ResourceTaggingTaggedResourceObjectGatewayList",
@@ -38,6 +42,8 @@ __all__ = [
     "ResourceTaggingTaggedResourceObjectLoadBalancerMonitor",
     "ResourceTaggingTaggedResourceObjectLoadBalancerPool",
     "ResourceTaggingTaggedResourceObjectManagedClientCertificate",
+    "ResourceTaggingTaggedResourceObjectNamespaceWorker",
+    "ResourceTaggingTaggedResourceObjectNamespaceWorkerNavigation",
     "ResourceTaggingTaggedResourceObjectPagesProject",
     "ResourceTaggingTaggedResourceObjectQueue",
     "ResourceTaggingTaggedResourceObjectR2Bucket",
@@ -176,6 +182,45 @@ class ResourceTaggingTaggedResourceObjectAccessGroup(BaseModel):
     """
 
 
+class ResourceTaggingTaggedResourceObjectAccessServiceToken(BaseModel):
+    """Response for access_service_token resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
+    """
+
+    type: Literal["access_service_token"]
+
+    tags_updated_at: Optional[datetime] = None
+    """
+    Monotonic version of the resource's tags: the timestamp assigned when the tags
+    were last written. Returned by read endpoints, by 2PC prepare (the version that
+    will be assigned on commit, unless a concurrent write lands first, in which case
+    a newer version is assigned), and by 2PC commit (the authoritative committed
+    version). Omitted for untagged resources and delete commits: a deleted resource
+    has no current version, and deletions are ordered by event order rather than by
+    version.
+    """
+
+
 class ResourceTaggingTaggedResourceObjectAccount(BaseModel):
     """Response for account resources"""
 
@@ -280,6 +325,84 @@ class ResourceTaggingTaggedResourceObjectAIGateway(BaseModel):
     """
 
     type: Literal["ai_gateway"]
+
+    tags_updated_at: Optional[datetime] = None
+    """
+    Monotonic version of the resource's tags: the timestamp assigned when the tags
+    were last written. Returned by read endpoints, by 2PC prepare (the version that
+    will be assigned on commit, unless a concurrent write lands first, in which case
+    a newer version is assigned), and by 2PC commit (the authoritative committed
+    version). Omitted for untagged resources and delete commits: a deleted resource
+    has no current version, and deletions are ordered by event order rather than by
+    version.
+    """
+
+
+class ResourceTaggingTaggedResourceObjectAISearchInstance(BaseModel):
+    """Response for ai_search_instance resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
+    """
+
+    type: Literal["ai_search_instance"]
+
+    tags_updated_at: Optional[datetime] = None
+    """
+    Monotonic version of the resource's tags: the timestamp assigned when the tags
+    were last written. Returned by read endpoints, by 2PC prepare (the version that
+    will be assigned on commit, unless a concurrent write lands first, in which case
+    a newer version is assigned), and by 2PC commit (the authoritative committed
+    version). Omitted for untagged resources and delete commits: a deleted resource
+    has no current version, and deletions are ordered by event order rather than by
+    version.
+    """
+
+
+class ResourceTaggingTaggedResourceObjectAISearchNamespace(BaseModel):
+    """Response for ai_search_namespace resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
+    """
+
+    type: Literal["ai_search_namespace"]
 
     tags_updated_at: Optional[datetime] = None
     """
@@ -536,7 +659,7 @@ class ResourceTaggingTaggedResourceObjectCustomHostname(BaseModel):
     """
 
 
-class ResourceTaggingTaggedResourceObjectCwsDeployment(BaseModel):
+class ResourceTaggingTaggedResourceObjectCWSDeployment(BaseModel):
     """Response for cws_deployment resources"""
 
     id: str
@@ -575,7 +698,7 @@ class ResourceTaggingTaggedResourceObjectCwsDeployment(BaseModel):
     """
 
 
-class ResourceTaggingTaggedResourceObjectCwsPolicy(BaseModel):
+class ResourceTaggingTaggedResourceObjectCWSPolicy(BaseModel):
     """Response for cws_policy resources"""
 
     id: str
@@ -614,7 +737,7 @@ class ResourceTaggingTaggedResourceObjectCwsPolicy(BaseModel):
     """
 
 
-class ResourceTaggingTaggedResourceObjectCwsPolicySet(BaseModel):
+class ResourceTaggingTaggedResourceObjectCWSPolicySet(BaseModel):
     """Response for cws_policy_set resources"""
 
     id: str
@@ -653,7 +776,7 @@ class ResourceTaggingTaggedResourceObjectCwsPolicySet(BaseModel):
     """
 
 
-class ResourceTaggingTaggedResourceObjectCwsWorkload(BaseModel):
+class ResourceTaggingTaggedResourceObjectCWSWorkload(BaseModel):
     """Response for cws_workload resources"""
 
     id: str
@@ -718,6 +841,45 @@ class ResourceTaggingTaggedResourceObjectD1Database(BaseModel):
     """
 
     type: Literal["d1_database"]
+
+    tags_updated_at: Optional[datetime] = None
+    """
+    Monotonic version of the resource's tags: the timestamp assigned when the tags
+    were last written. Returned by read endpoints, by 2PC prepare (the version that
+    will be assigned on commit, unless a concurrent write lands first, in which case
+    a newer version is assigned), and by 2PC commit (the authoritative committed
+    version). Omitted for untagged resources and delete commits: a deleted resource
+    has no current version, and deletions are ordered by event order rather than by
+    version.
+    """
+
+
+class ResourceTaggingTaggedResourceObjectDevice(BaseModel):
+    """Response for device resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
+    """
+
+    type: Literal["device"]
 
     tags_updated_at: Optional[datetime] = None
     """
@@ -1198,6 +1360,68 @@ class ResourceTaggingTaggedResourceObjectManagedClientCertificate(BaseModel):
 
     zone_id: str
     """Zone ID is required only for zone-level resources"""
+
+    tags_updated_at: Optional[datetime] = None
+    """
+    Monotonic version of the resource's tags: the timestamp assigned when the tags
+    were last written. Returned by read endpoints, by 2PC prepare (the version that
+    will be assigned on commit, unless a concurrent write lands first, in which case
+    a newer version is assigned), and by 2PC commit (the authoritative committed
+    version). Omitted for untagged resources and delete commits: a deleted resource
+    has no current version, and deletions are ordered by event order rather than by
+    version.
+    """
+
+
+class ResourceTaggingTaggedResourceObjectNamespaceWorkerNavigation(BaseModel):
+    """
+    Read-only routing metadata resolved from EWC using the account and immutable
+    namespace Worker ID. Returned only by tagged-resource lists requested with
+    include_navigation=true. Omitted when lookup is unavailable or the child
+    has been deleted. Never supplied on tag writes or stored as extra_data.
+    """
+
+    namespace_id: str
+
+    namespace_name: str
+
+    script_name: str
+
+
+class ResourceTaggingTaggedResourceObjectNamespaceWorker(BaseModel):
+    """Response for namespace_worker resources"""
+
+    id: str
+    """Identifies the unique resource."""
+
+    etag: str
+    """ETag identifier for optimistic concurrency control.
+
+    Formatted as "v1:<hash>" where the hash is the base64url-encoded SHA-256
+    (truncated to 128 bits) of the tags map canonicalized using RFC 8785 (JSON
+    Canonicalization Scheme). Clients should treat ETags as opaque strings and pass
+    them back via the If-Match header on write operations.
+    """
+
+    name: str
+    """Human-readable name of the resource."""
+
+    tags: Dict[str, str]
+    """Contains key-value pairs of tags.
+
+    Keys may contain at most 256 characters. Values may contain at most 1024
+    characters and may be empty for key-only tags.
+    """
+
+    type: Literal["namespace_worker"]
+
+    navigation: Optional[ResourceTaggingTaggedResourceObjectNamespaceWorkerNavigation] = None
+    """
+    Read-only routing metadata resolved from EWC using the account and immutable
+    namespace Worker ID. Returned only by tagged-resource lists requested with
+    include_navigation=true. Omitted when lookup is unavailable or the child has
+    been deleted. Never supplied on tag writes or stored as extra_data.
+    """
 
     tags_updated_at: Optional[datetime] = None
     """
@@ -1696,20 +1920,24 @@ AccountTagGetResponse: TypeAlias = Annotated[
         ResourceTaggingTaggedResourceObjectAccessApplication,
         ResourceTaggingTaggedResourceObjectAccessApplicationPolicy,
         ResourceTaggingTaggedResourceObjectAccessGroup,
+        ResourceTaggingTaggedResourceObjectAccessServiceToken,
         ResourceTaggingTaggedResourceObjectAccount,
         ResourceTaggingTaggedResourceObjectAccountRuleset,
         ResourceTaggingTaggedResourceObjectAIGateway,
+        ResourceTaggingTaggedResourceObjectAISearchInstance,
+        ResourceTaggingTaggedResourceObjectAISearchNamespace,
         ResourceTaggingTaggedResourceObjectAlertingPolicy,
         ResourceTaggingTaggedResourceObjectAlertingWebhook,
         ResourceTaggingTaggedResourceObjectAPIGatewayOperation,
         ResourceTaggingTaggedResourceObjectCloudflaredTunnel,
         ResourceTaggingTaggedResourceObjectCustomCertificate,
         ResourceTaggingTaggedResourceObjectCustomHostname,
-        ResourceTaggingTaggedResourceObjectCwsDeployment,
-        ResourceTaggingTaggedResourceObjectCwsPolicy,
-        ResourceTaggingTaggedResourceObjectCwsPolicySet,
-        ResourceTaggingTaggedResourceObjectCwsWorkload,
+        ResourceTaggingTaggedResourceObjectCWSDeployment,
+        ResourceTaggingTaggedResourceObjectCWSPolicy,
+        ResourceTaggingTaggedResourceObjectCWSPolicySet,
+        ResourceTaggingTaggedResourceObjectCWSWorkload,
         ResourceTaggingTaggedResourceObjectD1Database,
+        ResourceTaggingTaggedResourceObjectDevice,
         ResourceTaggingTaggedResourceObjectDNSRecord,
         ResourceTaggingTaggedResourceObjectDurableObjectNamespace,
         ResourceTaggingTaggedResourceObjectGatewayList,
@@ -1722,6 +1950,7 @@ AccountTagGetResponse: TypeAlias = Annotated[
         ResourceTaggingTaggedResourceObjectLoadBalancerMonitor,
         ResourceTaggingTaggedResourceObjectLoadBalancerPool,
         ResourceTaggingTaggedResourceObjectManagedClientCertificate,
+        ResourceTaggingTaggedResourceObjectNamespaceWorker,
         ResourceTaggingTaggedResourceObjectPagesProject,
         ResourceTaggingTaggedResourceObjectQueue,
         ResourceTaggingTaggedResourceObjectR2Bucket,

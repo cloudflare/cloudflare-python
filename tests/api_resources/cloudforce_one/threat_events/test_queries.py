@@ -26,11 +26,8 @@ class TestQueries:
     def test_method_create(self, client: Cloudflare) -> None:
         query = client.cloudforce_one.threat_events.queries.create(
             account_id="account_id",
-            alert_enabled=True,
-            alert_rollup_enabled=True,
             name="name",
             query_json="query_json",
-            rule_enabled=True,
         )
         assert_matches_type(QueryCreateResponse, query, path=["response"])
 
@@ -38,10 +35,10 @@ class TestQueries:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         query = client.cloudforce_one.threat_events.queries.create(
             account_id="account_id",
-            alert_enabled=True,
-            alert_rollup_enabled=True,
             name="name",
             query_json="query_json",
+            alert_enabled=True,
+            alert_rollup_enabled=True,
             rule_enabled=True,
             rule_scope="rule_scope",
         )
@@ -51,11 +48,8 @@ class TestQueries:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.queries.with_raw_response.create(
             account_id="account_id",
-            alert_enabled=True,
-            alert_rollup_enabled=True,
             name="name",
             query_json="query_json",
-            rule_enabled=True,
         )
 
         assert response.is_closed is True
@@ -67,11 +61,8 @@ class TestQueries:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.queries.with_streaming_response.create(
             account_id="account_id",
-            alert_enabled=True,
-            alert_rollup_enabled=True,
             name="name",
             query_json="query_json",
-            rule_enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -86,11 +77,8 @@ class TestQueries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.threat_events.queries.with_raw_response.create(
                 account_id="",
-                alert_enabled=True,
-                alert_rollup_enabled=True,
                 name="name",
                 query_json="query_json",
-                rule_enabled=True,
             )
 
     @parametrize
@@ -281,11 +269,8 @@ class TestAsyncQueries:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         query = await async_client.cloudforce_one.threat_events.queries.create(
             account_id="account_id",
-            alert_enabled=True,
-            alert_rollup_enabled=True,
             name="name",
             query_json="query_json",
-            rule_enabled=True,
         )
         assert_matches_type(QueryCreateResponse, query, path=["response"])
 
@@ -293,10 +278,10 @@ class TestAsyncQueries:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         query = await async_client.cloudforce_one.threat_events.queries.create(
             account_id="account_id",
-            alert_enabled=True,
-            alert_rollup_enabled=True,
             name="name",
             query_json="query_json",
+            alert_enabled=True,
+            alert_rollup_enabled=True,
             rule_enabled=True,
             rule_scope="rule_scope",
         )
@@ -306,11 +291,8 @@ class TestAsyncQueries:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.queries.with_raw_response.create(
             account_id="account_id",
-            alert_enabled=True,
-            alert_rollup_enabled=True,
             name="name",
             query_json="query_json",
-            rule_enabled=True,
         )
 
         assert response.is_closed is True
@@ -322,11 +304,8 @@ class TestAsyncQueries:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.queries.with_streaming_response.create(
             account_id="account_id",
-            alert_enabled=True,
-            alert_rollup_enabled=True,
             name="name",
             query_json="query_json",
-            rule_enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -341,11 +320,8 @@ class TestAsyncQueries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.threat_events.queries.with_raw_response.create(
                 account_id="",
-                alert_enabled=True,
-                alert_rollup_enabled=True,
                 name="name",
                 query_json="query_json",
-                rule_enabled=True,
             )
 
     @parametrize

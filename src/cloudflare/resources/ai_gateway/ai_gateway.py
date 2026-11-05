@@ -202,6 +202,9 @@ class AIGatewayResource(SyncAPIResource):
         Args:
           id: Unique identifier of the AI Gateway within the account.
 
+          authentication: Require authentication for gateway access. New gateways must have authentication
+              enabled. Once enabled, authentication cannot be disabled.
+
           byok_only: Requires customer-provided provider credentials and prevents fallback to Unified
               Billing.
 
@@ -210,6 +213,9 @@ class AIGatewayResource(SyncAPIResource):
           retry_delay: Delay between retry attempts in milliseconds (0-60000)
 
           retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
+
+          store_id: Secrets Store used by this gateway. Omit on update to keep the current store.
+              Cannot be cleared while stored keys or secret references depend on it.
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
               'postpaid' bills the account directly through Workers AI; 'unified' deducts
@@ -311,6 +317,9 @@ class AIGatewayResource(SyncAPIResource):
         Args:
           id: Unique identifier of the AI Gateway within the account.
 
+          authentication: Require authentication for gateway access. New gateways must have authentication
+              enabled. Once enabled, authentication cannot be disabled.
+
           byok_only: Requires customer-provided provider credentials and prevents fallback to Unified
               Billing.
 
@@ -319,6 +328,9 @@ class AIGatewayResource(SyncAPIResource):
           retry_delay: Delay between retry attempts in milliseconds (0-60000)
 
           retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
+
+          store_id: Secrets Store used by this gateway. Omit on update to keep the current store.
+              Cannot be cleared while stored keys or secret references depend on it.
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
               'postpaid' bills the account directly through Workers AI; 'unified' deducts
@@ -614,6 +626,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Args:
           id: Unique identifier of the AI Gateway within the account.
 
+          authentication: Require authentication for gateway access. New gateways must have authentication
+              enabled. Once enabled, authentication cannot be disabled.
+
           byok_only: Requires customer-provided provider credentials and prevents fallback to Unified
               Billing.
 
@@ -622,6 +637,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
           retry_delay: Delay between retry attempts in milliseconds (0-60000)
 
           retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
+
+          store_id: Secrets Store used by this gateway. Omit on update to keep the current store.
+              Cannot be cleared while stored keys or secret references depend on it.
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
               'postpaid' bills the account directly through Workers AI; 'unified' deducts
@@ -723,6 +741,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Args:
           id: Unique identifier of the AI Gateway within the account.
 
+          authentication: Require authentication for gateway access. New gateways must have authentication
+              enabled. Once enabled, authentication cannot be disabled.
+
           byok_only: Requires customer-provided provider credentials and prevents fallback to Unified
               Billing.
 
@@ -731,6 +752,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
           retry_delay: Delay between retry attempts in milliseconds (0-60000)
 
           retry_max_attempts: Maximum number of retry attempts for failed requests (1-5)
+
+          store_id: Secrets Store used by this gateway. Omit on update to keep the current store.
+              Cannot be cleared while stored keys or secret references depend on it.
 
           workers_ai_billing_mode: Controls how Workers AI inference calls routed through this gateway are billed.
               'postpaid' bills the account directly through Workers AI; 'unified' deducts

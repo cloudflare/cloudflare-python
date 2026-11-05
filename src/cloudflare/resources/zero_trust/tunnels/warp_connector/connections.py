@@ -54,7 +54,7 @@ class ConnectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ConnectionGetResponse]:
         """
-        Fetches connection details for a WARP Connector Tunnel.
+        Lists connection details for a Mesh node.
 
         Args:
           account_id: Cloudflare account ID
@@ -120,7 +120,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ConnectionGetResponse, AsyncSinglePage[ConnectionGetResponse]]:
         """
-        Fetches connection details for a WARP Connector Tunnel.
+        Lists connection details for a Mesh node.
 
         Args:
           account_id: Cloudflare account ID

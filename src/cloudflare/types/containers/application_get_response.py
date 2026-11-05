@@ -28,6 +28,7 @@ __all__ = [
     "CcDurableObjectApplicationConfiguration",
     "CcDurableObjectApplicationConfigurationAuthorizedKey",
     "CcDurableObjectApplicationConfigurationWranglerSSH",
+    "CcDurableObjectApplicationConstraints",
     "CcDurableObjectApplicationHealth",
     "CcDurableObjectApplicationHealthInstances",
     "CcDurableObjectApplicationObservability",
@@ -362,6 +363,16 @@ class CcDurableObjectApplicationConfiguration(BaseModel):
     """Configuration properties for connecting with SSH to a container using Wrangler."""
 
 
+class CcDurableObjectApplicationConstraints(BaseModel):
+    """
+    The jurisdiction of a Durable Object-managed application's primary control-plane object.
+    Set this when creating the application; it cannot be changed afterwards.
+    Other placement constraints are not supported by this scheduling policy.
+    """
+
+    jurisdiction: Literal["eu", "fedramp", "us"]
+
+
 class CcDurableObjectApplicationHealthInstances(BaseModel):
     """Counts of observed non-terminal instances."""
 
@@ -438,6 +449,13 @@ class CcDurableObjectApplication(BaseModel):
 
     configuration: Optional[CcDurableObjectApplicationConfiguration] = None
     """Application-wide settings for a Durable Object-managed application."""
+
+    constraints: Optional[CcDurableObjectApplicationConstraints] = None
+    """
+    The jurisdiction of a Durable Object-managed application's primary control-plane
+    object. Set this when creating the application; it cannot be changed afterwards.
+    Other placement constraints are not supported by this scheduling policy.
+    """
 
     health: Optional[CcDurableObjectApplicationHealth] = None
     """

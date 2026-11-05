@@ -25,8 +25,23 @@ class AbuseReportListParams(TypedDict, total=False):
     page: int
     """Where in pagination to start listing abuse reports"""
 
+    pending_notice: bool
+    """Also include reports in an open Notice and Takedown notice period.
+
+    Combined with mitigation_status using OR, e.g.
+    ?mitigation_status=active&pending_notice=true.
+    """
+
     per_page: int
     """How many abuse reports per page to list"""
+
+    search: str
+    """Free-text search.
+
+    Returns reports whose report ID starts with the term or whose domain contains
+    the term, both case-insensitively. Surrounding whitespace is ignored, and an
+    empty value is treated as absent. Combined with the other filters using AND.
+    """
 
     sort: str
     """A property to sort by, followed by the order (id, cdate, domain, type, status)"""

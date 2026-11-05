@@ -34,6 +34,12 @@ class AnnotationASNsDetail(BaseModel):
 
 
 class AnnotationEntity(BaseModel):
+    entity_location: Optional[str] = FieldInfo(alias="entityLocation", default=None)
+    """
+    Alpha-2 code of the country the entity belongs to (GEOLOCATION and AS entities
+    only).
+    """
+
     entity_name: Optional[str] = FieldInfo(alias="entityName", default=None)
 
     entity_type: str = FieldInfo(alias="entityType")

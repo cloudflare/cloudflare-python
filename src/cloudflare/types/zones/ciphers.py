@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -18,7 +18,7 @@ class Ciphers(BaseModel):
     id: Literal["ciphers"]
     """ID of the zone setting."""
 
-    value: List[str]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None

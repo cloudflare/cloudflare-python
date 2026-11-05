@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -15,8 +15,8 @@ class ProxyReadTimeout(BaseModel):
     id: Literal["proxy_read_timeout"]
     """ID of the zone setting."""
 
-    value: float
-    """Current value of the zone setting."""
+    value: Union[str, float, bool, List[str], object]
+    """Value of the zone setting. Notes: Value must be between 1 and 6000"""
 
     editable: Optional[Literal[True, False]] = None
     """

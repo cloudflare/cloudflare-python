@@ -15,7 +15,7 @@ from .health import (
     HealthResourceWithStreamingResponse,
     AsyncHealthResourceWithStreamingResponse,
 )
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .references import (
@@ -88,14 +88,17 @@ class PoolsResource(SyncAPIResource):
         account_id: str,
         name: str,
         origins: Iterable[OriginParam],
+        check_regions: Optional[List[CheckRegion]] | Omit = omit,
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
+        health_sources: Optional[List[Literal["local", "regional", "global"]]] | Omit = omit,
         latitude: float | Omit = omit,
         load_shedding: Optional[LoadSheddingParam] | Omit = omit,
         longitude: float | Omit = omit,
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
         origin_steering: Optional[OriginSteeringParam] | Omit = omit,
@@ -118,11 +121,23 @@ class PoolsResource(SyncAPIResource):
           origins: The list of origins within this pool. Traffic directed at this pool is balanced
               across all currently healthy origins, provided the pool itself is healthy.
 
+          check_regions: A list of regions from which to run health checks. Null means every Cloudflare
+              data center.
+
           description: A human-readable description of the pool.
 
           enabled: Whether to enable (the default) or disable this pool. Disabled pools will not
               receive traffic and are excluded from health checks. Disabling a pool will cause
               any load balancers using it to failover to the next pool (if any).
+
+          health_sources: A list of health sources, ordered from highest to lowest priority, used to
+              evaluate individual origin health and overall pool health. The load balancer
+              uses the first source that has data and falls back to the next. Currently
+              accepted values are null or the exact array ["regional", "global"]; any other
+              combination is rejected. Null (the default) behaves like ["local", "global"].
+              ["regional", "global"] makes each region steer on its own health, falling back
+              to the global decision when a region has no fresh data. Setting regional
+              requires at least one region in check_regions.
 
           latitude: The latitude of the data center containing the origins used in this pool in
               decimal degrees. If this is set, longitude must also be set.
@@ -141,6 +156,8 @@ class PoolsResource(SyncAPIResource):
 
           monitor_group: The ID of the Monitor Group to use for checking the health of origins within
               this pool.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
 
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
@@ -170,14 +187,17 @@ class PoolsResource(SyncAPIResource):
                 {
                     "name": name,
                     "origins": origins,
+                    "check_regions": check_regions,
                     "description": description,
                     "enabled": enabled,
+                    "health_sources": health_sources,
                     "latitude": latitude,
                     "load_shedding": load_shedding,
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
                     "monitor_group": monitor_group,
+                    "networks": networks,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
@@ -211,6 +231,7 @@ class PoolsResource(SyncAPIResource):
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
         origin_steering: Optional[OriginSteeringParam] | Omit = omit,
@@ -269,6 +290,8 @@ class PoolsResource(SyncAPIResource):
           monitor_group: The ID of the Monitor Group to use for checking the health of origins within
               this pool.
 
+          networks: List of networks where Load Balancer or Pool is enabled.
+
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -311,6 +334,7 @@ class PoolsResource(SyncAPIResource):
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
                     "monitor_group": monitor_group,
+                    "networks": networks,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
@@ -478,6 +502,7 @@ class PoolsResource(SyncAPIResource):
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
         name: str | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
         origin_steering: Optional[OriginSteeringParam] | Omit = omit,
@@ -534,6 +559,8 @@ class PoolsResource(SyncAPIResource):
           name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
               underscores are allowed.
 
+          networks: List of networks where Load Balancer or Pool is enabled.
+
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -578,6 +605,7 @@ class PoolsResource(SyncAPIResource):
                     "monitor": monitor,
                     "monitor_group": monitor_group,
                     "name": name,
+                    "networks": networks,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
@@ -674,14 +702,17 @@ class AsyncPoolsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         origins: Iterable[OriginParam],
+        check_regions: Optional[List[CheckRegion]] | Omit = omit,
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
+        health_sources: Optional[List[Literal["local", "regional", "global"]]] | Omit = omit,
         latitude: float | Omit = omit,
         load_shedding: Optional[LoadSheddingParam] | Omit = omit,
         longitude: float | Omit = omit,
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
         origin_steering: Optional[OriginSteeringParam] | Omit = omit,
@@ -704,11 +735,23 @@ class AsyncPoolsResource(AsyncAPIResource):
           origins: The list of origins within this pool. Traffic directed at this pool is balanced
               across all currently healthy origins, provided the pool itself is healthy.
 
+          check_regions: A list of regions from which to run health checks. Null means every Cloudflare
+              data center.
+
           description: A human-readable description of the pool.
 
           enabled: Whether to enable (the default) or disable this pool. Disabled pools will not
               receive traffic and are excluded from health checks. Disabling a pool will cause
               any load balancers using it to failover to the next pool (if any).
+
+          health_sources: A list of health sources, ordered from highest to lowest priority, used to
+              evaluate individual origin health and overall pool health. The load balancer
+              uses the first source that has data and falls back to the next. Currently
+              accepted values are null or the exact array ["regional", "global"]; any other
+              combination is rejected. Null (the default) behaves like ["local", "global"].
+              ["regional", "global"] makes each region steer on its own health, falling back
+              to the global decision when a region has no fresh data. Setting regional
+              requires at least one region in check_regions.
 
           latitude: The latitude of the data center containing the origins used in this pool in
               decimal degrees. If this is set, longitude must also be set.
@@ -727,6 +770,8 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           monitor_group: The ID of the Monitor Group to use for checking the health of origins within
               this pool.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
 
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
@@ -756,14 +801,17 @@ class AsyncPoolsResource(AsyncAPIResource):
                 {
                     "name": name,
                     "origins": origins,
+                    "check_regions": check_regions,
                     "description": description,
                     "enabled": enabled,
+                    "health_sources": health_sources,
                     "latitude": latitude,
                     "load_shedding": load_shedding,
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
                     "monitor_group": monitor_group,
+                    "networks": networks,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
@@ -797,6 +845,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
         origin_steering: Optional[OriginSteeringParam] | Omit = omit,
@@ -855,6 +904,8 @@ class AsyncPoolsResource(AsyncAPIResource):
           monitor_group: The ID of the Monitor Group to use for checking the health of origins within
               this pool.
 
+          networks: List of networks where Load Balancer or Pool is enabled.
+
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -897,6 +948,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
                     "monitor_group": monitor_group,
+                    "networks": networks,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
@@ -1064,6 +1116,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
         name: str | Omit = omit,
+        networks: SequenceNotStr[str] | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
         origin_steering: Optional[OriginSteeringParam] | Omit = omit,
@@ -1120,6 +1173,8 @@ class AsyncPoolsResource(AsyncAPIResource):
           name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
               underscores are allowed.
 
+          networks: List of networks where Load Balancer or Pool is enabled.
+
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -1164,6 +1219,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     "monitor": monitor,
                     "monitor_group": monitor_group,
                     "name": name,
+                    "networks": networks,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,

@@ -103,7 +103,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.intel import Whois, WhoisGetResponse
+from cloudflare.types.intel import WhoisGetResponse
 ```
 
 Methods:

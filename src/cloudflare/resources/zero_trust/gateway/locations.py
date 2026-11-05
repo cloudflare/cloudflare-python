@@ -54,6 +54,7 @@ class LocationsResource(SyncAPIResource):
         name: str,
         client_default: bool | Omit = omit,
         dns_destination_ips_id: str | Omit = omit,
+        dns64_enabled: bool | Omit = omit,
         ecs_support: bool | Omit = omit,
         endpoints: Optional[EndpointParam] | Omit = omit,
         max_ttl: Optional[location_create_params.MaxTTL] | Omit = omit,
@@ -80,6 +81,9 @@ class LocationsResource(SyncAPIResource):
               shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
               When updating a location, if this field is absent or set to null, the
               pre-assigned pair remains unchanged.
+
+          dns64_enabled: Enable DNS64 synthesis for DNS queries matched to this location. When updating a
+              location, omitting this field resets it to false.
 
           ecs_support: Indicate whether the location must resolve EDNS queries.
 
@@ -110,6 +114,7 @@ class LocationsResource(SyncAPIResource):
                     "name": name,
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
+                    "dns64_enabled": dns64_enabled,
                     "ecs_support": ecs_support,
                     "endpoints": endpoints,
                     "max_ttl": max_ttl,
@@ -135,6 +140,7 @@ class LocationsResource(SyncAPIResource):
         name: str,
         client_default: bool | Omit = omit,
         dns_destination_ips_id: str | Omit = omit,
+        dns64_enabled: bool | Omit = omit,
         ecs_support: bool | Omit = omit,
         endpoints: Optional[EndpointParam] | Omit = omit,
         max_ttl: Optional[location_update_params.MaxTTL] | Omit = omit,
@@ -161,6 +167,9 @@ class LocationsResource(SyncAPIResource):
               shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
               When updating a location, if this field is absent or set to null, the
               pre-assigned pair remains unchanged.
+
+          dns64_enabled: Enable DNS64 synthesis for DNS queries matched to this location. When updating a
+              location, omitting this field resets it to false.
 
           ecs_support: Indicate whether the location must resolve EDNS queries.
 
@@ -195,6 +204,7 @@ class LocationsResource(SyncAPIResource):
                     "name": name,
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
+                    "dns64_enabled": dns64_enabled,
                     "ecs_support": ecs_support,
                     "endpoints": endpoints,
                     "max_ttl": max_ttl,
@@ -416,6 +426,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         name: str,
         client_default: bool | Omit = omit,
         dns_destination_ips_id: str | Omit = omit,
+        dns64_enabled: bool | Omit = omit,
         ecs_support: bool | Omit = omit,
         endpoints: Optional[EndpointParam] | Omit = omit,
         max_ttl: Optional[location_create_params.MaxTTL] | Omit = omit,
@@ -442,6 +453,9 @@ class AsyncLocationsResource(AsyncAPIResource):
               shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
               When updating a location, if this field is absent or set to null, the
               pre-assigned pair remains unchanged.
+
+          dns64_enabled: Enable DNS64 synthesis for DNS queries matched to this location. When updating a
+              location, omitting this field resets it to false.
 
           ecs_support: Indicate whether the location must resolve EDNS queries.
 
@@ -472,6 +486,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                     "name": name,
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
+                    "dns64_enabled": dns64_enabled,
                     "ecs_support": ecs_support,
                     "endpoints": endpoints,
                     "max_ttl": max_ttl,
@@ -497,6 +512,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         name: str,
         client_default: bool | Omit = omit,
         dns_destination_ips_id: str | Omit = omit,
+        dns64_enabled: bool | Omit = omit,
         ecs_support: bool | Omit = omit,
         endpoints: Optional[EndpointParam] | Omit = omit,
         max_ttl: Optional[location_update_params.MaxTTL] | Omit = omit,
@@ -523,6 +539,9 @@ class AsyncLocationsResource(AsyncAPIResource):
               shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
               When updating a location, if this field is absent or set to null, the
               pre-assigned pair remains unchanged.
+
+          dns64_enabled: Enable DNS64 synthesis for DNS queries matched to this location. When updating a
+              location, omitting this field resets it to false.
 
           ecs_support: Indicate whether the location must resolve EDNS queries.
 
@@ -557,6 +576,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                     "name": name,
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
+                    "dns64_enabled": dns64_enabled,
                     "ecs_support": ecs_support,
                     "endpoints": endpoints,
                     "max_ttl": max_ttl,

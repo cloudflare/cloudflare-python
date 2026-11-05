@@ -30,6 +30,7 @@ class TestScreenshot:
         screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
             url="url",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -168,6 +169,7 @@ class TestScreenshot:
         screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
             html="html",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -312,6 +314,7 @@ class TestAsyncScreenshot:
         screenshot = await async_client.browser_rendering.screenshot.create(
             account_id="account_id",
             url="url",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -450,6 +453,7 @@ class TestAsyncScreenshot:
         screenshot = await async_client.browser_rendering.screenshot.create(
             account_id="account_id",
             html="html",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[

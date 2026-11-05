@@ -42,6 +42,12 @@ class Issue(BaseModel):
 
     since: Optional[datetime] = None
 
+    source: Optional[Literal["cloudflare", "riskrecon"]] = None
+    """Who generated the insight.
+
+    `cloudflare` for Cloudflare-generated insights, otherwise the partner.
+    """
+
     status: Optional[Literal["active", "resolved"]] = None
     """The current status of the insight."""
 

@@ -10,6 +10,6 @@ __all__ = ["JobCreateParams"]
 class JobCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    name: Required[str]
+    namespace: Required[str]
 
     description: str

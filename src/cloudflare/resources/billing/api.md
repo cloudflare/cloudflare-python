@@ -10,6 +10,52 @@ Methods:
 
 - <code title="post /billing/address-validation">client.billing.<a href="./src/cloudflare/resources/billing/billing.py">address_validation</a>(\*\*<a href="src/cloudflare/types/billing/billing_address_validation_params.py">params</a>) -> <a href="./src/cloudflare/types/billing/billing_address_validation_response.py">BillingAddressValidationResponse</a></code>
 
+## SpendPolicies
+
+Types:
+
+```python
+from cloudflare.types.billing import (
+    SpendPolicyCreateResponse,
+    SpendPolicyUpdateResponse,
+    SpendPolicyListResponse,
+    SpendPolicyDeleteResponse,
+    SpendPolicyGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/billing/spend-policies">client.billing.spend_policies.<a href="./src/cloudflare/resources/billing/spend_policies/spend_policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/billing/spend_policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/billing/spend_policy_create_response.py">SpendPolicyCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/billing/spend-policies/{policy_id}">client.billing.spend_policies.<a href="./src/cloudflare/resources/billing/spend_policies/spend_policies.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/billing/spend_policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/billing/spend_policy_update_response.py">SpendPolicyUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/billing/spend-policies">client.billing.spend_policies.<a href="./src/cloudflare/resources/billing/spend_policies/spend_policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/billing/spend_policy_list_response.py">SyncSinglePage[SpendPolicyListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/billing/spend-policies/{policy_id}">client.billing.spend_policies.<a href="./src/cloudflare/resources/billing/spend_policies/spend_policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/billing/spend_policy_delete_response.py">SpendPolicyDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/billing/spend-policies/{policy_id}">client.billing.spend_policies.<a href="./src/cloudflare/resources/billing/spend_policies/spend_policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/billing/spend_policy_get_response.py">SpendPolicyGetResponse</a></code>
+
+### Audit
+
+Types:
+
+```python
+from cloudflare.types.billing.spend_policies import AuditListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/billing/spend-policies/{policy_id}/audit">client.billing.spend_policies.audit.<a href="./src/cloudflare/resources/billing/spend_policies/audit.py">list</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/billing/spend_policies/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/billing/spend_policies/audit_list_response.py">SyncSinglePage[AuditListResponse]</a></code>
+
+### Activity
+
+Types:
+
+```python
+from cloudflare.types.billing.spend_policies import ActivityListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/billing/spend-policies/activity">client.billing.spend_policies.activity.<a href="./src/cloudflare/resources/billing/spend_policies/activity.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/billing/spend_policies/activity_list_params.py">params</a>) -> <a href="./src/cloudflare/types/billing/spend_policies/activity_list_response.py">SyncCursorPaginationAfter[ActivityListResponse]</a></code>
+
 ## Profiles
 
 Types:

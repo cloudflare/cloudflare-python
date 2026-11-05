@@ -31,7 +31,7 @@ class TestResources:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             meta={},
             resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+            resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
             resource_type="custom-ruleset",
         )
         assert_matches_type(Optional[ResourceCreateResponse], resource, path=["response"])
@@ -43,7 +43,7 @@ class TestResources:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             meta={},
             resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+            resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
             resource_type="custom-ruleset",
         )
 
@@ -59,7 +59,7 @@ class TestResources:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             meta={},
             resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+            resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
             resource_type="custom-ruleset",
         ) as response:
             assert not response.is_closed
@@ -78,7 +78,7 @@ class TestResources:
                 account_id="",
                 meta={},
                 resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+                resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
                 resource_type="custom-ruleset",
             )
 
@@ -88,7 +88,7 @@ class TestResources:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 meta={},
                 resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+                resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
                 resource_type="custom-ruleset",
             )
 
@@ -351,7 +351,7 @@ class TestAsyncResources:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             meta={},
             resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+            resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
             resource_type="custom-ruleset",
         )
         assert_matches_type(Optional[ResourceCreateResponse], resource, path=["response"])
@@ -363,7 +363,7 @@ class TestAsyncResources:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             meta={},
             resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+            resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
             resource_type="custom-ruleset",
         )
 
@@ -379,7 +379,7 @@ class TestAsyncResources:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             meta={},
             resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+            resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
             resource_type="custom-ruleset",
         ) as response:
             assert not response.is_closed
@@ -398,7 +398,7 @@ class TestAsyncResources:
                 account_id="",
                 meta={},
                 resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+                resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
                 resource_type="custom-ruleset",
             )
 
@@ -408,7 +408,7 @@ class TestAsyncResources:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 meta={},
                 resource_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                resource_id="023e105f4ecef8ad9ca31a8372d0c353",
+                resource_id="0a679032-bbb2-4b7e-9acc-dd5c5cb27a17",
                 resource_type="custom-ruleset",
             )
 

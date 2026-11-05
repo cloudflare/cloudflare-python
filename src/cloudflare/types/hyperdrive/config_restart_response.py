@@ -96,9 +96,8 @@ Origin: TypeAlias = Union[
 
 
 class Integration(BaseModel):
-    """Connects to a PlanetScale database using credentials managed by Cloudflare.
-
-    The Cloudflare account must already be linked to PlanetScale in the Hyperdrive dashboard.
+    """
+    Selects a PlanetScale database and provisions credentials managed by Cloudflare when creating a Hyperdrive configuration. The Cloudflare account must already be linked to PlanetScale in the Hyperdrive dashboard. The selection is returned as read-only metadata and cannot be changed with replace or update operations.
     """
 
     database_branch_name: str
@@ -165,10 +164,11 @@ class ConfigRestartResponse(BaseModel):
     """Defines the creation time of the Hyperdrive configuration."""
 
     integration: Optional[Integration] = None
-    """Connects to a PlanetScale database using credentials managed by Cloudflare.
-
-    The Cloudflare account must already be linked to PlanetScale in the Hyperdrive
-    dashboard.
+    """
+    Selects a PlanetScale database and provisions credentials managed by Cloudflare
+    when creating a Hyperdrive configuration. The Cloudflare account must already be
+    linked to PlanetScale in the Hyperdrive dashboard. The selection is returned as
+    read-only metadata and cannot be changed with replace or update operations.
     """
 
     modified_on: Optional[datetime] = None

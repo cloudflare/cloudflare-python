@@ -35,6 +35,8 @@ __all__ = [
     "AccessLoginMethodRuleLoginMethod",
     "AccessOIDCClaimRule",
     "AccessOIDCClaimRuleOIDC",
+    "AccessServiceTokenTagRule",
+    "AccessServiceTokenTagRuleServiceTokenTag",
     "AccessLinkedAppTokenRule",
     "AccessLinkedAppTokenRuleLinkedAppToken",
     "AccessUserRiskScoreRule",
@@ -106,6 +108,31 @@ class AccessOIDCClaimRule(TypedDict, total=False):
     oidc: Required[AccessOIDCClaimRuleOIDC]
 
 
+class AccessServiceTokenTagRuleServiceTokenTag(TypedDict, total=False):
+    key: Required[str]
+    """The tag key to match.
+
+    Keys are case-sensitive and may contain Unicode letters and digits, underscores,
+    periods, and hyphens.
+    """
+
+    value: Required[str]
+    """The tag value to match.
+
+    Values are case-sensitive, preserve whitespace, and must not contain NUL
+    characters.
+    """
+
+
+class AccessServiceTokenTagRule(TypedDict, total=False):
+    """Matches an Access service token with the specified tag key and value.
+
+    Only compatible with non_identity decisions.
+    """
+
+    service_token_tag: Required[AccessServiceTokenTagRuleServiceTokenTag]
+
+
 class AccessLinkedAppTokenRuleLinkedAppToken(TypedDict, total=False):
     app_uid: Required[str]
     """The ID of an Access OIDC SaaS application"""
@@ -171,6 +198,7 @@ AccessRuleParam: TypeAlias = Union[
     SAMLGroupRuleParam,
     AccessOIDCClaimRule,
     ServiceTokenRuleParam,
+    AccessServiceTokenTagRule,
     AccessLinkedAppTokenRule,
     AccessUserRiskScoreRule,
     AccessCloudflareAccountMemberRule,

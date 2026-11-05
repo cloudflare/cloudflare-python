@@ -28,7 +28,7 @@ class TestUserAgents:
         user_agent = client.radar.robots_txt.top.user_agents.directive(
             date=[parse_date("2019-12-27")],
             directive="ALLOW",
-            domain_category=["string"],
+            domain_category=["News & Media"],
             format="JSON",
             limit=1,
             name=["main_series"],
@@ -72,7 +72,7 @@ class TestAsyncUserAgents:
         user_agent = await async_client.radar.robots_txt.top.user_agents.directive(
             date=[parse_date("2019-12-27")],
             directive="ALLOW",
-            domain_category=["string"],
+            domain_category=["News & Media"],
             format="JSON",
             limit=1,
             name=["main_series"],

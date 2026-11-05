@@ -51,8 +51,11 @@ class CatalogResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogListResponse:
-        """
-        Lists all target industries from industry map catalog
+        """Lists every predefined target industry, whether or not an event uses it.
+
+        To list
+        only the industries used in specific datasets, use
+        `threat-intel events target-industries list`.
 
         Args:
           account_id: Account ID.
@@ -109,8 +112,11 @@ class AsyncCatalogResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogListResponse:
-        """
-        Lists all target industries from industry map catalog
+        """Lists every predefined target industry, whether or not an event uses it.
+
+        To list
+        only the industries used in specific datasets, use
+        `threat-intel events target-industries list`.
 
         Args:
           account_id: Account ID.

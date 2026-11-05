@@ -55,7 +55,7 @@ class MaintenanceConfig(BaseModel):
 
 
 class R2DataCatalogGetResponse(BaseModel):
-    """Contains R2 Data Catalog information."""
+    """Contains catalog information."""
 
     id: str
     """Use this to uniquely identify the catalog."""
@@ -71,6 +71,12 @@ class R2DataCatalogGetResponse(BaseModel):
 
     credential_status: Optional[Literal["present", "absent"]] = None
     """Shows the credential configuration status."""
+
+    jurisdiction: Optional[str] = None
+    """Specifies the data-locality jurisdiction of the catalog.
+
+    The first enable sets it, and it cannot change. Currently always `default`.
+    """
 
     maintenance_config: Optional[MaintenanceConfig] = None
     """Configures maintenance for the catalog."""

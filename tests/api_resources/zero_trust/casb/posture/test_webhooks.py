@@ -30,7 +30,7 @@ class TestWebhooks:
     def test_method_create(self, client: Cloudflare) -> None:
         webhook = client.zero_trust.casb.posture.webhooks.create(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
         )
@@ -40,18 +40,14 @@ class TestWebhooks:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.zero_trust.casb.posture.webhooks.create(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             headers=[
                 {
-                    "key": "Authorization",
-                    "value": "Bearer token123",
-                },
-                {
                     "key": "X-Custom-Header",
                     "value": "value",
-                },
+                }
             ],
             signing_secret="my-secret-key",
             status="enabled",
@@ -62,7 +58,7 @@ class TestWebhooks:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.casb.posture.webhooks.with_raw_response.create(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
         )
@@ -76,7 +72,7 @@ class TestWebhooks:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.casb.posture.webhooks.with_streaming_response.create(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
         ) as response:
@@ -93,7 +89,7 @@ class TestWebhooks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.casb.posture.webhooks.with_raw_response.create(
                 account_id="",
-                authentication_type="Bearer Auth",
+                authentication_type="HMAC-Signing",
                 destination_url="https://example.com/webhook",
                 label="Send to Slack",
             )
@@ -103,7 +99,7 @@ class TestWebhooks:
         webhook = client.zero_trust.casb.posture.webhooks.update(
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             status="enabled",
@@ -115,19 +111,15 @@ class TestWebhooks:
         webhook = client.zero_trust.casb.posture.webhooks.update(
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             status="enabled",
             headers=[
                 {
-                    "key": "Authorization",
-                    "value": "Bearer token123",
-                },
-                {
                     "key": "X-Custom-Header",
                     "value": "value",
-                },
+                }
             ],
             signing_secret="my-secret-key",
         )
@@ -138,7 +130,7 @@ class TestWebhooks:
         response = client.zero_trust.casb.posture.webhooks.with_raw_response.update(
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             status="enabled",
@@ -154,7 +146,7 @@ class TestWebhooks:
         with client.zero_trust.casb.posture.webhooks.with_streaming_response.update(
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             status="enabled",
@@ -173,7 +165,7 @@ class TestWebhooks:
             client.zero_trust.casb.posture.webhooks.with_raw_response.update(
                 webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
-                authentication_type="Bearer Auth",
+                authentication_type="HMAC-Signing",
                 destination_url="https://example.com/webhook",
                 label="Send to Slack",
                 status="enabled",
@@ -183,7 +175,7 @@ class TestWebhooks:
             client.zero_trust.casb.posture.webhooks.with_raw_response.update(
                 webhook_id="",
                 account_id="46148281d8a93d002ef242d8b0d5f9f6",
-                authentication_type="Bearer Auth",
+                authentication_type="HMAC-Signing",
                 destination_url="https://example.com/webhook",
                 label="Send to Slack",
                 status="enabled",
@@ -279,7 +271,7 @@ class TestWebhooks:
     def test_method_evaluate(self, client: Cloudflare) -> None:
         webhook = client.zero_trust.casb.posture.webhooks.evaluate(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
         )
         assert_matches_type(Optional[WebhookEvaluateResponse], webhook, path=["response"])
@@ -288,17 +280,13 @@ class TestWebhooks:
     def test_method_evaluate_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.zero_trust.casb.posture.webhooks.evaluate(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             headers=[
                 {
-                    "key": "Authorization",
-                    "value": "Bearer token123",
-                },
-                {
                     "key": "X-Custom-Header",
                     "value": "value",
-                },
+                }
             ],
             signing_secret="my-secret-key",
         )
@@ -308,7 +296,7 @@ class TestWebhooks:
     def test_raw_response_evaluate(self, client: Cloudflare) -> None:
         response = client.zero_trust.casb.posture.webhooks.with_raw_response.evaluate(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
         )
 
@@ -321,7 +309,7 @@ class TestWebhooks:
     def test_streaming_response_evaluate(self, client: Cloudflare) -> None:
         with client.zero_trust.casb.posture.webhooks.with_streaming_response.evaluate(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
         ) as response:
             assert not response.is_closed
@@ -337,7 +325,7 @@ class TestWebhooks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.casb.posture.webhooks.with_raw_response.evaluate(
                 account_id="",
-                authentication_type="Bearer Auth",
+                authentication_type="HMAC-Signing",
                 destination_url="https://example.com/webhook",
             )
 
@@ -447,7 +435,7 @@ class TestAsyncWebhooks:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.zero_trust.casb.posture.webhooks.create(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
         )
@@ -457,18 +445,14 @@ class TestAsyncWebhooks:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.zero_trust.casb.posture.webhooks.create(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             headers=[
                 {
-                    "key": "Authorization",
-                    "value": "Bearer token123",
-                },
-                {
                     "key": "X-Custom-Header",
                     "value": "value",
-                },
+                }
             ],
             signing_secret="my-secret-key",
             status="enabled",
@@ -479,7 +463,7 @@ class TestAsyncWebhooks:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.casb.posture.webhooks.with_raw_response.create(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
         )
@@ -493,7 +477,7 @@ class TestAsyncWebhooks:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.casb.posture.webhooks.with_streaming_response.create(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
         ) as response:
@@ -510,7 +494,7 @@ class TestAsyncWebhooks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.casb.posture.webhooks.with_raw_response.create(
                 account_id="",
-                authentication_type="Bearer Auth",
+                authentication_type="HMAC-Signing",
                 destination_url="https://example.com/webhook",
                 label="Send to Slack",
             )
@@ -520,7 +504,7 @@ class TestAsyncWebhooks:
         webhook = await async_client.zero_trust.casb.posture.webhooks.update(
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             status="enabled",
@@ -532,19 +516,15 @@ class TestAsyncWebhooks:
         webhook = await async_client.zero_trust.casb.posture.webhooks.update(
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             status="enabled",
             headers=[
                 {
-                    "key": "Authorization",
-                    "value": "Bearer token123",
-                },
-                {
                     "key": "X-Custom-Header",
                     "value": "value",
-                },
+                }
             ],
             signing_secret="my-secret-key",
         )
@@ -555,7 +535,7 @@ class TestAsyncWebhooks:
         response = await async_client.zero_trust.casb.posture.webhooks.with_raw_response.update(
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             status="enabled",
@@ -571,7 +551,7 @@ class TestAsyncWebhooks:
         async with async_client.zero_trust.casb.posture.webhooks.with_streaming_response.update(
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             label="Send to Slack",
             status="enabled",
@@ -590,7 +570,7 @@ class TestAsyncWebhooks:
             await async_client.zero_trust.casb.posture.webhooks.with_raw_response.update(
                 webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
-                authentication_type="Bearer Auth",
+                authentication_type="HMAC-Signing",
                 destination_url="https://example.com/webhook",
                 label="Send to Slack",
                 status="enabled",
@@ -600,7 +580,7 @@ class TestAsyncWebhooks:
             await async_client.zero_trust.casb.posture.webhooks.with_raw_response.update(
                 webhook_id="",
                 account_id="46148281d8a93d002ef242d8b0d5f9f6",
-                authentication_type="Bearer Auth",
+                authentication_type="HMAC-Signing",
                 destination_url="https://example.com/webhook",
                 label="Send to Slack",
                 status="enabled",
@@ -696,7 +676,7 @@ class TestAsyncWebhooks:
     async def test_method_evaluate(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.zero_trust.casb.posture.webhooks.evaluate(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
         )
         assert_matches_type(Optional[WebhookEvaluateResponse], webhook, path=["response"])
@@ -705,17 +685,13 @@ class TestAsyncWebhooks:
     async def test_method_evaluate_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.zero_trust.casb.posture.webhooks.evaluate(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
             headers=[
                 {
-                    "key": "Authorization",
-                    "value": "Bearer token123",
-                },
-                {
                     "key": "X-Custom-Header",
                     "value": "value",
-                },
+                }
             ],
             signing_secret="my-secret-key",
         )
@@ -725,7 +701,7 @@ class TestAsyncWebhooks:
     async def test_raw_response_evaluate(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.casb.posture.webhooks.with_raw_response.evaluate(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
         )
 
@@ -738,7 +714,7 @@ class TestAsyncWebhooks:
     async def test_streaming_response_evaluate(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.casb.posture.webhooks.with_streaming_response.evaluate(
             account_id="46148281d8a93d002ef242d8b0d5f9f6",
-            authentication_type="Bearer Auth",
+            authentication_type="HMAC-Signing",
             destination_url="https://example.com/webhook",
         ) as response:
             assert not response.is_closed
@@ -754,7 +730,7 @@ class TestAsyncWebhooks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.casb.posture.webhooks.with_raw_response.evaluate(
                 account_id="",
-                authentication_type="Bearer Auth",
+                authentication_type="HMAC-Signing",
                 destination_url="https://example.com/webhook",
             )
 

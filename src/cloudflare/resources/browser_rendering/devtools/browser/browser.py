@@ -4,14 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from .page import (
-    PageResource,
-    AsyncPageResource,
-    PageResourceWithRawResponse,
-    AsyncPageResourceWithRawResponse,
-    PageResourceWithStreamingResponse,
-    AsyncPageResourceWithStreamingResponse,
-)
 from .targets import (
     TargetsResource,
     AsyncTargetsResource,
@@ -28,8 +20,8 @@ from .live_view import (
     LiveViewResourceWithStreamingResponse,
     AsyncLiveViewResourceWithStreamingResponse,
 )
-from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ....._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -39,7 +31,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.browser_rendering.devtools import browser_create_params, browser_launch_params, browser_connect_params
+from .....types.browser_rendering.devtools import browser_create_params
 from .....types.browser_rendering.devtools.browser_create_response import BrowserCreateResponse
 from .....types.browser_rendering.devtools.browser_delete_response import BrowserDeleteResponse
 from .....types.browser_rendering.devtools.browser_version_response import BrowserVersionResponse
@@ -52,10 +44,6 @@ class BrowserResource(SyncAPIResource):
     @cached_property
     def live_view(self) -> LiveViewResource:
         return LiveViewResource(self._client)
-
-    @cached_property
-    def page(self) -> PageResource:
-        return PageResource(self._client)
 
     @cached_property
     def targets(self) -> TargetsResource:
@@ -190,136 +178,6 @@ class BrowserResource(SyncAPIResource):
             cast_to=BrowserDeleteResponse,
         )
 
-    def connect(
-        self,
-        session_id: str,
-        *,
-        account_id: str,
-        keep_alive: float | Omit = omit,
-        lab: bool | Omit = omit,
-        recording: bool | Omit = omit,
-        cf_brapi_guardrails: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Establishes a WebSocket connection to an existing browser session.
-
-        Args:
-          account_id: Account ID.
-
-          session_id: Browser session ID to connect to.
-
-          keep_alive: Keep-alive time in ms (only valid when acquiring new session).
-
-          lab: Use experimental browser.
-
-          cf_brapi_guardrails: Optional base64url-encoded JSON connection guardrails (mode)
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not session_id:
-            raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        extra_headers = {**strip_not_given({"cf-brapi-guardrails": cf_brapi_guardrails}), **(extra_headers or {})}
-        return self._get(
-            path_template(
-                "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}",
-                account_id=account_id,
-                session_id=session_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "keep_alive": keep_alive,
-                        "lab": lab,
-                        "recording": recording,
-                    },
-                    browser_connect_params.BrowserConnectParams,
-                ),
-            ),
-            cast_to=NoneType,
-        )
-
-    def launch(
-        self,
-        *,
-        account_id: str,
-        keep_alive: float | Omit = omit,
-        lab: bool | Omit = omit,
-        recording: bool | Omit = omit,
-        cf_brapi_guardrails: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Acquires and establishes a WebSocket connection to a browser session.
-
-        Session
-        guardrails may be supplied in the `cf-brapi-guardrails` header as
-        base64url-encoded JSON of the same `guardrails` object the POST body accepts
-        (for example `{"allowedDomains":["*.example.com"]}`).
-
-        Args:
-          account_id: Account ID.
-
-          keep_alive: Keep-alive time in ms (only valid when acquiring new session).
-
-          lab: Use experimental browser.
-
-          cf_brapi_guardrails: Optional base64url-encoded JSON session guardrails (allowedDomains and
-              allowedDomainSets)
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        extra_headers = {**strip_not_given({"cf-brapi-guardrails": cf_brapi_guardrails}), **(extra_headers or {})}
-        return self._get(
-            path_template("/accounts/{account_id}/browser-rendering/devtools/browser", account_id=account_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "keep_alive": keep_alive,
-                        "lab": lab,
-                        "recording": recording,
-                    },
-                    browser_launch_params.BrowserLaunchParams,
-                ),
-            ),
-            cast_to=NoneType,
-        )
-
     def protocol(
         self,
         session_id: str,
@@ -414,10 +272,6 @@ class AsyncBrowserResource(AsyncAPIResource):
     @cached_property
     def live_view(self) -> AsyncLiveViewResource:
         return AsyncLiveViewResource(self._client)
-
-    @cached_property
-    def page(self) -> AsyncPageResource:
-        return AsyncPageResource(self._client)
 
     @cached_property
     def targets(self) -> AsyncTargetsResource:
@@ -552,136 +406,6 @@ class AsyncBrowserResource(AsyncAPIResource):
             cast_to=BrowserDeleteResponse,
         )
 
-    async def connect(
-        self,
-        session_id: str,
-        *,
-        account_id: str,
-        keep_alive: float | Omit = omit,
-        lab: bool | Omit = omit,
-        recording: bool | Omit = omit,
-        cf_brapi_guardrails: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """
-        Establishes a WebSocket connection to an existing browser session.
-
-        Args:
-          account_id: Account ID.
-
-          session_id: Browser session ID to connect to.
-
-          keep_alive: Keep-alive time in ms (only valid when acquiring new session).
-
-          lab: Use experimental browser.
-
-          cf_brapi_guardrails: Optional base64url-encoded JSON connection guardrails (mode)
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not session_id:
-            raise ValueError(f"Expected a non-empty value for `session_id` but received {session_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        extra_headers = {**strip_not_given({"cf-brapi-guardrails": cf_brapi_guardrails}), **(extra_headers or {})}
-        return await self._get(
-            path_template(
-                "/accounts/{account_id}/browser-rendering/devtools/browser/{session_id}",
-                account_id=account_id,
-                session_id=session_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "keep_alive": keep_alive,
-                        "lab": lab,
-                        "recording": recording,
-                    },
-                    browser_connect_params.BrowserConnectParams,
-                ),
-            ),
-            cast_to=NoneType,
-        )
-
-    async def launch(
-        self,
-        *,
-        account_id: str,
-        keep_alive: float | Omit = omit,
-        lab: bool | Omit = omit,
-        recording: bool | Omit = omit,
-        cf_brapi_guardrails: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
-        """Acquires and establishes a WebSocket connection to a browser session.
-
-        Session
-        guardrails may be supplied in the `cf-brapi-guardrails` header as
-        base64url-encoded JSON of the same `guardrails` object the POST body accepts
-        (for example `{"allowedDomains":["*.example.com"]}`).
-
-        Args:
-          account_id: Account ID.
-
-          keep_alive: Keep-alive time in ms (only valid when acquiring new session).
-
-          lab: Use experimental browser.
-
-          cf_brapi_guardrails: Optional base64url-encoded JSON session guardrails (allowedDomains and
-              allowedDomainSets)
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        extra_headers = {**strip_not_given({"cf-brapi-guardrails": cf_brapi_guardrails}), **(extra_headers or {})}
-        return await self._get(
-            path_template("/accounts/{account_id}/browser-rendering/devtools/browser", account_id=account_id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "keep_alive": keep_alive,
-                        "lab": lab,
-                        "recording": recording,
-                    },
-                    browser_launch_params.BrowserLaunchParams,
-                ),
-            ),
-            cast_to=NoneType,
-        )
-
     async def protocol(
         self,
         session_id: str,
@@ -782,12 +506,6 @@ class BrowserResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             browser.delete,
         )
-        self.connect = to_raw_response_wrapper(
-            browser.connect,
-        )
-        self.launch = to_raw_response_wrapper(
-            browser.launch,
-        )
         self.protocol = to_raw_response_wrapper(
             browser.protocol,
         )
@@ -798,10 +516,6 @@ class BrowserResourceWithRawResponse:
     @cached_property
     def live_view(self) -> LiveViewResourceWithRawResponse:
         return LiveViewResourceWithRawResponse(self._browser.live_view)
-
-    @cached_property
-    def page(self) -> PageResourceWithRawResponse:
-        return PageResourceWithRawResponse(self._browser.page)
 
     @cached_property
     def targets(self) -> TargetsResourceWithRawResponse:
@@ -818,12 +532,6 @@ class AsyncBrowserResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             browser.delete,
         )
-        self.connect = async_to_raw_response_wrapper(
-            browser.connect,
-        )
-        self.launch = async_to_raw_response_wrapper(
-            browser.launch,
-        )
         self.protocol = async_to_raw_response_wrapper(
             browser.protocol,
         )
@@ -834,10 +542,6 @@ class AsyncBrowserResourceWithRawResponse:
     @cached_property
     def live_view(self) -> AsyncLiveViewResourceWithRawResponse:
         return AsyncLiveViewResourceWithRawResponse(self._browser.live_view)
-
-    @cached_property
-    def page(self) -> AsyncPageResourceWithRawResponse:
-        return AsyncPageResourceWithRawResponse(self._browser.page)
 
     @cached_property
     def targets(self) -> AsyncTargetsResourceWithRawResponse:
@@ -854,12 +558,6 @@ class BrowserResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             browser.delete,
         )
-        self.connect = to_streamed_response_wrapper(
-            browser.connect,
-        )
-        self.launch = to_streamed_response_wrapper(
-            browser.launch,
-        )
         self.protocol = to_streamed_response_wrapper(
             browser.protocol,
         )
@@ -870,10 +568,6 @@ class BrowserResourceWithStreamingResponse:
     @cached_property
     def live_view(self) -> LiveViewResourceWithStreamingResponse:
         return LiveViewResourceWithStreamingResponse(self._browser.live_view)
-
-    @cached_property
-    def page(self) -> PageResourceWithStreamingResponse:
-        return PageResourceWithStreamingResponse(self._browser.page)
 
     @cached_property
     def targets(self) -> TargetsResourceWithStreamingResponse:
@@ -890,12 +584,6 @@ class AsyncBrowserResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             browser.delete,
         )
-        self.connect = async_to_streamed_response_wrapper(
-            browser.connect,
-        )
-        self.launch = async_to_streamed_response_wrapper(
-            browser.launch,
-        )
         self.protocol = async_to_streamed_response_wrapper(
             browser.protocol,
         )
@@ -906,10 +594,6 @@ class AsyncBrowserResourceWithStreamingResponse:
     @cached_property
     def live_view(self) -> AsyncLiveViewResourceWithStreamingResponse:
         return AsyncLiveViewResourceWithStreamingResponse(self._browser.live_view)
-
-    @cached_property
-    def page(self) -> AsyncPageResourceWithStreamingResponse:
-        return AsyncPageResourceWithStreamingResponse(self._browser.page)
 
     @cached_property
     def targets(self) -> AsyncTargetsResourceWithStreamingResponse:

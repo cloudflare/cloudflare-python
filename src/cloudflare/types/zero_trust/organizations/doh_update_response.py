@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
@@ -39,10 +39,38 @@ class DOHUpdateResponse(BaseModel):
 
     A disabled service token cannot be used to authenticate; both its current and
     previous `client_secret` stop being accepted, but the token itself is preserved
-    and can be re-enabled at any time. Defaults to enabled when omitted on create.
+    and can be re-enabled. A service token reported as leaked is disabled
+    automatically and cannot be re-enabled until its secret is rotated; attempting
+    to do so returns a 409. Defaults to enabled when omitted on create.
     """
 
     expires_at: Optional[datetime] = None
 
+    leak_report_url: Optional[str] = None
+    """Where the leaked `client_secret` was found, if provided by the reporter.
+
+    Omitted if the token has not been reported as leaked.
+    """
+
+    leak_reported_at: Optional[datetime] = None
+    """
+    When a secret scanning partner reported this service token's `client_secret` as
+    leaked. A leaked service token is disabled and must be rotated before it can be
+    re-enabled. Cleared once the secret is rotated. Omitted if the token has not
+    been reported as leaked.
+    """
+
+    leak_reporter: Optional[str] = None
+    """The secret scanning partner that reported the leak.
+
+    Omitted if the token has not been reported as leaked.
+    """
+
     name: Optional[str] = None
     """The name of the service token."""
+
+    tags: Optional[Dict[str, str]] = None
+    """Tags associated with the service token, as key-value pairs.
+
+    On update, replaces all existing tags.
+    """

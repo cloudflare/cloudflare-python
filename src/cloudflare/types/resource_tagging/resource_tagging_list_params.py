@@ -31,6 +31,15 @@ class ResourceTaggingListParams(TypedDict, total=False):
     cursor: str
     """Cursor for pagination."""
 
+    include_navigation: bool
+    """Resolve current namespace Worker navigation by immutable child tag.
+
+    Optional read-only navigation is omitted for deleted or unresolved children.
+    Lookups are limited to this page, at most five concurrently, with a shared
+    two-second budget. Tag identity, ETag, filters and pagination are unchanged;
+    name filtering still uses the stored resource name. Defaults to false.
+    """
+
     name: str
     """Filter by resource name.
 
@@ -64,9 +73,12 @@ class ResourceTaggingListParams(TypedDict, total=False):
             "access_application",
             "access_application_policy",
             "access_group",
+            "access_service_token",
             "account",
             "account_ruleset",
             "ai_gateway",
+            "ai_search_instance",
+            "ai_search_namespace",
             "alerting_policy",
             "alerting_webhook",
             "api_gateway_operation",
@@ -78,6 +90,7 @@ class ResourceTaggingListParams(TypedDict, total=False):
             "cws_policy_set",
             "cws_workload",
             "d1_database",
+            "device",
             "dns_record",
             "durable_object_namespace",
             "gateway_list",
@@ -90,6 +103,7 @@ class ResourceTaggingListParams(TypedDict, total=False):
             "load_balancer_monitor",
             "load_balancer_pool",
             "managed_client_certificate",
+            "namespace_worker",
             "pages_project",
             "queue",
             "r2_bucket",

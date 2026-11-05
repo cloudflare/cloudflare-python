@@ -72,6 +72,8 @@ class GuardrailsPrompt(BaseModel):
 
     s13: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S13", default=None)
 
+    s14: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S14", default=None)
+
     s2: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S2", default=None)
 
     s3: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S3", default=None)
@@ -101,6 +103,8 @@ class GuardrailsResponse(BaseModel):
     s12: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S12", default=None)
 
     s13: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S13", default=None)
+
+    s14: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S14", default=None)
 
     s2: Optional[Literal["FLAG", "BLOCK"]] = FieldInfo(alias="S2", default=None)
 
@@ -215,6 +219,11 @@ class AIGatewayUpdateResponse(BaseModel):
     rate_limiting_limit: Optional[int] = None
 
     authentication: Optional[bool] = None
+    """Require authentication for gateway access.
+
+    New gateways must have authentication enabled. Once enabled, authentication
+    cannot be disabled.
+    """
 
     byok_only: Optional[bool] = None
     """
@@ -223,6 +232,16 @@ class AIGatewayUpdateResponse(BaseModel):
     """
 
     dlp: Optional[DLP] = None
+
+    fedramp_level: Optional[Literal["fedramp-medium", "fedramp-high"]] = None
+    """FedRAMP compliance level: fedramp-medium or fedramp-high."""
+
+    fedramp_mode: Optional[Literal["prefer", "require"]] = None
+    """FedRAMP enforcement mode.
+
+    "prefer" prioritizes compliant connectors but allows fallback. "require"
+    strictly filters.
+    """
 
     guardrails: Optional[Guardrails] = None
 
@@ -254,6 +273,11 @@ class AIGatewayUpdateResponse(BaseModel):
     spend_limits: Optional[SpendLimits] = None
 
     store_id: Optional[str] = None
+    """Secrets Store used by this gateway.
+
+    Omit on update to keep the current store. Cannot be cleared while stored keys or
+    secret references depend on it.
+    """
 
     stripe: Optional[Stripe] = None
 

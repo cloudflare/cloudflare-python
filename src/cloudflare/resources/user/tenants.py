@@ -15,7 +15,7 @@ from ..._response import (
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.organizations.organization import Organization
+from ...types.user.tenant_list_response import TenantListResponse
 
 __all__ = ["TenantsResource", "AsyncTenantsResource"]
 
@@ -49,15 +49,20 @@ class TenantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[Organization]:
-        """Retrieves list of tenants the authenticated user / method has access to."""
+    ) -> SyncSinglePage[TenantListResponse]:
+        """
+        Lists the Cloudflare tenants in which the authenticated user has direct
+        membership using the legacy Tenant response shape. Use `GET /organizations` to
+        list Organizations the user can access, including through hierarchy, using the
+        modern Organization response shape.
+        """
         return self._get_api_list(
             "/user/tenants",
-            page=SyncSinglePage[Organization],
+            page=SyncSinglePage[TenantListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Organization,
+            model=TenantListResponse,
         )
 
 
@@ -90,15 +95,20 @@ class AsyncTenantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Organization, AsyncSinglePage[Organization]]:
-        """Retrieves list of tenants the authenticated user / method has access to."""
+    ) -> AsyncPaginator[TenantListResponse, AsyncSinglePage[TenantListResponse]]:
+        """
+        Lists the Cloudflare tenants in which the authenticated user has direct
+        membership using the legacy Tenant response shape. Use `GET /organizations` to
+        list Organizations the user can access, including through hierarchy, using the
+        modern Organization response shape.
+        """
         return self._get_api_list(
             "/user/tenants",
-            page=AsyncSinglePage[Organization],
+            page=AsyncSinglePage[TenantListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Organization,
+            model=TenantListResponse,
         )
 
 

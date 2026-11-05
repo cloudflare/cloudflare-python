@@ -117,12 +117,13 @@ class InstancesResource(SyncAPIResource):
         """Create a new AI Search instance with the given configuration.
 
         If type is omitted
-        or null, a non-blank HTTP(S) source infers web-crawler and an existing R2 bucket
-        source infers r2. A missing or blank source without a type creates a managed
-        upload-only instance. Search for Agents instances require the default namespace.
+        or null, a non-blank HTTP(S) source infers web-crawler and any other source
+        infers r2; r2 sources must name an existing bucket. A missing or blank source
+        without a type creates a managed upload-only instance.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -137,14 +138,17 @@ class InstancesResource(SyncAPIResource):
           hybrid_search_enabled: Deprecated — use index_method instead. Defaults to true for new instances; set
               false to create a vector-only instance.
 
-          index_method: Controls which storage backends are used during indexing. Defaults to vector and
-              keyword indexing for new instances.
+          index_method: Controls which storage backends indexing uses. Defaults to vector and keyword
+              indexing for new instances. When set, both vector and keyword are required.
 
           rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
               Completions API. An empty string uses the configured or default model.
 
+          score_threshold: Minimum similarity score a chunk must reach to be returned. Defaults to 0.4.
+
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+              Defaults to 86400 (24h).
 
           type: Source type. When omitted or null with a non-blank source, HTTP(S) URLs infer
               web-crawler and existing R2 bucket names infer r2. A missing or blank source
@@ -252,15 +256,12 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """Update an AI Search instance.
+        """
+        Updates the configuration of an AI Search instance.
 
-        Submitting Search for Agents metadata requires the
-        default namespace; omitting or removing it is allowed elsewhere. Submit Search
-        for Agents metadata and restrictive or unknown public endpoint changes or custom
-        domains in separate PUT requests, even when resubmitting unchanged metadata.
-
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
@@ -270,14 +271,17 @@ class InstancesResource(SyncAPIResource):
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
-          index_method: Controls which storage backends are used during indexing. Defaults to vector and
-              keyword indexing for new instances.
+          index_method: Controls which storage backends indexing uses. Defaults to vector and keyword
+              indexing for new instances. When set, both vector and keyword are required.
 
           rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
               Completions API. An empty string uses the configured or default model.
 
+          score_threshold: Minimum similarity score a chunk must reach to be returned. Defaults to 0.4.
+
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+              Defaults to 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -360,15 +364,17 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[InstanceListResponse]:
         """
-        List all AI Search instances in the account.
+        Lists all AI Search instances in the account.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
-          hostname: Filter by exact Search for Agents hostname (case-insensitive).
+          hostname: Return only instances with this exact Search for Agents hostname
+              (case-insensitive).
 
-          namespace: Filter by namespace.
+          namespace: Return only instances in this namespace.
 
           order_by: Field to order results by.
 
@@ -428,10 +434,11 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
         """
-        Permanently delete an AI Search instance and all its indexed data.
+        Deletes an AI Search instance and all its indexed data permanently.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           extra_headers: Send extra headers
@@ -479,8 +486,9 @@ class InstancesResource(SyncAPIResource):
         Performs a chat completion request against an AI Search instance, using indexed
         content as context for generating responses.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -535,8 +543,9 @@ class InstancesResource(SyncAPIResource):
         """
         Retrieve the configuration and status of an AI Search instance.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           extra_headers: Send extra headers
@@ -583,8 +592,9 @@ class InstancesResource(SyncAPIResource):
         Executes a semantic search query against an AI Search instance to find relevant
         indexed content.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -646,8 +656,9 @@ class InstancesResource(SyncAPIResource):
         """
         Retrieve usage and indexing statistics for an AI Search instance.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -746,12 +757,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         """Create a new AI Search instance with the given configuration.
 
         If type is omitted
-        or null, a non-blank HTTP(S) source infers web-crawler and an existing R2 bucket
-        source infers r2. A missing or blank source without a type creates a managed
-        upload-only instance. Search for Agents instances require the default namespace.
+        or null, a non-blank HTTP(S) source infers web-crawler and any other source
+        infers r2; r2 sources must name an existing bucket. A missing or blank source
+        without a type creates a managed upload-only instance.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -766,14 +778,17 @@ class AsyncInstancesResource(AsyncAPIResource):
           hybrid_search_enabled: Deprecated — use index_method instead. Defaults to true for new instances; set
               false to create a vector-only instance.
 
-          index_method: Controls which storage backends are used during indexing. Defaults to vector and
-              keyword indexing for new instances.
+          index_method: Controls which storage backends indexing uses. Defaults to vector and keyword
+              indexing for new instances. When set, both vector and keyword are required.
 
           rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
               Completions API. An empty string uses the configured or default model.
 
+          score_threshold: Minimum similarity score a chunk must reach to be returned. Defaults to 0.4.
+
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+              Defaults to 86400 (24h).
 
           type: Source type. When omitted or null with a non-blank source, HTTP(S) URLs infer
               web-crawler and existing R2 bucket names infer r2. A missing or blank source
@@ -881,15 +896,12 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """Update an AI Search instance.
+        """
+        Updates the configuration of an AI Search instance.
 
-        Submitting Search for Agents metadata requires the
-        default namespace; omitting or removing it is allowed elsewhere. Submit Search
-        for Agents metadata and restrictive or unknown public endpoint changes or custom
-        domains in separate PUT requests, even when resubmitting unchanged metadata.
-
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
@@ -899,14 +911,17 @@ class AsyncInstancesResource(AsyncAPIResource):
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
-          index_method: Controls which storage backends are used during indexing. Defaults to vector and
-              keyword indexing for new instances.
+          index_method: Controls which storage backends indexing uses. Defaults to vector and keyword
+              indexing for new instances. When set, both vector and keyword are required.
 
           rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
               Completions API. An empty string uses the configured or default model.
 
+          score_threshold: Minimum similarity score a chunk must reach to be returned. Defaults to 0.4.
+
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+              Defaults to 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -989,15 +1004,17 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InstanceListResponse, AsyncV4PagePaginationArray[InstanceListResponse]]:
         """
-        List all AI Search instances in the account.
+        Lists all AI Search instances in the account.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
-          hostname: Filter by exact Search for Agents hostname (case-insensitive).
+          hostname: Return only instances with this exact Search for Agents hostname
+              (case-insensitive).
 
-          namespace: Filter by namespace.
+          namespace: Return only instances in this namespace.
 
           order_by: Field to order results by.
 
@@ -1057,10 +1074,11 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
         """
-        Permanently delete an AI Search instance and all its indexed data.
+        Deletes an AI Search instance and all its indexed data permanently.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           extra_headers: Send extra headers
@@ -1108,8 +1126,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         Performs a chat completion request against an AI Search instance, using indexed
         content as context for generating responses.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -1164,8 +1183,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         Retrieve the configuration and status of an AI Search instance.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           extra_headers: Send extra headers
@@ -1212,8 +1232,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         Executes a semantic search query against an AI Search instance to find relevant
         indexed content.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -1275,8 +1296,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         Retrieve usage and indexing statistics for an AI Search instance.
 
-        Deprecated: use /accounts/{account_id}/ai-search/namespaces/{name}/instances
-        (and descendant paths) instead.
+        Deprecated: use
+        /accounts/{account_id}/ai-search/namespaces/{namespace}/instances (and
+        descendant paths) instead.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.

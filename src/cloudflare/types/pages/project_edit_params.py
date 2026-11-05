@@ -240,7 +240,11 @@ class DeploymentConfigsPreview(TypedDict, total=False):
     """Browser bindings used for Pages Functions."""
 
     build_image_major_version: int
-    """The major version of the build image to use for Pages Functions."""
+    """The major version of the build image to use for Pages Functions.
+
+    Version 1 is retired and its projects are moved to version 3. Once a project's
+    builds have been moved, a request that sets version 1 is rejected.
+    """
 
     compatibility_date: str
     """Compatibility date used for Pages Functions."""
@@ -436,7 +440,11 @@ class DeploymentConfigsProduction(TypedDict, total=False):
     """Browser bindings used for Pages Functions."""
 
     build_image_major_version: int
-    """The major version of the build image to use for Pages Functions."""
+    """The major version of the build image to use for Pages Functions.
+
+    Version 1 is retired and its projects are moved to version 3. Once a project's
+    builds have been moved, a request that sets version 1 is rejected.
+    """
 
     compatibility_date: str
     """Compatibility date used for Pages Functions."""

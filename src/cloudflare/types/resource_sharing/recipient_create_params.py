@@ -22,8 +22,5 @@ class RecipientCreateParams(TypedDict, total=False):
     names will continue to be accepted until 2027-05-26 (see `x-sunset`).
     """
 
-    organization_id: str
-    """Organization identifier."""
-
     recipient_account_id: str
     """The account that will receive the share."""

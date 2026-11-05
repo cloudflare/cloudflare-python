@@ -48,11 +48,11 @@ class QueriesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        alert_enabled: bool,
-        alert_rollup_enabled: bool,
         name: str,
         query_json: str,
-        rule_enabled: bool,
+        alert_enabled: bool | Omit = omit,
+        alert_rollup_enabled: bool | Omit = omit,
+        rule_enabled: bool | Omit = omit,
         rule_scope: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -61,23 +61,25 @@ class QueriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryCreateResponse:
-        """
-        Create a new saved event query for the account
+        """Saves an event query under a unique `name`.
+
+        `query_json` holds the query
+        parameters as a JSON string.
 
         Args:
           account_id: Account ID.
-
-          alert_enabled: Enable alerts for this query
-
-          alert_rollup_enabled: Enable alert rollup for this query
 
           name: Unique name for the saved query
 
           query_json: JSON string containing the query parameters
 
-          rule_enabled: Enable rule for this query
+          alert_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
 
-          rule_scope: Scope for the rule
+          alert_rollup_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
+
+          rule_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
+
+          rule_scope: Deprecated and ignored: saved-query alerting and rules were removed.
 
           extra_headers: Send extra headers
 
@@ -93,10 +95,10 @@ class QueriesResource(SyncAPIResource):
             path_template("/accounts/{account_id}/cloudforce-one/events/queries/create", account_id=account_id),
             body=maybe_transform(
                 {
-                    "alert_enabled": alert_enabled,
-                    "alert_rollup_enabled": alert_rollup_enabled,
                     "name": name,
                     "query_json": query_json,
+                    "alert_enabled": alert_enabled,
+                    "alert_rollup_enabled": alert_rollup_enabled,
                     "rule_enabled": rule_enabled,
                     "rule_scope": rule_scope,
                 },
@@ -120,7 +122,7 @@ class QueriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryListResponse:
         """
-        Retrieve all saved event queries for the account
+        Lists the account's saved event queries.
 
         Args:
           account_id: Account ID.
@@ -156,7 +158,7 @@ class QueriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a saved event query by its ID
+        Deletes a saved event query by its ID.
 
         Args:
           account_id: Account ID.
@@ -205,24 +207,24 @@ class QueriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryEditResponse:
         """
-        Update an existing saved event query by its ID
+        Updates the given fields of a saved event query.
 
         Args:
           account_id: Account ID.
 
           query_id: Event query ID
 
-          alert_enabled: Enable alerts for this query
+          alert_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
 
-          alert_rollup_enabled: Enable alert rollup for this query
+          alert_rollup_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
 
           name: Unique name for the saved query
 
           query_json: JSON string containing the query parameters
 
-          rule_enabled: Enable rule for this query
+          rule_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
 
-          rule_scope: Scope for the rule
+          rule_scope: Deprecated and ignored: saved-query alerting and rules were removed.
 
           extra_headers: Send extra headers
 
@@ -270,7 +272,7 @@ class QueriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryGetResponse:
         """
-        Retrieve a saved event query by its ID
+        Returns a saved event query by its ID.
 
         Args:
           account_id: Account ID.
@@ -324,11 +326,11 @@ class AsyncQueriesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        alert_enabled: bool,
-        alert_rollup_enabled: bool,
         name: str,
         query_json: str,
-        rule_enabled: bool,
+        alert_enabled: bool | Omit = omit,
+        alert_rollup_enabled: bool | Omit = omit,
+        rule_enabled: bool | Omit = omit,
         rule_scope: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -337,23 +339,25 @@ class AsyncQueriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryCreateResponse:
-        """
-        Create a new saved event query for the account
+        """Saves an event query under a unique `name`.
+
+        `query_json` holds the query
+        parameters as a JSON string.
 
         Args:
           account_id: Account ID.
-
-          alert_enabled: Enable alerts for this query
-
-          alert_rollup_enabled: Enable alert rollup for this query
 
           name: Unique name for the saved query
 
           query_json: JSON string containing the query parameters
 
-          rule_enabled: Enable rule for this query
+          alert_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
 
-          rule_scope: Scope for the rule
+          alert_rollup_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
+
+          rule_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
+
+          rule_scope: Deprecated and ignored: saved-query alerting and rules were removed.
 
           extra_headers: Send extra headers
 
@@ -369,10 +373,10 @@ class AsyncQueriesResource(AsyncAPIResource):
             path_template("/accounts/{account_id}/cloudforce-one/events/queries/create", account_id=account_id),
             body=await async_maybe_transform(
                 {
-                    "alert_enabled": alert_enabled,
-                    "alert_rollup_enabled": alert_rollup_enabled,
                     "name": name,
                     "query_json": query_json,
+                    "alert_enabled": alert_enabled,
+                    "alert_rollup_enabled": alert_rollup_enabled,
                     "rule_enabled": rule_enabled,
                     "rule_scope": rule_scope,
                 },
@@ -396,7 +400,7 @@ class AsyncQueriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryListResponse:
         """
-        Retrieve all saved event queries for the account
+        Lists the account's saved event queries.
 
         Args:
           account_id: Account ID.
@@ -432,7 +436,7 @@ class AsyncQueriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a saved event query by its ID
+        Deletes a saved event query by its ID.
 
         Args:
           account_id: Account ID.
@@ -481,24 +485,24 @@ class AsyncQueriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryEditResponse:
         """
-        Update an existing saved event query by its ID
+        Updates the given fields of a saved event query.
 
         Args:
           account_id: Account ID.
 
           query_id: Event query ID
 
-          alert_enabled: Enable alerts for this query
+          alert_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
 
-          alert_rollup_enabled: Enable alert rollup for this query
+          alert_rollup_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
 
           name: Unique name for the saved query
 
           query_json: JSON string containing the query parameters
 
-          rule_enabled: Enable rule for this query
+          rule_enabled: Deprecated and ignored: saved-query alerting and rules were removed.
 
-          rule_scope: Scope for the rule
+          rule_scope: Deprecated and ignored: saved-query alerting and rules were removed.
 
           extra_headers: Send extra headers
 
@@ -546,7 +550,7 @@ class AsyncQueriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryGetResponse:
         """
-        Retrieve a saved event query by its ID
+        Returns a saved event query by its ID.
 
         Args:
           account_id: Account ID.

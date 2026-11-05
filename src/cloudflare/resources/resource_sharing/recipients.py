@@ -54,7 +54,6 @@ class RecipientsResource(SyncAPIResource):
         *,
         path_account_id: str,
         body_account_id: str | Omit = omit,
-        organization_id: str | Omit = omit,
         recipient_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -82,8 +81,6 @@ class RecipientsResource(SyncAPIResource):
               from the recipient account (in the body). Both names will continue to be
               accepted until 2027-05-26 (see `x-sunset`).
 
-          organization_id: Organization identifier.
-
           recipient_account_id: The account that will receive the share.
 
           extra_headers: Send extra headers
@@ -107,7 +104,6 @@ class RecipientsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "body_account_id": body_account_id,
-                    "organization_id": organization_id,
                     "recipient_account_id": recipient_account_id,
                 },
                 recipient_create_params.RecipientCreateParams,
@@ -151,12 +147,9 @@ class RecipientsResource(SyncAPIResource):
 
           include_resources: Include resources in the response.
 
-          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
-              omitted entirely along with `per_page` to receive a non-paginated response.
+          page: Page number. Defaults to `1` when omitted.
 
-          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
-              without `per_page`. May be omitted entirely along with `page` to receive a
-              non-paginated response.
+          per_page: Number of objects to return per page. Defaults to `20` when omitted.
 
           extra_headers: Send extra headers
 
@@ -342,7 +335,6 @@ class AsyncRecipientsResource(AsyncAPIResource):
         *,
         path_account_id: str,
         body_account_id: str | Omit = omit,
-        organization_id: str | Omit = omit,
         recipient_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -370,8 +362,6 @@ class AsyncRecipientsResource(AsyncAPIResource):
               from the recipient account (in the body). Both names will continue to be
               accepted until 2027-05-26 (see `x-sunset`).
 
-          organization_id: Organization identifier.
-
           recipient_account_id: The account that will receive the share.
 
           extra_headers: Send extra headers
@@ -395,7 +385,6 @@ class AsyncRecipientsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "body_account_id": body_account_id,
-                    "organization_id": organization_id,
                     "recipient_account_id": recipient_account_id,
                 },
                 recipient_create_params.RecipientCreateParams,
@@ -439,12 +428,9 @@ class AsyncRecipientsResource(AsyncAPIResource):
 
           include_resources: Include resources in the response.
 
-          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
-              omitted entirely along with `per_page` to receive a non-paginated response.
+          page: Page number. Defaults to `1` when omitted.
 
-          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
-              without `per_page`. May be omitted entirely along with `page` to receive a
-              non-paginated response.
+          per_page: Number of objects to return per page. Defaults to `20` when omitted.
 
           extra_headers: Send extra headers
 

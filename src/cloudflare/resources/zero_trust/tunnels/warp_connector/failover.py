@@ -57,8 +57,8 @@ class FailoverResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Triggers a manual failover for a specific WARP Connector Tunnel, setting the
-        specified client as the active connector. The tunnel must be configured for high
+        Triggers a manual failover for a specific Mesh node, setting the specified
+        client as the active connector. The tunnel must be configured for high
         availability (HA) and the client must be linked to the tunnel.
 
         Args:
@@ -130,8 +130,8 @@ class AsyncFailoverResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Triggers a manual failover for a specific WARP Connector Tunnel, setting the
-        specified client as the active connector. The tunnel must be configured for high
+        Triggers a manual failover for a specific Mesh node, setting the specified
+        client as the active connector. The tunnel must be configured for high
         availability (HA) and the client must be linked to the tunnel.
 
         Args:

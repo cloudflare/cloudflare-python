@@ -16,8 +16,12 @@ class SecretDuplicateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the secret."""
 
-    scopes: Required[List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]]]
-    """The list of services that can use this secret."""
-
     comment: str
     """Freeform text describing the secret."""
+
+    scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]]
+    """The list of services that can use this secret.
+
+    Omit it on create or duplicate to inherit the store's scopes. An empty list lets
+    no service use the secret.
+    """

@@ -98,6 +98,14 @@ from .audit_ssh_settings import (
     AuditSSHSettingsResourceWithStreamingResponse,
     AsyncAuditSSHSettingsResourceWithStreamingResponse,
 )
+from .dns_destination_ips import (
+    DNSDestinationIPsResource,
+    AsyncDNSDestinationIPsResource,
+    DNSDestinationIPsResourceWithRawResponse,
+    AsyncDNSDestinationIPsResourceWithRawResponse,
+    DNSDestinationIPsResourceWithStreamingResponse,
+    AsyncDNSDestinationIPsResourceWithStreamingResponse,
+)
 from .configurations.configurations import (
     ConfigurationsResource,
     AsyncConfigurationsResource,
@@ -156,6 +164,10 @@ class GatewayResource(SyncAPIResource):
     @cached_property
     def pacfiles(self) -> PacfilesResource:
         return PacfilesResource(self._client)
+
+    @cached_property
+    def dns_destination_ips(self) -> DNSDestinationIPsResource:
+        return DNSDestinationIPsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> GatewayResourceWithRawResponse:
@@ -299,6 +311,10 @@ class AsyncGatewayResource(AsyncAPIResource):
     @cached_property
     def pacfiles(self) -> AsyncPacfilesResource:
         return AsyncPacfilesResource(self._client)
+
+    @cached_property
+    def dns_destination_ips(self) -> AsyncDNSDestinationIPsResource:
+        return AsyncDNSDestinationIPsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncGatewayResourceWithRawResponse:
@@ -453,6 +469,10 @@ class GatewayResourceWithRawResponse:
     def pacfiles(self) -> PacfilesResourceWithRawResponse:
         return PacfilesResourceWithRawResponse(self._gateway.pacfiles)
 
+    @cached_property
+    def dns_destination_ips(self) -> DNSDestinationIPsResourceWithRawResponse:
+        return DNSDestinationIPsResourceWithRawResponse(self._gateway.dns_destination_ips)
+
 
 class AsyncGatewayResourceWithRawResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:
@@ -508,6 +528,10 @@ class AsyncGatewayResourceWithRawResponse:
     @cached_property
     def pacfiles(self) -> AsyncPacfilesResourceWithRawResponse:
         return AsyncPacfilesResourceWithRawResponse(self._gateway.pacfiles)
+
+    @cached_property
+    def dns_destination_ips(self) -> AsyncDNSDestinationIPsResourceWithRawResponse:
+        return AsyncDNSDestinationIPsResourceWithRawResponse(self._gateway.dns_destination_ips)
 
 
 class GatewayResourceWithStreamingResponse:
@@ -565,6 +589,10 @@ class GatewayResourceWithStreamingResponse:
     def pacfiles(self) -> PacfilesResourceWithStreamingResponse:
         return PacfilesResourceWithStreamingResponse(self._gateway.pacfiles)
 
+    @cached_property
+    def dns_destination_ips(self) -> DNSDestinationIPsResourceWithStreamingResponse:
+        return DNSDestinationIPsResourceWithStreamingResponse(self._gateway.dns_destination_ips)
+
 
 class AsyncGatewayResourceWithStreamingResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:
@@ -620,3 +648,7 @@ class AsyncGatewayResourceWithStreamingResponse:
     @cached_property
     def pacfiles(self) -> AsyncPacfilesResourceWithStreamingResponse:
         return AsyncPacfilesResourceWithStreamingResponse(self._gateway.pacfiles)
+
+    @cached_property
+    def dns_destination_ips(self) -> AsyncDNSDestinationIPsResourceWithStreamingResponse:
+        return AsyncDNSDestinationIPsResourceWithStreamingResponse(self._gateway.dns_destination_ips)

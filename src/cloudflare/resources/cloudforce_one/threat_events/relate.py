@@ -55,8 +55,11 @@ class RelateResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RelateDeleteResponse:
-        """
-        Removes a reference link between related threat events in Cloudforce One.
+        """Legacy.
+
+        Removes references created with
+        `threat-intel events legacy references create`. Use
+        `threat-intel events relationships` for new event links.
 
         Args:
           account_id: Account ID.
@@ -124,8 +127,11 @@ class AsyncRelateResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RelateDeleteResponse:
-        """
-        Removes a reference link between related threat events in Cloudforce One.
+        """Legacy.
+
+        Removes references created with
+        `threat-intel events legacy references create`. Use
+        `threat-intel events relationships` for new event links.
 
         Args:
           account_id: Account ID.

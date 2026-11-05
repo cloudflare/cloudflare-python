@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import List, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -36,7 +36,7 @@ class FindingExportParams(TypedDict, total=False):
     orders: Iterable[Order]
     """Which fields to use when ordering the findings."""
 
-    product: Optional[Literal["SaaS", "Cloud"]]
+    product: Literal["SaaS", "Cloud"]
     """Filter by finding's category product."""
 
     search: str

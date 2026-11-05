@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.diagnostics import (
     EndpointHealthcheckGetResponse,
     EndpointHealthcheckListResponse,
@@ -153,7 +154,7 @@ class TestEndpointHealthchecks:
         endpoint_healthcheck = client.diagnostics.endpoint_healthchecks.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
+        assert_matches_type(SyncSinglePage[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -164,7 +165,7 @@ class TestEndpointHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         endpoint_healthcheck = response.parse()
-        assert_matches_type(Optional[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
+        assert_matches_type(SyncSinglePage[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -175,7 +176,9 @@ class TestEndpointHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             endpoint_healthcheck = response.parse()
-            assert_matches_type(Optional[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
+            assert_matches_type(
+                SyncSinglePage[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -418,7 +421,7 @@ class TestAsyncEndpointHealthchecks:
         endpoint_healthcheck = await async_client.diagnostics.endpoint_healthchecks.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
+        assert_matches_type(AsyncSinglePage[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -429,7 +432,7 @@ class TestAsyncEndpointHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         endpoint_healthcheck = await response.parse()
-        assert_matches_type(Optional[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
+        assert_matches_type(AsyncSinglePage[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -440,7 +443,9 @@ class TestAsyncEndpointHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             endpoint_healthcheck = await response.parse()
-            assert_matches_type(Optional[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"])
+            assert_matches_type(
+                AsyncSinglePage[EndpointHealthcheckListResponse], endpoint_healthcheck, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

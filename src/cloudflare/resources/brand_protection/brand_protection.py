@@ -114,7 +114,7 @@ class BrandProtectionResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandProtectionSubmitResponse:
         """
-        Return new URL submissions
+        Return new URL submissions.
 
         Args:
           extra_headers: Send extra headers
@@ -147,7 +147,7 @@ class BrandProtectionResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[BrandProtectionURLInfoResponse]:
         """
-        Return submitted URLs based on ID
+        Return submitted URLs based on ID.
 
         Args:
           extra_headers: Send extra headers
@@ -222,7 +222,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BrandProtectionSubmitResponse:
         """
-        Return new URL submissions
+        Return new URL submissions.
 
         Args:
           extra_headers: Send extra headers
@@ -255,7 +255,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BrandProtectionURLInfoResponse, AsyncSinglePage[BrandProtectionURLInfoResponse]]:
         """
-        Return submitted URLs based on ID
+        Return submitted URLs based on ID.
 
         Args:
           extra_headers: Send extra headers

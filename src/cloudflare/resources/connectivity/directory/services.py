@@ -75,8 +75,6 @@ class ServicesResource(SyncAPIResource):
 
           tls_settings: TLS settings for a connectivity service.
 
-              If omitted, the default mode (`verify_full`) is used.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -112,8 +110,6 @@ class ServicesResource(SyncAPIResource):
           account_id: Account identifier
 
           tls_settings: TLS settings for a connectivity service.
-
-              If omitted, the default mode (`verify_full`) is used.
 
           extra_headers: Send extra headers
 
@@ -204,8 +200,6 @@ class ServicesResource(SyncAPIResource):
         Args:
           tls_settings: TLS settings for a connectivity service.
 
-              If omitted, the default mode (`verify_full`) is used.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -240,8 +234,6 @@ class ServicesResource(SyncAPIResource):
 
         Args:
           tls_settings: TLS settings for a connectivity service.
-
-              If omitted, the default mode (`verify_full`) is used.
 
           extra_headers: Send extra headers
 
@@ -507,8 +499,6 @@ class AsyncServicesResource(AsyncAPIResource):
 
           tls_settings: TLS settings for a connectivity service.
 
-              If omitted, the default mode (`verify_full`) is used.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -544,8 +534,6 @@ class AsyncServicesResource(AsyncAPIResource):
           account_id: Account identifier
 
           tls_settings: TLS settings for a connectivity service.
-
-              If omitted, the default mode (`verify_full`) is used.
 
           extra_headers: Send extra headers
 
@@ -636,8 +624,6 @@ class AsyncServicesResource(AsyncAPIResource):
         Args:
           tls_settings: TLS settings for a connectivity service.
 
-              If omitted, the default mode (`verify_full`) is used.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -672,8 +658,6 @@ class AsyncServicesResource(AsyncAPIResource):
 
         Args:
           tls_settings: TLS settings for a connectivity service.
-
-              If omitted, the default mode (`verify_full`) is used.
 
           extra_headers: Send extra headers
 

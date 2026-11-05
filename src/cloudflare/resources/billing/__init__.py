@@ -56,6 +56,14 @@ from .rate_plans import (
     RatePlansResourceWithStreamingResponse,
     AsyncRatePlansResourceWithStreamingResponse,
 )
+from .spend_policies import (
+    SpendPoliciesResource,
+    AsyncSpendPoliciesResource,
+    SpendPoliciesResourceWithRawResponse,
+    AsyncSpendPoliciesResourceWithRawResponse,
+    SpendPoliciesResourceWithStreamingResponse,
+    AsyncSpendPoliciesResourceWithStreamingResponse,
+)
 from .unpaid_invoice import (
     UnpaidInvoiceResource,
     AsyncUnpaidInvoiceResource,
@@ -66,6 +74,12 @@ from .unpaid_invoice import (
 )
 
 __all__ = [
+    "SpendPoliciesResource",
+    "AsyncSpendPoliciesResource",
+    "SpendPoliciesResourceWithRawResponse",
+    "AsyncSpendPoliciesResourceWithRawResponse",
+    "SpendPoliciesResourceWithStreamingResponse",
+    "AsyncSpendPoliciesResourceWithStreamingResponse",
     "ProfilesResource",
     "AsyncProfilesResource",
     "ProfilesResourceWithRawResponse",

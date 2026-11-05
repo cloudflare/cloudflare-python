@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -15,7 +15,7 @@ class PseudoIPV4(BaseModel):
     id: Literal["pseudo_ipv4"]
     """Value of the Pseudo IPv4 setting."""
 
-    value: Literal["off", "add_header", "overwrite_header"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None

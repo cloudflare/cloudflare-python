@@ -52,6 +52,7 @@ class TestDeployments:
             ],
             force=True,
             annotations={"workers_message": "Deploy bug fix."},
+            code_update_strategy={"mode": "immediate"},
         )
         assert_matches_type(Deployment, deployment, path=["response"])
 
@@ -338,6 +339,7 @@ class TestAsyncDeployments:
             ],
             force=True,
             annotations={"workers_message": "Deploy bug fix."},
+            code_update_strategy={"mode": "immediate"},
         )
         assert_matches_type(Deployment, deployment, path=["response"])
 

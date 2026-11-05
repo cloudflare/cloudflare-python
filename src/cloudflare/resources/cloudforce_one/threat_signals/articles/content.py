@@ -55,10 +55,19 @@ class ContentResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Retrieves the stored body of a Threat Signals article as plain text or HTML.
+        """Retrieves the stored content of a Threat Signals article, unchanged.
+
+        Depending
+        on how the article was captured from its source, the content is HTML, Markdown,
+        or plain text. The format parameter sets only the response Content-Type; it does
+        not convert the content.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          format: Response Content-Type: text (the default) for text/plain or html for text/html.
+              Neither value converts the content. html is deprecated; use text.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -122,10 +131,19 @@ class AsyncContentResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
-        """
-        Retrieves the stored body of a Threat Signals article as plain text or HTML.
+        """Retrieves the stored content of a Threat Signals article, unchanged.
+
+        Depending
+        on how the article was captured from its source, the content is HTML, Markdown,
+        or plain text. The format parameter sets only the response Content-Type; it does
+        not convert the content.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          format: Response Content-Type: text (the default) for text/plain or html for text/html.
+              Neither value converts the content. html is deprecated; use text.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

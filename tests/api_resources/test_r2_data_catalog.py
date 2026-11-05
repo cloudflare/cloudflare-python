@@ -194,6 +194,17 @@ class TestR2DataCatalog:
         assert_matches_type(Optional[R2DataCatalogEnableResponse], r2_data_catalog, path=["response"])
 
     @parametrize
+    def test_method_enable_with_all_params(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            r2_data_catalog = client.r2_data_catalog.enable(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+                credential={"token": "your-cloudflare-api-token-here"},
+            )
+
+        assert_matches_type(Optional[R2DataCatalogEnableResponse], r2_data_catalog, path=["response"])
+
+    @parametrize
     def test_raw_response_enable(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.r2_data_catalog.with_raw_response.enable(
@@ -461,6 +472,17 @@ class TestAsyncR2DataCatalog:
             r2_data_catalog = await async_client.r2_data_catalog.enable(
                 bucket_name="my-data-bucket",
                 account_id="0123456789abcdef0123456789abcdef",
+            )
+
+        assert_matches_type(Optional[R2DataCatalogEnableResponse], r2_data_catalog, path=["response"])
+
+    @parametrize
+    async def test_method_enable_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            r2_data_catalog = await async_client.r2_data_catalog.enable(
+                bucket_name="my-data-bucket",
+                account_id="0123456789abcdef0123456789abcdef",
+                credential={"token": "your-cloudflare-api-token-here"},
             )
 
         assert_matches_type(Optional[R2DataCatalogEnableResponse], r2_data_catalog, path=["response"])

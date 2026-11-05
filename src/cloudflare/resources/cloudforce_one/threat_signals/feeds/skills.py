@@ -58,10 +58,18 @@ class SkillsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillUpdateResponse:
-        """
-        Replaces the ordered custom skills assigned to a Threat Signals feed.
+        """Replaces the ordered custom skills assigned to a Threat Signals feed.
+
+        Requires a
+        paid Threat Signals subscription.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
+          skill_ids: Ordered array of Custom Skill UUIDs (max 20). Replaces the feed's custom skill
+              assignments. Free accounts cannot assign custom skills. Managed default skills
+              are unaffected.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -104,9 +112,13 @@ class SkillsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillGetResponse:
         """
-        Retrieves the effective skill pipeline for a Threat Signals feed.
+        Retrieves active non-IOC-context Managed Default Skills followed by active
+        Custom Skills assigned to the feed, with each entry's source. Free Threat
+        Signals accounts receive only those Managed Default Skills.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -169,10 +181,18 @@ class AsyncSkillsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillUpdateResponse:
-        """
-        Replaces the ordered custom skills assigned to a Threat Signals feed.
+        """Replaces the ordered custom skills assigned to a Threat Signals feed.
+
+        Requires a
+        paid Threat Signals subscription.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
+          skill_ids: Ordered array of Custom Skill UUIDs (max 20). Replaces the feed's custom skill
+              assignments. Free accounts cannot assign custom skills. Managed default skills
+              are unaffected.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -215,9 +235,13 @@ class AsyncSkillsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillGetResponse:
         """
-        Retrieves the effective skill pipeline for a Threat Signals feed.
+        Retrieves active non-IOC-context Managed Default Skills followed by active
+        Custom Skills assigned to the feed, with each entry's source. Free Threat
+        Signals accounts receive only those Managed Default Skills.
 
         Args:
+          feed_id: UUID of the Threat Signals feed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

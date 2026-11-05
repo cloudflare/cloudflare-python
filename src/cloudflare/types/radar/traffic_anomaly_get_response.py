@@ -52,9 +52,17 @@ class TrafficAnomaly(BaseModel):
 
     origin_details: Optional[TrafficAnomalyOriginDetails] = FieldInfo(alias="originDetails", default=None)
 
+    outage_id: Optional[str] = FieldInfo(alias="outageId", default=None)
+    """ID of the published outage this anomaly was confirmed as, if any."""
+
     start_date: datetime = FieldInfo(alias="startDate")
 
     status: str
+    """
+    Verification status: UNVERIFIED (automatically detected, not yet validated by
+    Radar), TP (verified by Radar) or VERIFIED (verified by Radar and a third-party
+    source).
+    """
 
     type: str
 

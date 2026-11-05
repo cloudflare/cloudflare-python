@@ -13,5 +13,7 @@ class ArticleBulkEditParams(TypedDict, total=False):
     account_id: Required[str]
 
     article_ids: Required[SequenceNotStr[str]]
+    """Array of article UUIDs to mark (1-50)."""
 
     read: Required[bool]
+    """True to mark read, false to mark unread."""

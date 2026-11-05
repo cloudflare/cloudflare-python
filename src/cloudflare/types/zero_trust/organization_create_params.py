@@ -12,12 +12,6 @@ __all__ = ["OrganizationCreateParams", "MfaConfig", "MfaPivKeyRequirements", "Se
 
 
 class OrganizationCreateParams(TypedDict, total=False):
-    auth_domain: Required[str]
-    """The unique subdomain assigned to your Zero Trust organization."""
-
-    name: Required[str]
-    """The name of your Zero Trust organization."""
-
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -28,6 +22,13 @@ class OrganizationCreateParams(TypedDict, total=False):
     """
     When set to true, users can authenticate via WARP for any application in your
     organization. Application settings will take precedence over this value.
+    """
+
+    auth_domain: str
+    """The unique subdomain assigned to your Zero Trust organization.
+
+    If omitted on creation, a unique subdomain is auto-generated in the format
+    `adjective-noun-hex4` (e.g. `frosty-moon-7a3b.cloudflareaccess.com`).
     """
 
     auto_redirect_to_identity: bool
@@ -53,6 +54,9 @@ class OrganizationCreateParams(TypedDict, total=False):
     the request.
     """
 
+    disable_end_user_app_creation: bool
+    """Whether creation of end user applications is disabled for this organization."""
+
     is_ui_read_only: bool
     """Lock all settings as Read-Only in the Dashboard, regardless of user permission.
 
@@ -74,6 +78,13 @@ class OrganizationCreateParams(TypedDict, total=False):
     and a session duration configured. Note: 'allowed_authenticators' cannot contain
     only the infrastructure SSH authenticators ('piv_key' and 'ssh_fido2_key') if
     the organization has any non-infrastructure applications.
+    """
+
+    name: str
+    """The name of your Zero Trust organization.
+
+    When omitted on creation, defaults to the provided auth_domain; when both are
+    omitted, defaults to the auto-generated subdomain slug (e.g. frosty-moon-7a3b).
     """
 
     service_token_inactivity: ServiceTokenInactivity

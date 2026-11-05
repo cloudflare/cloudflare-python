@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -18,7 +18,7 @@ class PrefetchPreload(BaseModel):
     id: Literal["prefetch_preload"]
     """ID of the zone setting."""
 
-    value: Literal["on", "off"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None

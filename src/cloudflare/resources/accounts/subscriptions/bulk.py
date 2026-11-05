@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -60,7 +60,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[BulkCreateResponse]:
+    ) -> BulkCreateResponse:
         """
         Creates multiple subscriptions for an account in a single request.
 
@@ -94,9 +94,9 @@ class BulkResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"idemp_key": idemp_key}, bulk_create_params.BulkCreateParams),
-                post_parser=ResultWrapper[Optional[BulkCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[BulkCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BulkCreateResponse]], ResultWrapper[BulkCreateResponse]),
+            cast_to=cast(Type[BulkCreateResponse], ResultWrapper[BulkCreateResponse]),
         )
 
 
@@ -135,7 +135,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[BulkCreateResponse]:
+    ) -> BulkCreateResponse:
         """
         Creates multiple subscriptions for an account in a single request.
 
@@ -169,9 +169,9 @@ class AsyncBulkResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"idemp_key": idemp_key}, bulk_create_params.BulkCreateParams),
-                post_parser=ResultWrapper[Optional[BulkCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[BulkCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BulkCreateResponse]], ResultWrapper[BulkCreateResponse]),
+            cast_to=cast(Type[BulkCreateResponse], ResultWrapper[BulkCreateResponse]),
         )
 
 

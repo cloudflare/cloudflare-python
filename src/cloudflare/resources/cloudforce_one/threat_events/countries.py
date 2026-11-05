@@ -52,7 +52,8 @@ class CountriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CountryListResponse:
         """
-        Lists countries referenced in Cloudforce One threat intelligence data.
+        Lists the countries used in threat intelligence data, such as attacker and
+        target countries.
 
         Args:
           account_id: Account ID.
@@ -108,7 +109,8 @@ class AsyncCountriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CountryListResponse:
         """
-        Lists countries referenced in Cloudforce One threat intelligence data.
+        Lists the countries used in threat intelligence data, such as attacker and
+        target countries.
 
         Args:
           account_id: Account ID.

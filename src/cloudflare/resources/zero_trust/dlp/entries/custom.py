@@ -6,7 +6,7 @@ from typing import Any, Type, Optional, cast
 
 import httpx
 
-from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -58,6 +58,7 @@ class CustomResource(SyncAPIResource):
         pattern: PatternParam,
         description: Optional[str] | Omit = omit,
         profile_id: str | Omit = omit,
+        validator_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,6 +70,8 @@ class CustomResource(SyncAPIResource):
         Creates a DLP custom entry.
 
         Args:
+          validator_ids: Validators the new entry should reference, by id, at most 10.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -88,6 +91,7 @@ class CustomResource(SyncAPIResource):
                     "pattern": pattern,
                     "description": description,
                     "profile_id": profile_id,
+                    "validator_ids": validator_ids,
                 },
                 custom_create_params.CustomCreateParams,
             ),
@@ -110,6 +114,7 @@ class CustomResource(SyncAPIResource):
         name: str,
         pattern: PatternParam,
         description: Optional[str] | Omit = omit,
+        validator_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,6 +126,13 @@ class CustomResource(SyncAPIResource):
         Updates a DLP custom entry.
 
         Args:
+          validator_ids: Validators this entry should reference, by id, at most 10. Replaces the current
+              set.
+
+              Optional, unlike the rest of this body: omitting it leaves the current
+              attachments alone, so a client that predates validators cannot detach them by
+              accident. Send `[]` to detach.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -143,6 +155,7 @@ class CustomResource(SyncAPIResource):
                     "name": name,
                     "pattern": pattern,
                     "description": description,
+                    "validator_ids": validator_ids,
                 },
                 custom_update_params.CustomUpdateParams,
             ),
@@ -307,6 +320,7 @@ class AsyncCustomResource(AsyncAPIResource):
         pattern: PatternParam,
         description: Optional[str] | Omit = omit,
         profile_id: str | Omit = omit,
+        validator_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -318,6 +332,8 @@ class AsyncCustomResource(AsyncAPIResource):
         Creates a DLP custom entry.
 
         Args:
+          validator_ids: Validators the new entry should reference, by id, at most 10.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -337,6 +353,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "pattern": pattern,
                     "description": description,
                     "profile_id": profile_id,
+                    "validator_ids": validator_ids,
                 },
                 custom_create_params.CustomCreateParams,
             ),
@@ -359,6 +376,7 @@ class AsyncCustomResource(AsyncAPIResource):
         name: str,
         pattern: PatternParam,
         description: Optional[str] | Omit = omit,
+        validator_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -370,6 +388,13 @@ class AsyncCustomResource(AsyncAPIResource):
         Updates a DLP custom entry.
 
         Args:
+          validator_ids: Validators this entry should reference, by id, at most 10. Replaces the current
+              set.
+
+              Optional, unlike the rest of this body: omitting it leaves the current
+              attachments alone, so a client that predates validators cannot detach them by
+              accident. Send `[]` to detach.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -392,6 +417,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "name": name,
                     "pattern": pattern,
                     "description": description,
+                    "validator_ids": validator_ids,
                 },
                 custom_update_params.CustomUpdateParams,
             ),

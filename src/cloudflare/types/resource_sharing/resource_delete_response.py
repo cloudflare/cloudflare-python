@@ -13,19 +13,19 @@ class ResourceDeleteResponse(BaseModel):
     """Share Resource identifier."""
 
     created: datetime
-    """When the share was created."""
+    """When the object was created."""
 
     meta: object
     """Resource Metadata."""
 
     modified: datetime
-    """When the share was modified."""
+    """When the object was last modified."""
 
     resource_account_id: str
     """Account identifier."""
 
     resource_id: str
-    """Share Resource identifier."""
+    """Identifier assigned by the service that owns the shared resource."""
 
     resource_type: Literal[
         "custom-ruleset",

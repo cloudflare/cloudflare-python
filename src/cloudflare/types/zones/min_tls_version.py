@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -18,7 +18,7 @@ class MinTLSVersion(BaseModel):
     id: Literal["min_tls_version"]
     """ID of the zone setting."""
 
-    value: Literal["1.0", "1.1", "1.2", "1.3"]
+    value: Union[str, float, bool, List[str], object]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None

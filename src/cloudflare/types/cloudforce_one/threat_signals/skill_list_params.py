@@ -11,5 +11,7 @@ class SkillListParams(TypedDict, total=False):
     account_id: Required[str]
 
     page: int
+    """Page number (≥ 1, default 1)."""
 
     per_page: int
+    """Results per page (1–100, default 20)."""

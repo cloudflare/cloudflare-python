@@ -44,6 +44,11 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     rate_limiting_limit: Required[Optional[int]]
 
     authentication: bool
+    """Require authentication for gateway access.
+
+    New gateways must have authentication enabled. Once enabled, authentication
+    cannot be disabled.
+    """
 
     byok_only: bool
     """
@@ -81,6 +86,11 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     spend_limits: Optional[SpendLimits]
 
     store_id: Optional[str]
+    """Secrets Store used by this gateway.
+
+    Omit on update to keep the current store. Cannot be cleared while stored keys or
+    secret references depend on it.
+    """
 
     stripe: Optional[Stripe]
 
@@ -137,6 +147,8 @@ class GuardrailsPrompt(TypedDict, total=False):
 
     s13: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S13")]
 
+    s14: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S14")]
+
     s2: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S2")]
 
     s3: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S3")]
@@ -166,6 +178,8 @@ class GuardrailsResponse(TypedDict, total=False):
     s12: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S12")]
 
     s13: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S13")]
+
+    s14: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S14")]
 
     s2: Annotated[Literal["FLAG", "BLOCK"], PropertyInfo(alias="S2")]
 

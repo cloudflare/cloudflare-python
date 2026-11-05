@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, cast
+from typing import Any, Iterable, cast
 
 import httpx
 
@@ -194,21 +194,26 @@ class PhasesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
-                ruleset_phase=ruleset_phase,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            PhaseGetResponse,
+            self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
+                    ruleset_phase=ruleset_phase,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[PhaseGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PhaseGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PhaseGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[PhaseGetResponse], ResultWrapper[PhaseGetResponse]),
         )
 
 
@@ -372,21 +377,26 @@ class AsyncPhasesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
-            path_template(
-                "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
-                ruleset_phase=ruleset_phase,
-                account_or_zone=account_or_zone,
-                account_or_zone_id=account_or_zone_id,
+        return cast(
+            PhaseGetResponse,
+            await self._get(
+                path_template(
+                    "/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
+                    ruleset_phase=ruleset_phase,
+                    account_or_zone=account_or_zone,
+                    account_or_zone_id=account_or_zone_id,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[PhaseGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PhaseGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PhaseGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[PhaseGetResponse], ResultWrapper[PhaseGetResponse]),
         )
 
 

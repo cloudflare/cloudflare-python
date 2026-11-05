@@ -145,6 +145,7 @@ class MitigationsResource(SyncAPIResource):
         account_id: str,
         appeals: Iterable[mitigation_review_params.Appeal] | Omit = omit,
         data: mitigation_review_params.Data | Omit = omit,
+        explanation: str | Omit = omit,
         type: Literal["counter_notice", "content_removed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -169,6 +170,9 @@ class MitigationsResource(SyncAPIResource):
           appeals: List of mitigations to appeal.
 
           data: Counter-notice details supporting an appeal.
+
+          explanation: Optional explanation for a "content_removed" appeal, such as how the content was
+              removed. Not accepted for other appeal types.
 
           type: The type of appeal being submitted.
 
@@ -195,6 +199,7 @@ class MitigationsResource(SyncAPIResource):
                 {
                     "appeals": appeals,
                     "data": data,
+                    "explanation": explanation,
                     "type": type,
                 },
                 mitigation_review_params.MitigationReviewParams,
@@ -326,6 +331,7 @@ class AsyncMitigationsResource(AsyncAPIResource):
         account_id: str,
         appeals: Iterable[mitigation_review_params.Appeal] | Omit = omit,
         data: mitigation_review_params.Data | Omit = omit,
+        explanation: str | Omit = omit,
         type: Literal["counter_notice", "content_removed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -350,6 +356,9 @@ class AsyncMitigationsResource(AsyncAPIResource):
           appeals: List of mitigations to appeal.
 
           data: Counter-notice details supporting an appeal.
+
+          explanation: Optional explanation for a "content_removed" appeal, such as how the content was
+              removed. Not accepted for other appeal types.
 
           type: The type of appeal being submitted.
 
@@ -376,6 +385,7 @@ class AsyncMitigationsResource(AsyncAPIResource):
                 {
                     "appeals": appeals,
                     "data": data,
+                    "explanation": explanation,
                     "type": type,
                 },
                 mitigation_review_params.MitigationReviewParams,

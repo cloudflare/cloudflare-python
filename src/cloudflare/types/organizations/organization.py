@@ -32,6 +32,8 @@ class MetaTenantFlags(BaseModel):
 
 
 class Meta(BaseModel):
+    are_child_accounts_accessible_by_org_members: Optional[bool] = None
+
     hierarchy_tags: Optional[List[str]] = None
     """
     Ordered chain of organization tags from the root organization down to (and
@@ -45,6 +47,8 @@ class Meta(BaseModel):
 
     tenant_flags: Optional[MetaTenantFlags] = None
     """Enable features for Organizations."""
+
+    tenant_type: Optional[str] = None
 
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a

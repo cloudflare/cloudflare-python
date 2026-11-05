@@ -29,6 +29,7 @@ class TestMarkdown:
         markdown = client.browser_rendering.markdown.create(
             account_id="account_id",
             url="url",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -148,6 +149,7 @@ class TestMarkdown:
         markdown = client.browser_rendering.markdown.create(
             account_id="account_id",
             html="html",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -273,6 +275,7 @@ class TestAsyncMarkdown:
         markdown = await async_client.browser_rendering.markdown.create(
             account_id="account_id",
             url="url",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -392,6 +395,7 @@ class TestAsyncMarkdown:
         markdown = await async_client.browser_rendering.markdown.create(
             account_id="account_id",
             html="html",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[

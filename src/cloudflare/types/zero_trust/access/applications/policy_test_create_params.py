@@ -117,6 +117,13 @@ class PolicyUnionMember0(TypedDict, total=False):
     mfa_config: PolicyUnionMember0MfaConfig
     """Configures multi-factor authentication (MFA) settings."""
 
+    policy_resolution_account_id: str
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     purpose_justification_prompt: str
     """A custom message that will appear on the purpose justification screen."""
 

@@ -25,6 +25,13 @@ class Patch(BaseModel):
     enabled: Optional[bool] = None
     """Whether the policy is active."""
 
+    expires_at: Optional[datetime] = None
+    """Timestamp at which the policy expires.
+
+    After this time, Email Security ignores the policy. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
+
     modified_at: Optional[datetime] = None
 
     name: Optional[str] = None
@@ -51,6 +58,13 @@ class Post(BaseModel):
     enabled: Optional[bool] = None
     """Whether the policy is active."""
 
+    expires_at: Optional[datetime] = None
+    """Timestamp at which the policy expires.
+
+    After this time, Email Security ignores the policy. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
+
     modified_at: Optional[datetime] = None
 
     name: Optional[str] = None
@@ -76,6 +90,13 @@ class Put(BaseModel):
 
     enabled: Optional[bool] = None
     """Whether the policy is active."""
+
+    expires_at: Optional[datetime] = None
+    """Timestamp at which the policy expires.
+
+    After this time, Email Security ignores the policy. The value must lie in the
+    future. Send `null` to clear the expiration.
+    """
 
     modified_at: Optional[datetime] = None
 

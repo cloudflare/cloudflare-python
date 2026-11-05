@@ -14,6 +14,7 @@ __all__ = [
     "IndexMethod",
     "IndexingOptions",
     "Metadata",
+    "MetadataCreatedFromEmdashPlugin",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
     "PublicEndpointParamsMcp",
@@ -73,9 +74,10 @@ class InstanceCreateParams(TypedDict, total=False):
     """
 
     index_method: IndexMethod
-    """Controls which storage backends are used during indexing.
+    """Controls which storage backends indexing uses.
 
-    Defaults to vector and keyword indexing for new instances.
+    Defaults to vector and keyword indexing for new instances. When set, both vector
+    and keyword are required.
     """
 
     indexing_options: Optional[IndexingOptions]
@@ -101,6 +103,7 @@ class InstanceCreateParams(TypedDict, total=False):
     rewrite_query: bool
 
     score_threshold: float
+    """Minimum similarity score a chunk must reach to be returned. Defaults to 0.4."""
 
     source: Optional[str]
 
@@ -110,7 +113,7 @@ class InstanceCreateParams(TypedDict, total=False):
     """Interval between automatic syncs, in seconds.
 
     Allowed values: 900 (15min), 1800 (30min), 3600 (1h), 7200 (2h), 14400 (4h),
-    21600 (6h), 43200 (12h), 86400 (24h).
+    21600 (6h), 43200 (12h), 86400 (24h). Defaults to 86400 (24h).
     """
 
     token_id: str
@@ -131,9 +134,9 @@ class CustomMetadata(TypedDict, total=False):
 
 
 class IndexMethod(TypedDict, total=False):
-    """Controls which storage backends are used during indexing.
+    """Controls which storage backends indexing uses.
 
-    Defaults to vector and keyword indexing for new instances.
+    Defaults to vector and keyword indexing for new instances. When set, both vector and keyword are required.
     """
 
     keyword: Required[bool]
@@ -160,22 +163,34 @@ class IndexingOptions(TypedDict, total=False):
     """
 
 
+class MetadataCreatedFromEmdashPlugin(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
+    type: Required[Literal["native", "rest"]]
+
+    version: Required[str]
+
+
 class Metadata(TypedDict, total=False):
     created_from_aisearch_wizard: bool
+
+    created_from_emdash_plugin: MetadataCreatedFromEmdashPlugin
 
     worker_domain: str
 
 
 class PublicEndpointParamsChatCompletionsEndpoint(TypedDict, total=False):
     disabled: bool
-    """Disable chat completions endpoint for this public endpoint"""
+    """Disable chat completions endpoint for this public endpoint."""
 
 
 class PublicEndpointParamsMcp(TypedDict, total=False):
     description: str
 
     disabled: bool
-    """Disable MCP endpoint for this public endpoint"""
+    """Disable MCP endpoint for this public endpoint."""
 
 
 class PublicEndpointParamsRateLimit(TypedDict, total=False):
@@ -188,7 +203,7 @@ class PublicEndpointParamsRateLimit(TypedDict, total=False):
 
 class PublicEndpointParamsSearchEndpoint(TypedDict, total=False):
     disabled: bool
-    """Disable search endpoint for this public endpoint"""
+    """Disable search endpoint for this public endpoint."""
 
 
 class PublicEndpointParams(TypedDict, total=False):
@@ -251,18 +266,18 @@ class RetrievalOptions(TypedDict, total=False):
     """
 
     keyword_match_mode: Literal["and", "or"]
-    """Controls which documents are candidates for BM25 scoring.
+    """Controls which documents become candidates for BM25 scoring.
 
     'and' restricts candidates to documents containing all query terms; 'or'
-    includes any document containing at least one term, ranked by BM25 relevance.
-    When omitted on an update, the existing stored value is preserved; when never
-    set, search falls back to 'and'.
+    includes any document containing at least one term and ranks results according
+    to BM25 relevance. When omitted on an update, the existing stored value stays
+    unchanged; when never set, search falls back to 'and'.
     """
 
 
 class SourceParamsWebCrawlerDiscoverOptions(TypedDict, total=False):
     """
-    Options for parse_type 'discover', where Browser Run discovers URLs by link following and sitemaps. Ignored for 'sitemap'.
+    Options for parse_type 'discover', where Browser Run discovers URLs through link following and sitemaps. Ignored for 'sitemap'.
     """
 
     depth: float
@@ -271,7 +286,7 @@ class SourceParamsWebCrawlerDiscoverOptions(TypedDict, total=False):
     include_external_links: bool
     """Follow links that point outside the source domain.
 
-    Must stay `false` — discover crawls are restricted to the zone you own.
+    Must stay `false` because discover crawls only cover the zone you own.
     """
 
     include_subdomains: bool
@@ -301,9 +316,9 @@ class SourceParamsWebCrawlerParseOptionsContentSelector(TypedDict, total=False):
     selector: Required[str]
     """CSS selector to extract content from pages matching the path pattern.
 
-    Must not contain disallowed characters (;, `, $, {, }, \\)). Must target a single
-    element; if multiple elements match, the selector is ignored and the full page
-    is used.
+    Disallowed characters: ;, `, $, {, }, \\.. Must target a single element; if
+    multiple elements match, the crawler ignores the selector and uses the full
+    page.
     """
 
 
@@ -312,15 +327,16 @@ class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
     """
     List of path-to-selector mappings for extracting specific content from crawled
     pages. Each entry pairs a URL glob pattern with a CSS selector. The first
-    matching path wins. Only the matched HTML fragment is stored and indexed. Omit
-    the field to disable content selection — empty arrays are rejected.
+    matching path wins. The crawler stores and indexes only the matched HTML
+    fragment. Omit the field to disable content selection; the API rejects empty
+    arrays.
     """
 
     include_headers: Dict[str, str]
     """Up to 5 custom HTTP headers sent with each crawl request.
 
-    Names must be RFC-7230 token characters (no spaces, colons, or control
-    characters); values must be HTAB + printable ASCII (no CR/LF).
+    Names must use RFC-7230 token characters, excluding spaces, colons, and control
+    characters. Values must use HTAB and printable ASCII only, excluding CR and LF.
     """
 
     include_images: bool
@@ -337,17 +353,17 @@ class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
 class SourceParamsWebCrawler(TypedDict, total=False):
     discover_options: SourceParamsWebCrawlerDiscoverOptions
     """
-    Options for parse_type 'discover', where Browser Run discovers URLs by link
+    Options for parse_type 'discover', where Browser Run discovers URLs through link
     following and sitemaps. Ignored for 'sitemap'.
     """
 
     parse_options: SourceParamsWebCrawlerParseOptions
 
     parse_type: Literal["sitemap", "discover"]
-    """How URLs are discovered.
+    """How the crawler finds URLs.
 
     'sitemap' reads XML sitemaps; 'discover' follows links recursively and requires
-    the source to be a Verified zone on this account.
+    the source to belong to a Verified zone on this account.
     """
 
 
@@ -357,7 +373,7 @@ class SourceParams(TypedDict, total=False):
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
     path segments (e.g., /admin/** matches /admin/users and
-    /admin/settings/advanced). Most accounts are limited to 10 rules; contact
+    /admin/settings/advanced). Most accounts have a limit of 10 rules; contact
     support to raise it.
     """
 
@@ -366,7 +382,7 @@ class SourceParams(TypedDict, total=False):
 
     Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
     path segments (e.g., /blog/** matches /blog/post and /blog/2024/post). Most
-    accounts are limited to 10 rules; contact support to raise it.
+    accounts have a limit of 10 rules; contact support to raise it.
     """
 
     prefix: str

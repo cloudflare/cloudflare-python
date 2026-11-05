@@ -75,9 +75,10 @@ class CategoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
-        """
-        Creates a new threat event category in Cloudforce One for organizing and
-        classifying threat events.
+        """Creates an event category for classifying events.
+
+        `name` and `killChain` are
+        required.
 
         Args:
           account_id: Account ID.
@@ -123,8 +124,10 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
-        Lists all threat event categories configured for classifying and organizing
-        threat events.
+        Lists the event categories used by events in the datasets given by `datasetIds`,
+        or in the default dataset when `datasetIds` is omitted. Dataset scope values are
+        not supported. To list every category, use
+        `threat-intel events categories catalog list`.
 
         Args:
           account_id: Account ID.
@@ -167,9 +170,10 @@ class CategoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
-        """Deprecated; use DELETE /events/event-categories/by-id/{category_id}.
+        """Legacy.
 
-        Available
+        Use `threat-intel events categories delete`
+        (`DELETE /events/event-categories/by-id/{category_id}`) instead. Available
         through 2026-11-28.
 
         Args:
@@ -219,9 +223,10 @@ class CategoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
-        """Deprecated; use PATCH /events/event-categories/by-id/{category_id}.
+        """Legacy.
 
-        Available
+        Use `threat-intel events categories update`
+        (`PATCH /events/event-categories/by-id/{category_id}`) instead. Available
         through 2026-11-28.
 
         Args:
@@ -276,10 +281,11 @@ class CategoriesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryGetResponse:
-        """Deprecated; use GET /events/event-categories/by-id/{category_id}.
+        """Legacy.
 
-        Available
-        through 2026-11-28.
+        Use `threat-intel events categories get`
+        (`GET /events/event-categories/by-id/{category_id}`) instead. Available through
+        2026-11-28.
 
         Args:
           account_id: Account ID.
@@ -351,9 +357,10 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
-        """
-        Creates a new threat event category in Cloudforce One for organizing and
-        classifying threat events.
+        """Creates an event category for classifying events.
+
+        `name` and `killChain` are
+        required.
 
         Args:
           account_id: Account ID.
@@ -399,8 +406,10 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
-        Lists all threat event categories configured for classifying and organizing
-        threat events.
+        Lists the event categories used by events in the datasets given by `datasetIds`,
+        or in the default dataset when `datasetIds` is omitted. Dataset scope values are
+        not supported. To list every category, use
+        `threat-intel events categories catalog list`.
 
         Args:
           account_id: Account ID.
@@ -445,9 +454,10 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
-        """Deprecated; use DELETE /events/event-categories/by-id/{category_id}.
+        """Legacy.
 
-        Available
+        Use `threat-intel events categories delete`
+        (`DELETE /events/event-categories/by-id/{category_id}`) instead. Available
         through 2026-11-28.
 
         Args:
@@ -497,9 +507,10 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
-        """Deprecated; use PATCH /events/event-categories/by-id/{category_id}.
+        """Legacy.
 
-        Available
+        Use `threat-intel events categories update`
+        (`PATCH /events/event-categories/by-id/{category_id}`) instead. Available
         through 2026-11-28.
 
         Args:
@@ -554,10 +565,11 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryGetResponse:
-        """Deprecated; use GET /events/event-categories/by-id/{category_id}.
+        """Legacy.
 
-        Available
-        through 2026-11-28.
+        Use `threat-intel events categories get`
+        (`GET /events/event-categories/by-id/{category_id}`) instead. Available through
+        2026-11-28.
 
         Args:
           account_id: Account ID.

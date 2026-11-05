@@ -29,4 +29,3 @@ from .lan_static_addressing import LANStaticAddressing as LANStaticAddressing
 from .wan_static_addressing import WANStaticAddressing as WANStaticAddressing
 from .acl_configuration_param import ACLConfigurationParam as ACLConfigurationParam
 from .lan_static_addressing_param import LANStaticAddressingParam as LANStaticAddressingParam
-from .wan_static_addressing_param import WANStaticAddressingParam as WANStaticAddressingParam

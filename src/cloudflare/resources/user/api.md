@@ -103,9 +103,15 @@ Methods:
 
 ## Tenants
 
+Types:
+
+```python
+from cloudflare.types.user import TenantListResponse
+```
+
 Methods:
 
-- <code title="get /user/tenants">client.user.tenants.<a href="./src/cloudflare/resources/user/tenants.py">list</a>() -> <a href="./src/cloudflare/types/organizations/organization.py">SyncSinglePage[Organization]</a></code>
+- <code title="get /user/tenants">client.user.tenants.<a href="./src/cloudflare/resources/user/tenants.py">list</a>() -> <a href="./src/cloudflare/types/user/tenant_list_response.py">SyncSinglePage[TenantListResponse]</a></code>
 
 ## Tokens
 

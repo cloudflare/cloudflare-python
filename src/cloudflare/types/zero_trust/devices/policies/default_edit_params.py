@@ -46,6 +46,13 @@ class DefaultEditParams(TypedDict, total=False):
     Suffixes are evaluated in order. Use an empty array to clear.
     """
 
+    enable_device_credential_authentication: bool
+    """
+    Determines whether the WARP client can silently reauthenticate the user with
+    device credentials (Microsoft Entra) instead of prompting for browser-based
+    reauthentication.
+    """
+
     exclude: Iterable[SplitTunnelExcludeParam]
     """List of routes excluded in the WARP client's tunnel.
 
@@ -149,6 +156,12 @@ class GlobalAcceleration(TypedDict, total=False):
     """IP:port entries for the WireGuard tunnel endpoints.
 
     Either wireguard_endpoints or masque_endpoints must be provided.
+    """
+
+    allow_manual_override: bool
+    """
+    Whether WARP users may manually override the automatic Global Acceleration
+    decision. Defaults to true when not provided.
     """
 
     autoswitch: bool

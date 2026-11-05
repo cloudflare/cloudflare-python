@@ -17,4 +17,4 @@ class BehaviourUpdateParams(TypedDict, total=False):
 class Behaviors(TypedDict, total=False):
     enabled: Required[bool]
 
-    risk_level: Required[Literal["low", "medium", "high"]]
+    risk_level: Required[Literal["info", "low", "medium", "high"]]

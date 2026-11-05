@@ -17,7 +17,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.resource_library import category_list_params
 from ....types.zero_trust.resource_library.category_get_response import CategoryGetResponse
@@ -50,6 +50,7 @@ class CategoriesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        cursor: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -58,14 +59,21 @@ class CategoriesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[CategoryListResponse]:
+    ) -> SyncCursorPaginationAfter[CategoryListResponse]:
         """
-        List application categories.
+        List the categories available for classifying applications, ordered by name.
+        Results are paginated by `offset` or `cursor`.
 
         Args:
-          limit: Limit of number of results to return.
+          cursor: Opaque value from `result_info.cursor` of the previous response. Returns the
+              categories that follow it. `limit` may change between requests. An empty value
+              is the same as no cursor. A modified cursor, or one returned by a different
+              list, returns `400`.
 
-          offset: Offset of results to return.
+          limit: Number of results to return. Defaults to 25; values are clamped to 1–250.
+
+          offset: Number of results to skip. Defaults to 0; negative values are clamped to 0.
+              Ignored when `cursor` is provided.
 
           extra_headers: Send extra headers
 
@@ -79,7 +87,7 @@ class CategoriesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/resource-library/categories", account_id=account_id),
-            page=SyncSinglePage[CategoryListResponse],
+            page=SyncCursorPaginationAfter[CategoryListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -87,6 +95,7 @@ class CategoriesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cursor": cursor,
                         "limit": limit,
                         "offset": offset,
                     },
@@ -109,10 +118,10 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CategoryGetResponse]:
         """
-        Get application category by ID.
+        Retrieve an application category by its numeric ID.
 
         Args:
-          id: Returns the category ID.
+          id: Numeric identifier for an application category.
 
           extra_headers: Send extra headers
 
@@ -161,6 +170,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        cursor: str | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -169,14 +179,21 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CategoryListResponse, AsyncSinglePage[CategoryListResponse]]:
+    ) -> AsyncPaginator[CategoryListResponse, AsyncCursorPaginationAfter[CategoryListResponse]]:
         """
-        List application categories.
+        List the categories available for classifying applications, ordered by name.
+        Results are paginated by `offset` or `cursor`.
 
         Args:
-          limit: Limit of number of results to return.
+          cursor: Opaque value from `result_info.cursor` of the previous response. Returns the
+              categories that follow it. `limit` may change between requests. An empty value
+              is the same as no cursor. A modified cursor, or one returned by a different
+              list, returns `400`.
 
-          offset: Offset of results to return.
+          limit: Number of results to return. Defaults to 25; values are clamped to 1–250.
+
+          offset: Number of results to skip. Defaults to 0; negative values are clamped to 0.
+              Ignored when `cursor` is provided.
 
           extra_headers: Send extra headers
 
@@ -190,7 +207,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             path_template("/accounts/{account_id}/resource-library/categories", account_id=account_id),
-            page=AsyncSinglePage[CategoryListResponse],
+            page=AsyncCursorPaginationAfter[CategoryListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -198,6 +215,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cursor": cursor,
                         "limit": limit,
                         "offset": offset,
                     },
@@ -220,10 +238,10 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CategoryGetResponse]:
         """
-        Get application category by ID.
+        Retrieve an application category by its numeric ID.
 
         Args:
-          id: Returns the category ID.
+          id: Numeric identifier for an application category.
 
           extra_headers: Send extra headers
 

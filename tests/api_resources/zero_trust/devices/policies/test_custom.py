@@ -51,6 +51,7 @@ class TestCustom:
                     "description": "Example internal domains",
                 }
             ],
+            enable_device_credential_authentication=False,
             enabled=True,
             exclude=[
                 {
@@ -64,6 +65,7 @@ class TestCustom:
                 "enabled": True,
                 "masque_endpoints": ["198.51.100.1:443"],
                 "wireguard_endpoints": ["198.51.100.1:2408"],
+                "allow_manual_override": True,
                 "autoswitch": True,
             },
             include=[
@@ -258,6 +260,7 @@ class TestCustom:
                     "description": "Example internal domains",
                 }
             ],
+            enable_device_credential_authentication=False,
             enabled=True,
             exclude=[
                 {
@@ -271,6 +274,7 @@ class TestCustom:
                 "enabled": True,
                 "masque_endpoints": ["198.51.100.1:443"],
                 "wireguard_endpoints": ["198.51.100.1:2408"],
+                "allow_manual_override": True,
                 "autoswitch": True,
             },
             include=[
@@ -435,6 +439,7 @@ class TestAsyncCustom:
                     "description": "Example internal domains",
                 }
             ],
+            enable_device_credential_authentication=False,
             enabled=True,
             exclude=[
                 {
@@ -448,6 +453,7 @@ class TestAsyncCustom:
                 "enabled": True,
                 "masque_endpoints": ["198.51.100.1:443"],
                 "wireguard_endpoints": ["198.51.100.1:2408"],
+                "allow_manual_override": True,
                 "autoswitch": True,
             },
             include=[
@@ -642,6 +648,7 @@ class TestAsyncCustom:
                     "description": "Example internal domains",
                 }
             ],
+            enable_device_credential_authentication=False,
             enabled=True,
             exclude=[
                 {
@@ -655,6 +662,7 @@ class TestAsyncCustom:
                 "enabled": True,
                 "masque_endpoints": ["198.51.100.1:443"],
                 "wireguard_endpoints": ["198.51.100.1:2408"],
+                "allow_manual_override": True,
                 "autoswitch": True,
             },
             include=[

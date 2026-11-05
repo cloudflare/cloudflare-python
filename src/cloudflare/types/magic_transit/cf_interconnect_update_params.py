@@ -88,8 +88,10 @@ class BGP(TypedDict, total=False):
 
     extra_prefixes: SequenceNotStr[str]
     """
-    Prefixes in this list will be advertised to the customer device, in addition to
-    the routes in the Magic routing table.
+    IPv4 prefixes in this list will be advertised to the customer device, in
+    addition to the routes in the Magic routing table. Each entry must be a network
+    address in CIDR notation with no host bits set (for example `192.0.2.0/24`, not
+    `192.0.2.1/24`) and must not repeat another entry.
     """
 
     import_filter_id: str

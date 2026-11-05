@@ -40,6 +40,8 @@ class TestDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
             service="my-worker",
+            enabled=True,
+            previews_enabled=False,
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
             zone_name="example.com",
         )
@@ -96,8 +98,10 @@ class TestDomains:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         domain = client.workers.domains.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
             environment="production",
             hostname="app.example.com",
+            previews_enabled=False,
             service="my-worker",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
             zone_name="example.com",
@@ -254,6 +258,8 @@ class TestAsyncDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
             service="my-worker",
+            enabled=True,
+            previews_enabled=False,
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
             zone_name="example.com",
         )
@@ -310,8 +316,10 @@ class TestAsyncDomains:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.workers.domains.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
             environment="production",
             hostname="app.example.com",
+            previews_enabled=False,
             service="my-worker",
             zone_id="593c9c94de529bbbfaac7c53ced0447d",
             zone_name="example.com",

@@ -136,14 +136,11 @@ class CNIsResource(SyncAPIResource):
 
           p2p_ip: Cloudflare end of the point-to-point link
 
-          bgp_mode: The BGP mode for a CNI.
+          bgp_mode:
+              The BGP mode for a CNI. One of the following:
 
-              Controls the customer-facing data path:
-
-              - `DynamicRouteExchange` — Full BGP: routes flow through to conduit via CRE /
-                bgp-bridge / bgp-bridge-receiver.
-              - `AdvertiseOnly` — static advertisement via taserver, no routes exchanged with
-                Conduit
+              - `dynamic_route_exchange`
+              - `advertise_only`
 
           extra_headers: Send extra headers
 
@@ -424,14 +421,11 @@ class AsyncCNIsResource(AsyncAPIResource):
 
           p2p_ip: Cloudflare end of the point-to-point link
 
-          bgp_mode: The BGP mode for a CNI.
+          bgp_mode:
+              The BGP mode for a CNI. One of the following:
 
-              Controls the customer-facing data path:
-
-              - `DynamicRouteExchange` — Full BGP: routes flow through to conduit via CRE /
-                bgp-bridge / bgp-bridge-receiver.
-              - `AdvertiseOnly` — static advertisement via taserver, no routes exchanged with
-                Conduit
+              - `dynamic_route_exchange`
+              - `advertise_only`
 
           extra_headers: Send extra headers
 

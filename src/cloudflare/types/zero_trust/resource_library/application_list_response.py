@@ -11,11 +11,11 @@ __all__ = ["ApplicationListResponse"]
 class ApplicationListResponse(BaseModel):
     """Describes one application in a list response.
 
-    This endpoint returns every property below unless the `fields` query parameter narrows the response, so treat all of them except `id` as optional.
+    The response returns every property below unless `fields` narrows it. Treat all properties except `id` as optional.
     """
 
     id: int
-    """Returns the application ID."""
+    """Numeric identifier for the application."""
 
     application_confidence_score: Optional[float] = None
     """Confidence score for the application. Returns -1 when no score is available."""
@@ -33,7 +33,7 @@ class ApplicationListResponse(BaseModel):
     """Returns the application type description."""
 
     category_id: Optional[int] = None
-    """Returns the category ID."""
+    """Numeric identifier for an application category."""
 
     created_at: Optional[str] = None
     """Returns the application creation time."""
@@ -45,7 +45,7 @@ class ApplicationListResponse(BaseModel):
     """Hostnames matched by the application."""
 
     human_id: Optional[str] = None
-    """Returns the human readable ID."""
+    """Human-readable identifier for the application."""
 
     ip_subnets: Optional[List[str]] = None
     """IP subnets for this application.
@@ -55,10 +55,14 @@ class ApplicationListResponse(BaseModel):
     """
 
     name: Optional[str] = None
-    """Returns the application name."""
+    """Application name."""
 
     port_protocols: Optional[List[str]] = None
-    """Port and protocol pairs matched by the application."""
+    """
+    Ports matched by the application, in `protocol/port` or inclusive
+    `protocol/start-end` format (for example, `tcp/443` or `udp/10000-20000`). TCP
+    and UDP ports must be between 0 and 65535.
+    """
 
     review_status: Optional[Literal["approved", "unapproved", "in_review", "unreviewed"]] = None
     """The account-specific Gateway review status.

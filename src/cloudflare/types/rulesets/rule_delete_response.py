@@ -1358,4 +1358,4 @@ class Ruleset(BaseModel):
     """An informative description of the ruleset."""
 
 
-RuleDeleteResponse: TypeAlias = Union[Ruleset, Optional[object]]
+RuleDeleteResponse: TypeAlias = Union[List[object], str, float, bool, Ruleset, Optional[object], Optional[object]]

@@ -52,10 +52,9 @@ class TagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagListResponse:
-        """Returns all mirrored tags from the indicator dataset (DO mirror table).
+        """Lists the tags applied to indicators in a dataset.
 
-        No
-        pagination.
+        Results are not paginated.
 
         Args:
           account_id: Account ID.
@@ -119,10 +118,9 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagListResponse:
-        """Returns all mirrored tags from the indicator dataset (DO mirror table).
+        """Lists the tags applied to indicators in a dataset.
 
-        No
-        pagination.
+        Results are not paginated.
 
         Args:
           account_id: Account ID.

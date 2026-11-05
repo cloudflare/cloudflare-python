@@ -76,10 +76,10 @@ class ByDatasetResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByDatasetListResponse:
-        """This method is deprecated.
+        """Legacy.
 
-        Please use /events/indicators to retrieve a paginated
-        list of indicators.
+        Use `threat-intel indicators list` (`GET /events/indicators`) instead.
+        It supports multiple datasets and cursor pagination.
 
         Args:
           account_id: Account ID.
@@ -142,7 +142,7 @@ class ByDatasetResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByDatasetGetResponse:
         """
-        Retrieves a specific indicator by its UUID.
+        Returns an indicator by its UUID.
 
         Args:
           account_id: Account ID.
@@ -223,10 +223,10 @@ class AsyncByDatasetResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByDatasetListResponse:
-        """This method is deprecated.
+        """Legacy.
 
-        Please use /events/indicators to retrieve a paginated
-        list of indicators.
+        Use `threat-intel indicators list` (`GET /events/indicators`) instead.
+        It supports multiple datasets and cursor pagination.
 
         Args:
           account_id: Account ID.
@@ -289,7 +289,7 @@ class AsyncByDatasetResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ByDatasetGetResponse:
         """
-        Retrieves a specific indicator by its UUID.
+        Returns an indicator by its UUID.
 
         Args:
           account_id: Account ID.

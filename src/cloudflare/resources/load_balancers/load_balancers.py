@@ -146,6 +146,7 @@ class LoadBalancersResource(SyncAPIResource):
         enabled: bool | Omit = omit,
         location_strategy: LocationStrategyParam | Omit = omit,
         networks: SequenceNotStr[str] | Omit = omit,
+        pool_sets: Iterable[load_balancer_create_params.PoolSet] | Omit = omit,
         pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         proxied: bool | Omit = omit,
         random_steering: RandomSteeringParam | Omit = omit,
@@ -200,6 +201,13 @@ class LoadBalancersResource(SyncAPIResource):
               to learn how steering is affected.
 
           networks: List of networks where Load Balancer or Pool is enabled.
+
+          pool_sets: An optional list of pool sets, evaluated in array order with first match wins.
+              Pool sets are independent from the standard steering fields (`region_pools` /
+              `country_pools` / `pop_pools` / `default_pools` / `steering_policy` /
+              `random_steering` / `fallback_pool` / `rules`). On a PATCH, an empty array
+              (`pool_sets: []`) clears all pool sets, while omitting the field leaves existing
+              pool sets unchanged.
 
           pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -320,6 +328,7 @@ class LoadBalancersResource(SyncAPIResource):
                     "enabled": enabled,
                     "location_strategy": location_strategy,
                     "networks": networks,
+                    "pool_sets": pool_sets,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -358,6 +367,7 @@ class LoadBalancersResource(SyncAPIResource):
         enabled: bool | Omit = omit,
         location_strategy: LocationStrategyParam | Omit = omit,
         networks: SequenceNotStr[str] | Omit = omit,
+        pool_sets: Iterable[load_balancer_update_params.PoolSet] | Omit = omit,
         pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         proxied: bool | Omit = omit,
         random_steering: RandomSteeringParam | Omit = omit,
@@ -412,6 +422,13 @@ class LoadBalancersResource(SyncAPIResource):
               to learn how steering is affected.
 
           networks: List of networks where Load Balancer or Pool is enabled.
+
+          pool_sets: An optional list of pool sets, evaluated in array order with first match wins.
+              Pool sets are independent from the standard steering fields (`region_pools` /
+              `country_pools` / `pop_pools` / `default_pools` / `steering_policy` /
+              `random_steering` / `fallback_pool` / `rules`). On a PATCH, an empty array
+              (`pool_sets: []`) clears all pool sets, while omitting the field leaves existing
+              pool sets unchanged.
 
           pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -535,6 +552,7 @@ class LoadBalancersResource(SyncAPIResource):
                     "enabled": enabled,
                     "location_strategy": location_strategy,
                     "networks": networks,
+                    "pool_sets": pool_sets,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -686,6 +704,7 @@ class LoadBalancersResource(SyncAPIResource):
         location_strategy: LocationStrategyParam | Omit = omit,
         name: str | Omit = omit,
         networks: SequenceNotStr[str] | Omit = omit,
+        pool_sets: Iterable[load_balancer_edit_params.PoolSet] | Omit = omit,
         pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         proxied: bool | Omit = omit,
         random_steering: RandomSteeringParam | Omit = omit,
@@ -741,6 +760,13 @@ class LoadBalancersResource(SyncAPIResource):
               precedence and the DNS record will not be used.
 
           networks: List of networks where Load Balancer or Pool is enabled.
+
+          pool_sets: An optional list of pool sets, evaluated in array order with first match wins.
+              Pool sets are independent from the standard steering fields (`region_pools` /
+              `country_pools` / `pop_pools` / `default_pools` / `steering_policy` /
+              `random_steering` / `fallback_pool` / `rules`). On a PATCH, an empty array
+              (`pool_sets: []`) clears all pool sets, while omitting the field leaves existing
+              pool sets unchanged.
 
           pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -864,6 +890,7 @@ class LoadBalancersResource(SyncAPIResource):
                     "location_strategy": location_strategy,
                     "name": name,
                     "networks": networks,
+                    "pool_sets": pool_sets,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -1006,6 +1033,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         enabled: bool | Omit = omit,
         location_strategy: LocationStrategyParam | Omit = omit,
         networks: SequenceNotStr[str] | Omit = omit,
+        pool_sets: Iterable[load_balancer_create_params.PoolSet] | Omit = omit,
         pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         proxied: bool | Omit = omit,
         random_steering: RandomSteeringParam | Omit = omit,
@@ -1060,6 +1088,13 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               to learn how steering is affected.
 
           networks: List of networks where Load Balancer or Pool is enabled.
+
+          pool_sets: An optional list of pool sets, evaluated in array order with first match wins.
+              Pool sets are independent from the standard steering fields (`region_pools` /
+              `country_pools` / `pop_pools` / `default_pools` / `steering_policy` /
+              `random_steering` / `fallback_pool` / `rules`). On a PATCH, an empty array
+              (`pool_sets: []`) clears all pool sets, while omitting the field leaves existing
+              pool sets unchanged.
 
           pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -1180,6 +1215,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "enabled": enabled,
                     "location_strategy": location_strategy,
                     "networks": networks,
+                    "pool_sets": pool_sets,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -1218,6 +1254,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         enabled: bool | Omit = omit,
         location_strategy: LocationStrategyParam | Omit = omit,
         networks: SequenceNotStr[str] | Omit = omit,
+        pool_sets: Iterable[load_balancer_update_params.PoolSet] | Omit = omit,
         pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         proxied: bool | Omit = omit,
         random_steering: RandomSteeringParam | Omit = omit,
@@ -1272,6 +1309,13 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               to learn how steering is affected.
 
           networks: List of networks where Load Balancer or Pool is enabled.
+
+          pool_sets: An optional list of pool sets, evaluated in array order with first match wins.
+              Pool sets are independent from the standard steering fields (`region_pools` /
+              `country_pools` / `pop_pools` / `default_pools` / `steering_policy` /
+              `random_steering` / `fallback_pool` / `rules`). On a PATCH, an empty array
+              (`pool_sets: []`) clears all pool sets, while omitting the field leaves existing
+              pool sets unchanged.
 
           pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -1395,6 +1439,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "enabled": enabled,
                     "location_strategy": location_strategy,
                     "networks": networks,
+                    "pool_sets": pool_sets,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -1546,6 +1591,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         location_strategy: LocationStrategyParam | Omit = omit,
         name: str | Omit = omit,
         networks: SequenceNotStr[str] | Omit = omit,
+        pool_sets: Iterable[load_balancer_edit_params.PoolSet] | Omit = omit,
         pop_pools: Dict[str, SequenceNotStr[str]] | Omit = omit,
         proxied: bool | Omit = omit,
         random_steering: RandomSteeringParam | Omit = omit,
@@ -1601,6 +1647,13 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               precedence and the DNS record will not be used.
 
           networks: List of networks where Load Balancer or Pool is enabled.
+
+          pool_sets: An optional list of pool sets, evaluated in array order with first match wins.
+              Pool sets are independent from the standard steering fields (`region_pools` /
+              `country_pools` / `pop_pools` / `default_pools` / `steering_policy` /
+              `random_steering` / `fallback_pool` / `rules`). On a PATCH, an empty array
+              (`pool_sets: []`) clears all pool sets, while omitting the field leaves existing
+              pool sets unchanged.
 
           pop_pools: Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -1724,6 +1777,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "location_strategy": location_strategy,
                     "name": name,
                     "networks": networks,
+                    "pool_sets": pool_sets,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,

@@ -26,6 +26,14 @@ class DatabaseExportParams(TypedDict, total=False):
 
 
 class DumpOptions(TypedDict, total=False):
+    compatibility: Literal["d1", "sqlite3_cli_only"]
+    """Dump format.
+
+    `d1` (the default) gives a dump that D1 can import. `sqlite3_cli_only` matches
+    the output of the `sqlite3 .dump` command, including virtual tables such as FTS5
+    or R\\**Tree tables, but cannot be imported back into D1.
+    """
+
     no_data: bool
     """Export only the table definitions, not their contents"""
 

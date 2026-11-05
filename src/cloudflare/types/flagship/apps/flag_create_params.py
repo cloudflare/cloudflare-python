@@ -5,29 +5,25 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from ...._types import SequenceNotStr
-
 __all__ = [
     "FlagCreateParams",
     "Rule",
     "RuleCondition",
-    "RuleConditionUnionMember0",
-    "RuleConditionUnionMember1",
-    "RuleConditionUnionMember1Clause",
-    "RuleConditionUnionMember1ClauseUnionMember0",
-    "RuleConditionUnionMember1ClauseUnionMember1",
-    "RuleConditionUnionMember1ClauseUnionMember1Clause",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1Clause",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1Clause",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1Clause",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0",
-    "RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1",
+    "RuleConditionFlagshipBaseCondition",
+    "RuleConditionFlagshipLogicalCondition",
+    "RuleConditionFlagshipLogicalConditionClause",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipBaseCondition",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1Clause",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipBaseCondition",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2Clause",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipBaseCondition",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3Clause",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3ClauseFlagshipBaseCondition",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3ClauseFlagshipLogicalCondition4",
+    "RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3ClauseFlagshipLogicalCondition4Clause",
     "RuleRollout",
 ]
 
@@ -67,6 +63,13 @@ class FlagCreateParams(TypedDict, total=False):
     description: Optional[str]
     """Optional operator-facing description. It does not affect flag evaluation."""
 
+    metadata: Optional[Dict[str, Union[bool, str, float]]]
+    """Key-value metadata associated with the flag.
+
+    `null` or an empty object clears existing metadata; omission semantics depend on
+    the endpoint (PUT clears it, PATCH preserves it).
+    """
+
     type: Literal["boolean", "string", "number", "json"]
     """Deprecated compatibility field.
 
@@ -75,7 +78,7 @@ class FlagCreateParams(TypedDict, total=False):
     """
 
 
-class RuleConditionUnionMember0(TypedDict, total=False):
+class RuleConditionFlagshipBaseCondition(TypedDict, total=False):
     attribute: Required[str]
 
     operator: Required[
@@ -99,7 +102,7 @@ class RuleConditionUnionMember0(TypedDict, total=False):
     value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
-class RuleConditionUnionMember1ClauseUnionMember0(TypedDict, total=False):
+class RuleConditionFlagshipLogicalConditionClauseFlagshipBaseCondition(TypedDict, total=False):
     attribute: Required[str]
 
     operator: Required[
@@ -123,55 +126,7 @@ class RuleConditionUnionMember1ClauseUnionMember0(TypedDict, total=False):
     value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
-class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0(TypedDict, total=False):
-    attribute: Required[str]
-
-    operator: Required[
-        Literal[
-            "equals",
-            "not_equals",
-            "greater_than",
-            "less_than",
-            "greater_than_or_equals",
-            "less_than_or_equals",
-            "contains",
-            "starts_with",
-            "ends_with",
-            "in",
-            "not_in",
-            "has",
-            "not_has",
-        ]
-    ]
-
-    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
-
-
-class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(TypedDict, total=False):
-    attribute: Required[str]
-
-    operator: Required[
-        Literal[
-            "equals",
-            "not_equals",
-            "greater_than",
-            "less_than",
-            "greater_than_or_equals",
-            "less_than_or_equals",
-            "contains",
-            "starts_with",
-            "ends_with",
-            "in",
-            "not_in",
-            "has",
-            "not_has",
-        ]
-    ]
-
-    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
-
-
-class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
+class RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipBaseCondition(
     TypedDict, total=False
 ):
     attribute: Required[str]
@@ -197,7 +152,7 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
     value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
-class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0(
+class RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipBaseCondition(
     TypedDict, total=False
 ):
     attribute: Required[str]
@@ -223,80 +178,131 @@ class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMe
     value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
-class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1(
+class RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3ClauseFlagshipBaseCondition(
     TypedDict, total=False
 ):
-    clauses: Required[SequenceNotStr[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]]
+    attribute: Required[str]
 
-    logical_operator: Required[Literal["AND", "OR"]]
+    operator: Required[
+        Literal[
+            "equals",
+            "not_equals",
+            "greater_than",
+            "less_than",
+            "greater_than_or_equals",
+            "less_than_or_equals",
+            "contains",
+            "starts_with",
+            "ends_with",
+            "in",
+            "not_in",
+            "has",
+            "not_has",
+        ]
+    ]
+
+    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
-RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1Clause: TypeAlias = Union[
-    RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0,
-    RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1,
-]
+class RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3ClauseFlagshipLogicalCondition4Clause(
+    TypedDict, total=False
+):
+    attribute: Required[str]
+
+    operator: Required[
+        Literal[
+            "equals",
+            "not_equals",
+            "greater_than",
+            "less_than",
+            "greater_than_or_equals",
+            "less_than_or_equals",
+            "contains",
+            "starts_with",
+            "ends_with",
+            "in",
+            "not_in",
+            "has",
+            "not_has",
+        ]
+    ]
+
+    value: Required[Union[Optional[str], float, bool, Dict[str, object], Iterable[object]]]
 
 
-class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1(
+class RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3ClauseFlagshipLogicalCondition4(
     TypedDict, total=False
 ):
     clauses: Required[
         Iterable[
-            RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1Clause
+            RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3ClauseFlagshipLogicalCondition4Clause
         ]
     ]
 
     logical_operator: Required[Literal["AND", "OR"]]
 
 
-RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1Clause: TypeAlias = Union[
-    RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0,
-    RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1,
+RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3Clause: TypeAlias = Union[
+    RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3ClauseFlagshipBaseCondition,
+    RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3ClauseFlagshipLogicalCondition4,
 ]
 
 
-class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1(TypedDict, total=False):
-    clauses: Required[Iterable[RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1Clause]]
+class RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3(
+    TypedDict, total=False
+):
+    clauses: Required[
+        Iterable[
+            RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3Clause
+        ]
+    ]
 
     logical_operator: Required[Literal["AND", "OR"]]
 
 
-RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1Clause: TypeAlias = Union[
-    RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember0,
-    RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1ClauseUnionMember1,
+RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2Clause: TypeAlias = Union[
+    RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipBaseCondition,
+    RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2ClauseFlagshipLogicalCondition3,
 ]
 
 
-class RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1(TypedDict, total=False):
-    clauses: Required[Iterable[RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1Clause]]
+class RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2(
+    TypedDict, total=False
+):
+    clauses: Required[
+        Iterable[
+            RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2Clause
+        ]
+    ]
 
     logical_operator: Required[Literal["AND", "OR"]]
 
 
-RuleConditionUnionMember1ClauseUnionMember1Clause: TypeAlias = Union[
-    RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember0,
-    RuleConditionUnionMember1ClauseUnionMember1ClauseUnionMember1,
+RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1Clause: TypeAlias = Union[
+    RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipBaseCondition,
+    RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1ClauseFlagshipLogicalCondition2,
 ]
 
 
-class RuleConditionUnionMember1ClauseUnionMember1(TypedDict, total=False):
-    clauses: Required[Iterable[RuleConditionUnionMember1ClauseUnionMember1Clause]]
+class RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1(TypedDict, total=False):
+    clauses: Required[Iterable[RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1Clause]]
 
     logical_operator: Required[Literal["AND", "OR"]]
 
 
-RuleConditionUnionMember1Clause: TypeAlias = Union[
-    RuleConditionUnionMember1ClauseUnionMember0, RuleConditionUnionMember1ClauseUnionMember1
+RuleConditionFlagshipLogicalConditionClause: TypeAlias = Union[
+    RuleConditionFlagshipLogicalConditionClauseFlagshipBaseCondition,
+    RuleConditionFlagshipLogicalConditionClauseFlagshipLogicalCondition1,
 ]
 
 
-class RuleConditionUnionMember1(TypedDict, total=False):
-    clauses: Required[Iterable[RuleConditionUnionMember1Clause]]
+class RuleConditionFlagshipLogicalCondition(TypedDict, total=False):
+    clauses: Required[Iterable[RuleConditionFlagshipLogicalConditionClause]]
 
     logical_operator: Required[Literal["AND", "OR"]]
 
 
-RuleCondition: TypeAlias = Union[RuleConditionUnionMember0, RuleConditionUnionMember1]
+RuleCondition: TypeAlias = Union[RuleConditionFlagshipBaseCondition, RuleConditionFlagshipLogicalCondition]
 
 
 class RuleRollout(TypedDict, total=False):

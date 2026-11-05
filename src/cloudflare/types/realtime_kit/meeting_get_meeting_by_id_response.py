@@ -59,7 +59,11 @@ class DataAIConfigTranscription(BaseModel):
     """Adds specific terms to improve accurate detection during transcription."""
 
     language: Optional[Literal["en-US", "en-IN", "de", "hi", "sv", "ru", "pl", "el", "fr", "nl"]] = None
-    """Specifies the language code for transcription to ensure accurate results."""
+    """Specifies the language code for transcription to ensure accurate results.
+
+    If omitted, the language is auto-detected for post-meeting (Whisper)
+    transcription.
+    """
 
     profanity_filter: Optional[bool] = None
     """Control the inclusion of offensive language in transcriptions."""
