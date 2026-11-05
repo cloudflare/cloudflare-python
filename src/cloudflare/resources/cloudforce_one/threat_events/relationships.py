@@ -66,9 +66,10 @@ class RelationshipsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RelationshipListResponse:
-        """Deprecated; use GET /events/by-id/{event_id}/relationships.
+        """Legacy.
 
-        Available through
+        Use `threat-intel events relationships list`
+        (`GET /events/by-id/{event_id}/relationships`) instead. Available through
         2026-11-28.
 
         Args:
@@ -170,9 +171,10 @@ class AsyncRelationshipsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RelationshipListResponse:
-        """Deprecated; use GET /events/by-id/{event_id}/relationships.
+        """Legacy.
 
-        Available through
+        Use `threat-intel events relationships list`
+        (`GET /events/by-id/{event_id}/relationships`) instead. Available through
         2026-11-28.
 
         Args:

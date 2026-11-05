@@ -67,10 +67,26 @@ class IndicatorsResource(SyncAPIResource):
         articles.
 
         Args:
+          article_id: Article UUID filter. Omit to include indicators from every article.
+
+          cursor: Opaque cursor from the previous response's `pagination.cursor`. When provided,
+              page size, ordering, and filters come from the cursor. Sending `per_page`,
+              `sort`, `include_total`, `feed_id`, `article_id`, or `search` alongside it
+              returns a 400 `CursorFilterConflictError`.
+
+          feed_id: Feed UUID filter. Omit to include indicators from every account feed.
+
+          include_total: When true on the first page, count matching indicators and return an exact
+              total. Defaults to false; cursor pages do not recalculate totals.
+
+          per_page: Number of indicators per cursor page, from 1 to 100. Defaults to 20.
+
           search: NFC-normalized and trimmed, case-insensitive literal substring search of
               indicator values. Requires 3–500 Unicode code points; the upper code-point bound
               is described here because OpenAPI string length cannot precisely express it
               without imposing UTF-16 semantics.
+
+          sort: Sort by id. Use id for ascending or -id for descending order; defaults to id.
 
           extra_headers: Send extra headers
 
@@ -150,10 +166,26 @@ class AsyncIndicatorsResource(AsyncAPIResource):
         articles.
 
         Args:
+          article_id: Article UUID filter. Omit to include indicators from every article.
+
+          cursor: Opaque cursor from the previous response's `pagination.cursor`. When provided,
+              page size, ordering, and filters come from the cursor. Sending `per_page`,
+              `sort`, `include_total`, `feed_id`, `article_id`, or `search` alongside it
+              returns a 400 `CursorFilterConflictError`.
+
+          feed_id: Feed UUID filter. Omit to include indicators from every account feed.
+
+          include_total: When true on the first page, count matching indicators and return an exact
+              total. Defaults to false; cursor pages do not recalculate totals.
+
+          per_page: Number of indicators per cursor page, from 1 to 100. Defaults to 20.
+
           search: NFC-normalized and trimmed, case-insensitive literal substring search of
               indicator values. Requires 3–500 Unicode code points; the upper code-point bound
               is described here because OpenAPI string length cannot precisely express it
               without imposing UTF-16 semantics.
+
+          sort: Sort by id. Use id for ascending or -id for descending order; defaults to id.
 
           extra_headers: Send extra headers
 

@@ -735,11 +735,17 @@ class EventsEventMetadata(BaseModel):
     end_time: Optional[int] = FieldInfo(alias="endTime", default=None)
     """Span end time as a Unix epoch in milliseconds."""
 
+    end_time_ns: Optional[str] = FieldInfo(alias="endTimeNs", default=None)
+    """Span end time as a Unix epoch in nanoseconds."""
+
     error: Optional[str] = None
     """Error message, present when the log represents an error."""
 
     error_template: Optional[str] = FieldInfo(alias="errorTemplate", default=None)
     """Templatized version of the error message used for grouping similar errors."""
+
+    event_size: Optional[int] = FieldInfo(alias="eventSize", default=None)
+    """Size of the stored telemetry event in bytes."""
 
     fingerprint: Optional[str] = None
     """Content-based fingerprint used to group similar events."""
@@ -786,14 +792,33 @@ class EventsEventMetadata(BaseModel):
     span_name: Optional[str] = FieldInfo(alias="spanName", default=None)
     """Human-readable name for this span."""
 
+    span_status: Optional[Literal["unset", "ok", "error"]] = FieldInfo(alias="spanStatus", default=None)
+    """OpenTelemetry span status.
+
+    Present only on spans. `unset` when the span did not set a status, including
+    spans recorded before status was captured.
+    """
+
+    span_status_message: Optional[str] = FieldInfo(alias="spanStatusMessage", default=None)
+    """OpenTelemetry span status message.
+
+    Present only on spans when the status is `error` and a message was set.
+    """
+
     stack_id: Optional[str] = FieldInfo(alias="stackId", default=None)
     """Stack / deployment identifier."""
 
     start_time: Optional[int] = FieldInfo(alias="startTime", default=None)
     """Span start time as a Unix epoch in milliseconds."""
 
+    start_time_ns: Optional[str] = FieldInfo(alias="startTimeNs", default=None)
+    """Span start time as a Unix epoch in nanoseconds."""
+
     status_code: Optional[int] = FieldInfo(alias="statusCode", default=None)
     """HTTP response status code returned by the Worker."""
+
+    timestamp_ns: Optional[str] = FieldInfo(alias="timestampNs", default=None)
+    """Event time as a Unix epoch in nanoseconds."""
 
     trace_duration: Optional[int] = FieldInfo(alias="traceDuration", default=None)
     """Total duration of the entire trace in milliseconds."""
@@ -1097,11 +1122,17 @@ class InvocationMetadata(BaseModel):
     end_time: Optional[int] = FieldInfo(alias="endTime", default=None)
     """Span end time as a Unix epoch in milliseconds."""
 
+    end_time_ns: Optional[str] = FieldInfo(alias="endTimeNs", default=None)
+    """Span end time as a Unix epoch in nanoseconds."""
+
     error: Optional[str] = None
     """Error message, present when the log represents an error."""
 
     error_template: Optional[str] = FieldInfo(alias="errorTemplate", default=None)
     """Templatized version of the error message used for grouping similar errors."""
+
+    event_size: Optional[int] = FieldInfo(alias="eventSize", default=None)
+    """Size of the stored telemetry event in bytes."""
 
     fingerprint: Optional[str] = None
     """Content-based fingerprint used to group similar events."""
@@ -1148,14 +1179,33 @@ class InvocationMetadata(BaseModel):
     span_name: Optional[str] = FieldInfo(alias="spanName", default=None)
     """Human-readable name for this span."""
 
+    span_status: Optional[Literal["unset", "ok", "error"]] = FieldInfo(alias="spanStatus", default=None)
+    """OpenTelemetry span status.
+
+    Present only on spans. `unset` when the span did not set a status, including
+    spans recorded before status was captured.
+    """
+
+    span_status_message: Optional[str] = FieldInfo(alias="spanStatusMessage", default=None)
+    """OpenTelemetry span status message.
+
+    Present only on spans when the status is `error` and a message was set.
+    """
+
     stack_id: Optional[str] = FieldInfo(alias="stackId", default=None)
     """Stack / deployment identifier."""
 
     start_time: Optional[int] = FieldInfo(alias="startTime", default=None)
     """Span start time as a Unix epoch in milliseconds."""
 
+    start_time_ns: Optional[str] = FieldInfo(alias="startTimeNs", default=None)
+    """Span start time as a Unix epoch in nanoseconds."""
+
     status_code: Optional[int] = FieldInfo(alias="statusCode", default=None)
     """HTTP response status code returned by the Worker."""
+
+    timestamp_ns: Optional[str] = FieldInfo(alias="timestampNs", default=None)
+    """Event time as a Unix epoch in nanoseconds."""
 
     trace_duration: Optional[int] = FieldInfo(alias="traceDuration", default=None)
     """Total duration of the entire trace in milliseconds."""

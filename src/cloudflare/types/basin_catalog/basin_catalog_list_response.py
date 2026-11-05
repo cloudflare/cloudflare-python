@@ -56,7 +56,7 @@ class WarehouseMaintenanceConfig(BaseModel):
 
 
 class Warehouse(BaseModel):
-    """Contains R2 Data Catalog information."""
+    """Contains catalog information."""
 
     id: str
     """Use this to uniquely identify the catalog."""
@@ -72,6 +72,12 @@ class Warehouse(BaseModel):
 
     credential_status: Optional[Literal["present", "absent"]] = None
     """Shows the credential configuration status."""
+
+    jurisdiction: Optional[str] = None
+    """Specifies the data-locality jurisdiction of the catalog.
+
+    The first enable sets it, and it cannot change. Currently always `default`.
+    """
 
     maintenance_config: Optional[WarehouseMaintenanceConfig] = None
     """Configures maintenance for the catalog."""

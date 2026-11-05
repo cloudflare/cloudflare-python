@@ -55,6 +55,7 @@ class GatewayRule(BaseModel):
         "resolve",
         "quarantine",
         "redirect",
+        "forward",
     ]
     """
     Specify the action to perform when the associated traffic, identity, and device

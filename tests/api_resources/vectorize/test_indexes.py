@@ -17,6 +17,7 @@ from cloudflare.types.vectorize import (
     IndexDeleteResponse,
     IndexInsertResponse,
     IndexUpsertResponse,
+    IndexGetByIDsResponse,
     IndexDeleteByIDsResponse,
     IndexListVectorsResponse,
 )
@@ -295,7 +296,7 @@ class TestIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, index, path=["response"])
+        assert_matches_type(SyncSinglePage[IndexGetByIDsResponse], index, path=["response"])
 
     @parametrize
     def test_method_get_by_ids_with_all_params(self, client: Cloudflare) -> None:
@@ -304,7 +305,7 @@ class TestIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ids=["5121db81354a40c6aedc3fe1ace51c59", "f90eb49c2107486abdfd78c67e853430"],
         )
-        assert_matches_type(object, index, path=["response"])
+        assert_matches_type(SyncSinglePage[IndexGetByIDsResponse], index, path=["response"])
 
     @parametrize
     def test_raw_response_get_by_ids(self, client: Cloudflare) -> None:
@@ -316,7 +317,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(object, index, path=["response"])
+        assert_matches_type(SyncSinglePage[IndexGetByIDsResponse], index, path=["response"])
 
     @parametrize
     def test_streaming_response_get_by_ids(self, client: Cloudflare) -> None:
@@ -328,7 +329,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(object, index, path=["response"])
+            assert_matches_type(SyncSinglePage[IndexGetByIDsResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -931,7 +932,7 @@ class TestAsyncIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, index, path=["response"])
+        assert_matches_type(AsyncSinglePage[IndexGetByIDsResponse], index, path=["response"])
 
     @parametrize
     async def test_method_get_by_ids_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -940,7 +941,7 @@ class TestAsyncIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ids=["5121db81354a40c6aedc3fe1ace51c59", "f90eb49c2107486abdfd78c67e853430"],
         )
-        assert_matches_type(object, index, path=["response"])
+        assert_matches_type(AsyncSinglePage[IndexGetByIDsResponse], index, path=["response"])
 
     @parametrize
     async def test_raw_response_get_by_ids(self, async_client: AsyncCloudflare) -> None:
@@ -952,7 +953,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(object, index, path=["response"])
+        assert_matches_type(AsyncSinglePage[IndexGetByIDsResponse], index, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_by_ids(self, async_client: AsyncCloudflare) -> None:
@@ -964,7 +965,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(object, index, path=["response"])
+            assert_matches_type(AsyncSinglePage[IndexGetByIDsResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

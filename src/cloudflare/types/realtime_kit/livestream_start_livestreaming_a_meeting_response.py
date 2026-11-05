@@ -9,22 +9,29 @@ __all__ = ["LivestreamStartLivestreamingAMeetingResponse", "Data"]
 
 
 class Data(BaseModel):
-    id: Optional[str] = None
-    """The livestream ID."""
+    id: str
+    """ID of the livestream."""
 
-    ingest_server: Optional[str] = None
+    ingest_server: str
     """The server URL to which the RTMP encoder sends the video and audio data."""
 
-    playback_url: Optional[str] = None
+    meeting_id: Optional[str] = None
+    """ID of the meeting being livestreamed, if any."""
+
+    name: Optional[str] = None
+    """Name of the livestream."""
+
+    playback_url: str
     """The web address that viewers can use to watch the livestream."""
 
-    status: Optional[Literal["LIVE", "IDLE", "ERRORED", "INVOKED"]] = None
+    status: Literal["LIVE", "IDLE", "ERRORED", "INVOKED", "METRICS_READY"]
+    """Status of the livestream."""
 
-    stream_key: Optional[str] = None
-    """Unique key for accessing each livestream."""
+    stream_key: str
+    """Unique key for accessing each livestream. Empty if the livestream is disabled."""
 
 
 class LivestreamStartLivestreamingAMeetingResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Data
 
-    success: Optional[bool] = None
+    success: bool

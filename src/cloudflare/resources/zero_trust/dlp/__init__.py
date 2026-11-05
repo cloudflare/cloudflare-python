@@ -64,6 +64,14 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
+from .validators import (
+    ValidatorsResource,
+    AsyncValidatorsResource,
+    ValidatorsResourceWithRawResponse,
+    AsyncValidatorsResourceWithRawResponse,
+    ValidatorsResourceWithStreamingResponse,
+    AsyncValidatorsResourceWithStreamingResponse,
+)
 from .data_classes import (
     DataClassesResource,
     AsyncDataClassesResource,
@@ -160,6 +168,12 @@ __all__ = [
     "AsyncEntriesResourceWithRawResponse",
     "EntriesResourceWithStreamingResponse",
     "AsyncEntriesResourceWithStreamingResponse",
+    "ValidatorsResource",
+    "AsyncValidatorsResource",
+    "ValidatorsResourceWithRawResponse",
+    "AsyncValidatorsResourceWithRawResponse",
+    "ValidatorsResourceWithStreamingResponse",
+    "AsyncValidatorsResourceWithStreamingResponse",
     "SensitivityGroupsResource",
     "AsyncSensitivityGroupsResource",
     "SensitivityGroupsResourceWithRawResponse",

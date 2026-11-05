@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestBulk:
         bulk = client.accounts.subscriptions.bulk.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BulkCreateResponse], bulk, path=["response"])
+        assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -47,7 +47,7 @@ class TestBulk:
             ],
             user_is_on_session=True,
         )
-        assert_matches_type(Optional[BulkCreateResponse], bulk, path=["response"])
+        assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -58,7 +58,7 @@ class TestBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk = response.parse()
-        assert_matches_type(Optional[BulkCreateResponse], bulk, path=["response"])
+        assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -69,7 +69,7 @@ class TestBulk:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk = response.parse()
-            assert_matches_type(Optional[BulkCreateResponse], bulk, path=["response"])
+            assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,7 +91,7 @@ class TestAsyncBulk:
         bulk = await async_client.accounts.subscriptions.bulk.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BulkCreateResponse], bulk, path=["response"])
+        assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -116,7 +116,7 @@ class TestAsyncBulk:
             ],
             user_is_on_session=True,
         )
-        assert_matches_type(Optional[BulkCreateResponse], bulk, path=["response"])
+        assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -127,7 +127,7 @@ class TestAsyncBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk = await response.parse()
-        assert_matches_type(Optional[BulkCreateResponse], bulk, path=["response"])
+        assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -138,7 +138,7 @@ class TestAsyncBulk:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk = await response.parse()
-            assert_matches_type(Optional[BulkCreateResponse], bulk, path=["response"])
+            assert_matches_type(BulkCreateResponse, bulk, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -25,7 +25,11 @@ class OrganizationUpdateParams(TypedDict, total=False):
     """
 
     auth_domain: str
-    """The unique subdomain assigned to your Zero Trust organization."""
+    """The unique subdomain assigned to your Zero Trust organization.
+
+    If omitted on creation, a unique subdomain is auto-generated in the format
+    `adjective-noun-hex4` (e.g. `frosty-moon-7a3b.cloudflareaccess.com`).
+    """
 
     auto_redirect_to_identity: bool
     """
@@ -52,6 +56,9 @@ class OrganizationUpdateParams(TypedDict, total=False):
     the request.
     """
 
+    disable_end_user_app_creation: bool
+    """Whether creation of end user applications is disabled for this organization."""
+
     is_ui_read_only: bool
     """Lock all settings as Read-Only in the Dashboard, regardless of user permission.
 
@@ -76,7 +83,11 @@ class OrganizationUpdateParams(TypedDict, total=False):
     """
 
     name: str
-    """The name of your Zero Trust organization."""
+    """The name of your Zero Trust organization.
+
+    When omitted on creation, defaults to the provided auth_domain; when both are
+    omitted, defaults to the auto-generated subdomain slug (e.g. frosty-moon-7a3b).
+    """
 
     service_token_inactivity: ServiceTokenInactivity
     """Configures automatic enforcement for inactive service tokens.

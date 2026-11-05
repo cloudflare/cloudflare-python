@@ -15,7 +15,7 @@ class Behaviors(BaseModel):
 
     name: str
 
-    risk_level: Literal["low", "medium", "high"]
+    risk_level: Literal["info", "low", "medium", "high"]
 
 
 class BehaviourGetResponse(BaseModel):

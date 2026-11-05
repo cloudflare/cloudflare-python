@@ -2,12 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Union, Iterable, Optional
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["DeploymentCreateParams", "Version", "Annotations"]
+__all__ = [
+    "DeploymentCreateParams",
+    "Version",
+    "Annotations",
+    "CodeUpdateStrategy",
+    "CodeUpdateStrategyMode",
+    "CodeUpdateStrategyUnionMember1",
+]
 
 
 class DeploymentCreateParams(TypedDict, total=False):
@@ -15,6 +22,10 @@ class DeploymentCreateParams(TypedDict, total=False):
     """Identifier."""
 
     strategy: Required[Literal["percentage"]]
+    """Strategy for routing traffic across the listed versions.
+
+    `percentage` splits traffic according to each version's `percentage`.
+    """
 
     versions: Required[Iterable[Version]]
     """Worker versions included in this deployment.
@@ -33,6 +44,13 @@ class DeploymentCreateParams(TypedDict, total=False):
     """
 
     annotations: Annotations
+    """Metadata attached to the deployment."""
+
+    code_update_strategy: CodeUpdateStrategy
+    """Choose whether to apply Durable Object code updates immediately or defer them.
+
+    When omitted, the default strategy applies.
+    """
 
 
 class Version(TypedDict, total=False):
@@ -44,5 +62,26 @@ class Version(TypedDict, total=False):
 
 
 class Annotations(TypedDict, total=False):
+    """Metadata attached to the deployment."""
+
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
     """Human-readable message about the deployment. Truncated to 1000 bytes if longer."""
+
+
+class CodeUpdateStrategyMode(TypedDict, total=False):
+    mode: Required[Literal["immediate"]]
+    """Apply Durable Object code updates immediately."""
+
+
+class CodeUpdateStrategyUnionMember1(TypedDict, total=False):
+    mode: Required[Literal["deferred"]]
+    """Allow active Durable Objects to hibernate before updating their code."""
+
+    max_delay: Optional[float]
+    """Set the maximum number of seconds to wait before forcing the update.
+
+    When omitted, the default maximum delay applies.
+    """
+
+
+CodeUpdateStrategy: TypeAlias = Union[CodeUpdateStrategyMode, CodeUpdateStrategyUnionMember1, Optional[object]]

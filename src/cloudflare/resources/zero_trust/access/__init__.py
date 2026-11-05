@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .mfa import (
+    MfaResource,
+    AsyncMfaResource,
+    MfaResourceWithRawResponse,
+    AsyncMfaResourceWithRawResponse,
+    MfaResourceWithStreamingResponse,
+    AsyncMfaResourceWithStreamingResponse,
+)
 from .keys import (
     KeysResource,
     AsyncKeysResource,
@@ -120,6 +128,14 @@ from .service_tokens import (
     ServiceTokensResourceWithStreamingResponse,
     AsyncServiceTokensResourceWithStreamingResponse,
 )
+from .user_populations import (
+    UserPopulationsResource,
+    AsyncUserPopulationsResource,
+    UserPopulationsResourceWithRawResponse,
+    AsyncUserPopulationsResourceWithRawResponse,
+    UserPopulationsResourceWithStreamingResponse,
+    AsyncUserPopulationsResourceWithStreamingResponse,
+)
 from .saml_certificates import (
     SAMLCertificatesResource,
     AsyncSAMLCertificatesResource,
@@ -216,6 +232,18 @@ __all__ = [
     "AsyncUsersResourceWithRawResponse",
     "UsersResourceWithStreamingResponse",
     "AsyncUsersResourceWithStreamingResponse",
+    "UserPopulationsResource",
+    "AsyncUserPopulationsResource",
+    "UserPopulationsResourceWithRawResponse",
+    "AsyncUserPopulationsResourceWithRawResponse",
+    "UserPopulationsResourceWithStreamingResponse",
+    "AsyncUserPopulationsResourceWithStreamingResponse",
+    "MfaResource",
+    "AsyncMfaResource",
+    "MfaResourceWithRawResponse",
+    "AsyncMfaResourceWithRawResponse",
+    "MfaResourceWithStreamingResponse",
+    "AsyncMfaResourceWithStreamingResponse",
     "CustomPagesResource",
     "AsyncCustomPagesResource",
     "CustomPagesResourceWithRawResponse",

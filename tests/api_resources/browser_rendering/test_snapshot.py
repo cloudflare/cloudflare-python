@@ -30,6 +30,7 @@ class TestSnapshot:
         snapshot = client.browser_rendering.snapshot.create(
             account_id="account_id",
             url="url",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -166,6 +167,7 @@ class TestSnapshot:
         snapshot = client.browser_rendering.snapshot.create(
             account_id="account_id",
             html="html",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -308,6 +310,7 @@ class TestAsyncSnapshot:
         snapshot = await async_client.browser_rendering.snapshot.create(
             account_id="account_id",
             url="url",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[
@@ -444,6 +447,7 @@ class TestAsyncSnapshot:
         snapshot = await async_client.browser_rendering.snapshot.create(
             account_id="account_id",
             html="html",
+            browser="kitesurf",
             cache_ttl=0,
             action_timeout=120000,
             add_script_tag=[

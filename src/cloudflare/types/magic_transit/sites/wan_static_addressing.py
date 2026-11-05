@@ -21,3 +21,6 @@ class WANStaticAddressing(BaseModel):
 
     secondary_address: Optional[str] = None
     """A valid CIDR notation representing an IP range."""
+
+    secondary_gateway_address: Optional[str] = None
+    """Gateway address for the secondary connector of a high availability site."""

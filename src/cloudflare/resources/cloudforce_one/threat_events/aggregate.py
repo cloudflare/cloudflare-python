@@ -59,20 +59,22 @@ class AggregateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AggregateListResponse:
         """
-        Aggregate threat events by one or more columns (e.g., attacker, targetIndustry)
-        with optional date filtering and daily grouping. Supports multi-dimensional
-        aggregation for cross-analysis.
+        Counts events grouped by one or more columns, such as `attacker` or
+        `targetIndustry`. Optionally filter by date range and group the counts by day.
 
         Args:
           account_id: Account ID.
 
           aggregate_by: Column(s) to aggregate by - single column or comma-separated list (e.g.,
-              'attacker', 'targetIndustry', 'attacker,targetIndustry')
+              'attacker', 'targetIndustry', 'attacker,targetIndustry'). With `tags`, an event
+              counts once for each of its tags, in the bucket counts and in `total`, and
+              events without tags count as `Unknown`; `tags` is not supported for analytics
+              datasets.
 
-          dataset_id: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
-              accessible non-analytics event datasets (analytics datasets are silently
-              excluded), 'analytics' for isAnalytics=true datasets, or 'operational' for
-              isAnalytics=false datasets. If not provided, uses the default dataset.
+          dataset_id: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' or
+              'operational' for readable intelligence datasets (isAnalytics=false), or
+              'analytics' for readable analytics datasets (isAnalytics=true). Scope values
+              query at most 50 datasets. If not provided, uses the default dataset.
 
           end_date: End date for filtering (ISO 8601 format, e.g., '2024-12-31')
 
@@ -153,20 +155,22 @@ class AsyncAggregateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AggregateListResponse:
         """
-        Aggregate threat events by one or more columns (e.g., attacker, targetIndustry)
-        with optional date filtering and daily grouping. Supports multi-dimensional
-        aggregation for cross-analysis.
+        Counts events grouped by one or more columns, such as `attacker` or
+        `targetIndustry`. Optionally filter by date range and group the counts by day.
 
         Args:
           account_id: Account ID.
 
           aggregate_by: Column(s) to aggregate by - single column or comma-separated list (e.g.,
-              'attacker', 'targetIndustry', 'attacker,targetIndustry')
+              'attacker', 'targetIndustry', 'attacker,targetIndustry'). With `tags`, an event
+              counts once for each of its tags, in the bucket counts and in `total`, and
+              events without tags count as `Unknown`; `tags` is not supported for analytics
+              datasets.
 
-          dataset_id: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
-              accessible non-analytics event datasets (analytics datasets are silently
-              excluded), 'analytics' for isAnalytics=true datasets, or 'operational' for
-              isAnalytics=false datasets. If not provided, uses the default dataset.
+          dataset_id: Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' or
+              'operational' for readable intelligence datasets (isAnalytics=false), or
+              'analytics' for readable analytics datasets (isAnalytics=true). Scope values
+              query at most 50 datasets. If not provided, uses the default dataset.
 
           end_date: End date for filtering (ISO 8601 format, e.g., '2024-12-31')
 

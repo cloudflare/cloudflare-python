@@ -84,6 +84,9 @@ from .session_get_session_participants_params import (
 from .meeting_get_meeting_participant_response import (
     MeetingGetMeetingParticipantResponse as MeetingGetMeetingParticipantResponse,
 )
+from .meeting_refresh_participant_token_params import (
+    MeetingRefreshParticipantTokenParams as MeetingRefreshParticipantTokenParams,
+)
 from .recording_get_active_recordings_response import (
     RecordingGetActiveRecordingsResponse as RecordingGetActiveRecordingsResponse,
 )

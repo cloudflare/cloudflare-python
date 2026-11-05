@@ -42,11 +42,10 @@ class SkillListResponse(BaseModel):
     """Number of skills on this page."""
 
     custom_skills_available: bool
-    """
-    Whether the authenticated account may access custom-skill capabilities under
-    Stakeout's Threat Signals access-mode policy. This is a policy availability
-    indicator, not a row-existence indicator. False for threat_signals_only mode;
-    true for entitled, allowlisted, cfone_internal, and service modes.
+    """Whether Custom Skills are available to the account.
+
+    False for Free Threat Signals accounts, which receive managed default skills
+    only.
     """
 
     page: int

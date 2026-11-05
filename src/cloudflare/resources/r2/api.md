@@ -153,6 +153,20 @@ Methods:
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/objects/{object_key}">client.r2.buckets.objects.<a href="./src/cloudflare/resources/r2/buckets/objects.py">get</a>(object_key, \*, account_id, bucket_name) -> BinaryAPIResponse</code>
 - <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/objects/{object_key}">client.r2.buckets.objects.<a href="./src/cloudflare/resources/r2/buckets/objects.py">upload</a>(object_key, body, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/buckets/object_upload_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/object_upload_response.py">ObjectUploadResponse</a></code>
 
+### Jobs
+
+Types:
+
+```python
+from cloudflare.types.r2.buckets import JobCreateResponse, JobListResponse, JobGetResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/r2/buckets/{bucket_name}/jobs">client.r2.buckets.jobs.<a href="./src/cloudflare/resources/r2/buckets/jobs.py">create</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/job_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/job_create_response.py">JobCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/jobs">client.r2.buckets.jobs.<a href="./src/cloudflare/resources/r2/buckets/jobs.py">list</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/job_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/job_list_response.py">JobListResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/jobs/{job_id}">client.r2.buckets.jobs.<a href="./src/cloudflare/resources/r2/buckets/jobs.py">get</a>(job_id, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/job_get_response.py">JobGetResponse</a></code>
+
 ## TemporaryCredentials
 
 Types:

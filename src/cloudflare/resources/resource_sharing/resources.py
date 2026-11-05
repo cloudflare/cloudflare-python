@@ -84,9 +84,9 @@ class ResourcesResource(SyncAPIResource):
 
           meta: Resource Metadata.
 
-          resource_account_id: Account identifier.
+          resource_account_id: The account that owns the resource. Must match the `account_id` in the path.
 
-          resource_id: Share Resource identifier.
+          resource_id: Identifier assigned by the service that owns the shared resource.
 
           resource_type: Resource Type.
 
@@ -139,9 +139,10 @@ class ResourcesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceUpdateResponse]:
-        """
-        Update is not immediate, an updated share resource object with a new status will
-        be returned.
+        """Updates the resource's `meta`.
+
+        Only resources with `status=active` can be
+        updated.
 
         Args:
           account_id: Account identifier.
@@ -217,12 +218,9 @@ class ResourcesResource(SyncAPIResource):
 
           share_id: Share identifier tag.
 
-          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
-              omitted entirely along with `per_page` to receive a non-paginated response.
+          page: Page number. Defaults to `1` when omitted.
 
-          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
-              without `per_page`. May be omitted entirely along with `page` to receive a
-              non-paginated response.
+          per_page: Number of objects to return per page. Defaults to `20` when omitted.
 
           resource_type: Filter share resources by resource_type.
 
@@ -427,9 +425,9 @@ class AsyncResourcesResource(AsyncAPIResource):
 
           meta: Resource Metadata.
 
-          resource_account_id: Account identifier.
+          resource_account_id: The account that owns the resource. Must match the `account_id` in the path.
 
-          resource_id: Share Resource identifier.
+          resource_id: Identifier assigned by the service that owns the shared resource.
 
           resource_type: Resource Type.
 
@@ -482,9 +480,10 @@ class AsyncResourcesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceUpdateResponse]:
-        """
-        Update is not immediate, an updated share resource object with a new status will
-        be returned.
+        """Updates the resource's `meta`.
+
+        Only resources with `status=active` can be
+        updated.
 
         Args:
           account_id: Account identifier.
@@ -560,12 +559,9 @@ class AsyncResourcesResource(AsyncAPIResource):
 
           share_id: Share identifier tag.
 
-          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
-              omitted entirely along with `per_page` to receive a non-paginated response.
+          page: Page number. Defaults to `1` when omitted.
 
-          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
-              without `per_page`. May be omitted entirely along with `page` to receive a
-              non-paginated response.
+          per_page: Number of objects to return per page. Defaults to `20` when omitted.
 
           resource_type: Filter share resources by resource_type.
 

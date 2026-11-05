@@ -30,7 +30,7 @@ class TestAgentReadiness:
         agent_readiness = client.radar.agent_readiness.summary(
             dimension="CHECK",
             date=parse_date("2024-09-19"),
-            domain_category=["string"],
+            domain_category=["News & Media"],
             format="JSON",
             name=["main_series"],
         )
@@ -78,7 +78,7 @@ class TestAsyncAgentReadiness:
         agent_readiness = await async_client.radar.agent_readiness.summary(
             dimension="CHECK",
             date=parse_date("2024-09-19"),
-            domain_category=["string"],
+            domain_category=["News & Media"],
             format="JSON",
             name=["main_series"],
         )

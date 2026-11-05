@@ -20,7 +20,6 @@ from .pagination_info import PaginationInfo as PaginationInfo
 from .permission_grant import PermissionGrant as PermissionGrant
 from .cloudflare_tunnel import CloudflareTunnel as CloudflareTunnel
 from .subscription_zone import SubscriptionZone as SubscriptionZone
-from .load_balancer_preview import LoadBalancerPreview as LoadBalancerPreview
 from .subscription_component import SubscriptionComponent as SubscriptionComponent
 from .certificate_request_type import CertificateRequestType as CertificateRequestType
 from .token_condition_cidr_list import TokenConditionCIDRList as TokenConditionCIDRList

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["WorkflowUpdateParams", "Concurrency", "DefaultRetention", "Limits", "Schedule"]
 
@@ -21,6 +21,13 @@ class WorkflowUpdateParams(TypedDict, total=False):
     """
     Default retention applied to instances of this version when they do not set
     their own retention.
+    """
+
+    jurisdiction: Literal["eu", "fedramp", "us"]
+    """Jurisdiction where instances of this workflow run and store data.
+
+    Can only be set when the workflow is created and cannot be changed afterwards;
+    omit it to keep the existing jurisdiction.
     """
 
     limits: Limits

@@ -32,8 +32,17 @@ class Data(BaseModel):
     updated_at: datetime
     """When this object was updated. The time is returned in ISO format."""
 
+    expires_on: Optional[datetime] = None
+    """Time at which the token stops being valid, in UTC.
+
+    Returned when adding a participant.
+    """
+
     name: Optional[str] = None
     """Name of the participant."""
+
+    not_before: Optional[datetime] = None
+    """Time from which the token is valid, in UTC. Returned when adding a participant."""
 
     picture: Optional[str] = None
     """URL to a picture of the participant."""

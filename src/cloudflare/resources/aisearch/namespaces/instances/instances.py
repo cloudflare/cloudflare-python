@@ -38,6 +38,7 @@ from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArra
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.aisearch.namespaces import (
     instance_list_params,
+    instance_move_params,
     instance_create_params,
     instance_search_params,
     instance_update_params,
@@ -85,7 +86,7 @@ class InstancesResource(SyncAPIResource):
 
     def create(
         self,
-        name: str,
+        namespace: str,
         *,
         account_id: str,
         id: str,
@@ -128,9 +129,9 @@ class InstancesResource(SyncAPIResource):
         """Create a new AI Search instance with the given configuration.
 
         If type is omitted
-        or null, a non-blank HTTP(S) source infers web-crawler and an existing R2 bucket
-        source infers r2. A missing or blank source without a type creates a managed
-        upload-only instance. Search for Agents instances require the default namespace.
+        or null, a non-blank HTTP(S) source infers web-crawler and any other source
+        infers r2; r2 sources must name an existing bucket. A missing or blank source
+        without a type creates a managed upload-only instance.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -145,14 +146,17 @@ class InstancesResource(SyncAPIResource):
           hybrid_search_enabled: Deprecated — use index_method instead. Defaults to true for new instances; set
               false to create a vector-only instance.
 
-          index_method: Controls which storage backends are used during indexing. Defaults to vector and
-              keyword indexing for new instances.
+          index_method: Controls which storage backends indexing uses. Defaults to vector and keyword
+              indexing for new instances. When set, both vector and keyword are required.
 
           rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
               Completions API. An empty string uses the configured or default model.
 
+          score_threshold: Minimum similarity score a chunk must reach to be returned. Defaults to 0.4.
+
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+              Defaults to 86400 (24h).
 
           type: Source type. When omitted or null with a non-blank source, HTTP(S) URLs infer
               web-crawler and existing R2 bucket names infer r2. A missing or blank source
@@ -168,11 +172,13 @@ class InstancesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances", account_id=account_id, name=name
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances",
+                account_id=account_id,
+                namespace=namespace,
             ),
             body=maybe_transform(
                 {
@@ -223,7 +229,7 @@ class InstancesResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Optional[str] | Omit = omit,
         cache: bool | Omit = omit,
@@ -264,12 +270,8 @@ class InstancesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """Update an AI Search instance.
-
-        Submitting Search for Agents metadata requires the
-        default namespace; omitting or removing it is allowed elsewhere. Submit Search
-        for Agents metadata and restrictive or unknown public endpoint changes or custom
-        domains in separate PUT requests, even when resubmitting unchanged metadata.
+        """
+        Updates the configuration of an AI Search instance.
 
         Args:
           aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
@@ -279,14 +281,17 @@ class InstancesResource(SyncAPIResource):
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
-          index_method: Controls which storage backends are used during indexing. Defaults to vector and
-              keyword indexing for new instances.
+          index_method: Controls which storage backends indexing uses. Defaults to vector and keyword
+              indexing for new instances. When set, both vector and keyword are required.
 
           rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
               Completions API. An empty string uses the configured or default model.
 
+          score_threshold: Minimum similarity score a chunk must reach to be returned. Defaults to 0.4.
+
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+              Defaults to 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -298,15 +303,15 @@ class InstancesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=maybe_transform(
@@ -358,11 +363,10 @@ class InstancesResource(SyncAPIResource):
 
     def list(
         self,
-        name: str,
+        namespace: str,
         *,
         account_id: str,
         hostname: str | Omit = omit,
-        namespace: str | Omit = omit,
         order_by: Literal["created_at"] | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
@@ -376,12 +380,11 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[InstanceListResponse]:
         """
-        List all AI Search instances in the account.
+        Lists all AI Search instances in the account.
 
         Args:
-          hostname: Filter by exact Search for Agents hostname (case-insensitive).
-
-          namespace: Filter by namespace.
+          hostname: Return only instances with this exact Search for Agents hostname
+              (case-insensitive).
 
           order_by: Field to order results by.
 
@@ -403,11 +406,13 @@ class InstancesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return self._get_api_list(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances", account_id=account_id, name=name
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances",
+                account_id=account_id,
+                namespace=namespace,
             ),
             page=SyncV4PagePaginationArray[InstanceListResponse],
             options=make_request_options(
@@ -418,7 +423,6 @@ class InstancesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "hostname": hostname,
-                        "namespace": namespace,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
                         "page": page,
@@ -436,7 +440,7 @@ class InstancesResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -445,7 +449,7 @@ class InstancesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
         """
-        Permanently delete an AI Search instance and all its indexed data.
+        Deletes an AI Search instance and all its indexed data permanently.
 
         Args:
           extra_headers: Send extra headers
@@ -458,15 +462,15 @@ class InstancesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             options=make_request_options(
@@ -484,7 +488,7 @@ class InstancesResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         messages: Iterable[instance_chat_completions_params.Message],
         aisearch_options: instance_chat_completions_params.AISearchOptions | Omit = omit,
         model: str | Omit = omit,
@@ -516,15 +520,15 @@ class InstancesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/chat/completions",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/chat/completions",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=maybe_transform(
@@ -542,12 +546,72 @@ class InstancesResource(SyncAPIResource):
             cast_to=InstanceChatCompletionsResponse,
         )
 
+    def move(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        namespace: str,
+        new_namespace: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Moves an instance from its current namespace to the specified target namespace.
+        Use 'default' with --destination-namespace to move the instance back to the
+        default namespace. Fails with 400 if the target namespace already has an
+        instance with the same id (ids must be unique within a namespace — the same id
+        can exist in different namespaces).
+
+        Args:
+          namespace: Current namespace of the instance.
+
+          id: Instance id.
+
+          new_namespace: Target namespace to move the instance into.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._patch(
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}",
+                account_id=account_id,
+                namespace=namespace,
+                id=id,
+            ),
+            body=maybe_transform({"new_namespace": new_namespace}, instance_move_params.InstanceMoveParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
     def read(
         self,
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -569,15 +633,15 @@ class InstancesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             options=make_request_options(
@@ -595,7 +659,7 @@ class InstancesResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         aisearch_options: instance_search_params.AISearchOptions | Omit = omit,
         messages: Iterable[instance_search_params.Message] | Omit = omit,
         query: str | Omit = omit,
@@ -632,15 +696,15 @@ class InstancesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/search",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/search",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=maybe_transform(
@@ -666,7 +730,7 @@ class InstancesResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -690,15 +754,15 @@ class InstancesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/stats",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/stats",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             options=make_request_options(
@@ -742,7 +806,7 @@ class AsyncInstancesResource(AsyncAPIResource):
 
     async def create(
         self,
-        name: str,
+        namespace: str,
         *,
         account_id: str,
         id: str,
@@ -785,9 +849,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         """Create a new AI Search instance with the given configuration.
 
         If type is omitted
-        or null, a non-blank HTTP(S) source infers web-crawler and an existing R2 bucket
-        source infers r2. A missing or blank source without a type creates a managed
-        upload-only instance. Search for Agents instances require the default namespace.
+        or null, a non-blank HTTP(S) source infers web-crawler and any other source
+        infers r2; r2 sources must name an existing bucket. A missing or blank source
+        without a type creates a managed upload-only instance.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -802,14 +866,17 @@ class AsyncInstancesResource(AsyncAPIResource):
           hybrid_search_enabled: Deprecated — use index_method instead. Defaults to true for new instances; set
               false to create a vector-only instance.
 
-          index_method: Controls which storage backends are used during indexing. Defaults to vector and
-              keyword indexing for new instances.
+          index_method: Controls which storage backends indexing uses. Defaults to vector and keyword
+              indexing for new instances. When set, both vector and keyword are required.
 
           rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
               Completions API. An empty string uses the configured or default model.
 
+          score_threshold: Minimum similarity score a chunk must reach to be returned. Defaults to 0.4.
+
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+              Defaults to 86400 (24h).
 
           type: Source type. When omitted or null with a non-blank source, HTTP(S) URLs infer
               web-crawler and existing R2 bucket names infer r2. A missing or blank source
@@ -825,11 +892,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return await self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances", account_id=account_id, name=name
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances",
+                account_id=account_id,
+                namespace=namespace,
             ),
             body=await async_maybe_transform(
                 {
@@ -880,7 +949,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         ai_gateway_id: Optional[str] | Omit = omit,
         aisearch_model: Optional[str] | Omit = omit,
         cache: bool | Omit = omit,
@@ -921,12 +990,8 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceUpdateResponse:
-        """Update an AI Search instance.
-
-        Submitting Search for Agents metadata requires the
-        default namespace; omitting or removing it is allowed elsewhere. Submit Search
-        for Agents metadata and restrictive or unknown public endpoint changes or custom
-        domains in separate PUT requests, even when resubmitting unchanged metadata.
+        """
+        Updates the configuration of an AI Search instance.
 
         Args:
           aisearch_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
@@ -936,14 +1001,17 @@ class AsyncInstancesResource(AsyncAPIResource):
               (1h), 7200 (2h), 21600 (6h), 43200 (12h), 86400 (24h), 172800 (48h), 259200
               (72h), 518400 (6d).
 
-          index_method: Controls which storage backends are used during indexing. Defaults to vector and
-              keyword indexing for new instances.
+          index_method: Controls which storage backends indexing uses. Defaults to vector and keyword
+              indexing for new instances. When set, both vector and keyword are required.
 
           rewrite_model: A Workers AI model ID or an AI Gateway model ID compatible with the OpenAI Chat
               Completions API. An empty string uses the configured or default model.
 
+          score_threshold: Minimum similarity score a chunk must reach to be returned. Defaults to 0.4.
+
           sync_interval: Interval between automatic syncs, in seconds. Allowed values: 900 (15min), 1800
               (30min), 3600 (1h), 7200 (2h), 14400 (4h), 21600 (6h), 43200 (12h), 86400 (24h).
+              Defaults to 86400 (24h).
 
           extra_headers: Send extra headers
 
@@ -955,15 +1023,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=await async_maybe_transform(
@@ -1015,11 +1083,10 @@ class AsyncInstancesResource(AsyncAPIResource):
 
     def list(
         self,
-        name: str,
+        namespace: str,
         *,
         account_id: str,
         hostname: str | Omit = omit,
-        namespace: str | Omit = omit,
         order_by: Literal["created_at"] | Omit = omit,
         order_by_direction: Literal["asc", "desc"] | Omit = omit,
         page: int | Omit = omit,
@@ -1033,12 +1100,11 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InstanceListResponse, AsyncV4PagePaginationArray[InstanceListResponse]]:
         """
-        List all AI Search instances in the account.
+        Lists all AI Search instances in the account.
 
         Args:
-          hostname: Filter by exact Search for Agents hostname (case-insensitive).
-
-          namespace: Filter by namespace.
+          hostname: Return only instances with this exact Search for Agents hostname
+              (case-insensitive).
 
           order_by: Field to order results by.
 
@@ -1060,11 +1126,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return self._get_api_list(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances", account_id=account_id, name=name
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances",
+                account_id=account_id,
+                namespace=namespace,
             ),
             page=AsyncV4PagePaginationArray[InstanceListResponse],
             options=make_request_options(
@@ -1075,7 +1143,6 @@ class AsyncInstancesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "hostname": hostname,
-                        "namespace": namespace,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
                         "page": page,
@@ -1093,7 +1160,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1102,7 +1169,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceDeleteResponse:
         """
-        Permanently delete an AI Search instance and all its indexed data.
+        Deletes an AI Search instance and all its indexed data permanently.
 
         Args:
           extra_headers: Send extra headers
@@ -1115,15 +1182,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             options=make_request_options(
@@ -1141,7 +1208,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         messages: Iterable[instance_chat_completions_params.Message],
         aisearch_options: instance_chat_completions_params.AISearchOptions | Omit = omit,
         model: str | Omit = omit,
@@ -1173,15 +1240,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/chat/completions",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/chat/completions",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=await async_maybe_transform(
@@ -1199,12 +1266,72 @@ class AsyncInstancesResource(AsyncAPIResource):
             cast_to=InstanceChatCompletionsResponse,
         )
 
+    async def move(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        namespace: str,
+        new_namespace: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> object:
+        """
+        Moves an instance from its current namespace to the specified target namespace.
+        Use 'default' with --destination-namespace to move the instance back to the
+        default namespace. Fails with 400 if the target namespace already has an
+        instance with the same id (ids must be unique within a namespace — the same id
+        can exist in different namespaces).
+
+        Args:
+          namespace: Current namespace of the instance.
+
+          id: Instance id.
+
+          new_namespace: Target namespace to move the instance into.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._patch(
+            path_template(
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}",
+                account_id=account_id,
+                namespace=namespace,
+                id=id,
+            ),
+            body=await async_maybe_transform({"new_namespace": new_namespace}, instance_move_params.InstanceMoveParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
     async def read(
         self,
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1226,15 +1353,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             options=make_request_options(
@@ -1252,7 +1379,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         aisearch_options: instance_search_params.AISearchOptions | Omit = omit,
         messages: Iterable[instance_search_params.Message] | Omit = omit,
         query: str | Omit = omit,
@@ -1289,15 +1416,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/search",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/search",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=await async_maybe_transform(
@@ -1323,7 +1450,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1347,15 +1474,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/stats",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/stats",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             options=make_request_options(
@@ -1387,6 +1514,9 @@ class InstancesResourceWithRawResponse:
         )
         self.chat_completions = to_raw_response_wrapper(
             instances.chat_completions,
+        )
+        self.move = to_raw_response_wrapper(
+            instances.move,
         )
         self.read = to_raw_response_wrapper(
             instances.read,
@@ -1426,6 +1556,9 @@ class AsyncInstancesResourceWithRawResponse:
         self.chat_completions = async_to_raw_response_wrapper(
             instances.chat_completions,
         )
+        self.move = async_to_raw_response_wrapper(
+            instances.move,
+        )
         self.read = async_to_raw_response_wrapper(
             instances.read,
         )
@@ -1464,6 +1597,9 @@ class InstancesResourceWithStreamingResponse:
         self.chat_completions = to_streamed_response_wrapper(
             instances.chat_completions,
         )
+        self.move = to_streamed_response_wrapper(
+            instances.move,
+        )
         self.read = to_streamed_response_wrapper(
             instances.read,
         )
@@ -1501,6 +1637,9 @@ class AsyncInstancesResourceWithStreamingResponse:
         )
         self.chat_completions = async_to_streamed_response_wrapper(
             instances.chat_completions,
+        )
+        self.move = async_to_streamed_response_wrapper(
+            instances.move,
         )
         self.read = async_to_streamed_response_wrapper(
             instances.read,

@@ -27,7 +27,7 @@ class TestBehaviours:
             behaviors={
                 "foo": {
                     "enabled": True,
-                    "risk_level": "low",
+                    "risk_level": "info",
                 }
             },
         )
@@ -40,7 +40,7 @@ class TestBehaviours:
             behaviors={
                 "foo": {
                     "enabled": True,
-                    "risk_level": "low",
+                    "risk_level": "info",
                 }
             },
         )
@@ -57,7 +57,7 @@ class TestBehaviours:
             behaviors={
                 "foo": {
                     "enabled": True,
-                    "risk_level": "low",
+                    "risk_level": "info",
                 }
             },
         ) as response:
@@ -77,7 +77,7 @@ class TestBehaviours:
                 behaviors={
                     "foo": {
                         "enabled": True,
-                        "risk_level": "low",
+                        "risk_level": "info",
                     }
                 },
             )
@@ -133,7 +133,7 @@ class TestAsyncBehaviours:
             behaviors={
                 "foo": {
                     "enabled": True,
-                    "risk_level": "low",
+                    "risk_level": "info",
                 }
             },
         )
@@ -146,7 +146,7 @@ class TestAsyncBehaviours:
             behaviors={
                 "foo": {
                     "enabled": True,
-                    "risk_level": "low",
+                    "risk_level": "info",
                 }
             },
         )
@@ -163,7 +163,7 @@ class TestAsyncBehaviours:
             behaviors={
                 "foo": {
                     "enabled": True,
-                    "risk_level": "low",
+                    "risk_level": "info",
                 }
             },
         ) as response:
@@ -183,7 +183,7 @@ class TestAsyncBehaviours:
                 behaviors={
                     "foo": {
                         "enabled": True,
-                        "risk_level": "low",
+                        "risk_level": "info",
                     }
                 },
             )

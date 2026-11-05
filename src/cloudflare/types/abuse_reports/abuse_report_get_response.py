@@ -61,6 +61,12 @@ class AbuseReportGetResponse(BaseModel):
     type: Literal["PHISH", "GEN", "THREAT", "DMCA", "EMER", "TM", "REG_WHO", "NCSEI", "NETWORK"]
     """The abuse report type"""
 
+    has_pending_notice: Optional[bool] = None
+    """
+    Whether the report is in an open Notice and Takedown notice period: no
+    mitigation is placed yet, but one will take effect when the period ends.
+    """
+
     justification: Optional[str] = None
     """Justification for the report."""
 

@@ -44,6 +44,12 @@ class CertificateCreateResponse(BaseModel):
     issuer_raw: Optional[str] = None
     """Provide the entire issuer field of the certificate (read-only)."""
 
+    region: Optional[str] = None
+    """
+    Indicate the read-only region the certificate authority's key material is pinned
+    to. Omitted for certificates that were created without a region.
+    """
+
     type: Optional[Literal["custom", "gateway_managed"]] = None
     """Indicate the read-only certificate type, BYO-PKI (custom) or Gateway-managed."""
 

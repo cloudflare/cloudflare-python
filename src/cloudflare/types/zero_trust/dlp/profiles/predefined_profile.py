@@ -43,6 +43,15 @@ class EntryCustomEntry(BaseModel):
 
     profile_id: Optional[str] = None
 
+    validator_ids: Optional[List[str]] = None
+    """Validators this entry references, by id, at most 10.
+
+    An empty list means the entry references none.
+
+    Returned by the entry endpoints. Not returned on entries embedded in other
+    responses, such as profiles.
+    """
+
 
 class EntryCustomPromptTopicEntry(BaseModel):
     id: str
@@ -194,7 +203,7 @@ class EntryWordListEntry(BaseModel):
 
     updated_at: datetime
 
-    word_list: object
+    word_list: List[str]
 
     profile_id: Optional[str] = None
 

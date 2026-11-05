@@ -555,7 +555,7 @@ class MonitorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
-        List a single configured monitor for an account.
+        Fetch a single configured monitor for an account.
 
         Args:
           account_id: Identifier.
@@ -1101,7 +1101,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Monitor:
         """
-        List a single configured monitor for an account.
+        Fetch a single configured monitor for an account.
 
         Args:
           account_id: Identifier.

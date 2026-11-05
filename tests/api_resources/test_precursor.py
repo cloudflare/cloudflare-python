@@ -28,15 +28,17 @@ class TestPrecursor:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         precursor = client.precursor.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            default_mode="min-friction",
-            enforcement_rules=[
+            cloudflare_version="1.0",
+            mode="monitor",
+            rules=[
                 {
                     "expression": 'http.request.uri.path eq "/login"',
-                    "mode": "max-security",
-                    "description": "Ease friction on the login path",
+                    "show_interstitial": True,
+                    "description": "Show an interstitial on the login path",
                     "enabled": True,
                 }
             ],
+            show_interstitial=True,
         )
         assert_matches_type(Optional[PrecursorConfig], precursor, path=["response"])
 
@@ -126,15 +128,17 @@ class TestAsyncPrecursor:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         precursor = await async_client.precursor.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            default_mode="min-friction",
-            enforcement_rules=[
+            cloudflare_version="1.0",
+            mode="monitor",
+            rules=[
                 {
                     "expression": 'http.request.uri.path eq "/login"',
-                    "mode": "max-security",
-                    "description": "Ease friction on the login path",
+                    "show_interstitial": True,
+                    "description": "Show an interstitial on the login path",
                     "enabled": True,
                 }
             ],
+            show_interstitial=True,
         )
         assert_matches_type(Optional[PrecursorConfig], precursor, path=["response"])
 

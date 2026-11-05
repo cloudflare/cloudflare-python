@@ -86,6 +86,19 @@ class SpectrumConfigAppConfig(BaseModel):
     argo_smart_routing. tls may only be "off" or "flexible".
     """
 
+    origin_worker_name: Optional[str] = None
+    """Name of the Worker origin.
+
+    Omitted when the Worker is not found or its name cannot be resolved.
+    """
+
+    origin_worker_status: Optional[Literal["available", "not_found", "unknown"]] = None
+    """Lookup status of the Worker origin.
+
+    Unknown indicates that its name could not be resolved. Only returned for Worker
+    origins.
+    """
+
     proxy_protocol: Optional[Literal["off", "v1", "v2", "simple"]] = None
     """Enables Proxy Protocol to the origin.
 

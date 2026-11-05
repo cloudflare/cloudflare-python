@@ -10,71 +10,82 @@ __all__ = ["LivestreamGetActiveLivestreamsForLivestreamIDResponse", "Data", "Dat
 
 
 class DataLivestream(BaseModel):
-    id: Optional[str] = None
+    id: str
+    """ID of the livestream."""
 
-    created_at: Optional[datetime] = None
-    """Timestamp the object was created at. The time is returned in ISO format."""
+    created_at: datetime
+    """Timestamp the livestream was created at, in ISO format."""
 
-    disabled: Optional[str] = None
-    """Specifies if the livestream was disabled."""
+    disabled: bool
+    """Specifies if the livestream is disabled."""
 
-    ingest_server: Optional[str] = None
+    external_id: str
+    """ID of the underlying Cloudflare Stream live input."""
+
+    ingest_server: str
     """The server URL to which the RTMP encoder sends the video and audio data."""
 
+    manual_ingest: bool
+    """Specifies if the livestream is ingested manually by an RTMP encoder."""
+
     meeting_id: Optional[str] = None
-    """ID of the meeting."""
+    """ID of the meeting being livestreamed, if any."""
 
     name: Optional[str] = None
     """Name of the livestream."""
 
-    playback_url: Optional[str] = None
+    playback_url: str
     """The web address that viewers can use to watch the livestream."""
 
-    status: Optional[Literal["LIVE", "IDLE", "ERRORED", "INVOKED"]] = None
+    status: Literal["LIVE", "IDLE", "ERRORED", "INVOKED", "METRICS_READY"]
+    """Status of the livestream."""
 
-    stream_key: Optional[str] = None
-    """Unique key for accessing each livestream."""
+    stream_key: str
+    """Unique key for accessing each livestream. Empty if the livestream is disabled."""
 
-    updated_at: Optional[datetime] = None
-    """Timestamp the object was updated at. The time is returned in ISO format."""
+    updated_at: datetime
+    """Timestamp the livestream was last updated at, in ISO format."""
 
 
 class DataSession(BaseModel):
-    id: Optional[str] = None
+    id: str
+    """ID of the livestream session."""
 
-    created_at: Optional[datetime] = None
-    """Timestamp the object was created at. The time is returned in ISO format."""
+    created_at: datetime
+    """Timestamp the livestream session was created at, in ISO format."""
 
     err_message: Optional[str] = None
+    """Error message, if the livestream session failed."""
 
-    ingest_seconds: Optional[str] = None
+    ingest_seconds: float
     """The time duration for which the input was given or the meeting was streamed."""
 
     invoked_time: Optional[datetime] = None
-    """Timestamp the object was invoked. The time is returned in ISO format."""
+    """Timestamp the livestream session was invoked at, in ISO format."""
 
-    livestream_id: Optional[str] = None
+    livestream_id: str
+    """ID of the livestream."""
 
     started_time: Optional[datetime] = None
-    """Timestamp the object was started. The time is returned in ISO format."""
+    """Timestamp the livestream session started at, in ISO format."""
 
     stopped_time: Optional[datetime] = None
-    """Timestamp the object was stopped. The time is returned in ISO format."""
+    """Timestamp the livestream session stopped at, in ISO format."""
 
-    updated_at: Optional[datetime] = None
-    """Timestamp the object was updated at. The time is returned in ISO format."""
+    updated_at: datetime
+    """Timestamp the livestream session was last updated at, in ISO format."""
 
-    viewer_seconds: Optional[str] = None
+    viewer_seconds: float
     """The total view time for which the viewers watched the stream."""
 
 
 class Data(BaseModel):
-    livestream: Optional[DataLivestream] = None
+    livestream: DataLivestream
 
-    session: Optional[DataSession] = None
+    session: DataSession
 
 
 class LivestreamGetActiveLivestreamsForLivestreamIDResponse(BaseModel):
-    data: Optional[Data] = None
+    data: Data
 
-    success: Optional[bool] = None
+    success: bool

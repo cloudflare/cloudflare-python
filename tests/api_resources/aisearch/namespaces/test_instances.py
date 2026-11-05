@@ -30,7 +30,7 @@ class TestInstances:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         instance = client.aisearch.namespaces.instances.create(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
         )
@@ -39,7 +39,7 @@ class TestInstances:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         instance = client.aisearch.namespaces.instances.create(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             ai_gateway_id="ai_gateway_id",
@@ -70,6 +70,10 @@ class TestInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
+                "created_from_emdash_plugin": {
+                    "type": "native",
+                    "version": "version",
+                },
                 "worker_domain": "worker_domain",
             },
             public_endpoint_params={
@@ -149,7 +153,7 @@ class TestInstances:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.aisearch.namespaces.instances.with_raw_response.create(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
         )
@@ -162,7 +166,7 @@ class TestInstances:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.aisearch.namespaces.instances.with_streaming_response.create(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
         ) as response:
@@ -178,14 +182,14 @@ class TestInstances:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.create(
-                name="my-namespace",
+                namespace="my-namespace",
                 account_id="",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.create(
-                name="",
+                namespace="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
                 id="my-ai-search",
             )
@@ -195,7 +199,7 @@ class TestInstances:
         instance = client.aisearch.namespaces.instances.update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
 
@@ -204,7 +208,7 @@ class TestInstances:
         instance = client.aisearch.namespaces.instances.update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             ai_gateway_id="ai_gateway_id",
             aisearch_model="ai_search_model",
             cache=True,
@@ -232,6 +236,10 @@ class TestInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
+                "created_from_emdash_plugin": {
+                    "type": "native",
+                    "version": "version",
+                },
                 "worker_domain": "worker_domain",
             },
             paused=True,
@@ -318,7 +326,7 @@ class TestInstances:
         response = client.aisearch.namespaces.instances.with_raw_response.update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -331,7 +339,7 @@ class TestInstances:
         with client.aisearch.namespaces.instances.with_streaming_response.update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -347,27 +355,27 @@ class TestInstances:
             client.aisearch.namespaces.instances.with_raw_response.update(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.update(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.update(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         instance = client.aisearch.namespaces.instances.list(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
         )
         assert_matches_type(SyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
@@ -375,10 +383,9 @@ class TestInstances:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         instance = client.aisearch.namespaces.instances.list(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             hostname="x",
-            namespace="namespace",
             order_by="created_at",
             order_by_direction="asc",
             page=1,
@@ -390,7 +397,7 @@ class TestInstances:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.aisearch.namespaces.instances.with_raw_response.list(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
         )
 
@@ -402,7 +409,7 @@ class TestInstances:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.aisearch.namespaces.instances.with_streaming_response.list(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
         ) as response:
             assert not response.is_closed
@@ -417,13 +424,13 @@ class TestInstances:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.list(
-                name="my-namespace",
+                namespace="my-namespace",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.list(
-                name="",
+                namespace="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             )
 
@@ -432,7 +439,7 @@ class TestInstances:
         instance = client.aisearch.namespaces.instances.delete(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceDeleteResponse, instance, path=["response"])
 
@@ -441,7 +448,7 @@ class TestInstances:
         response = client.aisearch.namespaces.instances.with_raw_response.delete(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -454,7 +461,7 @@ class TestInstances:
         with client.aisearch.namespaces.instances.with_streaming_response.delete(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -470,21 +477,21 @@ class TestInstances:
             client.aisearch.namespaces.instances.with_raw_response.delete(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.delete(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.delete(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -492,7 +499,7 @@ class TestInstances:
         instance = client.aisearch.namespaces.instances.chat_completions(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             messages=[
                 {
                     "content": "string",
@@ -507,7 +514,7 @@ class TestInstances:
         instance = client.aisearch.namespaces.instances.chat_completions(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             messages=[
                 {
                     "content": "string",
@@ -560,7 +567,7 @@ class TestInstances:
         response = client.aisearch.namespaces.instances.with_raw_response.chat_completions(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             messages=[
                 {
                     "content": "string",
@@ -579,7 +586,7 @@ class TestInstances:
         with client.aisearch.namespaces.instances.with_streaming_response.chat_completions(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             messages=[
                 {
                     "content": "string",
@@ -601,7 +608,7 @@ class TestInstances:
             client.aisearch.namespaces.instances.with_raw_response.chat_completions(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 messages=[
                     {
                         "content": "string",
@@ -610,11 +617,11 @@ class TestInstances:
                 ],
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.chat_completions(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 messages=[
                     {
                         "content": "string",
@@ -627,7 +634,7 @@ class TestInstances:
             client.aisearch.namespaces.instances.with_raw_response.chat_completions(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 messages=[
                     {
                         "content": "string",
@@ -637,11 +644,77 @@ class TestInstances:
             )
 
     @parametrize
+    def test_method_move(self, client: Cloudflare) -> None:
+        instance = client.aisearch.namespaces.instances.move(
+            id="my-blog",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="production",
+            new_namespace="staging",
+        )
+        assert_matches_type(object, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_move(self, client: Cloudflare) -> None:
+        response = client.aisearch.namespaces.instances.with_raw_response.move(
+            id="my-blog",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="production",
+            new_namespace="staging",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(object, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_move(self, client: Cloudflare) -> None:
+        with client.aisearch.namespaces.instances.with_streaming_response.move(
+            id="my-blog",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="production",
+            new_namespace="staging",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(object, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_move(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.move(
+                id="my-blog",
+                account_id="",
+                namespace="production",
+                new_namespace="staging",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.move(
+                id="my-blog",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                namespace="",
+                new_namespace="staging",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.aisearch.namespaces.instances.with_raw_response.move(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                namespace="production",
+                new_namespace="staging",
+            )
+
+    @parametrize
     def test_method_read(self, client: Cloudflare) -> None:
         instance = client.aisearch.namespaces.instances.read(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceReadResponse, instance, path=["response"])
 
@@ -650,7 +723,7 @@ class TestInstances:
         response = client.aisearch.namespaces.instances.with_raw_response.read(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -663,7 +736,7 @@ class TestInstances:
         with client.aisearch.namespaces.instances.with_streaming_response.read(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -679,21 +752,21 @@ class TestInstances:
             client.aisearch.namespaces.instances.with_raw_response.read(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.read(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.read(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -701,7 +774,7 @@ class TestInstances:
         instance = client.aisearch.namespaces.instances.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceSearchResponse, instance, path=["response"])
 
@@ -710,7 +783,7 @@ class TestInstances:
         instance = client.aisearch.namespaces.instances.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             aisearch_options={
                 "cache": {
                     "cache_threshold": "super_strict_match",
@@ -762,7 +835,7 @@ class TestInstances:
         response = client.aisearch.namespaces.instances.with_raw_response.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -775,7 +848,7 @@ class TestInstances:
         with client.aisearch.namespaces.instances.with_streaming_response.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -791,21 +864,21 @@ class TestInstances:
             client.aisearch.namespaces.instances.with_raw_response.search(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.search(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.search(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -813,7 +886,7 @@ class TestInstances:
         instance = client.aisearch.namespaces.instances.stats(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceStatsResponse, instance, path=["response"])
 
@@ -822,7 +895,7 @@ class TestInstances:
         response = client.aisearch.namespaces.instances.with_raw_response.stats(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -835,7 +908,7 @@ class TestInstances:
         with client.aisearch.namespaces.instances.with_streaming_response.stats(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -851,21 +924,21 @@ class TestInstances:
             client.aisearch.namespaces.instances.with_raw_response.stats(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.stats(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.namespaces.instances.with_raw_response.stats(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
 
@@ -877,7 +950,7 @@ class TestAsyncInstances:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         instance = await async_client.aisearch.namespaces.instances.create(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
         )
@@ -886,7 +959,7 @@ class TestAsyncInstances:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         instance = await async_client.aisearch.namespaces.instances.create(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             ai_gateway_id="ai_gateway_id",
@@ -917,6 +990,10 @@ class TestAsyncInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
+                "created_from_emdash_plugin": {
+                    "type": "native",
+                    "version": "version",
+                },
                 "worker_domain": "worker_domain",
             },
             public_endpoint_params={
@@ -996,7 +1073,7 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.aisearch.namespaces.instances.with_raw_response.create(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
         )
@@ -1009,7 +1086,7 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.aisearch.namespaces.instances.with_streaming_response.create(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
         ) as response:
@@ -1025,14 +1102,14 @@ class TestAsyncInstances:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.create(
-                name="my-namespace",
+                namespace="my-namespace",
                 account_id="",
                 id="my-ai-search",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.create(
-                name="",
+                namespace="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
                 id="my-ai-search",
             )
@@ -1042,7 +1119,7 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.namespaces.instances.update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceUpdateResponse, instance, path=["response"])
 
@@ -1051,7 +1128,7 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.namespaces.instances.update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             ai_gateway_id="ai_gateway_id",
             aisearch_model="ai_search_model",
             cache=True,
@@ -1079,6 +1156,10 @@ class TestAsyncInstances:
             max_num_results=1,
             metadata={
                 "created_from_aisearch_wizard": True,
+                "created_from_emdash_plugin": {
+                    "type": "native",
+                    "version": "version",
+                },
                 "worker_domain": "worker_domain",
             },
             paused=True,
@@ -1165,7 +1246,7 @@ class TestAsyncInstances:
         response = await async_client.aisearch.namespaces.instances.with_raw_response.update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -1178,7 +1259,7 @@ class TestAsyncInstances:
         async with async_client.aisearch.namespaces.instances.with_streaming_response.update(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1194,27 +1275,27 @@ class TestAsyncInstances:
             await async_client.aisearch.namespaces.instances.with_raw_response.update(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.update(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.update(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         instance = await async_client.aisearch.namespaces.instances.list(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
         )
         assert_matches_type(AsyncV4PagePaginationArray[InstanceListResponse], instance, path=["response"])
@@ -1222,10 +1303,9 @@ class TestAsyncInstances:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         instance = await async_client.aisearch.namespaces.instances.list(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             hostname="x",
-            namespace="namespace",
             order_by="created_at",
             order_by_direction="asc",
             page=1,
@@ -1237,7 +1317,7 @@ class TestAsyncInstances:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.aisearch.namespaces.instances.with_raw_response.list(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
         )
 
@@ -1249,7 +1329,7 @@ class TestAsyncInstances:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.aisearch.namespaces.instances.with_streaming_response.list(
-            name="my-namespace",
+            namespace="my-namespace",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
         ) as response:
             assert not response.is_closed
@@ -1264,13 +1344,13 @@ class TestAsyncInstances:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.list(
-                name="my-namespace",
+                namespace="my-namespace",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.list(
-                name="",
+                namespace="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             )
 
@@ -1279,7 +1359,7 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.namespaces.instances.delete(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceDeleteResponse, instance, path=["response"])
 
@@ -1288,7 +1368,7 @@ class TestAsyncInstances:
         response = await async_client.aisearch.namespaces.instances.with_raw_response.delete(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -1301,7 +1381,7 @@ class TestAsyncInstances:
         async with async_client.aisearch.namespaces.instances.with_streaming_response.delete(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1317,21 +1397,21 @@ class TestAsyncInstances:
             await async_client.aisearch.namespaces.instances.with_raw_response.delete(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.delete(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.delete(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -1339,7 +1419,7 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.namespaces.instances.chat_completions(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             messages=[
                 {
                     "content": "string",
@@ -1354,7 +1434,7 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.namespaces.instances.chat_completions(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             messages=[
                 {
                     "content": "string",
@@ -1407,7 +1487,7 @@ class TestAsyncInstances:
         response = await async_client.aisearch.namespaces.instances.with_raw_response.chat_completions(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             messages=[
                 {
                     "content": "string",
@@ -1426,7 +1506,7 @@ class TestAsyncInstances:
         async with async_client.aisearch.namespaces.instances.with_streaming_response.chat_completions(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             messages=[
                 {
                     "content": "string",
@@ -1448,7 +1528,7 @@ class TestAsyncInstances:
             await async_client.aisearch.namespaces.instances.with_raw_response.chat_completions(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
                 messages=[
                     {
                         "content": "string",
@@ -1457,11 +1537,11 @@ class TestAsyncInstances:
                 ],
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.chat_completions(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
                 messages=[
                     {
                         "content": "string",
@@ -1474,7 +1554,7 @@ class TestAsyncInstances:
             await async_client.aisearch.namespaces.instances.with_raw_response.chat_completions(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
                 messages=[
                     {
                         "content": "string",
@@ -1484,11 +1564,77 @@ class TestAsyncInstances:
             )
 
     @parametrize
+    async def test_method_move(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.namespaces.instances.move(
+            id="my-blog",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="production",
+            new_namespace="staging",
+        )
+        assert_matches_type(object, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_move(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.namespaces.instances.with_raw_response.move(
+            id="my-blog",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="production",
+            new_namespace="staging",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(object, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_move(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.namespaces.instances.with_streaming_response.move(
+            id="my-blog",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            namespace="production",
+            new_namespace="staging",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(object, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_move(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.move(
+                id="my-blog",
+                account_id="",
+                namespace="production",
+                new_namespace="staging",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.move(
+                id="my-blog",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                namespace="",
+                new_namespace="staging",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.aisearch.namespaces.instances.with_raw_response.move(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                namespace="production",
+                new_namespace="staging",
+            )
+
+    @parametrize
     async def test_method_read(self, async_client: AsyncCloudflare) -> None:
         instance = await async_client.aisearch.namespaces.instances.read(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceReadResponse, instance, path=["response"])
 
@@ -1497,7 +1643,7 @@ class TestAsyncInstances:
         response = await async_client.aisearch.namespaces.instances.with_raw_response.read(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -1510,7 +1656,7 @@ class TestAsyncInstances:
         async with async_client.aisearch.namespaces.instances.with_streaming_response.read(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1526,21 +1672,21 @@ class TestAsyncInstances:
             await async_client.aisearch.namespaces.instances.with_raw_response.read(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.read(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.read(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -1548,7 +1694,7 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.namespaces.instances.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceSearchResponse, instance, path=["response"])
 
@@ -1557,7 +1703,7 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.namespaces.instances.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
             aisearch_options={
                 "cache": {
                     "cache_threshold": "super_strict_match",
@@ -1609,7 +1755,7 @@ class TestAsyncInstances:
         response = await async_client.aisearch.namespaces.instances.with_raw_response.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -1622,7 +1768,7 @@ class TestAsyncInstances:
         async with async_client.aisearch.namespaces.instances.with_streaming_response.search(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1638,21 +1784,21 @@ class TestAsyncInstances:
             await async_client.aisearch.namespaces.instances.with_raw_response.search(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.search(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.search(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
     @parametrize
@@ -1660,7 +1806,7 @@ class TestAsyncInstances:
         instance = await async_client.aisearch.namespaces.instances.stats(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
         assert_matches_type(InstanceStatsResponse, instance, path=["response"])
 
@@ -1669,7 +1815,7 @@ class TestAsyncInstances:
         response = await async_client.aisearch.namespaces.instances.with_raw_response.stats(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         )
 
         assert response.is_closed is True
@@ -1682,7 +1828,7 @@ class TestAsyncInstances:
         async with async_client.aisearch.namespaces.instances.with_streaming_response.stats(
             id="my-ai-search",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            name="my-namespace",
+            namespace="my-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1698,19 +1844,19 @@ class TestAsyncInstances:
             await async_client.aisearch.namespaces.instances.with_raw_response.stats(
                 id="my-ai-search",
                 account_id="",
-                name="my-namespace",
+                namespace="my-namespace",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.stats(
                 id="my-ai-search",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="",
+                namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.namespaces.instances.with_raw_response.stats(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-                name="my-namespace",
+                namespace="my-namespace",
             )

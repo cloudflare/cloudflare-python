@@ -9,13 +9,13 @@ __all__ = ["TopupCreateResponse"]
 
 class TopupCreateResponse(BaseModel):
     client_secret: Optional[str] = None
-    """Stripe PaymentIntent client secret."""
+    """Client secret used to complete payment authentication."""
 
     onboarding: bool
     """Whether the user was already onboarded."""
 
     payment_intent_id: str
-    """Stripe invoice ID."""
+    """Top-up payment identifier."""
 
     brand: Optional[str] = None
     """Card brand (visa, mastercard, etc.)."""

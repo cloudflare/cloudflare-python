@@ -14,6 +14,7 @@ from .approval_group import ApprovalGroup
 from .application_type import ApplicationType
 from .scim_config_mapping import SCIMConfigMapping
 from .self_hosted_domains import SelfHostedDomains
+from .destination_override import DestinationOverride
 from .applications.access_rule import AccessRule
 from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2
 from .scim_config_authentication_http_basic import SCIMConfigAuthenticationHTTPBasic
@@ -21,20 +22,25 @@ from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticat
 
 __all__ = [
     "ApplicationCreateResponse",
+    "EndUserApplication",
+    "EndUserApplicationOAuthConfiguration",
+    "EndUserApplicationOAuthConfigurationDynamicClientRegistration",
+    "EndUserApplicationOAuthConfigurationGrant",
+    "EndUserApplicationDestination",
+    "EndUserApplicationDestinationAccessEndUserPublicDestination",
+    "EndUserApplicationDestinationAccessEndUserWorkerDestination",
+    "EndUserApplicationDestinationAccessEndUserPreviewWorkerDestination",
+    "EndUserApplicationDestinationAccessEndUserAllWorkersDestination",
+    "EndUserApplicationDestinationAccessEndUserAllPreviewWorkersDestination",
     "SelfHostedApplication",
     "SelfHostedApplicationDestination",
     "SelfHostedApplicationDestinationPublicDestination",
-    "SelfHostedApplicationDestinationPublicDestinationOverride",
     "SelfHostedApplicationDestinationPrivateDestination",
     "SelfHostedApplicationDestinationViaMcpServerPortalDestination",
     "SelfHostedApplicationDestinationWorkerDestination",
-    "SelfHostedApplicationDestinationWorkerDestinationOverride",
     "SelfHostedApplicationDestinationPreviewWorkerDestination",
-    "SelfHostedApplicationDestinationPreviewWorkerDestinationOverride",
     "SelfHostedApplicationDestinationAllWorkersDestination",
-    "SelfHostedApplicationDestinationAllWorkersDestinationOverride",
     "SelfHostedApplicationDestinationAllPreviewWorkersDestination",
-    "SelfHostedApplicationDestinationAllPreviewWorkersDestinationOverride",
     "SelfHostedApplicationMfaConfig",
     "SelfHostedApplicationOAuthConfiguration",
     "SelfHostedApplicationOAuthConfigurationDynamicClientRegistration",
@@ -62,17 +68,12 @@ __all__ = [
     "BrowserSSHApplication",
     "BrowserSSHApplicationDestination",
     "BrowserSSHApplicationDestinationPublicDestination",
-    "BrowserSSHApplicationDestinationPublicDestinationOverride",
     "BrowserSSHApplicationDestinationPrivateDestination",
     "BrowserSSHApplicationDestinationViaMcpServerPortalDestination",
     "BrowserSSHApplicationDestinationWorkerDestination",
-    "BrowserSSHApplicationDestinationWorkerDestinationOverride",
     "BrowserSSHApplicationDestinationPreviewWorkerDestination",
-    "BrowserSSHApplicationDestinationPreviewWorkerDestinationOverride",
     "BrowserSSHApplicationDestinationAllWorkersDestination",
-    "BrowserSSHApplicationDestinationAllWorkersDestinationOverride",
     "BrowserSSHApplicationDestinationAllPreviewWorkersDestination",
-    "BrowserSSHApplicationDestinationAllPreviewWorkersDestinationOverride",
     "BrowserSSHApplicationMfaConfig",
     "BrowserSSHApplicationOAuthConfiguration",
     "BrowserSSHApplicationOAuthConfigurationDynamicClientRegistration",
@@ -89,17 +90,12 @@ __all__ = [
     "BrowserVNCApplication",
     "BrowserVNCApplicationDestination",
     "BrowserVNCApplicationDestinationPublicDestination",
-    "BrowserVNCApplicationDestinationPublicDestinationOverride",
     "BrowserVNCApplicationDestinationPrivateDestination",
     "BrowserVNCApplicationDestinationViaMcpServerPortalDestination",
     "BrowserVNCApplicationDestinationWorkerDestination",
-    "BrowserVNCApplicationDestinationWorkerDestinationOverride",
     "BrowserVNCApplicationDestinationPreviewWorkerDestination",
-    "BrowserVNCApplicationDestinationPreviewWorkerDestinationOverride",
     "BrowserVNCApplicationDestinationAllWorkersDestination",
-    "BrowserVNCApplicationDestinationAllWorkersDestinationOverride",
     "BrowserVNCApplicationDestinationAllPreviewWorkersDestination",
-    "BrowserVNCApplicationDestinationAllPreviewWorkersDestinationOverride",
     "BrowserVNCApplicationMfaConfig",
     "BrowserVNCApplicationOAuthConfiguration",
     "BrowserVNCApplicationOAuthConfigurationDynamicClientRegistration",
@@ -163,17 +159,12 @@ __all__ = [
     "BrowserRDPApplicationTargetCriterionRequireTargetAttributes",
     "BrowserRDPApplicationDestination",
     "BrowserRDPApplicationDestinationPublicDestination",
-    "BrowserRDPApplicationDestinationPublicDestinationOverride",
     "BrowserRDPApplicationDestinationPrivateDestination",
     "BrowserRDPApplicationDestinationViaMcpServerPortalDestination",
     "BrowserRDPApplicationDestinationWorkerDestination",
-    "BrowserRDPApplicationDestinationWorkerDestinationOverride",
     "BrowserRDPApplicationDestinationPreviewWorkerDestination",
-    "BrowserRDPApplicationDestinationPreviewWorkerDestinationOverride",
     "BrowserRDPApplicationDestinationAllWorkersDestination",
-    "BrowserRDPApplicationDestinationAllWorkersDestinationOverride",
     "BrowserRDPApplicationDestinationAllPreviewWorkersDestination",
-    "BrowserRDPApplicationDestinationAllPreviewWorkersDestinationOverride",
     "BrowserRDPApplicationMfaConfig",
     "BrowserRDPApplicationOAuthConfiguration",
     "BrowserRDPApplicationOAuthConfigurationDynamicClientRegistration",
@@ -190,17 +181,12 @@ __all__ = [
     "McpServerApplication",
     "McpServerApplicationDestination",
     "McpServerApplicationDestinationPublicDestination",
-    "McpServerApplicationDestinationPublicDestinationOverride",
     "McpServerApplicationDestinationPrivateDestination",
     "McpServerApplicationDestinationViaMcpServerPortalDestination",
     "McpServerApplicationDestinationWorkerDestination",
-    "McpServerApplicationDestinationWorkerDestinationOverride",
     "McpServerApplicationDestinationPreviewWorkerDestination",
-    "McpServerApplicationDestinationPreviewWorkerDestinationOverride",
     "McpServerApplicationDestinationAllWorkersDestination",
-    "McpServerApplicationDestinationAllWorkersDestinationOverride",
     "McpServerApplicationDestinationAllPreviewWorkersDestination",
-    "McpServerApplicationDestinationAllPreviewWorkersDestinationOverride",
     "McpServerApplicationOAuthConfiguration",
     "McpServerApplicationOAuthConfigurationDynamicClientRegistration",
     "McpServerApplicationOAuthConfigurationGrant",
@@ -216,17 +202,12 @@ __all__ = [
     "McpServerPortalApplication",
     "McpServerPortalApplicationDestination",
     "McpServerPortalApplicationDestinationPublicDestination",
-    "McpServerPortalApplicationDestinationPublicDestinationOverride",
     "McpServerPortalApplicationDestinationPrivateDestination",
     "McpServerPortalApplicationDestinationViaMcpServerPortalDestination",
     "McpServerPortalApplicationDestinationWorkerDestination",
-    "McpServerPortalApplicationDestinationWorkerDestinationOverride",
     "McpServerPortalApplicationDestinationPreviewWorkerDestination",
-    "McpServerPortalApplicationDestinationPreviewWorkerDestinationOverride",
     "McpServerPortalApplicationDestinationAllWorkersDestination",
-    "McpServerPortalApplicationDestinationAllWorkersDestinationOverride",
     "McpServerPortalApplicationDestinationAllPreviewWorkersDestination",
-    "McpServerPortalApplicationDestinationAllPreviewWorkersDestinationOverride",
     "McpServerPortalApplicationOAuthConfiguration",
     "McpServerPortalApplicationOAuthConfigurationDynamicClientRegistration",
     "McpServerPortalApplicationOAuthConfigurationGrant",
@@ -242,16 +223,195 @@ __all__ = [
 ]
 
 
-class SelfHostedApplicationDestinationPublicDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
+class EndUserApplicationOAuthConfigurationDynamicClientRegistration(BaseModel):
+    """Settings for OAuth dynamic client registration."""
 
-    path_pattern: str
-    """The request path pattern to match.
+    allow_any_on_localhost: Optional[bool] = None
+    """Allows any client with redirect URIs on localhost."""
 
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
+    allow_any_on_loopback: Optional[bool] = None
+    """Allows any client with redirect URIs on 127.0.0.1."""
+
+    allowed_uris: Optional[List[str]] = None
+    """The URIs that are allowed as redirect URIs for dynamically registered clients.
+
+    HTTP and HTTPS paths may end in `/*` to match all sub-paths. Custom-scheme URIs
+    must be explicitly configured and match exactly.
+    """
+
+    enabled: Optional[bool] = None
+    """Whether dynamic client registration is enabled."""
+
+
+class EndUserApplicationOAuthConfigurationGrant(BaseModel):
+    """Settings for OAuth grant behavior."""
+
+    access_token_lifetime: Optional[str] = None
+    """The lifetime of the access token.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    session_duration: Optional[str] = None
+    """The duration of the OAuth session.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+class EndUserApplicationOAuthConfiguration(BaseModel):
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow controlled by Access. When set, Access will act as the OAuth authorization server for this application. Only compatible with OAuth clients that support [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators for OAuth 2.0). This feature is currently in beta.
+    """
+
+    dynamic_client_registration: Optional[EndUserApplicationOAuthConfigurationDynamicClientRegistration] = None
+    """Settings for OAuth dynamic client registration."""
+
+    enabled: Optional[Literal[True]] = None
+    """Managed OAuth is required for end user applications and cannot be disabled."""
+
+    grant: Optional[EndUserApplicationOAuthConfigurationGrant] = None
+    """Settings for OAuth grant behavior."""
+
+
+class EndUserApplicationDestinationAccessEndUserPublicDestination(BaseModel):
+    uri: str
+    """The public hostname and optional path to secure."""
+
+    overrides: Optional[List[DestinationOverride]] = None
+    """Rules that override how Access handles requests to this destination.
+
+    Each rule can make a matching path public, bypassing Access authentication.
+    Overrides are supported for public destinations and Worker destinations.
+    """
+
+    type: Optional[Literal["public"]] = None
+
+
+class EndUserApplicationDestinationAccessEndUserWorkerDestination(BaseModel):
+    type: Literal["worker"]
+
+    worker_id: str
+    """The ID of the Cloudflare Worker to secure."""
+
+    overrides: Optional[List[DestinationOverride]] = None
+    """Rules that override how Access handles requests to this destination.
+
+    Each rule can make a matching path public, bypassing Access authentication.
+    Overrides are supported for public destinations and Worker destinations.
+    """
+
+
+class EndUserApplicationDestinationAccessEndUserPreviewWorkerDestination(BaseModel):
+    type: Literal["preview_worker"]
+
+    worker_id: str
+    """The ID of the Cloudflare Worker whose previews to secure."""
+
+    overrides: Optional[List[DestinationOverride]] = None
+    """Rules that override how Access handles requests to this destination.
+
+    Each rule can make a matching path public, bypassing Access authentication.
+    Overrides are supported for public destinations and Worker destinations.
+    """
+
+
+class EndUserApplicationDestinationAccessEndUserAllWorkersDestination(BaseModel):
+    type: Literal["all_workers"]
+
+    overrides: Optional[List[DestinationOverride]] = None
+    """Rules that override how Access handles requests to this destination.
+
+    Each rule can make a matching path public, bypassing Access authentication.
+    Overrides are supported for public destinations and Worker destinations.
+    """
+
+
+class EndUserApplicationDestinationAccessEndUserAllPreviewWorkersDestination(BaseModel):
+    type: Literal["all_preview_workers"]
+
+    overrides: Optional[List[DestinationOverride]] = None
+    """Rules that override how Access handles requests to this destination.
+
+    Each rule can make a matching path public, bypassing Access authentication.
+    Overrides are supported for public destinations and Worker destinations.
+    """
+
+
+EndUserApplicationDestination: TypeAlias = Union[
+    EndUserApplicationDestinationAccessEndUserPublicDestination,
+    EndUserApplicationDestinationAccessEndUserWorkerDestination,
+    EndUserApplicationDestinationAccessEndUserPreviewWorkerDestination,
+    EndUserApplicationDestinationAccessEndUserAllWorkersDestination,
+    EndUserApplicationDestinationAccessEndUserAllPreviewWorkersDestination,
+]
+
+
+class EndUserApplication(BaseModel):
+    oauth_configuration: EndUserApplicationOAuthConfiguration
+    """
+    **Beta:** Optional configuration for managing an OAuth authorization flow
+    controlled by Access. When set, Access will act as the OAuth authorization
+    server for this application. Only compatible with OAuth clients that support
+    [RFC 8707](https://datatracker.ietf.org/doc/html/rfc8707) (Resource Indicators
+    for OAuth 2.0). This feature is currently in beta.
+    """
+
+    type: Literal[
+        "self_hosted",
+        "end_user",
+        "saas",
+        "ssh",
+        "vnc",
+        "app_launcher",
+        "warp",
+        "biso",
+        "bookmark",
+        "dash_sso",
+        "infrastructure",
+        "rdp",
+        "mcp",
+        "mcp_portal",
+        "proxy_endpoint",
+    ]
+    """The application type."""
+
+    user_populations: List[str]
+    """The single user population associated with this application."""
+
+    id: Optional[str] = None
+    """UUID."""
+
+    allowed_idps: Optional[List[AllowedIdPs]] = None
+    """The identity providers your users can select when connecting to this
+    application.
+
+    Defaults to all IdPs configured in your account.
+    """
+
+    aud: Optional[str] = None
+    """Audience tag."""
+
+    destinations: Optional[List[EndUserApplicationDestination]] = None
+    """Public hostname and Workers destinations secured by Access."""
+
+    domain: Optional[str] = None
+    """The primary hostname and path secured by Access.
+
+    This domain will be displayed if the app is visible in the App Launcher.
+    """
+
+    name: Optional[str] = None
+    """The name of the application."""
+
+    self_hosted_domains: Optional[List[SelfHostedDomains]] = None
+    """List of public domains that Access will secure.
+
+    This field is deprecated in favor of `destinations` and will be supported until
+    **November 21, 2025.** If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
     """
 
 
@@ -261,7 +421,7 @@ class SelfHostedApplicationDestinationPublicDestination(BaseModel):
     Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
     """
 
-    overrides: Optional[List[SelfHostedApplicationDestinationPublicDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -315,19 +475,6 @@ class SelfHostedApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
-class SelfHostedApplicationDestinationWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class SelfHostedApplicationDestinationWorkerDestination(BaseModel):
     """A specific Cloudflare Worker that Access will secure.
 
@@ -339,24 +486,11 @@ class SelfHostedApplicationDestinationWorkerDestination(BaseModel):
     worker_id: str
     """The ID of the Cloudflare Worker to protect with Access."""
 
-    overrides: Optional[List[SelfHostedApplicationDestinationWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class SelfHostedApplicationDestinationPreviewWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -374,24 +508,11 @@ class SelfHostedApplicationDestinationPreviewWorkerDestination(BaseModel):
     Access.
     """
 
-    overrides: Optional[List[SelfHostedApplicationDestinationPreviewWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class SelfHostedApplicationDestinationAllWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -402,24 +523,11 @@ class SelfHostedApplicationDestinationAllWorkersDestination(BaseModel):
 
     type: Literal["all_workers"]
 
-    overrides: Optional[List[SelfHostedApplicationDestinationAllWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class SelfHostedApplicationDestinationAllPreviewWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -430,7 +538,7 @@ class SelfHostedApplicationDestinationAllPreviewWorkersDestination(BaseModel):
 
     type: Literal["all_preview_workers"]
 
-    overrides: Optional[List[SelfHostedApplicationDestinationAllPreviewWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -623,6 +731,13 @@ class SelfHostedApplicationPolicy(BaseModel):
 
     name: Optional[str] = None
     """The name of the Access policy."""
+
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
 
     precedence: Optional[int] = None
     """The order of execution for this policy.
@@ -915,7 +1030,7 @@ class SelfHostedApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -1033,6 +1148,13 @@ class SaaSApplicationPolicy(BaseModel):
 
     name: Optional[str] = None
     """The name of the Access policy."""
+
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
 
     precedence: Optional[int] = None
     """The order of execution for this policy.
@@ -1216,26 +1338,13 @@ class SaaSApplication(BaseModel):
     """The application type."""
 
 
-class BrowserSSHApplicationDestinationPublicDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class BrowserSSHApplicationDestinationPublicDestination(BaseModel):
     """A public hostname that Access will secure.
 
     Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
     """
 
-    overrides: Optional[List[BrowserSSHApplicationDestinationPublicDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -1289,19 +1398,6 @@ class BrowserSSHApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
-class BrowserSSHApplicationDestinationWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class BrowserSSHApplicationDestinationWorkerDestination(BaseModel):
     """A specific Cloudflare Worker that Access will secure.
 
@@ -1313,24 +1409,11 @@ class BrowserSSHApplicationDestinationWorkerDestination(BaseModel):
     worker_id: str
     """The ID of the Cloudflare Worker to protect with Access."""
 
-    overrides: Optional[List[BrowserSSHApplicationDestinationWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class BrowserSSHApplicationDestinationPreviewWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -1348,24 +1431,11 @@ class BrowserSSHApplicationDestinationPreviewWorkerDestination(BaseModel):
     Access.
     """
 
-    overrides: Optional[List[BrowserSSHApplicationDestinationPreviewWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class BrowserSSHApplicationDestinationAllWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -1376,24 +1446,11 @@ class BrowserSSHApplicationDestinationAllWorkersDestination(BaseModel):
 
     type: Literal["all_workers"]
 
-    overrides: Optional[List[BrowserSSHApplicationDestinationAllWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class BrowserSSHApplicationDestinationAllPreviewWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -1404,7 +1461,7 @@ class BrowserSSHApplicationDestinationAllPreviewWorkersDestination(BaseModel):
 
     type: Literal["all_preview_workers"]
 
-    overrides: Optional[List[BrowserSSHApplicationDestinationAllPreviewWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -1598,6 +1655,13 @@ class BrowserSSHApplicationPolicy(BaseModel):
     name: Optional[str] = None
     """The name of the Access policy."""
 
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
@@ -1733,6 +1797,7 @@ class BrowserSSHApplication(BaseModel):
 
     type: Literal[
         "self_hosted",
+        "end_user",
         "saas",
         "ssh",
         "vnc",
@@ -1904,7 +1969,7 @@ class BrowserSSHApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -1925,26 +1990,13 @@ class BrowserSSHApplication(BaseModel):
     """
 
 
-class BrowserVNCApplicationDestinationPublicDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class BrowserVNCApplicationDestinationPublicDestination(BaseModel):
     """A public hostname that Access will secure.
 
     Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
     """
 
-    overrides: Optional[List[BrowserVNCApplicationDestinationPublicDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -1998,19 +2050,6 @@ class BrowserVNCApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
-class BrowserVNCApplicationDestinationWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class BrowserVNCApplicationDestinationWorkerDestination(BaseModel):
     """A specific Cloudflare Worker that Access will secure.
 
@@ -2022,24 +2061,11 @@ class BrowserVNCApplicationDestinationWorkerDestination(BaseModel):
     worker_id: str
     """The ID of the Cloudflare Worker to protect with Access."""
 
-    overrides: Optional[List[BrowserVNCApplicationDestinationWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class BrowserVNCApplicationDestinationPreviewWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -2057,24 +2083,11 @@ class BrowserVNCApplicationDestinationPreviewWorkerDestination(BaseModel):
     Access.
     """
 
-    overrides: Optional[List[BrowserVNCApplicationDestinationPreviewWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class BrowserVNCApplicationDestinationAllWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -2085,24 +2098,11 @@ class BrowserVNCApplicationDestinationAllWorkersDestination(BaseModel):
 
     type: Literal["all_workers"]
 
-    overrides: Optional[List[BrowserVNCApplicationDestinationAllWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class BrowserVNCApplicationDestinationAllPreviewWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -2113,7 +2113,7 @@ class BrowserVNCApplicationDestinationAllPreviewWorkersDestination(BaseModel):
 
     type: Literal["all_preview_workers"]
 
-    overrides: Optional[List[BrowserVNCApplicationDestinationAllPreviewWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -2307,6 +2307,13 @@ class BrowserVNCApplicationPolicy(BaseModel):
     name: Optional[str] = None
     """The name of the Access policy."""
 
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
@@ -2442,6 +2449,7 @@ class BrowserVNCApplication(BaseModel):
 
     type: Literal[
         "self_hosted",
+        "end_user",
         "saas",
         "ssh",
         "vnc",
@@ -2613,7 +2621,7 @@ class BrowserVNCApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -2759,6 +2767,13 @@ class AppLauncherApplicationPolicy(BaseModel):
     name: Optional[str] = None
     """The name of the Access policy."""
 
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
@@ -2790,6 +2805,7 @@ class AppLauncherApplicationPolicy(BaseModel):
 class AppLauncherApplication(BaseModel):
     type: Literal[
         "self_hosted",
+        "end_user",
         "saas",
         "ssh",
         "vnc",
@@ -2871,7 +2887,7 @@ class AppLauncherApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
     skip_app_launcher_login_page: Optional[bool] = None
@@ -2976,6 +2992,13 @@ class DeviceEnrollmentPermissionsApplicationPolicy(BaseModel):
     name: Optional[str] = None
     """The name of the Access policy."""
 
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
@@ -3058,7 +3081,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
 
@@ -3160,6 +3183,13 @@ class BrowserIsolationPermissionsApplicationPolicy(BaseModel):
     name: Optional[str] = None
     """The name of the Access policy."""
 
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
@@ -3242,7 +3272,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
 
@@ -3344,6 +3374,13 @@ class GatewayIdentityProxyEndpointApplicationPolicy(BaseModel):
     name: Optional[str] = None
     """The name of the Access policy."""
 
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
@@ -3426,7 +3463,7 @@ class GatewayIdentityProxyEndpointApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
 
@@ -3527,6 +3564,13 @@ class BookmarkApplicationPolicy(BaseModel):
 
     name: Optional[str] = None
     """The name of the Access policy."""
+
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
 
     precedence: Optional[int] = None
     """The order of execution for this policy.
@@ -3799,6 +3843,13 @@ class InfrastructureApplicationPolicy(BaseModel):
     name: Optional[str] = None
     """The name of the Access policy."""
 
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     require: Optional[List[AccessRule]] = None
     """Rules evaluated with an AND logical operator.
 
@@ -3830,6 +3881,13 @@ class InfrastructureApplication(BaseModel):
     """The name of the application."""
 
     policies: Optional[List[InfrastructureApplicationPolicy]] = None
+
+    session_duration: Optional[str] = None
+    """The maximum duration of a connection to this application's targets.
+
+    Connections are terminated once it elapses. Must be in the format `30m` or
+    `2h45m`, in whole seconds. Valid time units are: s, m, h.
+    """
 
 
 class BrowserRDPApplicationTargetCriterionExcludeTargetAttributes(BaseModel):
@@ -3929,26 +3987,13 @@ class BrowserRDPApplicationTargetCriterion(BaseModel):
     """Contains a map of target attribute keys to target attribute values."""
 
 
-class BrowserRDPApplicationDestinationPublicDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class BrowserRDPApplicationDestinationPublicDestination(BaseModel):
     """A public hostname that Access will secure.
 
     Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
     """
 
-    overrides: Optional[List[BrowserRDPApplicationDestinationPublicDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -4002,19 +4047,6 @@ class BrowserRDPApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
-class BrowserRDPApplicationDestinationWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class BrowserRDPApplicationDestinationWorkerDestination(BaseModel):
     """A specific Cloudflare Worker that Access will secure.
 
@@ -4026,24 +4058,11 @@ class BrowserRDPApplicationDestinationWorkerDestination(BaseModel):
     worker_id: str
     """The ID of the Cloudflare Worker to protect with Access."""
 
-    overrides: Optional[List[BrowserRDPApplicationDestinationWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class BrowserRDPApplicationDestinationPreviewWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -4061,24 +4080,11 @@ class BrowserRDPApplicationDestinationPreviewWorkerDestination(BaseModel):
     Access.
     """
 
-    overrides: Optional[List[BrowserRDPApplicationDestinationPreviewWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class BrowserRDPApplicationDestinationAllWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -4089,24 +4095,11 @@ class BrowserRDPApplicationDestinationAllWorkersDestination(BaseModel):
 
     type: Literal["all_workers"]
 
-    overrides: Optional[List[BrowserRDPApplicationDestinationAllWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class BrowserRDPApplicationDestinationAllPreviewWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -4117,7 +4110,7 @@ class BrowserRDPApplicationDestinationAllPreviewWorkersDestination(BaseModel):
 
     type: Literal["all_preview_workers"]
 
-    overrides: Optional[List[BrowserRDPApplicationDestinationAllPreviewWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -4310,6 +4303,13 @@ class BrowserRDPApplicationPolicy(BaseModel):
 
     name: Optional[str] = None
     """The name of the Access policy."""
+
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
 
     precedence: Optional[int] = None
     """The order of execution for this policy.
@@ -4604,7 +4604,7 @@ class BrowserRDPApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -4625,26 +4625,13 @@ class BrowserRDPApplication(BaseModel):
     """
 
 
-class McpServerApplicationDestinationPublicDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class McpServerApplicationDestinationPublicDestination(BaseModel):
     """A public hostname that Access will secure.
 
     Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
     """
 
-    overrides: Optional[List[McpServerApplicationDestinationPublicDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -4698,19 +4685,6 @@ class McpServerApplicationDestinationViaMcpServerPortalDestination(BaseModel):
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
-class McpServerApplicationDestinationWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class McpServerApplicationDestinationWorkerDestination(BaseModel):
     """A specific Cloudflare Worker that Access will secure.
 
@@ -4722,24 +4696,11 @@ class McpServerApplicationDestinationWorkerDestination(BaseModel):
     worker_id: str
     """The ID of the Cloudflare Worker to protect with Access."""
 
-    overrides: Optional[List[McpServerApplicationDestinationWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class McpServerApplicationDestinationPreviewWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -4757,24 +4718,11 @@ class McpServerApplicationDestinationPreviewWorkerDestination(BaseModel):
     Access.
     """
 
-    overrides: Optional[List[McpServerApplicationDestinationPreviewWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class McpServerApplicationDestinationAllWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -4785,24 +4733,11 @@ class McpServerApplicationDestinationAllWorkersDestination(BaseModel):
 
     type: Literal["all_workers"]
 
-    overrides: Optional[List[McpServerApplicationDestinationAllWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class McpServerApplicationDestinationAllPreviewWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -4813,7 +4748,7 @@ class McpServerApplicationDestinationAllPreviewWorkersDestination(BaseModel):
 
     type: Literal["all_preview_workers"]
 
-    overrides: Optional[List[McpServerApplicationDestinationAllPreviewWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -4986,6 +4921,13 @@ class McpServerApplicationPolicy(BaseModel):
 
     name: Optional[str] = None
     """The name of the Access policy."""
+
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
 
     precedence: Optional[int] = None
     """The order of execution for this policy.
@@ -5219,7 +5161,7 @@ class McpServerApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
     tags: Optional[List[str]] = None
@@ -5229,26 +5171,13 @@ class McpServerApplication(BaseModel):
     """
 
 
-class McpServerPortalApplicationDestinationPublicDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class McpServerPortalApplicationDestinationPublicDestination(BaseModel):
     """A public hostname that Access will secure.
 
     Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
     """
 
-    overrides: Optional[List[McpServerPortalApplicationDestinationPublicDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -5302,19 +5231,6 @@ class McpServerPortalApplicationDestinationViaMcpServerPortalDestination(BaseMod
     type: Optional[Literal["via_mcp_server_portal"]] = None
 
 
-class McpServerPortalApplicationDestinationWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
-    """
-
-
 class McpServerPortalApplicationDestinationWorkerDestination(BaseModel):
     """A specific Cloudflare Worker that Access will secure.
 
@@ -5326,24 +5242,11 @@ class McpServerPortalApplicationDestinationWorkerDestination(BaseModel):
     worker_id: str
     """The ID of the Cloudflare Worker to protect with Access."""
 
-    overrides: Optional[List[McpServerPortalApplicationDestinationWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class McpServerPortalApplicationDestinationPreviewWorkerDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -5361,24 +5264,11 @@ class McpServerPortalApplicationDestinationPreviewWorkerDestination(BaseModel):
     Access.
     """
 
-    overrides: Optional[List[McpServerPortalApplicationDestinationPreviewWorkerDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class McpServerPortalApplicationDestinationAllWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -5389,24 +5279,11 @@ class McpServerPortalApplicationDestinationAllWorkersDestination(BaseModel):
 
     type: Literal["all_workers"]
 
-    overrides: Optional[List[McpServerPortalApplicationDestinationAllWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
     Overrides are supported for public destinations and Worker destinations.
-    """
-
-
-class McpServerPortalApplicationDestinationAllPreviewWorkersDestinationOverride(BaseModel):
-    behavior: Literal["public"]
-    """The behavior to apply to matching requests."""
-
-    path_pattern: str
-    """The request path pattern to match.
-
-    Wildcards (`*`) are supported, but each path segment may have at most one
-    wildcard. Unlike the `uri` in public destinations, override path patterns do not
-    implicitly cover subpaths; to do that, use a wildcard.
     """
 
 
@@ -5417,7 +5294,7 @@ class McpServerPortalApplicationDestinationAllPreviewWorkersDestination(BaseMode
 
     type: Literal["all_preview_workers"]
 
-    overrides: Optional[List[McpServerPortalApplicationDestinationAllPreviewWorkersDestinationOverride]] = None
+    overrides: Optional[List[DestinationOverride]] = None
     """Rules that override how Access handles requests to this destination.
 
     Each rule can make a matching path public, bypassing Access authentication.
@@ -5590,6 +5467,13 @@ class McpServerPortalApplicationPolicy(BaseModel):
 
     name: Optional[str] = None
     """The name of the Access policy."""
+
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
 
     precedence: Optional[int] = None
     """The order of execution for this policy.
@@ -5829,7 +5713,7 @@ class McpServerPortalApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    ms, s, m, h.
     """
 
     tags: Optional[List[str]] = None
@@ -5840,6 +5724,7 @@ class McpServerPortalApplication(BaseModel):
 
 
 ApplicationCreateResponse: TypeAlias = Union[
+    EndUserApplication,
     SelfHostedApplication,
     SaaSApplication,
     BrowserSSHApplication,

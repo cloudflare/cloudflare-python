@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import path_template, maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -14,6 +16,7 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ....._wrappers import ResultWrapper
 from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access.access_user import AccessUser
@@ -134,6 +137,116 @@ class UsersResource(SyncAPIResource):
             model=AccessUser,
         )
 
+    def delete(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        identity_provider_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Deletes a SCIM User resource from the identity provider's SCIM population.
+
+        Args:
+          account_id: Identifier.
+
+          identity_provider_id: UUID.
+
+          user_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            path_template(
+                "/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/users/{user_id}",
+                account_id=account_id,
+                identity_provider_id=identity_provider_id,
+                user_id=user_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    def get(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        identity_provider_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[AccessUser]:
+        """
+        Returns a SCIM User resource synced to Cloudflare via the System for
+        Cross-domain Identity Management (SCIM).
+
+        Args:
+          account_id: Identifier.
+
+          identity_provider_id: UUID.
+
+          user_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return self._get(
+            path_template(
+                "/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/users/{user_id}",
+                account_id=account_id,
+                identity_provider_id=identity_provider_id,
+                user_id=user_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AccessUser]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[AccessUser]], ResultWrapper[AccessUser]),
+        )
+
 
 class AsyncUsersResource(AsyncAPIResource):
     @cached_property
@@ -247,6 +360,116 @@ class AsyncUsersResource(AsyncAPIResource):
             model=AccessUser,
         )
 
+    async def delete(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        identity_provider_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Deletes a SCIM User resource from the identity provider's SCIM population.
+
+        Args:
+          account_id: Identifier.
+
+          identity_provider_id: UUID.
+
+          user_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            path_template(
+                "/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/users/{user_id}",
+                account_id=account_id,
+                identity_provider_id=identity_provider_id,
+                user_id=user_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    async def get(
+        self,
+        user_id: str,
+        *,
+        account_id: str,
+        identity_provider_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[AccessUser]:
+        """
+        Returns a SCIM User resource synced to Cloudflare via the System for
+        Cross-domain Identity Management (SCIM).
+
+        Args:
+          account_id: Identifier.
+
+          identity_provider_id: UUID.
+
+          user_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return await self._get(
+            path_template(
+                "/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/users/{user_id}",
+                account_id=account_id,
+                identity_provider_id=identity_provider_id,
+                user_id=user_id,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AccessUser]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[AccessUser]], ResultWrapper[AccessUser]),
+        )
+
 
 class UsersResourceWithRawResponse:
     def __init__(self, users: UsersResource) -> None:
@@ -254,6 +477,12 @@ class UsersResourceWithRawResponse:
 
         self.list = to_raw_response_wrapper(
             users.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            users.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            users.get,
         )
 
 
@@ -264,6 +493,12 @@ class AsyncUsersResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             users.list,
         )
+        self.delete = async_to_raw_response_wrapper(
+            users.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            users.get,
+        )
 
 
 class UsersResourceWithStreamingResponse:
@@ -273,6 +508,12 @@ class UsersResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             users.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            users.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            users.get,
+        )
 
 
 class AsyncUsersResourceWithStreamingResponse:
@@ -281,4 +522,10 @@ class AsyncUsersResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             users.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            users.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            users.get,
         )

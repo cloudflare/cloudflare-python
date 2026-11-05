@@ -23,7 +23,6 @@ from .shared import (
     PermissionGrant as PermissionGrant,
     CloudflareTunnel as CloudflareTunnel,
     SubscriptionZone as SubscriptionZone,
-    LoadBalancerPreview as LoadBalancerPreview,
     SubscriptionComponent as SubscriptionComponent,
     CertificateRequestType as CertificateRequestType,
     TokenConditionCIDRList as TokenConditionCIDRList,

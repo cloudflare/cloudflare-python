@@ -34,7 +34,7 @@ from .maintenance_configs import (
     MaintenanceConfigsResourceWithStreamingResponse,
     AsyncMaintenanceConfigsResourceWithStreamingResponse,
 )
-from ...types.basin_catalog import basin_catalog_delete_params
+from ...types.basin_catalog import basin_catalog_delete_params, basin_catalog_enable_params
 from .namespaces.namespaces import (
     NamespacesResource,
     AsyncNamespacesResource,
@@ -229,6 +229,7 @@ class BasinCatalogResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        credential: basin_catalog_enable_params.Credential | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,6 +247,8 @@ class BasinCatalogResource(SyncAPIResource):
           account_id: Use this to identify the account.
 
           bucket_name: Specifies the R2 bucket name.
+
+          credential: Contains request to store catalog credentials.
 
           extra_headers: Send extra headers
 
@@ -265,6 +268,7 @@ class BasinCatalogResource(SyncAPIResource):
                 account_id=account_id,
                 bucket_name=bucket_name,
             ),
+            body=maybe_transform({"credential": credential}, basin_catalog_enable_params.BasinCatalogEnableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -504,6 +508,7 @@ class AsyncBasinCatalogResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        credential: basin_catalog_enable_params.Credential | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -522,6 +527,8 @@ class AsyncBasinCatalogResource(AsyncAPIResource):
 
           bucket_name: Specifies the R2 bucket name.
 
+          credential: Contains request to store catalog credentials.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -539,6 +546,9 @@ class AsyncBasinCatalogResource(AsyncAPIResource):
                 "/accounts/{account_id}/basin-catalog/{bucket_name}/enable",
                 account_id=account_id,
                 bucket_name=bucket_name,
+            ),
+            body=await async_maybe_transform(
+                {"credential": credential}, basin_catalog_enable_params.BasinCatalogEnableParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,

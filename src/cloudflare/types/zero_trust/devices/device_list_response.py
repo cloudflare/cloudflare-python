@@ -103,6 +103,12 @@ class DeviceListResponse(BaseModel):
     model: Optional[str] = None
     """The model name of the device."""
 
+    multiuser: Optional[bool] = None
+    """
+    True if this device is in
+    [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
+    """
+
     os_version: Optional[str] = None
     """The device operating system version number."""
 

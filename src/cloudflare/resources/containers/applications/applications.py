@@ -165,6 +165,8 @@ class ApplicationsResource(SyncAPIResource):
         scheduling_policy: Literal["durable_object"],
         configuration: application_create_params.CcContainersCreateDurableObjectApplicationRequestConfiguration
         | Omit = omit,
+        constraints: application_create_params.CcContainersCreateDurableObjectApplicationRequestConstraints
+        | Omit = omit,
         observability: application_create_params.CcContainersCreateDurableObjectApplicationRequestObservability
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -201,6 +203,10 @@ class ApplicationsResource(SyncAPIResource):
 
           configuration: Configuration for a Durable Object-managed application.
 
+          constraints: The jurisdiction of a Durable Object-managed application's primary control-plane
+              object. Set this when creating the application; it cannot be changed afterwards.
+              Other placement constraints are not supported by this scheduling policy.
+
           observability: Application-wide logging settings for a Durable Object-managed application. The
               application publishes these settings to its runtime metadata. Updating them does
               not create a deployment or rollout.
@@ -230,7 +236,9 @@ class ApplicationsResource(SyncAPIResource):
         max_instances: int | Omit = omit,
         name: str,
         scheduling_policy: Literal["default"] | Literal["durable_object"],
-        constraints: application_create_params.CcContainersCreateScheduledApplicationRequestConstraints | Omit = omit,
+        constraints: application_create_params.CcContainersCreateScheduledApplicationRequestConstraints
+        | application_create_params.CcContainersCreateDurableObjectApplicationRequestConstraints
+        | Omit = omit,
         durable_objects: application_create_params.CcContainersCreateScheduledApplicationRequestDurableObjects
         | application_create_params.CcContainersCreateDurableObjectApplicationRequestDurableObjects
         | Omit = omit,
@@ -630,6 +638,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         scheduling_policy: Literal["durable_object"],
         configuration: application_create_params.CcContainersCreateDurableObjectApplicationRequestConfiguration
         | Omit = omit,
+        constraints: application_create_params.CcContainersCreateDurableObjectApplicationRequestConstraints
+        | Omit = omit,
         observability: application_create_params.CcContainersCreateDurableObjectApplicationRequestObservability
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -666,6 +676,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           configuration: Configuration for a Durable Object-managed application.
 
+          constraints: The jurisdiction of a Durable Object-managed application's primary control-plane
+              object. Set this when creating the application; it cannot be changed afterwards.
+              Other placement constraints are not supported by this scheduling policy.
+
           observability: Application-wide logging settings for a Durable Object-managed application. The
               application publishes these settings to its runtime metadata. Updating them does
               not create a deployment or rollout.
@@ -695,7 +709,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
         max_instances: int | Omit = omit,
         name: str,
         scheduling_policy: Literal["default"] | Literal["durable_object"],
-        constraints: application_create_params.CcContainersCreateScheduledApplicationRequestConstraints | Omit = omit,
+        constraints: application_create_params.CcContainersCreateScheduledApplicationRequestConstraints
+        | application_create_params.CcContainersCreateDurableObjectApplicationRequestConstraints
+        | Omit = omit,
         durable_objects: application_create_params.CcContainersCreateScheduledApplicationRequestDurableObjects
         | application_create_params.CcContainersCreateDurableObjectApplicationRequestDurableObjects
         | Omit = omit,

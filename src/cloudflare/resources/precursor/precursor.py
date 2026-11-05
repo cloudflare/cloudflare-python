@@ -21,7 +21,6 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.precursor import precursor_update_params
 from ...types.precursor.precursor_config import PrecursorConfig
-from ...types.precursor.enforcement_rule_param import EnforcementRuleParam
 
 __all__ = ["PrecursorResource", "AsyncPrecursorResource"]
 
@@ -50,8 +49,10 @@ class PrecursorResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        default_mode: Literal["off", "min-friction", "max-security"] | Omit = omit,
-        enforcement_rules: Iterable[EnforcementRuleParam] | Omit = omit,
+        cloudflare_version: Literal["1.0"] = "1.0",
+        mode: Literal["off", "monitor", "arm"] | Omit = omit,
+        rules: Iterable[precursor_update_params.Rule] | Omit = omit,
+        show_interstitial: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,28 +63,32 @@ class PrecursorResource(SyncAPIResource):
         """
         Updates the Precursor configuration for a zone.
 
-        `default_mode` sets the zone-level enforcement mode. `enforcement_rules` is the
-        ordered list of rules that override enforcement for matching requests.
+        `mode` controls whether Precursor detection is off, monitoring, or armed.
+        `show_interstitial` controls the zone-level response when armed. `rules` is the
+        ordered list of overrides for matching requests.
 
         This is a partial update: only the fields present in the request body are
         changed.
 
-        - Sending an empty array (`[]`) clears all enforcement rules.
-        - At least one of `default_mode` or `enforcement_rules` must be present; an
+        - Sending an empty array (`[]`) clears all rules.
+        - At least one of `mode`, `show_interstitial`, or `rules` must be present; an
           empty body (`{}`) is rejected with `400`.
         - Rule `id` is read-only (assigned by Cloudflare) and ignored on input.
-        - Rule `mode` must be `min-friction` or `max-security` (`off` is not a valid
-          rule mode; use `default_mode` to disable enforcement).
+        - Rule `show_interstitial` is required and controls the response for requests
+          that match that rule.
         - Rule `expression` is limited to 4000 characters. The limit applies to each
           rule individually, not to the combined size of all rules.
 
         Args:
           zone_id: Identifier.
 
-          default_mode: The zone-level Precursor enforcement mode applied to requests that do not match
-              a more specific enforcement rule.
+          mode: Controls Precursor detection for the zone. `off` disables detection, `monitor`
+              records detections without affecting bot scores, and `arm` allows detections to
+              affect bot scores.
 
-          enforcement_rules: The ordered list of enforcement rules for the zone.
+          rules: The ordered list of Precursor rules for the zone.
+
+          show_interstitial: Whether Precursor shows an interstitial when it takes action on a request.
 
           extra_headers: Send extra headers
 
@@ -95,12 +100,15 @@ class PrecursorResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        extra_headers = {"Cloudflare-Version": str(cloudflare_version), **(extra_headers or {})}
+        extra_headers.update({"Cloudflare-Version": "1.0"})
         return self._put(
             path_template("/zones/{zone_id}/precursor", zone_id=zone_id),
             body=maybe_transform(
                 {
-                    "default_mode": default_mode,
-                    "enforcement_rules": enforcement_rules,
+                    "mode": mode,
+                    "rules": rules,
+                    "show_interstitial": show_interstitial,
                 },
                 precursor_update_params.PrecursorUpdateParams,
             ),
@@ -118,6 +126,7 @@ class PrecursorResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        cloudflare_version: Literal["1.0"] = "1.0",
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,8 +135,8 @@ class PrecursorResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PrecursorConfig]:
         """
-        Retrieve a zone's Precursor configuration: the zone-level `default_mode` and the
-        ordered list of `enforcement_rules`.
+        Retrieve a zone's Precursor configuration: the detection `mode`, whether to
+        `show_interstitial`, and the ordered list of `rules`.
 
         Args:
           zone_id: Identifier.
@@ -142,6 +151,8 @@ class PrecursorResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        extra_headers = {"Cloudflare-Version": str(cloudflare_version), **(extra_headers or {})}
+        extra_headers.update({"Cloudflare-Version": "1.0"})
         return self._get(
             path_template("/zones/{zone_id}/precursor", zone_id=zone_id),
             options=make_request_options(
@@ -179,8 +190,10 @@ class AsyncPrecursorResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        default_mode: Literal["off", "min-friction", "max-security"] | Omit = omit,
-        enforcement_rules: Iterable[EnforcementRuleParam] | Omit = omit,
+        cloudflare_version: Literal["1.0"] = "1.0",
+        mode: Literal["off", "monitor", "arm"] | Omit = omit,
+        rules: Iterable[precursor_update_params.Rule] | Omit = omit,
+        show_interstitial: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -191,28 +204,32 @@ class AsyncPrecursorResource(AsyncAPIResource):
         """
         Updates the Precursor configuration for a zone.
 
-        `default_mode` sets the zone-level enforcement mode. `enforcement_rules` is the
-        ordered list of rules that override enforcement for matching requests.
+        `mode` controls whether Precursor detection is off, monitoring, or armed.
+        `show_interstitial` controls the zone-level response when armed. `rules` is the
+        ordered list of overrides for matching requests.
 
         This is a partial update: only the fields present in the request body are
         changed.
 
-        - Sending an empty array (`[]`) clears all enforcement rules.
-        - At least one of `default_mode` or `enforcement_rules` must be present; an
+        - Sending an empty array (`[]`) clears all rules.
+        - At least one of `mode`, `show_interstitial`, or `rules` must be present; an
           empty body (`{}`) is rejected with `400`.
         - Rule `id` is read-only (assigned by Cloudflare) and ignored on input.
-        - Rule `mode` must be `min-friction` or `max-security` (`off` is not a valid
-          rule mode; use `default_mode` to disable enforcement).
+        - Rule `show_interstitial` is required and controls the response for requests
+          that match that rule.
         - Rule `expression` is limited to 4000 characters. The limit applies to each
           rule individually, not to the combined size of all rules.
 
         Args:
           zone_id: Identifier.
 
-          default_mode: The zone-level Precursor enforcement mode applied to requests that do not match
-              a more specific enforcement rule.
+          mode: Controls Precursor detection for the zone. `off` disables detection, `monitor`
+              records detections without affecting bot scores, and `arm` allows detections to
+              affect bot scores.
 
-          enforcement_rules: The ordered list of enforcement rules for the zone.
+          rules: The ordered list of Precursor rules for the zone.
+
+          show_interstitial: Whether Precursor shows an interstitial when it takes action on a request.
 
           extra_headers: Send extra headers
 
@@ -224,12 +241,15 @@ class AsyncPrecursorResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        extra_headers = {"Cloudflare-Version": str(cloudflare_version), **(extra_headers or {})}
+        extra_headers.update({"Cloudflare-Version": "1.0"})
         return await self._put(
             path_template("/zones/{zone_id}/precursor", zone_id=zone_id),
             body=await async_maybe_transform(
                 {
-                    "default_mode": default_mode,
-                    "enforcement_rules": enforcement_rules,
+                    "mode": mode,
+                    "rules": rules,
+                    "show_interstitial": show_interstitial,
                 },
                 precursor_update_params.PrecursorUpdateParams,
             ),
@@ -247,6 +267,7 @@ class AsyncPrecursorResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        cloudflare_version: Literal["1.0"] = "1.0",
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -255,8 +276,8 @@ class AsyncPrecursorResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PrecursorConfig]:
         """
-        Retrieve a zone's Precursor configuration: the zone-level `default_mode` and the
-        ordered list of `enforcement_rules`.
+        Retrieve a zone's Precursor configuration: the detection `mode`, whether to
+        `show_interstitial`, and the ordered list of `rules`.
 
         Args:
           zone_id: Identifier.
@@ -271,6 +292,8 @@ class AsyncPrecursorResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        extra_headers = {"Cloudflare-Version": str(cloudflare_version), **(extra_headers or {})}
+        extra_headers.update({"Cloudflare-Version": "1.0"})
         return await self._get(
             path_template("/zones/{zone_id}/precursor", zone_id=zone_id),
             options=make_request_options(

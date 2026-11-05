@@ -1,6 +1,6 @@
 [project]
 name = "cloudflare"
-version = "5.9.0"
+version = "5.10.0"
 description = "The official Python library for the cloudflare API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -56,7 +56,7 @@ conflicts = [
 [dependency-groups]
 # version pins are in uv.lock
 dev = [
-    "pyright==1.1.399",
+    "pyright[nodejs]==1.1.399",
     "mypy==1.17",
     "respx",
     "pytest",

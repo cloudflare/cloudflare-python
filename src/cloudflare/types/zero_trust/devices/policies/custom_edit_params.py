@@ -68,6 +68,13 @@ class CustomEditParams(TypedDict, total=False):
     Suffixes are evaluated in order. Use an empty array to clear.
     """
 
+    enable_device_credential_authentication: bool
+    """
+    Determines whether the WARP client can silently reauthenticate the user with
+    device credentials (Microsoft Entra) instead of prompting for browser-based
+    reauthentication.
+    """
+
     enabled: bool
     """Whether the policy will be applied to matching devices."""
 
@@ -114,7 +121,7 @@ class CustomEditParams(TypedDict, total=False):
 
     Available values: "identity.email", "identity.groups.id",
     "identity.groups.name", "identity.groups.email", "identity.service_token_uuid",
-    "identity.saml_attributes", "network", "os.name", "os.version".
+    "identity.saml_attributes", "network", "os.name", "os.version", "device.tags".
     """
 
     name: str
@@ -205,6 +212,12 @@ class GlobalAcceleration(TypedDict, total=False):
     """IP:port entries for the WireGuard tunnel endpoints.
 
     Either wireguard_endpoints or masque_endpoints must be provided.
+    """
+
+    allow_manual_override: bool
+    """
+    Whether WARP users may manually override the automatic Global Acceleration
+    decision. Defaults to true when not provided.
     """
 
     autoswitch: bool

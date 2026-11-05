@@ -28,6 +28,7 @@ from ...types.realtime_kit import (
     meeting_update_meeting_by_id_params,
     meeting_replace_meeting_by_id_params,
     meeting_get_meeting_participants_params,
+    meeting_refresh_participant_token_params,
 )
 from ...types.realtime_kit.meeting_get_response import MeetingGetResponse
 from ...types.realtime_kit.meeting_create_response import MeetingCreateResponse
@@ -162,6 +163,7 @@ class MeetingsResource(SyncAPIResource):
         app_id: str,
         custom_participant_id: str,
         preset_name: str,
+        token: meeting_add_participant_params.Token | Omit = omit,
         name: Optional[str] | Omit = omit,
         picture: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -183,6 +185,10 @@ class MeetingsResource(SyncAPIResource):
               example, UUID, email address, and so on.
 
           preset_name: Name of the preset to apply to this participant.
+
+          token: Validity window of the participant authentication token. The window is
+              [not_before, expires_on) and cannot be longer than 100 days. Defaults to a token
+              valid from now for 100 days.
 
           name: (Optional) Name of the participant.
 
@@ -213,6 +219,7 @@ class MeetingsResource(SyncAPIResource):
                 {
                     "custom_participant_id": custom_participant_id,
                     "preset_name": preset_name,
+                    "token": token,
                     "name": name,
                     "picture": picture,
                 },
@@ -597,6 +604,8 @@ class MeetingsResource(SyncAPIResource):
         account_id: str,
         app_id: str,
         meeting_id: str,
+        expires_on: Union[str, datetime] | Omit = omit,
+        not_before: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -612,6 +621,12 @@ class MeetingsResource(SyncAPIResource):
           account_id: The account identifier tag.
 
           app_id: The app identifier tag.
+
+          expires_on: RFC 3339 timestamp with a timezone at or after which the token cannot be used.
+              Must be in the future. Defaults to not_before plus 100 days.
+
+          not_before: RFC 3339 timestamp with a timezone before which the token cannot be used.
+              Defaults to the current time. May be in the past.
 
           extra_headers: Send extra headers
 
@@ -636,6 +651,13 @@ class MeetingsResource(SyncAPIResource):
                 app_id=app_id,
                 meeting_id=meeting_id,
                 participant_id=participant_id,
+            ),
+            body=maybe_transform(
+                {
+                    "expires_on": expires_on,
+                    "not_before": not_before,
+                },
+                meeting_refresh_participant_token_params.MeetingRefreshParticipantTokenParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -959,6 +981,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
         app_id: str,
         custom_participant_id: str,
         preset_name: str,
+        token: meeting_add_participant_params.Token | Omit = omit,
         name: Optional[str] | Omit = omit,
         picture: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -980,6 +1003,10 @@ class AsyncMeetingsResource(AsyncAPIResource):
               example, UUID, email address, and so on.
 
           preset_name: Name of the preset to apply to this participant.
+
+          token: Validity window of the participant authentication token. The window is
+              [not_before, expires_on) and cannot be longer than 100 days. Defaults to a token
+              valid from now for 100 days.
 
           name: (Optional) Name of the participant.
 
@@ -1010,6 +1037,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
                 {
                     "custom_participant_id": custom_participant_id,
                     "preset_name": preset_name,
+                    "token": token,
                     "name": name,
                     "picture": picture,
                 },
@@ -1396,6 +1424,8 @@ class AsyncMeetingsResource(AsyncAPIResource):
         account_id: str,
         app_id: str,
         meeting_id: str,
+        expires_on: Union[str, datetime] | Omit = omit,
+        not_before: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1411,6 +1441,12 @@ class AsyncMeetingsResource(AsyncAPIResource):
           account_id: The account identifier tag.
 
           app_id: The app identifier tag.
+
+          expires_on: RFC 3339 timestamp with a timezone at or after which the token cannot be used.
+              Must be in the future. Defaults to not_before plus 100 days.
+
+          not_before: RFC 3339 timestamp with a timezone before which the token cannot be used.
+              Defaults to the current time. May be in the past.
 
           extra_headers: Send extra headers
 
@@ -1435,6 +1471,13 @@ class AsyncMeetingsResource(AsyncAPIResource):
                 app_id=app_id,
                 meeting_id=meeting_id,
                 participant_id=participant_id,
+            ),
+            body=await async_maybe_transform(
+                {
+                    "expires_on": expires_on,
+                    "not_before": not_before,
+                },
+                meeting_refresh_participant_token_params.MeetingRefreshParticipantTokenParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

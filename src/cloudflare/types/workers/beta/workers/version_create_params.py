@@ -482,10 +482,14 @@ class BindingWorkersBindingKindInherit(TypedDict, total=False):
     """
 
     version_id: str
-    """
-    Identifier for the version to inherit the binding from, which can be the version
-    ID or the literal "latest" to inherit from the latest version. Defaults to
-    inheriting the binding from the latest version.
+    """Identifier for the version to inherit the binding from.
+
+    This can be a version ID, or the literal "latest" to inherit from the most
+    recently uploaded version, which may not be the deployed version. Defaults to
+    "latest". Only the Workers API version endpoints under
+    `/accounts/{account_id}/workers/workers/{worker_id}/versions` accept a version
+    ID. Other endpoints, including script upload and script version upload, accept
+    only "latest" and reject a version ID with error 10057.
     """
 
 
@@ -832,13 +836,16 @@ class BindingWorkersBindingKindVPCNetwork(TypedDict, total=False):
     identity: Literal["runtime-email-alpha"]
     """Enables Gateway identity for the binding.
 
-    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id.
+    Requires network_id to be "cf1:network" and cannot be combined with tunnel_id or
+    an explicit "cf1:vnet:<UUID>" network_id.
     """
 
     network_id: str
     """Identifier of the network to bind to.
 
-    Only "cf1:network" is currently supported. Mutually exclusive with tunnel_id.
+    Use "cf1:network" to select the account's default virtual network at runtime, or
+    "cf1:vnet:<UUID>" to select an explicit virtual network in the Worker's account.
+    Mutually exclusive with tunnel_id.
     """
 
     tunnel_id: str

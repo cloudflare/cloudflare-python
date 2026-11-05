@@ -51,10 +51,10 @@ class GraphqlResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphqlCreateResponse:
-        """Execute GraphQL aggregations over threat events.
+        """Runs a GraphQL aggregation query over events.
 
-        Supports multi-dimensional
-        group-bys, optional date range filtering, and multi-dataset aggregation.
+        Supports grouping by multiple
+        fields, date range filters, and aggregation across datasets.
 
         Args:
           account_id: Account ID.
@@ -109,10 +109,10 @@ class AsyncGraphqlResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GraphqlCreateResponse:
-        """Execute GraphQL aggregations over threat events.
+        """Runs a GraphQL aggregation query over events.
 
-        Supports multi-dimensional
-        group-bys, optional date range filtering, and multi-dataset aggregation.
+        Supports grouping by multiple
+        fields, date range filters, and aggregation across datasets.
 
         Args:
           account_id: Account ID.

@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.email_security.settings import (
     ContentPolicyGetResponse,
@@ -44,6 +45,7 @@ class TestContentPolicies:
             name="Block phishing keywords",
             pattern="urgent.*verify.*account",
             targets=["SUBJECT"],
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             notes="Blocks common phishing subject lines",
         )
         assert_matches_type(Optional[ContentPolicyCreateResponse], content_policy, path=["response"])
@@ -104,6 +106,7 @@ class TestContentPolicies:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
             enabled=True,
+            expired=True,
             name="name",
             order="name",
             page=1,
@@ -315,6 +318,7 @@ class TestContentPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             name="Block phishing keywords",
             notes="Blocks common phishing subject lines",
             pattern="urgent.*verify.*account",
@@ -435,6 +439,7 @@ class TestAsyncContentPolicies:
             name="Block phishing keywords",
             pattern="urgent.*verify.*account",
             targets=["SUBJECT"],
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             notes="Blocks common phishing subject lines",
         )
         assert_matches_type(Optional[ContentPolicyCreateResponse], content_policy, path=["response"])
@@ -495,6 +500,7 @@ class TestAsyncContentPolicies:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
             enabled=True,
+            expired=True,
             name="name",
             order="name",
             page=1,
@@ -708,6 +714,7 @@ class TestAsyncContentPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             name="Block phishing keywords",
             notes="Blocks common phishing subject lines",
             pattern="urgent.*verify.*account",

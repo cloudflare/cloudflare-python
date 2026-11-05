@@ -29,13 +29,33 @@ class FeedCreateParams(TypedDict, total=False):
     """
 
     curated_feed_id: str
+    """UUID of a curated feed to subscribe to.
+
+    Provide exactly one of url or curated_feed_id. The account must have feed
+    creation entitlement and not exceed feed allowance.
+    """
 
     display_name: Optional[str]
+    """Override the feed's display name.
+
+    Null clears it; omit to keep existing or derived value.
+    """
 
     enabled: bool
+    """Whether to actively poll the feed. Default true."""
 
     poll_interval_s: int
+    """Polling interval in seconds (60-86400). Default 300s (5 minutes)."""
 
     title: Optional[str]
+    """Override the feed's title.
+
+    Null clears it; omit to keep existing or derived value.
+    """
 
     url: str
+    """HTTPS RSS feed URL.
+
+    Provide exactly one of url or curated_feed_id. The account must have feed
+    creation entitlement and not exceed feed allowance.
+    """

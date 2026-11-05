@@ -60,7 +60,7 @@ class JobsResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -85,15 +85,15 @@ class JobsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=maybe_transform({"description": description}, job_create_params.JobCreateParams),
@@ -112,7 +112,7 @@ class JobsResource(SyncAPIResource):
         job_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         action: Literal["cancel"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -123,7 +123,7 @@ class JobsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobUpdateResponse:
         """
-        Cancel an in-progress indexing job for an AI Search instance.
+        Cancels an in-progress indexing job for an AI Search instance.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -138,17 +138,17 @@ class JobsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._patch(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs/{job_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs/{job_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 job_id=job_id,
             ),
@@ -168,7 +168,7 @@ class JobsResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -194,15 +194,15 @@ class JobsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             page=SyncV4PagePaginationArray[JobListResponse],
@@ -227,7 +227,7 @@ class JobsResource(SyncAPIResource):
         job_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -252,17 +252,17 @@ class JobsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs/{job_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs/{job_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 job_id=job_id,
             ),
@@ -281,7 +281,7 @@ class JobsResource(SyncAPIResource):
         job_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -308,17 +308,17 @@ class JobsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs/{job_id}/logs",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs/{job_id}/logs",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 job_id=job_id,
             ),
@@ -365,7 +365,7 @@ class AsyncJobsResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -390,15 +390,15 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             body=await async_maybe_transform({"description": description}, job_create_params.JobCreateParams),
@@ -417,7 +417,7 @@ class AsyncJobsResource(AsyncAPIResource):
         job_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         action: Literal["cancel"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -428,7 +428,7 @@ class AsyncJobsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> JobUpdateResponse:
         """
-        Cancel an in-progress indexing job for an AI Search instance.
+        Cancels an in-progress indexing job for an AI Search instance.
 
         Args:
           id: AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores.
@@ -443,17 +443,17 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._patch(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs/{job_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs/{job_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 job_id=job_id,
             ),
@@ -473,7 +473,7 @@ class AsyncJobsResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -499,15 +499,15 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
             ),
             page=AsyncV4PagePaginationArray[JobListResponse],
@@ -532,7 +532,7 @@ class AsyncJobsResource(AsyncAPIResource):
         job_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -557,17 +557,17 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs/{job_id}",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs/{job_id}",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 job_id=job_id,
             ),
@@ -586,7 +586,7 @@ class AsyncJobsResource(AsyncAPIResource):
         job_id: str,
         *,
         account_id: str,
-        name: str,
+        namespace: str,
         id: str,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
@@ -613,17 +613,17 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not name:
-            raise ValueError(f"Expected a non-empty value for `name` but received {name!r}")
+        if not namespace:
+            raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         if not job_id:
             raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
         return await self._get(
             path_template(
-                "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs/{job_id}/logs",
+                "/accounts/{account_id}/ai-search/namespaces/{namespace}/instances/{id}/jobs/{job_id}/logs",
                 account_id=account_id,
-                name=name,
+                namespace=namespace,
                 id=id,
                 job_id=job_id,
             ),

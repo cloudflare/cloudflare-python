@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -43,6 +43,15 @@ class UnionMember0(BaseModel):
     profile_id: Optional[str] = None
 
     upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
+
+    validator_ids: Optional[List[str]] = None
+    """Validators this entry references, by id, at most 10.
+
+    An empty list means the entry references none.
+
+    Returned by the entry endpoints. Not returned on entries embedded in other
+    responses, such as profiles.
+    """
 
 
 class UnionMember1(BaseModel):
@@ -203,7 +212,7 @@ class UnionMember6(BaseModel):
 
     updated_at: datetime
 
-    word_list: object
+    word_list: List[str]
 
     profile_id: Optional[str] = None
 

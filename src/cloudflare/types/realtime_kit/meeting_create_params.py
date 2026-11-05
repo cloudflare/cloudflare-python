@@ -109,7 +109,11 @@ class AIConfigTranscription(TypedDict, total=False):
     """Adds specific terms to improve accurate detection during transcription."""
 
     language: Literal["en-US", "en-IN", "de", "hi", "sv", "ru", "pl", "el", "fr", "nl"]
-    """Specifies the language code for transcription to ensure accurate results."""
+    """Specifies the language code for transcription to ensure accurate results.
+
+    If omitted, the language is auto-detected for post-meeting (Whisper)
+    transcription.
+    """
 
     profanity_filter: bool
     """Control the inclusion of offensive language in transcriptions."""

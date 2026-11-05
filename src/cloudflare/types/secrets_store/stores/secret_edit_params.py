@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SecretEditParams"]
@@ -16,8 +16,12 @@ class SecretEditParams(TypedDict, total=False):
     comment: str
     """Freeform text describing the secret."""
 
-    scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]]
-    """The list of services that can use this secret."""
+    scopes: Optional[List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]]]
+    """
+    The list of services that can use this secret, or null when the secret inherits
+    its store's scopes. Set it to null in a patch to inherit again. An empty list
+    lets no service use the secret.
+    """
 
     value: str
     """The value of the secret.

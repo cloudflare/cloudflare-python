@@ -112,6 +112,7 @@ class ResourceTaggingResource(SyncAPIResource):
         id: SequenceNotStr[str] | Omit = omit,
         case_insensitive: bool | Omit = omit,
         cursor: str | Omit = omit,
+        include_navigation: bool | Omit = omit,
         name: str | Omit = omit,
         tag: SequenceNotStr[str] | Omit = omit,
         type: List[
@@ -119,9 +120,12 @@ class ResourceTaggingResource(SyncAPIResource):
                 "access_application",
                 "access_application_policy",
                 "access_group",
+                "access_service_token",
                 "account",
                 "account_ruleset",
                 "ai_gateway",
+                "ai_search_instance",
+                "ai_search_namespace",
                 "alerting_policy",
                 "alerting_webhook",
                 "api_gateway_operation",
@@ -133,6 +137,7 @@ class ResourceTaggingResource(SyncAPIResource):
                 "cws_policy_set",
                 "cws_workload",
                 "d1_database",
+                "device",
                 "dns_record",
                 "durable_object_namespace",
                 "gateway_list",
@@ -145,6 +150,7 @@ class ResourceTaggingResource(SyncAPIResource):
                 "load_balancer_monitor",
                 "load_balancer_pool",
                 "managed_client_certificate",
+                "namespace_worker",
                 "pages_project",
                 "queue",
                 "r2_bucket",
@@ -180,6 +186,12 @@ class ResourceTaggingResource(SyncAPIResource):
               Example: ?tag=environment=production&case_insensitive=true
 
           cursor: Cursor for pagination.
+
+          include_navigation: Resolve current namespace Worker navigation by immutable child tag. Optional
+              read-only navigation is omitted for deleted or unresolved children. Lookups are
+              limited to this page, at most five concurrently, with a shared two-second
+              budget. Tag identity, ETag, filters and pagination are unchanged; name filtering
+              still uses the stored resource name. Defaults to false.
 
           name:
               Filter by resource name. Performs a case-insensitive substring match. Example:
@@ -229,6 +241,7 @@ class ResourceTaggingResource(SyncAPIResource):
                         "id": id,
                         "case_insensitive": case_insensitive,
                         "cursor": cursor,
+                        "include_navigation": include_navigation,
                         "name": name,
                         "tag": tag,
                         "type": type,
@@ -289,6 +302,7 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
         id: SequenceNotStr[str] | Omit = omit,
         case_insensitive: bool | Omit = omit,
         cursor: str | Omit = omit,
+        include_navigation: bool | Omit = omit,
         name: str | Omit = omit,
         tag: SequenceNotStr[str] | Omit = omit,
         type: List[
@@ -296,9 +310,12 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
                 "access_application",
                 "access_application_policy",
                 "access_group",
+                "access_service_token",
                 "account",
                 "account_ruleset",
                 "ai_gateway",
+                "ai_search_instance",
+                "ai_search_namespace",
                 "alerting_policy",
                 "alerting_webhook",
                 "api_gateway_operation",
@@ -310,6 +327,7 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
                 "cws_policy_set",
                 "cws_workload",
                 "d1_database",
+                "device",
                 "dns_record",
                 "durable_object_namespace",
                 "gateway_list",
@@ -322,6 +340,7 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
                 "load_balancer_monitor",
                 "load_balancer_pool",
                 "managed_client_certificate",
+                "namespace_worker",
                 "pages_project",
                 "queue",
                 "r2_bucket",
@@ -357,6 +376,12 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
               Example: ?tag=environment=production&case_insensitive=true
 
           cursor: Cursor for pagination.
+
+          include_navigation: Resolve current namespace Worker navigation by immutable child tag. Optional
+              read-only navigation is omitted for deleted or unresolved children. Lookups are
+              limited to this page, at most five concurrently, with a shared two-second
+              budget. Tag identity, ETag, filters and pagination are unchanged; name filtering
+              still uses the stored resource name. Defaults to false.
 
           name:
               Filter by resource name. Performs a case-insensitive substring match. Example:
@@ -406,6 +431,7 @@ class AsyncResourceTaggingResource(AsyncAPIResource):
                         "id": id,
                         "case_insensitive": case_insensitive,
                         "cursor": cursor,
+                        "include_navigation": include_navigation,
                         "name": name,
                         "tag": tag,
                         "type": type,

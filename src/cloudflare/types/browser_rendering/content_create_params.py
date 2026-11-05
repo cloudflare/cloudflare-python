@@ -35,6 +35,9 @@ class Variant0(TypedDict, total=False):
 
     url: Required[str]
 
+    browser: Literal["kitesurf"]
+    """Rendering backend. Set to `kitesurf` to use Kitesurf (beta)."""
+
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
     """Cache TTL default is 5s. Set to 0 to disable."""
 
@@ -270,6 +273,9 @@ class Variant1(TypedDict, total=False):
     """Account ID."""
 
     html: Required[str]
+
+    browser: Literal["kitesurf"]
+    """Rendering backend. Set to `kitesurf` to use Kitesurf (beta)."""
 
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
     """Cache TTL default is 5s. Set to 0 to disable."""

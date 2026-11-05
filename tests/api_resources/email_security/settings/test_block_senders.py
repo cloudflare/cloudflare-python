@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.email_security.settings import (
     BlockSenderGetResponse,
@@ -43,6 +44,7 @@ class TestBlockSenders:
             pattern="test@example.com",
             pattern_type="EMAIL",
             comments="Block sender with email test@example.com",
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
         )
         assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
@@ -98,6 +100,7 @@ class TestBlockSenders:
         block_sender = client.email_security.settings.block_senders.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
+            expired=True,
             order="pattern",
             page=1,
             pattern="pattern",
@@ -304,6 +307,7 @@ class TestBlockSenders:
             pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             comments="Block sender with email test@example.com",
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             is_regex=False,
             pattern="test@example.com",
             pattern_type="EMAIL",
@@ -425,6 +429,7 @@ class TestAsyncBlockSenders:
             pattern="test@example.com",
             pattern_type="EMAIL",
             comments="Block sender with email test@example.com",
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
         )
         assert_matches_type(Optional[BlockSenderCreateResponse], block_sender, path=["response"])
 
@@ -480,6 +485,7 @@ class TestAsyncBlockSenders:
         block_sender = await async_client.email_security.settings.block_senders.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
+            expired=True,
             order="pattern",
             page=1,
             pattern="pattern",
@@ -686,6 +692,7 @@ class TestAsyncBlockSenders:
             pattern_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             comments="Block sender with email test@example.com",
+            expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             is_regex=False,
             pattern="test@example.com",
             pattern_type="EMAIL",

@@ -11,6 +11,14 @@ from .scim.scim import (
     AsyncSCIMResourceWithStreamingResponse,
 )
 from ....._compat import cached_property
+from .jit_requests import (
+    JitRequestsResource,
+    AsyncJitRequestsResource,
+    JitRequestsResourceWithRawResponse,
+    AsyncJitRequestsResourceWithRawResponse,
+    JitRequestsResourceWithStreamingResponse,
+    AsyncJitRequestsResourceWithStreamingResponse,
+)
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from .access_requests import (
     AccessRequestsResource,
@@ -28,6 +36,10 @@ class LogsResource(SyncAPIResource):
     @cached_property
     def access_requests(self) -> AccessRequestsResource:
         return AccessRequestsResource(self._client)
+
+    @cached_property
+    def jit_requests(self) -> JitRequestsResource:
+        return JitRequestsResource(self._client)
 
     @cached_property
     def scim(self) -> SCIMResource:
@@ -57,6 +69,10 @@ class AsyncLogsResource(AsyncAPIResource):
     @cached_property
     def access_requests(self) -> AsyncAccessRequestsResource:
         return AsyncAccessRequestsResource(self._client)
+
+    @cached_property
+    def jit_requests(self) -> AsyncJitRequestsResource:
+        return AsyncJitRequestsResource(self._client)
 
     @cached_property
     def scim(self) -> AsyncSCIMResource:
@@ -91,6 +107,10 @@ class LogsResourceWithRawResponse:
         return AccessRequestsResourceWithRawResponse(self._logs.access_requests)
 
     @cached_property
+    def jit_requests(self) -> JitRequestsResourceWithRawResponse:
+        return JitRequestsResourceWithRawResponse(self._logs.jit_requests)
+
+    @cached_property
     def scim(self) -> SCIMResourceWithRawResponse:
         return SCIMResourceWithRawResponse(self._logs.scim)
 
@@ -102,6 +122,10 @@ class AsyncLogsResourceWithRawResponse:
     @cached_property
     def access_requests(self) -> AsyncAccessRequestsResourceWithRawResponse:
         return AsyncAccessRequestsResourceWithRawResponse(self._logs.access_requests)
+
+    @cached_property
+    def jit_requests(self) -> AsyncJitRequestsResourceWithRawResponse:
+        return AsyncJitRequestsResourceWithRawResponse(self._logs.jit_requests)
 
     @cached_property
     def scim(self) -> AsyncSCIMResourceWithRawResponse:
@@ -117,6 +141,10 @@ class LogsResourceWithStreamingResponse:
         return AccessRequestsResourceWithStreamingResponse(self._logs.access_requests)
 
     @cached_property
+    def jit_requests(self) -> JitRequestsResourceWithStreamingResponse:
+        return JitRequestsResourceWithStreamingResponse(self._logs.jit_requests)
+
+    @cached_property
     def scim(self) -> SCIMResourceWithStreamingResponse:
         return SCIMResourceWithStreamingResponse(self._logs.scim)
 
@@ -128,6 +156,10 @@ class AsyncLogsResourceWithStreamingResponse:
     @cached_property
     def access_requests(self) -> AsyncAccessRequestsResourceWithStreamingResponse:
         return AsyncAccessRequestsResourceWithStreamingResponse(self._logs.access_requests)
+
+    @cached_property
+    def jit_requests(self) -> AsyncJitRequestsResourceWithStreamingResponse:
+        return AsyncJitRequestsResourceWithStreamingResponse(self._logs.jit_requests)
 
     @cached_property
     def scim(self) -> AsyncSCIMResourceWithStreamingResponse:

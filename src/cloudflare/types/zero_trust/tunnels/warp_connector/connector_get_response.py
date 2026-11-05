@@ -26,13 +26,11 @@ class Conn(BaseModel):
     """Timestamp of when the connection was established."""
 
     origin_ip: Optional[str] = None
-    """The public IP address of the host running WARP Connector."""
+    """The public IP address of the host running the Mesh node connector."""
 
 
 class ConnectorGetResponse(BaseModel):
-    """
-    A WARP Connector client that maintains a connection to a Cloudflare data center.
-    """
+    """A Mesh node connector that maintains a connection to a Cloudflare data center."""
 
     id: Optional[str] = None
     """UUID of the Cloudflare Tunnel connector."""
@@ -41,15 +39,13 @@ class ConnectorGetResponse(BaseModel):
     """The cloudflared OS architecture used to establish this connection."""
 
     conns: Optional[List[Conn]] = None
-    """
-    The WARP Connector Tunnel connections between your origin and Cloudflare's edge.
-    """
+    """The Mesh node connections between your origin and Cloudflare's edge."""
 
     features: Optional[List[str]] = None
     """Features enabled for the Cloudflare Tunnel."""
 
     ha_status: Optional[Literal["offline", "passive", "active"]] = None
-    """The HA status of a WARP Connector client."""
+    """The HA status of a Mesh node connector."""
 
     run_at: Optional[datetime] = None
     """Timestamp of when the tunnel connection was started."""

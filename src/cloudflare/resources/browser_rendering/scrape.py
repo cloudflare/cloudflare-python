@@ -51,6 +51,7 @@ class ScrapeResource(SyncAPIResource):
         *,
         account_id: str,
         url: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[scrape_create_params.Variant0AddScriptTag] | Omit = omit,
@@ -129,6 +130,8 @@ class ScrapeResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -183,6 +186,7 @@ class ScrapeResource(SyncAPIResource):
         *,
         account_id: str,
         html: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[scrape_create_params.Variant1AddScriptTag] | Omit = omit,
@@ -261,6 +265,8 @@ class ScrapeResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -315,6 +321,7 @@ class ScrapeResource(SyncAPIResource):
         *,
         account_id: str,
         url: str | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[scrape_create_params.Variant0AddScriptTag]
@@ -434,7 +441,13 @@ class ScrapeResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"cache_ttl": cache_ttl}, scrape_create_params.ScrapeCreateParams),
+                query=maybe_transform(
+                    {
+                        "browser": browser,
+                        "cache_ttl": cache_ttl,
+                    },
+                    scrape_create_params.ScrapeCreateParams,
+                ),
                 post_parser=ResultWrapper[ScrapeCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScrapeCreateResponse], ResultWrapper[ScrapeCreateResponse]),
@@ -467,6 +480,7 @@ class AsyncScrapeResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[scrape_create_params.Variant0AddScriptTag] | Omit = omit,
@@ -545,6 +559,8 @@ class AsyncScrapeResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -599,6 +615,7 @@ class AsyncScrapeResource(AsyncAPIResource):
         *,
         account_id: str,
         html: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[scrape_create_params.Variant1AddScriptTag] | Omit = omit,
@@ -677,6 +694,8 @@ class AsyncScrapeResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -731,6 +750,7 @@ class AsyncScrapeResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[scrape_create_params.Variant0AddScriptTag]
@@ -850,7 +870,13 @@ class AsyncScrapeResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"cache_ttl": cache_ttl}, scrape_create_params.ScrapeCreateParams),
+                query=await async_maybe_transform(
+                    {
+                        "browser": browser,
+                        "cache_ttl": cache_ttl,
+                    },
+                    scrape_create_params.ScrapeCreateParams,
+                ),
                 post_parser=ResultWrapper[ScrapeCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScrapeCreateResponse], ResultWrapper[ScrapeCreateResponse]),

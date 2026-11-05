@@ -11,20 +11,20 @@ class QueryCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account ID."""
 
-    alert_enabled: Required[bool]
-    """Enable alerts for this query"""
-
-    alert_rollup_enabled: Required[bool]
-    """Enable alert rollup for this query"""
-
     name: Required[str]
     """Unique name for the saved query"""
 
     query_json: Required[str]
     """JSON string containing the query parameters"""
 
-    rule_enabled: Required[bool]
-    """Enable rule for this query"""
+    alert_enabled: bool
+    """Deprecated and ignored: saved-query alerting and rules were removed."""
+
+    alert_rollup_enabled: bool
+    """Deprecated and ignored: saved-query alerting and rules were removed."""
+
+    rule_enabled: bool
+    """Deprecated and ignored: saved-query alerting and rules were removed."""
 
     rule_scope: str
-    """Scope for the rule"""
+    """Deprecated and ignored: saved-query alerting and rules were removed."""

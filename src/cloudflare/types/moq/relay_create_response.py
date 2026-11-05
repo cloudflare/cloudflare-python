@@ -45,6 +45,12 @@ class ConfigUpstreams(BaseModel):
 
 
 class Config(BaseModel):
+    """Relay configuration.
+
+    All sub-objects use whole-object replacement when
+    present; omitted sub-objects preserve the existing value.
+    """
+
     upstreams: Optional[ConfigUpstreams] = None
     """
     Upstreams are external MOQT server publishers that a relay falls back to when it
@@ -98,6 +104,11 @@ class RelayCreateResponse(BaseModel):
     """
 
     config: Config
+    """Relay configuration.
+
+    All sub-objects use whole-object replacement when present; omitted sub-objects
+    preserve the existing value.
+    """
 
     created: datetime
 

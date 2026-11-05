@@ -11,6 +11,7 @@ from .invite_edit_params import InviteEditParams as InviteEditParams
 from .user_edit_response import UserEditResponse as UserEditResponse
 from .token_create_params import TokenCreateParams as TokenCreateParams
 from .token_update_params import TokenUpdateParams as TokenUpdateParams
+from .tenant_list_response import TenantListResponse as TenantListResponse
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .token_create_response import TokenCreateResponse as TokenCreateResponse
 from .token_delete_response import TokenDeleteResponse as TokenDeleteResponse

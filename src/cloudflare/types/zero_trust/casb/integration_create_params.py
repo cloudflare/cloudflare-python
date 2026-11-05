@@ -30,6 +30,7 @@ class IntegrationCreateParams(TypedDict, total=False):
             "SALESFORCE",
             "SERVICENOW",
             "SLACK",
+            "ZOOM",
         ]
     ]
     """Vendor/application slug (e.g., GOOGLE_WORKSPACE).
@@ -49,6 +50,7 @@ class IntegrationCreateParams(TypedDict, total=False):
     - `SALESFORCE` - SALESFORCE
     - `SERVICENOW` - SERVICENOW
     - `SLACK` - SLACK
+    - `ZOOM` - ZOOM
     """
 
     credentials: Required[Dict[str, object]]
@@ -56,6 +58,13 @@ class IntegrationCreateParams(TypedDict, total=False):
 
     name: Required[str]
     """Name of the integration."""
+
+    use_cases: Required[List[Literal["casb", "ces", "auto_remediation"]]]
+    """List of use case or feature slugs to enroll.
+
+    At least one use case (casb, ces) is required; auto_remediation may be added
+    alongside casb (e.g., ['casb', 'ces', 'auto_remediation']).
+    """
 
     auth_method: Optional[str]
     """Authentication method slug (uses default if omitted)."""
@@ -65,9 +74,3 @@ class IntegrationCreateParams(TypedDict, total=False):
 
     permissions: SequenceNotStr[str]
     """List of permission scopes (uses policy defaults if empty)."""
-
-    use_cases: List[Literal["casb", "ces", "auto_remediation"]]
-    """
-    List of use case or feature slugs to enroll (e.g., ['casb', 'ces',
-    'auto_remediation']).
-    """

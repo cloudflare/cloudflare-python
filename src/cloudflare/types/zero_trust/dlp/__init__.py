@@ -4,8 +4,11 @@ from __future__ import annotations
 
 from .dataset import Dataset as Dataset
 from .profile import Profile as Profile
+from .validator import Validator as Validator
+from .references import References as References
 from .dlp_settings import DLPSettings as DLPSettings
 from .dataset_array import DatasetArray as DatasetArray
+from .validator_array import ValidatorArray as ValidatorArray
 from .dataset_creation import DatasetCreation as DatasetCreation
 from .context_awareness import ContextAwareness as ContextAwareness
 from .entry_get_response import EntryGetResponse as EntryGetResponse
@@ -22,6 +25,7 @@ from .dataset_update_params import DatasetUpdateParams as DatasetUpdateParams
 from .entry_create_response import EntryCreateResponse as EntryCreateResponse
 from .entry_update_response import EntryUpdateResponse as EntryUpdateResponse
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
+from .validator_list_params import ValidatorListParams as ValidatorListParams
 from .context_awareness_param import ContextAwarenessParam as ContextAwarenessParam
 from .data_class_get_response import DataClassGetResponse as DataClassGetResponse
 from .pattern_validate_params import PatternValidateParams as PatternValidateParams

@@ -197,7 +197,7 @@ class TestSuppressions:
             account_id="12345678",
             expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             note="Customer re-confirmed opt-in",
-            scope={},
+            scope={"type": "account"},
         )
         assert_matches_type(SuppressionEditResponse, suppression, path=["response"])
 
@@ -508,7 +508,7 @@ class TestAsyncSuppressions:
             account_id="12345678",
             expires_at=parse_datetime("2027-01-01T00:00:00Z"),
             note="Customer re-confirmed opt-in",
-            scope={},
+            scope={"type": "account"},
         )
         assert_matches_type(SuppressionEditResponse, suppression, path=["response"])
 

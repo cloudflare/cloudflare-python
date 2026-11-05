@@ -53,6 +53,7 @@ from ....types.vectorize.index_query_response import IndexQueryResponse
 from ....types.vectorize.index_delete_response import IndexDeleteResponse
 from ....types.vectorize.index_insert_response import IndexInsertResponse
 from ....types.vectorize.index_upsert_response import IndexUpsertResponse
+from ....types.vectorize.index_get_by_ids_response import IndexGetByIDsResponse
 from ....types.vectorize.index_list_vectors_response import IndexListVectorsResponse
 from ....types.vectorize.index_delete_by_ids_response import IndexDeleteByIDsResponse
 
@@ -330,7 +331,7 @@ class IndexesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> SyncSinglePage[IndexGetByIDsResponse]:
         """
         Get a set of vectors from an index by their vector identifiers.
 
@@ -351,21 +352,19 @@ class IndexesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
-        return self._post(
+        return self._get_api_list(
             path_template(
                 "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/get_by_ids",
                 account_id=account_id,
                 index_name=index_name,
             ),
+            page=SyncSinglePage[IndexGetByIDsResponse],
             body=maybe_transform({"ids": ids}, index_get_by_ids_params.IndexGetByIDsParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            model=IndexGetByIDsResponse,
+            method="post",
         )
 
     def info(
@@ -919,7 +918,7 @@ class AsyncIndexesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[CreateIndex]], ResultWrapper[CreateIndex]),
         )
 
-    async def get_by_ids(
+    def get_by_ids(
         self,
         index_name: str,
         *,
@@ -931,7 +930,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AsyncPaginator[IndexGetByIDsResponse, AsyncSinglePage[IndexGetByIDsResponse]]:
         """
         Get a set of vectors from an index by their vector identifiers.
 
@@ -952,21 +951,19 @@ class AsyncIndexesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
-        return await self._post(
+        return self._get_api_list(
             path_template(
                 "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/get_by_ids",
                 account_id=account_id,
                 index_name=index_name,
             ),
-            body=await async_maybe_transform({"ids": ids}, index_get_by_ids_params.IndexGetByIDsParams),
+            page=AsyncSinglePage[IndexGetByIDsResponse],
+            body=maybe_transform({"ids": ids}, index_get_by_ids_params.IndexGetByIDsParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            model=IndexGetByIDsResponse,
+            method="post",
         )
 
     async def info(

@@ -8,6 +8,14 @@ from .users import (
     UsersResourceWithStreamingResponse,
     AsyncUsersResourceWithStreamingResponse,
 )
+from .passkeys import (
+    PasskeysResource,
+    AsyncPasskeysResource,
+    PasskeysResourceWithRawResponse,
+    AsyncPasskeysResourceWithRawResponse,
+    PasskeysResourceWithStreamingResponse,
+    AsyncPasskeysResourceWithStreamingResponse,
+)
 from .failed_logins import (
     FailedLoginsResource,
     AsyncFailedLoginsResource,
@@ -32,6 +40,14 @@ from .last_seen_identity import (
     LastSeenIdentityResourceWithStreamingResponse,
     AsyncLastSeenIdentityResourceWithStreamingResponse,
 )
+from .mfa_authenticators import (
+    MfaAuthenticatorsResource,
+    AsyncMfaAuthenticatorsResource,
+    MfaAuthenticatorsResourceWithRawResponse,
+    AsyncMfaAuthenticatorsResourceWithRawResponse,
+    MfaAuthenticatorsResourceWithStreamingResponse,
+    AsyncMfaAuthenticatorsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ActiveSessionsResource",
@@ -52,6 +68,18 @@ __all__ = [
     "AsyncFailedLoginsResourceWithRawResponse",
     "FailedLoginsResourceWithStreamingResponse",
     "AsyncFailedLoginsResourceWithStreamingResponse",
+    "MfaAuthenticatorsResource",
+    "AsyncMfaAuthenticatorsResource",
+    "MfaAuthenticatorsResourceWithRawResponse",
+    "AsyncMfaAuthenticatorsResourceWithRawResponse",
+    "MfaAuthenticatorsResourceWithStreamingResponse",
+    "AsyncMfaAuthenticatorsResourceWithStreamingResponse",
+    "PasskeysResource",
+    "AsyncPasskeysResource",
+    "PasskeysResourceWithRawResponse",
+    "AsyncPasskeysResourceWithRawResponse",
+    "PasskeysResourceWithStreamingResponse",
+    "AsyncPasskeysResourceWithStreamingResponse",
     "UsersResource",
     "AsyncUsersResource",
     "UsersResourceWithRawResponse",

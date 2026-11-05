@@ -11,15 +11,18 @@ __all__ = ["RecipientCreateResponse", "Resource"]
 
 class Resource(BaseModel):
     error: str
-    """Share Recipient error message."""
+    """Error from the most recent attempt to apply the resource to the recipient.
+
+    Empty string when no error has been recorded.
+    """
 
     resource_id: str
-    """Share Resource identifier."""
+    """Identifier assigned by the service that owns the shared resource."""
 
-    resource_version: int
-    """Resource Version."""
+    resource_version: Optional[int] = None
+    """Resource version applied to the recipient, if reconciliation has occurred."""
 
-    terminal: bool
+    terminal: Optional[bool] = None
     """Whether the error is terminal or will be continually retried."""
 
 
@@ -56,9 +59,9 @@ class RecipientCreateResponse(BaseModel):
     """
 
     created: datetime
-    """When the share was created."""
+    """When the object was created."""
 
     modified: datetime
-    """When the share was modified."""
+    """When the object was last modified."""
 
     resources: Optional[List[Resource]] = None

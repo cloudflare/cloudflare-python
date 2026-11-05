@@ -99,6 +99,7 @@ class CustomResource(SyncAPIResource):
         description: str | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
         dns_search_suffixes: Iterable[custom_create_params.DNSSearchSuffix] | Omit = omit,
+        enable_device_credential_authentication: bool | Omit = omit,
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
@@ -157,6 +158,10 @@ class CustomResource(SyncAPIResource):
           dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
               order. Use an empty array to clear.
 
+          enable_device_credential_authentication: Determines whether the WARP client can silently reauthenticate the user with
+              device credentials (Microsoft Entra) instead of prompting for browser-based
+              reauthentication.
+
           enabled: Whether the policy will be applied to matching devices.
 
           exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
@@ -183,7 +188,7 @@ class CustomResource(SyncAPIResource):
           match: The wirefilter expression to match devices. Available values: "identity.email",
               "identity.groups.id", "identity.groups.name", "identity.groups.email",
               "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
-              "os.version".
+              "os.version", "device.tags".
 
           precedence: The precedence of the policy. Lower values indicate higher precedence. Policies
               will be evaluated in ascending order of this field.
@@ -233,6 +238,7 @@ class CustomResource(SyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "dns_search_suffixes": dns_search_suffixes,
+                    "enable_device_credential_authentication": enable_device_credential_authentication,
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
@@ -361,6 +367,7 @@ class CustomResource(SyncAPIResource):
         description: str | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
         dns_search_suffixes: Iterable[custom_edit_params.DNSSearchSuffix] | Omit = omit,
+        enable_device_credential_authentication: bool | Omit = omit,
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
@@ -416,6 +423,10 @@ class CustomResource(SyncAPIResource):
           dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
               order. Use an empty array to clear.
 
+          enable_device_credential_authentication: Determines whether the WARP client can silently reauthenticate the user with
+              device credentials (Microsoft Entra) instead of prompting for browser-based
+              reauthentication.
+
           enabled: Whether the policy will be applied to matching devices.
 
           exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
@@ -442,7 +453,7 @@ class CustomResource(SyncAPIResource):
           match: The wirefilter expression to match devices. Available values: "identity.email",
               "identity.groups.id", "identity.groups.name", "identity.groups.email",
               "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
-              "os.version".
+              "os.version", "device.tags".
 
           name: The name of the device settings profile.
 
@@ -494,6 +505,7 @@ class CustomResource(SyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "dns_search_suffixes": dns_search_suffixes,
+                    "enable_device_credential_authentication": enable_device_credential_authentication,
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
@@ -615,6 +627,7 @@ class AsyncCustomResource(AsyncAPIResource):
         description: str | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
         dns_search_suffixes: Iterable[custom_create_params.DNSSearchSuffix] | Omit = omit,
+        enable_device_credential_authentication: bool | Omit = omit,
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
@@ -673,6 +686,10 @@ class AsyncCustomResource(AsyncAPIResource):
           dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
               order. Use an empty array to clear.
 
+          enable_device_credential_authentication: Determines whether the WARP client can silently reauthenticate the user with
+              device credentials (Microsoft Entra) instead of prompting for browser-based
+              reauthentication.
+
           enabled: Whether the policy will be applied to matching devices.
 
           exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
@@ -699,7 +716,7 @@ class AsyncCustomResource(AsyncAPIResource):
           match: The wirefilter expression to match devices. Available values: "identity.email",
               "identity.groups.id", "identity.groups.name", "identity.groups.email",
               "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
-              "os.version".
+              "os.version", "device.tags".
 
           precedence: The precedence of the policy. Lower values indicate higher precedence. Policies
               will be evaluated in ascending order of this field.
@@ -749,6 +766,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "dns_search_suffixes": dns_search_suffixes,
+                    "enable_device_credential_authentication": enable_device_credential_authentication,
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
@@ -877,6 +895,7 @@ class AsyncCustomResource(AsyncAPIResource):
         description: str | Omit = omit,
         disable_auto_fallback: bool | Omit = omit,
         dns_search_suffixes: Iterable[custom_edit_params.DNSSearchSuffix] | Omit = omit,
+        enable_device_credential_authentication: bool | Omit = omit,
         enabled: bool | Omit = omit,
         exclude: Iterable[SplitTunnelExcludeParam] | Omit = omit,
         exclude_office_ips: bool | Omit = omit,
@@ -932,6 +951,10 @@ class AsyncCustomResource(AsyncAPIResource):
           dns_search_suffixes: List of DNS search suffixes to apply to clients. Suffixes are evaluated in
               order. Use an empty array to clear.
 
+          enable_device_credential_authentication: Determines whether the WARP client can silently reauthenticate the user with
+              device credentials (Microsoft Entra) instead of prompting for browser-based
+              reauthentication.
+
           enabled: Whether the policy will be applied to matching devices.
 
           exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
@@ -958,7 +981,7 @@ class AsyncCustomResource(AsyncAPIResource):
           match: The wirefilter expression to match devices. Available values: "identity.email",
               "identity.groups.id", "identity.groups.name", "identity.groups.email",
               "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
-              "os.version".
+              "os.version", "device.tags".
 
           name: The name of the device settings profile.
 
@@ -1010,6 +1033,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "dns_search_suffixes": dns_search_suffixes,
+                    "enable_device_credential_authentication": enable_device_credential_authentication,
                     "enabled": enabled,
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,

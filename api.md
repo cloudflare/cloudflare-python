@@ -9,7 +9,6 @@ from cloudflare.types import (
     CloudflareTunnel,
     ErrorData,
     Identifier,
-    LoadBalancerPreview,
     Member,
     PaginationInfo,
     Permission,
@@ -195,7 +194,7 @@ Methods:
 
 # [MagicNetworkMonitoring](src/cloudflare/resources/magic_network_monitoring/api.md)
 
-# [MagicCloudNetworking](src/cloudflare/resources/magic_cloud_networking/api.md)
+# [Monetization](src/cloudflare/resources/monetization/api.md)
 
 # [NetworkInterconnects](src/cloudflare/resources/network_interconnects/api.md)
 
@@ -318,6 +317,8 @@ Methods:
 # [SecretsStore](src/cloudflare/resources/secrets_store/api.md)
 
 # [Pipelines](src/cloudflare/resources/pipelines/api.md)
+
+# [K2](src/cloudflare/resources/k2/api.md)
 
 # [SchemaValidation](src/cloudflare/resources/schema_validation/api.md)
 

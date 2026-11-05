@@ -16,8 +16,22 @@ from .account import (
     AccountResourceWithStreamingResponse,
     AsyncAccountResourceWithStreamingResponse,
 )
+from .nameserver_sets import (
+    NameserverSetsResource,
+    AsyncNameserverSetsResource,
+    NameserverSetsResourceWithRawResponse,
+    AsyncNameserverSetsResourceWithRawResponse,
+    NameserverSetsResourceWithStreamingResponse,
+    AsyncNameserverSetsResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "NameserverSetsResource",
+    "AsyncNameserverSetsResource",
+    "NameserverSetsResourceWithRawResponse",
+    "AsyncNameserverSetsResourceWithRawResponse",
+    "NameserverSetsResourceWithStreamingResponse",
+    "AsyncNameserverSetsResourceWithStreamingResponse",
     "ViewsResource",
     "AsyncViewsResource",
     "ViewsResourceWithRawResponse",

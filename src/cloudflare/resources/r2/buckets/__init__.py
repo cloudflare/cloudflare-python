@@ -8,6 +8,14 @@ from .cors import (
     CORSResourceWithStreamingResponse,
     AsyncCORSResourceWithStreamingResponse,
 )
+from .jobs import (
+    JobsResource,
+    AsyncJobsResource,
+    JobsResourceWithRawResponse,
+    AsyncJobsResourceWithRawResponse,
+    JobsResourceWithStreamingResponse,
+    AsyncJobsResourceWithStreamingResponse,
+)
 from .locks import (
     LocksResource,
     AsyncLocksResource,
@@ -122,6 +130,12 @@ __all__ = [
     "AsyncObjectsResourceWithRawResponse",
     "ObjectsResourceWithStreamingResponse",
     "AsyncObjectsResourceWithStreamingResponse",
+    "JobsResource",
+    "AsyncJobsResource",
+    "JobsResourceWithRawResponse",
+    "AsyncJobsResourceWithRawResponse",
+    "JobsResourceWithStreamingResponse",
+    "AsyncJobsResourceWithStreamingResponse",
     "BucketsResource",
     "AsyncBucketsResource",
     "BucketsResourceWithRawResponse",

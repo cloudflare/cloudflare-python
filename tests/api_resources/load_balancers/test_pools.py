@@ -47,8 +47,10 @@ class TestPools:
                     "weight": 0.6,
                 }
             ],
+            check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
+            health_sources=["regional", "global"],
             latitude=0,
             load_shedding={
                 "default_percent": 0,
@@ -60,6 +62,7 @@ class TestPools:
             minimum_origins=0,
             monitor="monitor",
             monitor_group="monitor_group",
+            networks=["cloudflare", "jdcloud"],
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -155,6 +158,7 @@ class TestPools:
             minimum_origins=0,
             monitor="monitor",
             monitor_group="monitor_group",
+            networks=["cloudflare", "jdcloud"],
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -392,6 +396,7 @@ class TestPools:
             monitor="monitor",
             monitor_group="monitor_group",
             name="primary-dc-1",
+            networks=["cloudflare", "jdcloud"],
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -539,8 +544,10 @@ class TestAsyncPools:
                     "weight": 0.6,
                 }
             ],
+            check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
+            health_sources=["regional", "global"],
             latitude=0,
             load_shedding={
                 "default_percent": 0,
@@ -552,6 +559,7 @@ class TestAsyncPools:
             minimum_origins=0,
             monitor="monitor",
             monitor_group="monitor_group",
+            networks=["cloudflare", "jdcloud"],
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -647,6 +655,7 @@ class TestAsyncPools:
             minimum_origins=0,
             monitor="monitor",
             monitor_group="monitor_group",
+            networks=["cloudflare", "jdcloud"],
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -884,6 +893,7 @@ class TestAsyncPools:
             monitor="monitor",
             monitor_group="monitor_group",
             name="primary-dc-1",
+            networks=["cloudflare", "jdcloud"],
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {

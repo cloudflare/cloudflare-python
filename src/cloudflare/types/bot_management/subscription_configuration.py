@@ -7,7 +7,26 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["SubscriptionConfiguration", "StaleZoneConfiguration"]
+__all__ = ["SubscriptionConfiguration", "AIAgents", "StaleZoneConfiguration"]
+
+
+class AIAgents(BaseModel):
+    """Configure blocking behavior for supported personal AI agents."""
+
+    anthropic_agent: Optional[Literal["disabled", "block", "only_on_ad_pages"]] = None
+    """Action to apply to one supported personal AI agent."""
+
+    google_agent: Optional[Literal["disabled", "block", "only_on_ad_pages"]] = None
+    """Action to apply to one supported personal AI agent."""
+
+    instinct: Optional[Literal["disabled", "block", "only_on_ad_pages"]] = None
+    """Action to apply to one supported personal AI agent."""
+
+    muse: Optional[Literal["disabled", "block", "only_on_ad_pages"]] = None
+    """Action to apply to one supported personal AI agent."""
+
+    openai_agent: Optional[Literal["disabled", "block", "only_on_ad_pages"]] = None
+    """Action to apply to one supported personal AI agent."""
 
 
 class StaleZoneConfiguration(BaseModel):
@@ -41,6 +60,9 @@ class StaleZoneConfiguration(BaseModel):
 
 
 class SubscriptionConfiguration(BaseModel):
+    ai_agents: Optional[AIAgents] = None
+    """Configure blocking behavior for supported personal AI agents."""
+
     ai_bots_migration_opt_out: Optional[bool] = None
     """
     Temporary migration flag tracking zones opted out of AI bots managed-rule

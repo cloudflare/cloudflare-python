@@ -271,8 +271,8 @@ class SecretsResource(SyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
-        scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]],
         comment: str | Omit = omit,
+        scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -286,9 +286,10 @@ class SecretsResource(SyncAPIResource):
         Args:
           name: The name of the secret.
 
-          scopes: The list of services that can use this secret.
-
           comment: Freeform text describing the secret.
+
+          scopes: The list of services that can use this secret. Omit it on create or duplicate to
+              inherit the store's scopes. An empty list lets no service use the secret.
 
           extra_headers: Send extra headers
 
@@ -314,8 +315,8 @@ class SecretsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
-                    "scopes": scopes,
                     "comment": comment,
+                    "scopes": scopes,
                 },
                 secret_duplicate_params.SecretDuplicateParams,
             ),
@@ -336,7 +337,8 @@ class SecretsResource(SyncAPIResource):
         account_id: str,
         store_id: str,
         comment: str | Omit = omit,
-        scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]] | Omit = omit,
+        scopes: Optional[List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]]]
+        | Omit = omit,
         value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -351,7 +353,9 @@ class SecretsResource(SyncAPIResource):
         Args:
           comment: Freeform text describing the secret.
 
-          scopes: The list of services that can use this secret.
+          scopes: The list of services that can use this secret, or null when the secret inherits
+              its store's scopes. Set it to null in a patch to inherit again. An empty list
+              lets no service use the secret.
 
           value: The value of the secret. Maximum 64 KiB (65,536 bytes). Note that this is 'write
               only' - the API never returns this value; it exists only to create or modify
@@ -681,8 +685,8 @@ class AsyncSecretsResource(AsyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
-        scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]],
         comment: str | Omit = omit,
+        scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -696,9 +700,10 @@ class AsyncSecretsResource(AsyncAPIResource):
         Args:
           name: The name of the secret.
 
-          scopes: The list of services that can use this secret.
-
           comment: Freeform text describing the secret.
+
+          scopes: The list of services that can use this secret. Omit it on create or duplicate to
+              inherit the store's scopes. An empty list lets no service use the secret.
 
           extra_headers: Send extra headers
 
@@ -724,8 +729,8 @@ class AsyncSecretsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
-                    "scopes": scopes,
                     "comment": comment,
+                    "scopes": scopes,
                 },
                 secret_duplicate_params.SecretDuplicateParams,
             ),
@@ -746,7 +751,8 @@ class AsyncSecretsResource(AsyncAPIResource):
         account_id: str,
         store_id: str,
         comment: str | Omit = omit,
-        scopes: List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]] | Omit = omit,
+        scopes: Optional[List[Literal["workers", "ai_gateway", "dex", "access", "containers", "websearch"]]]
+        | Omit = omit,
         value: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -761,7 +767,9 @@ class AsyncSecretsResource(AsyncAPIResource):
         Args:
           comment: Freeform text describing the secret.
 
-          scopes: The list of services that can use this secret.
+          scopes: The list of services that can use this secret, or null when the secret inherits
+              its store's scopes. Set it to null in a patch to inherit again. An empty list
+              lets no service use the secret.
 
           value: The value of the secret. Maximum 64 KiB (65,536 bytes). Note that this is 'write
               only' - the API never returns this value; it exists only to create or modify

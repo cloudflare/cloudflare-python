@@ -34,12 +34,6 @@ class UsageGetAccountUsageV2ResponseItem(BaseModel):
     charge_period_start: datetime = FieldInfo(alias="ChargePeriodStart")
     """Inclusive start of the time interval during which the usage was consumed."""
 
-    consumed_quantity: float = FieldInfo(alias="ConsumedQuantity")
-    """Measured usage amount within the charge period.
-
-    Reflects raw metered consumption before pricing transformations.
-    """
-
     consumed_unit: str = FieldInfo(alias="ConsumedUnit")
     """
     Unit of measure for the consumed quantity (e.g., "GB", "Requests",
@@ -96,6 +90,12 @@ class UsageGetAccountUsageV2ResponseItem(BaseModel):
     """
     Indicates whether the row represents a correction to one or more charges
     invoiced in a previous billing period.
+    """
+
+    consumed_quantity: Optional[float] = FieldInfo(alias="ConsumedQuantity", default=None)
+    """Measured usage amount within the charge period.
+
+    Reflects raw metered consumption before pricing transformations.
     """
 
     contracted_cost: Optional[float] = FieldInfo(alias="ContractedCost", default=None)

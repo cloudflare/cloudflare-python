@@ -26,6 +26,14 @@ from .groups import (
     GroupsResourceWithStreamingResponse,
     AsyncGroupsResourceWithStreamingResponse,
 )
+from .mfa.mfa import (
+    MfaResource,
+    AsyncMfaResource,
+    MfaResourceWithRawResponse,
+    AsyncMfaResourceWithRawResponse,
+    MfaResourceWithStreamingResponse,
+    AsyncMfaResourceWithStreamingResponse,
+)
 from .policies import (
     PoliciesResource,
     AsyncPoliciesResource,
@@ -132,6 +140,14 @@ from .infrastructure.infrastructure import (
     InfrastructureResourceWithStreamingResponse,
     AsyncInfrastructureResourceWithStreamingResponse,
 )
+from .user_populations.user_populations import (
+    UserPopulationsResource,
+    AsyncUserPopulationsResource,
+    UserPopulationsResourceWithRawResponse,
+    AsyncUserPopulationsResourceWithRawResponse,
+    UserPopulationsResourceWithStreamingResponse,
+    AsyncUserPopulationsResourceWithStreamingResponse,
+)
 
 __all__ = ["AccessResource", "AsyncAccessResource"]
 
@@ -188,6 +204,14 @@ class AccessResource(SyncAPIResource):
     @cached_property
     def users(self) -> UsersResource:
         return UsersResource(self._client)
+
+    @cached_property
+    def user_populations(self) -> UserPopulationsResource:
+        return UserPopulationsResource(self._client)
+
+    @cached_property
+    def mfa(self) -> MfaResource:
+        return MfaResource(self._client)
 
     @cached_property
     def custom_pages(self) -> CustomPagesResource:
@@ -273,6 +297,14 @@ class AsyncAccessResource(AsyncAPIResource):
     @cached_property
     def users(self) -> AsyncUsersResource:
         return AsyncUsersResource(self._client)
+
+    @cached_property
+    def user_populations(self) -> AsyncUserPopulationsResource:
+        return AsyncUserPopulationsResource(self._client)
+
+    @cached_property
+    def mfa(self) -> AsyncMfaResource:
+        return AsyncMfaResource(self._client)
 
     @cached_property
     def custom_pages(self) -> AsyncCustomPagesResource:
@@ -363,6 +395,14 @@ class AccessResourceWithRawResponse:
         return UsersResourceWithRawResponse(self._access.users)
 
     @cached_property
+    def user_populations(self) -> UserPopulationsResourceWithRawResponse:
+        return UserPopulationsResourceWithRawResponse(self._access.user_populations)
+
+    @cached_property
+    def mfa(self) -> MfaResourceWithRawResponse:
+        return MfaResourceWithRawResponse(self._access.mfa)
+
+    @cached_property
     def custom_pages(self) -> CustomPagesResourceWithRawResponse:
         return CustomPagesResourceWithRawResponse(self._access.custom_pages)
 
@@ -430,6 +470,14 @@ class AsyncAccessResourceWithRawResponse:
     @cached_property
     def users(self) -> AsyncUsersResourceWithRawResponse:
         return AsyncUsersResourceWithRawResponse(self._access.users)
+
+    @cached_property
+    def user_populations(self) -> AsyncUserPopulationsResourceWithRawResponse:
+        return AsyncUserPopulationsResourceWithRawResponse(self._access.user_populations)
+
+    @cached_property
+    def mfa(self) -> AsyncMfaResourceWithRawResponse:
+        return AsyncMfaResourceWithRawResponse(self._access.mfa)
 
     @cached_property
     def custom_pages(self) -> AsyncCustomPagesResourceWithRawResponse:
@@ -501,6 +549,14 @@ class AccessResourceWithStreamingResponse:
         return UsersResourceWithStreamingResponse(self._access.users)
 
     @cached_property
+    def user_populations(self) -> UserPopulationsResourceWithStreamingResponse:
+        return UserPopulationsResourceWithStreamingResponse(self._access.user_populations)
+
+    @cached_property
+    def mfa(self) -> MfaResourceWithStreamingResponse:
+        return MfaResourceWithStreamingResponse(self._access.mfa)
+
+    @cached_property
     def custom_pages(self) -> CustomPagesResourceWithStreamingResponse:
         return CustomPagesResourceWithStreamingResponse(self._access.custom_pages)
 
@@ -568,6 +624,14 @@ class AsyncAccessResourceWithStreamingResponse:
     @cached_property
     def users(self) -> AsyncUsersResourceWithStreamingResponse:
         return AsyncUsersResourceWithStreamingResponse(self._access.users)
+
+    @cached_property
+    def user_populations(self) -> AsyncUserPopulationsResourceWithStreamingResponse:
+        return AsyncUserPopulationsResourceWithStreamingResponse(self._access.user_populations)
+
+    @cached_property
+    def mfa(self) -> AsyncMfaResourceWithStreamingResponse:
+        return AsyncMfaResourceWithStreamingResponse(self._access.mfa)
 
     @cached_property
     def custom_pages(self) -> AsyncCustomPagesResourceWithStreamingResponse:

@@ -21,7 +21,11 @@ class ItemBGP(BaseModel):
     """ASN used on the customer end of the BGP session"""
 
     extra_prefixes: List[str]
-    """Extra set of static prefixes to advertise to the customer's end of the session"""
+    """
+    Extra set of static prefixes to advertise to the customer's end of the session
+    Prefixes containing host bits will be normalized to contain network bits only.
+    Duplicates are not allowed.
+    """
 
     md5_key: Optional[str] = None
     """MD5 key to use for session authentication.
@@ -68,14 +72,10 @@ class Item(BaseModel):
     bgp: Optional[ItemBGP] = None
 
     bgp_mode: Optional[Literal["dynamic_route_exchange", "advertise_only"]] = None
-    """The BGP mode for a CNI.
+    """The BGP mode for a CNI. One of the following:
 
-    Controls the customer-facing data path:
-
-    - `DynamicRouteExchange` — Full BGP: routes flow through to conduit via CRE /
-      bgp-bridge / bgp-bridge-receiver.
-    - `AdvertiseOnly` — static advertisement via taserver, no routes exchanged with
-      Conduit
+    - `dynamic_route_exchange`
+    - `advertise_only`
     """
 
 

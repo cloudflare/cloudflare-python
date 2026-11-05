@@ -17,15 +17,18 @@ class AggregateListParams(TypedDict, total=False):
     aggregate_by: Required[Annotated[str, PropertyInfo(alias="aggregateBy")]]
     """
     Column(s) to aggregate by - single column or comma-separated list (e.g.,
-    'attacker', 'targetIndustry', 'attacker,targetIndustry')
+    'attacker', 'targetIndustry', 'attacker,targetIndustry'). With `tags`, an event
+    counts once for each of its tags, in the bucket counts and in `total`, and
+    events without tags count as `Unknown`; `tags` is not supported for analytics
+    datasets.
     """
 
     dataset_id: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetId")]
     """
-    Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' for all
-    accessible non-analytics event datasets (analytics datasets are silently
-    excluded), 'analytics' for isAnalytics=true datasets, or 'operational' for
-    isAnalytics=false datasets. If not provided, uses the default dataset.
+    Dataset UUIDs to filter by, or one standalone scope value: 'all'/'\\**' or
+    'operational' for readable intelligence datasets (isAnalytics=false), or
+    'analytics' for readable analytics datasets (isAnalytics=true). Scope values
+    query at most 50 datasets. If not provided, uses the default dataset.
     """
 
     end_date: Annotated[str, PropertyInfo(alias="endDate")]

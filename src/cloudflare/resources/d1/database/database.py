@@ -20,6 +20,7 @@ from ....types.d1 import (
     database_export_params,
     database_import_params,
     database_update_params,
+    database_undelete_params,
 )
 from .time_travel import (
     TimeTravelResource,
@@ -862,6 +863,68 @@ class DatabaseResource(SyncAPIResource):
             method="post",
         )
 
+    def undelete(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        new_name: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> D1:
+        """Restore a deleted D1 database.
+
+        The database is restored with the name it had
+        when it was deleted, unless `new_name` is provided. The restored database counts
+        against the account's limits. Undeleting a database that is not deleted succeeds
+        without changes, unless `new_name` differs from its current name which errors. A
+        database can only be undeleted within 7 days (7 \\** 24 hours) of its deletion.
+
+        Once a database is undeleted, Time Travel (point-in-time recovery) cannot
+        restore it to a bookmark or timestamp at or before the undeletion. Only states
+        after the undeletion can be restored.
+
+        Args:
+          account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
+
+          new_name: Restore the database with this name instead of the name it had when it was
+              deleted. Required if another database in the account already uses that name.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return self._post(
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/undelete",
+                account_id=account_id,
+                database_id=database_id,
+            ),
+            body=maybe_transform({"new_name": new_name}, database_undelete_params.DatabaseUndeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
+        )
+
 
 class AsyncDatabaseResource(AsyncAPIResource):
     @cached_property
@@ -1680,6 +1743,68 @@ class AsyncDatabaseResource(AsyncAPIResource):
             method="post",
         )
 
+    async def undelete(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        new_name: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> D1:
+        """Restore a deleted D1 database.
+
+        The database is restored with the name it had
+        when it was deleted, unless `new_name` is provided. The restored database counts
+        against the account's limits. Undeleting a database that is not deleted succeeds
+        without changes, unless `new_name` differs from its current name which errors. A
+        database can only be undeleted within 7 days (7 \\** 24 hours) of its deletion.
+
+        Once a database is undeleted, Time Travel (point-in-time recovery) cannot
+        restore it to a bookmark or timestamp at or before the undeletion. Only states
+        after the undeletion can be restored.
+
+        Args:
+          account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
+
+          new_name: Restore the database with this name instead of the name it had when it was
+              deleted. Required if another database in the account already uses that name.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return await self._post(
+            path_template(
+                "/accounts/{account_id}/d1/database/{database_id}/undelete",
+                account_id=account_id,
+                database_id=database_id,
+            ),
+            body=await async_maybe_transform({"new_name": new_name}, database_undelete_params.DatabaseUndeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
+        )
+
 
 class DatabaseResourceWithRawResponse:
     def __init__(self, database: DatabaseResource) -> None:
@@ -1714,6 +1839,9 @@ class DatabaseResourceWithRawResponse:
         )
         self.raw = to_raw_response_wrapper(
             database.raw,
+        )
+        self.undelete = to_raw_response_wrapper(
+            database.undelete,
         )
 
     @cached_property
@@ -1755,6 +1883,12 @@ class AsyncDatabaseResourceWithRawResponse:
         self.raw = async_to_raw_response_wrapper(
             database.raw,  # pyright: ignore[reportArgumentType]
         )
+        self.undelete = async_to_raw_response_wrapper(
+            database.undelete,
+        )
+        self.undelete = async_to_raw_response_wrapper(
+            database.undelete,
+        )
 
     @cached_property
     def time_travel(self) -> AsyncTimeTravelResourceWithRawResponse:
@@ -1795,6 +1929,9 @@ class DatabaseResourceWithStreamingResponse:
         self.raw = to_streamed_response_wrapper(
             database.raw,
         )
+        self.undelete = to_streamed_response_wrapper(
+            database.undelete,
+        )
 
     @cached_property
     def time_travel(self) -> TimeTravelResourceWithStreamingResponse:
@@ -1834,6 +1971,12 @@ class AsyncDatabaseResourceWithStreamingResponse:
         )
         self.raw = async_to_streamed_response_wrapper(
             database.raw,  # pyright: ignore[reportArgumentType]
+        )
+        self.undelete = async_to_streamed_response_wrapper(
+            database.undelete,
+        )
+        self.undelete = async_to_streamed_response_wrapper(
+            database.undelete,
         )
 
     @cached_property

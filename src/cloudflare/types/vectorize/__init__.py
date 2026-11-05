@@ -13,6 +13,7 @@ from .index_delete_response import IndexDeleteResponse as IndexDeleteResponse
 from .index_insert_response import IndexInsertResponse as IndexInsertResponse
 from .index_upsert_response import IndexUpsertResponse as IndexUpsertResponse
 from .index_get_by_ids_params import IndexGetByIDsParams as IndexGetByIDsParams
+from .index_get_by_ids_response import IndexGetByIDsResponse as IndexGetByIDsResponse
 from .index_list_vectors_params import IndexListVectorsParams as IndexListVectorsParams
 from .index_delete_by_ids_params import IndexDeleteByIDsParams as IndexDeleteByIDsParams
 from .index_list_vectors_response import IndexListVectorsResponse as IndexListVectorsResponse

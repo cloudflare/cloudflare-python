@@ -52,7 +52,6 @@ class TestRules:
                     "X-Custom-Header-Name": ["somecustomvalue"],
                 },
                 "allow_child_bypass": False,
-                "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
                     "copy": "remote_only",
                     "dcp": True,
@@ -104,6 +103,7 @@ class TestRules:
                     "ipv6": "2001:DB8::/64",
                 },
                 "forensic_copy": {"enabled": True},
+                "forward": {"worker_id": "0123456789abcdef0123456789abcdef"},
                 "ignore_cname_category_matches": True,
                 "insecure_disable_dnssec_validation": False,
                 "ip_categories": True,
@@ -219,7 +219,6 @@ class TestRules:
                     "X-Custom-Header-Name": ["somecustomvalue"],
                 },
                 "allow_child_bypass": False,
-                "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
                     "copy": "remote_only",
                     "dcp": True,
@@ -271,6 +270,7 @@ class TestRules:
                     "ipv6": "2001:DB8::/64",
                 },
                 "forensic_copy": {"enabled": True},
+                "forward": {"worker_id": "0123456789abcdef0123456789abcdef"},
                 "ignore_cname_category_matches": True,
                 "insecure_disable_dnssec_validation": False,
                 "ip_categories": True,
@@ -632,7 +632,6 @@ class TestAsyncRules:
                     "X-Custom-Header-Name": ["somecustomvalue"],
                 },
                 "allow_child_bypass": False,
-                "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
                     "copy": "remote_only",
                     "dcp": True,
@@ -684,6 +683,7 @@ class TestAsyncRules:
                     "ipv6": "2001:DB8::/64",
                 },
                 "forensic_copy": {"enabled": True},
+                "forward": {"worker_id": "0123456789abcdef0123456789abcdef"},
                 "ignore_cname_category_matches": True,
                 "insecure_disable_dnssec_validation": False,
                 "ip_categories": True,
@@ -799,7 +799,6 @@ class TestAsyncRules:
                     "X-Custom-Header-Name": ["somecustomvalue"],
                 },
                 "allow_child_bypass": False,
-                "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
                     "copy": "remote_only",
                     "dcp": True,
@@ -851,6 +850,7 @@ class TestAsyncRules:
                     "ipv6": "2001:DB8::/64",
                 },
                 "forensic_copy": {"enabled": True},
+                "forward": {"worker_id": "0123456789abcdef0123456789abcdef"},
                 "ignore_cname_category_matches": True,
                 "insecure_disable_dnssec_validation": False,
                 "ip_categories": True,

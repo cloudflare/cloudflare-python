@@ -2,20 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
-from .organization_profile_param import OrganizationProfileParam
-
-__all__ = ["OrganizationUpdateParams", "Parent"]
+__all__ = ["OrganizationUpdateParams"]
 
 
 class OrganizationUpdateParams(TypedDict, total=False):
-    name: Required[str]
+    name: str
+    """The Organization's display name, limited to 65 UTF-8 bytes.
 
-    parent: Parent
+    An omitted, empty, or unchanged value is a no-op.
+    """
 
-    profile: OrganizationProfileParam
+    parent_id: str
+    """The current parent Organization ID.
 
-
-class Parent(TypedDict, total=False):
-    id: Required[str]
+    A different value is rejected; this endpoint cannot move an Organization.
+    """

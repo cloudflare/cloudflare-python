@@ -51,6 +51,7 @@ class AccessibilityTreeResource(SyncAPIResource):
         *,
         account_id: str,
         url: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[accessibility_tree_create_params.Variant0AddScriptTag] | Omit = omit,
@@ -134,6 +135,8 @@ class AccessibilityTreeResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -188,6 +191,7 @@ class AccessibilityTreeResource(SyncAPIResource):
         *,
         account_id: str,
         html: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[accessibility_tree_create_params.Variant1AddScriptTag] | Omit = omit,
@@ -271,6 +275,8 @@ class AccessibilityTreeResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -325,6 +331,7 @@ class AccessibilityTreeResource(SyncAPIResource):
         *,
         account_id: str,
         url: str | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[accessibility_tree_create_params.Variant0AddScriptTag]
@@ -449,7 +456,11 @@ class AccessibilityTreeResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"cache_ttl": cache_ttl}, accessibility_tree_create_params.AccessibilityTreeCreateParams
+                    {
+                        "browser": browser,
+                        "cache_ttl": cache_ttl,
+                    },
+                    accessibility_tree_create_params.AccessibilityTreeCreateParams,
                 ),
                 post_parser=ResultWrapper[AccessibilityTreeCreateResponse]._unwrapper,
             ),
@@ -483,6 +494,7 @@ class AsyncAccessibilityTreeResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[accessibility_tree_create_params.Variant0AddScriptTag] | Omit = omit,
@@ -566,6 +578,8 @@ class AsyncAccessibilityTreeResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -620,6 +634,7 @@ class AsyncAccessibilityTreeResource(AsyncAPIResource):
         *,
         account_id: str,
         html: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[accessibility_tree_create_params.Variant1AddScriptTag] | Omit = omit,
@@ -703,6 +718,8 @@ class AsyncAccessibilityTreeResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -757,6 +774,7 @@ class AsyncAccessibilityTreeResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[accessibility_tree_create_params.Variant0AddScriptTag]
@@ -881,7 +899,11 @@ class AsyncAccessibilityTreeResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"cache_ttl": cache_ttl}, accessibility_tree_create_params.AccessibilityTreeCreateParams
+                    {
+                        "browser": browser,
+                        "cache_ttl": cache_ttl,
+                    },
+                    accessibility_tree_create_params.AccessibilityTreeCreateParams,
                 ),
                 post_parser=ResultWrapper[AccessibilityTreeCreateResponse]._unwrapper,
             ),

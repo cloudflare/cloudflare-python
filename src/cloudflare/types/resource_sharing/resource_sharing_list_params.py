@@ -23,6 +23,13 @@ class ResourceSharingListParams(TypedDict, total=False):
     include_resources: bool
     """Include resources in the response."""
 
+    include_tags_from: Literal["api", "mirror"]
+    """Include share tags in the response.
+
+    `api` reads tags from the tag service; `mirror` reads a local, eventually
+    consistent replica. If the tag lookup fails, the response omits `tags`.
+    """
+
     kind: Literal["sent", "received"]
     """Filter shares by kind."""
 
@@ -30,18 +37,10 @@ class ResourceSharingListParams(TypedDict, total=False):
     """Order shares by values in the given field."""
 
     page: int
-    """Page number.
-
-    Defaults to `1` when `per_page` is supplied without `page`. May be omitted
-    entirely along with `per_page` to receive a non-paginated response.
-    """
+    """Page number. Defaults to `1` when omitted."""
 
     per_page: int
-    """Number of objects to return per page.
-
-    Defaults to `20` when `page` is supplied without `per_page`. May be omitted
-    entirely along with `page` to receive a non-paginated response.
-    """
+    """Number of objects to return per page. Defaults to `20` when omitted."""
 
     resource_types: List[
         Literal[

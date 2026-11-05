@@ -152,8 +152,6 @@ Methods:
 
 - <code title="post /accounts/{account_id}/browser-rendering/devtools/browser">client.browser_rendering.devtools.browser.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/browser.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/devtools/browser_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/devtools/browser_create_response.py">BrowserCreateResponse</a></code>
 - <code title="delete /accounts/{account_id}/browser-rendering/devtools/browser/{session_id}">client.browser_rendering.devtools.browser.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/browser.py">delete</a>(session_id, \*, account_id) -> <a href="./src/cloudflare/types/browser_rendering/devtools/browser_delete_response.py">BrowserDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/browser-rendering/devtools/browser/{session_id}">client.browser_rendering.devtools.browser.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/browser.py">connect</a>(session_id, \*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/devtools/browser_connect_params.py">params</a>) -> None</code>
-- <code title="get /accounts/{account_id}/browser-rendering/devtools/browser">client.browser_rendering.devtools.browser.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/browser.py">launch</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/devtools/browser_launch_params.py">params</a>) -> None</code>
 - <code title="get /accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/json/protocol">client.browser_rendering.devtools.browser.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/browser.py">protocol</a>(session_id, \*, account_id) -> <a href="./src/cloudflare/types/browser_rendering/devtools/browser_protocol_response.py">BrowserProtocolResponse</a></code>
 - <code title="get /accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/json/version">client.browser_rendering.devtools.browser.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/browser.py">version</a>(session_id, \*, account_id) -> <a href="./src/cloudflare/types/browser_rendering/devtools/browser_version_response.py">BrowserVersionResponse</a></code>
 
@@ -168,12 +166,6 @@ from cloudflare.types.browser_rendering.devtools.browser import LiveViewCreateRe
 Methods:
 
 - <code title="post /accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/live_view">client.browser_rendering.devtools.browser.live_view.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/live_view.py">create</a>(session_id, \*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/devtools/browser/live_view_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/devtools/browser/live_view_create_response.py">LiveViewCreateResponse</a></code>
-
-#### Page
-
-Methods:
-
-- <code title="get /accounts/{account_id}/browser-rendering/devtools/browser/{session_id}/page/{target_id}">client.browser_rendering.devtools.browser.page.<a href="./src/cloudflare/resources/browser_rendering/devtools/browser/page.py">get</a>(target_id, \*, account_id, session_id) -> None</code>
 
 #### Targets
 

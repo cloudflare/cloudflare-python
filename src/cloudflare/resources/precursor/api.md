@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from cloudflare.types.precursor import EnforcementRule, PrecursorConfig
+from cloudflare.types.precursor import PrecursorConfig
 ```
 
 Methods:

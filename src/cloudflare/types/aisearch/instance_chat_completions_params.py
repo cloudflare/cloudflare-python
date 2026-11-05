@@ -149,17 +149,25 @@ class AISearchOptionsRetrieval(TypedDict, total=False):
     fusion_method: Literal["max", "rrf"]
 
     keyword_match_mode: Literal["and", "or"]
-    """Controls which documents are candidates for BM25 scoring.
+    """Controls which documents become candidates for BM25 scoring.
 
     'and' restricts candidates to documents containing all query terms; 'or'
-    includes any document containing at least one term, ranked by BM25 relevance.
-    When omitted, falls back to the instance-level
+    includes any document containing at least one term and ranks results according
+    to BM25 relevance. When omitted, falls back to the instance-level
     retrieval_options.keyword_match_mode, then to 'and'.
     """
 
     match_threshold: float
+    """Minimum similarity score a chunk must reach to be returned.
+
+    When omitted, falls back to the instance-level score_threshold, then to 0.4.
+    """
 
     max_num_results: int
+    """Maximum number of results to return.
+
+    When omitted, falls back to the instance-level max_num_results, then to 10.
+    """
 
     retrieval_type: Literal["vector", "keyword", "hybrid"]
 
@@ -170,10 +178,10 @@ class AISearchOptions(TypedDict, total=False):
     cache: AISearchOptionsCache
 
     custom_metadata: Dict[str, Union[str, float, bool]]
-    """Metadata added to AI Gateway logs for requests triggered by this operation.
+    """Metadata added to AI Gateway logs for requests this operation triggers.
 
-    Accepts up to 2 string, number, or boolean entries. Keys 'ai-search', 'task',
-    'origin', and keys beginning with 'cf.' are reserved.
+    Accepts up to 2 string, number, or boolean entries. Reserved keys: 'ai-search',
+    'task', 'origin', and any key beginning with 'cf.'.
     """
 
     query_rewrite: AISearchOptionsQueryRewrite

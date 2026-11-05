@@ -429,19 +429,9 @@ class TestWebhooks:
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-            events=[
-                "meeting.started",
-                "meeting.ended",
-                "meeting.participantJoined",
-                "meeting.participantLeft",
-                "meeting.chatSynced",
-                "recording.statusUpdate",
-                "livestreaming.statusUpdate",
-                "meeting.transcript",
-                "meeting.summary",
-            ],
-            name="All events webhook",
-            url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+            events=["meeting.started"],
+            name="My Webhook",
+            url="https://example.com/webhook",
         )
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
 
@@ -452,19 +442,9 @@ class TestWebhooks:
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-            events=[
-                "meeting.started",
-                "meeting.ended",
-                "meeting.participantJoined",
-                "meeting.participantLeft",
-                "meeting.chatSynced",
-                "recording.statusUpdate",
-                "livestreaming.statusUpdate",
-                "meeting.transcript",
-                "meeting.summary",
-            ],
-            name="All events webhook",
-            url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+            events=["meeting.started"],
+            name="My Webhook",
+            url="https://example.com/webhook",
             enabled=True,
         )
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
@@ -476,19 +456,9 @@ class TestWebhooks:
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-            events=[
-                "meeting.started",
-                "meeting.ended",
-                "meeting.participantJoined",
-                "meeting.participantLeft",
-                "meeting.chatSynced",
-                "recording.statusUpdate",
-                "livestreaming.statusUpdate",
-                "meeting.transcript",
-                "meeting.summary",
-            ],
-            name="All events webhook",
-            url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+            events=["meeting.started"],
+            name="My Webhook",
+            url="https://example.com/webhook",
         )
 
         assert response.is_closed is True
@@ -503,19 +473,9 @@ class TestWebhooks:
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-            events=[
-                "meeting.started",
-                "meeting.ended",
-                "meeting.participantJoined",
-                "meeting.participantLeft",
-                "meeting.chatSynced",
-                "recording.statusUpdate",
-                "livestreaming.statusUpdate",
-                "meeting.transcript",
-                "meeting.summary",
-            ],
-            name="All events webhook",
-            url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+            events=["meeting.started"],
+            name="My Webhook",
+            url="https://example.com/webhook",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -533,19 +493,9 @@ class TestWebhooks:
                 webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-                events=[
-                    "meeting.started",
-                    "meeting.ended",
-                    "meeting.participantJoined",
-                    "meeting.participantLeft",
-                    "meeting.chatSynced",
-                    "recording.statusUpdate",
-                    "livestreaming.statusUpdate",
-                    "meeting.transcript",
-                    "meeting.summary",
-                ],
-                name="All events webhook",
-                url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+                events=["meeting.started"],
+                name="My Webhook",
+                url="https://example.com/webhook",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
@@ -553,19 +503,9 @@ class TestWebhooks:
                 webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
-                events=[
-                    "meeting.started",
-                    "meeting.ended",
-                    "meeting.participantJoined",
-                    "meeting.participantLeft",
-                    "meeting.chatSynced",
-                    "recording.statusUpdate",
-                    "livestreaming.statusUpdate",
-                    "meeting.transcript",
-                    "meeting.summary",
-                ],
-                name="All events webhook",
-                url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+                events=["meeting.started"],
+                name="My Webhook",
+                url="https://example.com/webhook",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `webhook_id` but received ''"):
@@ -573,19 +513,9 @@ class TestWebhooks:
                 webhook_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-                events=[
-                    "meeting.started",
-                    "meeting.ended",
-                    "meeting.participantJoined",
-                    "meeting.participantLeft",
-                    "meeting.chatSynced",
-                    "recording.statusUpdate",
-                    "livestreaming.statusUpdate",
-                    "meeting.transcript",
-                    "meeting.summary",
-                ],
-                name="All events webhook",
-                url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+                events=["meeting.started"],
+                name="My Webhook",
+                url="https://example.com/webhook",
             )
 
 
@@ -999,19 +929,9 @@ class TestAsyncWebhooks:
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-            events=[
-                "meeting.started",
-                "meeting.ended",
-                "meeting.participantJoined",
-                "meeting.participantLeft",
-                "meeting.chatSynced",
-                "recording.statusUpdate",
-                "livestreaming.statusUpdate",
-                "meeting.transcript",
-                "meeting.summary",
-            ],
-            name="All events webhook",
-            url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+            events=["meeting.started"],
+            name="My Webhook",
+            url="https://example.com/webhook",
         )
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
 
@@ -1022,19 +942,9 @@ class TestAsyncWebhooks:
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-            events=[
-                "meeting.started",
-                "meeting.ended",
-                "meeting.participantJoined",
-                "meeting.participantLeft",
-                "meeting.chatSynced",
-                "recording.statusUpdate",
-                "livestreaming.statusUpdate",
-                "meeting.transcript",
-                "meeting.summary",
-            ],
-            name="All events webhook",
-            url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+            events=["meeting.started"],
+            name="My Webhook",
+            url="https://example.com/webhook",
             enabled=True,
         )
         assert_matches_type(WebhookReplaceWebhookResponse, webhook, path=["response"])
@@ -1046,19 +956,9 @@ class TestAsyncWebhooks:
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-            events=[
-                "meeting.started",
-                "meeting.ended",
-                "meeting.participantJoined",
-                "meeting.participantLeft",
-                "meeting.chatSynced",
-                "recording.statusUpdate",
-                "livestreaming.statusUpdate",
-                "meeting.transcript",
-                "meeting.summary",
-            ],
-            name="All events webhook",
-            url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+            events=["meeting.started"],
+            name="My Webhook",
+            url="https://example.com/webhook",
         )
 
         assert response.is_closed is True
@@ -1073,19 +973,9 @@ class TestAsyncWebhooks:
             webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-            events=[
-                "meeting.started",
-                "meeting.ended",
-                "meeting.participantJoined",
-                "meeting.participantLeft",
-                "meeting.chatSynced",
-                "recording.statusUpdate",
-                "livestreaming.statusUpdate",
-                "meeting.transcript",
-                "meeting.summary",
-            ],
-            name="All events webhook",
-            url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+            events=["meeting.started"],
+            name="My Webhook",
+            url="https://example.com/webhook",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1103,19 +993,9 @@ class TestAsyncWebhooks:
                 webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-                events=[
-                    "meeting.started",
-                    "meeting.ended",
-                    "meeting.participantJoined",
-                    "meeting.participantLeft",
-                    "meeting.chatSynced",
-                    "recording.statusUpdate",
-                    "livestreaming.statusUpdate",
-                    "meeting.transcript",
-                    "meeting.summary",
-                ],
-                name="All events webhook",
-                url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+                events=["meeting.started"],
+                name="My Webhook",
+                url="https://example.com/webhook",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
@@ -1123,19 +1003,9 @@ class TestAsyncWebhooks:
                 webhook_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="",
-                events=[
-                    "meeting.started",
-                    "meeting.ended",
-                    "meeting.participantJoined",
-                    "meeting.participantLeft",
-                    "meeting.chatSynced",
-                    "recording.statusUpdate",
-                    "livestreaming.statusUpdate",
-                    "meeting.transcript",
-                    "meeting.summary",
-                ],
-                name="All events webhook",
-                url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+                events=["meeting.started"],
+                name="My Webhook",
+                url="https://example.com/webhook",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `webhook_id` but received ''"):
@@ -1143,17 +1013,7 @@ class TestAsyncWebhooks:
                 webhook_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 app_id="14a396e7-ca44-4937-bf1f-050a69118543",
-                events=[
-                    "meeting.started",
-                    "meeting.ended",
-                    "meeting.participantJoined",
-                    "meeting.participantLeft",
-                    "meeting.chatSynced",
-                    "recording.statusUpdate",
-                    "livestreaming.statusUpdate",
-                    "meeting.transcript",
-                    "meeting.summary",
-                ],
-                name="All events webhook",
-                url="https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e",
+                events=["meeting.started"],
+                name="My Webhook",
+                url="https://example.com/webhook",
             )

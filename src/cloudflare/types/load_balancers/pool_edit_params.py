@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .check_region import CheckRegion
 from .origin_param import OriginParam
 from .load_shedding_param import LoadSheddingParam
@@ -86,6 +87,9 @@ class PoolEditParams(TypedDict, total=False):
 
     Only alphanumeric characters, hyphens, and underscores are allowed.
     """
+
+    networks: SequenceNotStr[str]
+    """List of networks where Load Balancer or Pool is enabled."""
 
     notification_email: str
     """This field is now deprecated.

@@ -16,7 +16,7 @@ class ResourceGroupUpdateParams(TypedDict, total=False):
     """Name of the resource group"""
 
     scope: Scope
-    """A scope is a combination of scope objects which provides additional context."""
+    """The scope associated to the resource group"""
 
 
 class ScopeObject(TypedDict, total=False):
@@ -32,7 +32,7 @@ class ScopeObject(TypedDict, total=False):
 
 
 class Scope(TypedDict, total=False):
-    """A scope is a combination of scope objects which provides additional context."""
+    """The scope associated to the resource group"""
 
     key: Required[str]
     """

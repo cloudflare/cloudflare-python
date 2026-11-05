@@ -67,6 +67,7 @@ class TestScripts:
                     "enabled": True,
                     "cross_version_cache": True,
                 },
+                "code_update_strategy": {"mode": "immediate"},
                 "compatibility_date": "2021-01-01T00:00:00Z",
                 "compatibility_flags": ["nodejs_compat"],
                 "exports": {
@@ -462,6 +463,7 @@ class TestAsyncScripts:
                     "enabled": True,
                     "cross_version_cache": True,
                 },
+                "code_update_strategy": {"mode": "immediate"},
                 "compatibility_date": "2021-01-01T00:00:00Z",
                 "compatibility_flags": ["nodejs_compat"],
                 "exports": {

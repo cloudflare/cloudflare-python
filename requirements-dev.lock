@@ -56,6 +56,8 @@ mypy-extensions==1.1.0
     # via mypy
 nodeenv==1.10.0
     # via pyright
+nodejs-wheel-binaries==24.19.0
+    # via pyright
 packaging==25.0
     # via pytest
 pathspec==1.0.3

@@ -32,6 +32,7 @@ class TestIntegrations:
             application="GOOGLE_WORKSPACE",
             credentials={"admin_email": "bar"},
             name="My Google Workspace",
+            use_cases=["casb", "ces"],
         )
         assert_matches_type(IntegrationCreateResponse, integration, path=["response"])
 
@@ -42,10 +43,10 @@ class TestIntegrations:
             application="GOOGLE_WORKSPACE",
             credentials={"admin_email": "bar"},
             name="My Google Workspace",
+            use_cases=["casb", "ces"],
             auth_method="service_account",
             dlp_profiles=["e91a2360-da51-4fdf-9711-bcdecd462614"],
             permissions=["https://www.googleapis.com/auth/drive.readonly"],
-            use_cases=["casb", "ces"],
         )
         assert_matches_type(IntegrationCreateResponse, integration, path=["response"])
 
@@ -56,6 +57,7 @@ class TestIntegrations:
             application="GOOGLE_WORKSPACE",
             credentials={"admin_email": "bar"},
             name="My Google Workspace",
+            use_cases=["casb", "ces"],
         )
 
         assert response.is_closed is True
@@ -70,6 +72,7 @@ class TestIntegrations:
             application="GOOGLE_WORKSPACE",
             credentials={"admin_email": "bar"},
             name="My Google Workspace",
+            use_cases=["casb", "ces"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,6 +90,7 @@ class TestIntegrations:
                 application="GOOGLE_WORKSPACE",
                 credentials={"admin_email": "bar"},
                 name="My Google Workspace",
+                use_cases=["casb", "ces"],
             )
 
     @parametrize
@@ -412,6 +416,7 @@ class TestAsyncIntegrations:
             application="GOOGLE_WORKSPACE",
             credentials={"admin_email": "bar"},
             name="My Google Workspace",
+            use_cases=["casb", "ces"],
         )
         assert_matches_type(IntegrationCreateResponse, integration, path=["response"])
 
@@ -422,10 +427,10 @@ class TestAsyncIntegrations:
             application="GOOGLE_WORKSPACE",
             credentials={"admin_email": "bar"},
             name="My Google Workspace",
+            use_cases=["casb", "ces"],
             auth_method="service_account",
             dlp_profiles=["e91a2360-da51-4fdf-9711-bcdecd462614"],
             permissions=["https://www.googleapis.com/auth/drive.readonly"],
-            use_cases=["casb", "ces"],
         )
         assert_matches_type(IntegrationCreateResponse, integration, path=["response"])
 
@@ -436,6 +441,7 @@ class TestAsyncIntegrations:
             application="GOOGLE_WORKSPACE",
             credentials={"admin_email": "bar"},
             name="My Google Workspace",
+            use_cases=["casb", "ces"],
         )
 
         assert response.is_closed is True
@@ -450,6 +456,7 @@ class TestAsyncIntegrations:
             application="GOOGLE_WORKSPACE",
             credentials={"admin_email": "bar"},
             name="My Google Workspace",
+            use_cases=["casb", "ces"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -467,6 +474,7 @@ class TestAsyncIntegrations:
                 application="GOOGLE_WORKSPACE",
                 credentials={"admin_email": "bar"},
                 name="My Google Workspace",
+                use_cases=["casb", "ces"],
             )
 
     @parametrize

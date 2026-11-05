@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
     TagListResponse,
+    TagDeleteResponse,
     TagUpdateResponse,
 )
 
@@ -150,17 +151,28 @@ class TestTags:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         tag = client.workers_for_platforms.dispatch.namespaces.scripts.tags.delete(
-            tag="my-tag",
+            tag="environment",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
-        assert_matches_type(object, tag, path=["response"])
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        tag = client.workers_for_platforms.dispatch.namespaces.scripts.tags.delete(
+            tag="environment",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dispatch_namespace="my-dispatch-namespace",
+            script_name="this-is_my_script-01",
+            api_version="2026-10-01.epoch",
+        )
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-            tag="my-tag",
+            tag="environment",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -169,12 +181,12 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(object, tag, path=["response"])
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.delete(
-            tag="my-tag",
+            tag="environment",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -183,7 +195,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(object, tag, path=["response"])
+            assert_matches_type(TagDeleteResponse, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -191,7 +203,7 @@ class TestTags:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                tag="my-tag",
+                tag="environment",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",
@@ -199,7 +211,7 @@ class TestTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                tag="my-tag",
+                tag="environment",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
                 script_name="this-is_my_script-01",
@@ -207,7 +219,7 @@ class TestTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                tag="my-tag",
+                tag="environment",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="",
@@ -356,17 +368,28 @@ class TestAsyncTags:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.delete(
-            tag="my-tag",
+            tag="environment",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
-        assert_matches_type(object, tag, path=["response"])
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        tag = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.delete(
+            tag="environment",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dispatch_namespace="my-dispatch-namespace",
+            script_name="this-is_my_script-01",
+            api_version="2026-10-01.epoch",
+        )
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-            tag="my-tag",
+            tag="environment",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -375,12 +398,12 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(object, tag, path=["response"])
+        assert_matches_type(TagDeleteResponse, tag, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.delete(
-            tag="my-tag",
+            tag="environment",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -389,7 +412,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(object, tag, path=["response"])
+            assert_matches_type(TagDeleteResponse, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -397,7 +420,7 @@ class TestAsyncTags:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                tag="my-tag",
+                tag="environment",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",
@@ -405,7 +428,7 @@ class TestAsyncTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                tag="my-tag",
+                tag="environment",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
                 script_name="this-is_my_script-01",
@@ -413,7 +436,7 @@ class TestAsyncTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                tag="my-tag",
+                tag="environment",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="",

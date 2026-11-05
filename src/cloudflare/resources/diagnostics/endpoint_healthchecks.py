@@ -18,7 +18,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.diagnostics import endpoint_healthcheck_create_params, endpoint_healthcheck_update_params
 from ...types.diagnostics.endpoint_healthcheck_get_response import EndpointHealthcheckGetResponse
 from ...types.diagnostics.endpoint_healthcheck_list_response import EndpointHealthcheckListResponse
@@ -123,7 +124,7 @@ class EndpointHealthchecksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EndpointHealthcheckUpdateResponse]:
         """
-        Update a Endpoint Health Check.
+        Update an Endpoint Health Check.
 
         Args:
           account_id: Identifier
@@ -182,7 +183,7 @@ class EndpointHealthchecksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[EndpointHealthcheckListResponse]:
+    ) -> SyncSinglePage[EndpointHealthcheckListResponse]:
         """
         List Endpoint Health Checks.
 
@@ -199,18 +200,13 @@ class EndpointHealthchecksResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/diagnostics/endpoint-healthchecks", account_id=account_id),
+            page=SyncSinglePage[EndpointHealthcheckListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EndpointHealthcheckListResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(
-                Type[Optional[EndpointHealthcheckListResponse]], ResultWrapper[EndpointHealthcheckListResponse]
-            ),
+            model=EndpointHealthcheckListResponse,
         )
 
     def delete(
@@ -396,7 +392,7 @@ class AsyncEndpointHealthchecksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EndpointHealthcheckUpdateResponse]:
         """
-        Update a Endpoint Health Check.
+        Update an Endpoint Health Check.
 
         Args:
           account_id: Identifier
@@ -445,7 +441,7 @@ class AsyncEndpointHealthchecksResource(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -455,7 +451,7 @@ class AsyncEndpointHealthchecksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[EndpointHealthcheckListResponse]:
+    ) -> AsyncPaginator[EndpointHealthcheckListResponse, AsyncSinglePage[EndpointHealthcheckListResponse]]:
         """
         List Endpoint Health Checks.
 
@@ -472,18 +468,13 @@ class AsyncEndpointHealthchecksResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/accounts/{account_id}/diagnostics/endpoint-healthchecks", account_id=account_id),
+            page=AsyncSinglePage[EndpointHealthcheckListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EndpointHealthcheckListResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(
-                Type[Optional[EndpointHealthcheckListResponse]], ResultWrapper[EndpointHealthcheckListResponse]
-            ),
+            model=EndpointHealthcheckListResponse,
         )
 
     async def delete(

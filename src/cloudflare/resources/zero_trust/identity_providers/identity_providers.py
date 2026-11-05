@@ -516,6 +516,60 @@ class IdentityProvidersResource(SyncAPIResource):
     def create(
         self,
         *,
+        config: identity_provider_create_params.AccessDuoConfig,
+        name: str,
+        type: IdentityProviderType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
+        scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[IdentityProvider]:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
@@ -890,6 +944,60 @@ class IdentityProvidersResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessPasskeysConfig,
+        name: str,
+        type: IdentityProviderType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
+        scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[IdentityProvider]:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(["config", "name", "type"])
     def create(
         self,
@@ -900,12 +1008,14 @@ class IdentityProvidersResource(SyncAPIResource):
         | identity_provider_create_params.AccessGoogleConfig
         | identity_provider_create_params.AccessGoogleAppsConfig
         | identity_provider_create_params.AccessOIDCConfig
+        | identity_provider_create_params.AccessDuoConfig
         | identity_provider_create_params.AccessOktaConfig
         | identity_provider_create_params.AccessOneloginConfig
         | identity_provider_create_params.AccessPingoneConfig
         | identity_provider_create_params.AccessSAMLConfig
         | identity_provider_create_params.AccessOnetimepinConfig
-        | identity_provider_create_params.AccessCloudflareConfig,
+        | identity_provider_create_params.AccessCloudflareConfig
+        | identity_provider_create_params.AccessPasskeysConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | Omit = omit,
@@ -1423,6 +1533,63 @@ class IdentityProvidersResource(SyncAPIResource):
         self,
         identity_provider_id: str,
         *,
+        config: identity_provider_update_params.AccessDuoConfig,
+        name: str,
+        type: IdentityProviderType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
+        scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[IdentityProvider]:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          identity_provider_id: UUID.
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        identity_provider_id: str,
+        *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
@@ -1817,6 +1984,63 @@ class IdentityProvidersResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def update(
+        self,
+        identity_provider_id: str,
+        *,
+        config: identity_provider_update_params.AccessPasskeysConfig,
+        name: str,
+        type: IdentityProviderType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
+        scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[IdentityProvider]:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          identity_provider_id: UUID.
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(["config", "name", "type"])
     def update(
         self,
@@ -1828,12 +2052,14 @@ class IdentityProvidersResource(SyncAPIResource):
         | identity_provider_update_params.AccessGoogleConfig
         | identity_provider_update_params.AccessGoogleAppsConfig
         | identity_provider_update_params.AccessOIDCConfig
+        | identity_provider_update_params.AccessDuoConfig
         | identity_provider_update_params.AccessOktaConfig
         | identity_provider_update_params.AccessOneloginConfig
         | identity_provider_update_params.AccessPingoneConfig
         | identity_provider_update_params.AccessSAMLConfig
         | identity_provider_update_params.AccessOnetimepinConfig
-        | identity_provider_update_params.AccessCloudflareConfig,
+        | identity_provider_update_params.AccessCloudflareConfig
+        | identity_provider_update_params.AccessPasskeysConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | Omit = omit,
@@ -2569,6 +2795,60 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        config: identity_provider_create_params.AccessDuoConfig,
+        name: str,
+        type: IdentityProviderType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
+        scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[IdentityProvider]:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
@@ -2943,6 +3223,60 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        config: identity_provider_create_params.AccessPasskeysConfig,
+        name: str,
+        type: IdentityProviderType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
+        scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[IdentityProvider]:
+        """
+        Adds a new identity provider to Access.
+
+        Args:
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(["config", "name", "type"])
     async def create(
         self,
@@ -2953,12 +3287,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         | identity_provider_create_params.AccessGoogleConfig
         | identity_provider_create_params.AccessGoogleAppsConfig
         | identity_provider_create_params.AccessOIDCConfig
+        | identity_provider_create_params.AccessDuoConfig
         | identity_provider_create_params.AccessOktaConfig
         | identity_provider_create_params.AccessOneloginConfig
         | identity_provider_create_params.AccessPingoneConfig
         | identity_provider_create_params.AccessSAMLConfig
         | identity_provider_create_params.AccessOnetimepinConfig
-        | identity_provider_create_params.AccessCloudflareConfig,
+        | identity_provider_create_params.AccessCloudflareConfig
+        | identity_provider_create_params.AccessPasskeysConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | Omit = omit,
@@ -3476,6 +3812,63 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         self,
         identity_provider_id: str,
         *,
+        config: identity_provider_update_params.AccessDuoConfig,
+        name: str,
+        type: IdentityProviderType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
+        scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[IdentityProvider]:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          identity_provider_id: UUID.
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        identity_provider_id: str,
+        *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
@@ -3870,6 +4263,63 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def update(
+        self,
+        identity_provider_id: str,
+        *,
+        config: identity_provider_update_params.AccessPasskeysConfig,
+        name: str,
+        type: IdentityProviderType,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        saml_certificate_set_id: str | Omit = omit,
+        scim_config: IdentityProviderSCIMConfigParam | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[IdentityProvider]:
+        """
+        Updates a configured identity provider.
+
+        Args:
+          identity_provider_id: UUID.
+
+          config: The configuration parameters for the identity provider. To view the required
+              parameters for a specific provider, refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          name: The name of the identity provider, shown to users on the login page.
+
+          type: The type of identity provider. To determine the value for a specific provider,
+              refer to our
+              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          saml_certificate_set_id: The UID of the SAML encryption certificate set assigned to this Identity
+              Provider. Only present for SAML identity providers with encryption configured.
+              Create a certificate set via POST to
+              `/identity_providers/{id}/saml_certificate`.
+
+          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
+              Management (SCIM) with the identity provider.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(["config", "name", "type"])
     async def update(
         self,
@@ -3881,12 +4331,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         | identity_provider_update_params.AccessGoogleConfig
         | identity_provider_update_params.AccessGoogleAppsConfig
         | identity_provider_update_params.AccessOIDCConfig
+        | identity_provider_update_params.AccessDuoConfig
         | identity_provider_update_params.AccessOktaConfig
         | identity_provider_update_params.AccessOneloginConfig
         | identity_provider_update_params.AccessPingoneConfig
         | identity_provider_update_params.AccessSAMLConfig
         | identity_provider_update_params.AccessOnetimepinConfig
-        | identity_provider_update_params.AccessCloudflareConfig,
+        | identity_provider_update_params.AccessCloudflareConfig
+        | identity_provider_update_params.AccessPasskeysConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | Omit = omit,

@@ -74,7 +74,7 @@ class PolicyCreateResponse(BaseModel):
     finding_type_id: str
     """The finding type this policy is associated with.
 
-    Immutable after creation; changing it replaces the policy.
+    Immutable after creation; attempts to change it via update are rejected.
     """
 
     integration_ids: List[str]

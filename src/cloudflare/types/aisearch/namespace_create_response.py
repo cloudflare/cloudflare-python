@@ -18,14 +18,14 @@ __all__ = [
 
 class PublicEndpointParamsChatCompletionsEndpoint(BaseModel):
     disabled: Optional[bool] = None
-    """Disable chat completions endpoint for this public endpoint"""
+    """Disable chat completions endpoint for this public endpoint."""
 
 
 class PublicEndpointParamsMcp(BaseModel):
     description: Optional[str] = None
 
     disabled: Optional[bool] = None
-    """Disable MCP endpoint for this public endpoint"""
+    """Disable MCP endpoint for this public endpoint."""
 
 
 class PublicEndpointParamsRateLimit(BaseModel):
@@ -38,7 +38,7 @@ class PublicEndpointParamsRateLimit(BaseModel):
 
 class PublicEndpointParamsSearchEndpoint(BaseModel):
     disabled: Optional[bool] = None
-    """Disable search endpoint for this public endpoint"""
+    """Disable search endpoint for this public endpoint."""
 
 
 class PublicEndpointParams(BaseModel):
@@ -68,8 +68,9 @@ class PublicEndpointParams(BaseModel):
     instances_allowed: Optional[List[str]] = None
     """Instance IDs exposed through the namespace public endpoint.
 
-    Empty means nothing is searchable. Every ID must be an existing instance in this
-    namespace, and the list cannot exceed the account's multi-instance search limit.
+    Empty means nothing is searchable. Every ID must reference an existing instance
+    in this namespace, and the list must stay within the account's multi-instance
+    search limit.
     """
 
     mcp: Optional[PublicEndpointParamsMcp] = None

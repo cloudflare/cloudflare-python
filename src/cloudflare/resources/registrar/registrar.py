@@ -6,14 +6,6 @@ from typing import Type, Iterable, cast
 
 import httpx
 
-from .domains import (
-    DomainsResource,
-    AsyncDomainsResource,
-    DomainsResourceWithRawResponse,
-    AsyncDomainsResourceWithRawResponse,
-    DomainsResourceWithStreamingResponse,
-    AsyncDomainsResourceWithStreamingResponse,
-)
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -177,10 +169,6 @@ class RegistrarResource(SyncAPIResource):
     `links.self` in the response body until the workflow reaches a terminal
     state or requires user action.
     """
-
-    @cached_property
-    def domains(self) -> DomainsResource:
-        return DomainsResource(self._client)
 
     @cached_property
     def registrations(self) -> RegistrationsResource:
@@ -586,10 +574,6 @@ class AsyncRegistrarResource(AsyncAPIResource):
     """
 
     @cached_property
-    def domains(self) -> AsyncDomainsResource:
-        return AsyncDomainsResource(self._client)
-
-    @cached_property
     def registrations(self) -> AsyncRegistrationsResource:
         return AsyncRegistrationsResource(self._client)
 
@@ -913,10 +897,6 @@ class RegistrarResourceWithRawResponse:
         )
 
     @cached_property
-    def domains(self) -> DomainsResourceWithRawResponse:
-        return DomainsResourceWithRawResponse(self._registrar.domains)
-
-    @cached_property
     def registrations(self) -> RegistrationsResourceWithRawResponse:
         return RegistrationsResourceWithRawResponse(self._registrar.registrations)
 
@@ -954,10 +934,6 @@ class AsyncRegistrarResourceWithRawResponse:
         self.transfer_check = async_to_raw_response_wrapper(
             registrar.transfer_check,
         )
-
-    @cached_property
-    def domains(self) -> AsyncDomainsResourceWithRawResponse:
-        return AsyncDomainsResourceWithRawResponse(self._registrar.domains)
 
     @cached_property
     def registrations(self) -> AsyncRegistrationsResourceWithRawResponse:
@@ -999,10 +975,6 @@ class RegistrarResourceWithStreamingResponse:
         )
 
     @cached_property
-    def domains(self) -> DomainsResourceWithStreamingResponse:
-        return DomainsResourceWithStreamingResponse(self._registrar.domains)
-
-    @cached_property
     def registrations(self) -> RegistrationsResourceWithStreamingResponse:
         return RegistrationsResourceWithStreamingResponse(self._registrar.registrations)
 
@@ -1040,10 +1012,6 @@ class AsyncRegistrarResourceWithStreamingResponse:
         self.transfer_check = async_to_streamed_response_wrapper(
             registrar.transfer_check,
         )
-
-    @cached_property
-    def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
-        return AsyncDomainsResourceWithStreamingResponse(self._registrar.domains)
 
     @cached_property
     def registrations(self) -> AsyncRegistrationsResourceWithStreamingResponse:

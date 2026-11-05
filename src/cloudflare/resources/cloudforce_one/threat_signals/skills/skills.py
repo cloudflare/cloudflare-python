@@ -69,7 +69,7 @@ class SkillsResource(SyncAPIResource):
         name: str,
         output_schema: str,
         prompt: str,
-        type: Literal["summary", "tags"],
+        type: Literal["summary", "tags"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -77,10 +77,20 @@ class SkillsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillCreateResponse:
-        """
-        Creates a custom AI skill for the account.
+        """Creates a Custom Skill for the account.
+
+        Free Threat Signals accounts cannot
+        create Custom Skills.
 
         Args:
+          name: Custom Skill name (1–100 characters).
+
+          output_schema: JSON Schema serialized as a string (max 4096 characters).
+
+          prompt: AI prompt (1–4000 characters) defining the skill's instructions.
+
+          type: Optional label; does not affect execution. Defaults to "summary".
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -125,10 +135,16 @@ class SkillsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[SkillListResponse]:
-        """
-        Lists the default and custom skills available to the account.
+        """Lists active Managed Default Skills and Custom Skills.
+
+        Free Threat Signals
+        accounts see active managed defaults only, with custom_skills_available: false.
 
         Args:
+          page: Page number (≥ 1, default 1).
+
+          per_page: Results per page (1–100, default 20).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -170,11 +186,15 @@ class SkillsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillDeleteResponse:
-        """Deletes a custom skill.
+        """Deletes a Custom Skill.
 
-        Default skills cannot be deleted.
+        The skill's stored outputs on articles are deleted with
+        it. Managed Default Skills cannot be deleted. Free Threat Signals accounts
+        cannot delete Custom Skills.
 
         Args:
+          skill_id: Custom Skill UUID or a Managed Default Skill ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -220,11 +240,24 @@ class SkillsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillEditResponse:
-        """Updates a custom skill.
+        """Updates a Custom Skill.
 
-        Default skills are read-only.
+        Managed Default Skills cannot be updated. Free Threat
+        Signals accounts cannot update Custom Skills.
 
         Args:
+          skill_id: Custom Skill UUID or a Managed Default Skill ID
+
+          config: Optional skill configuration (stored but not currently interpreted).
+
+          is_active: Whether the skill is active and eligible for feed assignment.
+
+          name: Custom Skill name (1–100 characters).
+
+          output_schema: JSON Schema serialized as a string (max 4096 characters).
+
+          prompt: AI prompt (1–4000 characters) defining the skill's instructions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -275,10 +308,14 @@ class SkillsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillGetResponse:
-        """
-        Retrieves a default or custom skill by ID.
+        """Retrieves a Managed Default Skill or Custom Skill.
+
+        Managed catalog definitions
+        are readable. Free Threat Signals accounts cannot read Custom Skills.
 
         Args:
+          skill_id: Custom Skill UUID or a Managed Default Skill ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -339,7 +376,7 @@ class AsyncSkillsResource(AsyncAPIResource):
         name: str,
         output_schema: str,
         prompt: str,
-        type: Literal["summary", "tags"],
+        type: Literal["summary", "tags"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -347,10 +384,20 @@ class AsyncSkillsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillCreateResponse:
-        """
-        Creates a custom AI skill for the account.
+        """Creates a Custom Skill for the account.
+
+        Free Threat Signals accounts cannot
+        create Custom Skills.
 
         Args:
+          name: Custom Skill name (1–100 characters).
+
+          output_schema: JSON Schema serialized as a string (max 4096 characters).
+
+          prompt: AI prompt (1–4000 characters) defining the skill's instructions.
+
+          type: Optional label; does not affect execution. Defaults to "summary".
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -395,10 +442,16 @@ class AsyncSkillsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SkillListResponse, AsyncV4PagePagination[SkillListResponse]]:
-        """
-        Lists the default and custom skills available to the account.
+        """Lists active Managed Default Skills and Custom Skills.
+
+        Free Threat Signals
+        accounts see active managed defaults only, with custom_skills_available: false.
 
         Args:
+          page: Page number (≥ 1, default 1).
+
+          per_page: Results per page (1–100, default 20).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -440,11 +493,15 @@ class AsyncSkillsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillDeleteResponse:
-        """Deletes a custom skill.
+        """Deletes a Custom Skill.
 
-        Default skills cannot be deleted.
+        The skill's stored outputs on articles are deleted with
+        it. Managed Default Skills cannot be deleted. Free Threat Signals accounts
+        cannot delete Custom Skills.
 
         Args:
+          skill_id: Custom Skill UUID or a Managed Default Skill ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -490,11 +547,24 @@ class AsyncSkillsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillEditResponse:
-        """Updates a custom skill.
+        """Updates a Custom Skill.
 
-        Default skills are read-only.
+        Managed Default Skills cannot be updated. Free Threat
+        Signals accounts cannot update Custom Skills.
 
         Args:
+          skill_id: Custom Skill UUID or a Managed Default Skill ID
+
+          config: Optional skill configuration (stored but not currently interpreted).
+
+          is_active: Whether the skill is active and eligible for feed assignment.
+
+          name: Custom Skill name (1–100 characters).
+
+          output_schema: JSON Schema serialized as a string (max 4096 characters).
+
+          prompt: AI prompt (1–4000 characters) defining the skill's instructions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -545,10 +615,14 @@ class AsyncSkillsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SkillGetResponse:
-        """
-        Retrieves a default or custom skill by ID.
+        """Retrieves a Managed Default Skill or Custom Skill.
+
+        Managed catalog definitions
+        are readable. Free Threat Signals accounts cannot read Custom Skills.
 
         Args:
+          skill_id: Custom Skill UUID or a Managed Default Skill ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -7,7 +7,7 @@ __all__ = ["CategoryListResponse"]
 
 class CategoryListResponse(BaseModel):
     id: int
-    """Returns the category ID."""
+    """Numeric identifier for an application category."""
 
     created_at: str
     """Returns the category creation time."""

@@ -127,6 +127,7 @@ class TestMitigations:
                 "company": "company",
                 "counter_notice_response": "counter_notice_response",
             },
+            explanation="explanation",
             type="counter_notice",
         )
         assert_matches_type(SyncSinglePage[MitigationReviewResponse], mitigation, path=["response"])
@@ -286,6 +287,7 @@ class TestAsyncMitigations:
                 "company": "company",
                 "counter_notice_response": "counter_notice_response",
             },
+            explanation="explanation",
             type="counter_notice",
         )
         assert_matches_type(AsyncSinglePage[MitigationReviewResponse], mitigation, path=["response"])

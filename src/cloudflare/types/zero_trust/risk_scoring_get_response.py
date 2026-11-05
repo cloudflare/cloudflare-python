@@ -14,7 +14,7 @@ class Event(BaseModel):
 
     name: str
 
-    risk_level: Literal["low", "medium", "high"]
+    risk_level: Literal["info", "low", "medium", "high"]
 
     timestamp: datetime
 
@@ -30,4 +30,4 @@ class RiskScoringGetResponse(BaseModel):
 
     last_reset_time: Optional[datetime] = None
 
-    risk_level: Optional[Literal["low", "medium", "high"]] = None
+    risk_level: Optional[Literal["info", "low", "medium", "high"]] = None

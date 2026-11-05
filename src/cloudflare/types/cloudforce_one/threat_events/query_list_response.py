@@ -16,10 +16,10 @@ class QueryListResponseItem(BaseModel):
     """Account ID"""
 
     alert_enabled: bool
-    """Whether alerts are enabled"""
+    """Deprecated: saved-query alerting and rules were removed. Always false."""
 
     alert_rollup_enabled: bool
-    """Whether alert rollup is enabled"""
+    """Deprecated: saved-query alerting and rules were removed. Always false."""
 
     created_at: str
     """Creation timestamp"""
@@ -31,7 +31,7 @@ class QueryListResponseItem(BaseModel):
     """JSON string containing the query parameters"""
 
     rule_enabled: bool
-    """Whether rule is enabled"""
+    """Deprecated: saved-query alerting and rules were removed. Always false."""
 
     updated_at: str
     """Last update timestamp"""
@@ -40,13 +40,13 @@ class QueryListResponseItem(BaseModel):
     """Email of the user who created the query"""
 
     custom_threat_feed_id: Optional[int] = None
-    """Intel Indicator Feed ID (numeric)"""
+    """Deprecated: saved-query alerting and rules were removed. Always null."""
 
     rule_list_id: Optional[str] = None
-    """WAF rules list ID for blocking"""
+    """Deprecated: saved-query alerting and rules were removed. Always null."""
 
     rule_scope: Optional[str] = None
-    """Scope for the rule"""
+    """Deprecated: saved-query alerting and rules were removed. Always null."""
 
 
 QueryListResponse: TypeAlias = List[QueryListResponseItem]

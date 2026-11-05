@@ -11,3 +11,4 @@ class ArticleEditParams(TypedDict, total=False):
     account_id: Required[str]
 
     read: Required[bool]
+    """True to mark the article read, false to mark unread."""

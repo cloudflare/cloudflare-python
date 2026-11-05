@@ -50,6 +50,7 @@ class ScreenshotResource(SyncAPIResource):
         *,
         account_id: str,
         url: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[screenshot_create_params.Variant0AddScriptTag] | Omit = omit,
@@ -133,6 +134,8 @@ class ScreenshotResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -189,6 +192,7 @@ class ScreenshotResource(SyncAPIResource):
         *,
         account_id: str,
         html: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[screenshot_create_params.Variant1AddScriptTag] | Omit = omit,
@@ -272,6 +276,8 @@ class ScreenshotResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -328,6 +334,7 @@ class ScreenshotResource(SyncAPIResource):
         *,
         account_id: str,
         url: str | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[screenshot_create_params.Variant0AddScriptTag]
@@ -453,7 +460,13 @@ class ScreenshotResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"cache_ttl": cache_ttl}, screenshot_create_params.ScreenshotCreateParams),
+                query=maybe_transform(
+                    {
+                        "browser": browser,
+                        "cache_ttl": cache_ttl,
+                    },
+                    screenshot_create_params.ScreenshotCreateParams,
+                ),
             ),
             cast_to=ScreenshotCreateResponse,
         )
@@ -485,6 +498,7 @@ class AsyncScreenshotResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[screenshot_create_params.Variant0AddScriptTag] | Omit = omit,
@@ -568,6 +582,8 @@ class AsyncScreenshotResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -624,6 +640,7 @@ class AsyncScreenshotResource(AsyncAPIResource):
         *,
         account_id: str,
         html: str,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[screenshot_create_params.Variant1AddScriptTag] | Omit = omit,
@@ -707,6 +724,8 @@ class AsyncScreenshotResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          browser: Rendering backend. Set to `kitesurf` to use Kitesurf (beta).
+
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
           action_timeout: The maximum duration allowed for the browser action to complete after the page
@@ -763,6 +782,7 @@ class AsyncScreenshotResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str | Omit = omit,
+        browser: Literal["kitesurf"] | Omit = omit,
         cache_ttl: float | Omit = omit,
         action_timeout: float | Omit = omit,
         add_script_tag: Iterable[screenshot_create_params.Variant0AddScriptTag]
@@ -889,7 +909,11 @@ class AsyncScreenshotResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"cache_ttl": cache_ttl}, screenshot_create_params.ScreenshotCreateParams
+                    {
+                        "browser": browser,
+                        "cache_ttl": cache_ttl,
+                    },
+                    screenshot_create_params.ScreenshotCreateParams,
                 ),
             ),
             cast_to=ScreenshotCreateResponse,

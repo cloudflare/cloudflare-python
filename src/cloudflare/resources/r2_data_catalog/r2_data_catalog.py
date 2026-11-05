@@ -43,7 +43,7 @@ from .namespaces.namespaces import (
     NamespacesResourceWithStreamingResponse,
     AsyncNamespacesResourceWithStreamingResponse,
 )
-from ...types.r2_data_catalog import r2_data_catalog_delete_params
+from ...types.r2_data_catalog import r2_data_catalog_delete_params, r2_data_catalog_enable_params
 from ...types.r2_data_catalog.r2_data_catalog_get_response import R2DataCatalogGetResponse
 from ...types.r2_data_catalog.r2_data_catalog_list_response import R2DataCatalogListResponse
 from ...types.r2_data_catalog.r2_data_catalog_enable_response import R2DataCatalogEnableResponse
@@ -232,6 +232,7 @@ class R2DataCatalogResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        credential: r2_data_catalog_enable_params.Credential | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -250,6 +251,8 @@ class R2DataCatalogResource(SyncAPIResource):
 
           bucket_name: Specifies the R2 bucket name.
 
+          credential: Contains request to store catalog credentials.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -266,6 +269,7 @@ class R2DataCatalogResource(SyncAPIResource):
             path_template(
                 "/accounts/{account_id}/r2-catalog/{bucket_name}/enable", account_id=account_id, bucket_name=bucket_name
             ),
+            body=maybe_transform({"credential": credential}, r2_data_catalog_enable_params.R2DataCatalogEnableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -508,6 +512,7 @@ class AsyncR2DataCatalogResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        credential: r2_data_catalog_enable_params.Credential | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -526,6 +531,8 @@ class AsyncR2DataCatalogResource(AsyncAPIResource):
 
           bucket_name: Specifies the R2 bucket name.
 
+          credential: Contains request to store catalog credentials.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -541,6 +548,9 @@ class AsyncR2DataCatalogResource(AsyncAPIResource):
         return await self._post(
             path_template(
                 "/accounts/{account_id}/r2-catalog/{bucket_name}/enable", account_id=account_id, bucket_name=bucket_name
+            ),
+            body=await async_maybe_transform(
+                {"credential": credential}, r2_data_catalog_enable_params.R2DataCatalogEnableParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,

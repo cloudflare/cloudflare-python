@@ -11,4 +11,4 @@ class TopupStatusParams(TypedDict, total=False):
     account_id: Required[str]
 
     payment_intent_id: Required[str]
-    """Stripe invoice ID to check status for."""
+    """Top-up identifier to check status for."""

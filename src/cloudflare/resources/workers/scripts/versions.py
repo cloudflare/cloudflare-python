@@ -87,9 +87,10 @@ class VersionsResource(SyncAPIResource):
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
-          bindings_inherit: When set to "strict", the upload will fail if any `inherit` type bindings cannot
-              be resolved against the previous version of the Worker. Without this,
-              unresolvable inherit bindings are silently dropped.
+          bindings_inherit: When set to "strict", the upload will fail with error 10057 if any `inherit`
+              type bindings cannot be resolved against the latest uploaded version of the
+              Worker, which may not be the deployed version. Without this, unresolvable
+              inherit bindings are silently dropped.
 
           files: An array of modules (often JavaScript files) comprising a Worker script. At
               least one module must be present and referenced in the metadata as `main_module`
@@ -312,9 +313,10 @@ class AsyncVersionsResource(AsyncAPIResource):
 
           metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
-          bindings_inherit: When set to "strict", the upload will fail if any `inherit` type bindings cannot
-              be resolved against the previous version of the Worker. Without this,
-              unresolvable inherit bindings are silently dropped.
+          bindings_inherit: When set to "strict", the upload will fail with error 10057 if any `inherit`
+              type bindings cannot be resolved against the latest uploaded version of the
+              Worker, which may not be the deployed version. Without this, unresolvable
+              inherit bindings are silently dropped.
 
           files: An array of modules (often JavaScript files) comprising a Worker script. At
               least one module must be present and referenced in the metadata as `main_module`

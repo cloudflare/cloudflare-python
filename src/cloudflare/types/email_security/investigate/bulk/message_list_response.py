@@ -20,6 +20,7 @@ __all__ = [
     "MessageProperties",
     "MessageFinding",
     "MessageValidation",
+    "MessageValidationEmailSecurityValidation",
 ]
 
 
@@ -159,7 +160,7 @@ class MessageFinding(BaseModel):
     value: Optional[str] = None
 
 
-class MessageValidation(BaseModel):
+class MessageValidationEmailSecurityValidation(BaseModel):
     comment: Optional[str] = None
 
     dkim: Optional[Literal["pass", "neutral", "fail", "error", "none"]] = None
@@ -167,6 +168,9 @@ class MessageValidation(BaseModel):
     dmarc: Optional[Literal["pass", "neutral", "fail", "error", "none"]] = None
 
     spf: Optional[Literal["pass", "neutral", "fail", "error", "none"]] = None
+
+
+MessageValidation: TypeAlias = Union[MessageValidationEmailSecurityValidation, Optional[object]]
 
 
 class Message(BaseModel):

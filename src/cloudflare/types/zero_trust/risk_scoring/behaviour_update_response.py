@@ -11,7 +11,7 @@ __all__ = ["BehaviourUpdateResponse", "Behaviors"]
 class Behaviors(BaseModel):
     enabled: bool
 
-    risk_level: Literal["low", "medium", "high"]
+    risk_level: Literal["info", "low", "medium", "high"]
 
 
 class BehaviourUpdateResponse(BaseModel):

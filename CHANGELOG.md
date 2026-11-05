@@ -1,5 +1,113 @@
 # Changelog
 
+## 5.10.0 (2026-11-05)
+
+Full Changelog: [v5.9.0...v5.10.0](https://github.com/cloudflare/cloudflare-python/compare/v5.9.0...v5.10.0)
+
+This release adds the K2 streaming, Monetization, Zero Trust CWS, and Billing
+Spend Policies APIs, plus Zero Trust Access user populations and MFA catalog
+resources. It also removes the Magic Cloud Networking and Tenant Custom
+Nameservers resources and changes several pagination and response types. Review
+the breaking changes before upgrading.
+
+See the [v5.10.0 Migration Guide](./docs/migration-guides/v5.10.0-migration-guide.md) for upgrade examples.
+
+### Breaking Changes
+
+* **magic_cloud_networking:** `client.magic_cloud_networking` has been removed entirely, including the `catalog_syncs`
+  (and `prebuilt_policies`), `on_ramps` (and `address_spaces`), `cloud_integrations`, and `resources` sub-resources
+  and all `cloudflare.types.magic_cloud_networking` exports.
+* **tenant_custom_nameservers:** `client.tenant_custom_nameservers` has been removed, along with its `create()`,
+  `delete()`, and `get()` methods and the `TenantCustomNameserverCreateResponse`, `TenantCustomNameserverDeleteResponse`,
+  and `TenantCustomNameserverGetResponse` types.
+* **tenants:** `client.tenants.get()` has been removed, along with the `account_types`, `entitlements`, and
+  `memberships` sub-resources and the `Tenant` and `TenantAccount` types. `client.tenants.accounts.list()` now returns
+  `SyncV4PagePaginationArray[AccountListResponse]` instead of `SyncSinglePage[TenantAccount]`.
+* **user:** `client.user.tenants.list()` now returns `SyncSinglePage[TenantListResponse]` instead of
+  `SyncSinglePage[Organization]`, and the `Organization` type was removed from `cloudflare.types.user`.
+* **accounts:** the `client.accounts.pay_bad_debt` sub-resource has been removed. `client.accounts.subscriptions.bulk.create()`
+  now returns `BulkCreateResponse` instead of `Optional[BulkCreateResponse]`.
+* **registrar:** the `client.registrar.domains` sub-resource has been removed.
+* **browser_rendering:** `client.browser_rendering.devtools.browser.connect()` and `launch()` have been removed, along
+  with the `devtools.browser.page` sub-resource.
+* **aisearch:** the instance path identifier was renamed from `name` to `namespace` across every
+  `client.aisearch.namespaces.instances` method and its `items` and `jobs` sub-resources. Callers passing `name=` must
+  switch to `namespace=`.
+* **rulesets:** `client.rulesets.list()` is no longer paginated and now returns `RulesetListResponse` directly (was
+  `SyncCursorPagination[RulesetListResponse]`). `client.rulesets.versions.list()` and
+  `client.rulesets.phases.versions.list()` likewise now return `VersionListResponse` instead of
+  `SyncSinglePage[VersionListResponse]`.
+* **pagination:** `client.zero_trust.resource_library.applications.list()` and `categories.list()` now return
+  `SyncCursorPaginationAfter` instead of `SyncSinglePage`. `client.diagnostics.endpoint_healthchecks.list()` now returns
+  `SyncSinglePage[EndpointHealthcheckListResponse]` instead of `Optional[EndpointHealthcheckListResponse]`.
+* **vectorize:** `client.vectorize.indexes.get_by_ids()` now uses `GET` and returns
+  `SyncSinglePage[IndexGetByIDsResponse]` instead of issuing `POST` and returning `object`.
+* **response models:** `client.zero_trust.access.users.last_seen_identity.get()` now returns
+  `Optional[LastSeenIdentityGetResponse]` and the `Identity` type was removed.
+  `client.workers_for_platforms.dispatch.namespaces.scripts.tags.delete()` now returns `TagDeleteResponse` instead of
+  `object`.
+* **removed types:** the shared `LoadBalancerPreview` type was removed, along with
+  `magic_transit.WANStaticAddressingParam`, `organizations.OrganizationProfileParam`, and
+  `precursor.EnforcementRuleParam`.
+
+### Features
+
+* **k2:** add top-level `client.k2` with `streams` and `streams.subscriptions` APIs
+* **monetization:** add top-level `client.monetization` with zone-level monetization `rules` APIs
+* **zero_trust:** add `client.zero_trust.cws` with `basic_auth_credentials` (and `secrets`), `deployments`,
+  `domain_acls`, `policies`, `policy_sets`, `rego_metadata`, `rego_modules`, `tenant_structures` (and `nodes`), and
+  `workloads` APIs
+* **billing:** add `client.billing.spend_policies` with `create()`, `update()`, `list()`, `delete()`, and `get()`,
+  plus `activity` and `audit` listing sub-resources
+* **zero_trust:** add `client.zero_trust.access.user_populations` (and its `users` sub-resource) with full CRUD
+* **zero_trust:** add `client.zero_trust.access.mfa.authenticator_catalog` and `client.zero_trust.access.logs.jit_requests`
+* **zero_trust:** add `mfa_authenticators` and `passkeys` delete sub-resources to `client.zero_trust.access.users`
+* **zero_trust:** add `client.zero_trust.casb.posture.asset_schemas`; add `create()`, `update()`, `delete()`, and
+  `validate()` to `client.zero_trust.casb.posture.finding_types`
+* **zero_trust:** add `client.zero_trust.dlp.validators` (and its `proximity_words` sub-resource)
+* **zero_trust:** add `client.zero_trust.gateway.dns_destination_ips`
+* **zero_trust:** add `delete()` and `get()` to `client.zero_trust.identity_providers.scim.groups` and `scim.users`
+* **dns:** add `client.dns.settings.account.nameserver_sets` with `create()`, `list()`, `delete()`, and `get()`
+* **r2:** add `client.r2.buckets.jobs` with `create()`, `list()`, and `get()`
+* **aisearch:** add `client.aisearch.namespaces.instances.move()`
+* **api_gateway:** add `client.api_gateway.discovery.operations.edit()`
+* **d1:** add `client.d1.database.undelete()`
+* **workers:** add `client.workers.beta.workers.versions.profile()`
+* **zero_trust:** add `client.zero_trust.access.custom_pages.validate()`
+
+#### New Resources
+
+**K2** (`client.k2`)
+
+- `streams.create()`, `streams.update()`, `streams.list()`, `streams.delete()`, and `streams.get()`
+- `streams.subscriptions.list()`
+
+**Monetization** (`client.monetization`)
+
+- `rules.update()`, `rules.delete()`, `rules.delete_rule()`, `rules.edit_rule()`, `rules.get()`, and `rules.get_rule()`
+
+**Zero Trust CWS** (`client.zero_trust.cws`)
+
+- `basic_auth_credentials.create()`, `list()`, `delete()`, `get()`, and `basic_auth_credentials.secrets.*`
+- `deployments.create()`, `update()`, `list()`, `delete()`, and `get()`
+- `domain_acls.create()`, `update()`, `list()`, `delete()`, and `get()`
+- `policies.create()`, `update()`, `list()`, `delete()`, and `get()`
+- `policy_sets.create()`, `update()`, `list()`, `delete()`, and `get()`
+- `rego_metadata.create()`, `update()`, `list()`, `delete()`, and `get()`
+- `rego_modules.create()`, `update()`, `list()`, `delete()`, and `get()`
+- `tenant_structures.create()`, `update()`, `list()`, `delete()`, `get()`, and `tenant_structures.nodes.*`
+- `workloads.create()`, `update()`, `list()`, `delete()`, and `get()`
+
+**Billing Spend Policies** (`client.billing.spend_policies`)
+
+- `create()`, `update()`, `list()`, `delete()`, and `get()`
+- `activity.list()` and `audit.list()`
+
+**Zero Trust Access User Populations** (`client.zero_trust.access.user_populations`)
+
+- `create()`, `update()`, `list()`, `delete()`, and `get()`
+- `users.create()`, `users.update()`, `users.list()`, `users.delete()`, `users.get()`, and `users.replace()`
+
 ## 5.9.0 (2026-10-02)
 
 Full Changelog: [v5.8.0...v5.9.0](https://github.com/cloudflare/cloudflare-python/compare/v5.8.0...v5.9.0)

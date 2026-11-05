@@ -65,6 +65,7 @@ class PoliciesResource(SyncAPIResource):
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_create_params.MfaConfig | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -107,6 +108,10 @@ class PoliciesResource(SyncAPIResource):
 
           mfa_config: Configures multi-factor authentication (MFA) settings.
 
+          policy_resolution_account_id: The account ID used to resolve policy resources and identity for cross-account
+              WARP authentication. The account must be trusted by the account that owns this
+              policy.
+
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
@@ -141,6 +146,7 @@ class PoliciesResource(SyncAPIResource):
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
+                    "policy_resolution_account_id": policy_resolution_account_id,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
                     "require": require,
@@ -172,6 +178,7 @@ class PoliciesResource(SyncAPIResource):
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_update_params.MfaConfig | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -216,6 +223,10 @@ class PoliciesResource(SyncAPIResource):
 
           mfa_config: Configures multi-factor authentication (MFA) settings.
 
+          policy_resolution_account_id: The account ID used to resolve policy resources and identity for cross-account
+              WARP authentication. The account must be trusted by the account that owns this
+              policy.
+
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
@@ -254,6 +265,7 @@ class PoliciesResource(SyncAPIResource):
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
+                    "policy_resolution_account_id": policy_resolution_account_id,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
                     "require": require,
@@ -449,6 +461,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_create_params.MfaConfig | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -491,6 +504,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           mfa_config: Configures multi-factor authentication (MFA) settings.
 
+          policy_resolution_account_id: The account ID used to resolve policy resources and identity for cross-account
+              WARP authentication. The account must be trusted by the account that owns this
+              policy.
+
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
@@ -525,6 +542,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
+                    "policy_resolution_account_id": policy_resolution_account_id,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
                     "require": require,
@@ -556,6 +574,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         isolation_required: bool | Omit = omit,
         mfa_config: policy_update_params.MfaConfig | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         purpose_justification_prompt: str | Omit = omit,
         purpose_justification_required: bool | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
@@ -600,6 +619,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           mfa_config: Configures multi-factor authentication (MFA) settings.
 
+          policy_resolution_account_id: The account ID used to resolve policy resources and identity for cross-account
+              WARP authentication. The account must be trusted by the account that owns this
+              policy.
+
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
@@ -638,6 +661,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "mfa_config": mfa_config,
+                    "policy_resolution_account_id": policy_resolution_account_id,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
                     "require": require,

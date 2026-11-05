@@ -63,6 +63,10 @@ class TagsResource(SyncAPIResource):
         Applies a tag from the account's tag catalog to a Threat Signals article.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          tag_id: UUID of a tag from the account's catalog to apply to the article.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -109,6 +113,10 @@ class TagsResource(SyncAPIResource):
         Removes a tag from a Threat Signals article.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          tag_id: UUID of a tag from the account's catalog
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -157,6 +165,8 @@ class TagsResource(SyncAPIResource):
         tags.
 
         Args:
+          article_id: Threat Signals article UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -223,6 +233,10 @@ class AsyncTagsResource(AsyncAPIResource):
         Applies a tag from the account's tag catalog to a Threat Signals article.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          tag_id: UUID of a tag from the account's catalog to apply to the article.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -269,6 +283,10 @@ class AsyncTagsResource(AsyncAPIResource):
         Removes a tag from a Threat Signals article.
 
         Args:
+          article_id: Threat Signals article UUID
+
+          tag_id: UUID of a tag from the account's catalog
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -317,6 +335,8 @@ class AsyncTagsResource(AsyncAPIResource):
         tags.
 
         Args:
+          article_id: Threat Signals article UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

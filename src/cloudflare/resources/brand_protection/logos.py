@@ -57,7 +57,7 @@ class LogosResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoCreateResponse:
         """
-        Return new saved logo queries created from image files
+        Return new saved logo queries created from image files.
 
         Args:
           extra_headers: Send extra headers
@@ -103,7 +103,7 @@ class LogosResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Return a success message after deleting saved logo queries by ID
+        Return a success message after deleting saved logo queries by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -166,7 +166,7 @@ class AsyncLogosResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoCreateResponse:
         """
-        Return new saved logo queries created from image files
+        Return new saved logo queries created from image files.
 
         Args:
           extra_headers: Send extra headers
@@ -212,7 +212,7 @@ class AsyncLogosResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Return a success message after deleting saved logo queries by ID
+        Return a success message after deleting saved logo queries by ID.
 
         Args:
           extra_headers: Send extra headers

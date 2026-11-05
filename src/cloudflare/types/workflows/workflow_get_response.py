@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -30,6 +31,12 @@ class WorkflowGetResponse(BaseModel):
     script_name: str
 
     triggered_on: Optional[datetime] = None
+
+    jurisdiction: Optional[Literal["eu", "fedramp", "us"]] = None
+    """Jurisdiction where instances of this workflow run and store data.
+
+    Set when the workflow is created and cannot be changed.
+    """
 
     schedules: Optional[List[Schedule]] = None
 

@@ -20,4 +20,10 @@ class EvaluateGetResponse(BaseModel):
     variant: str
     """Name of the variation that supplied the resolved value."""
 
+    metadata: Optional[Dict[str, Union[bool, str, float]]] = None
+    """Key-value metadata associated with the flag.
+
+    Returned only when the flag has metadata.
+    """
+
     value: Union[Optional[str], float, bool, Dict[str, object], List[object], None] = None

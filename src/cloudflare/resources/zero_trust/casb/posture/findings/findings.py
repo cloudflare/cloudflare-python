@@ -221,7 +221,7 @@ class FindingsResource(SyncAPIResource):
         max_affliction_date: Union[str, datetime] | Omit = omit,
         min_affliction_date: Union[str, datetime] | Omit = omit,
         orders: Iterable[finding_export_params.Order] | Omit = omit,
-        product: Optional[Literal["SaaS", "Cloud"]] | Omit = omit,
+        product: Literal["SaaS", "Cloud"] | Omit = omit,
         search: str | Omit = omit,
         severities: List[Literal["CRITICAL", "HIGH", "MEDIUM", "LOW"]] | Omit = omit,
         vendors: List[
@@ -706,7 +706,7 @@ class AsyncFindingsResource(AsyncAPIResource):
         max_affliction_date: Union[str, datetime] | Omit = omit,
         min_affliction_date: Union[str, datetime] | Omit = omit,
         orders: Iterable[finding_export_params.Order] | Omit = omit,
-        product: Optional[Literal["SaaS", "Cloud"]] | Omit = omit,
+        product: Literal["SaaS", "Cloud"] | Omit = omit,
         search: str | Omit = omit,
         severities: List[Literal["CRITICAL", "HIGH", "MEDIUM", "LOW"]] | Omit = omit,
         vendors: List[

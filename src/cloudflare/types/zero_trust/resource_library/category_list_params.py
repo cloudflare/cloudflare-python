@@ -10,8 +10,20 @@ __all__ = ["CategoryListParams"]
 class CategoryListParams(TypedDict, total=False):
     account_id: Required[str]
 
+    cursor: str
+    """Opaque value from `result_info.cursor` of the previous response.
+
+    Returns the categories that follow it. `limit` may change between requests. An
+    empty value is the same as no cursor. A modified cursor, or one returned by a
+    different list, returns `400`.
+    """
+
     limit: int
-    """Limit of number of results to return."""
+    """Number of results to return. Defaults to 25; values are clamped to 1–250."""
 
     offset: int
-    """Offset of results to return."""
+    """Number of results to skip.
+
+    Defaults to 0; negative values are clamped to 0. Ignored when `cursor` is
+    provided.
+    """

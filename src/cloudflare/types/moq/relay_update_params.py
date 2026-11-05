@@ -13,6 +13,11 @@ class RelayUpdateParams(TypedDict, total=False):
     """Cloudflare account identifier."""
 
     config: Config
+    """Relay configuration.
+
+    All sub-objects use whole-object replacement when present; omitted sub-objects
+    preserve the existing value.
+    """
 
     name: str
 
@@ -46,6 +51,12 @@ class ConfigUpstreams(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
+    """Relay configuration.
+
+    All sub-objects use whole-object replacement when
+    present; omitted sub-objects preserve the existing value.
+    """
+
     upstreams: ConfigUpstreams
     """
     Upstreams are external MOQT server publishers that a relay falls back to when it

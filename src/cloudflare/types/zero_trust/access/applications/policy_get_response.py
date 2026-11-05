@@ -120,6 +120,13 @@ class UnionMember0(BaseModel):
     name: Optional[str] = None
     """The name of the Access policy."""
 
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
@@ -236,6 +243,13 @@ class UnionMember1(BaseModel):
 
     name: Optional[str] = None
     """The name of the Access policy."""
+
+    policy_resolution_account_id: Optional[str] = None
+    """
+    The account ID used to resolve policy resources and identity for cross-account
+    WARP authentication. The account must be trusted by the account that owns this
+    policy.
+    """
 
     require: Optional[List[AccessRule]] = None
     """Rules evaluated with an AND logical operator.

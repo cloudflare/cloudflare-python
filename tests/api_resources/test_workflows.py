@@ -45,6 +45,7 @@ class TestWorkflows:
                 "error_retention": "5 minutes",
                 "success_retention": "5 minutes",
             },
+            jurisdiction="eu",
             limits={"steps": 1},
             schedules=[{"cron": "x"}],
         )
@@ -270,6 +271,7 @@ class TestAsyncWorkflows:
                 "error_retention": "5 minutes",
                 "success_retention": "5 minutes",
             },
+            jurisdiction="eu",
             limits={"steps": 1},
             schedules=[{"cron": "x"}],
         )

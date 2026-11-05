@@ -35,7 +35,12 @@ class TestQueries:
             max_time=parse_datetime("2019-12-27T18:11:19.117Z"),
             min_time=parse_datetime("2019-12-27T18:11:19.117Z"),
             body_scan=True,
-            string_matches={},
+            string_matches=[
+                {
+                    "pattern": "pattern",
+                    "max_edit_distance": 0,
+                }
+            ],
             body_tag="tag",
         )
         assert query is None
@@ -140,7 +145,7 @@ class TestQueries:
     def test_method_bulk_with_all_params(self, client: Cloudflare) -> None:
         query = client.brand_protection.queries.bulk(
             account_id="x",
-            queries=[{"foo": "bar"}],
+            queries=[{"foo": {}}],
         )
         assert query is None
 
@@ -203,7 +208,12 @@ class TestAsyncQueries:
             max_time=parse_datetime("2019-12-27T18:11:19.117Z"),
             min_time=parse_datetime("2019-12-27T18:11:19.117Z"),
             body_scan=True,
-            string_matches={},
+            string_matches=[
+                {
+                    "pattern": "pattern",
+                    "max_edit_distance": 0,
+                }
+            ],
             body_tag="tag",
         )
         assert query is None
@@ -308,7 +318,7 @@ class TestAsyncQueries:
     async def test_method_bulk_with_all_params(self, async_client: AsyncCloudflare) -> None:
         query = await async_client.brand_protection.queries.bulk(
             account_id="x",
-            queries=[{"foo": "bar"}],
+            queries=[{"foo": {}}],
         )
         assert query is None
 

@@ -138,6 +138,7 @@ class PoliciesResource(SyncAPIResource):
         connection_rules: policy_create_params.AccessInfraPolicyReqConnectionRules | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         mfa_config: policy_create_params.AccessInfraPolicyReqMfaConfig | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -176,6 +177,10 @@ class PoliciesResource(SyncAPIResource):
           mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
               applications.
 
+          policy_resolution_account_id: The account ID used to resolve policy resources and identity for cross-account
+              WARP authentication. The account must be trusted by the account that owns this
+              policy.
+
           require: Rules evaluated with an AND logical operator. To match the policy, a user must
               meet all of the Require rules.
 
@@ -212,6 +217,7 @@ class PoliciesResource(SyncAPIResource):
         include: Iterable[AccessRuleParam] | Omit = omit,
         name: str | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -258,6 +264,7 @@ class PoliciesResource(SyncAPIResource):
                         "include": include,
                         "name": name,
                         "exclude": exclude,
+                        "policy_resolution_account_id": policy_resolution_account_id,
                         "require": require,
                     },
                     policy_create_params.PolicyCreateParams,
@@ -362,6 +369,7 @@ class PoliciesResource(SyncAPIResource):
         connection_rules: policy_update_params.AccessInfraPolicyReqConnectionRules | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         mfa_config: policy_update_params.AccessInfraPolicyReqMfaConfig | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -401,6 +409,10 @@ class PoliciesResource(SyncAPIResource):
           mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
               applications.
 
+          policy_resolution_account_id: The account ID used to resolve policy resources and identity for cross-account
+              WARP authentication. The account must be trusted by the account that owns this
+              policy.
+
           require: Rules evaluated with an AND logical operator. To match the policy, a user must
               meet all of the Require rules.
 
@@ -439,6 +451,7 @@ class PoliciesResource(SyncAPIResource):
         include: Iterable[AccessRuleParam] | Omit = omit,
         name: str | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -488,6 +501,7 @@ class PoliciesResource(SyncAPIResource):
                         "include": include,
                         "name": name,
                         "exclude": exclude,
+                        "policy_resolution_account_id": policy_resolution_account_id,
                         "require": require,
                     },
                     policy_update_params.PolicyUpdateParams,
@@ -832,6 +846,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         connection_rules: policy_create_params.AccessInfraPolicyReqConnectionRules | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         mfa_config: policy_create_params.AccessInfraPolicyReqMfaConfig | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -870,6 +885,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
           mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
               applications.
 
+          policy_resolution_account_id: The account ID used to resolve policy resources and identity for cross-account
+              WARP authentication. The account must be trusted by the account that owns this
+              policy.
+
           require: Rules evaluated with an AND logical operator. To match the policy, a user must
               meet all of the Require rules.
 
@@ -906,6 +925,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         include: Iterable[AccessRuleParam] | Omit = omit,
         name: str | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -952,6 +972,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                         "include": include,
                         "name": name,
                         "exclude": exclude,
+                        "policy_resolution_account_id": policy_resolution_account_id,
                         "require": require,
                     },
                     policy_create_params.PolicyCreateParams,
@@ -1056,6 +1077,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         connection_rules: policy_update_params.AccessInfraPolicyReqConnectionRules | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
         mfa_config: policy_update_params.AccessInfraPolicyReqMfaConfig | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1095,6 +1117,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
           mfa_config: Configures multi-factor authentication (MFA) settings for infrastructure
               applications.
 
+          policy_resolution_account_id: The account ID used to resolve policy resources and identity for cross-account
+              WARP authentication. The account must be trusted by the account that owns this
+              policy.
+
           require: Rules evaluated with an AND logical operator. To match the policy, a user must
               meet all of the Require rules.
 
@@ -1133,6 +1159,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         include: Iterable[AccessRuleParam] | Omit = omit,
         name: str | Omit = omit,
         exclude: Iterable[AccessRuleParam] | Omit = omit,
+        policy_resolution_account_id: str | Omit = omit,
         require: Iterable[AccessRuleParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1182,6 +1209,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                         "include": include,
                         "name": name,
                         "exclude": exclude,
+                        "policy_resolution_account_id": policy_resolution_account_id,
                         "require": require,
                     },
                     policy_update_params.PolicyUpdateParams,

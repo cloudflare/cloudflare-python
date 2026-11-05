@@ -57,6 +57,15 @@ class ArticleEditResponse(BaseModel):
 
     read_at: Optional[str] = None
 
+    severity: Optional[Literal["informational", "low", "medium", "high", "critical"]] = None
+    """Beta.
+
+    Intrinsic article severity band, from informational to critical, independent of
+    any organisation or Priority Intelligence Requirement. Null when the account has
+    no active Priority Intelligence Requirements, scoring has not completed, or a
+    historic article has not entered an automatic rescore window.
+    """
+
     source_count: float
 
     summary: Optional[str] = None

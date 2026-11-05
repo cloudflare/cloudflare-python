@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
+from typing import Dict, List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -84,8 +84,10 @@ class ResourceSharingResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        recipients: Iterable[resource_sharing_create_params.Recipient],
-        resources: Iterable[resource_sharing_create_params.Resource],
+        excluded_recipients: Iterable[resource_sharing_create_params.ExcludedRecipient] | Omit = omit,
+        recipients: Iterable[resource_sharing_create_params.Recipient] | Omit = omit,
+        resources: Iterable[resource_sharing_create_params.Resource] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,13 +96,19 @@ class ResourceSharingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingCreateResponse]:
         """
-        Creates a new resource share for sharing Cloudflare resources with other
-        accounts or organizations.
+        Creates a share that makes a resource available to specific accounts in the
+        caller's organization, or to the whole organization.
 
         Args:
           account_id: Account identifier.
 
           name: The name of the share.
+
+          excluded_recipients: Accounts to exclude from an organization-targeted share. Only allowed when
+              `recipients` contains no account entries. The share owner cannot be excluded.
+              Duplicate entries are ignored.
+
+          tags: Tags associated with the share.
 
           extra_headers: Send extra headers
 
@@ -117,8 +125,10 @@ class ResourceSharingResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "excluded_recipients": excluded_recipients,
                     "recipients": recipients,
                     "resources": resources,
+                    "tags": tags,
                 },
                 resource_sharing_create_params.ResourceSharingCreateParams,
             ),
@@ -138,6 +148,7 @@ class ResourceSharingResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,19 +158,9 @@ class ResourceSharingResource(SyncAPIResource):
     ) -> Optional[ResourceSharingUpdateResponse]:
         """Updates the share's display name and tags.
 
-        This endpoint does **not** modify
-        recipients or resources — those are managed via dedicated subresource endpoints:
-
-        - **Recipients**: Use `POST /accounts/{account_id}/shares/{share_id}/recipients`
-          to add a single recipient,
-          `PUT /accounts/{account_id}/shares/{share_id}/recipients` to replace the full
-          recipient list, or
-          `DELETE /accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}` to
-          remove a recipient.
-        - **Resources**: Use the share's resource subresource endpoints.
-
-        Updating is not immediate; an updated share object with a new status will be
-        returned.
+        Omitting `tags` leaves the existing
+        tags unchanged. Recipients and resources are managed via their subresource
+        endpoints.
 
         Args:
           account_id: Account identifier.
@@ -167,6 +168,8 @@ class ResourceSharingResource(SyncAPIResource):
           share_id: Share identifier tag.
 
           name: The name of the share.
+
+          tags: Tags associated with the share.
 
           extra_headers: Send extra headers
 
@@ -182,7 +185,13 @@ class ResourceSharingResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._put(
             path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
-            body=maybe_transform({"name": name}, resource_sharing_update_params.ResourceSharingUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                resource_sharing_update_params.ResourceSharingUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -200,6 +209,7 @@ class ResourceSharingResource(SyncAPIResource):
         direction: Literal["asc", "desc"] | Omit = omit,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
+        include_tags_from: Literal["api", "mirror"] | Omit = omit,
         kind: Literal["sent", "received"] | Omit = omit,
         order: Literal["name", "created"] | Omit = omit,
         page: int | Omit = omit,
@@ -238,16 +248,17 @@ class ResourceSharingResource(SyncAPIResource):
 
           include_resources: Include resources in the response.
 
+          include_tags_from: Include share tags in the response. `api` reads tags from the tag service;
+              `mirror` reads a local, eventually consistent replica. If the tag lookup fails,
+              the response omits `tags`.
+
           kind: Filter shares by kind.
 
           order: Order shares by values in the given field.
 
-          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
-              omitted entirely along with `per_page` to receive a non-paginated response.
+          page: Page number. Defaults to `1` when omitted.
 
-          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
-              without `per_page`. May be omitted entirely along with `page` to receive a
-              non-paginated response.
+          per_page: Number of objects to return per page. Defaults to `20` when omitted.
 
           resource_types: Filter share resources by resource_types.
 
@@ -283,6 +294,7 @@ class ResourceSharingResource(SyncAPIResource):
                         "direction": direction,
                         "include_recipient_counts": include_recipient_counts,
                         "include_resources": include_resources,
+                        "include_tags_from": include_tags_from,
                         "kind": kind,
                         "order": order,
                         "page": page,
@@ -350,6 +362,7 @@ class ResourceSharingResource(SyncAPIResource):
         account_id: str,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
+        include_tags_from: Literal["api", "mirror"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -368,6 +381,10 @@ class ResourceSharingResource(SyncAPIResource):
           include_recipient_counts: Include recipient counts in the response.
 
           include_resources: Include resources in the response.
+
+          include_tags_from: Include share tags in the response. `api` reads tags from the tag service;
+              `mirror` reads a local, eventually consistent replica. If the tag lookup fails,
+              the response omits `tags`.
 
           extra_headers: Send extra headers
 
@@ -392,6 +409,7 @@ class ResourceSharingResource(SyncAPIResource):
                     {
                         "include_recipient_counts": include_recipient_counts,
                         "include_resources": include_resources,
+                        "include_tags_from": include_tags_from,
                     },
                     resource_sharing_get_params.ResourceSharingGetParams,
                 ),
@@ -434,8 +452,10 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        recipients: Iterable[resource_sharing_create_params.Recipient],
-        resources: Iterable[resource_sharing_create_params.Resource],
+        excluded_recipients: Iterable[resource_sharing_create_params.ExcludedRecipient] | Omit = omit,
+        recipients: Iterable[resource_sharing_create_params.Recipient] | Omit = omit,
+        resources: Iterable[resource_sharing_create_params.Resource] | Omit = omit,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -444,13 +464,19 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceSharingCreateResponse]:
         """
-        Creates a new resource share for sharing Cloudflare resources with other
-        accounts or organizations.
+        Creates a share that makes a resource available to specific accounts in the
+        caller's organization, or to the whole organization.
 
         Args:
           account_id: Account identifier.
 
           name: The name of the share.
+
+          excluded_recipients: Accounts to exclude from an organization-targeted share. Only allowed when
+              `recipients` contains no account entries. The share owner cannot be excluded.
+              Duplicate entries are ignored.
+
+          tags: Tags associated with the share.
 
           extra_headers: Send extra headers
 
@@ -467,8 +493,10 @@ class AsyncResourceSharingResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
+                    "excluded_recipients": excluded_recipients,
                     "recipients": recipients,
                     "resources": resources,
+                    "tags": tags,
                 },
                 resource_sharing_create_params.ResourceSharingCreateParams,
             ),
@@ -488,6 +516,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
+        tags: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,19 +526,9 @@ class AsyncResourceSharingResource(AsyncAPIResource):
     ) -> Optional[ResourceSharingUpdateResponse]:
         """Updates the share's display name and tags.
 
-        This endpoint does **not** modify
-        recipients or resources — those are managed via dedicated subresource endpoints:
-
-        - **Recipients**: Use `POST /accounts/{account_id}/shares/{share_id}/recipients`
-          to add a single recipient,
-          `PUT /accounts/{account_id}/shares/{share_id}/recipients` to replace the full
-          recipient list, or
-          `DELETE /accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}` to
-          remove a recipient.
-        - **Resources**: Use the share's resource subresource endpoints.
-
-        Updating is not immediate; an updated share object with a new status will be
-        returned.
+        Omitting `tags` leaves the existing
+        tags unchanged. Recipients and resources are managed via their subresource
+        endpoints.
 
         Args:
           account_id: Account identifier.
@@ -517,6 +536,8 @@ class AsyncResourceSharingResource(AsyncAPIResource):
           share_id: Share identifier tag.
 
           name: The name of the share.
+
+          tags: Tags associated with the share.
 
           extra_headers: Send extra headers
 
@@ -533,7 +554,11 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         return await self._put(
             path_template("/accounts/{account_id}/shares/{share_id}", account_id=account_id, share_id=share_id),
             body=await async_maybe_transform(
-                {"name": name}, resource_sharing_update_params.ResourceSharingUpdateParams
+                {
+                    "name": name,
+                    "tags": tags,
+                },
+                resource_sharing_update_params.ResourceSharingUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -552,6 +577,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         direction: Literal["asc", "desc"] | Omit = omit,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
+        include_tags_from: Literal["api", "mirror"] | Omit = omit,
         kind: Literal["sent", "received"] | Omit = omit,
         order: Literal["name", "created"] | Omit = omit,
         page: int | Omit = omit,
@@ -590,16 +616,17 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           include_resources: Include resources in the response.
 
+          include_tags_from: Include share tags in the response. `api` reads tags from the tag service;
+              `mirror` reads a local, eventually consistent replica. If the tag lookup fails,
+              the response omits `tags`.
+
           kind: Filter shares by kind.
 
           order: Order shares by values in the given field.
 
-          page: Page number. Defaults to `1` when `per_page` is supplied without `page`. May be
-              omitted entirely along with `per_page` to receive a non-paginated response.
+          page: Page number. Defaults to `1` when omitted.
 
-          per_page: Number of objects to return per page. Defaults to `20` when `page` is supplied
-              without `per_page`. May be omitted entirely along with `page` to receive a
-              non-paginated response.
+          per_page: Number of objects to return per page. Defaults to `20` when omitted.
 
           resource_types: Filter share resources by resource_types.
 
@@ -635,6 +662,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                         "direction": direction,
                         "include_recipient_counts": include_recipient_counts,
                         "include_resources": include_resources,
+                        "include_tags_from": include_tags_from,
                         "kind": kind,
                         "order": order,
                         "page": page,
@@ -702,6 +730,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         account_id: str,
         include_recipient_counts: bool | Omit = omit,
         include_resources: bool | Omit = omit,
+        include_tags_from: Literal["api", "mirror"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -720,6 +749,10 @@ class AsyncResourceSharingResource(AsyncAPIResource):
           include_recipient_counts: Include recipient counts in the response.
 
           include_resources: Include resources in the response.
+
+          include_tags_from: Include share tags in the response. `api` reads tags from the tag service;
+              `mirror` reads a local, eventually consistent replica. If the tag lookup fails,
+              the response omits `tags`.
 
           extra_headers: Send extra headers
 
@@ -744,6 +777,7 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                     {
                         "include_recipient_counts": include_recipient_counts,
                         "include_resources": include_resources,
+                        "include_tags_from": include_tags_from,
                     },
                     resource_sharing_get_params.ResourceSharingGetParams,
                 ),

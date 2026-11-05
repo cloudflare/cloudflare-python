@@ -66,6 +66,7 @@ class ApplicationListResponse(BaseModel):
         "SALESFORCE",
         "SERVICENOW",
         "SLACK",
+        "ZOOM",
     ]
     """Vendor identifier (e.g. microsoft_internal, google_workspace).
 
@@ -84,6 +85,7 @@ class ApplicationListResponse(BaseModel):
     - `SALESFORCE` - SALESFORCE
     - `SERVICENOW` - SERVICENOW
     - `SLACK` - SLACK
+    - `ZOOM` - ZOOM
     """
 
     auth_methods: List[AuthMethod]
